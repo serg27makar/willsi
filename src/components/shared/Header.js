@@ -1,4 +1,5 @@
 import React from 'react';
+import ru from "../../access/lang/LangConstants";
 
 class Header extends React.Component {
     render() {
@@ -14,7 +15,7 @@ class Header extends React.Component {
                                         <img className="logo__source" src="static/img/general/logo.png" alt="logo"/>
                                     </picture>
                                 </a>
-                                    <p className="header__text light text-16 admin-panel-hide">Онлайн-<br/>примерочная</p>
+                                    <p className="header__text light text-16 admin-panel-hide">{ru.online}<br/>{ru.dressingRoom}</p>
                                 </div>
                                 <div className="header-mobile">
                                     <a className="header-mobile__basket-icon" href="#">
@@ -40,13 +41,13 @@ class Header extends React.Component {
                                 <div className="header__navigation-list">
                                     <ul className="navigation-list">
                                         <li className="navigation-list__item">
-                                            <a className="navigation-list__link light text-16" href="#">Главная</a>
+                                            <a className="navigation-list__link light text-16" href="#">{ru.Home}</a>
                                         </li>
                                         <li className="navigation-list__item">
-                                            <a className="navigation-list__link light text-16" href="#">Примерочная</a>
+                                            <a className="navigation-list__link light text-16" href="#">{ru.DressingRoom}</a>
                                         </li>
                                         <li className="navigation-list__item">
-                                            <a className="navigation-list__link light text-16" href="#">О нас</a>
+                                            <a className="navigation-list__link light text-16" href="#">{ru.About}</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -62,13 +63,9 @@ class Header extends React.Component {
                                             </svg>
                                         </div>
                                         <div className="user-list__column">
-                                            <a className="user-list__link light text-16" href="#">Вход</a>
-                                            <a className="user-list__link light text-16" href="#">Регистрация</a>
+                                            <a className="user-list__link light text-16" href="#">{ru.SignIn}</a>
+                                            <a className="user-list__link light text-16" href="#">{ru.SignUp}</a>
                                         </div>
-                                        {/*<div className="user-list__column">*/}
-                                        {/*    <a className="user-list__link light text-16" data-iziModal-open="#modal-enter" href="#">Вход</a>*/}
-                                        {/*    <a className="user-list__link light text-16" data-iziModal-open="#modal-registration" href="#">Регистрация</a>*/}
-                                        {/*</div>*/}
                                     </div>
                                 </div>
                                 <a className="header__basket-icon" href="#">
@@ -84,13 +81,13 @@ class Header extends React.Component {
                     <div className="mobile-envelope">
                         <ul className="mobile-nav">
                             <li className="mobile-nav__item">
-                                <a className="mobile-nav__link light text-25" href="#">Главная</a>
+                                <a className="mobile-nav__link light text-25" href="#">{ru.Home}</a>
                             </li>
                             <li className="mobile-nav__item">
-                                <a className="mobile-nav__link light text-25" href="#">О нас</a>
+                                <a className="mobile-nav__link light text-25" href="#">{ru.About}</a>
                             </li>
                             <li className="mobile-nav__item">
-                                <a className="mobile-nav__link light text-25" href="#">Примерочная</a>
+                                <a className="mobile-nav__link light text-25" href="#">{ru.DressingRoom}</a>
                             </li>
                         </ul>
                         <div className="mobile-user">
@@ -100,13 +97,9 @@ class Header extends React.Component {
                                 </svg>
                             </div>
                             <div className="mobile-user__column">
-                                <a className="mobile-user__link light text-14" href="#">Вход</a>
-                                <a className="mobile-user__link light text-14" href="#">Регистрация</a>
+                                <a className="mobile-user__link light text-14" href="#">{ru.SignIn}</a>
+                                <a className="mobile-user__link light text-14" href="#">{ru.SignUp}</a>
                             </div>
-                            {/*<div className="mobile-user__column">*/}
-                            {/*    <a className="mobile-user__link light text-14" data-iziModal-open="#modal-enter" href="#">Вход</a>*/}
-                            {/*    <a className="mobile-user__link light text-14" data-iziModal-open="#modal-registration" href="#">Регистрация</a>*/}
-                            {/*</div>*/}
                         </div>
                     </div>
                 </div>

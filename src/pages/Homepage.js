@@ -1,9 +1,4 @@
 import React from 'react';
-import Header from "../components/shared/Header";
-import MenuGlobal from "../components/shared/MenuGlobal";
-import LinkBtn from "../components/shared/LinkBtn";
-import Footer from "../components/shared/Footer";
-import BtnUp from "../components/shared/BtnUp";
 
 class Homepage extends React.Component {
     state = {
