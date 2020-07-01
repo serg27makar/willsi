@@ -6,6 +6,26 @@ import Footer from "../components/Footer";
 import BtnUp from "../components/BtnUp";
 
 class Homepage extends React.Component {
+    state = {
+        muve: "fade-right",
+        animate: "welcome-main-env"
+    };
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                ...this.state,
+                animate: "welcome-main-env aos-animate"
+            })
+        }, 300);
+        setTimeout(() => {
+            this.setState({
+                ...this.state,
+                muve: "fade-left",
+            })
+        }, 800);
+
+    }
+
     render() {
         return(
             <div className="wrapper">
@@ -15,7 +35,7 @@ class Homepage extends React.Component {
                         <div className="container">
                             <div className="row">
                                 <div className="col-12 col-md-12 col-lg-7">
-                                    <div className="welcome-main-env" data-aos="fade-right" data-aos-offset="300" data-aos-duration="1000">
+                                    <div className={this.state.animate} data-aos={this.state.muve}>
                                         <h1 className="welcome-main-env__title uppercase title-36 bold">
                                             <span className="welcome-main-env__title-name">Willsi -</span>
                                             <br className="welcome-main-env__br"/><span className="welcome-main-env__title-value">Подбор вещей</span>
