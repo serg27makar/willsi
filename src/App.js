@@ -1,5 +1,6 @@
 import React from 'react';
 import {Router, Route} from 'react-router-dom'
+import {createBrowserHistory} from 'history'
 import './App.css';
 import Header from "./components/shared/Header";
 import Footer from "./components/shared/Footer";
@@ -15,6 +16,8 @@ import Data from "./pages/Data";
 import Postpone from "./pages/Postpone";
 import ServiceBlue from "./pages/ServiceBlue";
 import ServiceRed from "./pages/ServiceRed";
+
+const history = createBrowserHistory();
 
 function App() {
   return (
@@ -46,7 +49,6 @@ class Navigate extends React.Component {
                     <Route path='/service-blue' component={ServiceBlue}/>
                     <Route path='/service-red' component={ServiceRed}/>
                 </div>
-                <Toolbar/>
             </Router>
         );
     }
