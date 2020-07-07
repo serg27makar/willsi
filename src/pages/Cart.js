@@ -1,6 +1,104 @@
 import React from 'react';
+import "./../access/css/cart.css"
+
+const slidersArr = [
+    {
+        imgUrl: "static/img/content/slider-main.jpg",
+        dataMagnifySrc: "static/img/content/slider-main.jpg",
+        alt: "slider",
+    },
+    {
+        imgUrl: "static/img/content/slider-main.jpg",
+        dataMagnifySrc: "static/img/content/slider-main.jpg",
+        alt: "slider",
+    },
+    {
+        imgUrl: "static/img/content/slider-main.jpg",
+        dataMagnifySrc: "static/img/content/slider-main.jpg",
+        alt: "slider",
+    },
+];
+
+const groupSliders = [
+    {
+        imgUrl: "static/img/content/thumbs-1.webp",
+        alt: "slider",
+    },
+    {
+        imgUrl: "static/img/content/thumbs-2.webp",
+        alt: "slider",
+    },
+    {
+        imgUrl: "static/img/content/thumbs-3.webp",
+        alt: "slider",
+    },
+];
 
 class Cart extends React.Component {
+    constructor(props) {
+        super(props);
+        this. state = {
+            sliders: [],
+            groupSlide: [],
+        };
+    }
+
+
+    componentDidMount() {
+        this.fillSliders(slidersArr, groupSliders);
+
+    }
+
+    fillSliders = (sliders, groupSlide) => {
+        this.setState({
+            ...this.state,
+            sliders: sliders,
+            groupSlide: groupSlide
+        })
+    };
+
+    renderSlide = (sliders) => {
+        return sliders.map((slide, index) => {
+            return(
+                <div className="swiper-slide" key={index}>
+                    <div className="magnify-lens loading zoomLens"
+                         style={{background: "url(" + slide.imgUrl + ") -50px -50px no-repeat", top: "50px", left: "50px"}}
+                    />
+                    <div className="cart-slider__picture">
+                        <div className="picture">
+                            <img className="picture__source zoom"
+                                 src={slide.imgUrl}
+                                 data-magnify-src={slide.dataMagnifySrc}
+                                 alt={slide.alt}/>
+                        </div>
+                    </div>
+                </div>
+            )
+        })
+    };
+
+    changePosition = (e) => {
+        console.log(e.pageX, e.pageY);
+    };
+
+    renderGroupSliders = (groupSliders) => {
+        return groupSliders.map( (slide, index) => {
+            return(
+                <div className="swiper-slide" key={index}>
+                    <div className="cart-thumbs__picture">
+                        <picture className="picture thumbs-active">
+                            <source className="picture__source"
+                                    src={slide.imgUrl}
+                                    type="image/webp"/>
+                            <img className="picture__source"
+                                 src={slide.imgUrl}
+                                 alt={slide.alt}/>
+                        </picture>
+                    </div>
+                </div>
+            )
+        })
+    };
 
     render() {
         return(
@@ -12,19 +110,18 @@ class Cart extends React.Component {
                                 <div className="breadcrumbs__row">
                                     <div className="breadcrumb__column">
                                         <div className="breadcrumbs">
-                                            <h1 className="breadcrumbs__title title-30 bold uppercase">Женская
-                                                одежда</h1>
+                                            <h1 className="breadcrumbs__title title-30 bold uppercase">Женская одежда</h1>
                                         </div>
-                                        <nav className="breadcrumbs"><a className="breadcrumbs__link light text-14"
-                                                                        href="#">Каталог</a><a
-                                            className="breadcrumbs__link light text-14" href="#">Одежда</a><a
-                                            className="breadcrumbs__link light text-14" href="#">Женская одежда</a><a
-                                            className="breadcrumbs__link light text-14 active" href="#">Красная
-                                            рубашка</a></nav>
+                                        <nav className="breadcrumbs">
+                                            <a className="breadcrumbs__link light text-14" href="#">Каталог</a>
+                                            <a className="breadcrumbs__link light text-14" href="#">Одежда</a>
+                                            <a className="breadcrumbs__link light text-14" href="#">Женская одежда</a>
+                                            <a className="breadcrumbs__link light text-14 active" href="#">Красная рубашка</a>
+                                        </nav>
                                     </div>
                                     <div className="breadcrumbs__column"><a className="breadcrumbs__share" href="#">
                                         <svg className="icon icon-share ">
-                                            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#share"></use>
+                                            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#share"/>
                                         </svg>
                                     </a></div>
                                 </div>
@@ -52,7 +149,7 @@ class Cart extends React.Component {
                                                             <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#pen"/>
                                                         </svg>
                                                     </button>
-                                                    <input className="tags-list__input-radio" type="radio" name="my" checked hidden/>
+                                                    <input className="tags-list__input-radio" type="radio" name="my" defaultChecked={true} hidden/>
                                                     <button className="tags-list__item" type="button">
                                                         <span className="tags-list__text text-18 medium">Мужа</span>
                                                         <svg className="icon icon-pen ">
@@ -89,8 +186,7 @@ class Cart extends React.Component {
                                                     <input className="tags-list__input text-18 light" name="hips" placeholder="Бедра 91 см"/>
                                                     <button
                                                         className="tags-list__button-save text-14 medium"
-                                                        type="button"
-                                                        data-iziModal-open="#modal-link">Сохранить
+                                                        type="button">Сохранить
                                                     </button>
                                                 </div>
                                             </div>
@@ -107,21 +203,24 @@ class Cart extends React.Component {
                             <div className="col-12 col-md-12 col-lg-2">
                                 <div className="catalog-top">
                                     <div className="catalog-top__dropdown-info">
-                                        <div className="catalog-top__button-drop"><a
-                                            className="catalog-top__button-text text-16 bold uppercase" href="#">Мои</a><span
-                                            className="catalog-top__button-icon">
-                        <svg className="icon icon-arrow-small ">
-                          <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"></use>
-                        </svg></span></div>
+                                        <div className="catalog-top__button-drop">
+                                            <a className="catalog-top__button-text text-16 bold uppercase" href="#">Мои</a>
+                                            <span className="catalog-top__button-icon">
+                                                <svg className="icon icon-arrow-small ">
+                                                  <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
+                                                </svg>
+                                            </span>
+                                        </div>
                                         <div className="dropdown-info">
-                                            <p className="dropdown-info__item"><a
-                                                className="dropdown-info__link text-16 bold uppercase" href="#">Мужа</a>
+                                            <p className="dropdown-info__item">
+                                                <a className="dropdown-info__link text-16 bold uppercase" href="#">Мужа</a>
                                             </p>
-                                            <p className="dropdown-info__item"><a
-                                                className="dropdown-info__link text-16 bold uppercase" href="#">Сына</a>
+                                            <p className="dropdown-info__item">
+                                                <a className="dropdown-info__link text-16 bold uppercase" href="#">Сына</a>
                                             </p>
-                                            <p className="dropdown-info__item"><a
-                                                className="dropdown-info__link icon-plus" href="#"></a></p>
+                                            <p className="dropdown-info__item">
+                                                <a className="dropdown-info__link icon-plus" href="#"/>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -131,24 +230,24 @@ class Cart extends React.Component {
                                     <div className="catalog-top__list-object">
                                         <ul className="list-object">
                                             <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Рост -</p><span
-                                                className="list-object__text-value color-aqua">175 см</span>
+                                                <p className="list-object__text">Рост -</p>
+                                                <span className="list-object__text-value color-aqua">175 см</span>
                                             </li>
                                             <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Обхват плечь -</p><span
-                                                className="list-object__text-value color-aqua">60 см</span>
+                                                <p className="list-object__text">Обхват плечь -</p>
+                                                <span className="list-object__text-value color-aqua">60 см</span>
                                             </li>
                                             <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Обхват груди -</p><span
-                                                className="list-object__text-value color-aqua">90 см</span>
+                                                <p className="list-object__text">Обхват груди -</p>
+                                                <span className="list-object__text-value color-aqua">90 см</span>
                                             </li>
                                             <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Обхват талии -</p><span
-                                                className="list-object__text-value color-aqua">65 см</span>
+                                                <p className="list-object__text">Обхват талии -</p>
+                                                <span className="list-object__text-value color-aqua">65 см</span>
                                             </li>
                                             <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Обхват бедер -</p><span
-                                                className="list-object__text-value color-aqua">91 см</span>
+                                                <p className="list-object__text">Обхват бедер -</p>
+                                                <span className="list-object__text-value color-aqua">91 см</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -161,80 +260,16 @@ class Cart extends React.Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-12 col-md-12 col-lg-5">
-                                <div className="cart-slider swiper-container">
+                                <div className="cart-slider swiper-container" onMouseMove={this.changePosition}>
                                     <div className="swiper-wrapper">
-                                        <div className="swiper-slide">
-                                            <div className="cart-slider__picture">
-                                                <div className="picture">
-                                                    <img className="picture__source zoom"
-                                                         src="static/img/content/slider-main.jpg"
-                                                         data-magnify-src="static/img/content/slider-main.jpg"
-                                                         alt="slider"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="swiper-slide">
-                                            <div className="cart-slider__picture">
-                                                <div className="picture">
-                                                    <img className="picture__source zoom"
-                                                          src="static/img/content/slider-main.jpg"
-                                                          data-magnify-src="static/img/content/slider-main.jpg"
-                                                          alt="slider"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="swiper-slide">
-                                            <div className="cart-slider__picture">
-                                                <div className="picture">
-                                                    <img className="picture__source zoom"
-                                                         src="static/img/content/slider-main.jpg"
-                                                         data-magnify-src="static/img/content/slider-main.jpg"
-                                                         alt="slider"/>
-                                                    </div>
-                                            </div>
-                                        </div>
+                                        {this.renderSlide(slidersArr)}
                                     </div>
                                     <div className="cart-slider__circle" style={{backgroundImage: "url('static/img/content/circle-good.png')"}}/>
                                 </div>
                                 <div className="cart-thumbsEnv">
                                     <div className="cart-thumbs swiper-container">
                                         <div className="swiper-wrapper">
-                                            <div className="swiper-slide">
-                                                <div className="cart-thumbs__picture">
-                                                    <picture className="picture thumbs-active">
-                                                        <source className="picture__source"
-                                                                srcSet="static/img/content/thumbs-1.webp"
-                                                                type="image/webp"/>
-                                                        <img className="picture__source"
-                                                             src="static/img/content/thumbs-1.jpg"
-                                                             alt="slider"/>
-                                                    </picture>
-                                                </div>
-                                            </div>
-                                            <div className="swiper-slide">
-                                                <div className="cart-thumbs__picture">
-                                                    <picture className="picture thumbs-active">
-                                                        <source className="picture__source"
-                                                                srcSet="static/img/content/thumbs-2.webp"
-                                                                type="image/webp"/>
-                                                        <img className="picture__source"
-                                                             src="static/img/content/thumbs-2.jpg"
-                                                             alt="slider"/>
-                                                    </picture>
-                                                </div>
-                                            </div>
-                                            <div className="swiper-slide">
-                                                <div className="cart-thumbs__picture">
-                                                    <picture className="picture thumbs-active">
-                                                        <source className="picture__source"
-                                                                srcSet="static/img/content/thumbs-3.webp"
-                                                                type="image/webp"/>
-                                                        <img className="picture__source"
-                                                             src="static/img/content/thumbs-3.jpg"
-                                                             alt="slider"/>
-                                                    </picture>
-                                                </div>
-                                            </div>
+                                            {this.renderGroupSliders(groupSliders)}
                                         </div>
                                     </div>
                                 </div>
@@ -243,9 +278,8 @@ class Cart extends React.Component {
                                 <div className="card-description">
                                     <div className="card-description__top-info">
                                         <p className="card-description__title text-22 bold uppercase">Bailmain</p>
-                                        <p className="card-description__article-mobile text-14 light">Арт 02936</p><a
-                                        className="card-description__link-model text-14 uppercase" href="#">3d
-                                        модель</a>
+                                        <p className="card-description__article-mobile text-14 light">Арт 02936</p>
+                                        <a className="card-description__link-model text-14 uppercase" href="#">3d модель</a>
                                     </div>
                                     <p className="card-description__article text-14 light">Арт 02936</p>
                                     <p className="card-description__paragraph text-14 light">Повседневная практика
@@ -261,21 +295,20 @@ class Cart extends React.Component {
                                         <div className="color-box">
                                             <p className="color-box__text text-16 uppercase bold">Цвета</p>
                                             <ul className="color-box__list">
-                                                <li className="color-box__item color-red"></li>
-                                                <li className="color-box__item color-blue"></li>
-                                                <li className="color-box__item color-green"></li>
+                                                <li className="color-box__item color-red"/>
+                                                <li className="color-box__item color-blue"/>
+                                                <li className="color-box__item color-green"/>
                                             </ul>
                                         </div>
                                     </div>
                                     <div className="card-description__button-bottom">
-                                        <p className="card-description__quantity text-22 color-aqua uppercase medium">555
-                                            грн</p><a className="button-postpone" href="#"><span
-                                        className="button-postpone__text text-16 medium">Отложить</span>
-                                        <svg className="icon icon-shopping-bag ">
-                                            <use
-                                                xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"></use>
-                                        </svg>
-                                    </a>
+                                        <p className="card-description__quantity text-22 color-aqua uppercase medium">555 грн</p>
+                                        <a className="button-postpone" href="#">
+                                            <span className="button-postpone__text text-16 medium">Отложить</span>
+                                            <svg className="icon icon-shopping-bag ">
+                                                <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
+                                            </svg>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
