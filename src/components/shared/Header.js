@@ -3,33 +3,37 @@ import ru from "../../access/lang/LangConstants";
 
 class Header extends React.Component {
     render() {
+        if (window.location.pathname === "/admin-panel") {
+            return null;
+        }
         return (
             <header>
                 <div className="container">
                     <div className="row align-items-center">
-                        <div className="col-12 col-md-12 col-lg-4">
+                        <div className="col-12 col-md-12">
                             <div className="header-envelope">
-                                <div className="header"><a className="header__logo admin-panel-hide" href="#">
-                                    <picture className="logo">
-                                        <source className="logo__source" srcSet="static/img/general/logo.webp" type="image/webp"/>
-                                        <img className="logo__source" src="static/img/general/logo.png" alt="logo"/>
-                                    </picture>
-                                </a>
-                                    <p className="header__text light text-16 admin-panel-hide">{ru.online}<br/>{ru.dressingRoom}</p>
+                                <div className="header">
+                                    <a className="header__logo" href="#">
+                                        <picture>
+                                            <source className="logo__source" srcSet="static/img/general/logo.webp" type="image/webp"/>
+                                            <img className="logo__source" src="static/img/general/logo.png" alt="logo"/>
+                                        </picture>
+                                    </a>
+                                    <p className="header__text light text-16">{ru.online}<br/>{ru.dressingRoom}</p>
                                 </div>
                                 <div className="header-mobile">
                                     <a className="header-mobile__basket-icon" href="#">
-                                        <svg className="icon icon-shopping-bag ">
+                                        <svg className="icon">
                                             <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
                                         </svg>
                                     </a>
                                     <button className="header-mobile__bars-button" type="button">
-                                        <svg className="icon icon-menu ">
+                                        <svg className="icon">
                                             <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#menu"/>
                                         </svg>
                                     </button>
                                     <button className="header-mobile__close-button" type="button">
-                                        <svg className="icon icon-close ">
+                                        <svg className="icon">
                                             <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#close"/>
                                         </svg>
                                     </button>
@@ -37,7 +41,7 @@ class Header extends React.Component {
                             </div>
                         </div>
                         <div className="col-12 col-md-12 col-lg-5 hide-column">
-                            <div className="header admin-panel-hide">
+                            <div className="header">
                                 <div className="header__navigation-list">
                                     <ul className="navigation-list">
                                         <li className="navigation-list__item">
@@ -58,7 +62,7 @@ class Header extends React.Component {
                                 <div className="header__user-list">
                                     <div className="user-list">
                                         <div className="user-list__icon">
-                                            <svg className="icon icon-user ">
+                                            <svg className="icon">
                                                 <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#user"/>
                                             </svg>
                                         </div>
@@ -69,7 +73,7 @@ class Header extends React.Component {
                                     </div>
                                 </div>
                                 <a className="header__basket-icon" href="#">
-                                    <svg className="icon icon-shopping-bag ">
+                                    <svg className="icon">
                                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
                                     </svg>
                                 </a>
@@ -77,9 +81,9 @@ class Header extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="mobile-toggle admin-panel-hide">
+                <div className="mobile-toggle">
                     <div className="mobile-envelope">
-                        <ul className="mobile-nav">
+                        <ul>
                             <li className="mobile-nav__item">
                                 <a className="mobile-nav__link light text-25" href="#">{ru.Home}</a>
                             </li>
@@ -92,7 +96,7 @@ class Header extends React.Component {
                         </ul>
                         <div className="mobile-user">
                             <div className="mobile-user__icon">
-                                <svg className="icon icon-user ">
+                                <svg className="icon">
                                     <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#user"/>
                                 </svg>
                             </div>

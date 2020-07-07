@@ -16,6 +16,8 @@ import Data from "./pages/Data";
 import Postpone from "./pages/Postpone";
 import ServiceBlue from "./pages/ServiceBlue";
 import ServiceRed from "./pages/ServiceRed";
+import HeaderAdmin from "./components/shared/HeaderAdmin";
+import FooterAdmin from "./components/shared/FooterAdmin";
 
 const history = createBrowserHistory();
 
@@ -24,8 +26,10 @@ function App() {
     <div className="App">
         <div className="wrapper">
             <Header/>
+            <HeaderAdmin/>
             <Navigate/>
             <Footer/>
+            <FooterAdmin/>
             <MenuGlobal/>
             <LinkBtn/>
             <BtnUp/>

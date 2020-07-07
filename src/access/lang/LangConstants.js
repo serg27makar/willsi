@@ -8,6 +8,9 @@ const ru = {
     SignIn: "Вход",
     SignUp: "Регистрация",
 
+    TrialPlan: "Пробный план",
+    Edit: "Изменить",
+    CustomerLogin: "Вход для клиентов",
 
 };
 
