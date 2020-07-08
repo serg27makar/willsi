@@ -200,4 +200,28 @@
     .offset-md-11 {
         margin-left: 91.666667%;
     }
+    .recalculate-box__input-data {
+        border: 0.266666666666667vw solid #e1e1e1;
+        border-radius: 1.066666666666667vw;
+        padding: 0 5.333333333333334vw;
+        width: 29.333333333333332vw;
+        height: 8vw;
+    }
+    .recalculate-box__number {
+        font-size: 16vw;
+    }
+    .recalculate-box__paragraph {
+        font-size: 3.2vw;
+    }
+    .recalculate-box__title {
+        font-size: 6.933333333333333vw;
+    }
+    .recalculate-box__flex-col {
+        padding: 5.333333333333334vw 2.666666666666667vw 0 2.666666666666667vw;
+    }
+    .recalculate-box {
+        border: none;
+        margin: 0 auto 13.333333333333334vw auto;
+        width: 100%;
+    }
 }
