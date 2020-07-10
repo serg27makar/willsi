@@ -15,16 +15,16 @@ class Postpone extends React.Component {
                                             <h1 className="breadcrumbs__title title-30 bold uppercase">Отложенные
                                                 товары</h1>
                                         </div>
-                                        <nav className="breadcrumbs"><a className="breadcrumbs__link light text-14"
-                                                                        href="#">Главная</a><a
-                                            className="breadcrumbs__link light text-14 active" href="#">Отложенные
-                                            товары</a></nav>
+                                        <nav className="breadcrumbs"><div className="breadcrumbs__link light text-14"
+                                                                        >Главная</div><div
+                                            className="breadcrumbs__link light text-14 active" >Отложенные
+                                            товары</div></nav>
                                     </div>
-                                    <div className="breadcrumbs__column"><a className="breadcrumbs__share" href="#">
+                                    <div className="breadcrumbs__column"><div className="breadcrumbs__share" >
                                         <svg className="icon icon-share ">
                                             <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#share"/>
                                         </svg>
-                                    </a></div>
+                                    </div></div>
                                 </div>
                             </div>
                         </div>
@@ -36,21 +36,21 @@ class Postpone extends React.Component {
                             <div className="col-12 col-md-12 col-lg-2">
                                 <div className="catalog-top">
                                     <div className="catalog-top__dropdown-info">
-                                        <div className="catalog-top__button-drop"><a
-                                            className="catalog-top__button-text text-16 bold uppercase" href="#">Мои</a><span
+                                        <div className="catalog-top__button-drop"><div
+                                            className="catalog-top__button-text text-16 bold uppercase" >Мои</div><span
                                             className="catalog-top__button-icon">
                         <svg className="icon icon-arrow-small ">
                           <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                         </svg></span></div>
                                         <div className="dropdown-info">
-                                            <p className="dropdown-info__item"><a
-                                                className="dropdown-info__link text-16 bold uppercase" href="#">Мужа</a>
+                                            <p className="dropdown-info__item"><div
+                                                className="dropdown-info__link text-16 bold uppercase" >Мужа</div>
                                             </p>
-                                            <p className="dropdown-info__item"><a
-                                                className="dropdown-info__link text-16 bold uppercase" href="#">Сына</a>
+                                            <p className="dropdown-info__item"><div
+                                                className="dropdown-info__link text-16 bold uppercase" >Сына</div>
                                             </p>
                                             <p className="dropdown-info__item">
-                                                <a className="dropdown-info__link icon-plus" href="#"/>
+                                                <div className="dropdown-info__link icon-plus" />
                                             </p>
                                         </div>
                                     </div>
@@ -104,30 +104,30 @@ class Postpone extends React.Component {
                                                     </svg>
                                                 </button>
                                                 <ul className="dropdown-list">
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Женская
-                                                        бижутерия</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Очки</a>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Женская
+                                                        бижутерия</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Очки</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Брелоки</a></li>
-                                                    <li className="dropdown-list__item"><a
+                                                        >Брелоки</div></li>
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Воротники</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Головные
-                                                        уборы</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Для
-                                                        волос</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Зонты</a>
+                                                        >Воротники</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Головные
+                                                        уборы</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Для
+                                                        волос</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Зонты</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Косметички</a></li>
+                                                        >Косметички</div></li>
                                                 </ul>
                                             </div>
                                             <div className="catalog-product">
@@ -138,30 +138,30 @@ class Postpone extends React.Component {
                                                     </svg>
                                                 </button>
                                                 <ul className="dropdown-list">
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Женская
-                                                        бижутерия</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Очки</a>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Женская
+                                                        бижутерия</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Очки</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Брелоки</a></li>
-                                                    <li className="dropdown-list__item"><a
+                                                        >Брелоки</div></li>
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Воротники</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Головные
-                                                        уборы</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Для
-                                                        волос</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Зонты</a>
+                                                        >Воротники</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Головные
+                                                        уборы</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Для
+                                                        волос</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Зонты</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Косметички</a></li>
+                                                        >Косметички</div></li>
                                                 </ul>
                                             </div>
                                             <div className="catalog-product">
@@ -172,30 +172,30 @@ class Postpone extends React.Component {
                                                     </svg>
                                                 </button>
                                                 <ul className="dropdown-list">
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Женская
-                                                        бижутерия</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Очки</a>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Женская
+                                                        бижутерия</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Очки</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Брелоки</a></li>
-                                                    <li className="dropdown-list__item"><a
+                                                        >Брелоки</div></li>
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Воротники</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Головные
-                                                        уборы</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Для
-                                                        волос</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Зонты</a>
+                                                        >Воротники</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Головные
+                                                        уборы</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Для
+                                                        волос</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Зонты</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Косметички</a></li>
+                                                        >Косметички</div></li>
                                                 </ul>
                                             </div>
                                             <div className="catalog-product">
@@ -206,30 +206,30 @@ class Postpone extends React.Component {
                                                     </svg>
                                                 </button>
                                                 <ul className="dropdown-list">
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Женская
-                                                        бижутерия</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Очки</a>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Женская
+                                                        бижутерия</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Очки</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Брелоки</a></li>
-                                                    <li className="dropdown-list__item"><a
+                                                        >Брелоки</div></li>
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Воротники</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Головные
-                                                        уборы</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Для
-                                                        волос</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Зонты</a>
+                                                        >Воротники</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Головные
+                                                        уборы</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Для
+                                                        волос</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Зонты</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Косметички</a></li>
+                                                        >Косметички</div></li>
                                                 </ul>
                                             </div>
                                             <div className="catalog-product">
@@ -240,30 +240,30 @@ class Postpone extends React.Component {
                                                     </svg>
                                                 </button>
                                                 <ul className="dropdown-list">
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Женская
-                                                        бижутерия</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Очки</a>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Женская
+                                                        бижутерия</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Очки</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Брелоки</a></li>
-                                                    <li className="dropdown-list__item"><a
+                                                        >Брелоки</div></li>
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Воротники</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Головные
-                                                        уборы</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Для
-                                                        волос</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Зонты</a>
+                                                        >Воротники</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Головные
+                                                        уборы</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Для
+                                                        волос</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Зонты</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Косметички</a></li>
+                                                        >Косметички</div></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -364,25 +364,25 @@ class Postpone extends React.Component {
                             </div>
                             <div className="col-12 col-md-12 col-lg-9">
                                 <div className="row">
-                                    <div className="col-12 col-md-12 col-lg-4"><a
-                                        className="catalog-middle__product-all text-16 bold uppercase" href="#">Показать
-                                        товары</a></div>
+                                    <div className="col-12 col-md-12 col-lg-4"><div
+                                        className="catalog-middle__product-all text-16 bold uppercase" >Показать
+                                        товары</div></div>
                                     <div className="col-12 col-md-12 col-lg-4">
                                         <div className="catalog-middle__for-me">
                                             <ul className="for-me">
-                                                <li className="for-me__button-drop"><a
-                                                    className="for-me__button-text text-16 bold uppercase" href="#">Для
-                                                    меня</a><span className="for-me__button-icon">
+                                                <li className="for-me__button-drop"><div
+                                                    className="for-me__button-text text-16 bold uppercase" >Для
+                                                    меня</div><span className="for-me__button-icon">
                             <svg className="icon icon-arrow-small ">
                               <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                             </svg></span>
                                                     <ul className="dropdown-info-list">
-                                                        <li className="dropdown-info-list__item"><a
+                                                        <li className="dropdown-info-list__item"><div
                                                             className="dropdown-info-list__link text-16 bold uppercase"
-                                                            href="#">Мужа</a></li>
-                                                        <li className="dropdown-info-list__item"><a
+                                                            >Мужа</div></li>
+                                                        <li className="dropdown-info-list__item"><div
                                                             className="dropdown-info-list__link text-16 bold uppercase"
-                                                            href="#">Сына</a></li>
+                                                            >Сына</div></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -391,7 +391,7 @@ class Postpone extends React.Component {
                                 </div>
                                 <div className="row justify-content-center">
                                     <div className="col-12 col-md-12 col-lg-4">
-                                        <div className="card-box"><a className="card-box__picture" href="#">
+                                        <div className="card-box"><div className="card-box__picture" >
                                             <picture className="picture">
                                                 <source className="picture__source"
                                                         srcSet="static/img/content/product-item.webp" type="image/webp"/>
@@ -409,15 +409,15 @@ class Postpone extends React.Component {
                                                         className="card-box__circle-text text-12 uppercase bold">Отложенно</span>
                                                 </div>
                                             </div>
-                                        </a><a className="card-box__product-name text-18 bold uppercase"
-                                               href="#">bailmain</a>
+                                        </div><div className="card-box__product-name text-18 bold uppercase"
+                                               >bailmain</div>
                                             <p className="card-box__product-info text-14 light">Женская блузка</p>
                                             <p className="card-box__product-quantity text-18 bold color-aqua uppercase">599
                                                 грн</p>
                                         </div>
                                     </div>
                                     <div className="col-12 col-md-12 col-lg-4">
-                                        <div className="card-box"><a className="card-box__picture" href="#">
+                                        <div className="card-box"><div className="card-box__picture" >
                                             <picture className="picture">
                                                 <source className="picture__source"
                                                         srcSet="static/img/content/product-item.webp" type="image/webp"/>
@@ -434,15 +434,15 @@ class Postpone extends React.Component {
                                                         className="card-box__circle-text text-12 uppercase bold">Отложенно</span>
                                                 </div>
                                             </div>
-                                        </a><a className="card-box__product-name text-18 bold uppercase"
-                                               href="#">bailmain</a>
+                                        </div><div className="card-box__product-name text-18 bold uppercase"
+                                               >bailmain</div>
                                             <p className="card-box__product-info text-14 light">Женская блузка</p>
                                             <p className="card-box__product-quantity text-18 bold color-aqua uppercase">599
                                                 грн</p>
                                         </div>
                                     </div>
                                     <div className="col-12 col-md-12 col-lg-4">
-                                        <div className="card-box"><a className="card-box__picture" href="#">
+                                        <div className="card-box"><div className="card-box__picture" >
                                             <picture className="picture">
                                                 <source className="picture__source"
                                                         srcSet="static/img/content/product-item.webp" type="image/webp"/>
@@ -460,15 +460,15 @@ class Postpone extends React.Component {
                                                         className="card-box__circle-text text-12 uppercase bold">Отложенно</span>
                                                 </div>
                                             </div>
-                                        </a><a className="card-box__product-name text-18 bold uppercase"
-                                               href="#">bailmain</a>
+                                        </div><div className="card-box__product-name text-18 bold uppercase"
+                                               >bailmain</div>
                                             <p className="card-box__product-info text-14 light">Женская блузка</p>
                                             <p className="card-box__product-quantity text-18 bold color-aqua uppercase">599
                                                 грн</p>
                                         </div>
                                     </div>
                                     <div className="col-12 col-md-12 col-lg-4">
-                                        <div className="card-box"><a className="card-box__picture" href="#">
+                                        <div className="card-box"><div className="card-box__picture" >
                                             <picture className="picture">
                                                 <source className="picture__source"
                                                         srcSet="static/img/content/product-item.webp" type="image/webp"/>
@@ -486,15 +486,15 @@ class Postpone extends React.Component {
                                                         className="card-box__circle-text text-12 uppercase bold">Отложенно</span>
                                                 </div>
                                             </div>
-                                        </a><a className="card-box__product-name text-18 bold uppercase"
-                                               href="#">bailmain</a>
+                                        </div><div className="card-box__product-name text-18 bold uppercase"
+                                               >bailmain</div>
                                             <p className="card-box__product-info text-14 light">Женская блузка</p>
                                             <p className="card-box__product-quantity text-18 bold color-aqua uppercase">599
                                                 грн</p>
                                         </div>
                                     </div>
                                     <div className="col-12 col-md-12 col-lg-4">
-                                        <div className="card-box"><a className="card-box__picture" href="#">
+                                        <div className="card-box"><div className="card-box__picture" >
                                             <picture className="picture">
                                                 <source className="picture__source"
                                                         srcSet="static/img/content/product-item.webp" type="image/webp"/>
@@ -511,15 +511,15 @@ class Postpone extends React.Component {
                                                         className="card-box__circle-text text-12 uppercase bold">Отложенно</span>
                                                 </div>
                                             </div>
-                                        </a><a className="card-box__product-name text-18 bold uppercase"
-                                               href="#">bailmain</a>
+                                        </div><div className="card-box__product-name text-18 bold uppercase"
+                                               >bailmain</div>
                                             <p className="card-box__product-info text-14 light">Женская блузка</p>
                                             <p className="card-box__product-quantity text-18 bold color-aqua uppercase">599
                                                 грн</p>
                                         </div>
                                     </div>
                                     <div className="col-12 col-md-12 col-lg-4">
-                                        <div className="card-box"><a className="card-box__picture" href="#">
+                                        <div className="card-box"><div className="card-box__picture" >
                                             <picture className="picture">
                                                 <source className="picture__source"
                                                         srcSet="static/img/content/product-item.webp" type="image/webp"/>
@@ -536,8 +536,8 @@ class Postpone extends React.Component {
                                                         className="card-box__circle-text text-12 uppercase bold">Отложенно</span>
                                                 </div>
                                             </div>
-                                        </a><a className="card-box__product-name text-18 bold uppercase"
-                                               href="#">bailmain</a>
+                                        </div><div className="card-box__product-name text-18 bold uppercase"
+                                               >bailmain</div>
                                             <p className="card-box__product-info text-14 light">Женская блузка</p>
                                             <p className="card-box__product-quantity text-18 bold color-aqua uppercase">599
                                                 грн</p>
@@ -547,18 +547,18 @@ class Postpone extends React.Component {
                                 <div className="row">
                                     <div className="col-12 col-md-12 col-lg-12">
                                         <ul className="pagination">
-                                            <li className="pagination__item"><a
-                                                className="pagination__link text-16 active" href="#">1</a></li>
-                                            <li className="pagination__item"><a className="pagination__link text-16"
-                                                                                href="#">2</a></li>
-                                            <li className="pagination__item"><a className="pagination__link text-16"
-                                                                                href="#">3</a></li>
-                                            <li className="pagination__item"><a
-                                                className="pagination__link page-linkNext" href="#" aria-label="Next">
+                                            <li className="pagination__item"><div
+                                                className="pagination__link text-16 active" >1</div></li>
+                                            <li className="pagination__item"><div className="pagination__link text-16"
+                                                                                >2</div></li>
+                                            <li className="pagination__item"><div className="pagination__link text-16"
+                                                                                >3</div></li>
+                                            <li className="pagination__item"><div
+                                                className="pagination__link page-linkNext"  aria-label="Next">
                                                 <svg className="icon icon-arrow-small ">
                                                     <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                                                 </svg>
-                                            </a></li>
+                                            </div></li>
                                         </ul>
                                     </div>
                                 </div>

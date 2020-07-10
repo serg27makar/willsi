@@ -3,7 +3,7 @@ import React from 'react';
 class LinkBtn extends React.Component {
     constructor(props) {
         super(props);
-        this. state = {
+        this.state = {
             itemStyle: "link-fixed",
         };
         this.handleScroll = this.handleScroll.bind(this);
@@ -35,7 +35,7 @@ class LinkBtn extends React.Component {
             <div className={this.state.itemStyle}>
                 <div className="link-fixed__env text-14 medium">
                     <span className="link-fixed__text">Есть ссылка<br/>на товар?</span>
-                    <a className="link-fixed__item" href="#">Примерьте ее!</a>
+                    <div className="link-fixed__item" >Примерьте ее!</div>
                 </div>
             </div>
         )

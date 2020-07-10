@@ -23,10 +23,10 @@ class ServiceRed extends React.Component {
                                             </label>
                                         </div>
                                         <textarea className="form-shop__textarea text-14"/>
-                                        <div className="form-shop__row justify-content-center"><a
-                                            className="form-shop__button-enter text-16" href="#"><span
+                                        <div className="form-shop__row justify-content-center"><div
+                                            className="form-shop__button-enter text-16" ><span
                                             className="form-shop__button-text">Войти с помощью</span><span
-                                            className="form-shop__icon-instagram"/></a>
+                                            className="form-shop__icon-instagram"/></div>
                                             <button className="form-shop__button-save text-16" type="button">Сохранить
                                             </button>
                                         </div>
@@ -57,8 +57,8 @@ class ServiceRed extends React.Component {
                                         <p className="steps-box__number"><span
                                             className="steps-box__number-item text-25 bold">01</span></p>
                                     </div>
-                                    <a className="steps-box__bottom-info text-18 bold uppercase" href="#">Продаешь через
-                                        instagram</a>
+                                    <div className="steps-box__bottom-info text-18 bold uppercase" >Продаешь через
+                                        instagram</div>
                                 </div>
                             </div>
                             <div className="col-12 col-md-12 col-lg-4">
@@ -73,8 +73,8 @@ class ServiceRed extends React.Component {
                                         <p className="steps-box__number"><span
                                             className="steps-box__number-item text-25 bold">02</span></p>
                                     </div>
-                                    <a className="steps-box__bottom-info text-18 bold uppercase" href="#">Продаешь через
-                                        свой сайт</a>
+                                    <div className="steps-box__bottom-info text-18 bold uppercase" >Продаешь через
+                                        свой сайт</div>
                                 </div>
                             </div>
                             <div className="col-12 col-md-12 col-lg-4">
@@ -89,8 +89,8 @@ class ServiceRed extends React.Component {
                                         <p className="steps-box__number"><span
                                             className="steps-box__number-item text-25 bold">03</span></p>
                                     </div>
-                                    <a className="steps-box__bottom-info text-18 bold uppercase" href="#">перейти в
-                                        примерочную</a>
+                                    <div className="steps-box__bottom-info text-18 bold uppercase" >перейти в
+                                        примерочную</div>
                                 </div>
                             </div>
                         </div>
@@ -374,8 +374,8 @@ class ServiceRed extends React.Component {
                                         <p className="steps-box__number"><span
                                             className="steps-box__number-item text-25 bold">01</span></p>
                                     </div>
-                                    <a className="steps-box__bottom-info text-18 bold uppercase" href="#">перейти в
-                                        примерочную</a>
+                                    <div className="steps-box__bottom-info text-18 bold uppercase" >перейти в
+                                        примерочную</div>
                                 </div>
                             </div>
                             <div className="col-12 col-md-12 col-lg-4">
@@ -390,8 +390,8 @@ class ServiceRed extends React.Component {
                                         <p className="steps-box__number"><span
                                             className="steps-box__number-item text-25 bold">02</span></p>
                                     </div>
-                                    <a className="steps-box__bottom-info text-18 bold uppercase" href="#">ввести свои
-                                        параметры</a>
+                                    <div className="steps-box__bottom-info text-18 bold uppercase" >ввести свои
+                                        параметры</div>
                                 </div>
                             </div>
                             <div className="col-12 col-md-12 col-lg-4">
@@ -406,12 +406,12 @@ class ServiceRed extends React.Component {
                                         <p className="steps-box__number"><span
                                             className="steps-box__number-item text-25 bold">03</span></p>
                                     </div>
-                                    <a className="steps-box__bottom-info text-18 bold uppercase" href="#">результат
-                                        готов!</a>
+                                    <div className="steps-box__bottom-info text-18 bold uppercase" >результат
+                                        готов!</div>
                                 </div>
                             </div>
-                            <div className="col-12 col-md-12 col-lg-12"><a
-                                className="steps-box__button-dressing button-main text-18" href="#">В примерочную</a>
+                            <div className="col-12 col-md-12 col-lg-12"><div
+                                className="steps-box__button-dressing button-main text-18" >В примерочную</div>
                             </div>
                         </div>
                     </div>
@@ -458,7 +458,7 @@ class ServiceRed extends React.Component {
                         </div>
                         <div className="row align-items-start justify-content-center">
                             <div className="col-6 col-md-6 col-lg-3">
-                                <div className="partners-env"><a className="partners-env__picture" href="#"
+                                <div className="partners-env"><div className="partners-env__picture"
                                                                  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-1.webp"
@@ -466,10 +466,10 @@ class ServiceRed extends React.Component {
                                                                        src="static/img/content/partner-1.png"
                                                                        alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-6 col-md-6 col-lg-3">
-                                <div className="partners-env"><a className="partners-env__picture" href="#"
+                                <div className="partners-env"><div className="partners-env__picture"
                                                                  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-2.webp"
@@ -477,10 +477,10 @@ class ServiceRed extends React.Component {
                                                                        src="static/img/content/partner-2.png"
                                                                        alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-6 col-md-6 col-lg-3">
-                                <div className="partners-env"><a className="partners-env__picture" href="#"
+                                <div className="partners-env"><div className="partners-env__picture"
                                                                  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-3.webp"
@@ -488,10 +488,10 @@ class ServiceRed extends React.Component {
                                                                        src="static/img/content/partner-3.png"
                                                                        alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-6 col-md-6 col-lg-3">
-                                <div className="partners-env"><a className="partners-env__picture" href="#"
+                                <div className="partners-env"><div className="partners-env__picture"
                                                                  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-4.webp"
@@ -499,10 +499,10 @@ class ServiceRed extends React.Component {
                                                                        src="static/img/content/partner-4.png"
                                                                        alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-6 col-md-6 col-lg-3">
-                                <div className="partners-env"><a className="partners-env__picture" href="#"
+                                <div className="partners-env"><div className="partners-env__picture"
                                                                  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-1.webp"
@@ -510,10 +510,10 @@ class ServiceRed extends React.Component {
                                                                        src="static/img/content/partner-1.png"
                                                                        alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-6 col-md-6 col-lg-3">
-                                <div className="partners-env"><a className="partners-env__picture" href="#"
+                                <div className="partners-env"><div className="partners-env__picture"
                                                                  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-2.webp"
@@ -521,10 +521,10 @@ class ServiceRed extends React.Component {
                                                                        src="static/img/content/partner-2.png"
                                                                        alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-6 col-md-6 col-lg-3">
-                                <div className="partners-env"><a className="partners-env__picture" href="#"
+                                <div className="partners-env"><div className="partners-env__picture"
                                                                  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-3.webp"
@@ -532,10 +532,10 @@ class ServiceRed extends React.Component {
                                                                        src="static/img/content/partner-3.png"
                                                                        alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-6 col-md-6 col-lg-3">
-                                <div className="partners-env"><a className="partners-env__picture" href="#"
+                                <div className="partners-env"><div className="partners-env__picture"
                                                                  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-4.webp"
@@ -543,11 +543,11 @@ class ServiceRed extends React.Component {
                                                                        src="static/img/content/partner-4.png"
                                                                        alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-12 col-md-12 col-lg-12">
-                                <div className="partners-env"><a className="partners-env__button button-main text-16"
-                                                                 href="#">Стать партнером</a></div>
+                                <div className="partners-env"><div className="partners-env__button button-main text-16"
+                                                                 >Стать партнером</div></div>
                             </div>
                         </div>
                     </div>
@@ -639,9 +639,9 @@ class ServiceRed extends React.Component {
                                 </div>
                             </div>
                             <div className="col-12 col-md-12 col-lg-12">
-                                <div className="reviews-box__button-more"><a
-                                    className="button-more button-white medium text-14 uppercase" href="#">показать
-                                    еще</a></div>
+                                <div className="reviews-box__button-more"><div
+                                    className="button-more button-white medium text-14 uppercase" >показать
+                                    еще</div></div>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import ru from "../../access/lang/LangConstants";
 
 class Header extends React.Component {
@@ -13,20 +14,20 @@ class Header extends React.Component {
                         <div className="col-12 col-md-12">
                             <div className="header-envelope">
                                 <div className="header">
-                                    <a className="header__logo" href="#">
+                                    <Link to={"/"}>
                                         <picture>
                                             <source className="logo__source" srcSet="static/img/general/logo.webp" type="image/webp"/>
                                             <img className="logo__source" src="static/img/general/logo.png" alt="logo"/>
                                         </picture>
-                                    </a>
+                                    </Link>
                                     <p className="header__text light text-16">{ru.online}<br/>{ru.dressingRoom}</p>
                                 </div>
                                 <div className="header-mobile">
-                                    <a className="header-mobile__basket-icon" href="#">
+                                    <div className="header-mobile__basket-icon">
                                         <svg className="icon">
                                             <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
                                         </svg>
-                                    </a>
+                                    </div>
                                     <button className="header-mobile__bars-button" type="button">
                                         <svg className="icon">
                                             <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#menu"/>
@@ -45,13 +46,13 @@ class Header extends React.Component {
                                 <div className="header__navigation-list">
                                     <ul className="navigation-list">
                                         <li className="navigation-list__item">
-                                            <a className="navigation-list__link light text-16" href="#">{ru.Home}</a>
+                                            <Link className="navigation-list__link light text-16" to={"/"}>{ru.Home}</Link>
                                         </li>
                                         <li className="navigation-list__item">
-                                            <a className="navigation-list__link light text-16" href="#">{ru.DressingRoom}</a>
+                                            <Link className="navigation-list__link light text-16" to={"/postpone"}>{ru.DressingRoom}</Link>
                                         </li>
                                         <li className="navigation-list__item">
-                                            <a className="navigation-list__link light text-16" href="#">{ru.About}</a>
+                                            <Link className="navigation-list__link light text-16" to={"/about"}>{ru.About}</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -67,16 +68,16 @@ class Header extends React.Component {
                                             </svg>
                                         </div>
                                         <div className="user-list__column">
-                                            <a className="user-list__link light text-16" href="#">{ru.SignIn}</a>
-                                            <a className="user-list__link light text-16" href="#">{ru.SignUp}</a>
+                                            <div className="user-list__link light text-16" >{ru.SignIn}</div>
+                                            <div className="user-list__link light text-16" >{ru.SignUp}</div>
                                         </div>
                                     </div>
                                 </div>
-                                <a className="header__basket-icon" href="#">
+                                <div className="header__basket-icon" >
                                     <svg className="icon">
                                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
                                     </svg>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -85,13 +86,13 @@ class Header extends React.Component {
                     <div className="mobile-envelope">
                         <ul>
                             <li className="mobile-nav__item">
-                                <a className="mobile-nav__link light text-25" href="#">{ru.Home}</a>
+                                <div className="mobile-nav__link light text-25" >{ru.Home}</div>
                             </li>
                             <li className="mobile-nav__item">
-                                <a className="mobile-nav__link light text-25" href="#">{ru.About}</a>
+                                <div className="mobile-nav__link light text-25" >{ru.About}</div>
                             </li>
                             <li className="mobile-nav__item">
-                                <a className="mobile-nav__link light text-25" href="#">{ru.DressingRoom}</a>
+                                <div className="mobile-nav__link light text-25" >{ru.DressingRoom}</div>
                             </li>
                         </ul>
                         <div className="mobile-user">
@@ -101,8 +102,8 @@ class Header extends React.Component {
                                 </svg>
                             </div>
                             <div className="mobile-user__column">
-                                <a className="mobile-user__link light text-14" href="#">{ru.SignIn}</a>
-                                <a className="mobile-user__link light text-14" href="#">{ru.SignUp}</a>
+                                <div className="mobile-user__link light text-14" >{ru.SignIn}</div>
+                                <div className="mobile-user__link light text-14" >{ru.SignUp}</div>
                             </div>
                         </div>
                     </div>

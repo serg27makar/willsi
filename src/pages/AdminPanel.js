@@ -59,30 +59,30 @@ class AdminPanel extends React.Component {
                                                     </svg>
                                                 </button>
                                                 <ul className="dropdown-list">
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Женская
-                                                        бижутерия</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Очки</a>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Женская
+                                                        бижутерия</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Очки</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Брелоки</a></li>
-                                                    <li className="dropdown-list__item"><a
+                                                        >Брелоки</div></li>
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Воротники</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Головные
-                                                        уборы</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Для
-                                                        волос</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Зонты</a>
+                                                        >Воротники</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Головные
+                                                        уборы</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Для
+                                                        волос</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Зонты</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Косметички</a></li>
+                                                        >Косметички</div></li>
                                                 </ul>
                                             </div>
                                             <div className="catalog-product">
@@ -93,30 +93,30 @@ class AdminPanel extends React.Component {
                                                     </svg>
                                                 </button>
                                                 <ul className="dropdown-list">
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Женская
-                                                        бижутерия</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Очки</a>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Женская
+                                                        бижутерия</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Очки</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Брелоки</a></li>
-                                                    <li className="dropdown-list__item"><a
+                                                        >Брелоки</div></li>
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Воротники</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Головные
-                                                        уборы</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Для
-                                                        волос</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Зонты</a>
+                                                        >Воротники</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Головные
+                                                        уборы</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Для
+                                                        волос</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Зонты</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Косметички</a></li>
+                                                        >Косметички</div></li>
                                                 </ul>
                                             </div>
                                             <div className="catalog-product">
@@ -127,30 +127,30 @@ class AdminPanel extends React.Component {
                                                     </svg>
                                                 </button>
                                                 <ul className="dropdown-list">
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Женская
-                                                        бижутерия</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Очки</a>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Женская
+                                                        бижутерия</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Очки</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Брелоки</a></li>
-                                                    <li className="dropdown-list__item"><a
+                                                        >Брелоки</div></li>
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Воротники</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Головные
-                                                        уборы</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Для
-                                                        волос</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Зонты</a>
+                                                        >Воротники</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Головные
+                                                        уборы</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Для
+                                                        волос</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Зонты</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Косметички</a></li>
+                                                        >Косметички</div></li>
                                                 </ul>
                                             </div>
                                             <div className="catalog-product">
@@ -161,30 +161,30 @@ class AdminPanel extends React.Component {
                                                     </svg>
                                                 </button>
                                                 <ul className="dropdown-list">
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Женская
-                                                        бижутерия</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Очки</a>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Женская
+                                                        бижутерия</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Очки</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Брелоки</a></li>
-                                                    <li className="dropdown-list__item"><a
+                                                        >Брелоки</div></li>
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Воротники</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Головные
-                                                        уборы</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Для
-                                                        волос</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Зонты</a>
+                                                        >Воротники</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Головные
+                                                        уборы</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Для
+                                                        волос</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Зонты</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Косметички</a></li>
+                                                        >Косметички</div></li>
                                                 </ul>
                                             </div>
                                             <div className="catalog-product">
@@ -195,30 +195,30 @@ class AdminPanel extends React.Component {
                                                     </svg>
                                                 </button>
                                                 <ul className="dropdown-list">
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Женская
-                                                        бижутерия</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Очки</a>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Женская
+                                                        бижутерия</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Очки</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Брелоки</a></li>
-                                                    <li className="dropdown-list__item"><a
+                                                        >Брелоки</div></li>
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Воротники</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Головные
-                                                        уборы</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Для
-                                                        волос</a></li>
-                                                    <li className="dropdown-list__item"><a
-                                                        className="dropdown-list__link text-14 light" href="#">Зонты</a>
+                                                        >Воротники</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Головные
+                                                        уборы</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Для
+                                                        волос</div></li>
+                                                    <li className="dropdown-list__item"><div
+                                                        className="dropdown-list__link text-14 light" >Зонты</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><a
+                                                    <li className="dropdown-list__item"><div
                                                         className="dropdown-list__link text-14 light"
-                                                        href="#">Косметички</a></li>
+                                                        >Косметички</div></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -260,11 +260,11 @@ class AdminPanel extends React.Component {
                                 <div className="main-envelope__middle-line">
                                     <button className="main-envelope__button-create text-14" type="button">Создать
                                     </button>
-                                    <a className="main-envelope__link-admin" href="#">
+                                    <div className="main-envelope__link-admin" >
                                         <svg className="icon icon-link ">
                                             <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#link"/>
                                         </svg>
-                                    </a>
+                                    </div>
                                 </div>
                                 <div className="main-envelope__bottom-env">
                                     <div className="main-envelope__info-envelope"><span

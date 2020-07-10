@@ -13,8 +13,8 @@ class WowFirstModal extends React.Component {
                     <p className="modal-envelope__title title-36 uppercase bold">Ух Ты!</p>
                     <p className="modal-envelope__sub-info text-16 bold">По Вашим параметрам есть 63 кофты,<br/>которые сидят
                         лучше</p>
-                    <div className="modal-form__button-enter"><a className="button-enter button-main text-18 medium" href="#"
-                                                                 data-iziModal-open="#modal-wowSecond">Посмотреть</a></div>
+                    <div className="modal-form__button-enter"><div className="button-enter button-main text-18 medium"
+                                                                 data-iziModal-open="#modal-wowSecond">Посмотреть</div></div>
                 </div>
             </div>
 

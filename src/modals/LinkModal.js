@@ -23,8 +23,8 @@ class LinkModal extends React.Component {
                                     data-iziModal-open="#modal-wowFirst">Принять
                             </button>
                         </div>
-                        <p className="modal-form__bottom-clear text-16 light"><a className="modal-form__bottom-link color-aqua"
-                                                                                 href="#">Очистить</a></p>
+                        <p className="modal-form__bottom-clear text-16 light"><div className="modal-form__bottom-link color-aqua"
+                                                                                 >Очистить</div></p>
                     </form>
                 </div>
             </div>

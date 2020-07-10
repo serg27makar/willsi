@@ -21,27 +21,27 @@ import FooterAdmin from "./components/shared/FooterAdmin";
 
 const history = createBrowserHistory();
 
-function App() {
-  return (
-    <div className="App">
-        <div className="wrapper">
-            <Header/>
-            <HeaderAdmin/>
-            <Navigate/>
-            <Footer/>
-            <FooterAdmin/>
-            <MenuGlobal/>
-            <LinkBtn/>
-            <BtnUp/>
-        </div>
-    </div>
-  );
+class App extends React.Component {
+    render() {
+        return (
+            <div className="App">
+                <div className="wrapper">
+                    <Navigate/>
+                    <MenuGlobal/>
+                    <LinkBtn/>
+                    <BtnUp/>
+                </div>
+            </div>
+        );
+    }
 }
 
 class Navigate extends React.Component {
     render() {
         return (
             <Router history={history}>
+                <Header/>
+                <HeaderAdmin/>
                 <div className="routers">
                     <Route exact path='/' component={Homepage}/>
                     <Route path='/about' component={About}/>
@@ -53,6 +53,8 @@ class Navigate extends React.Component {
                     <Route path='/service-blue' component={ServiceBlue}/>
                     <Route path='/service-red' component={ServiceRed}/>
                 </div>
+                <Footer/>
+                <FooterAdmin/>
             </Router>
         );
     }

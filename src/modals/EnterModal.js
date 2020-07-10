@@ -29,8 +29,8 @@ class EnterModal extends React.Component {
                         <div className="modal-form__button-enter">
                             <button className="button-enter button-main text-18 medium" type="button">Войти</button>
                         </div>
-                        <p className="modal-form__bottom-text text-16 light color-aqua">Еще нет аккаунта?<a
-                            className="modal-form__bottom-link color-aqua" href="#">Регистрация</a></p>
+                        <p className="modal-form__bottom-text text-16 light color-aqua">Еще нет аккаунта?<div
+                            className="modal-form__bottom-link color-aqua" >Регистрация</div></p>
                     </form>
                 </div>
             </div>

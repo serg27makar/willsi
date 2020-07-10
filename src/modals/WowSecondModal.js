@@ -15,8 +15,8 @@ class WowSecondModal extends React.Component {
                         сайт, скоро мы сним подружимся</p>
                     <p className="modal-envelope__sub-info text-16 bold">Кстате, посмотрите 63 вещи, которые<br/>соответсвуют Вам
                         больше чем на 90%</p>
-                    <div className="modal-form__button-enter"><a className="button-enter button-main text-18 medium"
-                                                                 href="#">Посмотреть</a></div>
+                    <div className="modal-form__button-enter"><div className="button-enter button-main text-18 medium"
+                                                                 >Посмотреть</div></div>
                 </div>
             </div>
 

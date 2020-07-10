@@ -16,11 +16,11 @@ class About extends React.Component {
                                             другая часть гардероба смотрелась идеально -<br/>постарайтесь ввести
                                                 максимально точные параметры Вашей чудесной фигуры!</p>
                                     </div>
-                                    <a className="welcome-about-env__scroll-down" href="#">
+                                    <div className="welcome-about-env__scroll-down">
                                         <svg className="icon icon-arrow-down ">
                                             <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-down"/>
                                         </svg>
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -136,9 +136,9 @@ class About extends React.Component {
                                 </div>
                             </div>
                             <div className="col-12 col-md-12 col-lg-12">
-                                <div className="reviews-box__button-more"><a
-                                    className="button-more button-white text-14 medium uppercase" href="#">показать
-                                    еще</a></div>
+                                <div className="reviews-box__button-more">
+                                    <div className="button-more button-white text-14 medium uppercase">показать еще</div>
+                                </div>
                             </div>
                         </div>
                     </div>

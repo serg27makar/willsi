@@ -13,12 +13,12 @@ class HeaderAdmin extends React.Component {
                         <div className="col-12 col-md-12">
                             <div className="header-envelope">
                                 <div className="header">
-                                    <a className="header__logo" href="#">
+                                    <div className="header__logo" >
                                         <picture>
                                             <source className="logo__source" srcSet="static/img/general/logo.webp" type="image/webp"/>
                                             <img className="logo__source" src="static/img/general/logo.png" alt="logo"/>
                                         </picture>
-                                    </a>
+                                    </div>
                                 <p className="header__text light text-16">{ru.online}<br/>{ru.dressingRoom}</p>
                                 </div>
                             </div>
@@ -29,21 +29,21 @@ class HeaderAdmin extends React.Component {
                                     <div className="header__plan-picture">
                                         <picture className="plan-picture">
                                             <source className="plan-picture__source" srcSet="static/img/content/trial.png" type="image/webp"/>
-                                            <img className="plan-picture__source" src="static/img/content/trial.png" alt="picture"/>
+                                            <img className="plan-picture__source" src="static/img/content/trial.png" alt="trial"/>
                                         </picture>
                                     </div>
                                     <div className="header__plan-column">
                                         <p className="text-14 bold">{ru.TrialPlan}</p>
-                                        <a className="header__plan-change text-14 light" href="#">{ru.Edit}</a>
+                                        <div className="header__plan-change text-14 light" >{ru.Edit}</div>
                                     </div>
                                 </div>
-                                <a className="header__enter-cabinet text-14 light" href="#">{ru.CustomerLogin}</a>
-                                <p className="header__enter-name text-14 bold">Юлия Иванова<a
-                                    className="header__button-cabinet" href="#">
+                                <div className="header__enter-cabinet text-14 light" >{ru.CustomerLogin}</div>
+                                <p className="header__enter-name text-14 bold">Юлия Иванова<div
+                                    className="header__button-cabinet" >
                                     <svg className="icon icon-login ">
                                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#login"/>
                                     </svg>
-                                </a></p>
+                                </div></p>
                             </div>
                         </div>
                     </div>

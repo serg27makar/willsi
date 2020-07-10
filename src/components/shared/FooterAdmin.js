@@ -25,8 +25,8 @@ class FooterAdmin extends React.Component {
                                                 <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#phone"/>
                                             </svg>
                                             <span className="list-info__text">+ 38 (098) 678 89 89</span></a></li>
-                                        <li className="list-info__item"><a className="list-info__link light text-16"
-                                                                           href="#">Политика конфедициальности</a></li>
+                                        <li className="list-info__item"><div className="list-info__link light text-16"
+                                                                           >Политика конфедициальности</div></li>
                                     </ul>
                                 </div>
                             </div>

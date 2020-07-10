@@ -5,21 +5,7 @@ class Homepage extends React.Component {
         muve: "fade-right",
         animate: "welcome-main-env"
     };
-    componentDidMount() {
-        setTimeout(() => {
-            this.setState({
-                ...this.state,
-                animate: "welcome-main-env aos-animate"
-            })
-        }, 300);
-        setTimeout(() => {
-            this.setState({
-                ...this.state,
-                muve: "fade-left",
-            })
-        }, 800);
-
-    }
+    componentDidMount() {}
 
     render() {
         return(
@@ -37,10 +23,10 @@ class Homepage extends React.Component {
                                         использует умные алгоритмы подбора вещей<br/>под персональные параметры тела конкретного
                                         человека.<br/>Подбери идеально-сидящую одежду лично себе.</p>
                                     <div className="welcome-main-env__button-list">
-                                        <div className="welcome-main-env__button-item"><a className="button-main text-16"
-                                                                                          href="#">В примерочную</a></div>
-                                        <div className="welcome-main-env__button-item"><a className="button-white text-16"
-                                                                                          href="#">Стать партнером</a></div>
+                                        <div className="welcome-main-env__button-item"><div className="button-main text-16"
+                                                                                          >В примерочную</div></div>
+                                        <div className="welcome-main-env__button-item"><div className="button-white text-16"
+                                                                                          >Стать партнером</div></div>
                                     </div>
                                     <div className="welcome-main-env__our-services">
                                         <p className="welcome-main-env__our-services-text text-16 light">Нашим сервисом за
@@ -255,8 +241,8 @@ class Homepage extends React.Component {
                                         <p className="steps-box__number"><span
                                             className="steps-box__number-item text-25 bold">01</span></p>
                                     </div>
-                                    <a className="steps-box__bottom-info text-18 bold uppercase" href="#">перейти в
-                                        примерочную</a>
+                                    <div className="steps-box__bottom-info text-18 bold uppercase" >перейти в
+                                        примерочную</div>
                                 </div>
                             </div>
                             <div className="col-12 col-md-12 col-lg-4" data-aos="fade-up" data-aos-offset="300"
@@ -271,8 +257,8 @@ class Homepage extends React.Component {
                                         <p className="steps-box__number"><span
                                             className="steps-box__number-item text-25 bold">02</span></p>
                                     </div>
-                                    <a className="steps-box__bottom-info text-18 bold uppercase" href="#">ввести свои
-                                        параметры</a>
+                                    <div className="steps-box__bottom-info text-18 bold uppercase" >ввести свои
+                                        параметры</div>
                                 </div>
                             </div>
                             <div className="col-12 col-md-12 col-lg-4" data-aos="fade-left" data-aos-offset="300"
@@ -287,11 +273,11 @@ class Homepage extends React.Component {
                                         <p className="steps-box__number"><span
                                             className="steps-box__number-item text-25 bold">03</span></p>
                                     </div>
-                                    <a className="steps-box__bottom-info text-18 bold uppercase" href="#">результат готов!</a>
+                                    <div className="steps-box__bottom-info text-18 bold uppercase" >результат готов!</div>
                                 </div>
                             </div>
-                            <div className="col-12 col-md-12 col-lg-12"><a
-                                className="steps-box__button-dressing button-main text-18" href="#">В примерочную</a></div>
+                            <div className="col-12 col-md-12 col-lg-12"><div
+                                className="steps-box__button-dressing button-main text-18" >В примерочную</div></div>
                         </div>
                     </div>
                 </div>
@@ -337,87 +323,87 @@ class Homepage extends React.Component {
                         <div className="row align-items-start justify-content-center">
                             <div className="col-6 col-md-6 col-lg-3">
                                 <div className="partners-env" data-aos="fade-right" data-aos-offset="300"
-                                     data-aos-duration="1000"><a className="partners-env__picture" href="#" target="_blank">
+                                     data-aos-duration="1000"><div className="partners-env__picture"  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-1.webp"
                                                 type="image/webp"/><img className="picture__source"
                                                                         src="static/img/content/partner-1.png" alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-6 col-md-6 col-lg-3">
                                 <div className="partners-env" data-aos="fade-right" data-aos-offset="300"
-                                     data-aos-duration="1000"><a className="partners-env__picture" href="#" target="_blank">
+                                     data-aos-duration="1000"><div className="partners-env__picture"  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-2.webp"
                                                 type="image/webp"/><img className="picture__source"
                                                                         src="static/img/content/partner-2.png" alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-6 col-md-6 col-lg-3">
                                 <div className="partners-env" data-aos="fade-left" data-aos-offset="300"
-                                     data-aos-duration="1000"><a className="partners-env__picture" href="#" target="_blank">
+                                     data-aos-duration="1000"><div className="partners-env__picture"  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-3.webp"
                                                 type="image/webp"/><img className="picture__source"
                                                                         src="static/img/content/partner-3.png" alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-6 col-md-6 col-lg-3">
                                 <div className="partners-env" data-aos="fade-left" data-aos-offset="300"
-                                     data-aos-duration="1000"><a className="partners-env__picture" href="#" target="_blank">
+                                     data-aos-duration="1000"><div className="partners-env__picture"  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-4.webp"
                                                 type="image/webp"/><img className="picture__source"
                                                                         src="static/img/content/partner-4.png" alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-6 col-md-6 col-lg-3">
                                 <div className="partners-env" data-aos="fade-right" data-aos-offset="300"
-                                     data-aos-duration="1000"><a className="partners-env__picture" href="#" target="_blank">
+                                     data-aos-duration="1000"><div className="partners-env__picture"  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-1.webp"
                                                 type="image/webp"/><img className="picture__source"
                                                                         src="static/img/content/partner-1.png" alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-6 col-md-6 col-lg-3">
                                 <div className="partners-env" data-aos="fade-right" data-aos-offset="300"
-                                     data-aos-duration="1000"><a className="partners-env__picture" href="#" target="_blank">
+                                     data-aos-duration="1000"><div className="partners-env__picture"  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-2.webp"
                                                 type="image/webp"/><img className="picture__source"
                                                                         src="static/img/content/partner-2.png" alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-6 col-md-6 col-lg-3">
                                 <div className="partners-env" data-aos="fade-left" data-aos-offset="300"
-                                     data-aos-duration="1000"><a className="partners-env__picture" href="#" target="_blank">
+                                     data-aos-duration="1000"><div className="partners-env__picture"  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-3.webp"
                                                 type="image/webp"/><img className="picture__source"
                                                                         src="static/img/content/partner-3.png" alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-6 col-md-6 col-lg-3">
                                 <div className="partners-env" data-aos="fade-left" data-aos-offset="300"
-                                     data-aos-duration="1000"><a className="partners-env__picture" href="#" target="_blank">
+                                     data-aos-duration="1000"><div className="partners-env__picture"  target="_blank">
                                     <picture className="picture">
                                         <source className="picture__source" srcSet="static/img/content/partner-4.webp"
                                                 type="image/webp"/><img className="picture__source"
                                                                         src="static/img/content/partner-4.png" alt="partner"/>
                                     </picture>
-                                </a></div>
+                                </div></div>
                             </div>
                             <div className="col-12 col-md-12 col-lg-12">
-                                <div className="partners-env"><a className="partners-env__button button-main text-16" href="#">Стать
-                                    партнером</a></div>
+                                <div className="partners-env"><div className="partners-env__button button-main text-16" >Стать
+                                    партнером</div></div>
                             </div>
                         </div>
                     </div>
@@ -509,8 +495,8 @@ class Homepage extends React.Component {
                                 </div>
                             </div>
                             <div className="col-12 col-md-12 col-lg-12">
-                                <div className="reviews-box__button-more"><a
-                                    className="button-more button-white medium text-14 uppercase" href="#">показать еще</a>
+                                <div className="reviews-box__button-more"><div
+                                    className="button-more button-white medium text-14 uppercase" >показать еще</div>
                                 </div>
                             </div>
                         </div>

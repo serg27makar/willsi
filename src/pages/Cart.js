@@ -37,7 +37,7 @@ const groupSliders = [
 class Cart extends React.Component {
     constructor(props) {
         super(props);
-        this. state = {
+        this.state = {
             sliders: [],
             groupSlide: [],
         };
@@ -113,17 +113,17 @@ class Cart extends React.Component {
                                             <h1 className="breadcrumbs__title title-30 bold uppercase">Женская одежда</h1>
                                         </div>
                                         <nav className="breadcrumbs">
-                                            <a className="breadcrumbs__link light text-14" href="#">Каталог</a>
-                                            <a className="breadcrumbs__link light text-14" href="#">Одежда</a>
-                                            <a className="breadcrumbs__link light text-14" href="#">Женская одежда</a>
-                                            <a className="breadcrumbs__link light text-14 active" href="#">Красная рубашка</a>
+                                            <div className="breadcrumbs__link light text-14" >Каталог</div>
+                                            <div className="breadcrumbs__link light text-14" >Одежда</div>
+                                            <div className="breadcrumbs__link light text-14" >Женская одежда</div>
+                                            <div className="breadcrumbs__link light text-14 active" >Красная рубашка</div>
                                         </nav>
                                     </div>
-                                    <div className="breadcrumbs__column"><a className="breadcrumbs__share" href="#">
+                                    <div className="breadcrumbs__column"><div className="breadcrumbs__share" >
                                         <svg className="icon icon-share ">
                                             <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#share"/>
                                         </svg>
-                                    </a></div>
+                                    </div></div>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +164,7 @@ class Cart extends React.Component {
                                                         </svg>
                                                     </button>
                                                     <input className="tags-list__input-radio" type="radio" name="son" hidden/>
-                                                    <a className="tags-list__link-plus" href="#"/>
+                                                    <div className="tags-list__link-plus" />
                                                 </div>
                                             </div>
                                         </div>
@@ -204,7 +204,7 @@ class Cart extends React.Component {
                                 <div className="catalog-top">
                                     <div className="catalog-top__dropdown-info">
                                         <div className="catalog-top__button-drop">
-                                            <a className="catalog-top__button-text text-16 bold uppercase" href="#">Мои</a>
+                                            <div className="catalog-top__button-text text-16 bold uppercase" >Мои</div>
                                             <span className="catalog-top__button-icon">
                                                 <svg className="icon icon-arrow-small ">
                                                   <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
@@ -213,13 +213,13 @@ class Cart extends React.Component {
                                         </div>
                                         <div className="dropdown-info">
                                             <p className="dropdown-info__item">
-                                                <a className="dropdown-info__link text-16 bold uppercase" href="#">Мужа</a>
+                                                <div className="dropdown-info__link text-16 bold uppercase" >Мужа</div>
                                             </p>
                                             <p className="dropdown-info__item">
-                                                <a className="dropdown-info__link text-16 bold uppercase" href="#">Сына</a>
+                                                <div className="dropdown-info__link text-16 bold uppercase" >Сына</div>
                                             </p>
                                             <p className="dropdown-info__item">
-                                                <a className="dropdown-info__link icon-plus" href="#"/>
+                                                <div className="dropdown-info__link icon-plus" />
                                             </p>
                                         </div>
                                     </div>
@@ -279,7 +279,7 @@ class Cart extends React.Component {
                                     <div className="card-description__top-info">
                                         <p className="card-description__title text-22 bold uppercase">Bailmain</p>
                                         <p className="card-description__article-mobile text-14 light">Арт 02936</p>
-                                        <a className="card-description__link-model text-14 uppercase" href="#">3d модель</a>
+                                        <div className="card-description__link-model text-14 uppercase" >3d модель</div>
                                     </div>
                                     <p className="card-description__article text-14 light">Арт 02936</p>
                                     <p className="card-description__paragraph text-14 light">Повседневная практика
@@ -303,12 +303,12 @@ class Cart extends React.Component {
                                     </div>
                                     <div className="card-description__button-bottom">
                                         <p className="card-description__quantity text-22 color-aqua uppercase medium">555 грн</p>
-                                        <a className="button-postpone" href="#">
+                                        <div className="button-postpone" >
                                             <span className="button-postpone__text text-16 medium">Отложить</span>
                                             <svg className="icon icon-shopping-bag ">
                                                 <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
                                             </svg>
-                                        </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -444,7 +444,7 @@ class Cart extends React.Component {
                                 <div className="card-slider swiper-container">
                                     <div className="swiper-wrapper">
                                         <div className="swiper-slide">
-                                            <div className="card-box"><a className="card-box__picture" href="#">
+                                            <div className="card-box"><div className="card-box__picture" >
                                                 <picture className="picture">
                                                     <source className="picture__source"
                                                             srcSet="static/img/content/product-item.webp"
@@ -455,23 +455,23 @@ class Cart extends React.Component {
                                                 </picture>
                                                 <div className="card-box__circle"
                                                      style={{backgroundImage: "url('static/img/content/circle-very-bad.png')"}}/>
-                                            </a><a className="card-box__product-name text-18 bold uppercase"
-                                                   href="#">bailmain</a>
+                                            </div><div className="card-box__product-name text-18 bold uppercase"
+                                                   >bailmain</div>
                                                 <p className="card-box__product-info text-14 light">Женская блузка</p>
                                                 <p className="card-box__product-quantity text-18 bold color-aqua uppercase">599
                                                     грн</p>
-                                                <div className="card-box__button-postpone"><a
-                                                    className="button-postpone" href="#"><span
+                                                <div className="card-box__button-postpone"><div
+                                                    className="button-postpone" ><span
                                                     className="button-postpone__text text-16 medium">Отложить</span>
                                                     <svg className="icon icon-shopping-bag ">
                                                         <use
                                                             xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
                                                     </svg>
-                                                </a></div>
+                                                </div></div>
                                             </div>
                                         </div>
                                         <div className="swiper-slide">
-                                            <div className="card-box"><a className="card-box__picture" href="#">
+                                            <div className="card-box"><div className="card-box__picture" >
                                                 <picture className="picture">
                                                     <source className="picture__source"
                                                             srcSet="static/img/content/product-item.webp"
@@ -482,22 +482,22 @@ class Cart extends React.Component {
                                                 </picture>
                                                 <div className="card-box__circle"
                                                      style={{backgroundImage: "url('static/img/content/circle-bad.png')"}}/>
-                                            </a><a className="card-box__product-name text-18 bold uppercase"
-                                                   href="#">bailmain</a>
+                                            </div><div className="card-box__product-name text-18 bold uppercase"
+                                                   >bailmain</div>
                                                 <p className="card-box__product-info text-14 light">Женская блузка</p>
                                                 <p className="card-box__product-quantity text-18 bold color-aqua uppercase">599 грн</p>
                                                 <div className="card-box__button-postpone">
-                                                    <a className="button-postpone" href="#">
+                                                    <div className="button-postpone" >
                                                         <span className="button-postpone__text text-16 medium">Отложить</span>
                                                         <svg className="icon icon-shopping-bag ">
                                                             <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
                                                         </svg>
-                                                    </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="swiper-slide">
-                                            <div className="card-box"><a className="card-box__picture" href="#">
+                                            <div className="card-box"><div className="card-box__picture" >
                                                 <picture className="picture">
                                                     <source className="picture__source"
                                                             srcSet="static/img/content/product-item.webp"
@@ -508,22 +508,22 @@ class Cart extends React.Component {
                                                 </picture>
                                                 <div className="card-box__circle"
                                                      style={{backgroundImage: "url('static/img/content/circle-soso.png')"}}/>
-                                            </a><a className="card-box__product-name text-18 bold uppercase"
-                                                   href="#">bailmain</a>
+                                            </div><div className="card-box__product-name text-18 bold uppercase"
+                                                   >bailmain</div>
                                                 <p className="card-box__product-info text-14 light">Женская блузка</p>
                                                 <p className="card-box__product-quantity text-18 bold color-aqua uppercase">599
                                                     грн</p>
-                                                <div className="card-box__button-postpone"><a
-                                                    className="button-postpone" href="#"><span
+                                                <div className="card-box__button-postpone"><div
+                                                    className="button-postpone" ><span
                                                     className="button-postpone__text text-16 medium">Отложить</span>
                                                     <svg className="icon icon-shopping-bag ">
                                                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
                                                     </svg>
-                                                </a></div>
+                                                </div></div>
                                             </div>
                                         </div>
                                         <div className="swiper-slide">
-                                            <div className="card-box"><a className="card-box__picture" href="#">
+                                            <div className="card-box"><div className="card-box__picture" >
                                                 <picture className="picture">
                                                     <source className="picture__source"
                                                             srcSet="static/img/content/product-item.webp"
@@ -533,17 +533,17 @@ class Cart extends React.Component {
                                                 </picture>
                                                 <div className="card-box__circle"
                                                      style={{backgroundImage: "url('static/img/content/circle-good.png')"}}/>
-                                            </a><a className="card-box__product-name text-18 bold uppercase"
-                                                   href="#">bailmain</a>
+                                            </div><div className="card-box__product-name text-18 bold uppercase"
+                                                   >bailmain</div>
                                                 <p className="card-box__product-info text-14 light">Женская блузка</p>
                                                 <p className="card-box__product-quantity text-18 bold color-aqua uppercase">599 грн</p>
-                                                <div className="card-box__button-postpone"><a
-                                                    className="button-postpone" href="#"><span
+                                                <div className="card-box__button-postpone"><div
+                                                    className="button-postpone" ><span
                                                     className="button-postpone__text text-16 medium">Отложить</span>
                                                     <svg className="icon icon-shopping-bag ">
                                                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
                                                     </svg>
-                                                </a></div>
+                                                </div></div>
                                             </div>
                                         </div>
                                     </div>

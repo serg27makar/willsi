@@ -3,7 +3,7 @@ import React from 'react';
 class BtnUp extends React.Component {
     constructor(props) {
         super(props);
-        this. state = {
+        this.state = {
             itemStyle: "btn-up",
         };
         this.handleScroll = this.handleScroll.bind(this);

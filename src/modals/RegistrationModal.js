@@ -43,12 +43,12 @@ class RegistrationModal extends React.Component {
                             <button className="button-enter button-main text-18 medium" type="button">Зарегестрироваться
                             </button>
                         </div>
-                        <p className="modal-form__bottom-text text-16 light color-aqua">Еще нет аккаунта?<a
-                            className="modal-form__bottom-link color-aqua" href="#">Войти</a></p>
-                        <div className="modal-form__social-list"><a className="modal-form__social-link icon-fb" href="#"
-                                                                    style={{backgroundImage: "url('static/img/content/icon-fb.png')"}}></a><a
-                            className="modal-form__social-link icon-instagram" href="#"
-                            style={{backgroundImage: "url('static/img/content/icon-instagram.png')"}}></a></div>
+                        <p className="modal-form__bottom-text text-16 light color-aqua">Еще нет аккаунта?<div
+                            className="modal-form__bottom-link color-aqua" >Войти</div></p>
+                        <div className="modal-form__social-list">
+                            <div className="modal-form__social-link icon-fb"  style={{backgroundImage: "url('static/img/content/icon-fb.png')"}}/>
+                            <div className="modal-form__social-link icon-instagram"
+                            style={{backgroundImage: "url('static/img/content/icon-instagram.png')"}}/></div>
                     </form>
                 </div>
             </div>
