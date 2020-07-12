@@ -1,4 +1,5 @@
 import React from 'react';
+import "../../access/css/shared.css"
 
 class LinkBtn extends React.Component {
     constructor(props) {
@@ -31,11 +32,14 @@ class LinkBtn extends React.Component {
     }
 
     render() {
+        if (window.location.pathname === "/admin-panel") {
+            return null;
+        }
         return (
             <div className={this.state.itemStyle}>
                 <div className="link-fixed__env text-14 medium">
-                    <span className="link-fixed__text">Есть ссылка<br/>на товар?</span>
-                    <div className="link-fixed__item" >Примерьте ее!</div>
+                    <span>Есть ссылка<br/>на товар?</span>
+                    <div className="link-fixed__item" >Примерьте его!</div>
                 </div>
             </div>
         )

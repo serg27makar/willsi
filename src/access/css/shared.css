@@ -1,0 +1,188 @@
+/*Global menu*/
+.menu_wrap {
+    position: fixed;
+    width: 200px;
+    background: #c6d846;
+    z-index: 1000;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-transform: translateX(-202px);
+    -ms-transform: translateX(-202px);
+    transform: translateX(-202px);
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.menu_wrap_active {
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.menuGlobal {
+    width: 100%;
+    padding: 15px;
+}
+.menuGlobal__link {
+    color: #fff;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.menuGlobal__link:hover {
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    color: #0056b3;;
+}
+.menu_click {
+    width: 35px;
+    height: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    border-left: 2px solid transparent;
+}
+.menu_click button {
+    border: unset;
+    outline: unset;
+    width: 100%;
+    height: 100%;
+    line-height: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background: #c6d846;
+    color: #fff;
+    font-size: 1.5625rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+/*Link button*/
+.link-fixed {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 1.875vw;
+    border-radius: 50%;
+    width: 8.75vw;
+    height: 8.75vw;
+    background: #4eaebd;
+    color: #fff;
+    overflow: hidden;
+    z-index: 8000;
+    box-shadow: 3px 3px 5px 1px #2b8b9a;
+}
+.link-fixed:hover:active {
+    box-shadow: 2px 2px 4px 0 #2b8b9a;
+    transform: translate(2px, 2px);
+}
+@media (max-width: 992px) {
+    .link-fixed {
+        left: -2.666666666666667vw;
+        width: 37.333333333333336vw;
+        height: 37.333333333333336vw;
+        -webkit-transform: scale(0.7);
+        -ms-transform: scale(0.7);
+        transform: scale(0.7);
+    }
+}
+.link-fixed__env {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+.link-fixed__item {
+    color: #fff;
+    text-decoration: underline;
+}
+.link-fixed__item:hover {
+    color: #fff;
+}
+/*Button open*/
+.btn-show {
+    display: block !important;
+}
+/*Button Up*/
+.btn-up {
+    display: none;
+    position: fixed;
+    top: 55%;
+    right: 1.875vw;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    border-radius: 50%;
+    width: 5.625vw;
+    height: 5.625vw;
+    background: #c6d846;
+    -webkit-box-shadow: 0.1875vw 0.5625vw 1vw 0 rgba(198,216,70,0.35);
+    box-shadow: 0.1875vw 0.5625vw 1vw 0 rgba(198,216,70,0.35);
+    z-index: 8000;
+}
+@media (max-width: 992px) {
+    .btn-up {
+        top: 61%;
+        right: 4vw;
+        width: 12vw;
+        height: 12vw;
+        -webkit-box-shadow: 0.8vw 2.4vw 4.266666666666667vw 0 rgba(198,216,70,0.35);
+        box-shadow: 0.8vw 2.4vw 4.266666666666667vw 0 rgba(198,216,70,0.35);
+    }
+    .btn-up__env .icon {
+        width: 4vw;
+        height: 4vw;
+    }
+}
+.btn-up__env {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.btn-up__env .icon {
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+    width: 1.875vw;
+    height: 1.875vw;
+    fill: #fff;
+}

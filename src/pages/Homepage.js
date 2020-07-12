@@ -1,11 +1,17 @@
 import React from 'react';
+import {setActionAdminPanel} from "../action";
+import {connect} from "react-redux";
 
 class Homepage extends React.Component {
+
     state = {
         muve: "fade-right",
         animate: "welcome-main-env"
     };
-    componentDidMount() {}
+
+    componentDidMount() {
+        this.props.setActionAdminPanelFunction("Homepage");
+    }
 
     render() {
         return(
@@ -507,5 +513,18 @@ class Homepage extends React.Component {
     }
 }
 
-export default Homepage;
+function MapStateToProps(state) {
+    return {
+        page: state.pageReducer.page,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        setActionAdminPanelFunction: (page) => {
+            dispatch(setActionAdminPanel(page))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(Homepage);
 

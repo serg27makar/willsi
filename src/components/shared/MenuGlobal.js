@@ -1,27 +1,53 @@
 import React from 'react';
+import {Link} from "react-router-dom";
+import "../../access/css/shared.css"
 
 class MenuGlobal extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            menuWrap: "menu_wrap",
+        };
+        this.openMenu = this.openMenu.bind(this);
+    }
+
+    openMenu() {
+        this.setState({
+            menuWrap: this.state.menuWrap === "menu_wrap" ? "menu_wrap menu_wrap_active" : "menu_wrap",
+        })
+    }
+
     render() {
         return (
-            <div className="menu_wrap">
+            <div className={this.state.menuWrap}>
                 <ul className="menuGlobal">
-                    <li className="menuGlobal__item"><a className="menuGlobal__link" href="index.html">1. Index</a></li>
-                    <li className="menuGlobal__item"><a className="menuGlobal__link" href="index-about.html">2. About</a></li>
-                    <li className="menuGlobal__item"><a className="menuGlobal__link" href="index-catalog.html">3. Catalog</a>
+                    <li>
+                        <Link to={"/"} className="menuGlobal__link">1. Index</Link>
                     </li>
-                    <li className="menuGlobal__item"><a className="menuGlobal__link" href="index-postpone.html">4. Postpone</a>
+                    <li>
+                        <Link to={"/about"} className="menuGlobal__link">2. About</Link>
                     </li>
-                    <li className="menuGlobal__item"><a className="menuGlobal__link" href="index-cart.html">5. Cart</a></li>
-                    <li className="menuGlobal__item"><a className="menuGlobal__link" href="index-data.html">6. Data</a></li>
-                    <li className="menuGlobal__item"><a className="menuGlobal__link" href="index-admin-panel.html">7. Admin
-                        Panel</a></li>
-                    <li className="menuGlobal__item"><a className="menuGlobal__link" href="index-service-red.html">8. About
-                        Service Red</a></li>
-                    <li className="menuGlobal__item"><a className="menuGlobal__link" href="index-service-blue.html">9. About
-                        Service Blue</a></li>
+                    <li>
+                        <Link to={"/catalog"} className="menuGlobal__link">3. Catalog</Link>
+                    </li>
+                    <li>
+                        <Link to={"/postpone"} className="menuGlobal__link">4. Postpone</Link>
+                    </li>
+                    <li>
+                        <Link to={"/cart"} className="menuGlobal__link">5. Cart</Link>
+                    </li>
+                    <li>
+                        <Link to={"/data"} className="menuGlobal__link">6. Data</Link>
+                    </li>
+                    <li>
+                        <Link to={"/admin-panel"} className="menuGlobal__link">7. Admin Panel</Link>
+                    </li>
+                    <li>
+                        <Link to={"/service-blue"} className="menuGlobal__link">8. About Service Blue</Link>
+                    </li>
                 </ul>
                 <div className="menu_click">
-                    <button>N</button>
+                    <button onClick={this.openMenu}>N</button>
                 </div>
             </div>
         )

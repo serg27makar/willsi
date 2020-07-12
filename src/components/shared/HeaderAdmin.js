@@ -1,9 +1,27 @@
 import React from 'react';
 import ru from "../../access/lang/LangConstants";
+import "../../access/css/headerFooter.css"
+import {connect} from "react-redux";
 
 class HeaderAdmin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            page: ""
+        };
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.page !== this.props.page) {
+            this.setState({
+                ...this.state,
+                page: this.props.page
+            })
+        }
+    }
+
     render() {
-        if (window.location.pathname !== "/admin-panel") {
+        if (this.props.page !== "AdminPanel") {
             return null;
         }
         return (
@@ -38,12 +56,12 @@ class HeaderAdmin extends React.Component {
                                     </div>
                                 </div>
                                 <div className="header__enter-cabinet text-14 light" >{ru.CustomerLogin}</div>
-                                <p className="header__enter-name text-14 bold">Юлия Иванова<div
+                                <div className="header__enter-name text-14 bold">Юлия Иванова<div
                                     className="header__button-cabinet" >
                                     <svg className="icon icon-login ">
                                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#login"/>
                                     </svg>
-                                </div></p>
+                                </div></div>
                             </div>
                         </div>
                     </div>
@@ -53,4 +71,10 @@ class HeaderAdmin extends React.Component {
     }
 }
 
-export default HeaderAdmin;
+function MapStateToProps(state) {
+    return {
+        page: state.pageReducer.page,
+    }
+}
+
+export default connect(MapStateToProps)(HeaderAdmin);

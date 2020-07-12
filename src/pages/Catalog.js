@@ -1,6 +1,12 @@
 import React from 'react';
+import {setActionAdminPanel} from "../action";
+import {connect} from "react-redux";
 
 class Catalog extends React.Component {
+
+    componentDidMount() {
+        this.props.setActionAdminPanelFunction("Catalog");
+    }
 
     render() {
         return(
@@ -44,13 +50,12 @@ class Catalog extends React.Component {
                           <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                         </svg></span></div>
                                         <div className="dropdown-info">
-                                            <p className="dropdown-info__item"><div
+                                            <div className="dropdown-info__item"><div
                                                 className="dropdown-info__link text-16 bold uppercase" >Мужа</div>
-                                            </p>
-                                            <p className="dropdown-info__item"><div
-                                                className="dropdown-info__link text-16 bold uppercase" >Сына</div>
-                                            </p>
-                                            <p className="dropdown-info__item"><div className="dropdown-info__link icon-plus" /></p>
+                                            </div>
+                                            <div className="dropdown-info__item"><div className="dropdown-info__link text-16 bold uppercase" >Сына</div>
+                                            </div>
+                                            <div className="dropdown-info__item"><div className="dropdown-info__link icon-plus" /></div>
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +97,7 @@ class Catalog extends React.Component {
                             <div className="col-12 col-md-12 col-lg-3"><div
                                 className="catalog-middle__product-all text-16 bold uppercase" >Показать
                                 товары</div>
-                                <sidebar className="catalog-sidebar">
+                                <div className="catalog-sidebar">
                                     <div className="catalog-sidebar__item">
                                         <div className="catalog-envelope text-18 medium"><span
                                             className="catalog-envelope__name">Каталог</span></div>
@@ -361,7 +366,7 @@ class Catalog extends React.Component {
                                             </form>
                                         </div>
                                     </div>
-                                </sidebar>
+                                </div>
                             </div>
                             <div className="col-12 col-md-12 col-lg-9">
                                 <div className="catalog-middle__for-me">
@@ -688,5 +693,18 @@ class Catalog extends React.Component {
     }
 }
 
-export default Catalog;
+function MapStateToProps(state) {
+    return {
+        page: state.pageReducer.page,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        setActionAdminPanelFunction: (page) => {
+            dispatch(setActionAdminPanel(page))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(Catalog);
 

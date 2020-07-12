@@ -1,6 +1,12 @@
 import React from 'react';
+import {setActionAdminPanel} from "../action";
+import {connect} from "react-redux";
 
 class About extends React.Component {
+
+    componentDidMount() {
+        this.props.setActionAdminPanelFunction("About");
+    }
 
     render() {
         return(
@@ -148,5 +154,18 @@ class About extends React.Component {
     }
 }
 
-export default About;
+function MapStateToProps(state) {
+    return {
+        page: state.pageReducer.page,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        setActionAdminPanelFunction: (page) => {
+            dispatch(setActionAdminPanel(page))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(About);
 

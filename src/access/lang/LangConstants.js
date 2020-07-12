@@ -4,6 +4,8 @@ const ru = {
     DressingRoom: "Примерочная",
     Home: "Главная",
     About: "О нас",
+    Partners: "Партнерам",
+    Delayed: "отложено",
 
     SignIn: "Вход",
     SignUp: "Регистрация",

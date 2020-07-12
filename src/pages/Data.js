@@ -1,6 +1,12 @@
 import React from 'react';
+import {setActionAdminPanel} from "../action";
+import {connect} from "react-redux";
 
 class Data extends React.Component {
+
+    componentDidMount() {
+        this.props.setActionAdminPanelFunction("Data");
+    }
 
     render() {
         return(
@@ -34,7 +40,7 @@ class Data extends React.Component {
                                                     <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#pen"/>
                                                 </svg>
                                             </button>
-                                            <input className="box-tags__input-radio" type="radio" name="woman" checked hidden/>
+                                            <input className="box-tags__input-radio" type="radio" name="woman" defaultChecked hidden/>
                                                 <button className="box-tags__item" type="button"><span
                                                     className="box-tags__text text-18 medium">Мужчина</span>
                                                     <svg className="icon icon-pen ">
@@ -56,8 +62,7 @@ class Data extends React.Component {
                                     <div className="recalculate-envelope__bottom-info">
                                         <input className="recalculate-envelope__input-data text-18 light"
                                                placeholder="Юлия Иванова"/>
-                                            <button className="recalculate-envelope__button-next text-16 medium"
-                                                    data-iziModal-open="#modal-profile" type="button">Далее
+                                            <button className="recalculate-envelope__button-next text-16 medium" type="button">Далее
                                             </button>
                                     </div>
                                 </form>
@@ -218,5 +223,18 @@ class Data extends React.Component {
     }
 }
 
-export default Data;
+function MapStateToProps(state) {
+    return {
+        page: state.pageReducer.page,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        setActionAdminPanelFunction: (page) => {
+            dispatch(setActionAdminPanel(page))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(Data);
 

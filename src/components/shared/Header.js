@@ -1,10 +1,42 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import ru from "../../access/lang/LangConstants";
+import "../../access/css/headerFooter.css"
+import {connect} from "react-redux";
+
+const mobilButtonClose = "static/img/svg-sprites/symbol/sprite.svg#close";
+const mobilButtonOpen = "static/img/svg-sprites/symbol/sprite.svg#menu";
 
 class Header extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            mobileOpen: "mobile-toggle",
+            mobilButtonCloseOpen: mobilButtonOpen,
+            page: ""
+        };
+        this.menuButton = this.menuButton.bind(this);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.page !== this.props.page) {
+            this.setState({
+                ...this.state,
+                page: this.props.page
+            })
+        }
+    }
+
+    menuButton = () => {
+        this.setState({
+            ...this.state,
+            mobileOpen: this.state.mobileOpen === "mobile-toggle" ? "mobile-toggle open" : "mobile-toggle",
+            mobilButtonCloseOpen: this.state.mobilButtonCloseOpen === mobilButtonClose ? mobilButtonOpen : mobilButtonClose,
+        })
+    };
+
     render() {
-        if (window.location.pathname === "/admin-panel") {
+        if (this.props.page === "AdminPanel") {
             return null;
         }
         return (
@@ -28,14 +60,9 @@ class Header extends React.Component {
                                             <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
                                         </svg>
                                     </div>
-                                    <button className="header-mobile__bars-button" type="button">
+                                    <button className="header-mobile__bars-button" type="button" onClick={this.menuButton}>
                                         <svg className="icon">
-                                            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#menu"/>
-                                        </svg>
-                                    </button>
-                                    <button className="header-mobile__close-button" type="button">
-                                        <svg className="icon">
-                                            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#close"/>
+                                            <use xlinkHref={this.state.mobilButtonCloseOpen}/>
                                         </svg>
                                     </button>
                                 </div>
@@ -49,10 +76,14 @@ class Header extends React.Component {
                                             <Link className="navigation-list__link light text-16" to={"/"}>{ru.Home}</Link>
                                         </li>
                                         <li className="navigation-list__item">
-                                            <Link className="navigation-list__link light text-16" to={"/postpone"}>{ru.DressingRoom}</Link>
+                                            {/*Todo data if not params*/}
+                                            <Link className="navigation-list__link light text-16" to={"/catalog"}>{ru.DressingRoom}</Link>
                                         </li>
                                         <li className="navigation-list__item">
                                             <Link className="navigation-list__link light text-16" to={"/about"}>{ru.About}</Link>
+                                        </li>
+                                        <li className="navigation-list__item">
+                                            <Link className="navigation-list__link light text-16" to={"/service-red"}>{ru.Partners}</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -74,15 +105,18 @@ class Header extends React.Component {
                                     </div>
                                 </div>
                                 <div className="header__basket-icon" >
-                                    <svg className="icon">
-                                        <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
-                                    </svg>
+                                    <li className="navigation-list__item">
+                                        <Link className="navigation-list__link light text-16" to={"/postpone"}>
+                                            <div className="red-ring-delayed">3</div>
+                                            {ru.Delayed}
+                                        </Link>
+                                    </li>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="mobile-toggle">
+                <div className={this.state.mobileOpen}>
                     <div className="mobile-envelope">
                         <ul>
                             <li className="mobile-nav__item">
@@ -113,4 +147,11 @@ class Header extends React.Component {
     }
 }
 
-export default Header;
+function MapStateToProps(state) {
+    return {
+        page: state.pageReducer.page,
+    }
+}
+
+export default connect(MapStateToProps)(Header);
+

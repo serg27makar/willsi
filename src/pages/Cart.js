@@ -1,5 +1,7 @@
 import React from 'react';
 import "./../access/css/cart.css"
+import {setActionAdminPanel} from "../action";
+import {connect} from "react-redux";
 
 const slidersArr = [
     {
@@ -43,10 +45,9 @@ class Cart extends React.Component {
         };
     }
 
-
     componentDidMount() {
         this.fillSliders(slidersArr, groupSliders);
-
+        this.props.setActionAdminPanelFunction("Cart");
     }
 
     fillSliders = (sliders, groupSlide) => {
@@ -88,7 +89,7 @@ class Cart extends React.Component {
                     <div className="cart-thumbs__picture">
                         <picture className="picture thumbs-active">
                             <source className="picture__source"
-                                    src={slide.imgUrl}
+                                    srcSet={slide.imgUrl}
                                     type="image/webp"/>
                             <img className="picture__source"
                                  src={slide.imgUrl}
@@ -212,15 +213,15 @@ class Cart extends React.Component {
                                             </span>
                                         </div>
                                         <div className="dropdown-info">
-                                            <p className="dropdown-info__item">
+                                            <div className="dropdown-info__item">
                                                 <div className="dropdown-info__link text-16 bold uppercase" >Мужа</div>
-                                            </p>
-                                            <p className="dropdown-info__item">
+                                            </div>
+                                            <div className="dropdown-info__item">
                                                 <div className="dropdown-info__link text-16 bold uppercase" >Сына</div>
-                                            </p>
-                                            <p className="dropdown-info__item">
+                                            </div>
+                                            <div className="dropdown-info__item">
                                                 <div className="dropdown-info__link icon-plus" />
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -576,5 +577,18 @@ class Cart extends React.Component {
     }
 }
 
-export default Cart;
+function MapStateToProps(state) {
+    return {
+        page: state.pageReducer.page,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        setActionAdminPanelFunction: (page) => {
+            dispatch(setActionAdminPanel(page))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(Cart);
 

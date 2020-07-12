@@ -1,6 +1,12 @@
 import React from 'react';
+import {setActionAdminPanel} from "../action";
+import {connect} from "react-redux";
 
 class Postpone extends React.Component {
+
+    componentDidMount() {
+        this.props.setActionAdminPanelFunction("Postpone");
+    }
 
     render() {
         return(
@@ -43,15 +49,15 @@ class Postpone extends React.Component {
                           <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                         </svg></span></div>
                                         <div className="dropdown-info">
-                                            <p className="dropdown-info__item"><div
+                                            <div className="dropdown-info__item"><div
                                                 className="dropdown-info__link text-16 bold uppercase" >Мужа</div>
-                                            </p>
-                                            <p className="dropdown-info__item"><div
+                                            </div>
+                                            <div className="dropdown-info__item"><div
                                                 className="dropdown-info__link text-16 bold uppercase" >Сына</div>
-                                            </p>
-                                            <p className="dropdown-info__item">
+                                            </div>
+                                            <div className="dropdown-info__item">
                                                 <div className="dropdown-info__link icon-plus" />
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +97,7 @@ class Postpone extends React.Component {
                     <div className="container">
                         <div className="row align-items-start">
                             <div className="col-12 col-md-12 col-lg-3">
-                                <sidebar className="catalog-sidebar">
+                                <div className="catalog-sidebar">
                                     <div className="catalog-sidebar__item">
                                         <div className="catalog-envelope text-18 medium"><span
                                             className="catalog-envelope__name">Каталог</span></div>
@@ -360,7 +366,7 @@ class Postpone extends React.Component {
                                             </form>
                                         </div>
                                     </div>
-                                </sidebar>
+                                </div>
                             </div>
                             <div className="col-12 col-md-12 col-lg-9">
                                 <div className="row">
@@ -571,5 +577,18 @@ class Postpone extends React.Component {
     }
 }
 
-export default Postpone;
+function MapStateToProps(state) {
+    return {
+        page: state.pageReducer.page,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        setActionAdminPanelFunction: (page) => {
+            dispatch(setActionAdminPanel(page))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(Postpone);
 

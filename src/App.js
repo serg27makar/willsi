@@ -15,7 +15,6 @@ import Catalog from "./pages/Catalog";
 import Data from "./pages/Data";
 import Postpone from "./pages/Postpone";
 import ServiceBlue from "./pages/ServiceBlue";
-import ServiceRed from "./pages/ServiceRed";
 import HeaderAdmin from "./components/shared/HeaderAdmin";
 import FooterAdmin from "./components/shared/FooterAdmin";
 
@@ -27,7 +26,6 @@ class App extends React.Component {
             <div className="App">
                 <div className="wrapper">
                     <Navigate/>
-                    <MenuGlobal/>
                     <LinkBtn/>
                     <BtnUp/>
                 </div>
@@ -40,6 +38,7 @@ class Navigate extends React.Component {
     render() {
         return (
             <Router history={history}>
+                <MenuGlobal/>
                 <Header/>
                 <HeaderAdmin/>
                 <div className="routers">
@@ -51,7 +50,6 @@ class Navigate extends React.Component {
                     <Route path='/data' component={Data}/>
                     <Route path='/postpone' component={Postpone}/>
                     <Route path='/service-blue' component={ServiceBlue}/>
-                    <Route path='/service-red' component={ServiceRed}/>
                 </div>
                 <Footer/>
                 <FooterAdmin/>

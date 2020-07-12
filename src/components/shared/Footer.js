@@ -1,8 +1,27 @@
 import React from 'react';
+import "../../access/css/headerFooter.css"
+import {connect} from "react-redux";
+
 
 class Footer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            page: ""
+        };
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.page !== this.props.page) {
+            this.setState({
+                ...this.state,
+                page: this.props.page
+            })
+        }
+    }
+
     render() {
-        if (window.location.pathname === "/admin-panel") {
+        if (this.props.page === "AdminPanel") {
             return null;
         }
         return (
@@ -48,4 +67,11 @@ class Footer extends React.Component {
     }
 }
 
-export default Footer;
+function MapStateToProps(state) {
+    return {
+        page: state.pageReducer.page,
+    }
+}
+
+export default connect(MapStateToProps)(Footer);
+
