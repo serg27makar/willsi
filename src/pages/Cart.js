@@ -1,7 +1,8 @@
 import React from 'react';
-import "./../access/css/cart.css"
+import "./../access/css/cart.css";
 import {setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
+import Carousel from "../components/Carousel";
 
 const slidersArr = [
     {
@@ -58,47 +59,10 @@ class Cart extends React.Component {
         })
     };
 
-    renderSlide = (sliders) => {
-        return sliders.map((slide, index) => {
-            return(
-                <div className="swiper-slide" key={index}>
-                    <div className="magnify-lens loading zoomLens"
-                         style={{background: "url(" + slide.imgUrl + ") -50px -50px no-repeat", top: "50px", left: "50px"}}
-                    />
-                    <div className="cart-slider__picture">
-                        <div className="picture">
-                            <img className="picture__source zoom"
-                                 src={slide.imgUrl}
-                                 data-magnify-src={slide.dataMagnifySrc}
-                                 alt={slide.alt}/>
-                        </div>
-                    </div>
-                </div>
+    renderSlide = () => {
+        return (
+            <Carousel/>
             )
-        })
-    };
-
-    changePosition = (e) => {
-        console.log(e.pageX, e.pageY);
-    };
-
-    renderGroupSliders = (groupSliders) => {
-        return groupSliders.map( (slide, index) => {
-            return(
-                <div className="swiper-slide" key={index}>
-                    <div className="cart-thumbs__picture">
-                        <picture className="picture thumbs-active">
-                            <source className="picture__source"
-                                    srcSet={slide.imgUrl}
-                                    type="image/webp"/>
-                            <img className="picture__source"
-                                 src={slide.imgUrl}
-                                 alt={slide.alt}/>
-                        </picture>
-                    </div>
-                </div>
-            )
-        })
     };
 
     render() {
@@ -261,19 +225,8 @@ class Cart extends React.Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-12 col-md-12 col-lg-5">
-                                <div className="cart-slider swiper-container" onMouseMove={this.changePosition}>
-                                    <div className="swiper-wrapper">
-                                        {this.renderSlide(slidersArr)}
-                                    </div>
-                                    <div className="cart-slider__circle" style={{backgroundImage: "url('static/img/content/circle-good.png')"}}/>
-                                </div>
-                                <div className="cart-thumbsEnv">
-                                    <div className="cart-thumbs swiper-container">
-                                        <div className="swiper-wrapper">
-                                            {this.renderGroupSliders(groupSliders)}
-                                        </div>
-                                    </div>
-                                </div>
+                                {this.renderSlide()}
+                                <div className="cart-slider__circle" style={{backgroundImage: "url('static/img/content/circle-good.png')"}}/>
                             </div>
                             <div className="col-12 col-md-12 col-lg-7">
                                 <div className="card-description">
