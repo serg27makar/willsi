@@ -61,7 +61,7 @@ class Cart extends React.Component {
 
     renderSlide = () => {
         return (
-            <Carousel/>
+            <Carousel slidersArr={slidersArr}/>
             )
     };
 

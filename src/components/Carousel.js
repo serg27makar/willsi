@@ -1,21 +1,6 @@
 import React from 'react';
 import "../access/css/carousel.css";
 
-const groupSliders = [
-    {
-        imgUrl: "static/img/content/slider-main.jpg",
-        alt: "slider",
-    },
-    {
-        imgUrl: "static/img/content/thumbs-1.webp",
-        alt: "slider",
-    },
-    {
-        imgUrl: "static/img/content/slider-main.jpg",
-        alt: "slider",
-    },
-];
-
 class Carousel extends React.Component {
     constructor(props) {
         super(props);
@@ -24,9 +9,16 @@ class Carousel extends React.Component {
             stopPosition: 0,
             slidersLength: 0,
             clientWidth: 0,
+            sliderWidth: 0,
+            sliderHeight: 0,
+            sliderLeft: 0,
+            sliderTop: 0,
             PosX: 0,
             slideStyle: {},
             zoomStyles: {},
+            imgUrl: "",
+            zoomLens: "",
+            slidersArr: [],
         };
         this.chooseSlideBtn = this.chooseSlideBtn.bind(this);
     }
@@ -38,7 +30,7 @@ class Carousel extends React.Component {
         this.setState({
             ...this.state,
             startPosition: e.clientX,
-            slidersLength: -e.target.offsetParent.clientWidth * (groupSliders.length - 1),
+            slidersLength: -e.target.offsetParent.clientWidth * (this.props.slidersArr.length - 1),
             clientWidth: e.target.offsetParent.clientWidth,
         });
         document.addEventListener("mouseup", () => {
@@ -93,36 +85,85 @@ class Carousel extends React.Component {
     };
 
     renderSlide = () => {
-        return groupSliders.map((slide, index) => {
+        return this.props.slidersArr.map((slide, index) => {
             return (
-                <div className="carousel-slide" style={this.state.slideStyle} onMouseOver={this.zoomStart} onMouseMove={(e) => {this.renderZoom(slide.imgUrl, e.pageX, e.pageY)}}>
+                <div className="carousel-slide"
+                     style={this.state.slideStyle}
+                     onMouseMove={(e) => {
+                         e.preventDefault();
+                         e.stopPropagation();
+                         const {left, top, width, height} = e.currentTarget.getBoundingClientRect();
+                         this.setState({
+                             ...this.state,
+                             sliderWidth: width,
+                             sliderHeight: height,
+                             sliderLeft: left,
+                             sliderTop: top,
+                         });
+                         if (this.state.isVisibleZoom) this.zoomMove(this.state.imgUrl, e.clientX - this.state.sliderLeft, e.clientY - this.state.sliderTop );
+                         if (!this.state.isVisibleZoom) this.zoomStart(this.state.imgUrl, left, top, width, height);
+                     }}
+                     onMouseEnter={(e) => {
+                         e.preventDefault();
+                         e.stopPropagation();
+                         const {left, top, width, height} = e.currentTarget.getBoundingClientRect();
+                         this.zoomStart(slide.imgUrl,left, top, width, height)
+                     }} key={index}>
                     <img className="carousel-img" src={slide.imgUrl} alt={slide.alt} key={index}/>
-                    <div className="zoomLens" style={this.state.zoomStyles} />
                 </div>
             )
         })
     };
 
-    zoomStart = (e) => {
-        this.setState({
-
-        })
-    };
-
-    renderZoom = (imgUrl, corX, corY) => {
+    zoomStart = (imgUrl,left, top, width, height) => {
         this.setState({
             ...this.state,
+            sliderWidth: width,
+            sliderHeight: height,
+            sliderLeft: left,
+            sliderTop: top,
+            isVisibleZoom: true,
+            imgUrl: imgUrl,
+            zoomLens: "zoomLens",
             zoomStyles: {
                 display: "block",
-                background: "url(" + imgUrl + ") -50px -50px no-repeat",
-                top: corY,
-                left: corX,
+                background: "url(" + imgUrl + ") -50px -50px no-repeat 300%",
             }
         })
     };
 
+    zoomStop = () => {
+        this.setState({
+            ...this.state,
+            isVisibleZoom: false,
+            zoomStyles: {
+                display: "none",
+            }
+        })
+    };
+
+    zoomMove = (imgUrl, X, Y) => {
+        if ( Y < -25 || Y > this.state.sliderHeight || X < -25 || X > this.state.sliderWidth) {
+            this.zoomStop();
+        } else {
+            this.setState({
+                ...this.state,
+                zoomStyles: {
+                    backgroundImage: "url(" + imgUrl + ")",
+                    backgroundPositionX: "-" + (X - 50) + "px",
+                    backgroundPositionY: "-" + (Y - 50) + "px",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "250%",
+                    top: "calc(" + Y + "px - 6vw)",
+                    left: "calc(" + X + "px - 6vw)",
+                    transform: "scale(1.1)",
+                }
+            })
+        }
+    };
+
     renderSlideBar = () => {
-        return groupSliders.map((slide, index) => {
+        return this.props.slidersArr.map((slide, index) => {
             return (
                 <div className="slide-bar" key={index} onClick={(e) => {this.chooseSlideBtn(index, e.target.offsetParent.clientWidth)}}>
                     <img className="carousel-img" src={slide.imgUrl} alt={slide.alt} key={index}/>
@@ -136,6 +177,11 @@ class Carousel extends React.Component {
             <div className="carousel-wrap" onMouseDown={this.startScroll}>
                 <div className="cart-slider">
                     {this.renderSlide()}
+                    <div className={this.state.zoomLens} style={this.state.zoomStyles} onMouseMove={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (this.state.isVisibleZoom) this.zoomMove(this.state.imgUrl, e.clientX - this.state.sliderLeft, e.clientY - this.state.sliderTop);
+                    }}/>
                 </div>
                 <div className="sliders-bar-btn">
                     {this.renderSlideBar()}
@@ -146,4 +192,3 @@ class Carousel extends React.Component {
 }
 
 export default Carousel;
-

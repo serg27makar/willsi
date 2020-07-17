@@ -2269,7 +2269,7 @@ input[type="checkbox"] + label:hover {
     background-size: cover;
     width: 9.125vw;
     height: 9.125vw;
-    z-index: 4000;
+    z-index: 0;
 }
 .card-description__top-info {
     display: -webkit-box;
