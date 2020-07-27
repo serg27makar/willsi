@@ -1,6 +1,7 @@
 import React from 'react';
 import {setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
+import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
 
 class Postpone extends React.Component {
 
@@ -18,190 +19,136 @@ class Postpone extends React.Component {
                                 <div className="breadcrumbs__row">
                                     <div className="breadcrumb__column">
                                         <div className="breadcrumbs">
-                                            <h1 className="breadcrumbs__title title-30 bold uppercase">Отложенные
-                                                товары</h1>
+                                            <h1 className="breadcrumbs__title title-30 bold uppercase">Отложенные товары</h1>
                                         </div>
-                                        <nav className="breadcrumbs"><div className="breadcrumbs__link light text-14"
-                                                                        >Главная</div><div
-                                            className="breadcrumbs__link light text-14 active" >Отложенные
-                                            товары</div></nav>
+                                        <nav className="breadcrumbs">
+                                            <div className="breadcrumbs__link light text-14">Главная</div>
+                                            <div className="breadcrumbs__link light text-14 active" >Отложенные товары</div>
+                                        </nav>
                                     </div>
-                                    <div className="breadcrumbs__column"><div className="breadcrumbs__share" >
-                                        <svg className="icon icon-share ">
-                                            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#share"/>
-                                        </svg>
-                                    </div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="catalog-top-env">
-                    <div className="container">
-                        <div className="row align-items-center">
-                            <div className="col-12 col-md-12 col-lg-2">
-                                <div className="catalog-top">
-                                    <div className="catalog-top__dropdown-info">
-                                        <div className="catalog-top__button-drop"><div
-                                            className="catalog-top__button-text text-16 bold uppercase" >Мои</div><span
-                                            className="catalog-top__button-icon">
-                        <svg className="icon icon-arrow-small ">
-                          <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
-                        </svg></span></div>
-                                        <div className="dropdown-info">
-                                            <div className="dropdown-info__item"><div
-                                                className="dropdown-info__link text-16 bold uppercase" >Мужа</div>
-                                            </div>
-                                            <div className="dropdown-info__item"><div
-                                                className="dropdown-info__link text-16 bold uppercase" >Сына</div>
-                                            </div>
-                                            <div className="dropdown-info__item">
-                                                <div className="dropdown-info__link icon-plus" />
-                                            </div>
+                                    <div className="breadcrumbs__column">
+                                        <div className="breadcrumbs__share" >
+                                            <svg className="icon icon-share ">
+                                                <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#share"/>
+                                            </svg>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-12 col-md-12 col-lg-10">
-                                <div className="catalog-top">
-                                    <div className="catalog-top__list-object">
-                                        <ul className="list-object">
-                                            <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Рост -</p><span
-                                                className="list-object__text-value color-aqua">175 см</span>
-                                            </li>
-                                            <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Обхват плечь -</p><span
-                                                className="list-object__text-value color-aqua">60 см</span>
-                                            </li>
-                                            <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Обхват груди -</p><span
-                                                className="list-object__text-value color-aqua">90 см</span>
-                                            </li>
-                                            <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Обхват талии -</p><span
-                                                className="list-object__text-value color-aqua">65 см</span>
-                                            </li>
-                                            <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Обхват бедер -</p><span
-                                                className="list-object__text-value color-aqua">91 см</span>
-                                            </li>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <CatalogTopEnvironment/>
                 <div className="catalog-middle">
                     <div className="container">
                         <div className="row align-items-start">
                             <div className="col-12 col-md-12 col-lg-3">
                                 <div className="catalog-sidebar">
                                     <div className="catalog-sidebar__item">
-                                        <div className="catalog-envelope text-18 medium"><span
-                                            className="catalog-envelope__name">Каталог</span></div>
+                                        <div className="catalog-envelope text-18 medium">
+                                            <span className="catalog-envelope__name">Каталог</span>
+                                        </div>
                                         <div className="catalog-body">
                                             <div className="catalog-product">
-                                                <button className="catalog-button" type="button"><span
-                                                    className="catalog-button__text text-16 light">Одежда</span>
+                                                <button className="catalog-button" type="button">
+                                                    <span className="catalog-button__text text-16 light">Одежда</span>
                                                     <svg className="icon icon-arrow-small ">
                                                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                                                     </svg>
                                                 </button>
                                                 <ul className="dropdown-list">
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Женская
-                                                        бижутерия</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Очки</div>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Женская бижутерия</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light"
-                                                        >Брелоки</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light"
-                                                        >Воротники</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Головные
-                                                        уборы</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Для
-                                                        волос</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Зонты</div>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Очки</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light"
-                                                        >Косметички</div></li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light">Брелоки</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light">Воротники</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Головные уборы</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Для волос</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Зонты</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light">Косметички</div>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div className="catalog-product">
-                                                <button className="catalog-button" type="button"><span
-                                                    className="catalog-button__text text-16 light">Белье</span>
+                                                <button className="catalog-button" type="button">
+                                                    <span className="catalog-button__text text-16 light">Белье</span>
                                                     <svg className="icon icon-arrow-small ">
                                                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                                                     </svg>
                                                 </button>
                                                 <ul className="dropdown-list">
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Женская
-                                                        бижутерия</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Очки</div>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Женская бижутерия</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light"
-                                                        >Брелоки</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light"
-                                                        >Воротники</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Головные
-                                                        уборы</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Для
-                                                        волос</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Зонты</div>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Очки</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light"
-                                                        >Косметички</div></li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light">Брелоки</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light">Воротники</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Головные уборы</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Для волос</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Зонты</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light">Косметички</div>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div className="catalog-product">
-                                                <button className="catalog-button" type="button"><span
-                                                    className="catalog-button__text text-16 light">Для пляжа</span>
+                                                <button className="catalog-button" type="button">
+                                                    <span className="catalog-button__text text-16 light">Для пляжа</span>
                                                     <svg className="icon icon-arrow-small ">
                                                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                                                     </svg>
                                                 </button>
                                                 <ul className="dropdown-list">
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Женская
-                                                        бижутерия</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Очки</div>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Женская бижутерия</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light"
-                                                        >Брелоки</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light"
-                                                        >Воротники</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Головные
-                                                        уборы</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Для
-                                                        волос</div></li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light" >Зонты</div>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Очки</div>
                                                     </li>
-                                                    <li className="dropdown-list__item"><div
-                                                        className="dropdown-list__link text-14 light"
-                                                        >Косметички</div></li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light">Брелоки</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light">Воротники</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Головные уборы</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Для волос</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light" >Зонты</div>
+                                                    </li>
+                                                    <li className="dropdown-list__item">
+                                                        <div className="dropdown-list__link text-14 light">Косметички</div>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div className="catalog-product">

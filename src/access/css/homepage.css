@@ -1,0 +1,23 @@
+.partner-box {
+    position: relative;
+    width: 100%;
+    padding-left: 0.9375vw;
+    padding-right: 0.9375vw;
+    margin: auto;
+    max-width: 25%;
+    -ms-flex: 0 0 25%;
+    -webkit-box-flex: 0;
+    flex: 0 0 25%;
+}
+@media (max-width: 992px) {
+    .partner-box {
+        max-width: 50%;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+    }
+}
+.partners-env-btn {
+    display: flex;
+    justify-content: center;
+}
+

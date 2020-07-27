@@ -3,6 +3,9 @@ import "./../access/css/cart.css";
 import {setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import Carousel from "../components/Carousel";
+import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
+import ru from "../access/lang/LangConstants";
+import ParametersEditor from "../components/ParametersEditor";
 
 const slidersArr = [
     {
@@ -94,133 +97,9 @@ class Cart extends React.Component {
                         </div>
                     </div>
                 </div>
-                <form className="parameters-top" action="#" method="post" name="parameters[]">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-12 col-md-12 col-lg-12">
-                                <div className="parameters">
-                                    <div className="parameters__row">
-                                        <div className="parameters__column-left">
-                                            <p className="parameters__info-text text-16 uppercase bold">Доступные<br/>Параметры
-                                            </p>
-                                        </div>
-                                        <div className="parameters__column-right">
-                                            <div className="parameters__tags-list">
-                                                <div className="tags-list">
-                                                    <button className="tags-list__item tags-active checked"
-                                                            type="button"><span
-                                                        className="tags-list__text text-18 medium">Мои</span>
-                                                        <svg className="icon icon-pen ">
-                                                            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#pen"/>
-                                                        </svg>
-                                                    </button>
-                                                    <input className="tags-list__input-radio" type="radio" name="my" defaultChecked={true} hidden/>
-                                                    <button className="tags-list__item" type="button">
-                                                        <span className="tags-list__text text-18 medium">Мужа</span>
-                                                        <svg className="icon icon-pen ">
-                                                            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#pen"/>
-                                                        </svg>
-                                                    </button>
-                                                    <input className="tags-list__input-radio" type="radio" name="husband" hidden/>
-                                                    <button className="tags-list__item" type="button">
-                                                        <span className="tags-list__text text-18 medium">Сына</span>
-                                                        <svg className="icon icon-pen ">
-                                                            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#pen"/>
-                                                        </svg>
-                                                    </button>
-                                                    <input className="tags-list__input-radio" type="radio" name="son" hidden/>
-                                                    <div className="tags-list__link-plus" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="parameters">
-                                    <div className="parameters__row">
-                                        <div className="parameters__column-left">
-                                            <p className="parameters__info-text text-16 uppercase bold">Измените<br/>Параметры
-                                            </p>
-                                        </div>
-                                        <div className="parameters__column-right">
-                                            <div className="parameters__tags-list">
-                                                <div className="tags-list">
-                                                    <input className="tags-list__input text-18 light" name="growth" placeholder="Рост 175 см"/>
-                                                    <input className="tags-list__input text-18 light" name="shoulders" placeholder="Плечи 60 см"/>
-                                                    <input className="tags-list__input text-18 light" name="growth" placeholder="Рост 90 см"/>
-                                                    <input className="tags-list__input text-18 light" name="waist" placeholder="Талия 65 см"/>
-                                                    <input className="tags-list__input text-18 light" name="hips" placeholder="Бедра 91 см"/>
-                                                    <button
-                                                        className="tags-list__button-save text-14 medium"
-                                                        type="button">Сохранить
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <div className="catalog-top-env">
-                    <div className="container">
-                        <div className="row align-items-center">
-                            <div className="col-12 col-md-12 col-lg-2">
-                                <div className="catalog-top">
-                                    <div className="catalog-top__dropdown-info">
-                                        <div className="catalog-top__button-drop">
-                                            <div className="catalog-top__button-text text-16 bold uppercase" >Мои</div>
-                                            <span className="catalog-top__button-icon">
-                                                <svg className="icon icon-arrow-small ">
-                                                  <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <div className="dropdown-info">
-                                            <div className="dropdown-info__item">
-                                                <div className="dropdown-info__link text-16 bold uppercase" >Мужа</div>
-                                            </div>
-                                            <div className="dropdown-info__item">
-                                                <div className="dropdown-info__link text-16 bold uppercase" >Сына</div>
-                                            </div>
-                                            <div className="dropdown-info__item">
-                                                <div className="dropdown-info__link icon-plus" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-12 col-md-12 col-lg-10">
-                                <div className="catalog-top">
-                                    <div className="catalog-top__list-object">
-                                        <ul className="list-object">
-                                            <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Рост -</p>
-                                                <span className="list-object__text-value color-aqua">175 см</span>
-                                            </li>
-                                            <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Обхват плечь -</p>
-                                                <span className="list-object__text-value color-aqua">60 см</span>
-                                            </li>
-                                            <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Обхват груди -</p>
-                                                <span className="list-object__text-value color-aqua">90 см</span>
-                                            </li>
-                                            <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Обхват талии -</p>
-                                                <span className="list-object__text-value color-aqua">65 см</span>
-                                            </li>
-                                            <li className="list-object__item text-16 bold">
-                                                <p className="list-object__text">Обхват бедер -</p>
-                                                <span className="list-object__text-value color-aqua">91 см</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ParametersEditor/>
+
+                <CatalogTopEnvironment/>
                 <div className="cart-info">
                     <div className="container">
                         <div className="row">

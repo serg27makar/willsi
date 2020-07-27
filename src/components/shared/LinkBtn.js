@@ -1,5 +1,6 @@
 import React from 'react';
 import "../../access/css/shared.css"
+import ru from "../../access/lang/LangConstants";
 
 class LinkBtn extends React.Component {
     constructor(props) {
@@ -37,9 +38,11 @@ class LinkBtn extends React.Component {
         }
         return (
             <div className={this.state.itemStyle}>
-                <div className="link-fixed__env text-14 medium">
-                    <span>Есть ссылка<br/>на товар?</span>
-                    <div className="link-fixed__item" >Примерьте его!</div>
+                <div className="link-fixed__env text-13 medium">
+                    <span>{ru.HaveLink}
+                        <br/>{ru.OnTheProduct}
+                    </span>
+                    <div className="link-fixed__item" >{ru.TryItOn}</div>
                 </div>
             </div>
         )
