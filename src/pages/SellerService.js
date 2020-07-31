@@ -13,7 +13,7 @@ import WhomStartup from "../components/WhomStartup";
 import ru from "../access/lang/LangConstants";
 import WelcomeService from "../components/WelcomeService";
 
-class Service extends React.Component {
+class SellerService extends React.Component {
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Service");
     }
@@ -48,4 +48,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(MapStateToProps, mapDispatchToProps)(Service);
+export default connect(MapStateToProps, mapDispatchToProps)(SellerService);

@@ -1445,7 +1445,9 @@
         border-radius: 1.066666666666667vw;
         height: 106.66666666666667vw;
     }
-
+    .welcome-data-env__text {
+        width: 80vw;
+    }
     .card-description__top-info {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;

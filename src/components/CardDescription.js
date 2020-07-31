@@ -1,7 +1,7 @@
 import React from "react";
 import ButtonMain from "./shared/ButtonMain";
 import ru from "../access/lang/LangConstants";
-import ButtonPostpone from "./shared/ButtonPostpone";
+import ButtonIcon from "./shared/ButtonIcon";
 import "../access/css/cart.css"
 
 const cardDescription = {
@@ -53,7 +53,7 @@ class CardDescription extends React.Component {
                 </div>
                 <div className="card-description__button-bottom">
                     <p className="card-description__quantity text-22 color-aqua uppercase medium">{cardDescription.price + ru.grn}</p>
-                    <ButtonPostpone/>
+                    <ButtonIcon/>
                 </div>
             </div>
         )

@@ -14,7 +14,7 @@ import About from "./pages/About";
 import Catalog from "./pages/Catalog";
 import Data from "./pages/Data";
 import Postpone from "./pages/Postpone";
-import Service from "./pages/Service";
+import SellerService from "./pages/SellerService";
 import HeaderAdmin from "./components/shared/HeaderAdmin";
 import FooterAdmin from "./components/shared/FooterAdmin";
 
@@ -49,7 +49,7 @@ class Navigate extends React.Component {
                     <Route path='/catalog' component={Catalog}/>
                     <Route path='/data' component={Data}/>
                     <Route path='/postpone' component={Postpone}/>
-                    <Route path='/service-blue' component={Service}/>
+                    <Route path='/seller-service' component={SellerService}/>
                 </div>
                 <Footer/>
                 <FooterAdmin/>

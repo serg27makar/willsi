@@ -2338,6 +2338,8 @@ input[type="checkbox"] + label:hover {
 }
 .welcome-data-env__text {
     line-height: 2em;
+    width: 28vw;
+    margin: auto;
 }
 .recalculate {
     position: relative;

@@ -1,7 +1,13 @@
 import ru from "../../access/lang/LangConstants";
 import React from "react";
 
-class ButtonPostpone extends React.Component {
+class ButtonIcon extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+    }
     render() {
         return (
             <div className="button-postpone">
@@ -14,4 +20,4 @@ class ButtonPostpone extends React.Component {
     }
 }
 
-export default ButtonPostpone
+export default ButtonIcon

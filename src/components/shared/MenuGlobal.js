@@ -43,7 +43,7 @@ class MenuGlobal extends React.Component {
                         <Link to={"/admin-panel"} className="menuGlobal__link">7. Admin Panel</Link>
                     </li>
                     <li>
-                        <Link to={"/service-blue"} className="menuGlobal__link">8. About Service Blue</Link>
+                        <Link to={"/seller-service"} className="menuGlobal__link">8. About Seller Service</Link>
                     </li>
                 </ul>
                 <div className="menu_click">
