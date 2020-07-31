@@ -108,7 +108,7 @@ class Header extends React.Component {
                                     <li className="navigation-list__item">
                                         <Link className="navigation-list__link light text-16" to={"/postpone"}>
                                             <div className="red-ring-delayed">3</div>
-                                            {ru.Delayed}
+                                            {ru.delayed}
                                         </Link>
                                     </li>
                                 </div>

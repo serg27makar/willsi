@@ -581,6 +581,16 @@
         width: 100%;
         max-width: 100%;
     }
+    .catalog-sidebar {
+        width: 100%;
+        padding-left: 0.93vw;
+        padding-right: 0.93vw;
+        margin: 0 2.6vw;
+    }
+
+    .show-products {
+        margin: 0 4vw;
+    }
     .description-bg {
         padding-top: 14.666666666666666vw;
         padding-bottom: 16vw;
@@ -777,23 +787,8 @@
     .catalog-top__list-object .list-object__text-value {
         padding: 0 1.066666666666667vw;
     }
-    .dropdown-info {
-        border-left: 0.266666666666667vw solid #e1e1e1;
-        border-right: 0.266666666666667vw solid #e1e1e1;
-        border-bottom: 0.266666666666667vw solid #e1e1e1;
-        border-bottom-left-radius: 1.066666666666667vw;
-        border-bottom-right-radius: 1.066666666666667vw;
-        padding-top: 8vw;
-        padding-left: 5.333333333333334vw;
-        padding-right: 5.333333333333334vw;
-        padding-bottom: 8vw;
-        top: 95%;
-        left: -0.266666666666667vw;
-        width: 100.6%;
-    }
-    .dropdown-info-list {
-        padding-top: 8vw;
-    }
+
+
     .icon-plus {
         margin-left: -2.666666666666667vw;
         margin-bottom: -4vw;
@@ -811,21 +806,13 @@
         padding-bottom: 26.666666666666668vw;
     }
     .catalog-middle__product-all {
-        padding: 0 0 13.333333333333334vw 0;
+        padding: 0 0 6.33vw 0;
     }
     .catalog-middle__for-me {
         padding: 0 0 13.333333333333334vw 0;
     }
-    .for-me__button-icon {
-        padding: 0 2.666666666666667vw;
-    }
-    .for-me__button-icon .icon {
-        width: 2.666666666666667vw;
-        height: 2.666666666666667vw;
-    }
-    .for-me .dropdown-info-list {
-        padding-bottom: 5.333333333333334vw;
-    }
+
+
     .catalog-sidebar__item {
         padding: 0 0 8vw 0;
     }
@@ -1458,12 +1445,7 @@
         border-radius: 1.066666666666667vw;
         height: 106.66666666666667vw;
     }
-    .cart-slider__circle {
-        top: -2.666666666666667vw;
-        right: -2.666666666666667vw;
-        width: 38.93333333333333vw;
-        height: 38.93333333333333vw;
-    }
+
     .card-description__top-info {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;

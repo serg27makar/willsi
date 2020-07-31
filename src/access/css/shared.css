@@ -184,10 +184,7 @@
     fill: #fff;
 }
 /*Catalog Top Environment*/
-.catalog-top-env {
-    border-bottom: 0.0625vw solid #e1e1e1;
-    padding: 1.25vw 0;
-}
+
 .select-fitting-user {
     padding-left: 0.9375vw;
     padding-right: 0.9375vw;
@@ -199,10 +196,7 @@
     margin-right: -0.9375vw;
 }
 @media (max-width: 992px) {
-    .catalog-top-env {
-        border-bottom: 0.266666666666667vw solid #e1e1e1;
-        padding: 5.333333333333334vw 0;
-    }
+
     .select-fitting-user {
         padding-left: 2.666666666666667vw;
         padding-right: 2.666666666666667vw;

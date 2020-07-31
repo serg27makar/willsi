@@ -20,7 +20,6 @@ class Carousel extends React.Component {
             zoomLens: "",
             slidersArr: [],
         };
-        this.chooseSlideBtn = this.chooseSlideBtn.bind(this);
     }
 
     startScroll = (e) => {
@@ -68,10 +67,11 @@ class Carousel extends React.Component {
                 transform: "translate(" + positionX + "px, 0)",
                 transitionDuration: animation ? "1s" : "0s",
             }
-        })
+        });
     };
 
     lastPosition = (stopPosition) => {
+        console.log(stopPosition);
         this.setState({
             ...this.state,
             stopPosition: stopPosition,
@@ -109,7 +109,9 @@ class Carousel extends React.Component {
                          const {left, top, width, height} = e.currentTarget.getBoundingClientRect();
                          this.zoomStart(slide.imgUrl,left, top, width, height)
                      }} key={index}>
-                    <img className="carousel-img" src={slide.imgUrl} alt={slide.alt} key={index}/>
+                    <div className="carousel-img-wrap">
+                        <img className="carousel-img" src={slide.imgUrl} alt={slide.alt} key={index}/>
+                    </div>
                 </div>
             )
         })
@@ -152,10 +154,8 @@ class Carousel extends React.Component {
                     backgroundImage: "url(" + imgUrl + ")",
                     backgroundPositionX: "-" + (X - 50) + "px",
                     backgroundPositionY: "-" + (Y - 50) + "px",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "250%",
-                    top: "calc(" + Y + "px - 6vw)",
-                    left: "calc(" + X + "px - 6vw)",
+                    top: "calc(" + Y + "px - 80px)",
+                    left: "calc(" + X + "px - 80px)",
                     transform: "scale(1.1)",
                 }
             })
@@ -166,7 +166,7 @@ class Carousel extends React.Component {
         return this.props.slidersArr.map((slide, index) => {
             return (
                 <div className="slide-bar" key={index} onClick={(e) => {this.chooseSlideBtn(index, e.target.offsetParent.clientWidth)}}>
-                    <img className="carousel-img" src={slide.imgUrl} alt={slide.alt} key={index}/>
+                    <img className="carousel-img-btn" src={slide.imgUrl} alt={slide.alt} key={index}/>
                 </div>
             )
         })
@@ -174,17 +174,19 @@ class Carousel extends React.Component {
 
     render() {
         return (
-            <div className="carousel-wrap" onMouseDown={this.startScroll}>
-                <div className="cart-slider">
-                    {this.renderSlide()}
-                    <div className={this.state.zoomLens} style={this.state.zoomStyles} onMouseMove={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (this.state.isVisibleZoom) this.zoomMove(this.state.imgUrl, e.clientX - this.state.sliderLeft, e.clientY - this.state.sliderTop);
-                    }}/>
-                </div>
-                <div className="sliders-bar-btn">
-                    {this.renderSlideBar()}
+            <div>
+                <div className="carousel-wrap" onMouseDown={this.startScroll}>
+                    <div className="cart-slider">
+                        {this.renderSlide()}
+                        <div className={this.state.zoomLens} style={this.state.zoomStyles} onMouseMove={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (this.state.isVisibleZoom) this.zoomMove(this.state.imgUrl, e.clientX - this.state.sliderLeft, e.clientY - this.state.sliderTop);
+                        }}/>
+                    </div>
+                    <div className="sliders-bar-btn">
+                        {this.renderSlideBar()}
+                    </div>
                 </div>
             </div>
         )

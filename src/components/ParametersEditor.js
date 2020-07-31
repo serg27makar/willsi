@@ -1,6 +1,5 @@
 import React from 'react';
 import ru from "../access/lang/LangConstants";
-import ButtonMain from "./shared/ButtonMain";
 
 class ParametersEditor extends React.Component {
     render() {

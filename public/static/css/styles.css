@@ -1363,38 +1363,11 @@ footer {
 .catalog-top__list-object .list-object__text-value {
     padding: 0 0.25vw;
 }
-.dropdown-info {
-    display: none;
-    position: absolute;
-    top: 95%;
-    left: -0.0625vw;
-    border-left: 0.0625vw solid #e1e1e1;
-    border-right: 0.0625vw solid #e1e1e1;
-    border-bottom: 0.0625vw solid #e1e1e1;
-    border-bottom-left-radius: 0.25vw;
-    border-bottom-right-radius: 0.25vw;
-    width: 7.187499999999999vw;
-    padding-top: 1.875vw;
-    padding-left: 1.25vw;
-    padding-right: 1.25vw;
-    background: #fff;
-    z-index: 30;
-    cursor: pointer;
-}
+
 .dropdown-info__link:hover {
     color: #000;
 }
-.dropdown-info-list {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: -1.3125vw;
-    padding-top: 1.875vw;
-    padding-left: 1.25vw;
-    padding-right: 1.25vw;
-    background: #fff;
-    z-index: 30;
-}
+
 .icon-plus {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1413,6 +1386,12 @@ footer {
     padding-top: 3.125vw;
     padding-bottom: 6.25vw;
 }
+.catalog-sidebar {
+    width: 33%;
+    padding-left: 0.93vw;
+    padding-right: 0.93vw;
+}
+
 .catalog-middle__product-all {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1425,37 +1404,8 @@ footer {
 .catalog-middle__for-me {
     padding: 0 0 3.125vw 0;
 }
-.for-me__button-drop {
-    position: relative;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    border: none;
-    padding: 0;
-    background: transparent;
-    cursor: pointer;
-}
-.for-me__button-text:hover {
-    color: #000;
-}
-.for-me__button-icon {
-    padding: 0 0.625vw;
-}
-.for-me__button-icon .icon {
-    width: 0.625vw;
-    height: 0.625vw;
-    fill: #50abbd;
-    -webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
-}
-.for-me .dropdown-info-list {
-    width: 100%;
-    padding-bottom: 1.25vw;
-}
+
+
 .catalog-sidebar__item {
     padding: 0 0 1.875vw 0;
 }
@@ -1540,6 +1490,7 @@ footer {
     padding: 0 0 1.25vw 0;
 }
 .dropdown-list__link {
+    cursor: pointer;
     color: #969696;
 }
 .dropdown-list__link:hover {
@@ -1560,6 +1511,7 @@ footer {
     width: 100%;
     background: transparent;
     margin: 0 0 1.25vw 0;
+    cursor: pointer;
 }
 .catalog-button .icon {
     width: 0.625vw;
@@ -1603,8 +1555,8 @@ footer {
 }
 .card-box__picture .picture__source {
     max-width: 100%;
-    width: 90%;
-    height: auto;
+    width: auto;
+    height: 20vw;
 }
 .card-box__circle {
     position: absolute;
@@ -2045,17 +1997,7 @@ input[type="checkbox"] + label:hover {
     width: 100%;
     height: 100%;
 }
-.cart-slider__circle {
-    position: absolute;
-    top: -0.625vw;
-    right: 8.625vw;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    width: 9.125vw;
-    height: 9.125vw;
-    z-index: 0;
-}
+
 .card-description__top-info {
     display: -webkit-box;
     display: -ms-flexbox;

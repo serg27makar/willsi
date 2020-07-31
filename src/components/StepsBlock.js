@@ -13,7 +13,7 @@ class StepsBlock extends React.Component {
 
     stepBox = (item, index) => {
         return (
-            <div className="step-box">
+            <div className="step-box" key={index}>
                 <div className="steps-box">
                     <div className="steps-box__picture">
                         <picture>

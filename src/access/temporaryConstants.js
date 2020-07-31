@@ -167,3 +167,317 @@ export const resourceSellingArr = [
         btnText: "перейти в примерочную",
     },
 ];
+export const sidebarCatalogArr = [
+    {
+        catalogTitle: "Бренд",
+        catalogItems: [
+            "Puma",
+            "Nike",
+            "Adidas",
+        ]
+    },
+    {
+        catalogTitle: "Цвет",
+        catalogItems: [
+            "Черный",
+            "Красный",
+            "Синий",
+        ]
+    },
+    {
+        catalogTitle: "Размер",
+        catalogItems: [
+            "S",
+            "M",
+            "XL",
+        ]
+    },
+    {
+        catalogTitle: "Дополнительно",
+        catalogItems: [
+            "S",
+            "M",
+            "XL",
+        ]
+    },
+];
+export const dropdownListArr = [
+    {
+        dropdownTitle: "Одежда",
+        dropdownItems: [
+            "Женская бижутерия",
+            "Очки",
+            "Брелоки",
+            "Воротники",
+            "Головные уборы",
+            "Для волос",
+            "Зонты",
+            "Косметички",
+        ]
+    },
+    {
+        dropdownTitle: "Белье",
+        dropdownItems: [
+            "Женская бижутерия",
+            "Очки",
+            "Брелоки",
+            "Воротники",
+            "Головные уборы",
+            "Для волос",
+            "Зонты",
+            "Косметички",
+        ]
+    },
+    {
+        dropdownTitle: "Для пляжа",
+        dropdownItems: [
+            "Женская бижутерия",
+            "Очки",
+            "Брелоки",
+            "Воротники",
+            "Головные уборы",
+            "Для волос",
+            "Зонты",
+            "Косметички",
+        ]
+    },
+    {
+        dropdownTitle: "Обувь",
+        dropdownItems: [
+            "Женская бижутерия",
+            "Очки",
+            "Брелоки",
+            "Воротники",
+            "Головные уборы",
+            "Для волос",
+            "Зонты",
+            "Косметички",
+        ]
+    },
+    {
+        dropdownTitle: "Аксессуары",
+        dropdownItems: [
+            "Женская бижутерия",
+            "Очки",
+            "Брелоки",
+            "Воротники",
+            "Головные уборы",
+            "Для волос",
+            "Зонты",
+            "Косметички",
+        ]
+    },
+];
+export const postponeArr = [
+    {
+        imgUrl: "static/img/content/product-item.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+        postpone: true,
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_1.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+        postpone: true,
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_2.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+        postpone: true,
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_3.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+        postpone: true,
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_4.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+        postpone: true,
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_5.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+        postpone: true,
+    },
+];
+export const productArr = [
+    {
+        imgUrl: "static/img/content/product-item.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_1.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_2.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_3.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_4.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_5.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_6.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_7.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_8.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+    },
+    {
+        imgUrl: "static/img/content/product-item.png",
+        imgAlt: "product",
+        brand: "bailmain",
+        productName: "Женская блузка",
+        price: "599 грн",
+    },
+];
+export const subUsers = [
+    {
+        userName: "Мои",
+        params: [
+            {
+                title: "Рост",
+                size: "175",
+            },
+            {
+                title: "Обхват плечь",
+                size: "60",
+            },
+            {
+                title: "Обхват груди",
+                size: "90",
+            },
+            {
+                title: "Обхват талии",
+                size: "65",
+            },
+            {
+                title: "Обхват бедер",
+                size: "91",
+            },
+        ]
+    },
+    {
+        userName: "Мужа",
+        params: [
+            {
+                title: "Рост",
+                size: "185",
+            },
+            {
+                title: "Обхват плечь",
+                size: "60",
+            },
+            {
+                title: "Обхват груди",
+                size: "90",
+            },
+            {
+                title: "Обхват талии",
+                size: "65",
+            },
+            {
+                title: "Обхват бедер",
+                size: "91",
+            },
+        ]
+    },
+    {
+        userName: "Сына",
+        params: [
+            {
+                title: "Рост",
+                size: "165",
+            },
+            {
+                title: "Обхват плечь",
+                size: "60",
+            },
+            {
+                title: "Обхват груди",
+                size: "90",
+            },
+            {
+                title: "Обхват талии",
+                size: "65",
+            },
+            {
+                title: "Обхват бедер",
+                size: "91",
+            },
+        ]
+    },
+];
+export const slidersArr = [
+    {
+        imgUrl: "static/img/content/slider-main.jpg",
+        alt: "slider",
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_5.png",
+        alt: "slider",
+    },
+    {
+        imgUrl: "static/img/content/Screenshot_2.png",
+        alt: "slider",
+    },
+];
