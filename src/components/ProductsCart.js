@@ -1,7 +1,7 @@
 import React from "react";
 import ru from "../access/lang/LangConstants";
 import "../access/css/cart.css"
-import ButtonIcon from "./shared/ButtonIcon";
+import ButtonPostpone from "./shared/ButtonPostpone";
 
 class ProductsCart extends React.Component {
     constructor(props) {
@@ -52,7 +52,7 @@ class ProductsCart extends React.Component {
         if (!item.postpone) {
             return (
                 <div className="card-box__button-postpone">
-                   <ButtonIcon/>
+                   <ButtonPostpone/>
                 </div>
             )
         } else {

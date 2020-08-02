@@ -139,6 +139,9 @@ const ru = {
     man: "Мужчина",
     child: "Ребенок",
     WhomMeasure: "Кого измеряем",
+
+    ProductCategories: "Категории товаров",
+    Create: "Создать",
 };
 
 export default ru;

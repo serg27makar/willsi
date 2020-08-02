@@ -1,7 +1,7 @@
 import ru from "../../access/lang/LangConstants";
 import React from "react";
 
-class ButtonIcon extends React.Component {
+class ButtonPostpone extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,4 +20,4 @@ class ButtonIcon extends React.Component {
     }
 }
 
-export default ButtonIcon
+export default ButtonPostpone

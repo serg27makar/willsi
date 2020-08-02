@@ -1,6 +1,9 @@
 import React from 'react';
 import "../access/css/carousel.css";
 
+
+//Todo zoom refactor
+
 class Carousel extends React.Component {
     constructor(props) {
         super(props);

@@ -1,6 +1,8 @@
 import React from 'react';
 import ru from "../access/lang/LangConstants";
 
+//Todo refactor component
+
 class ParametersEditor extends React.Component {
     render() {
         return (

@@ -2,6 +2,8 @@ import React from 'react';
 import ru from "../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
 
+//Todo refactor
+
 class SearchBox extends React.Component {
     render() {
         return (

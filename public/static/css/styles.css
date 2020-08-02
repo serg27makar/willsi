@@ -3036,11 +3036,16 @@ input[type="checkbox"] + label:hover {
     width: 30%;
 }
 .main-admin__main-envelope {
+    background: url("../img/content/steps-bg.jpg") no-repeat center center;
+    background-size: cover;
     width: 70%;
+}
+.main-enevelope__size-icons {
+    display: flex;
 }
 .sidebar {
     position: relative;
-    width: 100%;
+    width: 30%;
     height: 100%;
     background: #fff;
 }
@@ -3103,6 +3108,9 @@ input[type="checkbox"] + label:hover {
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     fill: #c6d846;
+}
+.main-list__catalog-product {
+    margin-top: 1rem;
 }
 .button-list {
     display: -webkit-box;
@@ -3336,9 +3344,13 @@ input[type="checkbox"] + label:hover {
 }
 .main-envelope__label {
     position: relative;
+    display: block;
     width: 34.0625vw;
     height: 3.75vw;
     margin: 0;
+}
+.align-items-start {
+    align-items: flex-start!important;
 }
 .main-envelope__input {
     padding: 0 0.9375vw 0 1.875vw;
@@ -3371,6 +3383,7 @@ input[type="checkbox"] + label:hover {
     border: none;
     padding: 0;
     background: transparent;
+    cursor: pointer;
 }
 .main-envelope__button-active .icon {
     width: 1.25vw;
@@ -3379,6 +3392,7 @@ input[type="checkbox"] + label:hover {
 }
 .main-envelope__size-column {
     width: 100%;
+    margin: 0 0 0 1.875vw;
 }
 .main-envelope__size-list {
     display: -webkit-box;
@@ -3462,24 +3476,22 @@ input[type="checkbox"] + label:hover {
     background: #fff;
     pointer-events: auto;
 }
+.input-uncheck .main-envelope__icon-pen,
 .input-check .main-envelope__icon-check {
     display: block;
 }
-.input-check .main-envelope__icon-pen {
+.input-check .main-envelope__icon-pen,
+.input-uncheck .main-envelope__icon-check {
     display: none;
 }
+
 .input-uncheck .main-envelope__input {
     border: 0.0625vw solid transparent;
     border-radius: 0.25vw;
     background: transparent;
     pointer-events: none;
 }
-.input-uncheck .main-envelope__icon-check {
-    display: none;
-}
-.input-uncheck .main-envelope__icon-pen {
-    display: block;
-}
+
 .text-115 {
     font-size: 7.187499999999999vw;
 }

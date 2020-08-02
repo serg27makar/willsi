@@ -529,3 +529,124 @@ export const recalculateParams = [
         inputName: "hips",
     },
 ];
+export const catalogProducts = [
+    {
+        title: "Одежда",
+        catalogList: [
+            "Женская бижутерия",
+            "Очки",
+            "Брелоки",
+            "Воротники",
+            "Головные уборы",
+            "Для волос",
+            "Зонты",
+            "Косметички",
+        ],
+    },
+    {
+        title: "Белье",
+        catalogList: [
+            "Женская бижутерия",
+            "Очки",
+            "Брелоки",
+            "Воротники",
+            "Головные уборы",
+            "Для волос",
+            "Зонты",
+            "Косметички",
+        ],
+    },
+    {
+        title: "Для пляжа",
+        catalogList: [
+            "Женская бижутерия",
+            "Очки",
+            "Брелоки",
+            "Воротники",
+            "Головные уборы",
+            "Для волос",
+            "Зонты",
+            "Косметички",
+        ],
+    },
+    {
+        title: "Обувь",
+        catalogList: [
+            "Женская бижутерия",
+            "Очки",
+            "Брелоки",
+            "Воротники",
+            "Головные уборы",
+            "Для волос",
+            "Зонты",
+            "Косметички",
+        ],
+    },
+    {
+        title: "Аксессуары",
+        catalogList: [
+            "Женская бижутерия",
+            "Очки",
+            "Брелоки",
+            "Воротники",
+            "Головные уборы",
+            "Для волос",
+            "Зонты",
+            "Косметички",
+        ],
+    },
+];
+export const adminMenuBtnList = [
+    {
+        btnClass: "button-list__item",
+        btnImage: "static/img/svg-sprites/symbol/sprite.svg#folder",
+    },
+    {
+        btnClass: "button-list__item",
+        btnImage: "static/img/svg-sprites/symbol/sprite.svg#add",
+    },
+    {
+        btnClass: "button-list__item",
+        btnImage: "static/img/svg-sprites/symbol/sprite.svg#minus",
+    },
+    {
+        btnClass: "button-list__item",
+        btnImage: "static/img/svg-sprites/symbol/sprite.svg#moon-phase-outline",
+    },
+];
+export const adminBarBtnList = [
+    {
+        btnClass: "button-list__item item-green",
+        btnImage: "static/img/svg-sprites/symbol/sprite.svg#add",
+    },
+    {
+        btnClass: "button-list__nav",
+        btnImage: "static/img/svg-sprites/symbol/sprite.svg#volume-control",
+    },
+    {
+        btnClass: "button-list__nav",
+        btnImage: "static/img/svg-sprites/symbol/sprite.svg#settings",
+    },
+    {
+        btnClass: "button-list__nav",
+        btnImage: "static/img/svg-sprites/symbol/sprite.svg#user-admin",
+    },
+];
+export const envelopeListArr = [
+    {
+        title: "Категории",
+        placeholder: "Женские платья",
+    },
+    {
+        title: "Код Изделия",
+        placeholder: "123456",
+    },
+    {
+        title: "Бренд",
+        placeholder: "Zero New",
+    },
+    {
+        title: "Артикул",
+        placeholder: "56853",
+    },
+];
