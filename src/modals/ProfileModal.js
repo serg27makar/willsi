@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonMain from "../components/shared/ButtonMain";
 
 class ProfileModal extends React.Component {
     render() {
@@ -10,13 +11,10 @@ class ProfileModal extends React.Component {
                     </svg>
                 </div>
                 <div className="modal-envelope__body">
-                    <p className="modal-envelope__title title-36 uppercase bold">
-                        по Вашему профилю
-                        еще нет параметров "мужчина"
-                    </p>
+                    <p className="modal-envelope__title title-36 uppercase bold">по Вашему профилю еще нет параметров "мужчина"</p>
                     <p className="modal-envelope__sub-info text-16 light">Хотите добавить?</p>
                     <div className="modal-form__button-enter">
-                        <button className="button-enter button-main text-18 medium" type="button">Добавить</button>
+                        <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={"Добавить"}/>
                     </div>
                 </div>
             </div>

@@ -40,10 +40,13 @@ class MenuGlobal extends React.Component {
                         <Link to={"/data"} className="menuGlobal__link">6. Data</Link>
                     </li>
                     <li>
-                        <Link to={"/admin-panel"} className="menuGlobal__link">7. Admin Panel</Link>
+                        <Link to={"/cabinet"} className="menuGlobal__link">7. Cabinet</Link>
                     </li>
                     <li>
-                        <Link to={"/seller-service"} className="menuGlobal__link">8. About Seller Service</Link>
+                        <Link to={"/admin-panel"} className="menuGlobal__link">8. Admin Panel</Link>
+                    </li>
+                    <li>
+                        <Link to={"/seller-service"} className="menuGlobal__link">9. About Seller Service</Link>
                     </li>
                 </ul>
                 <div className="menu_click">

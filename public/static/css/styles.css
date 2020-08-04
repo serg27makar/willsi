@@ -605,8 +605,8 @@ footer {
 }
 .modal-envelope__close {
     position: absolute;
-    top: -7.187499999999999vw;
-    right: -7.187499999999999vw;
+    top: 1vw;
+    right: 1vw;
     cursor: pointer;
 }
 .modal-envelope__close .icon {

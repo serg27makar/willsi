@@ -364,8 +364,8 @@
         padding: 6.666666666666667vw 8vw;
     }
     .modal-envelope__close {
-        top: -5.333333333333334vw;
-        right: -6.666666666666667vw;
+        top: 2vw;
+        right: 2vw;
     }
     .modal-envelope__close .icon {
         width: 6.666666666666667vw;

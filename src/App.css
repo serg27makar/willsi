@@ -1,4 +1,4 @@
-.wrapper {
+.wrapper-main {
     min-height: 100vh;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -7,4 +7,14 @@
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
+}
+.blur {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+.wrapper-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

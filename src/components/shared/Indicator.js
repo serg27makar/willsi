@@ -9,26 +9,26 @@ class Indicator extends React.Component {
             <div className="indicator">
                 <div className="container">
                     <div className="row-wrap">
-                            <p className="indicator-env__mobile-info text-14 light italic color-aqua">{ru.WithIndicator}</p>
-                            <div className="indicator-env__mobile-picture">
-                                <picture className="mobile-picture">
-                                    <img className="mobile-picture__source" src="static/img/content/circle.png" alt="circle"/>
+                        <p className="indicator-env__mobile-info text-14 light italic color-aqua">{ru.WithIndicator}</p>
+                        <div className="indicator-env__mobile-picture">
+                            <picture className="mobile-picture">
+                                <img className="mobile-picture__source" src="static/img/content/circle.png" alt="circle"/>
+                            </picture>
+                        </div>
+                        <div className="step-box">
+                            <p className="indicator-env__paragraph text-14 light italic">{ru.PayAttentionToThings}</p>
+                        </div>
+                        <div className="step-box">
+                            <div className="indicator-env__picture">
+                                <picture className="picture">
+                                    <img className="picture__source" src="static/img/content/slidebars.png" alt="slidebars"/>
                                 </picture>
+                                <span className="indicator-env__number-start text-14">0</span>
+                                <span className="indicator-env__number-end text-14">100</span>
                             </div>
-                        <div className="step-box">
-                                <p className="indicator-env__paragraph text-14 light italic">{ru.PayAttentionToThings}</p>
                         </div>
                         <div className="step-box">
-                                <div className="indicator-env__picture">
-                                    <picture className="picture">
-                                        <img className="picture__source" src="static/img/content/slidebars.png" alt="slidebars"/>
-                                    </picture>
-                                    <span className="indicator-env__number-start text-14">0</span>
-                                    <span className="indicator-env__number-end text-14">100</span>
-                                </div>
-                        </div>
-                        <div className="step-box">
-                                <p className="indicator-env__paragraph text-14 light italic color-aqua">{ru.RecommendToConsider}</p>
+                            <p className="indicator-env__paragraph text-14 light italic color-aqua">{ru.RecommendToConsider}</p>
                         </div>
                     </div>
                 </div>

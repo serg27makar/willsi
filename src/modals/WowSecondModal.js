@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonMain from "../components/shared/ButtonMain";
 
 class WowSecondModal extends React.Component {
     render() {
@@ -11,12 +12,11 @@ class WowSecondModal extends React.Component {
                 </div>
                 <div className="modal-envelope__body">
                     <p className="modal-envelope__title title-36 uppercase bold">Ух Ты!</p>
-                    <p className="modal-envelope__sub-light text-16 light">Вы первый человек, который дал нам ссылку<br/>на этот
-                        сайт, скоро мы сним подружимся</p>
-                    <p className="modal-envelope__sub-info text-16 bold">Кстате, посмотрите 63 вещи, которые<br/>соответсвуют Вам
-                        больше чем на 90%</p>
-                    <div className="modal-form__button-enter"><div className="button-enter button-main text-18 medium"
-                                                                 >Посмотреть</div></div>
+                    <p className="modal-envelope__sub-light text-16 light">Вы первый человек, который дал нам ссылку<br/>на этот сайт, скоро мы сним подружимся</p>
+                    <p className="modal-envelope__sub-info text-16 bold">Кстате, посмотрите 63 вещи, которые<br/>соответсвуют Вам больше чем на 90%</p>
+                    <div className="modal-form__button-enter">
+                        <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={"Посмотреть"}/>
+                    </div>
                 </div>
             </div>
 

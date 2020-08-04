@@ -19,25 +19,25 @@ class AdminPanel extends React.Component {
     render() {
         return(
             <div className="content main-admin__row">
-                        <AdminSidebar/>
-                        <div className="main-admin__main-envelope">
-                                <div className="main-envelope__top-env">
-                                    <ButtonList btnList={adminBarBtnList}/>
-                                    <ButtonIcon btnClass={"main-envelope__button-menu"} btnImage={"static/img/svg-sprites/symbol/sprite.svg#menu-dots"}/>
-                                </div>
-                                <div className="main-envelope__middle-line">
-                                    <ButtonMain btnClass={"main-envelope__button-create text-14"} text={ru.Create}/>
-                                    <ButtonIcon btnClass={"main-envelope__link-admin"} btnImage={"static/img/svg-sprites/symbol/sprite.svg#link"}/>
-                                </div>
-                                <div className="main-envelope__bottom-env">
-                                    {envelopeListArr && envelopeListArr.map((item, index) => {
-                                        return (
-                                            <DoubleButton item={item} key={index}/>
-                                        )
-                                    })}
-                                    <MainEnvelopeSize/>
-                                </div>
-                        </div>
+                <AdminSidebar/>
+                <div className="main-admin__main-envelope">
+                    <div className="main-envelope__top-env">
+                        <ButtonList btnList={adminBarBtnList}/>
+                        <ButtonIcon btnClass={"main-envelope__button-menu"} btnImage={"static/img/svg-sprites/symbol/sprite.svg#menu-dots"}/>
+                    </div>
+                    <div className="main-envelope__middle-line">
+                        <ButtonMain btnClass={"main-envelope__button-create text-14"} text={ru.Create}/>
+                        <ButtonIcon btnClass={"main-envelope__link-admin"} btnImage={"static/img/svg-sprites/symbol/sprite.svg#link"}/>
+                    </div>
+                    <div className="main-envelope__bottom-env">
+                        {envelopeListArr && envelopeListArr.map((item, index) => {
+                            return (
+                                <DoubleButton item={item} key={index}/>
+                            )
+                        })}
+                        <MainEnvelopeSize/>
+                    </div>
+                </div>
             </div>
         )
     }
