@@ -15,10 +15,6 @@ class BtnUp extends React.Component {
         window.addEventListener('scroll', this.handleScroll)
     }
 
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
-
     handleScroll(event) {
         let scrollTop = event.target.scrollingElement.scrollTop;
         if (scrollTop > 800) {

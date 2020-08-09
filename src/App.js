@@ -24,25 +24,48 @@ import LinkModal from "./modals/LinkModal";
 import ProfileModal from "./modals/ProfileModal";
 import WowFirstModal from "./modals/WowFirstModal";
 import WowSecondModal from "./modals/WowSecondModal";
+import {connect} from "react-redux";
+import EditorModal from "./modals/EditorModal";
 
 const history = createBrowserHistory();
 
 class App extends React.Component {
+
+    renderModal = () => {
+        switch (this.props.modal) {
+            case "signUp":
+                return (<RegistrationModal/>);
+            case "signIn":
+                return (<EnterModal/>);
+            case "linkModal":
+                return (<LinkModal/>);
+            case "profileModal":
+                return (<ProfileModal/>);
+            case "wowFirstModal":
+                return (<WowFirstModal/>);
+            case "wowSecondModal":
+                return (<WowSecondModal/>);
+            case "editorModal":
+                return (<EditorModal/>);
+            default:
+                return null
+        }
+    };
+
     render() {
+        let wrapper = "wrapper-main";
+        if (this.props.modal) {
+            wrapper = "wrapper-main blur"
+        }
         return (
             <div className="App">
-                <div className="wrapper-main">
+                <div className={wrapper}>
                     <Navigate/>
                     <LinkBtn/>
                     <BtnUp/>
                 </div>
                 <div className="wrapper-modal">
-                    {/*<RegistrationModal/>*/}
-                    {/*<EnterModal/>*/}
-                    {/*<LinkModal/>*/}
-                    {/*<ProfileModal/>*/}
-                    {/*<WowFirstModal/>*/}
-                    {/*<WowSecondModal/>*/}
+                    {this.renderModal()}
                 </div>
             </div>
         );
@@ -73,5 +96,10 @@ class Navigate extends React.Component {
         );
     }
 }
+function MapStateToProps(state) {
+    return {
+        modal: state.modalReducer.modal,
+    }
+}
 
-export default App;
+export default connect(MapStateToProps)(App);

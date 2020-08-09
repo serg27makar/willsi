@@ -1,8 +1,29 @@
 import React from 'react';
 import ru from "../../access/lang/LangConstants";
 import "../../access/css/stepsBlock.css"
+import {slideAnimate} from "../../js/visualEffects";
 
 class Indicator extends React.Component {
+    constructor(props) {
+        super(props);
+        this.startupRef = [];
+        this.startupRefOne = [];
+        this.startupRefOneMethod = [1];
+        this.startupRefWrap = [0,1,2];
+        this.startupRefWrap.map(() => {
+            return this.startupRef.push(React.createRef());
+        });
+        this.startupRefOne.push(React.createRef());
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll',
+            (e) => { slideAnimate(e, this.startupRef,
+                this.props.scrollTopMin, this.props.scrollTopMax)});
+        window.addEventListener('scroll',
+            (e) => { slideAnimate(e, this.startupRefOne, this.props.scrollTopMin + 200,
+                this.props.scrollTopMax + 600, this.startupRefOneMethod)})
+    }
 
     render() {
         return(
@@ -15,10 +36,10 @@ class Indicator extends React.Component {
                                 <img className="mobile-picture__source" src="static/img/content/circle.png" alt="circle"/>
                             </picture>
                         </div>
-                        <div className="step-box">
+                        <div ref={this.startupRef[0]} className="step-box-indicator">
                             <p className="indicator-env__paragraph text-14 light italic">{ru.PayAttentionToThings}</p>
                         </div>
-                        <div className="step-box">
+                        <div ref={this.startupRef[1]} className="step-box-indicator">
                             <div className="indicator-env__picture">
                                 <picture className="picture">
                                     <img className="picture__source" src="static/img/content/slidebars.png" alt="slidebars"/>
@@ -27,7 +48,7 @@ class Indicator extends React.Component {
                                 <span className="indicator-env__number-end text-14">100</span>
                             </div>
                         </div>
-                        <div className="step-box">
+                        <div ref={this.startupRef[2]} className="step-box-indicator">
                             <p className="indicator-env__paragraph text-14 light italic color-aqua">{ru.RecommendToConsider}</p>
                         </div>
                     </div>
@@ -35,7 +56,7 @@ class Indicator extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
-                            <div className="indicator-bottom">
+                            <div ref={this.startupRefOne[0]} className="indicator-bottom">
                                 <div className="indicator-bottom__picture">
                                     <picture className="picture">
                                         <img className="picture__source" src="static/img/content/window-screen.png" alt="window-screen"/>

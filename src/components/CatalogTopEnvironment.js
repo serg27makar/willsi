@@ -1,6 +1,8 @@
 import React from 'react';
 import "./../access/css/cart.css";
 import ru from "../access/lang/LangConstants";
+import {actionOpenModal} from "../action";
+import {connect} from "react-redux";
 
 class CatalogTopEnvironment extends React.Component {
     constructor(props) {
@@ -30,11 +32,20 @@ class CatalogTopEnvironment extends React.Component {
         });
     };
 
+    editorOpen = () => {
+        this.props.openModalFunction("editorModal");
+    };
+
     renderParams = (item, index) => {
         return (
             <li className="list-object__item text-16 bold" key={index}>
                 <p className="list-object__text">{item.title + " -"}</p>
                 <span className="list-object__text-value color-aqua">{item.size + ru.sm}</span>
+                <span className="list-object_icon-pen" onClick={this.editorOpen}>
+                    <svg className="icon">
+                        <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#pen"/>
+                    </svg>
+                </span>
             </li>
         )
     };
@@ -90,4 +101,17 @@ class CatalogTopEnvironment extends React.Component {
     };
 }
 
-export default CatalogTopEnvironment;
+function MapStateToProps(state) {
+    return {
+        modal: state.modalReducer.modal,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        openModalFunction: (modal) => {
+            dispatch(actionOpenModal(modal))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(CatalogTopEnvironment);

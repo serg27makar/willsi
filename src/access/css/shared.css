@@ -240,6 +240,21 @@
     width: 100%;
     background: #fff;
 }
+
+.reviews-box {
+    transition-duration: 1s;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border: 0.0625vw solid #e1e1e1;
+    margin: 0 0 3.125vw 0;
+    width: 100%;
+    background: #fff;
+    transform: translateX(0);
+    opacity: 1;
+}
+
 @media (max-width: 992px) {
     .reviews__title {
         padding-bottom: 18.666666666666668vw;

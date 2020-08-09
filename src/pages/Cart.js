@@ -4,7 +4,6 @@ import {setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import Carousel from "../components/Carousel";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
-import ParametersEditor from "../components/ParametersEditor";
 import {productArr, slidersArr, subUsers} from "../access/temporaryConstants";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ProductsCart from "../components/ProductsCart";
@@ -12,6 +11,7 @@ import ButtonMain from "../components/shared/ButtonMain";
 import ru from "../access/lang/LangConstants";
 import CardDescription from "../components/CardDescription";
 import CartTabs from "../components/CartTabs";
+import CircleLevel from "../components/shared/CircleLevel";
 
 const breadcrumbs = {
     title: "Женская одежда",
@@ -43,14 +43,13 @@ class Cart extends React.Component {
         return(
             <div className="content">
                 <BreadcrumbsBg  breadcrumbs={breadcrumbs}/>
-                <ParametersEditor/>
                 <CatalogTopEnvironment subUsers={subUsers}/>
                 <div className="cart-info">
                     <div className="container">
                         <div className="footer-row-wrap">
                             <div className="col-12">
                                 {this.renderSlide()}
-                                <div className="cart-slider__circle" style={{backgroundImage: "url('static/img/content/circle-good.png')"}}/>
+                                <CircleLevel level={90}/>
                             </div>
                             <div className="col-12">
                                <CardDescription/>

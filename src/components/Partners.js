@@ -3,12 +3,33 @@ import ru from "./../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
 import "./../access/css/homepage.css";
 import {partnersArr} from "../access/temporaryConstants"
+import {slideAnimate} from "../js/visualEffects";
 
 class Partners extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            startupArr: [],
+            animate: 0,
+            stepsArr: [],
+            bgNon: "",
+        };
+        this.startupRef = [];
+        this.startupRefWrap = [0,0,2,2,0,0,2,2];
+        this.startupRefWrap.map(() => {
+            return this.startupRef.push(React.createRef());
+        });
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll',
+            (e) => { slideAnimate(e, this.startupRef, this.props.scrollTopMin,
+                this.props.scrollTopMax, this.startupRefWrap)})
+    }
 
     partnerBox = (item, index) => {
         return (
-            <div className="partner-box" key={index}>
+            <div ref={this.startupRef[index]} className="partner-box" key={index}>
                 <div className="partners-env">
                     <div className="partners-env__picture">
                         <picture className="picture">

@@ -21,15 +21,18 @@ class SellerService extends React.Component {
         return(
             <div className="content">
                 <WelcomeService/>
-                <StepsBlock title={ru.SellThings} stepsArr={resourceSellingArr} bgNon={true}/>
+                <StepsBlock title={ru.SellThings}
+                            stepsArr={resourceSellingArr} bgNon={true} scrollTopMax={1100}/>
                 <WhomStartup/>
                 <Details/>
-                <Startup startupArr={startupServiceArr}/>
-                <Indicator/>
-                <StepsBlock title={ru.JustThreeSteps} stepsArr={resourceThreeStepsArr} btnText={ru.toDressingRoom}/>
+                <Startup startupArr={startupServiceArr}  scrollTopMin={1600} scrollTopMax={2600}/>
+                <Indicator scrollTopMin={2300} scrollTopMax={3400}/>
+                <StepsBlock title={ru.JustThreeSteps}
+                            stepsArr={resourceThreeStepsArr} btnText={ru.toDressingRoom}
+                            scrollTopMin={3400} scrollTopMax={4700}/>
                 <DescriptionBg/>
-                <Partners/>
-                <Reviews/>
+                <Partners  scrollTopMin={4800} scrollTopMax={6000}/>
+                <Reviews scrollTopMin={5800}/>
             </div>
         )
     }

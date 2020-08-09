@@ -24,12 +24,16 @@ class Homepage extends React.Component {
             <div className="content">
                 <WelcomeMain/>
                 <SearchBox/>
-                <Startup startupArr={startupHomepageArr}/>
-                <Indicator/>
-                <StepsBlock title={ru.JustThreeSteps} stepsArr={resourceThreeStepsArr} btnText={ru.toDressingRoom}/>
+                <Startup startupArr={startupHomepageArr} scrollTopMin={300} scrollTopMax={1000}/>
+                <Indicator scrollTopMin={700} scrollTopMax={1600}/>
+                <StepsBlock title={ru.JustThreeSteps}
+                            stepsArr={resourceThreeStepsArr}
+                            btnText={ru.toDressingRoom}
+                            scrollTopMin={1800} scrollTopMax={3100}
+                />
                 <DescriptionBg/>
-                <Partners/>
-                <Reviews/>
+                <Partners scrollTopMin={3200} scrollTopMax={4500}/>
+                <Reviews scrollTopMin={4100}/>
             </div>
         )
     }

@@ -1,12 +1,19 @@
 import React from "react";
 import ButtonMain from "../components/shared/ButtonMain";
+import {actionOpenModal} from "../action";
+import {connect} from "react-redux";
 
 class LinkModal extends React.Component {
+
+    closeLincModal = () => {
+        this.props.openModalFunction("");
+    };
+
     render() {
         return(
             <div className="modal-envelope" id="modal-link">
-                <div className="modal-envelope__close" data-izimodal-close="">
-                    <svg className="icon icon-close ">
+                <div className="modal-envelope__close" onClick={this.closeLincModal}>
+                    <svg className="icon">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#close"/>
                     </svg>
                 </div>
@@ -30,4 +37,18 @@ class LinkModal extends React.Component {
         );
     }
 }
-export default LinkModal;
+
+function MapStateToProps(state) {
+    return {
+        modal: state.modalReducer.modal,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        openModalFunction: (modal) => {
+            dispatch(actionOpenModal(modal))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(LinkModal);

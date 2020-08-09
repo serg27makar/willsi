@@ -16,7 +16,7 @@ class About extends React.Component {
             <div className="content">
                 <WelcomeAbout/>
                 <SearchBox/>
-                <Reviews/>
+                <Reviews scrollTopMin={300}/>
             </div>
         )
     }

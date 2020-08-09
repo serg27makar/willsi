@@ -12,7 +12,7 @@ class RutCatalogSidebar extends React.Component {
                 <div className="catalog-body">
                     {this.props.Categories && this.props.Categories.map((item, index) => {
                         return (
-                            <RutCategory item={item} key={index}/>
+                            <RutCategory item={item} key={index} index={index}/>
                         )
                     })}
                 </div>

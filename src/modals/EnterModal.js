@@ -4,8 +4,14 @@ import ModalInput from "./modalComponents/ModalInput";
 import ButtonMain from "../components/shared/ButtonMain";
 import {validateEmail} from "../js/sharedFunctions";
 import {setActionServerPost} from "../utilite/axiosConnect";
+import {actionOpenModal} from "../action";
+import {connect} from "react-redux";
 
 class EnterModal extends React.Component {
+
+    closeLincModal = () => {
+        this.props.openModalFunction("");
+    };
 
     dataOnChange = (data) => {
         data.stopPropagation();
@@ -36,7 +42,7 @@ class EnterModal extends React.Component {
     render() {
         return(
             <div className="modal-envelope" id="modal-enter">
-                <div className="modal-envelope__close">
+                <div className="modal-envelope__close" onClick={this.closeLincModal}>
                     <svg className="icon icon-close ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#close"/>
                     </svg>
@@ -63,4 +69,17 @@ class EnterModal extends React.Component {
     }
 }
 
-export default EnterModal;
+function MapStateToProps(state) {
+    return {
+        modal: state.modalReducer.modal,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        openModalFunction: (modal) => {
+            dispatch(actionOpenModal(modal))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(EnterModal);

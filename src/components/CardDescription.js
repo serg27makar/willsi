@@ -54,6 +54,7 @@ class CardDescription extends React.Component {
                 <div className="card-description__button-bottom">
                     <p className="card-description__quantity text-22 color-aqua uppercase medium">{cardDescription.price + ru.grn}</p>
                     <ButtonPostpone/>
+                    <ButtonMain btnClass={"button-white text-14"} text={"перейти в магазин для покупки"}/>
                 </div>
             </div>
         )

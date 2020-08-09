@@ -68,9 +68,20 @@
     background: #fff;
     z-index: 30;
     cursor: pointer;
+    margin: 0 !important;
 }
 .dropdown-info__item {
     margin-bottom: 10px;
+}
+.list-object_icon-pen {
+    width: 3vw;
+    height: 3vw;
+    display: flex;
+    position: relative;
+    top: -0.5vw;
+    left: 0;
+    padding: 1vw 1vw 1vw 0;
+    cursor: pointer;
 }
 .compilation-row {
     overflow: hidden;
@@ -97,6 +108,16 @@
 .catalog-top-env {
     border-bottom: 0.0625vw solid #e1e1e1;
     padding: 1.25vw 0;
+}
+.go-to-store-btn {
+    border: 3px solid red;
+    padding: 10px;
+    height: 3.75vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    white-space: nowrap;
 }
 @media (max-width: 992px) {
     .for-me__button-drop {

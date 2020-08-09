@@ -1,20 +1,49 @@
 import React from 'react';
 import "../access/css/stepsBlock.css";
 import ru from "../access/lang/LangConstants";
+import {slideAnimate} from "../js/visualEffects";
 
 class Startup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             startupArr: [],
+        };
+
+        let size = 3;
+        this.subarray = [];
+        this.subarrayMethod = [];
+        this.startupRef = [];
+
+        this.props.startupArr.map(() => {
+            return this.startupRef.push(React.createRef());
+        });
+
+        for (let i = 0; i <Math.ceil(this.startupRef.length/size); i++) {
+            this.subarray[i] = this.startupRef.slice((i*size), (i*size) + size);
         }
+
+        this.subarray.map((item, index) => {
+            this.subarrayMethod.push([]);
+            return item.map((subItem, subIndex) => {
+                return this.subarrayMethod[index].push(subIndex);
+            })
+        });
+    }
+
+    componentDidMount() {
+        this.subarray.map((item, index) => {
+            return window.addEventListener('scroll',
+                (e) => { slideAnimate(e, item, this.props.scrollTopMin + (index * 200),
+                    this.props.scrollTopMax + (index * 200), this.subarrayMethod[index])});
+
+        });
     }
 
     startupBlock = (item, index) => {
         return (
-            <div className="step-box" key={index}>
-                <div className="startup-box" data-aos="fade-right" data-aos-offset="300"
-                     data-aos-duration="1000">
+            <div ref={this.startupRef[index]} className="step-box" key={index}>
+                <div className="startup-box" >
                     <div className="startup-box__icon">
                         <svg className="icon icon-note ">
                             <use xlinkHref={item.icon}/>

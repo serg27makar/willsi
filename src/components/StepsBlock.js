@@ -1,6 +1,7 @@
 import React from 'react';
 import ButtonMain from "./shared/ButtonMain";
 import "../access/css/stepsBlock.css";
+import {slideAnimate} from "../js/visualEffects";
 
 class StepsBlock extends React.Component {
     constructor(props) {
@@ -8,12 +9,21 @@ class StepsBlock extends React.Component {
         this.state = {
             stepsArr: [],
             bgNon: "",
-        }
+        };
+        this.startupRef = [];
+        this.props.stepsArr.map(() => {
+            return this.startupRef.push(React.createRef());
+        });
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll',
+            (e) => { slideAnimate(e, this.startupRef, this.props.scrollTopMin, this.props.scrollTopMax)})
     }
 
     stepBox = (item, index) => {
         return (
-            <div className="step-box" key={index}>
+            <div ref={this.startupRef[index]} className="step-box-img" key={index}>
                 <div className="steps-box">
                     <div className="steps-box__picture">
                         <picture>

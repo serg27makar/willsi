@@ -3,13 +3,29 @@ import {usersFeatBack} from "../../access/temporaryConstants"
 import ButtonMain from "./ButtonMain";
 import ru from "../../access/lang/LangConstants";
 import "../../access/css/shared.css"
+import {slideAnimate} from "../../js/visualEffects";
 
 class Reviews extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.startupRef = [];
+        this.startupRefWrap = [0,2,0];
+        this.startupRefWrap.map(() => {
+            return this.startupRef.push(React.createRef());
+        });
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll',
+            (e) => { slideAnimate(e, this.startupRef, this.props.scrollTopMin,
+                null, this.startupRefWrap)})
+    }
 
     reviewsBox = (item, index) => {
         const mailto =  "mailto:" + item.email;
         return (
-            <div className="reviews-box" key={index}>
+            <div ref={this.startupRef[index]} className="reviews-box" key={index}>
                 <div className="reviews-box__picture">
                     <picture className="picture">
                         <img

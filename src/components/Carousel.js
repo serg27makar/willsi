@@ -8,60 +8,16 @@ class Carousel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            startPosition: 0,
-            stopPosition: 0,
-            slidersLength: 0,
-            clientWidth: 0,
             sliderWidth: 0,
             sliderHeight: 0,
             sliderLeft: 0,
             sliderTop: 0,
-            PosX: 0,
             slideStyle: {},
             zoomStyles: {},
             imgUrl: "",
             zoomLens: "",
-            slidersArr: [],
         };
     }
-
-    startScroll = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        let mouseDown = true;
-        this.setState({
-            ...this.state,
-            startPosition: e.clientX,
-            slidersLength: -e.target.offsetParent.clientWidth * (this.props.slidersArr.length - 1),
-            clientWidth: e.target.offsetParent.clientWidth,
-        });
-        document.addEventListener("mouseup", () => {
-            mouseDown = false;
-            this.stopScroll();
-        });
-        document.addEventListener("mousemove", (e) => {
-            if (mouseDown) this.horizontalScroll(e);
-        }, true);
-
-    };
-
-    horizontalScroll = (e) => {
-        const X = -(this.state.startPosition - e.clientX) + this.state.stopPosition;
-        this.setState({
-            PosX: X >= 0 ? 0 : X <= this.state.slidersLength ? this.state.slidersLength : X
-        });
-        this.slideMove(this.state.PosX, false);
-    };
-
-    stopScroll = () => {
-        let slideNumber = this.state.PosX / this.state.clientWidth;
-        if (!Number.isInteger(slideNumber)) {
-            slideNumber = Math.round(slideNumber);
-        }
-        const stopPosition = this.state.clientWidth * slideNumber;
-        this.lastPosition(stopPosition);
-        this.slideMove(stopPosition, true)
-    };
 
     slideMove = (positionX, animation = false) => {
         this.setState({
@@ -73,17 +29,8 @@ class Carousel extends React.Component {
         });
     };
 
-    lastPosition = (stopPosition) => {
-        console.log(stopPosition);
-        this.setState({
-            ...this.state,
-            stopPosition: stopPosition,
-        })
-    };
-
     chooseSlideBtn = (index, clientWidth) => {
         const stopPosition = -index * clientWidth;
-        this.lastPosition(stopPosition);
         this.slideMove(stopPosition, true);
     };
 
@@ -178,7 +125,7 @@ class Carousel extends React.Component {
     render() {
         return (
             <div>
-                <div className="carousel-wrap" onMouseDown={this.startScroll}>
+                <div className="carousel-wrap">
                     <div className="cart-slider">
                         {this.renderSlide()}
                         <div className={this.state.zoomLens} style={this.state.zoomStyles} onMouseMove={(e) => {

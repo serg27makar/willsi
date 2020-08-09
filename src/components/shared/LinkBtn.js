@@ -1,6 +1,8 @@
 import React from 'react';
 import "../../access/css/shared.css"
 import ru from "../../access/lang/LangConstants";
+import {actionOpenModal, setActionAdminPanel} from "../../action";
+import {connect} from "react-redux";
 
 class LinkBtn extends React.Component {
     constructor(props) {
@@ -15,13 +17,9 @@ class LinkBtn extends React.Component {
         window.addEventListener('scroll', this.handleScroll)
     }
 
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
-
     handleScroll(event) {
         let scrollTop = event.target.scrollingElement.scrollTop;
-        if (scrollTop > 100) {
+        if (scrollTop > 200) {
             this.setState({
                 itemStyle: "link-fixed btn-show"
             })
@@ -32,12 +30,16 @@ class LinkBtn extends React.Component {
         }
     }
 
+    openLincModal = () => {
+        this.props.openModalFunction("linkModal");
+    };
+
     render() {
         if (window.location.pathname === "/admin-panel") {
             return null;
         }
         return (
-            <div className={this.state.itemStyle}>
+            <div className={this.state.itemStyle} onClick={this.openLincModal}>
                 <div className="link-fixed__env text-13 medium">
                     <span>{ru.HaveLink}
                         <br/>{ru.OnTheProduct}
@@ -49,4 +51,17 @@ class LinkBtn extends React.Component {
     }
 }
 
-export default LinkBtn;
+function MapStateToProps(state) {
+    return {
+        modal: state.modalReducer.modal,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        openModalFunction: (modal) => {
+            dispatch(actionOpenModal(modal))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(LinkBtn);

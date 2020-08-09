@@ -142,6 +142,8 @@ const ru = {
 
     ProductCategories: "Категории товаров",
     Create: "Создать",
+
+    goToStore: "перейти в магазин для покупки",
 };
 
 export default ru;

@@ -1,11 +1,18 @@
 import React from "react";
 import ButtonMain from "../components/shared/ButtonMain";
+import {actionOpenModal} from "../action";
+import {connect} from "react-redux";
 
 class ProfileModal extends React.Component {
+
+    closeLincModal = () => {
+        this.props.openModalFunction("");
+    };
+
     render() {
         return(
             <div className="modal-envelope" id="modal-profile">
-                <div className="modal-envelope__close" data-izimodal-close="">
+                <div className="modal-envelope__close" onClick={this.closeLincModal}>
                     <svg className="icon icon-close ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#close"/>
                     </svg>
@@ -22,4 +29,18 @@ class ProfileModal extends React.Component {
         );
     }
 }
-export default ProfileModal;
+
+function MapStateToProps(state) {
+    return {
+        modal: state.modalReducer.modal,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        openModalFunction: (modal) => {
+            dispatch(actionOpenModal(modal))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(ProfileModal);

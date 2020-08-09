@@ -3,13 +3,24 @@ import ru from "../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
 
 class WelcomeMain extends React.Component {
+    constructor(props) {
+        super(props);
+        this.wrapperRef = React.createRef();
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            const wrapper = this.wrapperRef.current;
+            wrapper.classList.toggle("show-welcome-main");
+        }, 300);
+    }
 
     render() {
         return (
             <div className="welcome-main">
                 <div className="container">
                     <div className="row">
-                        <div className="col-12 welcome-main-env">
+                        <div ref={this.wrapperRef} className="col-12 welcome-main-env">
                             <h1 className="welcome-main-env__title uppercase title-36 bold">
                                 <span className="welcome-main-env__title-name">{ru.Willsi}</span>
                                 <br className="welcome-main-env__br"/>

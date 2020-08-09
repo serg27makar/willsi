@@ -51,7 +51,7 @@ class MainEnvelopeSize extends React.Component {
                                 </svg>
                             </span>
                             <span className="main-envelope__icon-pen">
-                                <svg className="icon icon-pen ">
+                                <svg className="icon">
                                     <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#pen"/>
                                 </svg>
                             </span>
