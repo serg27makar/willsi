@@ -690,3 +690,14 @@ export const dataInputEnterModal = [
         icon: "static/img/svg-sprites/symbol/sprite.svg#user",
     },
 ];
+
+export const placeholderData = [
+    {
+        title: "Email",
+        placeholder: "example@gmail.com",
+    },
+    {
+        title: "Name",
+        placeholder: "Ваше имя",
+    },
+];

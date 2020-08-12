@@ -144,6 +144,9 @@ const ru = {
     Create: "Создать",
 
     goToStore: "перейти в магазин для покупки",
+    HaveAccount: "Есть аккаунт?",
+    DontHaveAccount: "Еще нет аккаунта?",
+
 };
 
 export default ru;

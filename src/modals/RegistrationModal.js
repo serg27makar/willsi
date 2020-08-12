@@ -3,9 +3,10 @@ import ModalInput from "./modalComponents/ModalInput";
 import ButtonMain from "../components/shared/ButtonMain";
 import {dataInputRegistrationModal} from "../access/temporaryConstants";
 import {validateEmail} from "../js/sharedFunctions";
-import {setActionServerPost} from "../utilite/axiosConnect";
-import {actionOpenModal} from "../action";
+import {postRegister} from "../utilite/axiosConnect";
+import {actionEmail, actionOpenModal, actionUserID, actionUserName, actionUsersParameters} from "../action";
 import {connect} from "react-redux";
+import ru from "../access/lang/LangConstants";
 
 class RegistrationModal extends React.Component {
     constructor(props) {
@@ -15,7 +16,13 @@ class RegistrationModal extends React.Component {
             email: "",
             password: "",
             confirmPassword: "",
-        }
+        };
+        this.usersParameters = [
+            {
+                UserName: '',
+                Parameters: [],
+            }
+        ];
     }
 
     closeLincModal = () => {
@@ -34,20 +41,32 @@ class RegistrationModal extends React.Component {
     };
 
     result = (res) => {
-        console.log("res", res);
+        if (res) {
+            this.props.userIDFunction(res);
+            this.props.userNameFunction(this.state.name);
+            this.props.emailFunction(this.state.email);
+            this.props.usersParametersFunction(this.usersParameters);
+        }
+        this.closeLincModal();
     };
 
     registration = () => {
         const {name, email, password, confirmPassword} = this.state;
+        this.usersParameters = [
+            {
+                UserName: name,
+                Parameters: [],
+            }
+        ];
         if (name.length >= 3 && email && validateEmail(email) &&
             password && confirmPassword && password === confirmPassword) {
             const user = {
                 name,
                 email,
                 password,
-                confirmPassword
+                usersParameters: this.usersParameters,
             };
-            setActionServerPost("register", user, this.result)
+            postRegister(user, this.result);
         }
     };
 
@@ -60,7 +79,7 @@ class RegistrationModal extends React.Component {
                     </svg>
                 </div>
                 <div className="modal-envelope__body">
-                    <p className="modal-envelope__title title-36 uppercase bold">Регистрация</p>
+                    <p className="modal-envelope__title title-36 uppercase bold">{ru.SignUp}</p>
                     <div className="modal-form">
                         {dataInputRegistrationModal && dataInputRegistrationModal.map((item, index) => {
                             return (
@@ -68,10 +87,10 @@ class RegistrationModal extends React.Component {
                             )
                         })}
                         <div className="modal-form__button-enter">
-                            <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={"Зарегестрироваться"} onClick={this.registration}/>
+                            <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.SignUp} onClick={this.registration}/>
                         </div>
-                        <div className="modal-form__bottom-text text-16 light color-aqua">Еще нет аккаунта?
-                            <div className="modal-form__bottom-link color-aqua" >Войти</div>
+                        <div className="modal-form__bottom-text text-16 light color-aqua">{ru.HaveAccount}
+                            <div className="modal-form__bottom-link color-aqua" >{ru.SignIn}</div>
                         </div>
                         <div className="modal-form__social-list">
                             <div className="modal-form__social-link icon-fb"  style={{backgroundImage: "url('static/img/content/icon-fb.png')"}}/>
@@ -93,6 +112,18 @@ const mapDispatchToProps = dispatch => {
     return {
         openModalFunction: (modal) => {
             dispatch(actionOpenModal(modal))
+        },
+        userNameFunction: (UserName) => {
+            dispatch(actionUserName(UserName))
+        },
+        userIDFunction: (UserID) => {
+            dispatch(actionUserID(UserID))
+        },
+        emailFunction: (Email) => {
+            dispatch(actionEmail(Email))
+        },
+        usersParametersFunction: (UsersParameters) => {
+            dispatch(actionUsersParameters(UsersParameters))
         },
     }
 };

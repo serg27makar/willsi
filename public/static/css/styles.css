@@ -2022,7 +2022,7 @@ input[type="checkbox"] + label:hover {
     width: 30%;
     height: 100%;
     border-right: 2px solid #72bfcb;
-    padding: 0 1rem;
+    padding: 2rem;
 }
 .cabinet-sidebar-content {
 
@@ -2402,9 +2402,12 @@ input[type="checkbox"] + label:hover {
     width: 28vw;
     margin: auto;
 }
+.hidden-block {
+    display: none !important;
+}
 .recalculate {
     position: relative;
-    padding-top: 3.75vw;
+    padding-top: 8.75vw;
     padding-bottom: 6.25vw;
     overflow: hidden;
 }
@@ -2414,6 +2417,17 @@ input[type="checkbox"] + label:hover {
     border-radius: 0.25vw;
     margin: 0 auto 3.125vw auto;
     width: 54.37499999999999vw;
+    transition-duration: 1.5s;
+}
+.recalculate-box-scale {
+    position: fixed;
+    top: 20%;
+    left: 22%;
+    transform: scale(1.3);
+    z-index: 999;
+}
+.recalculate-footer {
+    padding-top: 4vw;
 }
 .recalculate-box__row {
     display: -webkit-box;
@@ -2661,6 +2675,17 @@ input[type="checkbox"] + label:hover {
     transition: all 0.3s ease-in-out;
     color: #c6d846;
     background: #fff;
+}
+.recalculate-nav-btn {
+    display: flex;
+    justify-content: space-around;
+}
+.recalculate-prev-btn,
+.recalculate-next-btn {
+    font-size: 1.5vw;
+    font-weight: 800;
+    color: #64db49;
+    cursor: pointer;
 }
 .box-tags {
     display: -webkit-box;

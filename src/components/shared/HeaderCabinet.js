@@ -5,6 +5,20 @@ import {actionOpenModal} from "../../action";
 import {connect} from "react-redux";
 
 class HeaderCabinet extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            UserName: ""
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.UserName !== this.props.UserName) {
+            this.setState({
+                UserName: this.props.UserName,
+            })
+        }
+    }
 
     openModal = (modal) => {
         this.props.openModalFunction(modal);
@@ -21,9 +35,12 @@ class HeaderCabinet extends React.Component {
                                     <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#user"/>
                                 </svg>
                             </div>
-                            <div className="user-list__column">
+                            <div className={"user-list__column " + (this.state.UserName && this.state.UserName.length >= 1 ? "hidden-block" : "")}>
                                 <div className="user-list__link light text-16" onClick={() => {this.openModal("signIn")}}>{ru.SignIn}</div>
                                 <div className="user-list__link light text-16" onClick={() => {this.openModal("signUp")}}>{ru.SignUp}</div>
+                            </div>
+                            <div className={"user-list__column " + (this.state.UserName && this.state.UserName.length === 0 ? "hidden-block" : "")}>
+                                <Link className="user-list__link light text-16" to={"/cabinet"}>{this.state.UserName}</Link>
                             </div>
                         </div>
                     </div>
@@ -47,6 +64,7 @@ class HeaderCabinet extends React.Component {
 function MapStateToProps(state) {
     return {
         modal: state.modalReducer.modal,
+        UserName: state.userReducer.UserName,
     }
 }
 const mapDispatchToProps = dispatch => {

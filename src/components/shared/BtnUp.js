@@ -1,5 +1,6 @@
 import React from 'react';
 import "../../access/css/shared.css"
+import {handlePageUp} from "../../js/visualEffects";
 
 class BtnUp extends React.Component {
     constructor(props) {
@@ -8,7 +9,6 @@ class BtnUp extends React.Component {
             itemStyle: "btn-up",
         };
         this.handleScroll = this.handleScroll.bind(this);
-        this.handlePageUp = this.handlePageUp.bind(this);
     }
 
     componentDidMount() {
@@ -28,29 +28,12 @@ class BtnUp extends React.Component {
         }
     }
 
-    handlePageUp() {
-        const currentPosition = window.scrollY;
-        this.scrollDuration(currentPosition);
-    }
-
-    scrollDuration(currentPosition) {
-        setTimeout(() => {
-            if (currentPosition >= 20) {
-                currentPosition = currentPosition - 20;
-                this.scrollDuration(currentPosition)
-            } else {
-                currentPosition = 0;
-            }
-        }, 1);
-        window.scrollTo(0, currentPosition);
-    }
-
     render() {
-        if (window.location.pathname === "/admin-panel") {
+        if (window.location.pathname === "/admin-panel" || window.location.pathname === "/data") {
             return null;
         }
         return (
-            <div className={this.state.itemStyle} onClick={this.handlePageUp}>
+            <div className={this.state.itemStyle} onClick={handlePageUp}>
                 <div className="btn-up__env">
                     <svg className="icon">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-up"/>

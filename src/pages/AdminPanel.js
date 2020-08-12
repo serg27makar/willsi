@@ -32,7 +32,7 @@ class AdminPanel extends React.Component {
                     <div className="main-envelope__bottom-env">
                         {envelopeListArr && envelopeListArr.map((item, index) => {
                             return (
-                                <DoubleButton item={item} key={index}/>
+                                <DoubleButton placeholderData={item} key={index} toggle={()=>{}}/>
                             )
                         })}
                         <MainEnvelopeSize/>
@@ -48,6 +48,7 @@ function MapStateToProps(state) {
         page: state.pageReducer.page,
     }
 }
+
 const mapDispatchToProps = dispatch => {
     return {
         setActionAdminPanelFunction: (page) => {

@@ -54,7 +54,7 @@ class InputDataParams extends React.Component {
                                 <p className="recalculate-envelope__sub-info text-22 light">{ru.WhatCallParameters}</p>
                                 <div className="recalculate-envelope__bottom-info">
                                     <input className="recalculate-envelope__input-data text-18 light" placeholder={ru.DataPlaceholder}/>
-                                    <ButtonMain btnClass={"recalculate-envelope__button-next text-16 medium"} text={ru.Next}/>
+                                    <ButtonMain btnClass={"recalculate-envelope__button-next text-16 medium"} text={ru.Next} onClick={this.props.nextParams}/>
                                 </div>
                             </div>
                         </div>

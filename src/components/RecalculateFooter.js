@@ -5,7 +5,7 @@ import ru from "../access/lang/LangConstants";
 class RecalculateFooter extends React.Component {
     render() {
         return (
-            <div className="col-12">
+            <div className="col-12 recalculate-footer">
                 <div className="col-12">
                     <ButtonMain btnClass={"recalculate__button text-22 medium button-main"} text={ru.Count}/>
                 </div>

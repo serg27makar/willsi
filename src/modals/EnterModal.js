@@ -3,9 +3,10 @@ import {dataInputEnterModal} from "../access/temporaryConstants";
 import ModalInput from "./modalComponents/ModalInput";
 import ButtonMain from "../components/shared/ButtonMain";
 import {validateEmail} from "../js/sharedFunctions";
-import {setActionServerPost} from "../utilite/axiosConnect";
-import {actionOpenModal} from "../action";
+import {postLogin} from "../utilite/axiosConnect";
+import {actionEmail, actionOpenModal, actionUserID, actionUserName, actionUsersParameters} from "../action";
 import {connect} from "react-redux";
+import ru from "../access/lang/LangConstants";
 
 class EnterModal extends React.Component {
 
@@ -25,7 +26,13 @@ class EnterModal extends React.Component {
     };
 
     result = (res) => {
-        console.log("res", res);
+        if (res) {
+            this.props.userIDFunction(res.UserID);
+            this.props.userNameFunction(res.UserName);
+            this.props.emailFunction(res.Email);
+            this.props.usersParametersFunction(res.UsersParameters);
+        }
+        this.closeLincModal();
     };
 
     login = () => {
@@ -35,7 +42,7 @@ class EnterModal extends React.Component {
                 email,
                 password,
             };
-            setActionServerPost("register", user, this.result)
+            postLogin(user, this.result)
         }
     };
 
@@ -48,20 +55,20 @@ class EnterModal extends React.Component {
                     </svg>
                 </div>
                 <div className="modal-envelope__body">
-                    <p className="modal-envelope__title title-36 uppercase bold">Вход</p>
-                    <form className="modal-form" action="#" method="post" name="modalEnter[]">
+                    <p className="modal-envelope__title title-36 uppercase bold">{ru.SignIn}</p>
+                    <div className="modal-form">
                         {dataInputEnterModal && dataInputEnterModal.map((item, index) => {
                             return (
                                 <ModalInput dataInput={item} key={index} dataOnChange={this.dataOnChange}/>
                             )
                         })}
                         <div className="modal-form__button-enter">
-                            <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={"Войти"} onClick={this.login}/>
+                            <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.SignIn} onClick={this.login}/>
                         </div>
-                        <div className="modal-form__bottom-text text-16 light color-aqua">Еще нет аккаунта?
-                            <div className="modal-form__bottom-link color-aqua" >Регистрация</div>
+                        <div className="modal-form__bottom-text text-16 light color-aqua">{ru.DontHaveAccount}
+                            <div className="modal-form__bottom-link color-aqua" >{ru.SignUp}</div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
 
@@ -78,6 +85,18 @@ const mapDispatchToProps = dispatch => {
     return {
         openModalFunction: (modal) => {
             dispatch(actionOpenModal(modal))
+        },
+        userIDFunction: (UserID) => {
+            dispatch(actionUserID(UserID))
+        },
+        userNameFunction: (UserName) => {
+            dispatch(actionUserName(UserName))
+        },
+        emailFunction: (Email) => {
+            dispatch(actionEmail(Email))
+        },
+        usersParametersFunction: (UsersParameters) => {
+            dispatch(actionUsersParameters(UsersParameters))
         },
     }
 };

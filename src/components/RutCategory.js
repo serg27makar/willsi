@@ -1,5 +1,5 @@
 import React from "react";
-import {actionOpenCatalog, actionOpenModal} from "../action";
+import {actionOpenCatalog} from "../action";
 import {connect} from "react-redux";
 
 class RutCategory extends React.Component {

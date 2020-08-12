@@ -26,10 +26,26 @@ import WowFirstModal from "./modals/WowFirstModal";
 import WowSecondModal from "./modals/WowSecondModal";
 import {connect} from "react-redux";
 import EditorModal from "./modals/EditorModal";
+import {actionEmail, actionOpenModal, actionUserID, actionUserName, actionUsersParameters} from "./action";
+import {getUserData} from "./utilite/axiosConnect";
 
 const history = createBrowserHistory();
 
 class App extends React.Component {
+
+    componentDidMount() {
+        const UserID = localStorage.getItem("UserId");
+        if (UserID) {
+            this.props.userIDFunction(UserID);
+            getUserData(this.result);
+        }
+    }
+
+    result = (res) => {
+        this.props.userNameFunction(res.UserName);
+        this.props.emailFunction(res.Email);
+        this.props.usersParametersFunction(res.UsersParameters);
+    };
 
     renderModal = () => {
         switch (this.props.modal) {
@@ -101,5 +117,21 @@ function MapStateToProps(state) {
         modal: state.modalReducer.modal,
     }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+        userIDFunction: (UserID) => {
+            dispatch(actionUserID(UserID))
+        },
+        userNameFunction: (UserName) => {
+            dispatch(actionUserName(UserName))
+        },
+        emailFunction: (Email) => {
+            dispatch(actionEmail(Email))
+        },
+        usersParametersFunction: (UsersParameters) => {
+            dispatch(actionUsersParameters(UsersParameters))
+        },
+    }
+};
 
-export default connect(MapStateToProps)(App);
+export default connect(MapStateToProps, mapDispatchToProps)(App);

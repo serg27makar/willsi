@@ -1,7 +1,7 @@
 import React from 'react';
 import "../../access/css/shared.css"
 import ru from "../../access/lang/LangConstants";
-import {actionOpenModal, setActionAdminPanel} from "../../action";
+import {actionOpenModal} from "../../action";
 import {connect} from "react-redux";
 
 class LinkBtn extends React.Component {
@@ -35,7 +35,7 @@ class LinkBtn extends React.Component {
     };
 
     render() {
-        if (window.location.pathname === "/admin-panel") {
+        if (window.location.pathname === "/admin-panel" || window.location.pathname === "/data") {
             return null;
         }
         return (
