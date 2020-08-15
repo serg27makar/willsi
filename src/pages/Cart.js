@@ -4,7 +4,7 @@ import {setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import Carousel from "../components/Carousel";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
-import {productArr, slidersArr, subUsers} from "../access/temporaryConstants";
+import {productArr, slidersArr} from "../access/temporaryConstants";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ProductsCart from "../components/ProductsCart";
 import ButtonMain from "../components/shared/ButtonMain";
@@ -26,11 +26,21 @@ const breadcrumbs = {
 class Cart extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            subUsers:[],
+        };
     }
 
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Cart");
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.UsersParameters !== this.state.subUsers) {
+            this.setState({
+                subUsers: this.props.UsersParameters,
+            })
+        }
     }
 
     renderSlide = () => {
@@ -43,7 +53,7 @@ class Cart extends React.Component {
         return(
             <div className="content">
                 <BreadcrumbsBg  breadcrumbs={breadcrumbs}/>
-                <CatalogTopEnvironment subUsers={subUsers}/>
+                <CatalogTopEnvironment  subUsers={this.state.subUsers}/>
                 <div className="cart-info">
                     <div className="container">
                         <div className="footer-row-wrap">
@@ -81,6 +91,7 @@ class Cart extends React.Component {
 function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
+        UsersParameters: state.userReducer.UsersParameters,
     }
 }
 const mapDispatchToProps = dispatch => {

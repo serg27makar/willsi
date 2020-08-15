@@ -6,13 +6,20 @@ class ShowProductsBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            headerUser: this.props.subUsers[0].userName,
+            headerUser: "",
             subUsers: [],
             open: "",
         };
         this.renderUser = this.renderUser.bind(this);
     }
-
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.subUsers && this.props.subUsers.length > 0
+            && prevProps.subUsers !== this.props.subUsers) {
+            this.setState({
+                headerUser: this.props.subUsers[0].UserName,
+            })
+        }
+    }
     closeOpen = () => {
         this.setState({
             ...this.state,
@@ -24,18 +31,18 @@ class ShowProductsBar extends React.Component {
     changeUser = (index) => {
         this.setState({
             ...this.state,
-            headerUser: this.props.subUsers[index].userName,
+            headerUser: this.props.subUsers[index].UserName,
             open: this.state.open === "" ?
                 "open" : "",
         });
     };
 
     renderUser = (item, index) => {
-        if (item.userName !== this.state.headerUser) {
+        if (item.UserName !== this.state.headerUser) {
             return (
                 <li className="dropdown-info-list__item" key={index} onClick={() => {this.changeUser(index)}}>
                     <div className="border-line" />
-                    <div className="dropdown-info-list__link text-16 bold uppercase">{item.userName}</div>
+                    <div className="dropdown-info-list__link text-16 bold uppercase">{item.UserName}</div>
                 </li>
             )
         }

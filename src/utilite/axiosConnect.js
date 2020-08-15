@@ -22,6 +22,17 @@ export const postLogin = (user, callbackInfo) => {
     })
 };
 
+export const postUpdate = (user, callbackInfo) => {
+    axios.post(Url + `/users/update`, user, {
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+            console.log(err);
+    })
+};
+
 export const getUserData = (callbackInfo) => {
     axios.get(Url + `/users/getUserData`, {
         headers: {'token': localStorage.UserId}

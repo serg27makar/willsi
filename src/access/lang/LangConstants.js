@@ -30,19 +30,15 @@ const ru = {
     placeholderWaist: "Талия (см)",
     placeholderHips: "Бедра (см)",
 
-    placeholderExampleGrowth: "Рост 175 см",
-    placeholderExampleShoulders: "Плечи 60 см",
-    placeholderExampleChest: "Рост 90 см",
-    placeholderExampleWaist: "Талия 65 см",
-    placeholderExampleHips: "Бедра 91 см",
+    placeholderExample: "90",
 
     pickUpClothes: "Подобрать одежду",
 
-    Growth: "Рост -",
-    Shoulders: "Обхват плечь -",
-    Chest: "Обхват груди -",
-    Waist: "Обхват талии -",
-    Hips: "Обхват бедер -",
+    growth: "Рост -",
+    shoulders: "Плечи -",
+    chest: "Грудь -",
+    waist: "Талия -",
+    hips: "Бедра -",
 
     sm: " см",
 
@@ -58,6 +54,7 @@ const ru = {
     Change: "Измените",
     Parameters: "Параметры",
     Save: "Сохранить",
+    Cancel: "Отмена",
 
     My: "Мои",
     Husband: "Мужа",
@@ -146,6 +143,12 @@ const ru = {
     goToStore: "перейти в магазин для покупки",
     HaveAccount: "Есть аккаунт?",
     DontHaveAccount: "Еще нет аккаунта?",
+    SaveChange: "Сохранить изменения?",
+
+    understandably: "понятно",
+    enterTheseDetails: "введите эти данные чтобы продолжить",
+    recalculatePlaceholder: "150",
+
 
 };
 

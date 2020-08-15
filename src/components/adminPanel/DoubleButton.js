@@ -5,7 +5,17 @@ class DoubleButton extends React.Component {
         super(props);
         this.state = {
             active: false,
-            inputValue: ""
+            inputValue: "",
+            item: this.props.item,
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.item !== this.props.item) {
+            this.setState({
+                ...this.state,
+                item: this.props.item,
+            })
         }
     }
 
@@ -28,7 +38,7 @@ class DoubleButton extends React.Component {
                     <input className="main-envelope__input text-14" type="text"
                            placeholder={this.props.placeholderData.placeholder}
                            readOnly={!this.state.active}
-                           value={this.props.item}
+                           value={this.state.item || ""}
                            onChange={this.onChange}
                     />
                     <button className={"main-envelope__button-active " + (this.state.active ? "button-checked" : "button-pen")} onClick={this.activeBtn}>

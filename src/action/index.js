@@ -60,3 +60,24 @@ export const actionUsersParameters = (UsersParameters) => {
         UsersParameters: UsersParameters
     }
 };
+
+export const actionUserUpdate = (UserUpdate) => {
+    return {
+        type: 'SET_USER_UPDATE',
+        UserUpdate: UserUpdate
+    }
+};
+
+export const actionAlertText = (AlertText) => {
+    return {
+        type: 'ALERT_TEXT_MODAL',
+        AlertText: AlertText
+    }
+};
+
+export const actionAddUser = (AddUser) => {
+    return {
+        type: 'ADD_USER',
+        AddUser: AddUser
+    }
+};

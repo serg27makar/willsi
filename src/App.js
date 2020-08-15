@@ -26,8 +26,10 @@ import WowFirstModal from "./modals/WowFirstModal";
 import WowSecondModal from "./modals/WowSecondModal";
 import {connect} from "react-redux";
 import EditorModal from "./modals/EditorModal";
-import {actionEmail, actionOpenModal, actionUserID, actionUserName, actionUsersParameters} from "./action";
+import {actionEmail, actionUserID, actionUserName, actionUsersParameters} from "./action";
 import {getUserData} from "./utilite/axiosConnect";
+import SaveUpdateModal from "./modals/SaveUpdateModal";
+import AlertModal from "./modals/AlertModal";
 
 const history = createBrowserHistory();
 
@@ -42,9 +44,11 @@ class App extends React.Component {
     }
 
     result = (res) => {
-        this.props.userNameFunction(res.UserName);
-        this.props.emailFunction(res.Email);
-        this.props.usersParametersFunction(res.UsersParameters);
+        if (res) {
+            this.props.userNameFunction(res.UserName);
+            this.props.emailFunction(res.Email);
+            this.props.usersParametersFunction(res.UsersParameters);
+        }
     };
 
     renderModal = () => {
@@ -63,6 +67,10 @@ class App extends React.Component {
                 return (<WowSecondModal/>);
             case "editorModal":
                 return (<EditorModal/>);
+            case "saveUpdate":
+                return (<SaveUpdateModal/>);
+            case "alertModal":
+                return (<AlertModal/>);
             default:
                 return null
         }

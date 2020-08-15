@@ -791,6 +791,10 @@ footer {
     max-width: 45.625vw !important;
     min-height: 30vw;
 }
+#modal-save-update {
+    width: 45vw;
+    height: 19vw;
+}
 #modal-wowFirst {
     max-width: 34.0625vw !important;
     min-height: 22.1875vw;
@@ -1954,7 +1958,7 @@ input[type="checkbox"] + label:hover {
     border: 0.0625vw solid #e1e1e1;
     border-radius: 0.25vw;
     margin: 0 0.3125vw;
-    padding: 0 0.625vw 0 0.9375vw;
+    padding: 0 0 0 4.9375vw;
     width: 9.375vw;
     height: 2.5vw;
     -webkit-transition: all 0.3s ease-in-out;
@@ -2514,6 +2518,28 @@ input[type="checkbox"] + label:hover {
     -webkit-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+}
+.relative-block {
+    position: relative;
+}
+.recalculate-input-text {
+    position: absolute;
+    top: 1vw;
+    left: 3.5vw;
+    font-size: 1.35vw;
+}
+.input-placeholder {
+    position: absolute;
+    top: 0.5rem;
+    left: 2vw;
+}
+.input-placeholder-sm {
+    position: absolute;
+    top: 0.5rem;
+    left: 10vw;
+}
+.auto-margin {
+    margin: auto;
 }
 .recalculate-box__number {
     color: #e2eef2;

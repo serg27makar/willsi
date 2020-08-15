@@ -1,12 +1,16 @@
 import React from "react";
 import {paramsAnimate} from "../js/visualEffects";
 import {evenOdd} from "../js/sharedFunctions";
+import ru from "../access/lang/LangConstants";
+import {actionAlertText, actionOpenModal, actionUsersParameters} from "../action";
+import {connect} from "react-redux";
 
 class Recalculate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             dataParams: [],
+            inputName: "",
         };
         this.refRecalculate = [];
         this.props.dataParams.map(() => {
@@ -15,7 +19,7 @@ class Recalculate extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.startParams !== this.props.startParams) {
+        if (prevProps.startParams !== this.props.startParams && this.props.startParams) {
             paramsAnimate(this.refRecalculate, 0)
         }
     }
@@ -26,24 +30,47 @@ class Recalculate extends React.Component {
 
     prevItem(index) {
         paramsAnimate(this.refRecalculate, index - 1);
-    }
-
-    nextItem(index) {
-        paramsAnimate(this.refRecalculate, index + 1);
-        if (index === (this.props.dataParams.length - 1)) {
-            this.endInput();
+        if (index === 0) {
+            this.props.firstBlock();
         }
     }
 
+    nextItem(index, item) {
+        if (this.state[item.inputName]) {
+            const params = {
+                title: item.inputName,
+                size: this.state[item.inputName],
+            };
+            this.props.params(params);
+            paramsAnimate(this.refRecalculate, index + 1);
+            if (index === (this.props.dataParams.length - 1)) {
+                this.endInput();
+            }
+        } else {
+            this.props.alertTextFunction(ru.enterTheseDetails);
+            this.props.openModalFunction("alertModal");
+        }
+    }
+
+    onChange = (e, inputName) => {
+        const data = e.target.value <= 0 ? 0 : e.target.value > 500 ? 500 : e.target.value;
+        this.setState({
+            ...this.state,
+            [inputName]: data,
+            inputName,
+        });
+    };
+
     renderRecalculateBox = (item, index) => {
         const right = evenOdd(index);
+        const number = "0" + (index + 1);
         return (
             <div ref={this.refRecalculate[index]} className="recalculate-box" key={index}>
                 <div className={"recalculate-box__row " + (right ? "row-reverse" : "")}>
                     <div className="recalculate-box__column-left">
                         <div className="recalculate-box__picture">
                             <picture className="picture">
-                                <img className="picture__source" src={item.imgUrl} alt={item.imgAlt}/>
+                                <img className="picture__source" src={item.imgUrl} alt={item.inputName}/>
                             </picture>
                         </div>
                     </div>
@@ -51,12 +78,20 @@ class Recalculate extends React.Component {
                         <div className="recalculate-box__flex-col">
                             <p className="recalculate-box__title title-36 bold uppercase">{item.title}</p>
                             <p className="recalculate-box__paragraph text-22 light">{item.text}</p>
-                            <input className="recalculate-box__input-data text-18 light" name={item.inputName} placeholder={item.placeholder}/>
-                            <p className="recalculate-box__number text-115 bold">{item.number}</p>
+                            <div className="relative-block">
+                                <input className="recalculate-box__input-data text-18 light"
+                                       type="number"
+                                       name={item.inputName} placeholder={ru.recalculatePlaceholder}
+                                       value={this.state[item.inputName] || ""}
+                                       onChange={(e) => {this.onChange(e, item.inputName)}}
+                                />
+                                <p className="recalculate-input-text">{ru.sm}</p>
+                            </div>
+                            <p className="recalculate-box__number text-115 bold">{number}</p>
                         </div>
                         <div className="recalculate-nav-btn">
                             <div className="recalculate-prev-btn" onClick={() => {this.prevItem(index)}}>{"< назад"}</div>
-                            <div className="recalculate-next-btn" onClick={() => {this.nextItem(index)}}>{"далее >"}</div>
+                            <div className="recalculate-next-btn" onClick={() => {this.nextItem(index, item)}}>{"далее >"}</div>
                         </div>
                     </div>
                 </div>
@@ -77,4 +112,22 @@ class Recalculate extends React.Component {
         )
     }
 }
-export default Recalculate;
+
+function MapStateToProps(state) {
+    return {}
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        openModalFunction: (modal) => {
+            dispatch(actionOpenModal(modal))
+        },
+        alertTextFunction: (text) => {
+            dispatch(actionAlertText(text))
+        },
+        usersParametersFunction: (UsersParameters) => {
+            dispatch(actionUsersParameters(UsersParameters))
+        }
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(Recalculate);

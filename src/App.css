@@ -12,7 +12,7 @@
     filter: blur(8px);
     -webkit-filter: blur(8px);
 }
-.wrapper-modal {
+.wrapper-modal .modal-envelope {
     position: fixed;
     top: 50%;
     left: 50%;

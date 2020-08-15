@@ -18,16 +18,30 @@ const breadcrumbs = {
 };
 
 class Postpone extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            subUsers:[],
+        }
+    }
 
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Postpone");
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.UsersParameters !== this.state.subUsers) {
+            this.setState({
+                subUsers: this.props.UsersParameters,
+            })
+        }
     }
 
     render() {
         return(
             <div className="content">
                 <BreadcrumbsBg breadcrumbs={breadcrumbs}/>
-                <CatalogTopEnvironment subUsers={subUsers}/>
+                <CatalogTopEnvironment  subUsers={this.state.subUsers}/>
                 <div className="catalog-middle container">
                     <div className="footer-row-wrap">
                         <div className="catalog-sidebar">
@@ -48,6 +62,7 @@ class Postpone extends React.Component {
 function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
+        UsersParameters: state.userReducer.UsersParameters,
     }
 }
 const mapDispatchToProps = dispatch => {

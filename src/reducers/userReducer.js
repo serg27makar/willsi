@@ -4,7 +4,9 @@ const initialState = {
     Email: "",
     PublicAuth: {},
     Phone: "",
-    UsersParameters: []
+    UsersParameters: [],
+    UserUpdate: {},
+    AddUser: false,
 };
 
 export default function userReducer(state = initialState, action) {
@@ -38,6 +40,16 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 UsersParameters: action.UsersParameters
+            };
+        case "SET_USER_UPDATE":
+            return {
+                ...state,
+                UserUpdate: action.UserUpdate
+            };
+        case "ADD_USER":
+            return {
+                ...state,
+                AddUser: action.AddUser
             };
         default:
             return state;

@@ -1,16 +1,26 @@
 import React from 'react';
 import "./../access/css/cart.css";
 import ru from "../access/lang/LangConstants";
-import {actionOpenModal} from "../action";
+import {actionAddUser, actionOpenModal} from "../action";
 import {connect} from "react-redux";
 
 class CatalogTopEnvironment extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            headerUser: this.props.subUsers[0].userName,
-            params: this.props.subUsers[0].params,
+            headerUser: "",
+            params: [],
             open: "",
+        };
+        this.addUser = this.addUser.bind(this);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.subUsers && this.props.subUsers.length > 0 && prevProps.subUsers !== this.props.subUsers) {
+            this.setState({
+                headerUser: this.props.subUsers[0].UserName,
+                params: this.props.subUsers[0].Parameters,
+            })
         }
     }
 
@@ -25,8 +35,8 @@ class CatalogTopEnvironment extends React.Component {
     changeUser = (index) => {
         this.setState({
             ...this.state,
-            headerUser: this.props.subUsers[index].userName,
-            params: this.props.subUsers[index].params,
+            headerUser: this.props.subUsers[index].UserName,
+            params: this.props.subUsers[index].Parameters,
             open: this.state.open === "" ?
                 "open" : "",
         });
@@ -36,10 +46,15 @@ class CatalogTopEnvironment extends React.Component {
         this.props.openModalFunction("editorModal");
     };
 
+    addUser() {
+        this.props.addUserFunction(true);
+        this.editorOpen();
+    };
+
     renderParams = (item, index) => {
         return (
             <li className="list-object__item text-16 bold" key={index}>
-                <p className="list-object__text">{item.title + " -"}</p>
+                <p className="list-object__text">{ru[item.title] + " "}</p>
                 <span className="list-object__text-value color-aqua">{item.size + ru.sm}</span>
                 <span className="list-object_icon-pen" onClick={this.editorOpen}>
                     <svg className="icon">
@@ -81,7 +96,7 @@ class CatalogTopEnvironment extends React.Component {
                                 {this.props.subUsers && this.props.subUsers.map((item, index) => {
                                     return this.renderUser(item, index);
                                 })}
-                                <div className="dropdown-info__item">
+                                <div className="dropdown-info__item" onClick={this.addUser}>
                                     <div className="dropdown-info__link icon-plus"/>
                                 </div>
                             </div>
@@ -110,6 +125,9 @@ const mapDispatchToProps = dispatch => {
     return {
         openModalFunction: (modal) => {
             dispatch(actionOpenModal(modal))
+        },
+        addUserFunction: (AddUser) => {
+            dispatch(actionAddUser(AddUser))
         },
     }
 };

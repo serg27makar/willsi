@@ -485,47 +485,32 @@ export const slidersArr = [
 export const recalculateParams = [
     {
         imgUrl: "static/img/content/data-1.png",
-        imgAlt: "data-item",
         title: "Начнем с роста",
         text: "Измеряем свой рост и записываем число вот в этоокошко:",
-        placeholder: "150 см",
-        number: "01",
         inputName: "growth",
     },
     {
         imgUrl: "static/img/content/data-2.png",
-        imgAlt: "data-item",
         title: "Обхват плеч",
         text: "Записываем результат и идем дальше!",
-        placeholder: "150 см",
-        number: "02",
         inputName: "shoulders",
     },
     {
         imgUrl: "static/img/content/data-3.png",
-        imgAlt: "data-item",
         title: "Обхват груди",
         text: "Ходят слухи, что если измерять слишком долго, то может прийти мужчина",
-        placeholder: "150 см",
-        number: "03",
         inputName: "chest",
     },
     {
         imgUrl: "static/img/content/data-4.png",
-        imgAlt: "data-item",
         title: "Обхват талии",
         text: "Лучше измерять талию в самом узком месте",
-        placeholder: "150 см",
-        number: "04",
         inputName: "waist",
     },
     {
         imgUrl: "static/img/content/data-5.png",
-        imgAlt: "data-item",
         title: "Обхват в бедрах",
         text: "Ходят слухи, что если измерять слишком долго, то может прийти мужчина",
-        placeholder: "150 см",
-        number: "05",
         inputName: "hips",
     },
 ];
@@ -699,5 +684,22 @@ export const placeholderData = [
     {
         title: "Name",
         placeholder: "Ваше имя",
+    },
+];
+export const placeholderDataInput = [
+    {
+        title: "growth",
+    },
+    {
+        title: "shoulders",
+    },
+    {
+        title: "chest",
+    },
+    {
+        title: "waist",
+    },
+    {
+        title: "hips",
     },
 ];

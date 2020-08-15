@@ -6,3 +6,7 @@ export function validateEmail(email) {
 export function evenOdd(index) {
     return index % 2 !== 0;
 }
+
+export function  updateResult(res) {
+    // console.log(res);
+}

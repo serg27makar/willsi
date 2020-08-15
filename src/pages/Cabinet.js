@@ -1,5 +1,5 @@
 import React from 'react';
-import {setActionAdminPanel} from "../action";
+import {actionOpenModal, actionUserUpdate, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import DoubleButton from "../components/adminPanel/DoubleButton";
 import RutCategory from "../components/RutCategory";
@@ -11,27 +11,42 @@ class Cabinet extends React.Component {
         this.state = {
             Email: "",
             UserName: "",
-        };
-        this.Data = {
-            dropdownTitle: "Ваши параметры",
-            dropdownItems: [],
+            Data: {
+                dropdownTitle: "Ваши параметры",
+                dropdownItems: [],
+            }
         };
     }
 
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Cabinet");
+        setTimeout(() => {
+            this.setState({
+                UserName: this.props.UserName,
+                Email: this.props.Email,
+                UsersParameters: this.props.UsersParameters,
+            })
+        }, 500);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevState.Email !== this.props.Email) {
+        if (prevState.UsersParameters !== this.props.UsersParameters) {
             this.setState({
-                Email: this.props.Email,
-                UserName: this.props.UserName,
+                UsersParameters: this.props.UsersParameters,
             })
         }
-        if (prevProps.UsersParameters !== this.props.UsersParameters) {
+        if (this.props.UsersParameters && prevProps.UsersParameters !== this.props.UsersParameters) {
+            const dropdownItems = [];
             this.props.UsersParameters.map((item, index) => {
-                this.Data.dropdownItems.push(item.UserName)
+                dropdownItems.push(item.UserName);
+                return index;
+            });
+            this.setState({
+                ...this.state,
+                Data: {
+                    ...this.state.Data,
+                    dropdownItems: dropdownItems,
+                }
             })
         }
     }
@@ -51,8 +66,16 @@ class Cabinet extends React.Component {
     };
 
     isActive = () => {
-        if (this.state.Email !== this.props.Email) {
-            console.log("000")
+        if (this.state.Email !== this.props.Email ||
+            this.state.UserName !== this.props.UserName ||
+            this.state.UsersParameters !== this.props.UsersParameters) {
+            this.props.openModalFunction("saveUpdate");
+            const User = {
+                UserName: this.state.UserName,
+                Email: this.state.Email,
+                UsersParameters: this.state.UsersParameters,
+            };
+            this.props.UserUpdateFunction(User);
         }
     };
 
@@ -65,7 +88,7 @@ class Cabinet extends React.Component {
                                       changeValue={this.nameChange} toggle={this.isActive}/>
                         <DoubleButton placeholderData={placeholderData[0]} item={this.state.Email}
                                       changeValue={this.emailChange} toggle={this.isActive}/>
-                        <RutCategory item={this.Data}/>
+                        <RutCategory item={this.state.Data}/>
                     </div>
                     <div className="cabinet-sidebar-content"/>
                 </div>
@@ -87,6 +110,12 @@ const mapDispatchToProps = dispatch => {
     return {
         setActionAdminPanelFunction: (page) => {
             dispatch(setActionAdminPanel(page))
+        },
+        openModalFunction: (modal) => {
+            dispatch(actionOpenModal(modal))
+        },
+        UserUpdateFunction: (UserUpdate) => {
+            dispatch(actionUserUpdate(UserUpdate))
         },
     }
 };
