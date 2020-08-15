@@ -1,6 +1,6 @@
 import React from 'react';
 import ru from "../access/lang/LangConstants";
-import {actionOpenModal, actionUsersParameters} from "../action";
+import {actionAddUser, actionDataRedirect, actionHeaderUser, actionOpenModal, actionUsersParameters} from "../action";
 import {connect} from "react-redux";
 import ButtonMain from "../components/shared/ButtonMain";
 import {postUpdate} from "../utilite/axiosConnect";
@@ -12,35 +12,58 @@ class EditorModal extends React.Component {
         this.state = {
             arrNum: 0,
             headerUser: "",
-            params: [],
+            params: {},
             open: "",
             isChange: false,
         };
         this.saveUpdate = this.saveUpdate.bind(this);
+        this.addUser = this.addUser.bind(this);
     }
 
     componentDidMount() {
         setTimeout(() => {
             if (this.props.UsersParameters && this.props.UsersParameters.length > 0) {
+                let params = {};
                 this.props.UsersParameters[0].Parameters.map((item, index) => {
-                    this.setState({
-                        ...this.state,
+                    params = {
+                        ...params,
                         [item.title]: item.size,
-                    });
+                    };
                     return index;
                 });
                 this.setState({
-                    headerUser: this.props.UsersParameters[0].UserName,
+                    headerUser: this.props.UsersParameters[this.props.HeaderUser].UserName,
+                    params,
                 })
             }
         }, 300);
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.UsersParameters !== this.props.UsersParameters && this.state.isChange) {
+        if (prevState.isChange !== this.state.isChange && this.state.isChange) {
             this.isChanged();
             this.updateParams();
         }
+        if (prevProps.HeaderUser !== this.props.HeaderUser) {
+            let params = {};
+            this.props.UsersParameters[this.props.HeaderUser].Parameters.map((item) => {
+                params = {
+                    ...params,
+                    [item.title]: item.size,
+                };
+                return params;
+            });
+            this.setState({
+                params,
+                headerUser: this.props.UsersParameters[this.props.HeaderUser].UserName,
+            })
+        }
     }
+
+    addUser() {
+        this.props.addUserFunction(true);
+        this.props.dataRedirectFunction(true);
+        this.closeLincModal();
+    };
 
     isChanged() {
         this.setState({
@@ -61,17 +84,9 @@ class EditorModal extends React.Component {
     };
 
     changeUser = (index) => {
-        this.props.UsersParameters[index].Parameters.map((item) => {
-            this.setState({
-                ...this.state,
-                [item.title]: item.size,
-            });
-            return index;
-        });
+        this.props.headerUserFunction(index);
         this.setState({
             ...this.state,
-            arrNum: index,
-            headerUser: this.props.UsersParameters[index].UserName,
             open: this.state.open === "" ?
                 "open" : "",
         });
@@ -80,26 +95,31 @@ class EditorModal extends React.Component {
     onChange = (e, item) => {
         this.setState({
             ...this.state,
-            [item.title]: e.target.value <= 0 ? 0 : e.target.value >= 500 ? 500 : e.target.value,
+            params: {
+                ...this.state.params,
+                [item.title]: e.target.value <= 0 ? 0 : e.target.value >= 500 ? 500 : e.target.value,
+            },
         });
     };
 
     saveUpdate() {
-        const index = this.state.arrNum;
+        const index = this.props.HeaderUser;
         const Parameters = [];
         this.props.UsersParameters[index].Parameters.map((item) => {
             const oneParameter = {
                 title: item.title,
-                size: this.state[item.title],
+                size: this.state.params[item.title],
             };
             Parameters.push(oneParameter);
             return index;
         });
-        const UsersParameters =[{
+        const UsersParameters = this.props.UsersParameters;
+        const obj = {
             UserName: this.props.UsersParameters[index].UserName,
-            Gender:  this.props.UsersParameters[index].Gender,
+            Gender: this.props.UsersParameters[index].Gender,
             Parameters,
-        }];
+        };
+        UsersParameters.splice(index, 1, obj);
         this.props.usersParametersFunction(UsersParameters);
         this.isChanged();
     }
@@ -132,7 +152,7 @@ class EditorModal extends React.Component {
                 <p className="input-placeholder">{ru[item.title]}</p>
                 <input className="tags-list__input text-18 light envelope-mode"
                        type="number" name={item.title} placeholder={ru.placeholderExample}
-                       value={this.state[item.title] || ""}
+                       value={this.state.params[item.title] || ""}
                        onChange={(e) => {this.onChange(e, item)}}
                 />
                 <p className="input-placeholder-sm">{ru.sm}</p>
@@ -163,7 +183,7 @@ class EditorModal extends React.Component {
                             {this.props.UsersParameters && this.props.UsersParameters.map((item, index) => {
                                 return this.renderUser(item, index);
                             })}
-                            <div className="dropdown-info__item">
+                            <div className="dropdown-info__item" onClick={this.addUser} hidden={this.props.Permission === "unknown"}>
                                 <div className="dropdown-info__link icon-plus"/>
                             </div>
                         </div>
@@ -171,8 +191,8 @@ class EditorModal extends React.Component {
                     <div className="parameters__tags-list">
                         <p className="parameters__info-text text-16 uppercase bold">{ru.Change + '  ' + ru.Parameters}</p>
                         <div className="tags-list-envelope">
-                            {this.props.UsersParameters[this.state.arrNum].Parameters &&
-                            this.props.UsersParameters[this.state.arrNum].Parameters.map((item, index) => {
+                            {this.props.UsersParameters[this.props.HeaderUser].Parameters &&
+                            this.props.UsersParameters[this.props.HeaderUser].Parameters.map((item, index) => {
                                 return this.renderInput(item, index);
                             })}
                         </div>
@@ -192,6 +212,8 @@ function MapStateToProps(state) {
         Email: state.userReducer.Email,
         UsersParameters: state.userReducer.UsersParameters,
         AddUser: state.userReducer.AddUser,
+        Permission: state.userReducer.Permission,
+        HeaderUser: state.userReducer.HeaderUser,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -201,7 +223,16 @@ const mapDispatchToProps = dispatch => {
         },
         usersParametersFunction: (UsersParameters) => {
             dispatch(actionUsersParameters(UsersParameters))
-        }
+        },
+        addUserFunction: (AddUser) => {
+            dispatch(actionAddUser(AddUser))
+        },
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
+        },
+        headerUserFunction: (HeaderUser) => {
+            dispatch(actionHeaderUser(HeaderUser))
+        },
     }
 };
 

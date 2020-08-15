@@ -81,3 +81,24 @@ export const actionAddUser = (AddUser) => {
         AddUser: AddUser
     }
 };
+
+export const actionDataRedirect = (dataRedirect) => {
+    return {
+        type: 'DATA_REDIRECT',
+        dataRedirect: dataRedirect
+    }
+};
+
+export const actionPermission = (Permission) => {
+    return {
+        type: 'USER_PERMISSION',
+        Permission: Permission
+    }
+};
+
+export const actionHeaderUser = (HeaderUser) => {
+    return {
+        type: 'HEADER_USER',
+        HeaderUser: HeaderUser
+    }
+};

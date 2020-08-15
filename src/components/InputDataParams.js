@@ -1,7 +1,7 @@
 import React from "react";
 import ButtonMain from "./shared/ButtonMain";
 import ru from "../access/lang/LangConstants";
-import {actionUserID, setActionAdminPanel} from "../action";
+import {actionPermission, actionUserID, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import {postRegister} from "../utilite/axiosConnect";
 
@@ -33,11 +33,11 @@ class InputDataParams extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.UsersParameters) {
-            const name = this.props.UsersParameters.length > 0 && (this.props.UsersParameters[0].UserName || this.props.UserName);
-            const gender = this.props.UsersParameters.length > 0 && (this.props.UsersParameters[0].Gender || whomParams[0].data);
-            const activeBtn = this.props.UsersParameters.length > 0 &&
-                (whomParams.map((e) => { return e.data; }).indexOf(this.props.UsersParameters[0].Gender) || 0);
+        if (this.props.UsersParameters && !this.props.AddUser) {
+            const name = (this.props.UsersParameters.length > 0 && this.props.UsersParameters[0].UserName) || this.props.UserName || "";
+            const gender = (this.props.UsersParameters.length > 0 && this.props.UsersParameters[0].Gender) || whomParams[0].data;
+            const activeBtn = (this.props.UsersParameters.length > 0 &&
+                whomParams.map((e) => { return e.data; }).indexOf(this.props.UsersParameters[0].Gender)) || 0;
             this.setState({
                 ...this.state,
                 name,
@@ -63,7 +63,6 @@ class InputDataParams extends React.Component {
     };
 
     newID(res) {
-        console.log(res)
         this.props.userIDFunction(res);
         this.props.nextParams(this.state.name, this.state.gender);
     }
@@ -71,10 +70,11 @@ class InputDataParams extends React.Component {
     updateData() {
         if (!this.props.UserID) {
             const user = {
-                name: "",
-                email: "",
-                password: "",
-                usersParameters: [],
+                UserName: "",
+                Email: "",
+                Password: "",
+                UsersParameters: [],
+                Permission: this.props.Permission
             };
             postRegister(user, this.newID)
         } else {
@@ -135,6 +135,8 @@ function MapStateToProps(state) {
         UserName: state.userReducer.UserName,
         UserID: state.userReducer.UserID,
         UsersParameters: state.userReducer.UsersParameters,
+        AddUser: state.userReducer.AddUser,
+        Permission: state.userReducer.Permission,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -144,6 +146,9 @@ const mapDispatchToProps = dispatch => {
         },
         userIDFunction: (UserID) => {
             dispatch(actionUserID(UserID))
+        },
+        permissionFunction: (Permission) => {
+            dispatch(actionPermission(Permission))
         },
     }
 };

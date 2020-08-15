@@ -7,6 +7,8 @@ const initialState = {
     UsersParameters: [],
     UserUpdate: {},
     AddUser: false,
+    Permission: "unknown",
+    HeaderUser: 0,
 };
 
 export default function userReducer(state = initialState, action) {
@@ -50,6 +52,16 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 AddUser: action.AddUser
+            };
+        case "USER_PERMISSION":
+            return {
+                ...state,
+                Permission: action.Permission
+            };
+        case "HEADER_USER":
+            return {
+                ...state,
+                HeaderUser: action.HeaderUser
             };
         default:
             return state;

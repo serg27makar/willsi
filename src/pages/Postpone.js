@@ -3,7 +3,7 @@ import {setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
 import CatalogSidebar from "../components/CatalogSidebar";
-import {dropdownListArr, postponeArr, sidebarCatalogArr, subUsers} from "../access/temporaryConstants";
+import {dropdownListArr, postponeArr, sidebarCatalogArr} from "../access/temporaryConstants";
 import RutCatalogSidebar from "../components/RutCatalogSidebar";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ProductsCart from "../components/ProductsCart";
@@ -49,7 +49,7 @@ class Postpone extends React.Component {
                             <CatalogSidebar Categories={sidebarCatalogArr}/>
                         </div>
                         <div className="col-12">
-                            <ShowProductsBar subUsers={subUsers}/>
+                            <ShowProductsBar subUsers={this.state.subUsers}/>
                             <ProductsCart products={postponeArr}/>
                         </div>
                     </div>

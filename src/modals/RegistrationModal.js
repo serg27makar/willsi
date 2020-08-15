@@ -3,8 +3,15 @@ import ModalInput from "./modalComponents/ModalInput";
 import ButtonMain from "../components/shared/ButtonMain";
 import {dataInputRegistrationModal} from "../access/temporaryConstants";
 import {validateEmail} from "../js/sharedFunctions";
-import {postRegister} from "../utilite/axiosConnect";
-import {actionEmail, actionOpenModal, actionUserID, actionUserName, actionUsersParameters} from "../action";
+import {postRegister, postUpdate} from "../utilite/axiosConnect";
+import {
+    actionEmail,
+    actionOpenModal,
+    actionPermission,
+    actionUserID,
+    actionUserName,
+    actionUsersParameters
+} from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
 
@@ -60,13 +67,21 @@ class RegistrationModal extends React.Component {
         ];
         if (name.length >= 3 && email && validateEmail(email) &&
             password && confirmPassword && password === confirmPassword) {
-            const user = {
-                name,
-                email,
-                password,
-                usersParameters: this.usersParameters,
+            let user = {
+                UserName: name,
+                Email: email,
+                Password: password,
+                Permission: "buyer",
+                UsersParameters: this.props.UsersParameters &&
+                this.props.UsersParameters.length > 0 ? this.props.UsersParameters : this.usersParameters,
             };
-            postRegister(user, this.result);
+            this.props.permissionFunction("buyer");
+            if (this.props.UserID) {
+                user = {...user, UserID: this.props.UserID};
+                postUpdate(user, this.result);
+            } else {
+                postRegister(user, this.result);
+            }
         }
     };
 
@@ -106,6 +121,8 @@ class RegistrationModal extends React.Component {
 function MapStateToProps(state) {
     return {
         modal: state.modalReducer.modal,
+        UserID: state.userReducer.UserID,
+        UsersParameters: state.userReducer.UsersParameters,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -124,6 +141,9 @@ const mapDispatchToProps = dispatch => {
         },
         usersParametersFunction: (UsersParameters) => {
             dispatch(actionUsersParameters(UsersParameters))
+        },
+        permissionFunction: (Permission) => {
+            dispatch(actionPermission(Permission))
         },
     }
 };

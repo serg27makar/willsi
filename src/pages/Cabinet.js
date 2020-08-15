@@ -20,12 +20,13 @@ class Cabinet extends React.Component {
 
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Cabinet");
+        this.dropdownUpdate();
         setTimeout(() => {
             this.setState({
                 UserName: this.props.UserName,
                 Email: this.props.Email,
                 UsersParameters: this.props.UsersParameters,
-            })
+            });
         }, 500);
     }
 
@@ -35,20 +36,24 @@ class Cabinet extends React.Component {
                 UsersParameters: this.props.UsersParameters,
             })
         }
-        if (this.props.UsersParameters && prevProps.UsersParameters !== this.props.UsersParameters) {
-            const dropdownItems = [];
-            this.props.UsersParameters.map((item, index) => {
-                dropdownItems.push(item.UserName);
-                return index;
-            });
-            this.setState({
-                ...this.state,
-                Data: {
-                    ...this.state.Data,
-                    dropdownItems: dropdownItems,
-                }
-            })
+        if (prevProps.UsersParameters !== this.props.UsersParameters && this.props.UsersParameters) {
+            this.dropdownUpdate();
         }
+    }
+
+    dropdownUpdate() {
+        const dropdownItems = [];
+        this.props.UsersParameters.map((item, index) => {
+            dropdownItems.push(item.UserName);
+            return index;
+        });
+        this.setState({
+            ...this.state,
+            Data: {
+                ...this.state.Data,
+                dropdownItems: dropdownItems,
+            }
+        })
     }
 
     emailChange = (value) => {

@@ -26,7 +26,7 @@ import WowFirstModal from "./modals/WowFirstModal";
 import WowSecondModal from "./modals/WowSecondModal";
 import {connect} from "react-redux";
 import EditorModal from "./modals/EditorModal";
-import {actionEmail, actionUserID, actionUserName, actionUsersParameters} from "./action";
+import {actionEmail, actionPermission, actionUserID, actionUserName, actionUsersParameters} from "./action";
 import {getUserData} from "./utilite/axiosConnect";
 import SaveUpdateModal from "./modals/SaveUpdateModal";
 import AlertModal from "./modals/AlertModal";
@@ -48,6 +48,7 @@ class App extends React.Component {
             this.props.userNameFunction(res.UserName);
             this.props.emailFunction(res.Email);
             this.props.usersParametersFunction(res.UsersParameters);
+            this.props.permissionFunction(res.Permission);
         }
     };
 
@@ -138,6 +139,9 @@ const mapDispatchToProps = dispatch => {
         },
         usersParametersFunction: (UsersParameters) => {
             dispatch(actionUsersParameters(UsersParameters))
+        },
+        permissionFunction: (Permission) => {
+            dispatch(actionPermission(Permission))
         },
     }
 };

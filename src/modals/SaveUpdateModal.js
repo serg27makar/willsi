@@ -46,11 +46,6 @@ class SaveUpdateModal extends React.Component {
     Save = () => {
         const {UserName, Email, UsersParameters} = this.props.UserUpdate;
         if (Email && validateEmail(Email)) {
-            // const Parameters = UsersParameters[0].Parameters;
-            // UsersParameters.splice(0, 1,  {
-            //     UserName: UserName,
-            //     Parameters: Parameters,
-            // });
             const user = {
                 UserName,
                 Email,

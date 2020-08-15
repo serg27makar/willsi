@@ -4,7 +4,14 @@ import ModalInput from "./modalComponents/ModalInput";
 import ButtonMain from "../components/shared/ButtonMain";
 import {validateEmail} from "../js/sharedFunctions";
 import {postLogin} from "../utilite/axiosConnect";
-import {actionEmail, actionOpenModal, actionUserID, actionUserName, actionUsersParameters} from "../action";
+import {
+    actionEmail,
+    actionOpenModal,
+    actionPermission,
+    actionUserID,
+    actionUserName,
+    actionUsersParameters
+} from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
 
@@ -31,6 +38,7 @@ class EnterModal extends React.Component {
             this.props.userNameFunction(res.UserName);
             this.props.emailFunction(res.Email);
             this.props.usersParametersFunction(res.UsersParameters);
+            this.props.permissionFunction(res.Permission);
         }
         this.closeLincModal();
     };
@@ -39,8 +47,8 @@ class EnterModal extends React.Component {
         const {email, password} = this.state;
         if (email && validateEmail(email) && password ) {
             const user = {
-                email,
-                password,
+                Email: email,
+                Password: password,
             };
             postLogin(user, this.result)
         }
@@ -97,6 +105,9 @@ const mapDispatchToProps = dispatch => {
         },
         usersParametersFunction: (UsersParameters) => {
             dispatch(actionUsersParameters(UsersParameters))
+        },
+        permissionFunction: (Permission) => {
+            dispatch(actionPermission(Permission))
         },
     }
 };

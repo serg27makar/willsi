@@ -1,6 +1,8 @@
 import React from "react";
 import ru from "../access/lang/LangConstants";
 import "../access/css/cart.css"
+import {actionHeaderUser} from "../action";
+import {connect} from "react-redux";
 
 class ShowProductsBar extends React.Component {
     constructor(props) {
@@ -13,10 +15,11 @@ class ShowProductsBar extends React.Component {
         this.renderUser = this.renderUser.bind(this);
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.subUsers && this.props.subUsers.length > 0
-            && prevProps.subUsers !== this.props.subUsers) {
+        if ((this.props.subUsers && this.props.subUsers.length > 0
+            && (prevProps.subUsers !== this.props.subUsers)) ||
+            (prevProps.HeaderUser !== this.props.HeaderUser)) {
             this.setState({
-                headerUser: this.props.subUsers[0].UserName,
+                headerUser: this.props.subUsers[this.props.HeaderUser].UserName,
             })
         }
     }
@@ -29,9 +32,9 @@ class ShowProductsBar extends React.Component {
     };
 
     changeUser = (index) => {
+        this.props.headerUserFunction(index);
         this.setState({
             ...this.state,
-            headerUser: this.props.subUsers[index].UserName,
             open: this.state.open === "" ?
                 "open" : "",
         });
@@ -79,5 +82,17 @@ class ShowProductsBar extends React.Component {
         )
     }
 }
+function MapStateToProps(state) {
+    return {
+        HeaderUser: state.userReducer.HeaderUser,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        headerUserFunction: (HeaderUser) => {
+            dispatch(actionHeaderUser(HeaderUser))
+        },
+    }
+};
 
-export default ShowProductsBar;
+export default connect(MapStateToProps, mapDispatchToProps)(ShowProductsBar);

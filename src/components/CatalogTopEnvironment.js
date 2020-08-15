@@ -1,8 +1,9 @@
 import React from 'react';
 import "./../access/css/cart.css";
 import ru from "../access/lang/LangConstants";
-import {actionAddUser, actionOpenModal} from "../action";
+import {actionAddUser, actionHeaderUser, actionOpenModal} from "../action";
 import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
 
 class CatalogTopEnvironment extends React.Component {
     constructor(props) {
@@ -11,15 +12,33 @@ class CatalogTopEnvironment extends React.Component {
             headerUser: "",
             params: [],
             open: "",
+            dataRedirect: false,
         };
         this.addUser = this.addUser.bind(this);
     }
 
+    componentDidMount() {
+        setTimeout(() => {
+            if (this.props.subUsers && this.props.subUsers.length > 0 ) {
+                this.setState({
+                    headerUser: this.props.subUsers[this.props.HeaderUser].UserName,
+                    params: this.props.subUsers[this.props.HeaderUser].Parameters,
+                })
+            }
+        }, 500)
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.subUsers && this.props.subUsers.length > 0 && prevProps.subUsers !== this.props.subUsers) {
+        if (prevProps.dataRedirect !== this.props.dataRedirect) {
             this.setState({
-                headerUser: this.props.subUsers[0].UserName,
-                params: this.props.subUsers[0].Parameters,
+                dataRedirect: this.props.dataRedirect,
+            })
+        }
+        if ((this.props.subUsers && this.props.subUsers.length > 0) &&
+            (prevProps.HeaderUser !== this.props.HeaderUser)) {
+            this.setState({
+                headerUser: this.props.subUsers[this.props.HeaderUser].UserName,
+                params: this.props.subUsers[this.props.HeaderUser].Parameters,
             })
         }
     }
@@ -33,10 +52,9 @@ class CatalogTopEnvironment extends React.Component {
     };
 
     changeUser = (index) => {
+        this.props.headerUserFunction(index);
         this.setState({
             ...this.state,
-            headerUser: this.props.subUsers[index].UserName,
-            params: this.props.subUsers[index].Parameters,
             open: this.state.open === "" ?
                 "open" : "",
         });
@@ -48,7 +66,9 @@ class CatalogTopEnvironment extends React.Component {
 
     addUser() {
         this.props.addUserFunction(true);
-        this.editorOpen();
+        this.setState({
+            dataRedirect: true,
+        })
     };
 
     renderParams = (item, index) => {
@@ -66,22 +86,24 @@ class CatalogTopEnvironment extends React.Component {
     };
 
     renderUser = (item, index) => {
-        if (item.userName !== this.state.headerUser) {
+        if (item.UserName !== this.state.headerUser) {
             return (
                 <div className="dropdown-info__item" key={index} onClick={() => {this.changeUser(index)}}>
                     <div className="border-line" />
-                    <div className="dropdown-info__link text-16 bold uppercase">{item.userName}</div>
+                    <div className="dropdown-info__link text-16 bold uppercase">{item.UserName}</div>
                 </div>
             )
         }
     };
 
     render() {
+        if (this.state.dataRedirect) {
+            return (<Redirect to={"/data"}/>)
+        }
         return (
             <div className="catalog-top-env container">
                 <div className="environment-row align-items-center">
                     <div className="select-fitting-user">
-
                         <div className="catalog-top__dropdown-info">
                             <div className="catalog-top__button-drop" onClick={this.closeOpen}>
                                 <div className="catalog-top__button-text text-16 bold uppercase">{this.state.headerUser}</div>
@@ -96,12 +118,11 @@ class CatalogTopEnvironment extends React.Component {
                                 {this.props.subUsers && this.props.subUsers.map((item, index) => {
                                     return this.renderUser(item, index);
                                 })}
-                                <div className="dropdown-info__item" onClick={this.addUser}>
+                                <div className="dropdown-info__item" onClick={this.addUser} hidden={this.props.Permission === "unknown"}>
                                     <div className="dropdown-info__link icon-plus"/>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div className="col-12 catalog-top__list-object">
                         <ul className="list-object">
@@ -119,6 +140,9 @@ class CatalogTopEnvironment extends React.Component {
 function MapStateToProps(state) {
     return {
         modal: state.modalReducer.modal,
+        dataRedirect: state.pageReducer.dataRedirect,
+        Permission: state.userReducer.Permission,
+        HeaderUser: state.userReducer.HeaderUser,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -128,6 +152,9 @@ const mapDispatchToProps = dispatch => {
         },
         addUserFunction: (AddUser) => {
             dispatch(actionAddUser(AddUser))
+        },
+        headerUserFunction: (HeaderUser) => {
+            dispatch(actionHeaderUser(HeaderUser))
         },
     }
 };

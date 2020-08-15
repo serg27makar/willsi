@@ -1,5 +1,5 @@
 import React from 'react';
-import {actionAlertText, actionOpenModal, actionUsersParameters, setActionAdminPanel} from "../action";
+import {actionAddUser, actionAlertText, actionOpenModal, actionUsersParameters, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import RecalculateFooter from "../components/RecalculateFooter";
 import Recalculate from "../components/Recalculate";
@@ -20,6 +20,7 @@ class Data extends React.Component {
             params: [],
             reDirect: false,
             isChange: false,
+            newUser: 0,
         };
         this.nextParams =this.nextParams.bind(this);
         this.firstBlock =this.firstBlock.bind(this);
@@ -32,33 +33,41 @@ class Data extends React.Component {
             handlePageUp();
         }, 50);
         setTimeout(() => {
-            if (this.props.UsersParameters && this.props.UsersParameters.length >= 1 &&
+            if (!this.props.AddUser && (this.props.UsersParameters && this.props.UsersParameters.length >= 1 &&
                 this.props.UsersParameters[0].Parameters &&
-                this.props.UsersParameters[0].Parameters.length > 0) {
+                this.props.UsersParameters[0].Parameters.length > 0)) {
                 this.setState({
                     reDirect: true
+                })
+            }
+            if (this.props.AddUser) {
+                this.setState({
+                    newUser: this.props.UsersParameters.length,
                 })
             }
         }, 500);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.UsersParameters !== this.props.UsersParameters && this.state.isChange) {
+        if (prevState.isChange !== this.state.isChange && this.state.isChange) {
             this.isChanged();
             this.updateParams();
         }
     }
 
     componentWillUnmount() {
-        document.body.style.overflow = "auto"
+        document.body.style.overflow = "auto";
+        this.props.addUserFunction(false);
     }
 
     nextParams(name, gender) {
-        const UsersParameters =[{
+        const UsersParameters = this.props.UsersParameters;
+        const obj = {
             UserName: name,
-            Gender: gender,
+                Gender: gender,
             Parameters: this.state.params,
-        }];
+        };
+        UsersParameters.splice(this.state.newUser, 1, obj);
         this.props.usersParametersFunction(UsersParameters);
         if (name.length > 0) {
             this.firstBlock();
@@ -67,7 +76,6 @@ class Data extends React.Component {
             this.props.openModalFunction("alertModal");
         }
         this.isChanged();
-
     }
 
     isChanged() {
@@ -84,11 +92,13 @@ class Data extends React.Component {
     }
 
     updateParams() {
-        const UsersParameters = [{
-            UserName: this.props.UsersParameters[0].UserName,
-            Gender:  this.props.UsersParameters[0].Gender,
-            Parameters:  this.props.UsersParameters[0].Parameters,
-        }];
+        const UsersParameters = this.props.UsersParameters;
+        const obj = {
+            UserName: this.props.UsersParameters[this.state.newUser].UserName,
+            Gender: this.props.UsersParameters[this.state.newUser].Gender,
+            Parameters: this.props.UsersParameters[this.state.newUser].Parameters,
+        };
+        UsersParameters.splice(this.state.newUser, 1, obj);
         const user = {
             UserName: this.props.UserName,
             Email: this.props.Email,
@@ -121,11 +131,13 @@ class Data extends React.Component {
 
             });
         }
-        const UsersParameters =[{
-            UserName: this.props.UsersParameters[0].UserName,
-            Gender:  this.props.UsersParameters[0].Gender,
+        const UsersParameters = this.props.UsersParameters;
+        const obj = {
+            UserName: this.props.UsersParameters[this.state.newUser].UserName,
+            Gender: this.props.UsersParameters[this.state.newUser].Gender,
             Parameters: currentParams,
-        }];
+        };
+        UsersParameters.splice(this.state.newUser, 1, obj);
         this.props.usersParametersFunction(UsersParameters);
         this.isChanged();
     };
@@ -164,6 +176,7 @@ function MapStateToProps(state) {
         UserName: state.userReducer.UserName,
         Email: state.userReducer.Email,
         UsersParameters: state.userReducer.UsersParameters,
+        AddUser: state.userReducer.AddUser,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -179,7 +192,10 @@ const mapDispatchToProps = dispatch => {
         },
         usersParametersFunction: (UsersParameters) => {
             dispatch(actionUsersParameters(UsersParameters))
-        }
+        },
+        addUserFunction: (AddUser) => {
+            dispatch(actionAddUser(AddUser))
+        },
     }
 };
 
