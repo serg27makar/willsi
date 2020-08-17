@@ -78,8 +78,7 @@ class EditorModal extends React.Component {
     closeOpen = () => {
         this.setState({
             ...this.state,
-            open: this.state.open === "" ?
-                "open" : "",
+            open: this.state.open === "" ? "open" : "",
         })
     };
 

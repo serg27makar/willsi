@@ -4,11 +4,15 @@ import {connect} from "react-redux";
 import Reviews from "../components/shared/Reviews";
 import SearchBox from "../components/SearchBox";
 import WelcomeAbout from "../components/WelcomeAbout";
+import {handlePageUp} from "../js/visualEffects";
 
 class About extends React.Component {
 
     componentDidMount() {
         this.props.setActionAdminPanelFunction("About");
+        setTimeout(() => {
+            handlePageUp();
+        }, 50);
     }
 
     render() {

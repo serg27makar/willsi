@@ -1,10 +1,15 @@
 import React from "react";
 import ru from "../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
+import {Redirect} from "react-router-dom";
 
 class WelcomeMain extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            redirect: false,
+            redirectTo: "",
+        };
         this.wrapperRef = React.createRef();
     }
 
@@ -15,7 +20,19 @@ class WelcomeMain extends React.Component {
         }, 300);
     }
 
+    redirect(item) {
+        this.setState({
+            redirect: true,
+            redirectTo: item,
+        })
+    }
+
     render() {
+        if (this.state.redirect) {
+            return(
+                <Redirect to={this.state.redirectTo}/>
+            )
+        }
         return (
             <div className="welcome-main">
                 <div className="container">
@@ -31,8 +48,8 @@ class WelcomeMain extends React.Component {
                                 <br/>{ru.HomepageFirstTextBlock3}
                             </p>
                             <div className="welcome-main-env__button-list">
-                                <ButtonMain btnClass="button-main text-16" text={ru.toDressingRoom}/>
-                                <ButtonMain btnClass="button-white text-16" text={ru.becomePartner}/>
+                                <ButtonMain btnClass="button-main text-16" text={ru.toDressingRoom} onClick={() => {this.redirect("/catalog")}}/>
+                                <ButtonMain btnClass="button-white text-16" text={ru.becomePartner} onClick={() => {this.redirect("/seller-service")}}/>
                             </div>
                             <div className="welcome-main-env__our-services">
                                 <p className="welcome-main-env__our-services-text text-16 light">{ru.OurService}

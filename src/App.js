@@ -44,6 +44,10 @@ class App extends React.Component {
     }
 
     result = (res) => {
+        if (res.isAxiosError) {
+            console.log(res);
+            return;
+        }
         if (res) {
             this.props.userNameFunction(res.UserName);
             this.props.emailFunction(res.Email);

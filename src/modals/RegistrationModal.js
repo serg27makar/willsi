@@ -32,8 +32,8 @@ class RegistrationModal extends React.Component {
         ];
     }
 
-    closeLincModal = () => {
-        this.props.openModalFunction("");
+    changeModal = (modal = "") => {
+        this.props.openModalFunction(modal);
     };
 
     dataOnChange = (data) => {
@@ -54,7 +54,7 @@ class RegistrationModal extends React.Component {
             this.props.emailFunction(this.state.email);
             this.props.usersParametersFunction(this.usersParameters);
         }
-        this.closeLincModal();
+        this.changeModal();
     };
 
     registration = () => {
@@ -88,7 +88,7 @@ class RegistrationModal extends React.Component {
     render() {
         return(
             <div className="modal-envelope" id="modal-registration">
-                <div className="modal-envelope__close" onClick={this.closeLincModal}>
+                <div className="modal-envelope__close" onClick={this.changeModal}>
                     <svg className="icon icon-close ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#close"/>
                     </svg>
@@ -105,7 +105,7 @@ class RegistrationModal extends React.Component {
                             <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.SignUp} onClick={this.registration}/>
                         </div>
                         <div className="modal-form__bottom-text text-16 light color-aqua">{ru.HaveAccount}
-                            <div className="modal-form__bottom-link color-aqua" >{ru.SignIn}</div>
+                            <div className="modal-form__bottom-link color-aqua" onClick={() => {this.changeModal("signIn")}}>{ru.SignIn}</div>
                         </div>
                         <div className="modal-form__social-list">
                             <div className="modal-form__social-link icon-fb"  style={{backgroundImage: "url('static/img/content/icon-fb.png')"}}/>

@@ -17,8 +17,8 @@ import ru from "../access/lang/LangConstants";
 
 class EnterModal extends React.Component {
 
-    closeLincModal = () => {
-        this.props.openModalFunction("");
+    changeModal = (modal = "") => {
+        this.props.openModalFunction(modal);
     };
 
     dataOnChange = (data) => {
@@ -33,6 +33,14 @@ class EnterModal extends React.Component {
     };
 
     result = (res) => {
+        if (res === "find:0") {
+            console.log(res);
+            return;
+        }
+        if (res.isAxiosError) {
+            console.log(res);
+            return;
+        }
         if (res) {
             this.props.userIDFunction(res.UserID);
             this.props.userNameFunction(res.UserName);
@@ -40,7 +48,7 @@ class EnterModal extends React.Component {
             this.props.usersParametersFunction(res.UsersParameters);
             this.props.permissionFunction(res.Permission);
         }
-        this.closeLincModal();
+        this.changeModal();
     };
 
     login = () => {
@@ -57,7 +65,7 @@ class EnterModal extends React.Component {
     render() {
         return(
             <div className="modal-envelope" id="modal-enter">
-                <div className="modal-envelope__close" onClick={this.closeLincModal}>
+                <div className="modal-envelope__close" onClick={this.changeModal}>
                     <svg className="icon icon-close ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#close"/>
                     </svg>
@@ -74,7 +82,7 @@ class EnterModal extends React.Component {
                             <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.SignIn} onClick={this.login}/>
                         </div>
                         <div className="modal-form__bottom-text text-16 light color-aqua">{ru.DontHaveAccount}
-                            <div className="modal-form__bottom-link color-aqua" >{ru.SignUp}</div>
+                            <div className="modal-form__bottom-link color-aqua" onClick={() => {this.changeModal("signUp")}}>{ru.SignUp}</div>
                         </div>
                     </div>
                 </div>

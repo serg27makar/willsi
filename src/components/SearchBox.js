@@ -1,11 +1,29 @@
 import React from 'react';
 import ru from "../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
-
-//Todo refactor
+import {Redirect} from "react-router-dom";
 
 class SearchBox extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirect: false,
+        };
+        this.redirect = this.redirect.bind(this);
+    }
+
+    redirect() {
+        this.setState({
+            redirect: true,
+        })
+    }
+
     render() {
+        if (this.state.redirect) {
+            return(
+                <Redirect to={"/catalog"}/>
+            )
+        }
         return (
             <div className="search-box">
                 <p className="search-box__title text-18 uppercase">{ru.whatClothesWillSuitYou}</p>
@@ -23,7 +41,7 @@ class SearchBox extends React.Component {
                             <input className="form-env__input text-18" type="text" name="hips"
                                    placeholder={ru.placeholderHips}/>
                         </div>
-                        <ButtonMain btnClass="button-main text-16" text={ru.pickUpClothes}/>
+                        <ButtonMain btnClass="button-main text-16" text={ru.pickUpClothes} onClick={this.redirect}/>
                     </form>
                 </div>
             </div>

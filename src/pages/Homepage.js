@@ -12,28 +12,79 @@ import Startup from "../components/Startup";
 import WelcomeMain from "../components/WelcomeMain";
 import {resourceThreeStepsArr, startupHomepageArr} from "../access/temporaryConstants";
 import ru from "../access/lang/LangConstants";
+import {Redirect} from "react-router-dom";
+import {handlePageUp} from "../js/visualEffects";
 
 class Homepage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirect: false,
+            isUnknown: true,
+            minusScroll: 0,
+        };
+        this.redirect = this.redirect.bind(this);
+    }
 
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Homepage");
+        setTimeout(() => {
+            handlePageUp();
+        }, 50);
+        this.setState({
+            ...this.state,
+            isUnknown: this.props.UsersParameters.length === 0,
+            minusScroll: this.props.UsersParameters.length === 0 ? 0 : 600,
+        })
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.UsersParameters !== this.props.UsersParameters) {
+            this.setState({
+                ...this.state,
+                isUnknown: this.props.UsersParameters.length === 0,
+                minusScroll: this.props.UsersParameters.length === 0 ? 0 : 600,
+            })
+        }
+    }
+
+    redirect() {
+        this.setState({
+            ...this.state,
+            redirect: true,
+        })
+    }
+
+    renderStepsBlock() {
+        if (this.state.isUnknown) {
+            return (
+                <StepsBlock title={ru.JustThreeSteps}
+                            stepsArr={resourceThreeStepsArr}
+                            btnText={ru.toDressingRoom}
+                            scrollTopMin={1800} scrollTopMax={3100}
+                            onClick={this.redirect}
+                />
+            )
+        }
+        return null;
     }
 
     render() {
+        if (this.state.redirect) {
+            return(
+                <Redirect to={"/data"}/>
+            )
+        }
         return(
             <div className="content">
                 <WelcomeMain/>
                 <SearchBox/>
                 <Startup startupArr={startupHomepageArr} scrollTopMin={300} scrollTopMax={1000}/>
                 <Indicator scrollTopMin={700} scrollTopMax={1600}/>
-                <StepsBlock title={ru.JustThreeSteps}
-                            stepsArr={resourceThreeStepsArr}
-                            btnText={ru.toDressingRoom}
-                            scrollTopMin={1800} scrollTopMax={3100}
-                />
+                {this.renderStepsBlock()}
                 <DescriptionBg/>
-                <Partners scrollTopMin={3200} scrollTopMax={4500}/>
-                <Reviews scrollTopMin={4100}/>
+                <Partners scrollTopMin={3200 - this.state.minusScroll} scrollTopMax={4500 - this.state.minusScroll}/>
+                <Reviews scrollTopMin={4100 - this.state.minusScroll}/>
             </div>
         )
     }
@@ -42,6 +93,7 @@ class Homepage extends React.Component {
 function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
+        UsersParameters: state.userReducer.UsersParameters,
     }
 }
 const mapDispatchToProps = dispatch => {

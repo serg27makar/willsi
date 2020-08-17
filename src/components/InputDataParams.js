@@ -68,7 +68,7 @@ class InputDataParams extends React.Component {
     }
 
     updateData() {
-        if (!this.props.UserID) {
+        if (!this.props.UserID || this.props.UserID === "undefined") {
             const user = {
                 UserName: "",
                 Email: "",

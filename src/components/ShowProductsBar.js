@@ -20,14 +20,14 @@ class ShowProductsBar extends React.Component {
             (prevProps.HeaderUser !== this.props.HeaderUser)) {
             this.setState({
                 headerUser: this.props.subUsers[this.props.HeaderUser].UserName,
+                open: "",
             })
         }
     }
     closeOpen = () => {
         this.setState({
             ...this.state,
-            open: this.state.open === "" ?
-                "open" : "",
+            open: this.state.open === "" ? "open" : "",
         });
     };
 
@@ -35,8 +35,7 @@ class ShowProductsBar extends React.Component {
         this.props.headerUserFunction(index);
         this.setState({
             ...this.state,
-            open: this.state.open === "" ?
-                "open" : "",
+            open: this.state.open === "" ? "open" : "",
         });
     };
 

@@ -39,6 +39,7 @@ class CatalogTopEnvironment extends React.Component {
             this.setState({
                 headerUser: this.props.subUsers[this.props.HeaderUser].UserName,
                 params: this.props.subUsers[this.props.HeaderUser].Parameters,
+                open: "",
             })
         }
     }
@@ -46,8 +47,7 @@ class CatalogTopEnvironment extends React.Component {
     closeOpen = () => {
         this.setState({
             ...this.state,
-            open: this.state.open === "" ?
-                "open" : "",
+            open: this.state.open === "" ? "open" : "",
         })
     };
 
@@ -55,8 +55,7 @@ class CatalogTopEnvironment extends React.Component {
         this.props.headerUserFunction(index);
         this.setState({
             ...this.state,
-            open: this.state.open === "" ?
-                "open" : "",
+            open: this.state.open === "" ? "open" : "",
         });
     };
 

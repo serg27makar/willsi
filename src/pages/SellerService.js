@@ -12,12 +12,37 @@ import Details from "../components/Details";
 import WhomStartup from "../components/WhomStartup";
 import ru from "../access/lang/LangConstants";
 import WelcomeService from "../components/WelcomeService";
+import {handlePageUp} from "../js/visualEffects";
+import {Redirect} from "react-router-dom";
 
 class SellerService extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirect: false,
+        };
+        this.redirect = this.redirect.bind(this);
+    }
+
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Service");
+        setTimeout(() => {
+            handlePageUp();
+        }, 50);
     }
+    redirect() {
+        this.setState({
+            ...this.state,
+            redirect: true,
+        })
+    }
+
     render() {
+        if (this.state.redirect) {
+            return(
+                <Redirect to={"/data"}/>
+            )
+        }
         return(
             <div className="content">
                 <WelcomeService/>
@@ -29,7 +54,7 @@ class SellerService extends React.Component {
                 <Indicator scrollTopMin={2300} scrollTopMax={3400}/>
                 <StepsBlock title={ru.JustThreeSteps}
                             stepsArr={resourceThreeStepsArr} btnText={ru.toDressingRoom}
-                            scrollTopMin={3400} scrollTopMax={4700}/>
+                            scrollTopMin={3400} scrollTopMax={4700} onClick={this.redirect}/>
                 <DescriptionBg/>
                 <Partners  scrollTopMin={4800} scrollTopMax={6000}/>
                 <Reviews scrollTopMin={5800}/>

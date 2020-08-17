@@ -9,6 +9,7 @@ import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ShowProductsBar from "../components/ShowProductsBar";
 import ProductsCart from "../components/ProductsCart";
 import  { Redirect } from 'react-router-dom'
+import {handlePageUp} from "../js/visualEffects";
 
 const breadcrumbs = {
     title: "Женская одежда",
@@ -31,21 +32,31 @@ class Catalog extends React.Component {
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Catalog");
         setTimeout(() => {
-            if (this.props.UsersParameters && (this.props.UsersParameters.length < 1 ||
-               ( this.props.UsersParameters[0].Parameters &&
-                this.props.UsersParameters[0].Parameters.length < 1))) {
-                this.setState({
-                    reDirect: true
-                })
-            }
-        }, 300);
+            handlePageUp();
+        }, 50);
+        this.functionRedirect();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.UsersParameters !== this.props.UsersParameters) {
+            this.functionRedirect();
+        }
         if (this.props.UsersParameters !== this.state.subUsers) {
             this.setState({
+                ...this.state,
                 subUsers: this.props.UsersParameters,
             });
+        }
+    }
+
+    functionRedirect() {
+        if (this.props.UsersParameters.length < 1 ||
+            ( this.props.UsersParameters[0].Parameters &&
+                this.props.UsersParameters[0].Parameters.length < 1)) {
+            this.setState({
+                ...this.state,
+                reDirect: true
+            })
         }
     }
 

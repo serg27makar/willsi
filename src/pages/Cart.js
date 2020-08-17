@@ -12,6 +12,7 @@ import ru from "../access/lang/LangConstants";
 import CardDescription from "../components/CardDescription";
 import CartTabs from "../components/CartTabs";
 import CircleLevel from "../components/shared/CircleLevel";
+import {handlePageUp} from "../js/visualEffects";
 
 const breadcrumbs = {
     title: "Женская одежда",
@@ -33,6 +34,9 @@ class Cart extends React.Component {
 
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Cart");
+        setTimeout(() => {
+            handlePageUp();
+        }, 50);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {

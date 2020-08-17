@@ -54,7 +54,7 @@ class StepsBlock extends React.Component {
                         })}
                         {this.props.btnText ?
                         <div className="col-12">
-                            <ButtonMain btnClass="steps-box__button-dressing button-main text-18" text={this.props.btnText}/>
+                            <ButtonMain btnClass="steps-box__button-dressing button-main text-18" text={this.props.btnText} onClick={this.props.onClick}/>
                         </div>
                         : null}
                     </div>

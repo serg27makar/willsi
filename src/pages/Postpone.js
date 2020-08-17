@@ -8,6 +8,7 @@ import RutCatalogSidebar from "../components/RutCatalogSidebar";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ProductsCart from "../components/ProductsCart";
 import ShowProductsBar from "../components/ShowProductsBar";
+import {handlePageUp} from "../js/visualEffects";
 
 const breadcrumbs = {
     title: "Отложенные товары",
@@ -27,6 +28,9 @@ class Postpone extends React.Component {
 
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Postpone");
+        setTimeout(() => {
+            handlePageUp();
+        }, 50);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
