@@ -30,6 +30,8 @@ import {actionEmail, actionPermission, actionUserID, actionUserName, actionUsers
 import {getUserData} from "./utilite/axiosConnect";
 import SaveUpdateModal from "./modals/SaveUpdateModal";
 import AlertModal from "./modals/AlertModal";
+import AddServiceModal from "./modals/AddServiceModal";
+import RegistrationStoreAdministrator from "./modals/RegistrationStoreAdministrator";
 
 const history = createBrowserHistory();
 
@@ -76,6 +78,10 @@ class App extends React.Component {
                 return (<SaveUpdateModal/>);
             case "alertModal":
                 return (<AlertModal/>);
+            case "addServiceModal":
+                return (<AddServiceModal/>);
+            case "storeAdminModal":
+                return (<RegistrationStoreAdministrator/>);
             default:
                 return null
         }

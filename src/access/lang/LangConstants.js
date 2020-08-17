@@ -11,6 +11,7 @@ const ru = {
 
     SignIn: "Вход",
     SignUp: "Регистрация",
+    AdminSignUp: "Регистрация администратора",
 
     TrialPlan: "Пробный план",
     Edit: "Изменить",

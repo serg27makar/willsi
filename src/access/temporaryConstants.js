@@ -661,6 +661,38 @@ export const dataInputRegistrationModal = [
         icon: "static/img/svg-sprites/symbol/sprite.svg#key",
     },
 ];
+export const dataInputRegistrationStoreAdminModal = [
+    {
+        type: "text",
+        name: "name",
+        placeholder: "Имя",
+        icon: "static/img/svg-sprites/symbol/sprite.svg#user",
+    },
+    {
+        type: "mail",
+        name: "email",
+        placeholder: "Электронная почта",
+        icon: "static/img/svg-sprites/symbol/sprite.svg#email",
+    },
+    {
+        type: "tel",
+        name: "phone",
+        placeholder: "Телефон",
+        icon: "static/img/svg-sprites/symbol/sprite.svg#phone",
+    },
+    {
+        type: "password",
+        name: "password",
+        placeholder: "Пароль",
+        icon: "static/img/svg-sprites/symbol/sprite.svg#user",
+    },
+    {
+        type: "password",
+        name: "confirmPassword",
+        placeholder: "Повторите пароль",
+        icon: "static/img/svg-sprites/symbol/sprite.svg#key",
+    },
+];
 export const dataInputEnterModal = [
     {
         type: "mail",

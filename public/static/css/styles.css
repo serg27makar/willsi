@@ -783,6 +783,10 @@ footer {
     max-width: 33.125vw !important;
     min-height: 45.625vw;
 }
+#modal-registration-admin .modal-form__label {
+    max-width: 43.125vw !important;
+    margin: 0 0 0.85vw 0;
+}
 #modal-profile {
     max-width: 33.125vw !important;
     min-height: 25.937500000000004vw;
@@ -1017,6 +1021,7 @@ footer {
 .steps.bgNon {
     background: none;
     min-height: 36vw;
+    margin-top: 0;
 }
 .description-bg {
     padding-top: 0.625vw;
@@ -2804,20 +2809,23 @@ input[type="checkbox"] + label:hover {
     color: #620808;
 }
 .welcome-service {
-    width: 100%;
+    width: 50vw;
     min-height: 35vw;
     height: auto;
     background: url("../img/content/service-bg.jpg") no-repeat center center;
     background-size: cover;
     text-align: center;
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .welcome-service__title {
-    padding-top: 5.625vw;
     padding-bottom: 1.75vw;
 }
 .welcome-service__form-shop {
     margin: 0 auto;
-    width: 57.49999999999999vw;
 }
 .form-shop__row {
     display: -webkit-box;

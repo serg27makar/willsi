@@ -6,6 +6,7 @@ import {partnersArr} from "../access/temporaryConstants"
 import {slideAnimate} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
+import {actionOpenModal} from "../action";
 
 class Partners extends React.Component {
     constructor(props) {
@@ -24,6 +25,7 @@ class Partners extends React.Component {
             return this.startupRef.push(React.createRef());
         });
         this.redirect = this.redirect.bind(this);
+        this.openModal = this.openModal.bind(this);
     }
 
     componentDidMount() {
@@ -49,6 +51,10 @@ class Partners extends React.Component {
         })
     }
 
+    openModal() {
+        this.props.openModalFunction("storeAdminModal")
+    }
+
     partnerBox = (item, index) => {
         return (
             <div ref={this.startupRef[index]} className="partner-box" key={index}>
@@ -65,16 +71,13 @@ class Partners extends React.Component {
     };
 
     renderPartnersBtn() {
-        if (this.state.partnersBtn) {
-            return (
-                <div className="col-12">
-                    <div className="partners-env-btn">
-                        <ButtonMain btnClass="button-main text-16" text={ru.becomePartner} onClick={this.redirect}/>
-                    </div>
+        return (
+            <div className="col-12">
+                <div className="partners-env-btn">
+                    <ButtonMain btnClass="button-main text-16" text={ru.becomePartner} onClick={this.openModal}/>
                 </div>
-            )
-        }
-        return null;
+            </div>
+        );
     }
 
     render() {
@@ -105,7 +108,15 @@ class Partners extends React.Component {
 function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
+        modal: state.modalReducer.modal,
     }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+        openModalFunction: (modal) => {
+            dispatch(actionOpenModal(modal))
+        },
+    }
+};
 
-export default connect(MapStateToProps)(Partners);
+export default connect(MapStateToProps, mapDispatchToProps)(Partners);

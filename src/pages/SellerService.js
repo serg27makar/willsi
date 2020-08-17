@@ -11,7 +11,6 @@ import {resourceSellingArr, resourceThreeStepsArr, startupServiceArr} from "../a
 import Details from "../components/Details";
 import WhomStartup from "../components/WhomStartup";
 import ru from "../access/lang/LangConstants";
-import WelcomeService from "../components/WelcomeService";
 import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
 
@@ -45,19 +44,18 @@ class SellerService extends React.Component {
         }
         return(
             <div className="content">
-                <WelcomeService/>
                 <StepsBlock title={ru.SellThings}
-                            stepsArr={resourceSellingArr} bgNon={true} scrollTopMax={1100}/>
+                            stepsArr={resourceSellingArr} bgNon={true} scrollTopMax={500}/>
                 <WhomStartup/>
                 <Details/>
-                <Startup startupArr={startupServiceArr}  scrollTopMin={1600} scrollTopMax={2600}/>
-                <Indicator scrollTopMin={2300} scrollTopMax={3400}/>
+                <Startup startupArr={startupServiceArr}  scrollTopMin={1000} scrollTopMax={2000}/>
+                <Indicator scrollTopMin={1700} scrollTopMax={2800}/>
                 <StepsBlock title={ru.JustThreeSteps}
                             stepsArr={resourceThreeStepsArr} btnText={ru.toDressingRoom}
-                            scrollTopMin={3400} scrollTopMax={4700} onClick={this.redirect}/>
+                            scrollTopMin={2800} scrollTopMax={4100} onClick={this.redirect}/>
                 <DescriptionBg/>
-                <Partners  scrollTopMin={4800} scrollTopMax={6000}/>
-                <Reviews scrollTopMin={5800}/>
+                <Partners  scrollTopMin={4200} scrollTopMax={5400}/>
+                <Reviews scrollTopMin={5200}/>
             </div>
         )
     }

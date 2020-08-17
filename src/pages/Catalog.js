@@ -8,8 +8,8 @@ import CatalogSidebar from "../components/CatalogSidebar";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ShowProductsBar from "../components/ShowProductsBar";
 import ProductsCart from "../components/ProductsCart";
-import  { Redirect } from 'react-router-dom'
 import {handlePageUp} from "../js/visualEffects";
+import {Redirect} from "react-router-dom";
 
 const breadcrumbs = {
     title: "Женская одежда",
