@@ -33,7 +33,7 @@ class RegistrationStoreAdministrator extends React.Component {
         ];
     }
 
-    changeModal = (modal = "") => {
+    changeModal = (modal) => {
         this.props.openModalFunction(modal);
     };
 
@@ -73,7 +73,7 @@ class RegistrationStoreAdministrator extends React.Component {
                 Email: email,
                 Phone: phone,
                 Password: password,
-                Permission: "buyer",
+                Permission: "storeAdmin",
                 UsersParameters: this.props.UsersParameters &&
                 this.props.UsersParameters.length > 0 ? this.props.UsersParameters : this.usersParameters,
             };
@@ -90,7 +90,7 @@ class RegistrationStoreAdministrator extends React.Component {
     render() {
         return(
             <div className="modal-envelope" id="modal-registration-admin">
-                <div className="modal-envelope__close" onClick={this.changeModal}>
+                <div className="modal-envelope__close" onClick={() => {this.changeModal("")}}>
                     <svg className="icon icon-close ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#close"/>
                     </svg>
