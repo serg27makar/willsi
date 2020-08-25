@@ -20,7 +20,7 @@ class DoubleButton extends React.Component {
     }
 
     activeBtn = () => {
-        this.props.toggle();
+        this.props.toggle(this.state.active);
         this.setState({
             active: !this.state.active,
         })

@@ -221,6 +221,11 @@ header {
     -webkit-box-align: center !important;
     align-items: center !important;
 }
+.block-align-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .container-fluid {
     width: 100%;
     padding-right: 15px;
@@ -607,7 +612,22 @@ footer {
 .nav__item:not(:first-child) {
     padding-left: 25px;
 }
+.modal-param-list {
 
+}
+.modal-param-list-item {
+    height: 2vw;
+    border: 1px solid aliceblue;
+    display: flex;
+    align-items: center;
+    padding: 0 1vw;
+    margin: 0.5vw;
+    cursor: pointer;
+}
+.modal-param-list-item.active,
+.modal-param-list-item:hover {
+   background: aliceblue;
+}
 .modal-envelope {
     padding: 3.4375vw 3.75vw;
     background: #fff;
@@ -1389,6 +1409,10 @@ footer {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
+    position: relative;
+}
+.col-12.catalog-top__list-object {
+    overflow: hidden;
 }
 .catalog-top__list-object .list-object__item {
     display: -webkit-box;
@@ -1397,6 +1421,7 @@ footer {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    min-width: 10vw;
 }
 .catalog-top__list-object .list-object__text-value {
     padding: 0 0.25vw;
@@ -1525,7 +1550,10 @@ footer {
     padding-left: 1.25vw;
 }
 .dropdown-list__item {
-    padding: 0 0 1.25vw 0;
+    padding: 1vw 0 1vw 1vw;
+}
+.item-select {
+    background: aliceblue;
 }
 .dropdown-list__link {
     cursor: pointer;
@@ -1875,6 +1903,12 @@ input[type="checkbox"] + label:hover {
     text-align: left;
     margin: 1rem !important;
 }
+.envelope-mode-cabinet {
+    width: 100% !important;
+    text-align: left;
+    margin: 1rem 0 !important;
+    padding: 0 1vw 0 6.5vw !important;
+}
 .parameters {
     padding-top: 0.9375vw;
 }
@@ -2025,16 +2059,17 @@ input[type="checkbox"] + label:hover {
     fill: #fff !important;
 }
 .cabinet-wrapper {
-    height: 82vh;
+    display: flex;
+    min-height: 82vh;
 }
 .cabinet-sidebar-left {
     width: 30%;
     height: 100%;
-    border-right: 2px solid #72bfcb;
     padding: 2rem;
 }
 .cabinet-sidebar-content {
-
+    padding: 2rem;
+    border-left: 2px solid #72bfcb;
 }
 .cabinet-email {
 
@@ -2533,6 +2568,9 @@ input[type="checkbox"] + label:hover {
     left: 3.5vw;
     font-size: 1.35vw;
 }
+.little-btn {
+    width: 13vw !important;
+}
 .input-placeholder {
     position: absolute;
     top: 0.5rem;
@@ -2748,6 +2786,7 @@ input[type="checkbox"] + label:hover {
     -webkit-box-shadow: 0.1875vw 0.5625vw 1vw 0 rgba(198,216,70,0.35);
     box-shadow: 0.1875vw 0.5625vw 1vw 0 rgba(198,216,70,0.35);
     background: #fff;
+    cursor: pointer;
 }
 .box-tags__item .icon {
     width: 0.9375vw;
@@ -2834,12 +2873,17 @@ input[type="checkbox"] + label:hover {
     margin-left: -0.9375vw;
     margin-right: -0.9375vw;
 }
+.form-shop__label-last {
+    margin: 0 0 3vw 0;
+}
+.form-shop__label {
+    margin: 0 0 1.875vw 0;
+}
+.form-shop__label-last,
 .form-shop__label {
     width: 100%;
-    margin: 0 0 1.875vw 0;
-    padding-left: 0.9375vw;
-    padding-right: 0.9375vw;
-    height: 3.75vw;
+    display: block;
+    height: 2.5vw;
 }
 .form-shop__input {
     border: 0.0625vw solid #e2e2e2;
@@ -2872,10 +2916,9 @@ input[type="checkbox"] + label:hover {
 .form-shop__textarea {
     border: 0.0625vw solid #e2e2e2;
     border-radius: 0.25vw;
-    margin: 0 0 1.875vw 0;
     padding: 1.25vw;
     width: 100%;
-    min-height: 8.75vw;
+    min-height: 6vw;
     -webkit-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
@@ -2938,6 +2981,7 @@ input[type="checkbox"] + label:hover {
     -webkit-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
 .form-shop__button-save:hover {
     -webkit-transition: all 0.3s ease-in-out;
@@ -2945,6 +2989,11 @@ input[type="checkbox"] + label:hover {
     transition: all 0.3s ease-in-out;
     color: #c6d846;
     background: #fff;
+}
+.add-store-label {
+    display: block;
+    height: 2vw;
+    padding: 0 2vw;
 }
 .startup-red .startup__title:before {
     background: #620808;

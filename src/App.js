@@ -26,12 +26,20 @@ import WowFirstModal from "./modals/WowFirstModal";
 import WowSecondModal from "./modals/WowSecondModal";
 import {connect} from "react-redux";
 import EditorModal from "./modals/EditorModal";
-import {actionEmail, actionPermission, actionUserID, actionUserName, actionUsersParameters} from "./action";
+import {
+    actionEmail,
+    actionPermission,
+    actionUserID,
+    actionUserName,
+    actionUsersParameters,
+    actionUserStore
+} from "./action";
 import {getUserData} from "./utilite/axiosConnect";
 import SaveUpdateModal from "./modals/SaveUpdateModal";
 import AlertModal from "./modals/AlertModal";
 import AddServiceModal from "./modals/AddServiceModal";
 import RegistrationStoreAdministrator from "./modals/RegistrationStoreAdministrator";
+import AddParamsModal from "./modals/AddParamsModal";
 
 const history = createBrowserHistory();
 
@@ -55,6 +63,7 @@ class App extends React.Component {
             this.props.emailFunction(res.Email);
             this.props.usersParametersFunction(res.UsersParameters);
             this.props.permissionFunction(res.Permission);
+            this.props.userStoreFunction(res.UserStore);
         }
     };
 
@@ -82,6 +91,8 @@ class App extends React.Component {
                 return (<AddServiceModal/>);
             case "storeAdminModal":
                 return (<RegistrationStoreAdministrator/>);
+            case "addParamsModal":
+                return (<AddParamsModal/>);
             default:
                 return null
         }
@@ -152,6 +163,9 @@ const mapDispatchToProps = dispatch => {
         },
         permissionFunction: (Permission) => {
             dispatch(actionPermission(Permission))
+        },
+        userStoreFunction: (UserStore) => {
+            dispatch(actionUserStore(UserStore))
         },
     }
 };

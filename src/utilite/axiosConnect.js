@@ -33,6 +33,17 @@ export const postUpdate = (user, callbackInfo) => {
     })
 };
 
+export const postStoreRegister = (store, callbackInfo) => {
+    axios.post(Url + `/store/register`, store, {
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data.insertedId);
+        }).catch(err => {
+            console.log(err);
+    })
+};
+
 export const getUserData = (callbackInfo) => {
     axios.get(Url + `/users/getUserData`, {
         headers: {'token': localStorage.UserId}

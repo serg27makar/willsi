@@ -9,6 +9,7 @@ const initialState = {
     AddUser: false,
     Permission: "unknown",
     HeaderUser: 0,
+    UserStore: []
 };
 
 export default function userReducer(state = initialState, action) {
@@ -62,6 +63,11 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 HeaderUser: action.HeaderUser
+            };
+        case "USER_STORE":
+            return {
+                ...state,
+                UserStore: action.UserStore
             };
         default:
             return state;

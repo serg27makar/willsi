@@ -1,7 +1,7 @@
 import React from "react";
 import ModalInput from "./modalComponents/ModalInput";
 import ButtonMain from "../components/shared/ButtonMain";
-import {dataInputRegistrationModal, dataInputRegistrationStoreAdminModal} from "../access/temporaryConstants";
+import {dataInputRegistrationStoreAdminModal} from "../access/temporaryConstants";
 import {validateEmail} from "../js/sharedFunctions";
 import {postRegister, postUpdate} from "../utilite/axiosConnect";
 import {
@@ -10,7 +10,6 @@ import {
     actionPermission,
     actionUserID,
     actionUserName,
-    actionUsersParameters
 } from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
@@ -24,24 +23,33 @@ class RegistrationStoreAdministrator extends React.Component {
             phone: "",
             password: "",
             confirmPassword: "",
+            changedData: false,
         };
-        this.usersParameters = [
-            {
-                UserName: '',
-                Parameters: [],
-            }
-        ];
+        this.cancelChange = this.cancelChange.bind(this);
+        this.closeAlert = this.closeAlert.bind(this);
+        this.saveChange = this.saveChange.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            ...this.state,
+            name: this.props.UserName,
+            email: this.props.Email,
+        });
+        if (this.props.UserName && this.props.Email) {
+            dataInputRegistrationStoreAdminModal.splice(dataInputRegistrationStoreAdminModal.length - 2, 2);
+        }
     }
 
     changeModal = (modal) => {
         this.props.openModalFunction(modal);
     };
 
-    dataOnChange = (data) => {
-        data.stopPropagation();
-        data.preventDefault();
-        const name = data.target.name;
-        const value = data.target.value;
+    dataOnChange = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        const name = e.target.name;
+        const value = e.target.value;
         this.setState({
             ...this.state,
             [name]: value,
@@ -53,39 +61,121 @@ class RegistrationStoreAdministrator extends React.Component {
             this.props.userIDFunction(res);
             this.props.userNameFunction(this.state.name);
             this.props.emailFunction(this.state.email);
-            this.props.usersParametersFunction(this.usersParameters);
         }
         this.changeModal("addServiceModal");
     };
 
     registration = () => {
         const {name, email, password, confirmPassword, phone} = this.state;
-        this.usersParameters = [
-            {
-                UserName: name,
-                Parameters: [],
-            }
-        ];
-        if (name.length >= 3 && email && validateEmail(email) &&
-            password && confirmPassword && password === confirmPassword && phone) {
-            let user = {
-                UserName: name,
-                Email: email,
-                Phone: phone,
-                Password: password,
-                Permission: "storeAdmin",
-                UsersParameters: this.props.UsersParameters &&
-                this.props.UsersParameters.length > 0 ? this.props.UsersParameters : this.usersParameters,
-            };
-            this.props.permissionFunction("buyer");
-            if (this.props.UserID) {
+        let user = this.userData();
+        if (this.props.UserID && this.props.Email) {
+            if ((this.props.Email !== this.state.email) || (this.props.UserName !== this.state.name)) {
+                this.setState({
+                    ...this.state,
+                    changedData: true,
+                })
+            } else if (name.length >= 3 && email && validateEmail(email) && phone) {
                 user = {...user, UserID: this.props.UserID};
                 postUpdate(user, this.result);
             } else {
+                this.openAlert();
+            }
+        } else {
+            if (name.length >= 3 && email && validateEmail(email) && phone &&
+                password && confirmPassword && password === confirmPassword) {
+                user = {...user, Password: password};
                 postRegister(user, this.result);
+            } else {
+                this.openAlert();
             }
         }
     };
+
+    saveChange() {
+        let user = this.userData();
+        if (user.UserName.length >= 3 && user.Email && validateEmail(user.Email) && user.Phone) {
+            user = {...user, UserID: this.props.UserID};
+            postUpdate(user, this.result);
+            this.closeAlert();
+        } else {
+            this.setState({
+                ...this.state,
+                changedData: false,
+                alertMod: true,
+            })
+        }
+    }
+
+    cancelChange() {
+        this.setState({
+            ...this.state,
+            name: this.props.UserName,
+            email: this.props.Email,
+            changedData: false,
+        });
+    }
+
+    userData() {
+        const {name, email, phone} = this.state;
+        const user = {
+            UserName: name,
+            Email: email,
+            Phone: phone,
+            Permission: "storeAdmin",
+        };
+        this.props.permissionFunction("storeAdmin");
+        return user;
+    }
+
+    openAlert() {
+        this.setState({
+            ...this.state,
+            alertMod: true,
+        })
+    }
+
+    closeAlert() {
+        this.setState({
+            ...this.state,
+            alertMod: false,
+            changedData: false,
+        })
+    }
+
+    renderAlert() {
+        if (this.state.alertMod) {
+            return(
+                <div className="modal-envelope" id="modal-changed">
+                    <div className="modal-envelope__body">
+                        <p className="modal-envelope__title title-36 bold">{ru.enterAnyDetails}</p>
+                        <div className="modal-form__button-enter">
+                            <ButtonMain btnClass={"button-enter button-white text-18 uppercase medium"} text={ru.understandably} onClick={this.closeAlert}/>
+                        </div>
+                    </div>
+                </div>
+            );
+        } else {
+            return null;
+        }
+    }
+
+    renderChangeAlert() {
+        if (this.state.changedData) {
+            return(
+                <div className="modal-envelope" id="modal-changed">
+                    <div className="modal-envelope__body">
+                        <p className="modal-envelope__title title-36 bold">{ru.ChangeEmailOrName}</p>
+                        <div className="modal-form__button-enter">
+                            <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium"} text={ru.Save} onClick={this.saveChange}/>
+                            <ButtonMain btnClass={"button-enter button-white text-18 uppercase medium"} text={ru.Cancel} onClick={this.cancelChange}/>
+                        </div>
+                    </div>
+                </div>
+            );
+        } else {
+            return null;
+        }
+    }
 
     render() {
         return(
@@ -100,7 +190,7 @@ class RegistrationStoreAdministrator extends React.Component {
                     <div className="modal-form">
                         {dataInputRegistrationStoreAdminModal && dataInputRegistrationStoreAdminModal.map((item, index) => {
                             return (
-                                <ModalInput dataInput={item} key={index} dataOnChange={this.dataOnChange}/>
+                                <ModalInput dataInput={item} key={index} dataValue={this.state} dataOnChange={this.dataOnChange}/>
                             )
                         })}
                         <div className="modal-form__button-enter">
@@ -112,6 +202,8 @@ class RegistrationStoreAdministrator extends React.Component {
                         </div>
                     </div>
                 </div>
+                {this.renderAlert()}
+                {this.renderChangeAlert()}
             </div>
         );
     }
@@ -121,7 +213,8 @@ function MapStateToProps(state) {
     return {
         modal: state.modalReducer.modal,
         UserID: state.userReducer.UserID,
-        UsersParameters: state.userReducer.UsersParameters,
+        UserName: state.userReducer.UserName,
+        Email: state.userReducer.Email,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -137,9 +230,6 @@ const mapDispatchToProps = dispatch => {
         },
         emailFunction: (Email) => {
             dispatch(actionEmail(Email))
-        },
-        usersParametersFunction: (UsersParameters) => {
-            dispatch(actionUsersParameters(UsersParameters))
         },
         permissionFunction: (Permission) => {
             dispatch(actionPermission(Permission))

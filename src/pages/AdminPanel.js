@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {setActionAdminPanel} from "../action";
+import {actionDataRedirect, setActionAdminPanel} from "../action";
 import {adminBarBtnList, envelopeListArr} from "../access/temporaryConstants";
 import ButtonList from "../components/adminPanel/ButtonList";
 import ButtonIcon from "../components/adminPanel/ButtonIcon";
@@ -14,6 +14,7 @@ class AdminPanel extends React.Component {
 
     componentDidMount() {
         this.props.setActionAdminPanelFunction("AdminPanel");
+        this.props.dataRedirectFunction(false);
     }
 
     render() {
@@ -53,6 +54,9 @@ const mapDispatchToProps = dispatch => {
     return {
         setActionAdminPanelFunction: (page) => {
             dispatch(setActionAdminPanel(page))
+        },
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
         },
     }
 };

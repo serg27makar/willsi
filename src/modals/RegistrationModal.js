@@ -10,7 +10,6 @@ import {
     actionPermission,
     actionUserID,
     actionUserName,
-    actionUsersParameters
 } from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
@@ -24,15 +23,9 @@ class RegistrationModal extends React.Component {
             password: "",
             confirmPassword: "",
         };
-        this.usersParameters = [
-            {
-                UserName: '',
-                Parameters: [],
-            }
-        ];
     }
 
-    changeModal = (modal = "") => {
+    changeModal = (modal) => {
         this.props.openModalFunction(modal);
     };
 
@@ -52,19 +45,12 @@ class RegistrationModal extends React.Component {
             this.props.userIDFunction(res);
             this.props.userNameFunction(this.state.name);
             this.props.emailFunction(this.state.email);
-            this.props.usersParametersFunction(this.usersParameters);
         }
-        this.changeModal();
+        this.changeModal("");
     };
 
     registration = () => {
         const {name, email, password, confirmPassword} = this.state;
-        this.usersParameters = [
-            {
-                UserName: name,
-                Parameters: [],
-            }
-        ];
         if (name.length >= 3 && email && validateEmail(email) &&
             password && confirmPassword && password === confirmPassword) {
             let user = {
@@ -72,8 +58,6 @@ class RegistrationModal extends React.Component {
                 Email: email,
                 Password: password,
                 Permission: "buyer",
-                UsersParameters: this.props.UsersParameters &&
-                this.props.UsersParameters.length > 0 ? this.props.UsersParameters : this.usersParameters,
             };
             this.props.permissionFunction("buyer");
             if (this.props.UserID) {
@@ -88,7 +72,7 @@ class RegistrationModal extends React.Component {
     render() {
         return(
             <div className="modal-envelope" id="modal-registration">
-                <div className="modal-envelope__close" onClick={this.changeModal}>
+                <div className="modal-envelope__close" onClick={() => {this.changeModal("")}}>
                     <svg className="icon icon-close ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#close"/>
                     </svg>
@@ -98,7 +82,7 @@ class RegistrationModal extends React.Component {
                     <div className="modal-form">
                         {dataInputRegistrationModal && dataInputRegistrationModal.map((item, index) => {
                             return (
-                                <ModalInput dataInput={item} key={index} dataOnChange={this.dataOnChange}/>
+                                <ModalInput dataInput={item} key={index} dataValue={this.state} dataOnChange={this.dataOnChange}/>
                             )
                         })}
                         <div className="modal-form__button-enter">
@@ -122,7 +106,6 @@ function MapStateToProps(state) {
     return {
         modal: state.modalReducer.modal,
         UserID: state.userReducer.UserID,
-        UsersParameters: state.userReducer.UsersParameters,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -138,9 +121,6 @@ const mapDispatchToProps = dispatch => {
         },
         emailFunction: (Email) => {
             dispatch(actionEmail(Email))
-        },
-        usersParametersFunction: (UsersParameters) => {
-            dispatch(actionUsersParameters(UsersParameters))
         },
         permissionFunction: (Permission) => {
             dispatch(actionPermission(Permission))

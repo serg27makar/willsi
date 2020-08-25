@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import DoubleButton from "../components/adminPanel/DoubleButton";
 import RutCategory from "../components/RutCategory";
 import {placeholderData} from "../access/temporaryConstants";
+import UserDescription from "../components/UserDescription";
 
 class Cabinet extends React.Component {
     constructor(props) {
@@ -14,8 +15,12 @@ class Cabinet extends React.Component {
             Data: {
                 dropdownTitle: "Ваши параметры",
                 dropdownItems: [],
-            }
+            },
+            selected: -1,
+            updateDate: true
         };
+        this.selectUser = this.selectUser.bind(this);
+        this.updateDate = this.updateDate.bind(this);
     }
 
     componentDidMount() {
@@ -31,14 +36,9 @@ class Cabinet extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevState.UsersParameters !== this.props.UsersParameters) {
-            this.setState({
-                UsersParameters: this.props.UsersParameters,
-            })
-        }
-        if (prevProps.UsersParameters !== this.props.UsersParameters && this.props.UsersParameters) {
-            this.dropdownUpdate();
-        }
+        if (prevState.selected !== this.state.selected) this.dropdownUpdate();
+        if (prevState.updateDate !== this.state.updateDate) this.dropdownUpdate();
+        if (prevProps.UsersParameters !== this.props.UsersParameters) this.dropdownUpdate();
     }
 
     dropdownUpdate() {
@@ -49,6 +49,7 @@ class Cabinet extends React.Component {
         });
         this.setState({
             ...this.state,
+            UsersParameters: this.props.UsersParameters,
             Data: {
                 ...this.state.Data,
                 dropdownItems: dropdownItems,
@@ -69,6 +70,18 @@ class Cabinet extends React.Component {
             UserName: value,
         })
     };
+
+    updateDate() {
+        this.setState({
+            updateDate: !this.state.updateDate,
+        });
+    }
+
+    selectUser(index) {
+        this.setState({
+            selected: index,
+        });
+    }
 
     isActive = () => {
         if (this.state.Email !== this.props.Email ||
@@ -93,9 +106,11 @@ class Cabinet extends React.Component {
                                       changeValue={this.nameChange} toggle={this.isActive}/>
                         <DoubleButton placeholderData={placeholderData[0]} item={this.state.Email}
                                       changeValue={this.emailChange} toggle={this.isActive}/>
-                        <RutCategory item={this.state.Data}/>
+                        <RutCategory item={this.state.Data} selectItem={this.selectUser}/>
                     </div>
-                    <div className="cabinet-sidebar-content"/>
+                    <div className="cabinet-sidebar-content">
+                        <UserDescription selected={this.state.selected} selectItem={this.selectUser} updateDate={this.updateDate}/>
+                    </div>
                 </div>
             </div>
         )

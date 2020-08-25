@@ -15,6 +15,7 @@ class ModalInput extends React.Component {
                        type={this.props.dataInput.type}
                        name={this.props.dataInput.name}
                        placeholder={this.props.dataInput.placeholder}
+                       value={this.props.dataValue[this.props.dataInput.name] || ""}
                        onChange={this.props.dataOnChange}
                 />
                 <svg className="icon">

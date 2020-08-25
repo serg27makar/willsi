@@ -3,6 +3,9 @@ import "../../access/css/buttonMain.css"
 
 class ButtonMain extends React.Component {
     render() {
+        if (this.props.hidden) {
+            return null;
+        }
         return(
             <div className="welcome-main-env__button-item" onClick={this.props.onClick}>
                 <div className={this.props.btnClass}>{this.props.text}</div>

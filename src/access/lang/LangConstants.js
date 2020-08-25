@@ -40,6 +40,9 @@ const ru = {
     chest: "Грудь -",
     waist: "Талия -",
     hips: "Бедра -",
+    leg: "Нога -",
+    climb: "Подъем -",
+    head: "Голова -",
 
     sm: " см",
 
@@ -148,9 +151,26 @@ const ru = {
 
     understandably: "понятно",
     enterTheseDetails: "введите эти данные чтобы продолжить",
+    enterAnyDetails: "введите все данные чтобы продолжить",
     recalculatePlaceholder: "150",
 
+    ChangeEmailOrName: "Вы хотите изминить входные данные, Продолжить?",
 
+    AddStore: "Добавить магазин",
+    AddStorePlaceholder1: "Мой магазин",
+    AddStorePlaceholder2: "Мой сайт",
+    AddStoreTextarea: "Впишите информацию про Ваш магазин/бренд одежды",
+    AddStoreInput1: "Наименование магазина/бренда одежды",
+    AddStoreInput2: "Ссылка на основной сайт/основную страницу магазина",
+    AddStoreInput3: "Введите номер телефона контактного лица магазина",
+    AddStoreInput4: "Укажите ссылку на магазин в Facebook, Instagramm или магазин в интернет",
+    AddStoreInput5: "Укажите адрес физического магазина, шоурума или домашний адрес, если продажи до сих про проводились по телефону",
+    AddStoreTextareaPlace: "Описание",
+
+    Phone: "Телефон",
+    DeleteUser: "Удалить пользователя",
+    AddedUser: "Добавить пользователя",
+    AddedParams: "Добавить параметр",
 };
 
 export default ru;

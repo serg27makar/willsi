@@ -7,6 +7,7 @@ class RutCategory extends React.Component {
         super(props);
         this.state = {
             isOpen: false,
+            selected: -1,
         };
         this.closeOpen = this.closeOpen.bind(this);
     }
@@ -29,10 +30,21 @@ class RutCategory extends React.Component {
         }
     };
 
+    chooseListItem(item, index) {
+        if (this.state.selected === index) {
+            index = -1
+        }
+        this.setState({
+            ...this.state,
+            selected: index
+        });
+        this.props.selectItem(index);
+    }
+
     dropdownListItem = (item, index) => {
         return (
-            <li className="dropdown-list__item" key={index}>
-                <div className="dropdown-list__link text-14 light" >{item}</div>
+            <li className={"dropdown-list__item " + (this.state.selected === index ? "item-select" : "")} key={index} onClick={() => {this.chooseListItem(item, index)}}>
+                <div className="dropdown-list__link text-14" >{item}</div>
             </li>
         )
     };

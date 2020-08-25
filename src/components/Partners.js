@@ -24,7 +24,7 @@ class Partners extends React.Component {
         this.startupRefWrap.map(() => {
             return this.startupRef.push(React.createRef());
         });
-        this.redirect = this.redirect.bind(this);
+        // this.redirect = this.redirect.bind(this);
         this.openModal = this.openModal.bind(this);
     }
 
@@ -43,16 +43,19 @@ class Partners extends React.Component {
                 partnersBtn: this.props.page !== "Service",
             })
         }
-    }
-
-    redirect() {
-        this.setState({
-            redirect: true,
-        })
+        if (prevProps.dataRedirect !== this.props.dataRedirect) {
+            this.setState({
+                redirect: true,
+            })
+        }
     }
 
     openModal() {
-        this.props.openModalFunction("storeAdminModal")
+        if (this.props.Permission === "storeAdmin") {
+            this.props.openModalFunction("addServiceModal");
+        } else {
+            this.props.openModalFunction("storeAdminModal");
+        }
     }
 
     partnerBox = (item, index) => {
@@ -83,7 +86,7 @@ class Partners extends React.Component {
     render() {
         if (this.state.redirect) {
             return(
-                <Redirect to={"/seller-service"}/>
+                <Redirect to={"/admin-panel"}/>
             )
         }
         return (
@@ -108,7 +111,9 @@ class Partners extends React.Component {
 function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
+        dataRedirect: state.pageReducer.dataRedirect,
         modal: state.modalReducer.modal,
+        Permission: state.userReducer.Permission,
     }
 }
 const mapDispatchToProps = dispatch => {

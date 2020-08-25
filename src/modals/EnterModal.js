@@ -10,14 +10,21 @@ import {
     actionPermission,
     actionUserID,
     actionUserName,
-    actionUsersParameters
+    actionUsersParameters, actionUserStore
 } from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
 
 class EnterModal extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: "",
+            password: "",
+        }
+    }
 
-    changeModal = (modal = "") => {
+    changeModal = (modal) => {
         this.props.openModalFunction(modal);
     };
 
@@ -47,8 +54,9 @@ class EnterModal extends React.Component {
             this.props.emailFunction(res.Email);
             this.props.usersParametersFunction(res.UsersParameters);
             this.props.permissionFunction(res.Permission);
+            this.props.userStoreFunction(res.UserStore);
         }
-        this.changeModal();
+        this.changeModal("");
     };
 
     login = () => {
@@ -65,7 +73,7 @@ class EnterModal extends React.Component {
     render() {
         return(
             <div className="modal-envelope" id="modal-enter">
-                <div className="modal-envelope__close" onClick={this.changeModal}>
+                <div className="modal-envelope__close" onClick={() => {this.changeModal("")}}>
                     <svg className="icon icon-close ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#close"/>
                     </svg>
@@ -75,7 +83,7 @@ class EnterModal extends React.Component {
                     <div className="modal-form">
                         {dataInputEnterModal && dataInputEnterModal.map((item, index) => {
                             return (
-                                <ModalInput dataInput={item} key={index} dataOnChange={this.dataOnChange}/>
+                                <ModalInput dataInput={item} key={index} dataValue={this.state} dataOnChange={this.dataOnChange}/>
                             )
                         })}
                         <div className="modal-form__button-enter">
@@ -116,6 +124,9 @@ const mapDispatchToProps = dispatch => {
         },
         permissionFunction: (Permission) => {
             dispatch(actionPermission(Permission))
+        },
+        userStoreFunction: (UserStore) => {
+            dispatch(actionUserStore(UserStore))
         },
     }
 };

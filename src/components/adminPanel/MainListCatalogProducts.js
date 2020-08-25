@@ -33,13 +33,13 @@ class MainListCatalogProducts extends React.Component {
         return (
             <div className="catalog-product" key={index}>
                 <button className={this.state.openIndex === index ? this.state.active : this.state.passive} type="button" onClick={() => {this.closeOpen(index)}}>
-                    <span className="catalog-button__text text-16 light">{item.title}</span>
+                    <span className="catalog-button__text text-16 light">{item.dropdownTitle}</span>
                     <svg className="icon icon-arrow-small ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                     </svg>
                 </button>
                 <ul className={this.state.openIndex === index ? this.state.open : this.state.close}>
-                    {item.catalogList && item.catalogList.map((listItem, listIndex) => {
+                    {item.dropdownItems && item.dropdownItems.map((listItem, listIndex) => {
                         return this.renderListItem(listItem, listIndex);
                     })}
                 </ul>

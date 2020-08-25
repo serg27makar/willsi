@@ -102,3 +102,10 @@ export const actionHeaderUser = (HeaderUser) => {
         HeaderUser: HeaderUser
     }
 };
+
+export const actionUserStore = (UserStore) => {
+    return {
+        type: 'USER_STORE',
+        UserStore: UserStore
+    }
+};

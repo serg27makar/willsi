@@ -4,21 +4,7 @@ import ru from "../access/lang/LangConstants";
 import {actionPermission, actionUserID, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import {postRegister} from "../utilite/axiosConnect";
-
-const whomParams = [
-    {
-        data: "woman",
-        text: "Женщина",
-    },
-    {
-        data: "man",
-        text: "Мужчина",
-    },
-    {
-        data: "child",
-        text: "Ребенок",
-    },
-];
+import {whomParams} from "../access/temporaryConstants"
 
 class InputDataParams extends React.Component {
     constructor(props) {

@@ -1,5 +1,12 @@
 import React from 'react';
-import {actionAddUser, actionAlertText, actionOpenModal, actionUsersParameters, setActionAdminPanel} from "../action";
+import {
+    actionAddUser,
+    actionAlertText,
+    actionDataRedirect,
+    actionOpenModal,
+    actionUsersParameters,
+    setActionAdminPanel
+} from "../action";
 import {connect} from "react-redux";
 import RecalculateFooter from "../components/RecalculateFooter";
 import Recalculate from "../components/Recalculate";
@@ -28,6 +35,7 @@ class Data extends React.Component {
 
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Data");
+        this.props.dataRedirectFunction(false);
         document.body.style.overflow = "hidden";
         setTimeout(() => {
             handlePageUp();
@@ -195,6 +203,9 @@ const mapDispatchToProps = dispatch => {
         },
         addUserFunction: (AddUser) => {
             dispatch(actionAddUser(AddUser))
+        },
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
         },
     }
 };

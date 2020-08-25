@@ -31,15 +31,15 @@ class SearchBox extends React.Component {
                     <form className="form-env">
                         <div className="form-env__wrapper">
                             <input className="form-env__input text-18" type="text" name="growth"
-                                   placeholder={ru.placeholderGrowth}/>
+                                   placeholder={ru.placeholderGrowth} readOnly={true}/>
                             <input className="form-env__input text-18" type="text" name="shoulders"
-                                   placeholder={ru.placeholderShoulders}/>
+                                   placeholder={ru.placeholderShoulders} readOnly={true}/>
                             <input className="form-env__input text-18" type="text" name="chest"
-                                   placeholder={ru.placeholderChest}/>
+                                   placeholder={ru.placeholderChest} readOnly={true}/>
                             <input className="form-env__input text-18" type="text" name="waist"
-                                   placeholder={ru.placeholderWaist}/>
+                                   placeholder={ru.placeholderWaist} readOnly={true}/>
                             <input className="form-env__input text-18" type="text" name="hips"
-                                   placeholder={ru.placeholderHips}/>
+                                   placeholder={ru.placeholderHips} readOnly={true}/>
                         </div>
                         <ButtonMain btnClass="button-main text-16" text={ru.pickUpClothes} onClick={this.redirect}/>
                     </form>
