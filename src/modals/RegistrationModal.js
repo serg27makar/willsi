@@ -49,6 +49,14 @@ class RegistrationModal extends React.Component {
         this.changeModal("");
     };
 
+    updateResult = () => {
+        const id = localStorage.UserId;
+        this.props.userIDFunction(id);
+        this.props.userNameFunction(this.state.name);
+        this.props.emailFunction(this.state.email);
+        this.changeModal("");
+    };
+
     registration = () => {
         const {name, email, password, confirmPassword} = this.state;
         if (name.length >= 3 && email && validateEmail(email) &&
@@ -62,7 +70,7 @@ class RegistrationModal extends React.Component {
             this.props.permissionFunction("buyer");
             if (this.props.UserID) {
                 user = {...user, UserID: this.props.UserID};
-                postUpdate(user, this.result);
+                postUpdate(user, this.updateResult);
             } else {
                 postRegister(user, this.result);
             }

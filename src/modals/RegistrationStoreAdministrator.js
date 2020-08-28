@@ -65,6 +65,14 @@ class RegistrationStoreAdministrator extends React.Component {
         this.changeModal("addServiceModal");
     };
 
+    updateResult = () => {
+        const id = localStorage.UserId;
+        this.props.userIDFunction(id);
+        this.props.userNameFunction(this.state.name);
+        this.props.emailFunction(this.state.email);
+        this.changeModal("addServiceModal");
+    };
+
     registration = () => {
         const {name, email, password, confirmPassword, phone} = this.state;
         let user = this.userData();
@@ -76,7 +84,7 @@ class RegistrationStoreAdministrator extends React.Component {
                 })
             } else if (name.length >= 3 && email && validateEmail(email) && phone) {
                 user = {...user, UserID: this.props.UserID};
-                postUpdate(user, this.result);
+                postUpdate(user, this.updateResult);
             } else {
                 this.openAlert();
             }
@@ -95,7 +103,7 @@ class RegistrationStoreAdministrator extends React.Component {
         let user = this.userData();
         if (user.UserName.length >= 3 && user.Email && validateEmail(user.Email) && user.Phone) {
             user = {...user, UserID: this.props.UserID};
-            postUpdate(user, this.result);
+            postUpdate(user, this.updateResult);
             this.closeAlert();
         } else {
             this.setState({

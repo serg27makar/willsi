@@ -16,16 +16,23 @@ class Cabinet extends React.Component {
                 dropdownTitle: "Ваши параметры",
                 dropdownItems: [],
             },
+            Store: {
+                dropdownTitle: "Ваши магазины",
+                dropdownItems: [],
+            },
             selected: -1,
+            selectedStore: -1,
             updateDate: true
         };
         this.selectUser = this.selectUser.bind(this);
         this.updateDate = this.updateDate.bind(this);
+        this.selectStore = this.selectStore.bind(this);
     }
 
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Cabinet");
         this.dropdownUpdate();
+        this.dropdownStoreUpdate();
         setTimeout(() => {
             this.setState({
                 UserName: this.props.UserName,
@@ -37,8 +44,11 @@ class Cabinet extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.selected !== this.state.selected) this.dropdownUpdate();
+        if (prevState.selectedStore !== this.state.selectedStore) this.dropdownStoreUpdate();
         if (prevState.updateDate !== this.state.updateDate) this.dropdownUpdate();
         if (prevProps.UsersParameters !== this.props.UsersParameters) this.dropdownUpdate();
+        if (prevState.UsersParameters !== this.props.UsersParameters) this.dropdownUpdate();
+        if (prevProps.UserStore !== this.props.UserStore) this.dropdownStoreUpdate();
     }
 
     dropdownUpdate() {
@@ -52,6 +62,22 @@ class Cabinet extends React.Component {
             UsersParameters: this.props.UsersParameters,
             Data: {
                 ...this.state.Data,
+                dropdownItems: dropdownItems,
+            }
+        })
+    }
+
+    dropdownStoreUpdate() {
+        const dropdownItems = [];
+        const UserStore = this.props.UserStore || [];
+        UserStore.map((item, index) => {
+            dropdownItems.push(item.nameStore);
+            return index;
+        });
+        this.setState({
+            ...this.state,
+            Store: {
+                ...this.state.Store,
                 dropdownItems: dropdownItems,
             }
         })
@@ -83,6 +109,12 @@ class Cabinet extends React.Component {
         });
     }
 
+    selectStore(index) {
+        this.setState({
+            selectedStore: index,
+        });
+    }
+
     isActive = () => {
         if (this.state.Email !== this.props.Email ||
             this.state.UserName !== this.props.UserName ||
@@ -97,6 +129,16 @@ class Cabinet extends React.Component {
         }
     };
 
+    storeDropdown() {
+        if (this.state.Store.dropdownItems.length > 0) {
+            return (
+                <RutCategory item={this.state.Store} selectItem={this.selectStore}/>
+            )
+        } else {
+            return null;
+        }
+    }
+
     render() {
         return(
             <div className="content">
@@ -107,6 +149,7 @@ class Cabinet extends React.Component {
                         <DoubleButton placeholderData={placeholderData[0]} item={this.state.Email}
                                       changeValue={this.emailChange} toggle={this.isActive}/>
                         <RutCategory item={this.state.Data} selectItem={this.selectUser}/>
+                        {this.storeDropdown()}
                     </div>
                     <div className="cabinet-sidebar-content">
                         <UserDescription selected={this.state.selected} selectItem={this.selectUser} updateDate={this.updateDate}/>
@@ -123,6 +166,7 @@ function MapStateToProps(state) {
         Email: state.userReducer.Email,
         UserName: state.userReducer.UserName,
         UsersParameters: state.userReducer.UsersParameters,
+        UserStore: state.userReducer.UserStore,
     }
 }
 

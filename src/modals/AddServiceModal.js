@@ -38,7 +38,11 @@ class AddServiceModal extends React.Component {
     result(res) {
         if (res && res.length > 12) {
             const UserStore = this.props.UserStore || [];
-            UserStore.push(res);
+            const store = {
+                storeID: res,
+                nameStore: this.state.nameStore
+            };
+            UserStore.push(store);
             this.props.userStoreFunction(UserStore);
             const user = {
                 UserID: this.props.UserID,
