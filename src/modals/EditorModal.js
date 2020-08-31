@@ -61,7 +61,10 @@ class EditorModal extends React.Component {
 
     addUser() {
         this.props.addUserFunction(true);
-        this.props.dataRedirectFunction(true);
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/catalog",
+        });
         this.closeLincModal();
     };
 

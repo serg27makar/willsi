@@ -19,13 +19,11 @@ class UserDescription extends React.Component {
             params: {},
             isChange: false,
             activeBtn: 0,
-            redirect: false,
         };
         this.isActive = this.isActive.bind(this);
         this.btnActive = this.btnActive.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
         this.nameChange = this.nameChange.bind(this);
-        this.addedUser = this.addedUser.bind(this);
         this.addedParams = this.addedParams.bind(this);
         this.activeBtn = activeBtn.bind(this);
     }
@@ -129,14 +127,6 @@ class UserDescription extends React.Component {
         });
     };
 
-    addedUser() {
-        this.props.addUserFunction(true);
-        this.setState({
-            ...this.state,
-            redirect: true,
-        })
-    }
-
     onChange = (e, item) => {
         this.setState({
             ...this.state,
@@ -181,11 +171,6 @@ class UserDescription extends React.Component {
         if (this.props.selected === -1) {
             return null;
         }
-        if (this.state.redirect) {
-            return (
-                <Redirect to={"/data"}/>
-            )
-        }
         return (
             <div>
                 <DoubleButton placeholderData={placeholderData[1]} item={this.state.UserName}
@@ -204,8 +189,6 @@ class UserDescription extends React.Component {
                 <div className="partners-env-btn">
                     <ButtonMain btnClass="button-main text-16 little-btn" text={ru.Save} onClick={() => {this.isActive(true)}}/>
                     <ButtonMain btnClass="button-main text-16 little-btn" text={ru.AddedParams} onClick={this.addedParams}/>
-                    <ButtonMain btnClass="button-white text-16 little-btn" text={ru.DeleteUser} onClick={this.deleteUser} hidden={this.props.selected === 0}/>
-                    <ButtonMain btnClass="button-main text-16 little-btn" text={ru.AddedUser} onClick={this.addedUser}/>
                 </div>
             </div>
         )
@@ -224,9 +207,6 @@ const mapDispatchToProps = dispatch => {
     return {
         usersParametersFunction: (UsersParameters) => {
             dispatch(actionUsersParameters(UsersParameters))
-        },
-        addUserFunction: (AddUser) => {
-            dispatch(actionAddUser(AddUser))
         },
         openModalFunction: (modal) => {
             dispatch(actionOpenModal(modal))

@@ -1,6 +1,7 @@
 import React from "react";
 import {actionOpenCatalog} from "../action";
 import {connect} from "react-redux";
+import ru from "../access/lang/LangConstants";
 
 class RutCategory extends React.Component {
     constructor(props) {
@@ -49,6 +50,18 @@ class RutCategory extends React.Component {
         )
     };
 
+    addListItem = () => {
+        if (this.props.isAddItem) {
+            return (
+                <li className="dropdown-list__item" onClick={this.props.addItem}>
+                    <div className="dropdown-list__link text-14" >{this.props.isAddItem}</div>
+                </li>
+            )
+        } else {
+            return null;
+        }
+    };
+
     render() {
         return (
             <div className="catalog-product">
@@ -62,6 +75,7 @@ class RutCategory extends React.Component {
                     {this.props.item.dropdownItems && this.props.item.dropdownItems.map((itemList, indexList) => {
                         return this.dropdownListItem(itemList, indexList);
                     })}
+                    {this.addListItem()}
                 </ul>
             </div>
         )

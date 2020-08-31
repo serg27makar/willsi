@@ -1,12 +1,11 @@
 import React from 'react';
-import {setActionAdminPanel} from "../action";
+import {actionDataRedirect, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
 import {dropdownListArr, productArr, sidebarCatalogArr} from "../access/temporaryConstants";
 import RutCatalogSidebar from "../components/RutCatalogSidebar";
 import CatalogSidebar from "../components/CatalogSidebar";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";
-import ShowProductsBar from "../components/ShowProductsBar";
 import ProductsCart from "../components/ProductsCart";
 import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
@@ -25,11 +24,18 @@ class Catalog extends React.Component {
         super(props);
         this.state = {
             subUsers:[],
-            reDirect: false,
+            redirect: {
+                accessR: false,
+                to: "/",
+            },
         }
     }
 
     componentDidMount() {
+        this.props.dataRedirectFunction({
+            accessR: false,
+            to: "/",
+        });
         this.props.setActionAdminPanelFunction("Catalog");
         setTimeout(() => {
             handlePageUp();
@@ -41,29 +47,35 @@ class Catalog extends React.Component {
         if (prevProps.UsersParameters !== this.props.UsersParameters) {
             this.functionRedirect();
         }
-        if (this.props.UsersParameters !== this.state.subUsers) {
+        if (this.props.UsersParameters !== this.state.subUsers || prevProps.update !== this.props.update) {
             this.setState({
                 ...this.state,
                 subUsers: this.props.UsersParameters,
             });
         }
+        if (prevProps.dataRedirect !== this.props.dataRedirect) {
+            this.setState({
+                redirect: this.props.dataRedirect,
+            })
+        }
     }
 
     functionRedirect() {
+        console.log(this.props)
         if (this.props.UsersParameters.length < 1 ||
             ( this.props.UsersParameters[0].Parameters &&
                 this.props.UsersParameters[0].Parameters.length < 1)) {
-            this.setState({
-                ...this.state,
-                reDirect: true
+            this.props.dataRedirectFunction({
+                accessR: true,
+                to: "/data",
             })
         }
     }
 
     render() {
-        if (this.state.reDirect) {
-            return (
-                <Redirect to={"/data"}/>
+        if (this.state.redirect.accessR) {
+            return(
+                <Redirect to={this.state.redirect.to}/>
             )
         }
         return(
@@ -72,12 +84,11 @@ class Catalog extends React.Component {
                 <CatalogTopEnvironment  subUsers={this.state.subUsers}/>
                 <div className="catalog-middle container">
                     <div className="footer-row-wrap">
-                            <div className="catalog-sidebar">
-                                <RutCatalogSidebar Categories={dropdownListArr}/>
-                                <CatalogSidebar Categories={sidebarCatalogArr}/>
-                            </div>
+                        <div className="catalog-sidebar">
+                            <RutCatalogSidebar Categories={dropdownListArr}/>
+                            <CatalogSidebar Categories={sidebarCatalogArr}/>
+                        </div>
                         <div className="col-12">
-                            <ShowProductsBar subUsers={this.state.subUsers}/>
                             <ProductsCart products={productArr}/>
                         </div>
                     </div>
@@ -91,12 +102,17 @@ function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
         UsersParameters: state.userReducer.UsersParameters,
+        update: state.pageReducer.update,
+        dataRedirect: state.pageReducer.dataRedirect,
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         setActionAdminPanelFunction: (page) => {
             dispatch(setActionAdminPanel(page))
+        },
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
         },
     }
 };

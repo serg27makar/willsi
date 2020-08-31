@@ -1,6 +1,6 @@
 import React from 'react';
 import "./../access/css/cart.css";
-import {setActionAdminPanel} from "../action";
+import {actionDataRedirect, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import Carousel from "../components/Carousel";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
@@ -13,6 +13,7 @@ import CardDescription from "../components/CardDescription";
 import CartTabs from "../components/CartTabs";
 import CircleLevel from "../components/shared/CircleLevel";
 import {handlePageUp} from "../js/visualEffects";
+import {Redirect} from "react-router-dom";
 
 const breadcrumbs = {
     title: "Женская одежда",
@@ -29,10 +30,18 @@ class Cart extends React.Component {
         super(props);
         this.state = {
             subUsers:[],
+            redirect: {
+                accessR: false,
+                to: "",
+            },
         };
     }
 
     componentDidMount() {
+        this.props.dataRedirectFunction({
+            accessR: false,
+            to: "/",
+        });
         this.props.setActionAdminPanelFunction("Cart");
         setTimeout(() => {
             handlePageUp();
@@ -45,6 +54,11 @@ class Cart extends React.Component {
                 subUsers: this.props.UsersParameters,
             })
         }
+        if (prevProps.dataRedirect !== this.props.dataRedirect) {
+            this.setState({
+                redirect: this.props.dataRedirect,
+            })
+        }
     }
 
     renderSlide = () => {
@@ -54,6 +68,11 @@ class Cart extends React.Component {
     };
 
     render() {
+        if (this.state.redirect.accessR) {
+            return(
+                <Redirect to={this.state.redirect.to}/>
+            )
+        }
         return(
             <div className="content">
                 <BreadcrumbsBg  breadcrumbs={breadcrumbs}/>
@@ -96,12 +115,16 @@ function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
         UsersParameters: state.userReducer.UsersParameters,
+        dataRedirect: state.pageReducer.dataRedirect,
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         setActionAdminPanelFunction: (page) => {
             dispatch(setActionAdminPanel(page))
+        },
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
         },
     }
 };

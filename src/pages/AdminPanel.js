@@ -9,15 +9,40 @@ import ButtonMain from "../components/shared/ButtonMain";
 import ru from "../access/lang/LangConstants";
 import MainEnvelopeSize from "../components/adminPanel/MainEnvelopeSize";
 import DoubleButton from "../components/adminPanel/DoubleButton";
+import {Redirect} from "react-router-dom";
 
 class AdminPanel extends React.Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirect: {
+                accessR: false,
+                to: "",
+            },
+        }
+    }
     componentDidMount() {
         this.props.setActionAdminPanelFunction("AdminPanel");
-        this.props.dataRedirectFunction(false);
+        this.props.dataRedirectFunction({
+            accessR: false,
+            to: "/",
+        });
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.dataRedirect !== this.props.dataRedirect) {
+            this.setState({
+                redirect: this.props.dataRedirect,
+            })
+        }
     }
 
     render() {
+        if (this.state.redirect.accessR) {
+            return(
+                <Redirect to={this.state.redirect.to}/>
+            )
+        }
         return(
             <div className="content main-admin__row">
                 <AdminSidebar/>
@@ -47,6 +72,7 @@ class AdminPanel extends React.Component {
 function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
+        dataRedirect: state.pageReducer.dataRedirect,
     }
 }
 

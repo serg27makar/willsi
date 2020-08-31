@@ -109,3 +109,17 @@ export const actionUserStore = (UserStore) => {
         UserStore: UserStore
     }
 };
+
+export const actionDataUpdate = (update) => {
+    return {
+        type: 'DATA_UPDATE',
+        update: update
+    }
+};
+
+export const actionSetStoreArr = (StoreArr) => {
+    return {
+        type: 'SET_STORE_ARR',
+        StoreArr: StoreArr
+    }
+};

@@ -356,7 +356,10 @@ header {
     opacity: 1;
 }
 
-
+.service-modal-btn {
+    position: relative;
+    top: 2vw;
+}
 .welcome-main-env__title-value {
     padding: 0 0.5vw;
 }
@@ -2859,6 +2862,7 @@ input[type="checkbox"] + label:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    padding-top: 2vw;
 }
 .welcome-service__title {
     padding-bottom: 1.75vw;
@@ -2873,14 +2877,11 @@ input[type="checkbox"] + label:hover {
     margin-left: -0.9375vw;
     margin-right: -0.9375vw;
 }
-.form-shop__label-last {
-    margin: 0 0 3vw 0;
+.last-add-store-label {
+    margin-bottom: 1.2vw;
 }
 .form-shop__label {
     margin: 0 0 1.875vw 0;
-}
-.form-shop__label-last,
-.form-shop__label {
     width: 100%;
     display: block;
     height: 2.5vw;
@@ -2993,7 +2994,7 @@ input[type="checkbox"] + label:hover {
 .add-store-label {
     display: block;
     height: 2vw;
-    padding: 0 2vw;
+    padding: 0.6vw 2vw;
 }
 .startup-red .startup__title:before {
     background: #620808;

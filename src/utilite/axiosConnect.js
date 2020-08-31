@@ -54,3 +54,14 @@ export const getUserData = (callbackInfo) => {
             callbackInfo(err);
     })
 };
+
+export const getStoreData = (callbackInfo) => {
+    axios.get(Url + `/store/getStoreData`, {
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+            callbackInfo(err);
+    })
+};

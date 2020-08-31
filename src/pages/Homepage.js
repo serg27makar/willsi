@@ -70,9 +70,9 @@ class Homepage extends React.Component {
     }
 
     render() {
-        if (this.state.redirect) {
+        if (this.props.redirect && this.props.redirect.accessR) {
             return(
-                <Redirect to={"/data"}/>
+                <Redirect to={this.props.redirect.to}/>
             )
         }
         return(
@@ -94,6 +94,7 @@ function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
         UsersParameters: state.userReducer.UsersParameters,
+        dataRedirect: state.pageReducer.dataRedirect,
     }
 }
 const mapDispatchToProps = dispatch => {

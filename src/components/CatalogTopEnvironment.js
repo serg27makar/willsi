@@ -12,7 +12,10 @@ class CatalogTopEnvironment extends React.Component {
             headerUser: "",
             params: [],
             open: "",
-            dataRedirect: false,
+            redirect: {
+                accessR: false,
+                to: "",
+            },
         };
         this.addUser = this.addUser.bind(this);
     }
@@ -35,10 +38,11 @@ class CatalogTopEnvironment extends React.Component {
             })
         }
         if ((this.props.subUsers && this.props.subUsers.length > 0) &&
-            (prevProps.HeaderUser !== this.props.HeaderUser)) {
+            (prevProps.HeaderUser !== this.props.HeaderUser) ||
+            (prevProps.subUsers !== this.props.subUsers)) {
             this.setState({
-                headerUser: this.props.subUsers[this.props.HeaderUser].UserName,
-                params: this.props.subUsers[this.props.HeaderUser].Parameters,
+                headerUser: this.props.subUsers.length > 0 ? this.props.subUsers[this.props.HeaderUser].UserName : "",
+                params: this.props.subUsers.length > 0 ? this.props.subUsers[this.props.HeaderUser].Parameters : [],
                 open: "",
             })
         }
@@ -96,9 +100,11 @@ class CatalogTopEnvironment extends React.Component {
     };
 
     render() {
-        if (this.state.dataRedirect) {
-            return (<Redirect to={"/data"}/>)
-        }
+        // if (this.state.redirect.accessR) {
+        //     return(
+        //         <Redirect to={this.state.redirect.to}/>
+        //     )
+        // }
         return (
             <div className="catalog-top-env container">
                 <div className="environment-row align-items-center">

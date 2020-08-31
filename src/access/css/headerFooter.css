@@ -60,10 +60,10 @@
         margin-bottom: 4vw;
         padding: 4vw 5.866666666666666vw;
     }
-    .header__button-cabinet {
+    .header-btn-logout {
         margin-left: 10.666666666666668vw;
     }
-    .header__button-cabinet .icon {
+    .header-btn-logout .icon {
         width: 5.333333333333334vw;
         height: 5.333333333333334vw;
     }
@@ -342,14 +342,13 @@
     -ms-flex-pack: center;
     justify-content: center;
     border-radius: 0.25vw;
-    margin-left: 3.125vw;
-    margin-right: 2.5vw;
-    padding: 0.75vw 1.375vw;
+    padding: 0.75vw;
     color: #fff;
     background: #71bdca;
     -webkit-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+    white-space: nowrap;
 }
 .header__enter-cabinet:hover {
     -webkit-transition: all 0.3s ease-in-out;
@@ -372,10 +371,18 @@
 .header__enter-name {
     color: #fff;
 }
-.header__button-cabinet {
+.header-btn-logout {
     margin-left: 2.5vw;
+    display: block;
+    text-align: center;
+    color: white;
+    cursor: pointer;
 }
-.header__button-cabinet .icon {
+.header__basket-icon .navigation-list__link:before {
+    width: 140%;
+    left: 0;
+}
+.header-btn-logout .icon {
     width: 1.25vw;
     height: 1.25vw;
     fill: #fff;

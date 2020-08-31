@@ -1,11 +1,21 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import ru from "../../access/lang/LangConstants";
 import "../../access/css/headerFooter.css"
 import {connect} from "react-redux";
 import MobileEnvelope from "./MobileEnvelope";
 import HeaderNavigation from "./HeaderNavigation";
 import HeaderCabinet from "./HeaderCabinet";
+import {
+    actionDataRedirect,
+    actionDataUpdate,
+    actionEmail,
+    actionPermission,
+    actionUserID,
+    actionUserName,
+    actionUsersParameters,
+    actionUserStore
+} from "../../action";
 
 const mobilButtonClose = "static/img/svg-sprites/symbol/sprite.svg#close";
 const mobilButtonOpen = "static/img/svg-sprites/symbol/sprite.svg#menu";
@@ -18,9 +28,10 @@ class Header extends React.Component {
         this.state = {
             mobileOpen: "mobile-toggle",
             mobilButtonCloseOpen: mobilButtonOpen,
-            page: ""
+            page: "",
         };
         this.menuButton = this.menuButton.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -32,6 +43,21 @@ class Header extends React.Component {
         }
     }
 
+    logout() {
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/",
+        });
+        localStorage.clear();
+        this.props.userIDFunction("");
+        this.props.userNameFunction("");
+        this.props.emailFunction("");
+        this.props.usersParametersFunction([]);
+        this.props.permissionFunction("unknown");
+        this.props.userStoreFunction([]);
+        this.props.dataUpdateFunction(!this.props.update);
+    }
+
     menuButton = () => {
         this.setState({
             ...this.state,
@@ -41,9 +67,6 @@ class Header extends React.Component {
     };
 
     render() {
-        if (this.props.page === "AdminPanel") {
-            return null;
-        }
         return (
             <header>
                 <div className="container">
@@ -75,6 +98,12 @@ class Header extends React.Component {
                         </div>
                         <HeaderNavigation/>
                         <HeaderCabinet/>
+                        <div className="header-btn-logout" onClick={this.logout}>
+                            <svg className="icon">
+                                <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#login"/>
+                            </svg>
+                            {ru.Exit}
+                        </div>
                     </div>
                 </div>
                 <div className={this.state.mobileOpen}>
@@ -88,8 +117,37 @@ class Header extends React.Component {
 function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
+        update: state.pageReducer.update,
     }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+        userIDFunction: (UserID) => {
+            dispatch(actionUserID(UserID))
+        },
+        userNameFunction: (UserName) => {
+            dispatch(actionUserName(UserName))
+        },
+        emailFunction: (Email) => {
+            dispatch(actionEmail(Email))
+        },
+        usersParametersFunction: (UsersParameters) => {
+            dispatch(actionUsersParameters(UsersParameters))
+        },
+        permissionFunction: (Permission) => {
+            dispatch(actionPermission(Permission))
+        },
+        userStoreFunction: (UserStore) => {
+            dispatch(actionUserStore(UserStore))
+        },
+        dataUpdateFunction: (update) => {
+            dispatch(actionDataUpdate(update))
+        },
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
+        },
+    }
+};
 
-export default connect(MapStateToProps)(Header);
+export default connect(MapStateToProps, mapDispatchToProps)(Header);
 

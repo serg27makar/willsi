@@ -28,6 +28,10 @@ class Data extends React.Component {
             reDirect: false,
             isChange: false,
             newUser: 0,
+            redirect: {
+                accessR: false,
+                to: "",
+            },
         };
         this.nextParams =this.nextParams.bind(this);
         this.firstBlock =this.firstBlock.bind(this);
@@ -35,7 +39,10 @@ class Data extends React.Component {
 
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Data");
-        this.props.dataRedirectFunction(false);
+        this.props.dataRedirectFunction({
+            accessR: false,
+            to: "/",
+        });
         document.body.style.overflow = "hidden";
         setTimeout(() => {
             handlePageUp();
@@ -44,22 +51,28 @@ class Data extends React.Component {
             if (!this.props.AddUser && (this.props.UsersParameters && this.props.UsersParameters.length >= 1 &&
                 this.props.UsersParameters[0].Parameters &&
                 this.props.UsersParameters[0].Parameters.length > 0)) {
-                this.setState({
-                    reDirect: true
-                })
+                this.props.dataRedirectFunction({
+                    accessR: true,
+                    to: "/catalog",
+                });
             }
             if (this.props.AddUser) {
                 this.setState({
                     newUser: this.props.UsersParameters.length,
                 })
             }
-        }, 500);
+        }, 50);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.isChange !== this.state.isChange && this.state.isChange) {
             this.isChanged();
             this.updateParams();
+        }
+        if (prevProps.dataRedirect !== this.props.dataRedirect) {
+            this.setState({
+                redirect: this.props.dataRedirect,
+            })
         }
     }
 
@@ -72,7 +85,7 @@ class Data extends React.Component {
         const UsersParameters = this.props.UsersParameters;
         const obj = {
             UserName: name,
-                Gender: gender,
+            Gender: gender,
             Parameters: this.state.params,
         };
         UsersParameters.splice(this.state.newUser, 1, obj);
@@ -151,9 +164,9 @@ class Data extends React.Component {
     };
 
     render() {
-        if (this.state.reDirect) {
-            return (
-                <Redirect to={"/catalog"}/>
+        if (this.state.redirect.accessR) {
+            return(
+                <Redirect to={this.state.redirect.to}/>
             )
         }
         return(
@@ -185,6 +198,7 @@ function MapStateToProps(state) {
         Email: state.userReducer.Email,
         UsersParameters: state.userReducer.UsersParameters,
         AddUser: state.userReducer.AddUser,
+        dataRedirect: state.pageReducer.dataRedirect,
     }
 }
 const mapDispatchToProps = dispatch => {

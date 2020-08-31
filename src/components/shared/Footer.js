@@ -22,19 +22,34 @@ class Footer extends React.Component {
     }
 
     render() {
-        if (this.props.page === "AdminPanel") {
-            return null;
-        }
         return (
             <footer>
                 <div className="container">
                     <div className="footer-row-wrap align-items-center">
                         <div className="col-12">
-                            <div className="footer"><div className="footer__logo" >
-                                <picture className="logo">
-                                    <img className="logo__source" src="static/img/general/logo.png" alt="logo"/>
-                                </picture>
-                            </div></div>
+                            <div className="footer">
+                                <div className="footer__logo" >
+                                    <picture className="logo">
+                                        <img className="logo__source" src="static/img/general/logo.png" alt="logo"/>
+                                    </picture>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-12">
+                            <div className="footer">
+                                <div className="header__plan">
+                                    <div className="header__plan-picture">
+                                        <picture className="plan-picture">
+                                            <source className="plan-picture__source" srcSet="static/img/content/trial.png" type="image/webp"/>
+                                            <img className="plan-picture__source" src="static/img/content/trial.png" alt="trial"/>
+                                        </picture>
+                                    </div>
+                                    <div className="header__plan-column">
+                                        <p className="text-14 bold">{ru.TrialPlan}</p>
+                                        <div className="header__plan-change text-14 light" >{ru.Edit}</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="col-12">
                             <div className="footer">

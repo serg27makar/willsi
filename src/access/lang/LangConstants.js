@@ -10,12 +10,14 @@ const ru = {
     Postpone: "Отложить",
 
     SignIn: "Вход",
+    Exit: "Выход",
     SignUp: "Регистрация",
     AdminSignUp: "Регистрация владельца магазина",
 
     TrialPlan: "Пробный план",
     Edit: "Изменить",
     CustomerLogin: "Вход для клиентов",
+    StoreAdminLogin: "Вход в магазины",
 
     Willsi: "Willsi -",
     SelectionOfThings: "Подбор вещей",
@@ -168,6 +170,7 @@ const ru = {
     AddStoreTextareaPlace: "Описание",
 
     Phone: "Телефон",
+    Address: "Адрес",
     DeleteUser: "Удалить пользователя",
     AddedUser: "Добавить пользователя",
     AddedParams: "Добавить параметр",

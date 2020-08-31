@@ -1,5 +1,5 @@
 import React from 'react';
-import {setActionAdminPanel} from "../action";
+import {actionDataRedirect, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import Reviews from "../components/shared/Reviews";
 import StepsBlock from "../components/StepsBlock";
@@ -18,28 +18,44 @@ class SellerService extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect: false,
+            redirect: {
+                accessR: false,
+                to: "",
+            },
         };
         this.redirect = this.redirect.bind(this);
     }
 
     componentDidMount() {
+        this.props.dataRedirectFunction({
+            accessR: false,
+            to: "/",
+        });
         this.props.setActionAdminPanelFunction("Service");
         setTimeout(() => {
             handlePageUp();
         }, 50);
     }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.dataRedirect !== this.props.dataRedirect) {
+            this.setState({
+                redirect: this.props.dataRedirect,
+            })
+        }
+    }
+
     redirect() {
-        this.setState({
-            ...this.state,
-            redirect: true,
-        })
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/data",
+        });
     }
 
     render() {
-        if (this.state.redirect) {
+        if (this.state.redirect.accessR) {
             return(
-                <Redirect to={"/data"}/>
+                <Redirect to={this.state.redirect.to}/>
             )
         }
         return(
@@ -64,12 +80,16 @@ class SellerService extends React.Component {
 function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
+        dataRedirect: state.pageReducer.dataRedirect,
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         setActionAdminPanelFunction: (page) => {
             dispatch(setActionAdminPanel(page))
+        },
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
         },
     }
 };

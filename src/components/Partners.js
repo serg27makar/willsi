@@ -16,7 +16,10 @@ class Partners extends React.Component {
             animate: 0,
             stepsArr: [],
             bgNon: "",
-            redirect: false,
+            redirect: {
+                accessR: false,
+                to: "",
+            },
             partnersBtn: true,
         };
         this.startupRef = [];
@@ -45,7 +48,7 @@ class Partners extends React.Component {
         }
         if (prevProps.dataRedirect !== this.props.dataRedirect) {
             this.setState({
-                redirect: true,
+                redirect: this.props.dataRedirect,
             })
         }
     }
@@ -84,9 +87,9 @@ class Partners extends React.Component {
     }
 
     render() {
-        if (this.state.redirect) {
+        if (this.state.redirect.accessR) {
             return(
-                <Redirect to={"/admin-panel"}/>
+                <Redirect to={this.state.redirect.to}/>
             )
         }
         return (

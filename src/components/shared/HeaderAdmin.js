@@ -56,12 +56,13 @@ class HeaderAdmin extends React.Component {
                                     </div>
                                 </div>
                                 <div className="header__enter-cabinet text-14 light" >{ru.CustomerLogin}</div>
-                                <div className="header__enter-name text-14 bold">Юлия Иванова<div
-                                    className="header__button-cabinet" >
-                                    <svg className="icon icon-login ">
-                                        <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#login"/>
-                                    </svg>
-                                </div></div>
+                                <div className="header__enter-name text-14 bold">Юлия Иванова
+                                    <div className="header-btn-logout" >
+                                        <svg className="icon icon-login ">
+                                            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#login"/>
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

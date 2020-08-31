@@ -16,8 +16,6 @@ import Data from "./pages/Data";
 import Cabinet from "./pages/Cabinet";
 import Postpone from "./pages/Postpone";
 import SellerService from "./pages/SellerService";
-import HeaderAdmin from "./components/shared/HeaderAdmin";
-import FooterAdmin from "./components/shared/FooterAdmin";
 import RegistrationModal from "./modals/RegistrationModal";
 import EnterModal from "./modals/EnterModal";
 import LinkModal from "./modals/LinkModal";
@@ -124,7 +122,6 @@ class Navigate extends React.Component {
             <Router history={history}>
                 <MenuGlobal/>
                 <Header/>
-                <HeaderAdmin/>
                 <div className="routers">
                     <Route exact path='/' component={Homepage}/>
                     <Route path='/about' component={About}/>
@@ -137,7 +134,6 @@ class Navigate extends React.Component {
                     <Route path='/seller-service' component={SellerService}/>
                 </div>
                 <Footer/>
-                <FooterAdmin/>
             </Router>
         );
     }

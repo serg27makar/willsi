@@ -1,3 +1,5 @@
+import ru from "./lang/LangConstants";
+
 export const usersFeatBack = [
     {
         imgUrl: "static/img/content/reviews-user.png",
@@ -556,7 +558,6 @@ export const dataInputEnterModal = [
         icon: "static/img/svg-sprites/symbol/sprite.svg#user",
     },
 ];
-
 export const placeholderData = [
     {
         title: "Email",
@@ -565,6 +566,32 @@ export const placeholderData = [
     {
         title: "Name",
         placeholder: "Ваше имя",
+    },
+];
+export const placeholderStoreData = [
+    {
+        title: ru.AddStorePlaceholder1,
+        placeholder: "Adidas",
+    },
+    {
+        title: ru.AddStorePlaceholder2,
+        placeholder: "www.myStore.com",
+    },
+    {
+        title: ru.AddStoreTextareaPlace,
+        placeholder: "My good store",
+    },
+    {
+        title: ru.Phone,
+        placeholder: "+380-55-555-55-55",
+    },
+    {
+        title: ru.AddStorePlaceholder2,
+        placeholder: "www.mySecondStore.com",
+    },
+    {
+        title: ru.Address,
+        placeholder: "Vinnica Piragova st.",
     },
 ];
 export const whomParams = [

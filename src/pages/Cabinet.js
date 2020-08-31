@@ -1,10 +1,21 @@
 import React from 'react';
-import {actionOpenModal, actionUserUpdate, setActionAdminPanel} from "../action";
+import {
+    actionAddUser,
+    actionDataRedirect,
+    actionOpenModal,
+    actionSetStoreArr,
+    actionUserUpdate,
+    setActionAdminPanel
+} from "../action";
 import {connect} from "react-redux";
 import DoubleButton from "../components/adminPanel/DoubleButton";
 import RutCategory from "../components/RutCategory";
 import {placeholderData} from "../access/temporaryConstants";
 import UserDescription from "../components/UserDescription";
+import {Redirect} from "react-router-dom";
+import ru from "../access/lang/LangConstants";
+import StoreDescription from "../components/StoreDescription";
+import {getStoreData} from "../utilite/axiosConnect";
 
 class Cabinet extends React.Component {
     constructor(props) {
@@ -22,14 +33,26 @@ class Cabinet extends React.Component {
             },
             selected: -1,
             selectedStore: -1,
-            updateDate: true
+            updateDate: true,
+            redirect:  {
+                accessR: false,
+                to: "/",
+            },
         };
         this.selectUser = this.selectUser.bind(this);
         this.updateDate = this.updateDate.bind(this);
         this.selectStore = this.selectStore.bind(this);
+        this.addUser = this.addUser.bind(this);
+        this.addStore = this.addStore.bind(this);
+        this.storeData = this.storeData.bind(this);
     }
 
     componentDidMount() {
+        getStoreData(this.storeData);
+        this.props.dataRedirectFunction({
+            accessR: false,
+            to: "/",
+        });
         this.props.setActionAdminPanelFunction("Cabinet");
         this.dropdownUpdate();
         this.dropdownStoreUpdate();
@@ -49,6 +72,17 @@ class Cabinet extends React.Component {
         if (prevProps.UsersParameters !== this.props.UsersParameters) this.dropdownUpdate();
         if (prevState.UsersParameters !== this.props.UsersParameters) this.dropdownUpdate();
         if (prevProps.UserStore !== this.props.UserStore) this.dropdownStoreUpdate();
+        if (prevProps.dataRedirect !== this.props.dataRedirect) {
+            this.setState({
+                redirect: this.props.dataRedirect,
+            })
+        }
+    }
+
+    storeData(res) {
+        if (res && res.length > 0) {
+            this.props.setStoreArrFunction(res);
+        }
     }
 
     dropdownUpdate() {
@@ -69,7 +103,7 @@ class Cabinet extends React.Component {
 
     dropdownStoreUpdate() {
         const dropdownItems = [];
-        const UserStore = this.props.UserStore || [];
+        const UserStore = this.props.StoreArr || [];
         UserStore.map((item, index) => {
             dropdownItems.push(item.nameStore);
             return index;
@@ -129,10 +163,22 @@ class Cabinet extends React.Component {
         }
     };
 
+    addUser() {
+        this.props.addUserFunction(true);
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/data",
+        });
+    }
+
+    addStore() {
+        this.props.openModalFunction("addServiceModal");
+    }
+
     storeDropdown() {
-        if (this.state.Store.dropdownItems.length > 0) {
+        if (this.props.Permission === "storeAdmin") {
             return (
-                <RutCategory item={this.state.Store} selectItem={this.selectStore}/>
+                <RutCategory item={this.state.Store} selectItem={this.selectStore} isAddItem={ru.AddStore} addItem={this.addStore}/>
             )
         } else {
             return null;
@@ -140,6 +186,11 @@ class Cabinet extends React.Component {
     }
 
     render() {
+        if (this.state.redirect.accessR) {
+            return(
+                <Redirect to={this.state.redirect.to}/>
+            )
+        }
         return(
             <div className="content">
                 <div className="cabinet-wrapper">
@@ -148,11 +199,12 @@ class Cabinet extends React.Component {
                                       changeValue={this.nameChange} toggle={this.isActive}/>
                         <DoubleButton placeholderData={placeholderData[0]} item={this.state.Email}
                                       changeValue={this.emailChange} toggle={this.isActive}/>
-                        <RutCategory item={this.state.Data} selectItem={this.selectUser}/>
+                        <RutCategory item={this.state.Data} selectItem={this.selectUser} isAddItem={ru.AddedUser} addItem={this.addUser}/>
                         {this.storeDropdown()}
                     </div>
                     <div className="cabinet-sidebar-content">
                         <UserDescription selected={this.state.selected} selectItem={this.selectUser} updateDate={this.updateDate}/>
+                        <StoreDescription/>
                     </div>
                 </div>
             </div>
@@ -163,10 +215,13 @@ class Cabinet extends React.Component {
 function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
+        dataRedirect: state.pageReducer.dataRedirect,
         Email: state.userReducer.Email,
         UserName: state.userReducer.UserName,
         UsersParameters: state.userReducer.UsersParameters,
         UserStore: state.userReducer.UserStore,
+        Permission: state.userReducer.Permission,
+        StoreArr: state.storeReducer.StoreArr,
     }
 }
 
@@ -180,6 +235,15 @@ const mapDispatchToProps = dispatch => {
         },
         UserUpdateFunction: (UserUpdate) => {
             dispatch(actionUserUpdate(UserUpdate))
+        },
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
+        },
+        addUserFunction: (AddUser) => {
+            dispatch(actionAddUser(AddUser))
+        },
+        setStoreArrFunction: (StoreArr) => {
+            dispatch(actionSetStoreArr(StoreArr))
         },
     }
 };

@@ -1,6 +1,10 @@
 const initialState = {
     page: "",
-    dataRedirect: false,
+    dataRedirect: {
+        accessR: false,
+        to: "/",
+    },
+    update: false,
 };
 
 export default function pageReducer(state = initialState, action) {
@@ -15,6 +19,11 @@ export default function pageReducer(state = initialState, action) {
             return {
                 ...state,
                 dataRedirect: action.dataRedirect
+            };
+        case "DATA_UPDATE":
+            return {
+                ...state,
+                update: action.update
             };
         default:
             return state;

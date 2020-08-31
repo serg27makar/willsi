@@ -54,7 +54,10 @@ class AddServiceModal extends React.Component {
 
     updateResult() {
         this.closeLincModal();
-        this.props.dataRedirectFunction(true);
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/admin-panel",
+        });
     }
 
     dataSubmit() {
@@ -81,31 +84,31 @@ class AddServiceModal extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <h1 className="welcome-service__title uppercase title-36 bold">{ru.AddStore}</h1>
+                        <h1 className="uppercase title-36 bold">{ru.AddStore}</h1>
                         <div className="welcome-service__form-shop">
                             <label className="form-shop__label">
-                                <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder1} name="nameStore" onChange={this.dataOnChange}/>
                                 <span className="add-store-label">{ru.AddStoreInput1}</span>
+                                <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder1} name="nameStore" onChange={this.dataOnChange}/>
                             </label>
                             <label className="form-shop__label">
-                                <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder2} name="urlStore" onChange={this.dataOnChange}/>
                                 <span className="add-store-label">{ru.AddStoreInput2}</span>
+                                <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder2} name="urlStore" onChange={this.dataOnChange}/>
                             </label>
-                            <textarea className="form-shop__textarea text-14" placeholder={ru.AddStoreTextareaPlace} name="textStore" onChange={this.dataOnChange}/>
                             <span className="add-store-label">{ru.AddStoreTextarea}</span>
+                            <textarea className="form-shop__textarea text-14" placeholder={ru.AddStoreTextareaPlace} name="textStore" onChange={this.dataOnChange}/>
                             <label className="form-shop__label">
-                                <input className="form-shop__input text-14" type="tel" placeholder={ru.Phone} name="phoneStore" onChange={this.dataOnChange}/>
                                 <span className="add-store-label">{ru.AddStoreInput3}</span>
+                                <input className="form-shop__input text-14" type="tel" placeholder={ru.Phone} name="phoneStore" onChange={this.dataOnChange}/>
                             </label>
                             <label className="form-shop__label">
-                                <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder2} name="secondUrlStore" onChange={this.dataOnChange}/>
                                 <span className="add-store-label">{ru.AddStoreInput4}</span>
+                                <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder2} name="secondUrlStore" onChange={this.dataOnChange}/>
                             </label>
-                            <label className="form-shop__label-last">
+                            <label className="form-shop__label">
+                                <span className="add-store-label last-add-store-label">{ru.AddStoreInput5}</span>
                                 <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder1} name="addressStore" onChange={this.dataOnChange}/>
-                                <span className="add-store-label">{ru.AddStoreInput5}</span>
                             </label>
-                            <div className="block-align-center">
+                            <div className="block-align-center service-modal-btn">
                                 <ButtonMain btnClass={"form-shop__button-save text-16"} text={ru.Save} onClick={this.dataSubmit}/>
                             </div>
                         </div>
