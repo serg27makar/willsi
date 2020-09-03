@@ -1554,6 +1554,9 @@ footer {
 }
 .dropdown-list__item {
     padding: 1vw 0 1vw 1vw;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 .item-select {
     background: aliceblue;
@@ -1564,6 +1567,20 @@ footer {
 }
 .dropdown-list__link:hover {
     color: #969696;
+}
+.deleteBtn {
+    display: flex;
+    border: 2px solid red;
+    border-radius: 50%;
+    width: 1.2vw;
+    height: 1.2vw;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(45deg);
+    color: red;
+    font-size: 1.5vw;
+    font-weight: 500;
+    cursor: pointer;
 }
 .catalog-button {
     display: -webkit-box;

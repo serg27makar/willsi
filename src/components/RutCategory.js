@@ -18,6 +18,7 @@ class RutCategory extends React.Component {
             this.setState({
                 ...this.state,
                 isOpen: this.props.index === this.props.catalog,
+                selected: -1,
             })
     }
 
@@ -43,12 +44,31 @@ class RutCategory extends React.Component {
     }
 
     dropdownListItem = (item, index) => {
+        let name;
+        let deleteBtn = false;
+        if (typeof item === "object") {
+            name = item.name;
+            deleteBtn = item.deleteBtn;
+        } else {
+            name = item;
+        }
         return (
-            <li className={"dropdown-list__item " + (this.state.selected === index ? "item-select" : "")} key={index} onClick={() => {this.chooseListItem(item, index)}}>
-                <div className="dropdown-list__link text-14" >{item}</div>
+            <li className={"dropdown-list__item " + (this.state.selected === index ? "item-select" : "")} key={index} onClick={() => {this.chooseListItem(name, index)}}>
+                <div className="dropdown-list__link text-14" >{name}</div>
+                {this.deleteBtn(deleteBtn, index)}
             </li>
         )
     };
+
+    deleteBtn(deleteBtn, index) {
+        if(deleteBtn) {
+            return (
+                <div className="deleteBtn" onClick={(e) => {this.props.deleteBtnFun(index, e)}}>+</div>
+            )
+        } else {
+            return null;
+        }
+    }
 
     addListItem = () => {
         if (this.props.isAddItem) {

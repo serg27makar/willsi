@@ -65,3 +65,28 @@ export const getStoreData = (callbackInfo) => {
             callbackInfo(err);
     })
 };
+
+export const postUpdateStore = (store, callbackInfo) => {
+    const StoreID = store._id;
+    store = {...store, StoreID};
+    delete store._id;
+    axios.post(Url + `/store/update`, store, {
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        console.log(err);
+    })
+};
+
+export const postRemoveStore = (StoreID, callbackInfo) => {
+    axios.post(Url + `/store/remove`, {StoreID}, {
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        console.log(err);
+    })
+};

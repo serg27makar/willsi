@@ -572,26 +572,32 @@ export const placeholderStoreData = [
     {
         title: ru.AddStorePlaceholder1,
         placeholder: "Adidas",
+        name: "nameStore",
     },
     {
         title: ru.AddStorePlaceholder2,
         placeholder: "www.myStore.com",
+        name: "urlStore",
     },
     {
         title: ru.AddStoreTextareaPlace,
         placeholder: "My good store",
+        name: "textStore",
     },
     {
         title: ru.Phone,
         placeholder: "+380-55-555-55-55",
+        name: "phoneStore",
     },
     {
         title: ru.AddStorePlaceholder2,
         placeholder: "www.mySecondStore.com",
+        name: "secondUrlStore",
     },
     {
         title: ru.Address,
         placeholder: "Vinnica Piragova st.",
+        name: "addressStore",
     },
 ];
 export const whomParams = [

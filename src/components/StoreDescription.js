@@ -1,84 +1,66 @@
 import React from 'react';
-import { actionOpenModal} from "../action";
+import {actionOpenModal, actionSetStoreArr} from "../action";
 import {connect} from "react-redux";
 import DoubleButton from "./adminPanel/DoubleButton";
-import {placeholderData, placeholderStoreData, whomParams} from "../access/temporaryConstants";
+import {placeholderStoreData} from "../access/temporaryConstants";
 import ru from "../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
+import {postUpdateStore} from "../utilite/axiosConnect";
+import {updateResult} from "../js/sharedFunctions";
 
 class StoreDescription extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
-            params: {},
-            isChange: false,
-            activeBtn: 0,
+            Store: {},
+            selectedStore: -1,
         };
-        this.isActive = this.isActive.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.saveUpdate = this.saveUpdate.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.selected !== this.props.selected && this.props.UsersParameters.length > 0 ||
-            prevProps.HeaderUser !== this.props.HeaderUser) {
-            if (this.props.selected !== -1 && this.props.selected < this.props.UsersParameters.length) {
-                let params = {};
-                this.props.UsersParameters[this.props.selected].Parameters.map((item) => {
-                    params = {
-                        ...params,
-                        [item.title]: item.size,
-                    };
-                    return params;
-                });
-             
-            }
+        if (prevProps.selectedStore !== this.props.selectedStore && this.props.storeArr.length > 0 ) {
+            this.setState({
+                Store: this.props.selectedStore !== -1 ? this.props.storeArr[this.props.selectedStore] : {},
+                selectedStore: this.props.selectedStore,
+            });
         }
         if (prevState.isChange !== this.state.isChange && this.state.isChange) {
             this.isChanged();
-            this.updateParams();
         }
     }
 
-    isChanged() {
-        this.setState({
-            isChange: !this.state.isChange,
-        });
-        this.props.updateDate();
-    }
-
-    isActive(res) {
-        if (res) {
-            this.saveUpdate();
-        }
-    }
-
-    saveUpdate() {
-        const index = this.props.selected;
-
-        this.isChanged();
-    }
-
-    onChange = (e, item) => {
+    onChange = (value, item) => {
         this.setState({
             ...this.state,
-            params: {
-                ...this.state.params,
-                [item.title]: e.target.value <= 0 ? 0 : e.target.value >= 500 ? 500 : e.target.value,
+            Store: {
+                ...this.state.Store,
+                [item.name]: value,
             },
         });
     };
 
+    saveUpdate() {
+        const storeArr = this.props.storeArr.slice();
+        storeArr.splice(this.props.selectedStore, 1, this.state.Store);
+        this.props.setStoreArrFunction(storeArr);
+        postUpdateStore(this.state.Store, updateResult);
+        this.props.updateDate();
+    }
+
     renderInputBtn(item, index) {
         return (
-            <DoubleButton placeholderData={item}
-                          item={this.state.UserName}
-                          changeValue={this.nameChange}
-                          toggle={this.isActive}/>
+            <DoubleButton key={index}
+                          placeholderData={item}
+                          item={this.state.Store[item.name]}
+                          changeValue={(value) => {this.onChange(value, item)}}
+                          toggle={updateResult}/>
         )
     }
 
     render() {
-        if (this.props.selected === -1) {
+        if (this.props.selectedStore === -1) {
             return null;
         }
         return (
@@ -86,11 +68,8 @@ class StoreDescription extends React.Component {
                 {placeholderStoreData.map((item, index) => {
                     return this.renderInputBtn(item, index);
                 })}
-                <div className="tags-list-envelope">
-
-                </div>
                 <div className="partners-env-btn">
-                    <ButtonMain btnClass="button-main text-16 little-btn" text={ru.Save} onClick={() => {this.isActive(true)}}/>
+                    <ButtonMain btnClass="button-main text-16 little-btn" text={ru.Save} onClick={this.saveUpdate}/>
                 </div>
             </div>
         )
@@ -108,6 +87,9 @@ const mapDispatchToProps = dispatch => {
     return {
         openModalFunction: (modal) => {
             dispatch(actionOpenModal(modal))
+        },
+        setStoreArrFunction: (StoreArr) => {
+            dispatch(actionSetStoreArr(StoreArr))
         },
     }
 };
