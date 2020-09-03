@@ -3264,7 +3264,7 @@ input[type="checkbox"] + label:hover {
 .sidebar__main-list {
     position: relative;
     padding: 1.875vw 3.125vw;
-    z-index: 800;
+    z-index: 1;
 }
 .sidebar__button-menu {
     display: -webkit-box;
@@ -3295,6 +3295,13 @@ input[type="checkbox"] + label:hover {
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     fill: #c6d846;
+}
+.sidebar__button-list .dropdown-info,
+.sidebar__button-list .catalog-top__dropdown-info {
+    width: 24vw;
+}
+.sidebar__button-list .select-fitting-user {
+    padding: 0;
 }
 .main-list__catalog-product {
     margin-top: 1rem;
