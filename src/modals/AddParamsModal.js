@@ -20,10 +20,11 @@ class AddParamsModal extends React.Component {
     componentDidMount() {
         const list = paramsList.slice();
         this.props.UsersParameters[this.props.HeaderUser].Parameters.map((param) => {
-            list.map((item, index) => {
+            return list.map((item, index) => {
                 if (item.title === param.title) {
                     list.splice(index, 1);
                 }
+                return index;
             });
         });
         let params = {};

@@ -69,12 +69,13 @@ class SearchBox extends React.Component {
         const {growth, shoulders, chest, waist, hips} = this.state;
         if (growth && shoulders && chest && waist && hips) {
             const Parameters = [];
-            inputArr.map((item) => {
+            inputArr.map((item, index) => {
                 const obj = {
                     title: item.name,
                     size: this.state[item.name]
                 };
                 Parameters.push(obj);
+                return index;
             });
             if (!this.props.UserID || this.props.UserID === "undefined") {
                 this.setState({update: true});

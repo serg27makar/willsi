@@ -35,7 +35,8 @@ class LinkBtn extends React.Component {
     };
 
     render() {
-        if (window.location.pathname === "/admin-panel" || window.location.pathname === "/data") {
+        console.log(this.props.page)
+        if (this.props.page === "AdminPanel" || "Data" || "Cabinet") {
             return null;
         }
         return (
@@ -53,6 +54,7 @@ class LinkBtn extends React.Component {
 
 function MapStateToProps(state) {
     return {
+        page: state.pageReducer.page,
         modal: state.modalReducer.modal,
     }
 }

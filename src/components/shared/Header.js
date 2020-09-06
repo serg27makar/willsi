@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import ru from "../../access/lang/LangConstants";
 import "../../access/css/headerFooter.css"
 import {connect} from "react-redux";

@@ -1,7 +1,7 @@
 import React from "react";
 import {actionOpenCatalog} from "../action";
 import {connect} from "react-redux";
-import ru from "../access/lang/LangConstants";
+import LangCat from "../access/lang/CatalogLangConstants";
 
 class RutCategory extends React.Component {
     constructor(props) {
@@ -50,7 +50,7 @@ class RutCategory extends React.Component {
             name = item.name;
             deleteBtn = item.deleteBtn;
         } else {
-            name = item;
+            name = LangCat[item];
         }
         return (
             <li className={"dropdown-list__item " + (this.state.selected === index ? "item-select" : "")} key={index} onClick={() => {this.chooseListItem(name, index)}}>
@@ -86,7 +86,7 @@ class RutCategory extends React.Component {
         return (
             <div className="catalog-product">
                 <button className="catalog-button" onClick={this.closeOpen}>
-                    <span className={"catalog-button__text text-16 light " + (this.state.isOpen ? "catalog-opened" : "")}>{this.props.item.dropdownTitle}</span>
+                    <span className={"catalog-button__text text-16 light " + (this.state.isOpen ? "catalog-opened" : "")}>{LangCat[this.props.item.dropdownTitle]}</span>
                     <svg className="icon icon-arrow-small ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                     </svg>

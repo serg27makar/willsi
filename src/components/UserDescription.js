@@ -1,5 +1,5 @@
 import React from 'react';
-import {actionAddUser, actionHeaderUser, actionOpenModal, actionUsersParameters} from "../action";
+import {actionHeaderUser, actionOpenModal, actionUsersParameters} from "../action";
 import {connect} from "react-redux";
 import DoubleButton from "./adminPanel/DoubleButton";
 import {placeholderData, whomParams} from "../access/temporaryConstants";
@@ -7,7 +7,6 @@ import {postUpdate} from "../utilite/axiosConnect";
 import {activeBtn, updateResult} from "../js/sharedFunctions";
 import ru from "../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
-import {Redirect} from "react-router-dom";
 
 class UserDescription extends React.Component {
     constructor(props) {
@@ -29,8 +28,9 @@ class UserDescription extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.selected !== this.props.selected && this.props.UsersParameters.length > 0 ||
-            prevProps.HeaderUser !== this.props.HeaderUser) {
+        if (prevProps.selected !== this.props.selected &&
+            (this.props.UsersParameters.length > 0 ||
+            prevProps.HeaderUser !== this.props.HeaderUser)) {
             if (this.props.selected !== -1 && this.props.selected < this.props.UsersParameters.length) {
                 let params = {};
                 this.props.UsersParameters[this.props.selected].Parameters.map((item) => {

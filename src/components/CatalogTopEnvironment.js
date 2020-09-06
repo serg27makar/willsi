@@ -3,7 +3,6 @@ import "./../access/css/cart.css";
 import ru from "../access/lang/LangConstants";
 import {actionAddUser, actionDataRedirect, actionHeaderUser, actionOpenModal} from "../action";
 import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
 import DropdownList from "./DropdownList";
 
 class CatalogTopEnvironment extends React.Component {
@@ -31,8 +30,8 @@ class CatalogTopEnvironment extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if ((this.props.subUsers && this.props.subUsers.length > 0) &&
-            (prevProps.HeaderUser !== this.props.HeaderUser) ||
-            (prevProps.subUsers !== this.props.subUsers)) {
+            ((prevProps.HeaderUser !== this.props.HeaderUser) ||
+            (prevProps.subUsers !== this.props.subUsers))) {
             this.setState({
                 headerUser: this.props.subUsers.length > 0 ? this.props.subUsers[this.props.HeaderUser].UserName : "",
                 params: this.props.subUsers.length > 0 ? this.props.subUsers[this.props.HeaderUser].Parameters : [],

@@ -186,22 +186,6 @@ export const sidebarCatalogArr = [
             "Синий",
         ]
     },
-    {
-        catalogTitle: "Размер",
-        catalogItems: [
-            "S",
-            "M",
-            "XL",
-        ]
-    },
-    {
-        catalogTitle: "Дополнительно",
-        catalogItems: [
-            "S",
-            "M",
-            "XL",
-        ]
-    },
 ];
 export const postponeArr = [
     {
@@ -374,61 +358,61 @@ export const recalculateParams = [
 ];
 export const dropdownListArr = [
     {
-        dropdownTitle: "Одежда для мужчин",
+        dropdownTitle: "catalogListMen",
         dropdownItems: [
-            "Футболки, майки, поло, гольфы",
-            "Рубашки, свитера",
-            "Штаны, шорты",
-            "Нижнее белье, одежда для коррекции фигуры",
-            "Верхняя одежда",
-            "Домашняя одежда",
-            "Общее",
+            "subCatalogListMenTshirts",
+            "subCatalogListMenShirts",
+            "subCatalogListMenPants",
+            "subCatalogListMenUnderwear",
+            "subCatalogListMenOuterwear",
+            "subCatalogListMenHome",
+            "subCatalogListMenGeneral",
         ],
     },
     {
-        dropdownTitle: "Женская одежда",
+        dropdownTitle: "catalogListWomen",
         dropdownItems: [
-            "Футболки, лонгсливы",
-            "Блузы, Рубашки, Туники",
-            "Штаны, шорты, юбки",
-            "Нижнее белье, купальники, одежда для коррекции фигуры",
-            "Верхняя одежда",
-            "Домашняя одежда",
-            "Общее",
+            "subCatalogListWomenTshirts",
+            "subCatalogListWomenShirts",
+            "subCatalogListWomenPants",
+            "subCatalogListWomenUnderwear",
+            "subCatalogListWomenOuterwear",
+            "subCatalogListWomenHome",
+            "subCatalogListWomenGeneral",
         ],
     },
     {
-        dropdownTitle: "Одежда для мальчиков",
+        dropdownTitle: "catalogListBoy",
         dropdownItems: [
-            "Футболки, майки, гольфы",
-            "Рубашки, свитера ",
-            "Штаны, шорты",
-            "Нижнее белье",
-            "Верхняя одежда",
-            "Домашняя одежда",
-            "Общее ",
+            "subCatalogListBoyTshirts",
+            "subCatalogListBoyShirts",
+            "subCatalogListBoyPants",
+            "subCatalogListBoyUnderwear",
+            "subCatalogListBoyOuterwear",
+            "subCatalogListBoyHome",
+            "subCatalogListBoyGeneral",
         ],
     },
     {
-        dropdownTitle: "Одежда для девочек",
+        dropdownTitle: "catalogListGirl",
         dropdownItems: [
-            "Футболки, лонгсливы",
-            "Блузы, Рубашки, Туники",
-            "Штаны, шорты, юбки",
-            "Нижнее белье, купальники, одежда для коррекции фигуры",
-            "Верхняя одежда",
-            "Домашняя одежда",
-            "Общее",
+            "subCatalogListGirlTshirts",
+            "subCatalogListGirlShirts",
+            "subCatalogListGirlPants",
+            "subCatalogListGirlUnderwear",
+            "subCatalogListGirlOuterwear",
+            "subCatalogListGirlHome",
+            "subCatalogListGirlGeneral",
         ],
     },
     {
-        dropdownTitle: "Собаки",
+        dropdownTitle: "catalogListDog",
         dropdownItems: [
-            "Штаны",
-            "Майки, рубашки, кофты",
-            "Комбинизон",
-            "Кепка",
-            "Общее",
+            "subCatalogListDogPants",
+            "subCatalogListDogShirts",
+            "subCatalogListDogOveralls",
+            "subCatalogListDogCap",
+            "subCatalogListDogGeneral",
         ],
     },
 ];
@@ -468,24 +452,7 @@ export const adminBarBtnList = [
         btnImage: "static/img/svg-sprites/symbol/sprite.svg#user-admin",
     },
 ];
-export const envelopeListArr = [
-    {
-        title: "Категории",
-        placeholder: "Женские платья",
-    },
-    {
-        title: "Код Изделия",
-        placeholder: "123456",
-    },
-    {
-        title: "Бренд",
-        placeholder: "Zero New",
-    },
-    {
-        title: "Артикул",
-        placeholder: "56853",
-    },
-];
+
 export const dataInputRegistrationModal = [
     {
         type: "text",
@@ -655,4 +622,60 @@ export const paramsList = [
         title: "head",
         data: "Голова",
     },
+];
+
+export const ProductLinkInputList = [
+    {
+        title: ru.Photo1,
+        placeholder: "image.png",
+    },
+    {
+        title: ru.Photo2,
+        placeholder: "image.png",
+    },
+    {
+        title: ru.Photo3,
+        placeholder: "image.png",
+    },
+    {
+        title: ru.LinkToProduct,
+        placeholder: "www.my.store.ua/product/myProduct",
+    },
+];
+
+export const ProductManufacturerInputList = [
+    {
+        title: ru.Manufacturer,
+        placeholder: "Adidas",
+    },
+    {
+        title: ru.ProdName,
+        placeholder: "Футболка с гербом",
+    },
+    {
+        title: ru.ProductCode,
+        placeholder: "12345",
+    },
+    {
+        title: ru.VendorCode,
+        placeholder: "12345",
+    },
+    {
+        title: ru.Price,
+        placeholder: "99.90",
+    },
+];
+
+export const catalogColorsItems = [
+    "beige",
+    "white",
+    "heavenly",
+    "yellow",
+    "green",
+    "red",
+    "prints",
+    "pink",
+    "gray",
+    "blue",
+    "black",
 ];

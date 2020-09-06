@@ -1,5 +1,6 @@
 import React from "react";
 import ru from "../../access/lang/LangConstants";
+import LangCat from "../../access/lang/CatalogLangConstants";
 
 class MainListCatalogProducts extends React.Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class MainListCatalogProducts extends React.Component {
     renderListItem = (listItem, listIndex) => {
         return (
             <li className="dropdown-list__item" key={listIndex}>
-                <div className="dropdown-list__link text-14 light" >{listItem}</div>
+                <div className="dropdown-list__link text-14 light" >{LangCat[listItem]}</div>
             </li>
         )
     };
@@ -33,7 +34,7 @@ class MainListCatalogProducts extends React.Component {
         return (
             <div className="catalog-product" key={index}>
                 <button className={this.state.openIndex === index ? this.state.active : this.state.passive} type="button" onClick={() => {this.closeOpen(index)}}>
-                    <span className="catalog-button__text text-16 light">{item.dropdownTitle}</span>
+                    <span className="catalog-button__text text-16 light">{LangCat[item.dropdownTitle]}</span>
                     <svg className="icon icon-arrow-small ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                     </svg>

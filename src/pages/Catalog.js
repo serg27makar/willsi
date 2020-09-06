@@ -61,7 +61,6 @@ class Catalog extends React.Component {
     }
 
     functionRedirect() {
-        console.log(this.props)
         if (this.props.UsersParameters.length < 1 ||
             ( this.props.UsersParameters[0].Parameters &&
                 this.props.UsersParameters[0].Parameters.length < 1)) {

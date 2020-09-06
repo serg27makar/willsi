@@ -1,13 +1,10 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {actionDataRedirect, actionSetStoreArr, setActionAdminPanel} from "../action";
-import {envelopeListArr} from "../access/temporaryConstants";
 import AdminSidebar from "../components/adminPanel/AdminSidebar";
-import ButtonMain from "../components/shared/ButtonMain";
-import ru from "../access/lang/LangConstants";
-import MainEnvelopeSize from "../components/adminPanel/MainEnvelopeSize";
 import {Redirect} from "react-router-dom";
 import {getStoreData} from "../utilite/axiosConnect";
+import AdminMainSite from "../components/adminPanel/AdminMainSite";
 
 class AdminPanel extends React.Component {
     constructor(props) {
@@ -20,6 +17,7 @@ class AdminPanel extends React.Component {
         };
         this.storeData = this.storeData.bind(this);
     }
+
     componentDidMount() {
         getStoreData(this.storeData);
         this.props.setActionAdminPanelFunction("AdminPanel");
@@ -53,23 +51,7 @@ class AdminPanel extends React.Component {
             <div className="content main-admin__row">
                 <AdminSidebar/>
                 <div className="main-admin__main-envelope">
-                    <div className="main-envelope__middle-line">
-                        <ButtonMain btnClass={"main-envelope__button-create text-14"} text={ru.Create}/>
-                    </div>
-                    <div className="main-envelope__bottom-env">
-                        {/*<DropdownList*/}
-                        {/*    headerItem={this.state.headerUser}*/}
-                        {/*    subItem={envelopeListArr}*/}
-                        {/*    changeItem={this.changeUser}*/}
-                        {/*    hidden={true}*/}
-                        {/*/>*/}
-                        {/*{envelopeListArr && envelopeListArr.map((item, index) => {*/}
-                        {/*    return (*/}
-                        {/*        <DoubleButton placeholderData={item} key={index} toggle={()=>{}}/>*/}
-                        {/*    )*/}
-                        {/*})}*/}
-                        <MainEnvelopeSize/>
-                    </div>
+                    <AdminMainSite/>
                 </div>
             </div>
         )

@@ -123,3 +123,10 @@ export const actionSetStoreArr = (StoreArr) => {
         StoreArr: StoreArr
     }
 };
+
+export const actionAddStore = (addStore) => {
+    return {
+        type: 'SET_ADD_STORE',
+        addStore: addStore
+    }
+};

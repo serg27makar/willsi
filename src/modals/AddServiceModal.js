@@ -1,9 +1,9 @@
 import React from "react";
-import {actionDataRedirect, actionOpenModal, actionUserStore} from "../action";
+import {actionAddStore, actionDataRedirect, actionOpenModal, actionSetStoreArr, actionUserStore} from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
 import ButtonMain from "../components/shared/ButtonMain";
-import {postStoreRegister, postUpdate} from "../utilite/axiosConnect";
+import {getStoreData, postStoreRegister, postUpdate} from "../utilite/axiosConnect";
 
 class AddServiceModal extends React.Component {
     constructor(props) {
@@ -19,7 +19,9 @@ class AddServiceModal extends React.Component {
         this.dataSubmit = this.dataSubmit.bind(this);
         this.result = this.result.bind(this);
         this.updateResult = this.updateResult.bind(this);
+        this.storeData = this.storeData.bind(this);
     }
+
     closeLincModal = () => {
         this.props.openModalFunction("");
     };
@@ -52,12 +54,23 @@ class AddServiceModal extends React.Component {
         }
     }
 
+    storeData(res) {
+        if (res && res.length > 0) {
+            this.props.setStoreArrFunction(res);
+        }
+        this.props.addStoreFunction(!this.props.addStore);
+    }
+
     updateResult() {
         this.closeLincModal();
-        this.props.dataRedirectFunction({
-            accessR: true,
-            to: "/admin-panel",
-        });
+        if (this.props.page !== "AdminPanel") {
+            this.props.dataRedirectFunction({
+                accessR: true,
+                to: "/admin-panel",
+            });
+        } else {
+            getStoreData(this.storeData);
+        }
     }
 
     dataSubmit() {
@@ -121,9 +134,11 @@ class AddServiceModal extends React.Component {
 
 function MapStateToProps(state) {
     return {
+        page: state.pageReducer.page,
         modal: state.modalReducer.modal,
         UserID: state.userReducer.UserID,
         UserStore: state.userReducer.UserStore,
+        addStore: state.storeReducer.addStore,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -136,6 +151,12 @@ const mapDispatchToProps = dispatch => {
         },
         dataRedirectFunction: (dataRedirect) => {
             dispatch(actionDataRedirect(dataRedirect))
+        },
+        addStoreFunction: (addStore) => {
+            dispatch(actionAddStore(addStore))
+        },
+        setStoreArrFunction: (StoreArr) => {
+            dispatch(actionSetStoreArr(StoreArr))
         },
     }
 };

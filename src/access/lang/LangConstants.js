@@ -174,6 +174,36 @@ const ru = {
     DeleteUser: "Удалить пользователя",
     AddedUser: "Добавить пользователя",
     AddedParams: "Добавить параметр",
+
+    Manufacturer: "Производитель",
+    ProdName: "Наименование",
+    ProductCode: "Код изделия",
+    VendorCode: "Артикул",
+    Price: "Цена",
+    Photo1: "Фото продукта 1",
+    Photo2: "Фото продукта 2",
+    Photo3: "Фото продукта 3",
+    LinkToProduct: "Ссылка на продукт",
+
+    Description: "Описание",
+    Composition: "Состав",
+    ModelParameters: "Параметры модели",
+    CareInstructions: "Инструкция по уходу",
+    PaymentAndDelivery: "Оплата и доставка",
+
+    beige: "бежевый",
+    white: "белый",
+    heavenly: "голубой",
+    yellow: "желтый",
+    green: "зеленый",
+    red: "красный",
+    prints: "принты и узоры",
+    pink: "розовый",
+    gray: "серый",
+    blue: "синий",
+    black: "черный",
+
+    Sizes: "Размеры",
 };
 
 export default ru;

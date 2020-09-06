@@ -90,3 +90,14 @@ export const postRemoveStore = (StoreID, callbackInfo) => {
         console.log(err);
     })
 };
+
+export const postAddedProduct = (Product, callbackInfo) => {
+    axios.post(Url + `/product/added`, Product, {
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data.insertedId);
+        }).catch(err => {
+        console.log(err);
+    })
+};

@@ -39,6 +39,7 @@ class DropdownList extends React.Component {
     }
 
     addItem() {
+        this.closeOpen();
         this.props.addItem();
     }
 

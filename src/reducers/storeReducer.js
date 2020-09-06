@@ -1,5 +1,6 @@
 const initialState = {
-    StoreArr: []
+    StoreArr: [],
+    addStore: false,
 };
 
 export default function storeReducer(state = initialState, action) {
@@ -9,6 +10,11 @@ export default function storeReducer(state = initialState, action) {
             return {
                 ...state,
                 StoreArr: action.StoreArr
+            };
+        case "SET_ADD_STORE":
+            return {
+                ...state,
+                addStore: action.addStore
             };
 
         default:

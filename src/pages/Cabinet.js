@@ -26,11 +26,11 @@ class Cabinet extends React.Component {
             Email: "",
             UserName: "",
             Data: {
-                dropdownTitle: "Ваши параметры",
+                dropdownTitle: "YourParams",
                 dropdownItems: [],
             },
             Store: {
-                dropdownTitle: "Ваши магазины",
+                dropdownTitle: "YourStore",
                 dropdownItems: [],
             },
             selected: -1,

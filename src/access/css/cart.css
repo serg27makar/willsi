@@ -51,6 +51,13 @@
     background: #fff;
     z-index: 30;
 }
+.dropdown-info-admin {
+    width: 27vw;
+}
+.dropdown-info {
+    width: 7.2vw;
+}
+.dropdown-info-admin,
 .dropdown-info {
     display: none;
     position: absolute;
@@ -61,7 +68,6 @@
     border-bottom: 0.0625vw solid #e1e1e1;
     border-bottom-left-radius: 0.25vw;
     border-bottom-right-radius: 0.25vw;
-    width: 7.187499999999999vw;
     padding-top: 0.875vw;
     padding-left: 1.25vw;
     padding-right: 1.25vw;

@@ -2,7 +2,7 @@ import {dropdownListArr} from "../../access/temporaryConstants";
 import MainListCatalogProducts from "./MainListCatalogProducts";
 import React from "react";
 import DropdownList from "../DropdownList";
-import {actionDataRedirect, actionOpenModal, setActionAdminPanel} from "../../action";
+import {actionDataRedirect, actionOpenModal} from "../../action";
 import {connect} from "react-redux";
 
 class AdminSidebar extends React.Component {
@@ -17,7 +17,8 @@ class AdminSidebar extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevState.StoreArr !== this.props.StoreArr) {
+        if (prevState.StoreArr !== this.props.StoreArr ||
+            prevProps.addStore !== this.props.addStore) {
             this.setState({
                 StoreArr: this.props.StoreArr
             })
@@ -55,6 +56,7 @@ function MapStateToProps(state) {
     return {
         dataRedirect: state.pageReducer.dataRedirect,
         StoreArr: state.storeReducer.StoreArr,
+        addStore: state.storeReducer.addStore,
     }
 }
 const mapDispatchToProps = dispatch => {
