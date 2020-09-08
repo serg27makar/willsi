@@ -9,6 +9,7 @@ import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ProductsCart from "../components/ProductsCart";
 import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
+import {getProductData} from "../utilite/axiosConnect";
 
 const breadcrumbs = {
     title: "Женская одежда",
@@ -32,6 +33,7 @@ class Catalog extends React.Component {
     }
 
     componentDidMount() {
+        getProductData(this.setProductData);
         this.props.dataRedirectFunction({
             accessR: false,
             to: "/",
@@ -58,6 +60,10 @@ class Catalog extends React.Component {
                 redirect: this.props.dataRedirect,
             })
         }
+    }
+
+    setProductData(data) {
+        console.log(data)
     }
 
     functionRedirect() {

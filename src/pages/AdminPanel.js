@@ -3,19 +3,23 @@ import {connect} from "react-redux";
 import {actionDataRedirect, actionSetStoreArr, setActionAdminPanel} from "../action";
 import AdminSidebar from "../components/adminPanel/AdminSidebar";
 import {Redirect} from "react-router-dom";
-import {getStoreData} from "../utilite/axiosConnect";
+import {getProductDataToId, getStoreData} from "../utilite/axiosConnect";
 import AdminMainSite from "../components/adminPanel/AdminMainSite";
 
 class AdminPanel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            productsThisStore: [],
+            storeID: "",
             redirect: {
                 accessR: false,
                 to: "",
             },
         };
         this.storeData = this.storeData.bind(this);
+        this.productsData = this.productsData.bind(this);
+        this.setStoreID = this.setStoreID.bind(this);
     }
 
     componentDidMount() {
@@ -41,6 +45,19 @@ class AdminPanel extends React.Component {
         }
     }
 
+    productsData(data) {
+        this.setState({
+            productsThisStore: data,
+        });
+    }
+
+    setStoreID(ProductStoreID) {
+        this.setState({storeID: ProductStoreID});
+        if (ProductStoreID && ProductStoreID.length >= 12) {
+            getProductDataToId(ProductStoreID, this.productsData);
+        }
+    }
+
     render() {
         if (this.state.redirect.accessR) {
             return(
@@ -49,9 +66,9 @@ class AdminPanel extends React.Component {
         }
         return(
             <div className="content main-admin__row">
-                <AdminSidebar/>
+                <AdminSidebar storeID={this.setStoreID} productsThisStore={this.state.productsThisStore}/>
                 <div className="main-admin__main-envelope">
-                    <AdminMainSite/>
+                    <AdminMainSite storeID={this.state.storeID}/>
                 </div>
             </div>
         )

@@ -4,13 +4,15 @@ import React from "react";
 import DropdownList from "../DropdownList";
 import {actionDataRedirect, actionOpenModal} from "../../action";
 import {connect} from "react-redux";
+import AdminMainSite from "./AdminMainSite";
 
 class AdminSidebar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             headerItem: "",
-            StoreArr: []
+            StoreArr: [],
+            storeID: "",
         };
         this.addStore = this.addStore.bind(this);
         this.changeItem = this.changeItem.bind(this);
@@ -19,16 +21,24 @@ class AdminSidebar extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.StoreArr !== this.props.StoreArr ||
             prevProps.addStore !== this.props.addStore) {
-            this.setState({
-                StoreArr: this.props.StoreArr
-            })
+            if (this.props.StoreArr.length > 0) {
+                const StoreID = this.state.storeID === "" ? this.props.StoreArr[0]._id : this.state.storeID;
+                this.setState({
+                    storeID: StoreID,
+                    StoreArr: this.props.StoreArr
+                });
+                this.props.storeID(StoreID);
+            }
         }
     }
 
     changeItem(index) {
-        this.setState({
-            headerItem: this.state.StoreArr[index].nameStore
-        })
+        const StoreID = this.state.StoreArr[index]._id;
+            this.setState({
+            headerItem: this.state.StoreArr[index].nameStore,
+            storeID: StoreID,
+        });
+        this.props.storeID(StoreID);
     }
 
     addStore() {
@@ -46,7 +56,7 @@ class AdminSidebar extends React.Component {
                         changeItem={this.changeItem}
                     />
                 </div>
-                <MainListCatalogProducts catalogProducts={dropdownListArr}/>
+                <MainListCatalogProducts catalogProducts={dropdownListArr} productsThisStore={this.props.productsThisStore}/>
             </div>
         )
     }

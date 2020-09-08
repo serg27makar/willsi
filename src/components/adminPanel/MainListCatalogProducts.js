@@ -35,7 +35,8 @@ class MainListCatalogProducts extends React.Component {
             <div className="catalog-product" key={index}>
                 <button className={this.state.openIndex === index ? this.state.active : this.state.passive} type="button" onClick={() => {this.closeOpen(index)}}>
                     <span className="catalog-button__text text-16 light">{LangCat[item.dropdownTitle]}</span>
-                    <svg className="icon icon-arrow-small ">
+                    <div className="count-products"></div>
+                    <svg className="icon ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                     </svg>
                 </button>

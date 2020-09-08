@@ -66,6 +66,29 @@ export const getStoreData = (callbackInfo) => {
     })
 };
 
+export const getProductDataToId = (ProductStoreID, callbackInfo) => {
+    const productData = {ProductStoreID};
+    axios.post(Url + `/product/getProductDataToId`, productData, {
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        callbackInfo(err);
+    })
+};
+
+export const getProductData = (callbackInfo) => {
+    axios.get(Url + `/product/getProductDataToId`, {
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        callbackInfo(err);
+    })
+};
+
 export const postUpdateStore = (store, callbackInfo) => {
     const StoreID = store._id;
     store = {...store, StoreID};

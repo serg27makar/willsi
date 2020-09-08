@@ -3240,6 +3240,15 @@ input[type="checkbox"] + label:hover {
 .main-enevelope__size-icons {
     display: flex;
 }
+.count-products {
+    display: block;
+    height: 1.2rem;
+    background: red;
+    width: 1.2rem;
+    border-radius: 50%;
+    position: absolute;
+    right: 4rem;
+}
 .sidebar {
     position: relative;
     width: 30%;
