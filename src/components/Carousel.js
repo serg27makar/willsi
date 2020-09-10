@@ -57,10 +57,10 @@ class Carousel extends React.Component {
                          e.preventDefault();
                          e.stopPropagation();
                          const {left, top, width, height} = e.currentTarget.getBoundingClientRect();
-                         this.zoomStart(slide.imgUrl,left, top, width, height)
+                         this.zoomStart(slide,left, top, width, height)
                      }} key={index}>
                     <div className="carousel-img-wrap">
-                        <img className="carousel-img" src={slide.imgUrl} alt={slide.alt} key={index}/>
+                        <img className="carousel-img" src={slide} alt={slide} key={index}/>
                     </div>
                 </div>
             )
@@ -116,7 +116,7 @@ class Carousel extends React.Component {
         return this.props.slidersArr.map((slide, index) => {
             return (
                 <div className="slide-bar" key={index} onClick={(e) => {this.chooseSlideBtn(index, e.target.offsetParent.clientWidth)}}>
-                    <img className="carousel-img-btn" src={slide.imgUrl} alt={slide.alt} key={index}/>
+                    <img className="carousel-img-btn" src={slide} alt={slide} key={index}/>
                 </div>
             )
         })

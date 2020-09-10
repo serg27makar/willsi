@@ -12,13 +12,21 @@ class MainListCatalogProducts extends React.Component {
             active: "catalog-button catalog-opened",
             passive: "catalog-button",
             openIndex: -1,
+            productsThisStore: [],
         }
+    }
+
+    componentDidMount() {
+        this.setState({
+            productsThisStore: this.props.productsThisStore,
+        })
     }
 
     renderListItem = (listItem, listIndex) => {
         return (
             <li className="dropdown-list__item" key={listIndex}>
                 <div className="dropdown-list__link text-14 light" >{LangCat[listItem]}</div>
+                <div className="count-products-sub">{this.countProducts(listItem)}</div>
             </li>
         )
     };
@@ -30,12 +38,26 @@ class MainListCatalogProducts extends React.Component {
         })
     };
 
+    countProducts(title) {
+        let i = 0;
+        this.props.productsThisStore.map((item, index) => {
+            if (item.topCatalog === title) {
+                i++
+            }
+            if (item.subCatalog === title) {
+                i++
+            }
+            return index;
+        });
+        return i;
+    }
+
     renderCatalogProduct = (item, index) => {
         return (
             <div className="catalog-product" key={index}>
                 <button className={this.state.openIndex === index ? this.state.active : this.state.passive} type="button" onClick={() => {this.closeOpen(index)}}>
                     <span className="catalog-button__text text-16 light">{LangCat[item.dropdownTitle]}</span>
-                    <div className="count-products"></div>
+                    <div className="count-products">{this.countProducts(item.dropdownTitle)}</div>
                     <svg className="icon ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                     </svg>

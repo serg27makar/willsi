@@ -79,7 +79,7 @@ export const getProductDataToId = (ProductStoreID, callbackInfo) => {
 };
 
 export const getProductData = (callbackInfo) => {
-    axios.get(Url + `/product/getProductDataToId`, {
+    axios.get(Url + `/product/getProductData`, {
         headers: {'token': localStorage.UserId}
     })
         .then(req => {

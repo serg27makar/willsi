@@ -1,6 +1,6 @@
 import React from 'react';
 import "./../access/css/cart.css";
-import {actionDataRedirect, setActionAdminPanel} from "../action";
+import {actionDataRedirect, actionSelectProduct, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import Carousel from "../components/Carousel";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
@@ -30,6 +30,8 @@ class Cart extends React.Component {
         super(props);
         this.state = {
             subUsers:[],
+            slidersArr: [],
+            SelectProduct: {},
             redirect: {
                 accessR: false,
                 to: "",
@@ -38,10 +40,21 @@ class Cart extends React.Component {
     }
 
     componentDidMount() {
+        this.props.ProductsArr.map((item, index) => {
+            if (item._id === this.props.ProductID) {
+                this.props.selectProductFunction(this.props.ProductsArr[index]);
+            }
+        });
         this.props.dataRedirectFunction({
             accessR: false,
             to: "/",
         });
+        if (this.props.ProductsArr.length < 1) {
+            this.props.dataRedirectFunction({
+                accessR: true,
+                to: "/catalog",
+            });
+        }
         this.props.setActionAdminPanelFunction("Cart");
         setTimeout(() => {
             handlePageUp();
@@ -59,11 +72,28 @@ class Cart extends React.Component {
                 redirect: this.props.dataRedirect,
             })
         }
+        if (prevState.ProductID !== this.props.ProductID) {
+            this.setState({
+                ProductID: this.props.ProductID,
+            });
+            this.props.ProductsArr.map((item, index) => {
+                if (item._id === this.props.ProductID) {
+                    this.props.selectProductFunction(this.props.ProductsArr[index]);
+                }
+            });
+        }
+        if (prevProps.SelectProduct !== this.props.SelectProduct) {
+            const {Photo1, Photo2, Photo3} = this.props.SelectProduct;
+            this.setState({
+                SelectProduct: this.props.SelectProduct,
+                slidersArr: [Photo1, Photo2, Photo3],
+            })
+        }
     }
 
     renderSlide = () => {
         return (
-            <Carousel slidersArr={slidersArr}/>
+            <Carousel slidersArr={this.state.slidersArr}/>
             )
     };
 
@@ -85,12 +115,12 @@ class Cart extends React.Component {
                                 <CircleLevel level={90}/>
                             </div>
                             <div className="col-12">
-                               <CardDescription/>
+                               <CardDescription cardDescription={this.state.SelectProduct}/>
                             </div>
                         </div>
                     </div>
                 </div>
-                <CartTabs/>
+                <CartTabs cardDescription={this.state.SelectProduct}/>
                 <div className="ideal-product">
                     <div className="container">
                         <div className="row">
@@ -116,6 +146,9 @@ function MapStateToProps(state) {
         page: state.pageReducer.page,
         UsersParameters: state.userReducer.UsersParameters,
         dataRedirect: state.pageReducer.dataRedirect,
+        ProductID: state.productReducer.ProductID,
+        ProductsArr: state.productReducer.ProductsArr,
+        SelectProduct: state.productReducer.SelectProduct,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -125,6 +158,9 @@ const mapDispatchToProps = dispatch => {
         },
         dataRedirectFunction: (dataRedirect) => {
             dispatch(actionDataRedirect(dataRedirect))
+        },
+        selectProductFunction: (SelectProduct) => {
+            dispatch(actionSelectProduct(SelectProduct))
         },
     }
 };

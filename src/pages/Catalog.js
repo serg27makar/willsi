@@ -1,5 +1,5 @@
 import React from 'react';
-import {actionDataRedirect, setActionAdminPanel} from "../action";
+import {actionDataRedirect, actionProductsArr, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
 import {dropdownListArr, productArr, sidebarCatalogArr} from "../access/temporaryConstants";
@@ -25,11 +25,13 @@ class Catalog extends React.Component {
         super(props);
         this.state = {
             subUsers:[],
+            productArr: [],
             redirect: {
                 accessR: false,
                 to: "/",
             },
-        }
+        };
+        this.setProductData = this.setProductData.bind(this);
     }
 
     componentDidMount() {
@@ -63,18 +65,23 @@ class Catalog extends React.Component {
     }
 
     setProductData(data) {
-        console.log(data)
+        this.props.productsArrFunction(data);
+        this.setState({
+            productArr: data,
+        })
     }
 
     functionRedirect() {
-        if (this.props.UsersParameters.length < 1 ||
-            ( this.props.UsersParameters[0].Parameters &&
-                this.props.UsersParameters[0].Parameters.length < 1)) {
-            this.props.dataRedirectFunction({
-                accessR: true,
-                to: "/data",
-            })
-        }
+        setTimeout(() => {
+            if (this.props.UsersParameters.length < 1 ||
+                ( this.props.UsersParameters[0].Parameters &&
+                    this.props.UsersParameters[0].Parameters.length < 1)) {
+                this.props.dataRedirectFunction({
+                    accessR: true,
+                    to: "/data",
+                })
+            }
+        }, 500)
     }
 
     render() {
@@ -94,7 +101,7 @@ class Catalog extends React.Component {
                             <CatalogSidebar Categories={sidebarCatalogArr}/>
                         </div>
                         <div className="col-12">
-                            <ProductsCart products={productArr}/>
+                            <ProductsCart products={this.state.productArr}/>
                         </div>
                     </div>
                 </div>
@@ -118,6 +125,9 @@ const mapDispatchToProps = dispatch => {
         },
         dataRedirectFunction: (dataRedirect) => {
             dispatch(actionDataRedirect(dataRedirect))
+        },
+        productsArrFunction: (ProductsArr) => {
+            dispatch(actionProductsArr(ProductsArr))
         },
     }
 };

@@ -58,6 +58,11 @@ class AdminPanel extends React.Component {
         }
     }
 
+    renderAddBtn() {
+        return(
+            <div className="add-cart-btn">+</div>
+        )
+    }
     render() {
         if (this.state.redirect.accessR) {
             return(
@@ -68,7 +73,8 @@ class AdminPanel extends React.Component {
             <div className="content main-admin__row">
                 <AdminSidebar storeID={this.setStoreID} productsThisStore={this.state.productsThisStore}/>
                 <div className="main-admin__main-envelope">
-                    <AdminMainSite storeID={this.state.storeID}/>
+                    {this.renderAddBtn()}
+                    {/*<AdminMainSite storeID={this.state.storeID}/>*/}
                 </div>
             </div>
         )

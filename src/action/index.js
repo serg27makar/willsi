@@ -130,3 +130,24 @@ export const actionAddStore = (addStore) => {
         addStore: addStore
     }
 };
+
+export const actionProductID = (ProductID) => {
+    return {
+        type: 'SET_PRODUCT_ID',
+        ProductID: ProductID
+    }
+};
+
+export const actionProductsArr = (ProductsArr) => {
+    return {
+        type: 'PRODUCT_ARR',
+        ProductsArr: ProductsArr
+    }
+};
+
+export const actionSelectProduct = (SelectProduct) => {
+    return {
+        type: 'SELECT_PRODUCT',
+        SelectProduct: SelectProduct
+    }
+};

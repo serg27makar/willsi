@@ -3247,7 +3247,45 @@ input[type="checkbox"] + label:hover {
     width: 1.2rem;
     border-radius: 50%;
     position: absolute;
-    right: 4rem;
+    right: 5rem;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 0.2rem;
+}
+.count-products-sub {
+    background: pink;
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    text-align: center;
+}
+.add-cart-btn:hover {
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    color: #c6d846;
+    background: #fff;
+}
+.add-cart-btn {
+    position: absolute;
+    top: 50%;
+    left: 65%;
+    transform: translate(-50%, -50%);
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    border-radius: 50%;
+    font-size: 4rem;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: #c6d846;
+    -webkit-box-shadow: 0.1875vw 0.5625vw 1vw 0 rgba(198,216,70,0.35);
+    box-shadow: 0.1875vw 0.5625vw 1vw 0 rgba(198,216,70,0.35);
+    cursor: pointer;
 }
 .sidebar {
     position: relative;

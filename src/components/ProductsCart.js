@@ -2,29 +2,47 @@ import React from "react";
 import ru from "../access/lang/LangConstants";
 import "../access/css/cart.css"
 import ButtonPostpone from "./shared/ButtonPostpone";
+import {
+    actionDataRedirect,
+    actionEmail,
+    actionOpenModal,
+    actionPermission, actionProductID,
+    actionUserID,
+    actionUserName
+} from "../action";
+import {connect} from "react-redux";
 
 class ProductsCart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             products: []
-        }
+        };
+        this.openCard = this.openCard.bind(this);
+    }
+
+    openCard(productID) {
+        this.props.productIDFunction(productID);
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/cart",
+        })
     }
 
     renderCart = (item, index) => {
         return (
             <div className={this.props.compilation ? "compilation-deferred-goods" : "deferred-goods"} key={index}>
                 <div className="card-box">
-                    <div className="card-box__picture" >
+                    <div className="card-box__picture" onClick={() => {this.openCard(item._id)}}>
                         <picture className="picture">
-                            <img className="picture__source" src={item.imgUrl} alt={item.imgAlt}/>
+                            <img className="picture__source" src={item.Photo1} alt={item.ProdName}/>
                         </picture>
                         <div className="card-box__circle" style={{backgroundImage: "url('static/img/content/circle-40.png')"}}/>
                         {this.renderPostpone(item)}
                     </div>
-                    <div className="card-box__product-name text-18 bold uppercase">{item.brand}</div>
-                    <p className="card-box__product-info text-14 light">{item.productName}</p>
-                    <p className="card-box__product-quantity text-18 bold color-aqua uppercase">{item.price}</p>
+                    <div className="card-box__product-name text-18 bold uppercase">{item.Manufacturer}</div>
+                    <p className="card-box__product-info text-14 light">{item.ProdName}</p>
+                    <p className="card-box__product-quantity text-18 bold color-aqua uppercase">{item.Price}</p>
                     {this.renderButton(item)}
                 </div>
             </div>
@@ -102,4 +120,18 @@ class ProductsCart extends React.Component {
     }
 }
 
-export default ProductsCart;
+function MapStateToProps(state) {
+    return {}
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
+        },
+        productIDFunction: (ProductID) => {
+            dispatch(actionProductID(ProductID))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(ProductsCart);

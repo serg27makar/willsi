@@ -68,12 +68,13 @@ class RegistrationModal extends React.Component {
                 Permission: "buyer",
             };
             this.props.permissionFunction("buyer");
-            if (this.props.UserID) {
+            if (this.props.UserID && this.props.UserID !== "undefined") {
                 user = {...user, UserID: this.props.UserID};
                 postUpdate(user, this.updateResult);
             } else {
                 postRegister(user, this.result);
             }
+            console.log(this.props);
         }
     };
 
