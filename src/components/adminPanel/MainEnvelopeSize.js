@@ -1,12 +1,11 @@
 import React from "react";
-import {paramsList} from "../../access/temporaryConstants";
+import {paramsList, paramsListDog} from "../../access/temporaryConstants";
 import ru from "../../access/lang/LangConstants";
 
 const sizeArr = [
     "L",
     "S",
     "M",
-    "X",
     "XL",
     "XXL",
 ];
@@ -14,7 +13,9 @@ const sizeArr = [
 class MainEnvelopeSize extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            paramsList: []
+        };
         this.changeSize = this.changeSize.bind(this);
     }
 
@@ -28,6 +29,26 @@ class MainEnvelopeSize extends React.Component {
                     [group]: this.props.sizeData[group],
                 })
             }
+        }
+        if (prevProps.catalog !== this.props.catalog) {
+            this.chooseParamList();
+        }
+        if (prevProps.subCatalog !== this.props.subCatalog) {
+            this.chooseParamList();
+        }
+    }
+
+    chooseParamList() {
+        const catalog = this.props.catalog;
+        const subCatalog = this.props.subCatalog;
+        if (catalog === "catalogListDog") {
+            this.setState({
+                paramsList: paramsListDog,
+            })
+        } else {
+            this.setState({
+                paramsList: paramsList,
+            })
         }
     }
 
@@ -53,7 +74,7 @@ class MainEnvelopeSize extends React.Component {
         return (
             <div className="main-envelope__size-list" key={index}>
                 <span className="main-envelope__size-text text-14 uppercase bold">{item}</span>
-                {paramsList && paramsList.map((subItem, subIndex) => {
+                {this.state.paramsList && this.state.paramsList.map((subItem, subIndex) => {
                     return this.renderSizeInput(subItem, subIndex, item);
                 })}
             </div>

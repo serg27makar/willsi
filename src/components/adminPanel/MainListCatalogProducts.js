@@ -76,14 +76,14 @@ class MainListCatalogProducts extends React.Component {
             <div className="sidebar__main-list scrollbar">
                 <div className="main-list">
                     <p className="main-list__title uppercase bold text-22">{ru.ProductCategories}</p>
-                    <label className="main-list__label">
-                        <input className="main-list__input-search text-14 italic" type="text" placeholder="Поиск..."/>
-                        <button className="main-list__button-search">
-                            <svg className="icon icon-search ">
-                                <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#search"/>
-                            </svg>
-                        </button>
-                    </label>
+                    {/*<label className="main-list__label">*/}
+                    {/*    <input className="main-list__input-search text-14 italic" type="text" placeholder="Поиск..."/>*/}
+                    {/*    <button className="main-list__button-search">*/}
+                    {/*        <svg className="icon icon-search ">*/}
+                    {/*            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#search"/>*/}
+                    {/*        </svg>*/}
+                    {/*    </button>*/}
+                    {/*</label>*/}
                     <div className="main-list__catalog-product">
                         {this.props.catalogProducts && this.props.catalogProducts.map((item, index) => {
                             return this.renderCatalogProduct(item, index)

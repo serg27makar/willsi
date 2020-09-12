@@ -11,6 +11,7 @@ import ButtonMain from "../shared/ButtonMain";
 import ru from "../../access/lang/LangConstants";
 import {postAddedProduct} from "../../utilite/axiosConnect";
 import {updateResult} from "../../js/sharedFunctions";
+import {actionAlertText, actionOpenModal} from "../../action";
 
 class AdminMainSite extends React.Component {
     constructor(props) {
@@ -179,7 +180,17 @@ class AdminMainSite extends React.Component {
             CareInstructions: this.state.CareInstructions,
             PaymentAndDelivery: this.state.PaymentAndDelivery,
         };
-        postAddedProduct(cart, updateResult)
+        if (cart.Manufacturer && cart.ProdName &&
+            cart.ProductCode && cart.VendorCode &&
+            cart.Price && cart.Photo1 &&
+            cart.Photo2 && cart.Photo3 &&
+            cart.LinkToProduct && cart.Description && cart.color.length > 0) {
+            postAddedProduct(cart, updateResult);
+            this.props.closeMainSite(this.props.storeID);
+        } else {
+            this.props.alertTextFunction(ru.enterTheseDetails);
+            this.props.openModalFunction("alertModal");
+        }
     }
 
     render() {
@@ -205,7 +216,7 @@ class AdminMainSite extends React.Component {
                 <AdminColorCategory colorsState={this.state.color} colorChange={this.colorChange}/>
                 <ProductLinkInput item={this.state} dataChange={this.productDescription}/>
                 <ProductDescription dataChange={this.productDescription}/>
-                <MainEnvelopeSize sizeDataChange={this.sizeDataChange} sizeData={this.state.size}/>
+                <MainEnvelopeSize sizeDataChange={this.sizeDataChange} sizeData={this.state.size} catalog={this.state.headerItem} subCatalog={this.state.headerSubItem}/>
                 <ButtonMain btnClass="button-main text-16" text={ru.Save} onClick={this.saveCart}/>
             </div>
         )
@@ -216,7 +227,14 @@ function MapStateToProps(state) {
     return {}
 }
 const mapDispatchToProps = dispatch => {
-    return {}
+    return {
+        openModalFunction: (modal) => {
+            dispatch(actionOpenModal(modal))
+        },
+        alertTextFunction: (text) => {
+            dispatch(actionAlertText(text))
+        },
+    }
 };
 
 export default connect(MapStateToProps, mapDispatchToProps)(AdminMainSite);

@@ -12,6 +12,7 @@ class AdminPanel extends React.Component {
         this.state = {
             productsThisStore: [],
             storeID: "",
+            isAddBtn: true,
             redirect: {
                 accessR: false,
                 to: "",
@@ -20,6 +21,7 @@ class AdminPanel extends React.Component {
         this.storeData = this.storeData.bind(this);
         this.productsData = this.productsData.bind(this);
         this.setStoreID = this.setStoreID.bind(this);
+        this.addProduct = this.addProduct.bind(this);
     }
 
     componentDidMount() {
@@ -58,10 +60,26 @@ class AdminPanel extends React.Component {
         }
     }
 
+    addProduct(storeID = "") {
+        if (storeID.length >= 12) {
+            getProductDataToId(storeID, this.productsData);
+        }
+        this.setState({
+            ...this.state,
+            isAddBtn: !this.state.isAddBtn,
+        })
+    }
+
     renderAddBtn() {
-        return(
-            <div className="add-cart-btn">+</div>
-        )
+        if (this.state.isAddBtn) {
+            return(
+                <div className="add-cart-btn" onClick={this.addProduct}>+</div>
+            )
+        } else {
+            return (
+                <AdminMainSite storeID={this.state.storeID} closeMainSite={this.addProduct}/>
+            )
+        }
     }
     render() {
         if (this.state.redirect.accessR) {
@@ -74,7 +92,6 @@ class AdminPanel extends React.Component {
                 <AdminSidebar storeID={this.setStoreID} productsThisStore={this.state.productsThisStore}/>
                 <div className="main-admin__main-envelope">
                     {this.renderAddBtn()}
-                    {/*<AdminMainSite storeID={this.state.storeID}/>*/}
                 </div>
             </div>
         )

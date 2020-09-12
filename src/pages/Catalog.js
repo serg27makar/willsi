@@ -2,7 +2,7 @@ import React from 'react';
 import {actionDataRedirect, actionProductsArr, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
-import {dropdownListArr, productArr, sidebarCatalogArr} from "../access/temporaryConstants";
+import {dropdownListArr, sidebarCatalogArr} from "../access/temporaryConstants";
 import RutCatalogSidebar from "../components/RutCatalogSidebar";
 import CatalogSidebar from "../components/CatalogSidebar";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";

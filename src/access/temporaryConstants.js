@@ -309,20 +309,6 @@ export const productArr = [
         price: "599 грн",
     },
 ];
-export const slidersArr = [
-    {
-        imgUrl: "static/img/content/slider-main.jpg",
-        alt: "slider",
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_5.png",
-        alt: "slider",
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_2.png",
-        alt: "slider",
-    },
-];
 
 export const recalculateParams = [
     {
@@ -414,42 +400,6 @@ export const dropdownListArr = [
             "subCatalogListDogCap",
             "subCatalogListDogGeneral",
         ],
-    },
-];
-export const adminMenuBtnList = [
-    {
-        btnClass: "button-list__item",
-        btnImage: "static/img/svg-sprites/symbol/sprite.svg#folder",
-    },
-    {
-        btnClass: "button-list__item",
-        btnImage: "static/img/svg-sprites/symbol/sprite.svg#add",
-    },
-    {
-        btnClass: "button-list__item",
-        btnImage: "static/img/svg-sprites/symbol/sprite.svg#minus",
-    },
-    {
-        btnClass: "button-list__item",
-        btnImage: "static/img/svg-sprites/symbol/sprite.svg#moon-phase-outline",
-    },
-];
-export const adminBarBtnList = [
-    {
-        btnClass: "button-list__item item-green",
-        btnImage: "static/img/svg-sprites/symbol/sprite.svg#add",
-    },
-    {
-        btnClass: "button-list__nav",
-        btnImage: "static/img/svg-sprites/symbol/sprite.svg#volume-control",
-    },
-    {
-        btnClass: "button-list__nav",
-        btnImage: "static/img/svg-sprites/symbol/sprite.svg#settings",
-    },
-    {
-        btnClass: "button-list__nav",
-        btnImage: "static/img/svg-sprites/symbol/sprite.svg#user-admin",
     },
 ];
 
@@ -621,6 +571,32 @@ export const paramsList = [
     {
         title: "head",
         data: "Голова",
+    },
+];
+export const paramsListDog = [
+    {
+        title: "backLength",
+        data: "Длина",
+    },
+    {
+        title: "neck",
+        data: "Шея",
+    },
+    {
+        title: "chest",
+        data: "Грудь",
+    },
+    {
+        title: "waist",
+        data: "Талия",
+    },
+    {
+        title: "frontLeg",
+        data: "Передние ноги ",
+    },
+    {
+        title: "hindLeg",
+        data: "Задние ноги",
     },
 ];
 

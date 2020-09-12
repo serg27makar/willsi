@@ -1353,7 +1353,6 @@ footer {
     fill: #c6d846;
 }
 .catalog-top__dropdown-admin {
-    width: 27vw;
     margin-bottom: 1rem;
 }
 .catalog-top__dropdown-info {
@@ -1473,7 +1472,6 @@ footer {
 }
 .catalog-sidebar__item-admin {
     padding: 0 0 1.875vw 0;
-    width: 69%;
 }
 .catalog-sidebar__item {
     padding: 0 0 1.875vw 0;
@@ -2099,6 +2097,7 @@ input[type="checkbox"] + label:hover {
 .cabinet-sidebar-content {
     padding: 2rem;
     border-left: 2px solid #72bfcb;
+    width: 65%;
 }
 .cabinet-email {
 
@@ -3593,7 +3592,7 @@ input[type="checkbox"] + label:hover {
 .main-envelope__label {
     position: relative;
     display: block;
-    width: 34.0625vw;
+    /*width: 34.0625vw;*/
     height: 3.75vw;
     margin: 0;
 }

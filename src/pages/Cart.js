@@ -4,7 +4,7 @@ import {actionDataRedirect, actionSelectProduct, setActionAdminPanel} from "../a
 import {connect} from "react-redux";
 import Carousel from "../components/Carousel";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
-import {productArr, slidersArr} from "../access/temporaryConstants";
+import {productArr} from "../access/temporaryConstants";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ProductsCart from "../components/ProductsCart";
 import ButtonMain from "../components/shared/ButtonMain";
