@@ -78,33 +78,6 @@ class ProductsCart extends React.Component {
         }
     };
 
-    renderPagination = () => {
-        return (
-            <div className="row">
-                <div className="col-12">
-                    <ul className="pagination">
-                        <li className="pagination__item">
-                            <div className="pagination__link text-16 active" >1</div>
-                        </li>
-                        <li className="pagination__item">
-                            <div className="pagination__link text-16">2</div>
-                        </li>
-                        <li className="pagination__item">
-                            <div className="pagination__link text-16">3</div>
-                        </li>
-                        <li className="pagination__item">
-                            <div className="pagination__link page-linkNext"  aria-label="Next">
-                                <svg className="icon icon-arrow-small ">
-                                    <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
-                                </svg>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        )
-    };
-
     render() {
         return (
             <div>
@@ -113,7 +86,6 @@ class ProductsCart extends React.Component {
                         return this.renderCart(item, index)
                     })}
                 </div>
-                {this.props.compilation ? null : this.renderPagination()}
             </div>
 
         )

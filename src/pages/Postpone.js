@@ -67,7 +67,7 @@ class Postpone extends React.Component {
                 <div className="catalog-middle container">
                     <div className="footer-row-wrap">
                         <div className="catalog-sidebar">
-                            <RutCatalogSidebar Categories={dropdownListArr}/>
+                            {/*<RutCatalogSidebar Categories={dropdownListArr}/>*/}
                             <CatalogSidebar Categories={sidebarCatalogArr}/>
                         </div>
                         <div className="col-12">

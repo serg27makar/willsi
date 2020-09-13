@@ -9,7 +9,7 @@ import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ProductsCart from "../components/ProductsCart";
 import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
-import {getProductData} from "../utilite/axiosConnect";
+import {getProductDataToParams} from "../utilite/axiosConnect";
 
 const breadcrumbs = {
     title: "Женская одежда",
@@ -26,16 +26,22 @@ class Catalog extends React.Component {
         this.state = {
             subUsers:[],
             productArr: [],
+            skip: 0,
+            lastData: false,
             redirect: {
                 accessR: false,
                 to: "/",
             },
         };
         this.setProductData = this.setProductData.bind(this);
+        this.onScrollList = this.onScrollList.bind(this);
+        this.selectedCatalog = this.selectedCatalog.bind(this);
+        this.selectedSubCatalog = this.selectedSubCatalog.bind(this);
+        this.updateProductsData = this.updateProductsData.bind(this);
     }
 
     componentDidMount() {
-        getProductData(this.setProductData);
+        this.updateProductsData();
         this.props.dataRedirectFunction({
             accessR: false,
             to: "/",
@@ -45,6 +51,7 @@ class Catalog extends React.Component {
             handlePageUp();
         }, 50);
         this.functionRedirect();
+        window.addEventListener('scroll', this.onScrollList);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -62,13 +69,67 @@ class Catalog extends React.Component {
                 redirect: this.props.dataRedirect,
             })
         }
+        if (prevState.active !== this.state.active) {
+            this.updateProductsData();
+        }
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.onScrollList);
+    }
+
+    onScrollList(event) {
+        if((event.target.scrollingElement.scrollTop > document.scrollingElement.offsetHeight - window.outerHeight) && !this.state.lastData) {
+            this.updateProductsData();
+        }
+    }
+
+    updateProductsData() {
+        const skip = this.state.skip;
+        const dataSearch = {
+            skip,
+            topCatalog: this.state.topCatalog,
+            subCatalog: this.state.subCatalog,
+
+        };
+        getProductDataToParams(this.setProductData, dataSearch);
+        this.setState({skip: skip + 12})
+    }
+
+    selectedSubCatalog(data) {
+        this.setState({
+            ...this.state,
+            subCatalog: dropdownListArr[this.props.catalog].dropdownItems[data],
+            productArr: [],
+            skip: 0,
+            lastData: false,
+            active: !this.state.active,
+        });
+    }
+
+    selectedCatalog(data) {
+        this.setState({
+            ...this.state,
+            topCatalog: dropdownListArr[data].dropdownTitle,
+            productArr: [],
+            skip: 0,
+            lastData: false,
+            active: !this.state.active,
+            subCatalog: "",
+        });
     }
 
     setProductData(data) {
-        this.props.productsArrFunction(data);
-        this.setState({
-            productArr: data,
-        })
+        if (data.length > 0) {
+            const allProducts = this.state.productArr.concat(data);
+            this.props.productsArrFunction(allProducts);
+            this.setState({
+                ...this.state,
+                productArr: allProducts,
+            })
+        } else {
+            this.setState({lastData: true})
+        }
     }
 
     functionRedirect() {
@@ -97,7 +158,10 @@ class Catalog extends React.Component {
                 <div className="catalog-middle container">
                     <div className="footer-row-wrap">
                         <div className="catalog-sidebar">
-                            <RutCatalogSidebar Categories={dropdownListArr}/>
+                            <RutCatalogSidebar
+                                selectedSubCatalog={this.selectedSubCatalog}
+                                selectedCatalog={this.selectedCatalog}
+                                Categories={dropdownListArr}/>
                             <CatalogSidebar Categories={sidebarCatalogArr}/>
                         </div>
                         <div className="col-12">
@@ -116,6 +180,7 @@ function MapStateToProps(state) {
         UsersParameters: state.userReducer.UsersParameters,
         update: state.pageReducer.update,
         dataRedirect: state.pageReducer.dataRedirect,
+        catalog: state.catalogReducer.catalog,
     }
 }
 const mapDispatchToProps = dispatch => {

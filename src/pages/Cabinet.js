@@ -260,7 +260,9 @@ class Cabinet extends React.Component {
                                       changeValue={this.nameChange} toggle={this.isActive}/>
                         <DoubleButton placeholderData={placeholderData[0]} item={this.state.Email}
                                       changeValue={this.emailChange} toggle={this.isActive}/>
-                        <RutCategory item={this.state.Data} selectItem={this.selectUser} isAddItem={ru.AddedUser} addItem={this.addUser} deleteBtnFun={this.deleteUser} index={0}/>
+                        <RutCategory item={this.state.Data} selectItem={this.selectUser}
+                                     isAddItem={ru.AddedUser} addItem={this.addUser}
+                                     deleteBtnFun={this.deleteUser} index={0}/>
                         {this.storeDropdown()}
                     </div>
                     <div className="cabinet-sidebar-content">
