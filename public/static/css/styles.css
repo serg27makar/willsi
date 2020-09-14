@@ -3647,7 +3647,7 @@ input[type="checkbox"] + label:hover {
     margin: 1vw;
 }
 .slider-input {
-    margin-bottom: 1vw;
+    margin: 0 1vw;
 }
 .slider-input-text {
     display: block;

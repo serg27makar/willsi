@@ -167,7 +167,9 @@ class AdminMainSite extends React.Component {
 }
 
 function MapStateToProps(state) {
-    return {}
+    return {
+        Subspecies: state.productReducer.Subspecies,
+    }
 }
 const mapDispatchToProps = dispatch => {
     return {

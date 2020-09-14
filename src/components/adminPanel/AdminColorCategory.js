@@ -56,7 +56,7 @@ class AdminColorCategory extends React.Component {
         const idCheckbox = "checkboxColor" + index;
         return (
             <div key={index}>
-                <input className="category-list__input" type="checkbox" id={idCheckbox} value={this.state[item]} name={item} onChange={this.dataChange}/>
+                <input className="category-list__input" type="checkbox" id={idCheckbox} value={this.state[item]} checked={this.state[item]} name={item} onChange={this.dataChange}/>
                 <label className="category-list__label text-14 light" htmlFor={idCheckbox}>{ru[item]}</label>
             </div>
         )

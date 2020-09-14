@@ -14,7 +14,8 @@ class MainEnvelopeSize extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            paramsList: []
+            paramsList: [],
+            size: {},
         };
         this.changeSize = this.changeSize.bind(this);
     }
@@ -23,12 +24,10 @@ class MainEnvelopeSize extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.sizeData !== this.props.sizeData) {
-            for (const group in this.props.sizeData) {
-                this.setState({
-                    ...this.state,
-                    [group]: this.props.sizeData[group],
-                })
-            }
+            this.setState({
+                ...this.state,
+                size: this.props.sizeData,
+            })
         }
         if (prevProps.catalog !== this.props.catalog) {
             this.chooseParamList();
@@ -62,8 +61,8 @@ class MainEnvelopeSize extends React.Component {
         return (
             <div key={index} className="slider-input">
                 <span className="slider-input-text">{item.data}</span>
-                <input className="slider" type="range" name={item.title} min="0" max="500" onChange={this.changeSize}/>
-                <span className="slider-input-text">{this.state[item.title] ? this.state[item.title] : 0}</span>
+                <input className="slider" type="range" name={item.title} value={this.state.size[item.title] || 0} min="0" max="240" onChange={this.changeSize}/>
+                <span className="slider-input-text">{this.state.size[item.title] ? this.state.size[item.title] : 0}</span>
             </div>
         )
     }

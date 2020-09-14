@@ -6,6 +6,8 @@ import {ProductManufacturerInputList} from "../../access/temporaryConstants";
 import {updateResult} from "../../js/sharedFunctions";
 import ButtonMain from "../shared/ButtonMain";
 import ru from "../../access/lang/LangConstants";
+import {actionSubspecies} from "../../action";
+import {connect} from "react-redux";
 
 class Subspecies extends React.Component {
     constructor(props) {
@@ -66,6 +68,7 @@ class Subspecies extends React.Component {
     }
 
     saveSubspecies() {
+        const subspecies = this.props.Subspecies || [];
         const size = this.state.size;
         const color =[];
         for (const item in this.state.color) {
@@ -73,7 +76,30 @@ class Subspecies extends React.Component {
                 color.push(item);
             }
         }
-        console.log(size, color);
+        const parameters = {
+            color,
+            size,
+            VendorCode: this.state.VendorCode,
+            Price: this.state.Price,
+        };
+        subspecies.push(parameters);
+        this.props.subspeciesFunction(subspecies);
+        this.setState({
+            color: {
+                beige: false,
+                white: false,
+                heavenly: false,
+                yellow: false,
+                green: false,
+                red: false,
+                prints: false,
+                pink: false,
+                gray: false,
+                blue: false,
+                black: false,
+            },
+            size: {},
+        })
     }
 
     render() {
@@ -102,4 +128,17 @@ class Subspecies extends React.Component {
     }
 }
 
-export default Subspecies;
+function MapStateToProps(state) {
+    return {
+        Subspecies: state.productReducer.Subspecies,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        subspeciesFunction: (Subspecies) => {
+            dispatch(actionSubspecies(Subspecies))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(Subspecies);

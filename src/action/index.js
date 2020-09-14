@@ -151,3 +151,10 @@ export const actionSelectProduct = (SelectProduct) => {
         SelectProduct: SelectProduct
     }
 };
+
+export const actionSubspecies = (Subspecies) => {
+    return {
+        type: 'SET_SUBSPECIES',
+        Subspecies: Subspecies
+    }
+};
