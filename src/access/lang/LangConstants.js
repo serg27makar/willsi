@@ -204,6 +204,7 @@ const ru = {
     black: "черный",
 
     Sizes: "Размеры",
+    addSubspecies: "Добавить размеры",
 };
 
 export default ru;

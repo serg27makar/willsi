@@ -560,18 +560,18 @@ export const paramsList = [
         title: "hips",
         data: "Бедра",
     },
-    {
-        title: "leg",
-        data: "Нога",
-    },
-    {
-        title: "climb",
-        data: "Подъем",
-    },
-    {
-        title: "head",
-        data: "Голова",
-    },
+    // {
+    //     title: "leg",
+    //     data: "Нога",
+    // },
+    // {
+    //     title: "climb",
+    //     data: "Подъем",
+    // },
+    // {
+    //     title: "head",
+    //     data: "Голова",
+    // },
 ];
 export const paramsListDog = [
     {

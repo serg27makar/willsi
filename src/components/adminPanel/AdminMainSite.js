@@ -12,6 +12,7 @@ import ru from "../../access/lang/LangConstants";
 import {postAddedProduct} from "../../utilite/axiosConnect";
 import {updateResult} from "../../js/sharedFunctions";
 import {actionAlertText, actionOpenModal} from "../../action";
+import Subspecies from "./Subspecies";
 
 class AdminMainSite extends React.Component {
     constructor(props) {
@@ -28,24 +29,6 @@ class AdminMainSite extends React.Component {
             Manufacturer: "",
             ProdName: "",
             ProductCode: "",
-            VendorCode: "",
-            Price: "",
-
-            color: {
-                beige: false,
-                white: false,
-                heavenly: false,
-                yellow: false,
-                green: false,
-                red: false,
-                prints: false,
-                pink: false,
-                gray: false,
-                blue: false,
-                black: false,
-            },
-
-            size: {},
 
             Photo1: "",
             Photo2: "",
@@ -61,10 +44,9 @@ class AdminMainSite extends React.Component {
         this.changeCatalog = this.changeCatalog.bind(this);
         this.changeSubCatalog = this.changeSubCatalog.bind(this);
         this.productDescription = this.productDescription.bind(this);
-        this.colorChange = this.colorChange.bind(this);
         this.toggleClose = this.toggleClose.bind(this);
-        this.sizeDataChange = this.sizeDataChange.bind(this);
         this.saveCart = this.saveCart.bind(this);
+        this.cancelSave = this.cancelSave.bind(this);
     }
 
     componentDidMount() {
@@ -109,16 +91,6 @@ class AdminMainSite extends React.Component {
         this.setState({dropDownClose: data})
     }
 
-    colorChange(name) {
-        this.setState({
-            ...this.state,
-            color: {
-                ...this.state.color,
-                [name]: !this.state.color[name],
-            }
-        })
-    }
-
     productDescription(name, value) {
         this.setState({
             ...this.state,
@@ -126,39 +98,7 @@ class AdminMainSite extends React.Component {
         })
     }
 
-    sizeDataChange(id, name, value) {
-        this.setState({
-            ...this.state,
-            size: {
-                ...this.state.size,
-                [id]: {
-                    ...this.state.size[id],
-                    [name]: value,
-                }
-            }
-        });
-    }
-
     saveCart() {
-        const size = {};
-        for (const group in this.state.size) {
-            const parameters = [];
-            for (const key in this.state.size[group]) {
-                const item = {
-                    title: key,
-                    size: this.state.size[group][key],
-                };
-                parameters.push(item);
-                size[group] = {...size[group], parameters};
-            }
-        }
-        const color =[];
-        for (const item in this.state.color) {
-            if (this.state.color[item]) {
-                color.push(item);
-            }
-        }
-
         const cart = {
             ProductStoreID: this.props.storeID,
             topCatalog: this.state.headerItem,
@@ -166,10 +106,6 @@ class AdminMainSite extends React.Component {
             Manufacturer: this.state.Manufacturer,
             ProdName: this.state.ProdName,
             ProductCode: this.state.ProductCode,
-            VendorCode: this.state.VendorCode,
-            Price: this.state.Price,
-            color,
-            size,
             Photo1: this.state.Photo1,
             Photo2: this.state.Photo2,
             Photo3: this.state.Photo3,
@@ -181,16 +117,19 @@ class AdminMainSite extends React.Component {
             PaymentAndDelivery: this.state.PaymentAndDelivery,
         };
         if (cart.Manufacturer && cart.ProdName &&
-            cart.ProductCode && cart.VendorCode &&
-            cart.Price && cart.Photo1 &&
+            cart.ProductCode && cart.Photo1 &&
             cart.Photo2 && cart.Photo3 &&
-            cart.LinkToProduct && cart.Description && cart.color.length > 0) {
+            cart.LinkToProduct && cart.Description ) {
             postAddedProduct(cart, updateResult);
             this.props.closeMainSite(this.props.storeID);
         } else {
             this.props.alertTextFunction(ru.enterTheseDetails);
             this.props.openModalFunction("alertModal");
         }
+    }
+
+    cancelSave() {
+        this.props.closeMainSite(this.props.storeID);
     }
 
     render() {
@@ -213,11 +152,15 @@ class AdminMainSite extends React.Component {
                     index={1}
                 />
                 <ProductTypeDescription item={this.state} dataChange={this.productDescription}/>
-                <AdminColorCategory colorsState={this.state.color} colorChange={this.colorChange}/>
                 <ProductLinkInput item={this.state} dataChange={this.productDescription}/>
                 <ProductDescription dataChange={this.productDescription}/>
-                <MainEnvelopeSize sizeDataChange={this.sizeDataChange} sizeData={this.state.size} catalog={this.state.headerItem} subCatalog={this.state.headerSubItem}/>
-                <ButtonMain btnClass="button-main text-16" text={ru.Save} onClick={this.saveCart}/>
+                <Subspecies catalog={this.state.headerItem}
+                            subCatalog={this.state.headerSubItem}
+                />
+                <div className="partners-env-btn">
+                    <ButtonMain btnClass="button-main text-16" text={ru.Save} onClick={this.saveCart}/>
+                    <ButtonMain btnClass="button-white text-16" text={ru.Cancel} onClick={this.cancelSave}/>
+                </div>
             </div>
         )
     }

@@ -4497,3 +4497,11 @@ html.magnifying > body {
 .breadcrumbs {
     display: flex;
 }
+.subspecies-admin {
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}

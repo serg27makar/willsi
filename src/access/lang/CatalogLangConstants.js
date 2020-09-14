@@ -15,7 +15,7 @@ const LangCat = {
     subCatalogListMenUnderwear: "Нижнее белье, одежда для коррекции фигуры",
     subCatalogListMenOuterwear: "Верхняя одежда",
     subCatalogListMenHome: "Домашняя одежда",
-    subCatalogListMenGeneral: "Общее",
+    subCatalogListMenGeneral: "Прочеее",
 
     subCatalogListWomenTshirts: "Футболки, лонгсливы",
     subCatalogListWomenShirts: "Блузы, Рубашки, Туники",
@@ -23,7 +23,7 @@ const LangCat = {
     subCatalogListWomenUnderwear: "Нижнее белье, одежда для коррекции фигуры",
     subCatalogListWomenOuterwear: "Верхняя одежда",
     subCatalogListWomenHome: "Домашняя одежда",
-    subCatalogListWomenGeneral: "Общее",
+    subCatalogListWomenGeneral: "Прочеее",
 
     subCatalogListBoyTshirts: "Футболки, майки, гольфы",
     subCatalogListBoyShirts: "Рубашки, свитера",
@@ -31,7 +31,7 @@ const LangCat = {
     subCatalogListBoyUnderwear: "Нижнее белье",
     subCatalogListBoyOuterwear: "Верхняя одежда",
     subCatalogListBoyHome: "Домашняя одежда",
-    subCatalogListBoyGeneral: "Общее",
+    subCatalogListBoyGeneral: "Прочеее",
 
     subCatalogListGirlTshirts: "Футболки, лонгсливы",
     subCatalogListGirlShirts: "Блузы, Рубашки, Туники",
@@ -39,13 +39,13 @@ const LangCat = {
     subCatalogListGirlUnderwear: "Нижнее белье, купальники, одежда для коррекции фигуры",
     subCatalogListGirlOuterwear: "Верхняя одежда",
     subCatalogListGirlHome: "Домашняя одежда",
-    subCatalogListGirlGeneral: "Общее",
+    subCatalogListGirlGeneral: "Прочеее",
 
     subCatalogListDogPants: "Штаны",
     subCatalogListDogShirts: "Майки, рубашки, кофты",
     subCatalogListDogOveralls: "Комбинизон",
     subCatalogListDogCap: "Кепка",
-    subCatalogListDogGeneral: "Общее",
+    subCatalogListDogGeneral: "Прочеее",
 
 };
 

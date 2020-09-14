@@ -55,39 +55,26 @@ class MainEnvelopeSize extends React.Component {
     changeSize(e) {
         const name = e.target.name;
         const value = e.target.value;
-        const id = e.target.id;
-        this.props.sizeDataChange(id, name, value);
+        this.props.sizeDataChange(name, value);
     }
 
-    renderSizeInput(item, index, size) {
-        const sizeID = size;
+    renderSizeInput(item, index) {
         return (
             <div key={index} className="slider-input">
                 <span className="slider-input-text">{item.data}</span>
-                <input className="slider" type="range" id={sizeID} name={item.title} min="0" max="500" onChange={this.changeSize}/>
-                <span className="slider-input-text">{this.state[sizeID] && this.state[sizeID][item.title] ? this.state[sizeID][item.title] : 0}</span>
+                <input className="slider" type="range" name={item.title} min="0" max="500" onChange={this.changeSize}/>
+                <span className="slider-input-text">{this.state[item.title] ? this.state[item.title] : 0}</span>
             </div>
         )
     }
-
-    renderSizeItem = (item, index) => {
-        return (
-            <div className="main-envelope__size-list" key={index}>
-                <span className="main-envelope__size-text text-14 uppercase bold">{item}</span>
-                {this.state.paramsList && this.state.paramsList.map((subItem, subIndex) => {
-                    return this.renderSizeInput(subItem, subIndex, item);
-                })}
-            </div>
-        )
-    };
 
     render() {
         return (
             <div className="main-envelope__info-envelope align-items-start">
-                <span className="main-envelope__info-title text-15 uppercase bold">{ru.Sizes}</span>
+                <span className="main-envelope__info-title text-15 uppercase bold">{ru.Sizes} S</span>
                 <div className="main-size-block">
-                    {sizeArr && sizeArr.map((item, index) => {
-                        return this.renderSizeItem(item, index);
+                    {this.state.paramsList && this.state.paramsList.map((subItem, subIndex) => {
+                        return this.renderSizeInput(subItem, subIndex);
                     })}
                 </div>
             </div>
