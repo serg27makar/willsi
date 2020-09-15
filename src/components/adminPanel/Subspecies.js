@@ -29,6 +29,7 @@ class Subspecies extends React.Component {
             size: {},
             VendorCode: "",
             Price: "",
+            SizeStandard: "",
         };
         this.colorChange = this.colorChange.bind(this);
         this.sizeDataChange = this.sizeDataChange.bind(this);
@@ -106,12 +107,11 @@ class Subspecies extends React.Component {
         return (
             <div className="subspecies-admin">
                 <DoubleButton placeholderData={ProductManufacturerInputList[3]}
-                              item={this.state.VendorCode}
+                              item={this.state.VendorCode} active={true}
                               changeValue={(value) => {this.dataChange(value, "VendorCode")}}
                               toggle={updateResult}/>
-
                 <DoubleButton placeholderData={ProductManufacturerInputList[4]}
-                              item={this.state.Price}
+                              item={this.state.Price} active={true}
                               changeValue={(value) => {this.dataChange(value, "Price")}}
                               toggle={updateResult}/>
                 <AdminColorCategory colorsState={this.state.color}
@@ -120,7 +120,16 @@ class Subspecies extends React.Component {
                                   sizeData={this.state.size}
                                   catalog={this.props.catalog}
                                   subCatalog={this.props.subCatalog}/>
-                <div className="partners-env-btn">
+                <div className="size-standard-block-btn">
+                    <div className="size-standard-block">
+                        <span className="size-standard-text">{ru.SizeStandard}</span>
+                        <input className="size-standard-input" type="text"
+                               placeholder={"XXL"}
+                               name="SizeStandard"
+                               value={this.state.SizeStandard || ""}
+                               onChange={this.dataChange}
+                        />
+                    </div>
                     <ButtonMain btnClass="button-main text-16" text={ru.addSubspecies} onClick={this.saveSubspecies}/>
                 </div>
             </div>

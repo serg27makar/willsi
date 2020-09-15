@@ -44,6 +44,7 @@ class Cart extends React.Component {
             if (item._id === this.props.ProductID) {
                 this.props.selectProductFunction(this.props.ProductsArr[index]);
             }
+            return index;
         });
         this.props.dataRedirectFunction({
             accessR: false,
@@ -80,6 +81,7 @@ class Cart extends React.Component {
                 if (item._id === this.props.ProductID) {
                     this.props.selectProductFunction(this.props.ProductsArr[index]);
                 }
+                return index;
             });
         }
         if (prevProps.SelectProduct !== this.props.SelectProduct) {

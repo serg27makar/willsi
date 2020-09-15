@@ -2,14 +2,7 @@ import React from "react";
 import ru from "../access/lang/LangConstants";
 import "../access/css/cart.css"
 import ButtonPostpone from "./shared/ButtonPostpone";
-import {
-    actionDataRedirect,
-    actionEmail,
-    actionOpenModal,
-    actionPermission, actionProductID,
-    actionUserID,
-    actionUserName
-} from "../action";
+import {actionDataRedirect, actionProductID} from "../action";
 import {connect} from "react-redux";
 
 class ProductsCart extends React.Component {

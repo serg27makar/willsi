@@ -19,5 +19,24 @@
 .partners-env-btn {
     display: flex;
     justify-content: center;
+    margin-bottom: 1rem;
 }
-
+.size-standard-block-btn {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+.size-standard-block {
+    display: flex;
+    outline: none;
+    height: 3.74vw;
+}
+.size-standard-text {
+    margin: 1rem;
+    font-size: 1rem;
+}
+.size-standard-input {
+    padding: 0.5rem;
+    width: 5rem;
+    font-size: 1rem;
+}

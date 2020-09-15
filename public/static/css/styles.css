@@ -523,16 +523,16 @@ header {
     overflow: hidden !important;
 }
 ::-webkit-input-placeholder {
-    color: #e1e1e1;
+    color: #515151;
 }
 ::-moz-placeholder {
-    color: #e1e1e1;
+    color: #515151;
 }
 :-ms-input-placeholder {
-    color: #e1e1e1;
+    color: #515151;
 }
 :-moz-placeholder {
-    color: #e1e1e1;
+    color: #515151;
 }
 footer {
     position: relative;
@@ -712,16 +712,16 @@ footer {
     border: 0.0625vw solid #c6d846;
 }
 .modal-form__input::-webkit-input-placeholder {
-    color: #7a7a7a;
+    color: #515151;
 }
 .modal-form__input::-moz-placeholder {
-    color: #7a7a7a;
+    color: #515151;
 }
 .modal-form__input:-ms-input-placeholder {
-    color: #7a7a7a;
+    color: #515151;
 }
 .modal-form__input:-moz-placeholder {
-    color: #7a7a7a;
+    color: #515151;
 }
 .modal-form .input-link {
     display: -webkit-box;
@@ -1471,7 +1471,7 @@ footer {
     padding: 0 0 3.125vw 0;
 }
 .catalog-sidebar__item-admin {
-    padding: 0 0 1.875vw 0;
+    padding: 1.4rem 0.4rem;
 }
 .catalog-sidebar__item {
     padding: 0 0 1.875vw 0;
@@ -2038,13 +2038,13 @@ input[type="checkbox"] + label:hover {
     transition: all 0.3s ease-in-out;
 }
 .tags-list__input::-moz-placeholder {
-    color: #000;
+    color: #515151;
 }
 .tags-list__input:-ms-input-placeholder {
-    color: #000;
+    color: #515151;
 }
 .tags-list__input:-moz-placeholder {
-    color: #000;
+    color: #515151;
 }
 .tags-list__button-save {
     display: -webkit-box;
@@ -2076,7 +2076,7 @@ input[type="checkbox"] + label:hover {
     background: #fff;
 }
 .tags-list__input::-webkit-input-placeholder {
-    color: #000;
+    color: #515151;
 }
 .tags-active {
     color: #fff !important;
@@ -2731,16 +2731,16 @@ input[type="checkbox"] + label:hover {
     border: 0.0625vw solid #c6d846;
 }
 .recalculate-envelope__input-data::-webkit-input-placeholder {
-    color: #50abbd;
+    color: #515151;
 }
 .recalculate-envelope__input-data::-moz-placeholder {
-    color: #50abbd;
+    color: #515151;
 }
 .recalculate-envelope__input-data:-ms-input-placeholder {
-    color: #50abbd;
+    color: #515151;
 }
 .recalculate-envelope__input-data:-moz-placeholder {
-    color: #50abbd;
+    color: #515151;
 }
 .recalculate-envelope__button-next {
     display: -webkit-box;
@@ -2928,16 +2928,16 @@ input[type="checkbox"] + label:hover {
     border: 0.0625vw solid #c6d846;
 }
 .form-shop__input::-webkit-input-placeholder {
-    color: #000;
+    color: #515151;
 }
 .form-shop__input::-moz-placeholder {
-    color: #000;
+    color: #515151;
 }
 .form-shop__input:-ms-input-placeholder {
-    color: #000;
+    color: #515151;
 }
 .form-shop__input:-moz-placeholder {
-    color: #000;
+    color: #515151;
 }
 .form-shop__textarea {
     border: 0.0625vw solid #e2e2e2;
@@ -3015,6 +3015,9 @@ input[type="checkbox"] + label:hover {
     transition: all 0.3s ease-in-out;
     color: #c6d846;
     background: #fff;
+}
+.product-description {
+    padding: 0.4rem;
 }
 .add-store-label {
     display: block;
@@ -3155,16 +3158,16 @@ input[type="checkbox"] + label:hover {
     height: 100%;
 }
 .form-request__input::-webkit-input-placeholder {
-    color: #000;
+    color: #515151;
 }
 .form-request__input::-moz-placeholder {
-    color: #000;
+    color: #515151;
 }
 .form-request__input:-ms-input-placeholder {
-    color: #000;
+    color: #515151;
 }
 .form-request__input:-moz-placeholder {
-    color: #000;
+    color: #515151;
 }
 .form-request__icon {
     position: absolute;
@@ -3609,16 +3612,16 @@ input[type="checkbox"] + label:hover {
     border: 0.0625vw solid transparent;
 }
 .main-envelope__input::-webkit-input-placeholder {
-    color: #000;
+    color: #515151;
 }
 .main-envelope__input::-moz-placeholder {
-    color: #000;
+    color: #515151;
 }
 .main-envelope__input:-ms-input-placeholder {
-    color: #000;
+    color: #515151;
 }
 .main-envelope__input:-moz-placeholder {
-    color: #000;
+    color: #515151;
 }
 .main-envelope__button-active {
     position: absolute;
@@ -3648,10 +3651,19 @@ input[type="checkbox"] + label:hover {
 }
 .slider-input {
     margin: 0 1vw;
+    position: relative;
+}
+.slider-input-placeholder {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 0;
 }
 .slider-input-text {
     display: block;
     padding: 0.5vw;
+}
+input.slider-input-text {
+    margin: 1rem;
 }
 .main-envelope__size-text {
     text-align: center;

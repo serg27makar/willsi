@@ -30,13 +30,18 @@ class ProductTypeDescription extends React.Component {
         return (
             <div>
 
-                <DoubleButton placeholderData={ProductManufacturerInputList[0]} item={this.state.Manufacturer}
-                              changeValue={(value) => {this.dataChange(value, "Manufacturer")}} toggle={updateResult}/>
+                <DoubleButton placeholderData={ProductManufacturerInputList[0]}
+                              item={this.state.Manufacturer} active={true}
+                              changeValue={(value) => {this.dataChange(value, "Manufacturer")}}
+                              toggle={updateResult}/>
 
-                <DoubleButton placeholderData={ProductManufacturerInputList[1]} item={this.state.ProdName}
-                              changeValue={(value) => {this.dataChange(value, "ProdName")}} toggle={updateResult}/>
+                <DoubleButton placeholderData={ProductManufacturerInputList[1]}
+                              item={this.state.ProdName} active={true}
+                              changeValue={(value) => {this.dataChange(value, "ProdName")}}
+                              toggle={updateResult}/>
 
-                <DoubleButton placeholderData={ProductManufacturerInputList[2]} item={this.state.ProductCode}
+                <DoubleButton placeholderData={ProductManufacturerInputList[2]}
+                              item={this.state.ProductCode} active={true}
                               changeValue={(value) => {this.dataChange(value, "ProductCode")}} toggle={updateResult}/>
 
             </div>

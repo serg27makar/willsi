@@ -10,6 +10,10 @@ class DoubleButton extends React.Component {
         }
     }
 
+    componentDidMount() {
+        if (this.props.active) this.setState({active: this.props.active})
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.item !== this.props.item) {
             this.setState({

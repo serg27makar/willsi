@@ -61,8 +61,13 @@ class MainEnvelopeSize extends React.Component {
         return (
             <div key={index} className="slider-input">
                 <span className="slider-input-text">{item.data}</span>
-                <input className="slider" type="range" name={item.title} value={this.state.size[item.title] || 0} min="0" max="240" onChange={this.changeSize}/>
-                <span className="slider-input-text">{this.state.size[item.title] ? this.state.size[item.title] : 0}</span>
+                <input className="slider" type="range" name={item.title}
+                       value={this.state.size[item.title] || 0} min="0" max="240"
+                       onChange={this.changeSize}/>
+                <input className="slider-input-text" type="number" name={item.title}
+                       value={this.state.size[item.title] || 0} min="0" max="240"
+                       onChange={this.changeSize}/>
+                <span className="slider-input-placeholder">{ru.sm}</span>
             </div>
         )
     }

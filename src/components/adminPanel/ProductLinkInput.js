@@ -32,17 +32,25 @@ class ProductLinkInput extends React.Component {
         return (
             <div>
 
-                <DoubleButton placeholderData={ProductLinkInputList[0]} item={this.state.Photo1}
-                              changeValue={(value) => {this.dataChange(value, "Photo1")}} toggle={updateResult}/>
+                <DoubleButton placeholderData={ProductLinkInputList[0]}
+                              item={this.state.Photo1} active={true}
+                              changeValue={(value) => {this.dataChange(value, "Photo1")}}
+                              toggle={updateResult}/>
 
-                <DoubleButton placeholderData={ProductLinkInputList[1]} item={this.state.Photo2}
-                              changeValue={(value) => {this.dataChange(value, "Photo2")}} toggle={updateResult}/>
+                <DoubleButton placeholderData={ProductLinkInputList[1]}
+                              item={this.state.Photo2} active={true}
+                              changeValue={(value) => {this.dataChange(value, "Photo2")}}
+                              toggle={updateResult}/>
 
-                <DoubleButton placeholderData={ProductLinkInputList[2]} item={this.state.Photo3}
-                              changeValue={(value) => {this.dataChange(value, "Photo3")}} toggle={updateResult}/>
+                <DoubleButton placeholderData={ProductLinkInputList[2]}
+                              item={this.state.Photo3} active={true}
+                              changeValue={(value) => {this.dataChange(value, "Photo3")}}
+                              toggle={updateResult}/>
 
-                <DoubleButton placeholderData={ProductLinkInputList[3]} item={this.state.LinkToProduct}
-                              changeValue={(value) => {this.dataChange(value, "LinkToProduct")}} toggle={updateResult}/>
+                <DoubleButton placeholderData={ProductLinkInputList[3]}
+                              item={this.state.LinkToProduct} active={true}
+                              changeValue={(value) => {this.dataChange(value, "LinkToProduct")}}
+                              toggle={updateResult}/>
 
             </div>
         )
