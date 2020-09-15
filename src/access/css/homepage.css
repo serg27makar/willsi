@@ -30,13 +30,16 @@
     display: flex;
     outline: none;
     height: 3.74vw;
+    align-items: center;
 }
 .size-standard-text {
-    margin: 1rem;
+    margin: 0 1rem;
     font-size: 1rem;
 }
 .size-standard-input {
     padding: 0.5rem;
     width: 5rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: bold;
 }

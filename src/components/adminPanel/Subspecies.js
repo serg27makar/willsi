@@ -35,11 +35,19 @@ class Subspecies extends React.Component {
         this.sizeDataChange = this.sizeDataChange.bind(this);
         this.dataChange = this.dataChange.bind(this);
         this.saveSubspecies = this.saveSubspecies.bind(this);
+        this.dataChangeSizeStandard = this.dataChangeSizeStandard.bind(this);
     }
 
     componentDidMount() {}
 
-    componentDidUpdate(prevProps, prevState, snapshot) {}
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.SaveParams !== this.props.SaveParams) {
+            this.props.isSaveParams(false);
+            if (this.props.SaveParams) {
+                this.saveSubspecies();
+            }
+        }
+    }
 
     colorChange(name) {
         this.setState({
@@ -68,23 +76,32 @@ class Subspecies extends React.Component {
         })
     }
 
+    dataChangeSizeStandard(e) {
+        const value = e.target.value;
+        this.setState({
+            ...this.state,
+            SizeStandard: value,
+        })
+    }
+
     saveSubspecies() {
-        const subspecies = this.props.Subspecies || [];
         const size = this.state.size;
         const color =[];
         for (const item in this.state.color) {
-            if (this.state.color[item]) {
-                color.push(item);
+            if (this.state.color.hasOwnProperty(item)) {
+                if (this.state.color[item]) {
+                    color.push(item);
+                }
             }
         }
         const parameters = {
             color,
             size,
+            SizeStandard: this.state.SizeStandard,
             VendorCode: this.state.VendorCode,
             Price: this.state.Price,
         };
-        subspecies.push(parameters);
-        this.props.subspeciesFunction(subspecies);
+        this.props.subspeciesFunction(parameters);
         this.setState({
             color: {
                 beige: false,
@@ -100,7 +117,8 @@ class Subspecies extends React.Component {
                 black: false,
             },
             size: {},
-        })
+        });
+        this.props.isSaveParams(true);
     }
 
     render() {
@@ -125,9 +143,9 @@ class Subspecies extends React.Component {
                         <span className="size-standard-text">{ru.SizeStandard}</span>
                         <input className="size-standard-input" type="text"
                                placeholder={"XXL"}
-                               name="SizeStandard"
+                               name={"SizeStandard"}
                                value={this.state.SizeStandard || ""}
-                               onChange={this.dataChange}
+                               onChange={this.dataChangeSizeStandard}
                         />
                     </div>
                     <ButtonMain btnClass="button-main text-16" text={ru.addSubspecies} onClick={this.saveSubspecies}/>
@@ -140,6 +158,7 @@ class Subspecies extends React.Component {
 function MapStateToProps(state) {
     return {
         Subspecies: state.productReducer.Subspecies,
+        SaveParams: state.productReducer.SaveParams,
     }
 }
 const mapDispatchToProps = dispatch => {

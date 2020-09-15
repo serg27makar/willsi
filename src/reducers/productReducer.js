@@ -2,7 +2,8 @@ const initialState = {
     SelectProduct: {},
     ProductsArr: [],
     ProductID: "",
-    Subspecies: [],
+    Subspecies: {},
+    SaveParams: false,
 };
 
 export default function productReducer(state = initialState, action) {
@@ -27,6 +28,11 @@ export default function productReducer(state = initialState, action) {
             return {
                 ...state,
                 Subspecies: action.Subspecies
+            };
+        case "SAVE_PARAMS":
+            return {
+                ...state,
+                SaveParams: action.SaveParams
             };
 
         default:

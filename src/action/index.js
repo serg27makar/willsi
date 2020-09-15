@@ -158,3 +158,10 @@ export const actionSubspecies = (Subspecies) => {
         Subspecies: Subspecies
     }
 };
+
+export const actionSaveParams = (SaveParams) => {
+    return {
+        type: 'SAVE_PARAMS',
+        SaveParams: SaveParams
+    }
+};

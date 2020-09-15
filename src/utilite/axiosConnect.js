@@ -135,3 +135,14 @@ export const postAddedProduct = (Product, callbackInfo) => {
         console.log(err);
     })
 };
+
+export const postAddedProductParameters = (Parameters, callbackInfo) => {
+    axios.post(Url + `/parameter/added`, Parameters, {
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data.insertedId);
+        }).catch(err => {
+        console.log(err);
+    })
+};

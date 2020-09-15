@@ -7,10 +7,10 @@ import ProductLinkInput from "./ProductLinkInput";
 import ProductTypeDescription from "./ProductTypeDescription";
 import ButtonMain from "../shared/ButtonMain";
 import ru from "../../access/lang/LangConstants";
-import {postAddedProduct} from "../../utilite/axiosConnect";
-import {updateResult} from "../../js/sharedFunctions";
-import {actionAlertText, actionOpenModal} from "../../action";
+import {postAddedProduct, postAddedProductParameters} from "../../utilite/axiosConnect";
+import {actionAlertText, actionOpenModal, actionSaveParams} from "../../action";
 import Subspecies from "./Subspecies";
+import {updateResult} from "../../js/sharedFunctions";
 
 class AdminMainSite extends React.Component {
     constructor(props) {
@@ -38,6 +38,9 @@ class AdminMainSite extends React.Component {
             ModelParameters: "",
             CareInstructions: "",
             PaymentAndDelivery: "",
+
+            isSaveParameters: false,
+            addedProductId: "",
         };
         this.changeCatalog = this.changeCatalog.bind(this);
         this.changeSubCatalog = this.changeSubCatalog.bind(this);
@@ -45,6 +48,9 @@ class AdminMainSite extends React.Component {
         this.toggleClose = this.toggleClose.bind(this);
         this.saveCart = this.saveCart.bind(this);
         this.cancelSave = this.cancelSave.bind(this);
+        this.saveParameters = this.saveParameters.bind(this);
+        this.saveHeaderCart = this.saveHeaderCart.bind(this);
+        this.addedProductResult = this.addedProductResult.bind(this);
     }
 
     componentDidMount() {
@@ -96,7 +102,53 @@ class AdminMainSite extends React.Component {
         })
     }
 
+    saveParameters(res) {
+        if (res) {
+            if (this.state.addedProductId && this.state.addedProductId.length >= 12 ) {
+                this.addedProductResult(this.state.addedProductId);
+                this.setState({
+                    isSaveParameters: res
+                })
+            } else {
+                this.saveHeaderCart();
+                this.setState({
+                    isSaveParameters: res
+                })
+            }
+        } else {
+            this.props.alertTextFunction(ru.enterTheseDetails);
+            this.props.openModalFunction("alertModal");
+        }
+    }
+
+    addedProductResult(res) {
+        if (res && res.length >= 12 && this.state.isSaveParameters && this.props.Subspecies) {
+            this.setState({
+                addedProductId: res,
+                isSaveParameters: false,
+            });
+            const Parameters = {
+                ProductId: res,
+                color: this.props.Subspecies.color,
+                size: this.props.Subspecies.size,
+                SizeStandard: this.props.Subspecies.SizeStandard,
+                VendorCode: this.props.Subspecies.VendorCode,
+                Price: this.props.Subspecies.Price,
+            };
+            postAddedProductParameters(Parameters, updateResult);
+
+            if (this.props.SaveParams) {
+                this.props.saveParamsFunction(false);
+                this.props.closeMainSite(this.props.storeID);
+            }
+        }
+    }
+
     saveCart() {
+        this.props.saveParamsFunction(true);
+    }
+
+    saveHeaderCart() {
         const cart = {
             ProductStoreID: this.props.storeID,
             topCatalog: this.state.headerItem,
@@ -117,9 +169,8 @@ class AdminMainSite extends React.Component {
         if (cart.Manufacturer && cart.ProdName &&
             cart.ProductCode && cart.Photo1 &&
             cart.Photo2 && cart.Photo3 &&
-            cart.LinkToProduct && cart.Description ) {
-            postAddedProduct(cart, updateResult);
-            this.props.closeMainSite(this.props.storeID);
+            cart.LinkToProduct && cart.Description) {
+            postAddedProduct(cart, this.addedProductResult);
         } else {
             this.props.alertTextFunction(ru.enterTheseDetails);
             this.props.openModalFunction("alertModal");
@@ -154,6 +205,7 @@ class AdminMainSite extends React.Component {
                 <ProductDescription dataChange={this.productDescription}/>
                 <Subspecies catalog={this.state.headerItem}
                             subCatalog={this.state.headerSubItem}
+                            isSaveParams={this.saveParameters}
                 />
                 <div className="partners-env-btn">
                     <ButtonMain btnClass="button-main text-16" text={ru.Save} onClick={this.saveCart}/>
@@ -167,6 +219,7 @@ class AdminMainSite extends React.Component {
 function MapStateToProps(state) {
     return {
         Subspecies: state.productReducer.Subspecies,
+        SaveParams: state.productReducer.SaveParams,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -176,6 +229,9 @@ const mapDispatchToProps = dispatch => {
         },
         alertTextFunction: (text) => {
             dispatch(actionAlertText(text))
+        },
+        saveParamsFunction: (SaveParams) => {
+            dispatch(actionSaveParams(SaveParams))
         },
     }
 };
