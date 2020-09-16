@@ -43,11 +43,13 @@ class MainEnvelopeSize extends React.Component {
         if (catalog === "catalogListDog") {
             this.setState({
                 paramsList: paramsListDog,
-            })
+            });
+            this.props.paramsList(paramsListDog)
         } else {
             this.setState({
                 paramsList: paramsList,
-            })
+            });
+            this.props.paramsList(paramsList)
         }
     }
 

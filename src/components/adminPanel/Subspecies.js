@@ -6,7 +6,7 @@ import {ProductManufacturerInputList} from "../../access/temporaryConstants";
 import {updateResult} from "../../js/sharedFunctions";
 import ButtonMain from "../shared/ButtonMain";
 import ru from "../../access/lang/LangConstants";
-import {actionSubspecies} from "../../action";
+import {actionAlertText, actionOpenModal, actionSubspecies} from "../../action";
 import {connect} from "react-redux";
 
 class Subspecies extends React.Component {
@@ -118,7 +118,29 @@ class Subspecies extends React.Component {
             },
             size: {},
         });
-        this.props.isSaveParams(true);
+        if (color.length > 0 && this.state.SizeStandard && this.state.VendorCode && this.state.Price && this.validParamList(size)) {
+            this.props.isSaveParams(true);
+        } else {
+            this.props.alertTextFunction(ru.enterTheseDetails);
+            this.props.openModalFunction("alertModal");
+        }
+    }
+
+    setParamsList(list = []) {
+        this.setState({
+            paramList: list,
+        });
+    }
+
+    validParamList(size) {
+        let res = true;
+        this.state.paramList.map((item) => {
+            if (size[item.title] && res) {
+                //    Do nothing
+            } else {res = false;}
+            return res;
+        });
+        return res;
     }
 
     render() {
@@ -137,6 +159,7 @@ class Subspecies extends React.Component {
                 <MainEnvelopeSize sizeDataChange={this.sizeDataChange}
                                   sizeData={this.state.size}
                                   catalog={this.props.catalog}
+                                  paramsList={this.setParamsList}
                                   subCatalog={this.props.subCatalog}/>
                 <div className="size-standard-block-btn">
                     <div className="size-standard-block">
@@ -165,6 +188,12 @@ const mapDispatchToProps = dispatch => {
     return {
         subspeciesFunction: (Subspecies) => {
             dispatch(actionSubspecies(Subspecies))
+        },
+        openModalFunction: (modal) => {
+            dispatch(actionOpenModal(modal))
+        },
+        alertTextFunction: (text) => {
+            dispatch(actionAlertText(text))
         },
     }
 };

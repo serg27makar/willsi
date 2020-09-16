@@ -39,7 +39,6 @@ class AdminMainSite extends React.Component {
             CareInstructions: "",
             PaymentAndDelivery: "",
 
-            isSaveParameters: false,
             addedProductId: "",
         };
         this.changeCatalog = this.changeCatalog.bind(this);
@@ -106,26 +105,16 @@ class AdminMainSite extends React.Component {
         if (res) {
             if (this.state.addedProductId && this.state.addedProductId.length >= 12 ) {
                 this.addedProductResult(this.state.addedProductId);
-                this.setState({
-                    isSaveParameters: res
-                })
             } else {
                 this.saveHeaderCart();
-                this.setState({
-                    isSaveParameters: res
-                })
             }
-        } else {
-            this.props.alertTextFunction(ru.enterTheseDetails);
-            this.props.openModalFunction("alertModal");
         }
     }
 
     addedProductResult(res) {
-        if (res && res.length >= 12 && this.state.isSaveParameters && this.props.Subspecies) {
+        if (res && res.length >= 12 && this.props.Subspecies) {
             this.setState({
                 addedProductId: res,
-                isSaveParameters: false,
             });
             const Parameters = {
                 ProductId: res,
