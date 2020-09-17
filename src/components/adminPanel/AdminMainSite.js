@@ -101,13 +101,11 @@ class AdminMainSite extends React.Component {
         })
     }
 
-    saveParameters(res) {
-        if (res) {
-            if (this.state.addedProductId && this.state.addedProductId.length >= 12 ) {
-                this.addedProductResult(this.state.addedProductId);
-            } else {
-                this.saveHeaderCart();
-            }
+    saveParameters() {
+        if (this.state.addedProductId && this.state.addedProductId.length >= 12 ) {
+            this.addedProductResult(this.state.addedProductId);
+        } else {
+            this.saveHeaderCart();
         }
     }
 

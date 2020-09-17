@@ -6,7 +6,7 @@ import {ProductManufacturerInputList} from "../../access/temporaryConstants";
 import {updateResult} from "../../js/sharedFunctions";
 import ButtonMain from "../shared/ButtonMain";
 import ru from "../../access/lang/LangConstants";
-import {actionAlertText, actionOpenModal, actionSubspecies} from "../../action";
+import {actionAlertText, actionOpenModal, actionSaveParams, actionSubspecies} from "../../action";
 import {connect} from "react-redux";
 
 class Subspecies extends React.Component {
@@ -36,13 +36,13 @@ class Subspecies extends React.Component {
         this.dataChange = this.dataChange.bind(this);
         this.saveSubspecies = this.saveSubspecies.bind(this);
         this.dataChangeSizeStandard = this.dataChangeSizeStandard.bind(this);
+        this.setParamsList = this.setParamsList.bind(this);
     }
 
     componentDidMount() {}
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.SaveParams !== this.props.SaveParams) {
-            this.props.isSaveParams(false);
             if (this.props.SaveParams) {
                 this.saveSubspecies();
             }
@@ -101,7 +101,18 @@ class Subspecies extends React.Component {
             VendorCode: this.state.VendorCode,
             Price: this.state.Price,
         };
-        this.props.subspeciesFunction(parameters);
+        if (color.length > 0 && this.state.SizeStandard && this.state.VendorCode && this.state.Price && this.validParamList(size)) {
+            this.props.subspeciesFunction(parameters);
+            this.clearParameters();
+            this.props.isSaveParams();
+        } else {
+            this.props.alertTextFunction(ru.enterTheseDetails);
+            this.props.openModalFunction("alertModal");
+            this.props.saveParamsFunction(false);
+        }
+    }
+
+    clearParameters() {
         this.setState({
             color: {
                 beige: false,
@@ -117,13 +128,8 @@ class Subspecies extends React.Component {
                 black: false,
             },
             size: {},
+            SizeStandard: "",
         });
-        if (color.length > 0 && this.state.SizeStandard && this.state.VendorCode && this.state.Price && this.validParamList(size)) {
-            this.props.isSaveParams(true);
-        } else {
-            this.props.alertTextFunction(ru.enterTheseDetails);
-            this.props.openModalFunction("alertModal");
-        }
     }
 
     setParamsList(list = []) {
@@ -194,6 +200,9 @@ const mapDispatchToProps = dispatch => {
         },
         alertTextFunction: (text) => {
             dispatch(actionAlertText(text))
+        },
+        saveParamsFunction: (SaveParams) => {
+            dispatch(actionSaveParams(SaveParams))
         },
     }
 };

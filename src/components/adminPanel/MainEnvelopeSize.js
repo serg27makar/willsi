@@ -77,7 +77,7 @@ class MainEnvelopeSize extends React.Component {
     render() {
         return (
             <div className="main-envelope__info-envelope align-items-start">
-                <span className="main-envelope__info-title text-15 uppercase bold">{ru.Sizes} S</span>
+                <span className="main-envelope__info-title text-15 uppercase bold">{ru.Sizes}</span>
                 <div className="main-size-block">
                     {this.state.paramsList && this.state.paramsList.map((subItem, subIndex) => {
                         return this.renderSizeInput(subItem, subIndex);
