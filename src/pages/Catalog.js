@@ -41,7 +41,6 @@ class Catalog extends React.Component {
     }
 
     componentDidMount() {
-        this.updateProductsData();
         this.props.dataRedirectFunction({
             accessR: false,
             to: "/",
@@ -57,6 +56,9 @@ class Catalog extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.UsersParameters !== this.props.UsersParameters) {
             this.functionRedirect();
+        }
+        if (prevProps.SearchParams !== this.props.SearchParams) {
+            this.changeSizeData();
         }
         if (this.props.UsersParameters !== this.state.subUsers || prevProps.update !== this.props.update) {
             this.setState({
@@ -86,8 +88,10 @@ class Catalog extends React.Component {
 
     updateProductsData() {
         const skip = this.state.skip;
+        const SearchParams = this.props.SearchParams;
         const dataSearch = {
             skip,
+            SearchParams,
             topCatalog: this.state.topCatalog,
             subCatalog: this.state.subCatalog,
 
@@ -100,6 +104,16 @@ class Catalog extends React.Component {
         this.setState({
             ...this.state,
             subCatalog: dropdownListArr[this.props.catalog].dropdownItems[data],
+            productArr: [],
+            skip: 0,
+            lastData: false,
+            active: !this.state.active,
+        });
+    }
+
+    changeSizeData() {
+        this.setState({
+            ...this.state,
             productArr: [],
             skip: 0,
             lastData: false,
@@ -181,6 +195,7 @@ function MapStateToProps(state) {
         update: state.pageReducer.update,
         dataRedirect: state.pageReducer.dataRedirect,
         catalog: state.catalogReducer.catalog,
+        SearchParams: state.productReducer.SearchParams,
     }
 }
 const mapDispatchToProps = dispatch => {

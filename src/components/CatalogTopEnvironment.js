@@ -1,7 +1,7 @@
 import React from 'react';
 import "./../access/css/cart.css";
 import ru from "../access/lang/LangConstants";
-import {actionAddUser, actionDataRedirect, actionHeaderUser, actionOpenModal} from "../action";
+import {actionAddUser, actionDataRedirect, actionHeaderUser, actionOpenModal, actionSearchParams} from "../action";
 import {connect} from "react-redux";
 import DropdownList from "./DropdownList";
 
@@ -20,10 +20,12 @@ class CatalogTopEnvironment extends React.Component {
     componentDidMount() {
         setTimeout(() => {
             if (this.props.subUsers && this.props.subUsers.length > 0 ) {
+                const params = this.props.subUsers[this.props.HeaderUser].Parameters;
                 this.setState({
                     headerUser: this.props.subUsers[this.props.HeaderUser].UserName,
-                    params: this.props.subUsers[this.props.HeaderUser].Parameters,
-                })
+                    params,
+                });
+                this.searchParameters(params);
             }
         }, 500)
     }
@@ -32,12 +34,25 @@ class CatalogTopEnvironment extends React.Component {
         if ((this.props.subUsers && this.props.subUsers.length > 0) &&
             ((prevProps.HeaderUser !== this.props.HeaderUser) ||
             (prevProps.subUsers !== this.props.subUsers))) {
+            const params = this.props.subUsers.length > 0 ? this.props.subUsers[this.props.HeaderUser].Parameters : [];
             this.setState({
                 headerUser: this.props.subUsers.length > 0 ? this.props.subUsers[this.props.HeaderUser].UserName : "",
-                params: this.props.subUsers.length > 0 ? this.props.subUsers[this.props.HeaderUser].Parameters : [],
+                params,
                 open: "",
-            })
+            });
+            this.searchParameters(params);
         }
+    }
+
+    searchParameters(params) {
+        let searchParams = {};
+        params.map((item) => {
+            searchParams = {
+                ...searchParams,
+                [item.title]: item.size,
+            };
+        });
+        this.props.searchParamsFunction(searchParams);
     }
 
     changeUser = (index) => {
@@ -116,6 +131,9 @@ const mapDispatchToProps = dispatch => {
         },
         dataRedirectFunction: (dataRedirect) => {
             dispatch(actionDataRedirect(dataRedirect))
+        },
+        searchParamsFunction: (SearchParams) => {
+            dispatch(actionSearchParams(SearchParams))
         },
     }
 };

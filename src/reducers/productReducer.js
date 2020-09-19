@@ -34,7 +34,11 @@ export default function productReducer(state = initialState, action) {
                 ...state,
                 SaveParams: action.SaveParams
             };
-
+        case "SEARCH_PARAMS":
+            return {
+                ...state,
+                SearchParams: action.SearchParams
+            };
         default:
             return state;
     }

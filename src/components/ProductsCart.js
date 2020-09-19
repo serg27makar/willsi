@@ -22,6 +22,10 @@ class ProductsCart extends React.Component {
         })
     }
 
+    detailsParameters(item) {
+        if (item && item.length) return item[0].Price;
+    }
+
     renderCart = (item, index) => {
         return (
             <div className={this.props.compilation ? "compilation-deferred-goods" : "deferred-goods"} key={index}>
@@ -35,7 +39,7 @@ class ProductsCart extends React.Component {
                     </div>
                     <div className="card-box__product-name text-18 bold uppercase">{item.Manufacturer}</div>
                     <p className="card-box__product-info text-14 light">{item.ProdName}</p>
-                    <p className="card-box__product-quantity text-18 bold color-aqua uppercase">{item.Price}</p>
+                    <p className="card-box__product-quantity text-18 bold color-aqua uppercase">{this.detailsParameters(item.Parameters)}</p>
                     {this.renderButton(item)}
                 </div>
             </div>

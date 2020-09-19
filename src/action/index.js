@@ -165,3 +165,10 @@ export const actionSaveParams = (SaveParams) => {
         SaveParams: SaveParams
     }
 };
+
+export const actionSearchParams = (SearchParams) => {
+    return {
+        type: 'SEARCH_PARAMS',
+        SearchParams: SearchParams
+    }
+};
