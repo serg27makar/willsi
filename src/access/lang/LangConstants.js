@@ -193,7 +193,7 @@ const ru = {
 
     beige: "бежевый",
     white: "белый",
-    heavenly: "голубой",
+    aqua: "голубой",
     yellow: "желтый",
     green: "зеленый",
     red: "красный",

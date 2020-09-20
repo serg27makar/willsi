@@ -9,7 +9,7 @@ class AdminColorCategory extends React.Component {
             open: "",
             beige: false,
             white: false,
-            heavenly: false,
+            aqua: false,
             yellow: false,
             green: false,
             red: false,
@@ -28,7 +28,7 @@ class AdminColorCategory extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.colorsState.beige !== this.props.colorsState.beige) this.setState({beige: this.props.colorsState.beige});
         if (prevProps.colorsState.white !== this.props.colorsState.white) this.setState({white: this.props.colorsState.white});
-        if (prevProps.colorsState.heavenly !== this.props.colorsState.heavenly) this.setState({heavenly: this.props.colorsState.heavenly});
+        if (prevProps.colorsState.aqua !== this.props.colorsState.aqua) this.setState({aqua: this.props.colorsState.aqua});
         if (prevProps.colorsState.yellow !== this.props.colorsState.yellow) this.setState({yellow: this.props.colorsState.yellow});
         if (prevProps.colorsState.green !== this.props.colorsState.green) this.setState({green: this.props.colorsState.green});
         if (prevProps.colorsState.red !== this.props.colorsState.red) this.setState({red: this.props.colorsState.red});

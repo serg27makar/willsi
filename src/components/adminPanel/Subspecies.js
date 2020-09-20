@@ -16,7 +16,7 @@ class Subspecies extends React.Component {
             color: {
                 beige: false,
                 white: false,
-                heavenly: false,
+                aqua: false,
                 yellow: false,
                 green: false,
                 red: false,
@@ -117,7 +117,7 @@ class Subspecies extends React.Component {
             color: {
                 beige: false,
                 white: false,
-                heavenly: false,
+                aqua: false,
                 yellow: false,
                 green: false,
                 red: false,

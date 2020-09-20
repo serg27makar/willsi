@@ -237,78 +237,6 @@ export const postponeArr = [
         postpone: true,
     },
 ];
-export const productArr = [
-    {
-        imgUrl: "static/img/content/product-item.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_1.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_2.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_3.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_4.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_5.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_6.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_7.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_8.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-    },
-    {
-        imgUrl: "static/img/content/product-item.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-    },
-];
 
 export const recalculateParams = [
     {
@@ -645,7 +573,7 @@ export const ProductManufacturerInputList = [
 export const catalogColorsItems = [
     "beige",
     "white",
-    "heavenly",
+    "aqua",
     "yellow",
     "green",
     "red",

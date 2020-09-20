@@ -4,7 +4,6 @@ import {actionDataRedirect, actionSelectProduct, setActionAdminPanel} from "../a
 import {connect} from "react-redux";
 import Carousel from "../components/Carousel";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
-import {productArr} from "../access/temporaryConstants";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ProductsCart from "../components/ProductsCart";
 import ButtonMain from "../components/shared/ButtonMain";
@@ -14,16 +13,6 @@ import CartTabs from "../components/CartTabs";
 import CircleLevel from "../components/shared/CircleLevel";
 import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
-
-const breadcrumbs = {
-    title: "Женская одежда",
-    links: [
-        "Каталог",
-        "Одежда",
-        "Женская одежда",
-        "Красная рубашка",
-    ]
-};
 
 class Cart extends React.Component {
     constructor(props) {
@@ -107,14 +96,14 @@ class Cart extends React.Component {
         }
         return(
             <div className="content">
-                <BreadcrumbsBg  breadcrumbs={breadcrumbs}/>
+                <BreadcrumbsBg />
                 <CatalogTopEnvironment  subUsers={this.state.subUsers}/>
                 <div className="cart-info">
                     <div className="container">
                         <div className="footer-row-wrap">
                             <div className="col-12">
                                 {this.renderSlide()}
-                                <CircleLevel level={90}/>
+                                <CircleLevel level={40}/>
                             </div>
                             <div className="col-12">
                                <CardDescription cardDescription={this.state.SelectProduct}/>

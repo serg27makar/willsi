@@ -110,6 +110,7 @@
     height: 1.875vw;
     min-width: 40px;
     min-height: 40px;
+    border: 1px solid #907e7e;
 }
 .catalog-top-env {
     border-bottom: 0.0625vw solid #e1e1e1;
