@@ -1,10 +1,16 @@
 import React from 'react';
 import ru from "../access/lang/LangConstants";
-import {actionAddUser, actionDataRedirect, actionHeaderUser, actionOpenModal, actionUsersParameters} from "../action";
+import {
+    actionAddUser,
+    actionDataRedirect,
+    actionHeaderUser,
+    actionOpenModal,
+    actionUpdateEditorModal,
+    actionUsersParameters
+} from "../action";
 import {connect} from "react-redux";
 import ButtonMain from "../components/shared/ButtonMain";
 import {postUpdate} from "../utilite/axiosConnect";
-import {updateResult} from "../js/sharedFunctions";
 
 class EditorModal extends React.Component {
     constructor(props) {
@@ -18,6 +24,7 @@ class EditorModal extends React.Component {
         };
         this.saveUpdate = this.saveUpdate.bind(this);
         this.addUser = this.addUser.bind(this);
+        this.updateResToggle = this.updateResToggle.bind(this);
     }
 
     componentDidMount() {
@@ -133,9 +140,13 @@ class EditorModal extends React.Component {
             UsersParameters: this.props.UsersParameters,
             UserID: this.props.UserID,
         };
-        postUpdate(user, updateResult);
+        postUpdate(user, this.updateResToggle);
         this.closeLincModal();
     };
+
+    updateResToggle() {
+        this.props.updateEditorModalFunction(!this.props.updateEditorModal);
+    }
 
     renderUser = (item, index) => {
         if (item.UserName !== this.state.headerUser) {
@@ -209,6 +220,7 @@ class EditorModal extends React.Component {
 function MapStateToProps(state) {
     return {
         modal: state.modalReducer.modal,
+        updateEditorModal: state.modalReducer.updateEditorModal,
         UserID: state.userReducer.UserID,
         UserName: state.userReducer.UserName,
         Email: state.userReducer.Email,
@@ -234,6 +246,9 @@ const mapDispatchToProps = dispatch => {
         },
         headerUserFunction: (HeaderUser) => {
             dispatch(actionHeaderUser(HeaderUser))
+        },
+        updateEditorModalFunction: (updateEditorModal) => {
+            dispatch(actionUpdateEditorModal(updateEditorModal))
         },
     }
 };

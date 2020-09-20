@@ -172,3 +172,31 @@ export const actionSearchParams = (SearchParams) => {
         SearchParams: SearchParams
     }
 };
+
+export const actionCatalogName = (catalogName) => {
+    return {
+        type: 'CHOOSE_CATALOG_NAME',
+        catalogName: catalogName
+    }
+};
+
+export const actionSubCatalogName = (subCatalogName) => {
+    return {
+        type: 'CHOOSE_SUB_CATALOG_NAME',
+        subCatalogName: subCatalogName
+    }
+};
+
+export const actionUpdateEditorModal = (updateEditorModal) => {
+    return {
+        type: 'UPDATE_EDITOR_MODAL',
+        updateEditorModal: updateEditorModal
+    }
+};
+
+export const actionUpdateSearchParams = (UpdateSearchParams) => {
+    return {
+        type: 'UPDATE_SEARCH_PARAMS',
+        UpdateSearchParams: UpdateSearchParams
+    }
+};

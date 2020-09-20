@@ -1,6 +1,7 @@
 const initialState = {
     modal: "",
     AlertText: "",
+    updateEditorModal: false,
 };
 
 export default function modalReducer(state = initialState, action) {
@@ -15,6 +16,11 @@ export default function modalReducer(state = initialState, action) {
             return {
                 ...state,
                 AlertText: action.AlertText
+            };
+        case "UPDATE_EDITOR_MODAL":
+            return {
+                ...state,
+                updateEditorModal: action.updateEditorModal
             };
         default:
             return state;

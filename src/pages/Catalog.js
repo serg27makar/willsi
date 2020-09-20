@@ -1,5 +1,5 @@
 import React from 'react';
-import {actionDataRedirect, actionProductsArr, setActionAdminPanel} from "../action";
+import {actionCatalogName, actionDataRedirect, actionProductsArr, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
 import {dropdownListArr, sidebarCatalogArr} from "../access/temporaryConstants";
@@ -11,15 +11,6 @@ import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
 import {getProductDataToParams} from "../utilite/axiosConnect";
 
-const breadcrumbs = {
-    title: "Женская одежда",
-    links: [
-        "Каталог",
-        "Одежда",
-        "Женская одежда",
-    ]
-};
-
 class Catalog extends React.Component {
     constructor(props) {
         super(props);
@@ -27,7 +18,10 @@ class Catalog extends React.Component {
             subUsers:[],
             productArr: [],
             skip: 0,
-            lastData: false,
+            lastData: true,
+            firstTime: true,
+            active: false,
+            catalogName: "",
             redirect: {
                 accessR: false,
                 to: "/",
@@ -35,12 +29,15 @@ class Catalog extends React.Component {
         };
         this.setProductData = this.setProductData.bind(this);
         this.onScrollList = this.onScrollList.bind(this);
-        this.selectedCatalog = this.selectedCatalog.bind(this);
         this.selectedSubCatalog = this.selectedSubCatalog.bind(this);
         this.updateProductsData = this.updateProductsData.bind(this);
     }
 
     componentDidMount() {
+        this.setCatalogName();
+        if (this.props.SearchParams && this.props.catalogName && this.state.firstTime) {
+            this.changeSizeData();
+        }
         this.props.dataRedirectFunction({
             accessR: false,
             to: "/",
@@ -57,13 +54,33 @@ class Catalog extends React.Component {
         if (prevProps.UsersParameters !== this.props.UsersParameters) {
             this.functionRedirect();
         }
-        if (prevProps.SearchParams !== this.props.SearchParams) {
+        if ((prevProps.SearchParams !== this.props.SearchParams ||
+            prevProps.catalogName !== this.props.catalogName)
+            && this.props.SearchParams && this.props.catalogName && this.state.firstTime) {
+            this.setState({
+                firstTime: false,
+            });
+        }
+        if ((prevProps.SearchParams !== this.props.SearchParams ||
+            prevProps.catalogName !== this.props.catalogName) && !this.state.firstTime) {
             this.changeSizeData();
         }
-        if (this.props.UsersParameters !== this.state.subUsers || prevProps.update !== this.props.update) {
+        if (prevProps.catalogName !== this.props.catalogName) {
+            this.setState({
+                subCatalog: "",
+            });
+        }
+        if (this.props.UsersParameters !== this.state.subUsers ||
+            prevProps.update !== this.props.update) {
             this.setState({
                 ...this.state,
                 subUsers: this.props.UsersParameters,
+            });
+        }
+        if (prevProps.updateEditorModal !== this.props.updateEditorModal) {
+            this.setState({
+                ...this.state,
+                subUsers: [],
             });
         }
         if (prevProps.dataRedirect !== this.props.dataRedirect) {
@@ -83,6 +100,32 @@ class Catalog extends React.Component {
     onScrollList(event) {
         if((event.target.scrollingElement.scrollTop > document.scrollingElement.offsetHeight - window.outerHeight) && !this.state.lastData) {
             this.updateProductsData();
+        }
+    }
+
+    setCatalogName() {
+        if (this.props.UsersParameters && this.props.HeaderUser) {
+            let catalogName = "";
+            const gender = this.props.UsersParameters[this.props.HeaderUser].Gender;
+            switch (gender) {
+                case "man":
+                    catalogName = "catalogListMen";
+                    break;
+                case "woman":
+                    catalogName = "catalogListWomen";
+                    break;
+                case "boy":
+                    catalogName = "catalogListBoy";
+                    break;
+                case "girl":
+                    catalogName = "catalogListGirl";
+                    break;
+                case "dog":
+                    catalogName = "catalogListDog";
+                    break;
+                default : catalogName = "catalogListMen";
+            }
+            this.props.catalogNameFunction(catalogName);
         }
     }
 
@@ -114,32 +157,23 @@ class Catalog extends React.Component {
     changeSizeData() {
         this.setState({
             ...this.state,
+            topCatalog: this.props.catalogName,
             productArr: [],
             skip: 0,
             lastData: false,
             active: !this.state.active,
-        });
-    }
-
-    selectedCatalog(data) {
-        this.setState({
-            ...this.state,
-            topCatalog: dropdownListArr[data].dropdownTitle,
-            productArr: [],
-            skip: 0,
-            lastData: false,
-            active: !this.state.active,
-            subCatalog: "",
         });
     }
 
     setProductData(data) {
+        const lastData = data.length < 12 && data.length > 0;
         if (data.length > 0) {
             const allProducts = this.state.productArr.concat(data);
             this.props.productsArrFunction(allProducts);
             this.setState({
                 ...this.state,
                 productArr: allProducts,
+                lastData
             })
         } else {
             this.setState({lastData: true})
@@ -167,15 +201,15 @@ class Catalog extends React.Component {
         }
         return(
             <div className="content">
-                <BreadcrumbsBg  breadcrumbs={breadcrumbs}/>
+                <BreadcrumbsBg/>
                 <CatalogTopEnvironment  subUsers={this.state.subUsers}/>
                 <div className="catalog-middle container">
                     <div className="footer-row-wrap">
                         <div className="catalog-sidebar">
                             <RutCatalogSidebar
                                 selectedSubCatalog={this.selectedSubCatalog}
-                                selectedCatalog={this.selectedCatalog}
-                                Categories={dropdownListArr}/>
+                                Categories={dropdownListArr}
+                            />
                             <CatalogSidebar Categories={sidebarCatalogArr}/>
                         </div>
                         <div className="col-12">
@@ -190,11 +224,15 @@ class Catalog extends React.Component {
 
 function MapStateToProps(state) {
     return {
+        modal: state.modalReducer.modal,
+        updateEditorModal: state.modalReducer.updateEditorModal,
         page: state.pageReducer.page,
         UsersParameters: state.userReducer.UsersParameters,
+        HeaderUser: state.userReducer.HeaderUser,
         update: state.pageReducer.update,
         dataRedirect: state.pageReducer.dataRedirect,
         catalog: state.catalogReducer.catalog,
+        catalogName: state.catalogReducer.catalogName,
         SearchParams: state.productReducer.SearchParams,
     }
 }
@@ -208,6 +246,9 @@ const mapDispatchToProps = dispatch => {
         },
         productsArrFunction: (ProductsArr) => {
             dispatch(actionProductsArr(ProductsArr))
+        },
+        catalogNameFunction: (catalogName) => {
+            dispatch(actionCatalogName(catalogName))
         },
     }
 };

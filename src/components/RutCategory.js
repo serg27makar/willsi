@@ -1,5 +1,5 @@
 import React from "react";
-import {actionOpenCatalog} from "../action";
+import {actionCatalogName, actionOpenCatalog} from "../action";
 import {connect} from "react-redux";
 import LangCat from "../access/lang/CatalogLangConstants";
 
@@ -9,8 +9,16 @@ class RutCategory extends React.Component {
         this.state = {
             isOpen: false,
             selected: -1,
+            genderPermission: true,
         };
         this.closeOpen = this.closeOpen.bind(this);
+        this.genderPermission = this.genderPermission.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.props.UsersParameters) {
+            this.genderPermission();
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -19,7 +27,9 @@ class RutCategory extends React.Component {
                 ...this.state,
                 isOpen: this.props.index === this.props.catalog,
                 selected: -1,
-            })
+            });
+        if (prevProps.UsersParameters !== this.props.UsersParameters ||
+            prevProps.HeaderUser !== this.props.HeaderUser) this.genderPermission();
     }
 
     closeOpen = () => {
@@ -82,10 +92,46 @@ class RutCategory extends React.Component {
         }
     };
 
+    setPermission(dropdownTitle, genderPermission) {
+        if (this.props.disabledFalse) {
+            this.setState({
+                genderPermission: true
+            });
+        } else if (genderPermission && dropdownTitle) {
+            this.setState({
+                genderPermission
+            });
+            this.props.catalogNameFunction(dropdownTitle);
+        }
+    }
+
+    genderPermission() {
+        this.setState({
+            genderPermission: false,
+        });
+        if (this.props.UsersParameters && this.props.UsersParameters.length > 0) {
+            const gender = this.props.UsersParameters[this.props.HeaderUser].Gender;
+            const dropdownTitle = this.props.item.dropdownTitle;
+            if (dropdownTitle === "catalogListMen" && gender === "man") {
+                this.setPermission(dropdownTitle, true);
+            } else if (dropdownTitle === "catalogListWomen" && gender === "woman") {
+                this.setPermission(dropdownTitle, true);
+            } else if (dropdownTitle === "catalogListBoy" && gender === "boy") {
+                this.setPermission(dropdownTitle, true);
+            } else if (dropdownTitle === "catalogListGirl" && gender === "girl") {
+                this.setPermission(dropdownTitle, true);
+            } else if (dropdownTitle === "catalogListDog" && gender === "dog") {
+                this.setPermission(dropdownTitle, true);
+            } else {
+                this.setPermission(dropdownTitle, false);
+            }
+        }
+    }
+
     render() {
         return (
             <div className="catalog-product">
-                <button className="catalog-button" onClick={this.closeOpen}>
+                <button className="catalog-button" onClick={this.closeOpen} disabled={!this.state.genderPermission}>
                     <span className={"catalog-button__text text-16 light " + (this.state.isOpen ? "catalog-opened" : "")}>{LangCat[this.props.item.dropdownTitle]}</span>
                     <svg className="icon icon-arrow-small ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
@@ -105,12 +151,18 @@ class RutCategory extends React.Component {
 function MapStateToProps(state) {
     return {
         catalog: state.catalogReducer.catalog,
+        Gender: state.userReducer.Gender,
+        UsersParameters: state.userReducer.UsersParameters,
+        HeaderUser: state.userReducer.HeaderUser,
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         openCatalogFunction: (catalog) => {
             dispatch(actionOpenCatalog(catalog))
+        },
+        catalogNameFunction: (catalogName) => {
+            dispatch(actionCatalogName(catalogName))
         },
     }
 };

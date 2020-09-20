@@ -4,6 +4,7 @@ const initialState = {
     ProductID: "",
     Subspecies: {},
     SaveParams: false,
+    UpdateSearchParams: false,
 };
 
 export default function productReducer(state = initialState, action) {
@@ -38,6 +39,11 @@ export default function productReducer(state = initialState, action) {
             return {
                 ...state,
                 SearchParams: action.SearchParams
+            };
+        case "UPDATE_SEARCH_PARAMS":
+            return {
+                ...state,
+                UpdateSearchParams: action.UpdateSearchParams
             };
         default:
             return state;

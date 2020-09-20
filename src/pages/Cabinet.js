@@ -239,7 +239,9 @@ class Cabinet extends React.Component {
                              selectItem={this.selectStore}
                              isAddItem={ru.AddStore}
                              addItem={this.addStore}
-                             deleteBtnFun={this.deleteStore} index={1}/>
+                             deleteBtnFun={this.deleteStore} index={1}
+                             disabledFalse={true}
+                />
             )
         } else {
             return null;

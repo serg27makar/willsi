@@ -1,10 +1,12 @@
 import React from "react";
+import {connect} from "react-redux";
+import LangCat from "../access/lang/CatalogLangConstants";
 
 class BreadcrumbsBg extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            breadcrumbs: {}
+            breadcrumbs: {},
         }
     }
 
@@ -32,13 +34,13 @@ class BreadcrumbsBg extends React.Component {
                             <div className="breadcrumbs__row">
                                 <div className="breadcrumb__column">
                                     <div className="breadcrumbs">
-                                        <h1 className="breadcrumbs__title title-30 bold uppercase">{this.props.breadcrumbs.title}</h1>
+                                        <h1 className="breadcrumbs__title title-30 bold uppercase">{LangCat[this.props.catalogName]}</h1>
                                     </div>
-                                    <nav className="breadcrumbs">
-                                        {this.props.breadcrumbs.links && this.props.breadcrumbs.links.map((item, index) => {
-                                            return this.renderLinks(item, index, this.props.breadcrumbs.links.length);
-                                        })}
-                                    </nav>
+                                    {/*<nav className="breadcrumbs">*/}
+                                    {/*    {this.props.breadcrumbs.links && this.props.breadcrumbs.links.map((item, index) => {*/}
+                                    {/*        return this.renderLinks(item, index, this.props.breadcrumbs.links.length);*/}
+                                    {/*    })}*/}
+                                    {/*</nav>*/}
                                 </div>
                             </div>
                         </div>
@@ -49,4 +51,14 @@ class BreadcrumbsBg extends React.Component {
     }
 }
 
-export default BreadcrumbsBg;
+function MapStateToProps(state) {
+    return {
+        catalogName: state.catalogReducer.catalogName,
+        subCatalogName: state.catalogReducer.subCatalogName,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {}
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(BreadcrumbsBg);
