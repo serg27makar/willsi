@@ -9,7 +9,8 @@ const initialState = {
     AddUser: false,
     Permission: "unknown",
     HeaderUser: 0,
-    UserStore: []
+    UserStore: [],
+    Postpone: [],
 };
 
 export default function userReducer(state = initialState, action) {
@@ -68,6 +69,11 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 UserStore: action.UserStore
+            };
+        case "SET_POSTPONE":
+            return {
+                ...state,
+                Postpone: action.Postpone
             };
         default:
             return state;

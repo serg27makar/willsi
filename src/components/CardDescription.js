@@ -3,6 +3,10 @@ import ButtonMain from "./shared/ButtonMain";
 import ru from "../access/lang/LangConstants";
 import ButtonPostpone from "./shared/ButtonPostpone";
 import "../access/css/cart.css"
+import {connect} from "react-redux";
+import {actionPostpone, actionSelectProduct} from "../action";
+import {updateResult} from "../js/sharedFunctions";
+import {postUpdate} from "../utilite/axiosConnect";
 
 class CardDescription extends React.Component {
     constructor(props) {
@@ -11,6 +15,7 @@ class CardDescription extends React.Component {
             cardDescription: {}
         };
         this.siteRedirect = this.siteRedirect.bind(this);
+        this.addPostpone = this.addPostpone.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -24,6 +29,17 @@ class CardDescription extends React.Component {
 
     siteRedirect() {
         window.open(this.state.cardDescription.LinkToProduct)
+    }
+
+    addPostpone() {
+        const Postpone = this.props.Postpone;
+        Postpone.push(this.state.cardDescription._id);
+        const user = {
+            UserID: this.props.UserID,
+            Postpone,
+        };
+        this.props.postponeFunction(Postpone);
+        postUpdate(user, updateResult);
     }
 
     renderColorRound = (item, index) => {
@@ -67,7 +83,7 @@ class CardDescription extends React.Component {
                 </div>
                 <div className="card-description__button-bottom">
                     <p className="card-description__quantity text-22 color-aqua uppercase medium">{this.state.cardDescription.Parameters[0].Price + ru.grn}</p>
-                    <ButtonPostpone/>
+                    <ButtonPostpone onClick={this.addPostpone}/>
                     <ButtonMain btnClass={"button-white text-14"} text={"перейти в магазин для покупки"} onClick={this.siteRedirect}/>
                 </div>
             </div>
@@ -75,4 +91,18 @@ class CardDescription extends React.Component {
     }
 }
 
-export default CardDescription;
+function MapStateToProps(state) {
+    return {
+        UserID: state.userReducer.UserID,
+        Postpone: state.userReducer.Postpone,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        postponeFunction: (Postpone) => {
+            dispatch(actionPostpone(Postpone))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(CardDescription);

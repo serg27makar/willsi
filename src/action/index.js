@@ -200,3 +200,10 @@ export const actionUpdateSearchParams = (UpdateSearchParams) => {
         UpdateSearchParams: UpdateSearchParams
     }
 };
+
+export const actionPostpone = (Postpone) => {
+    return {
+        type: 'SET_POSTPONE',
+        Postpone: Postpone
+    }
+};

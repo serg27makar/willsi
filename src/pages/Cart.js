@@ -13,6 +13,7 @@ import CartTabs from "../components/CartTabs";
 import CircleLevel from "../components/shared/CircleLevel";
 import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
+import PerfectThings from "../components/PerfectThings";
 
 class Cart extends React.Component {
     constructor(props) {
@@ -120,12 +121,7 @@ class Cart extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="container">
-                        <ProductsCart products={productArr} compilation={true}/>
-                        <div className="col-12">
-                            <ButtonMain btnClass={"button-refresh text-14 medium button-white"} text={ru.UpdateProduct}/>
-                        </div>
-                    </div>
+                    <PerfectThings/>
                 </div>
             </div>
         )

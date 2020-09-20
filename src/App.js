@@ -26,7 +26,7 @@ import {connect} from "react-redux";
 import EditorModal from "./modals/EditorModal";
 import {
     actionEmail,
-    actionPermission,
+    actionPermission, actionPostpone,
     actionUserID,
     actionUserName,
     actionUsersParameters,
@@ -62,6 +62,7 @@ class App extends React.Component {
             this.props.usersParametersFunction(res.UsersParameters);
             this.props.permissionFunction(res.Permission);
             this.props.userStoreFunction(res.UserStore);
+            this.props.postponeFunction(res.Postpone);
         }
     };
 
@@ -162,6 +163,9 @@ const mapDispatchToProps = dispatch => {
         },
         userStoreFunction: (UserStore) => {
             dispatch(actionUserStore(UserStore))
+        },
+        postponeFunction: (Postpone) => {
+            dispatch(actionPostpone(Postpone))
         },
     }
 };
