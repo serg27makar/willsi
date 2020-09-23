@@ -1428,6 +1428,7 @@ footer {
 }
 .catalog-top__list-object .list-object__text-value {
     padding: 0 0.25vw;
+    white-space: nowrap;
 }
 
 .dropdown-info__link:hover {
@@ -2476,6 +2477,55 @@ input[type="checkbox"] + label:hover {
 }
 .hidden-block {
     display: none !important;
+}
+.digital-slider-limit-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.digital-slider-limit {
+    color: #757575;
+    font-weight: bold;
+}
+.digital-face-wrapper {
+    display: flex;
+    align-items: center;
+    border: 2px solid #dadada;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.digital-face {
+    display: flex;
+    height: 2rem;
+    align-items: center;
+}
+.right-arrow,
+.left-arrow {
+    width: 4rem;
+    justify-content: center;
+    font-size: 2rem;
+    color: #757575;
+    cursor: pointer;
+}
+.face-block {
+    position: relative;
+    padding: 0 0 0 2rem;
+}
+.face-block-text {
+    position: absolute;
+    right: 2rem;
+    color: #757575;
+}
+.face-block .slider-input-text {
+    margin: 0;
+    width: 100%;
+    border: none;
+    color: #757575;
+    font-weight: bold;
+}
+.recalculate-box__flex-col .slider-input {
+    width: 50%;
+    margin: 0;
 }
 .recalculate {
     position: relative;

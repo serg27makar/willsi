@@ -90,6 +90,7 @@
     overflow: hidden;
     z-index: 8000;
     box-shadow: 3px 3px 5px 1px #2b8b9a;
+    cursor: pointer;
 }
 .link-fixed:hover:active {
     box-shadow: 2px 2px 4px 0 #2b8b9a;

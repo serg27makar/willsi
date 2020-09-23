@@ -181,9 +181,17 @@ export const sidebarCatalogArr = [
     {
         catalogTitle: "Цвет",
         catalogItems: [
-            "Черный",
-            "Красный",
-            "Синий",
+            ru.beige,
+            ru.white,
+            ru.aqua,
+            ru.yellow,
+            ru.green,
+            ru.red,
+            ru.prints,
+            ru.pink,
+            ru.gray,
+            ru.blue,
+            ru.black,
         ]
     },
 ];
@@ -467,7 +475,13 @@ export const whomParams = [
         text: "Собака",
     },
 ];
-export const paramsList = [
+export const paramsListWoman = [
+    {
+        title: "chest",
+        data: "Грудь",
+    },
+
+
     {
         title: "growth",
         data: "Рост",
@@ -475,10 +489,6 @@ export const paramsList = [
     {
         title: "shoulders",
         data: "Плечи",
-    },
-    {
-        title: "chest",
-        data: "Грудь",
     },
     {
         title: "waist",

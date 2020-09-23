@@ -10,7 +10,6 @@ import {
 import {connect} from "react-redux";
 import RecalculateFooter from "../components/RecalculateFooter";
 import Recalculate from "../components/Recalculate";
-import {recalculateParams} from "../access/temporaryConstants";
 import DataHeader from "../components/DataHeader";
 import InputDataParams from "../components/InputDataParams";
 import {handlePageUp} from "../js/visualEffects";
@@ -18,11 +17,19 @@ import ru from "../access/lang/LangConstants";
 import {postUpdate} from "../utilite/axiosConnect";
 import {Redirect} from "react-router-dom";
 import {updateResult} from "../js/sharedFunctions";
+import {
+    recalculateParamsBoy,
+    recalculateParamsDog,
+    recalculateParamsGirl,
+    recalculateParamsMan,
+    recalculateParamsWoman
+} from "../access/recalculateConstants";
 
 class Data extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            recalculateParams: recalculateParamsWoman,
             startParams: false,
             params: [],
             reDirect: false,
@@ -35,6 +42,7 @@ class Data extends React.Component {
         };
         this.nextParams =this.nextParams.bind(this);
         this.firstBlock =this.firstBlock.bind(this);
+        this.genderSwitcher =this.genderSwitcher.bind(this);
     }
 
     componentDidMount() {
@@ -51,10 +59,10 @@ class Data extends React.Component {
             if (!this.props.AddUser && (this.props.UsersParameters && this.props.UsersParameters.length >= 1 &&
                 this.props.UsersParameters[0].Parameters &&
                 this.props.UsersParameters[0].Parameters.length > 0)) {
-                this.props.dataRedirectFunction({
-                    accessR: true,
-                    to: "/catalog",
-                });
+                // this.props.dataRedirectFunction({
+                //     accessR: true,
+                //     to: "/catalog",
+                // });
             }
             if (this.props.AddUser) {
                 this.setState({
@@ -79,6 +87,47 @@ class Data extends React.Component {
     componentWillUnmount() {
         document.body.style.overflow = "auto";
         this.props.addUserFunction(false);
+    }
+
+    genderSwitcher(gender) {
+        switch (gender) {
+            case "woman":
+                this.setState({
+                    ...this.state,
+                    recalculateParams: recalculateParamsWoman
+                });
+                break;
+            case "man":
+                this.setState({
+                    ...this.state,
+                    recalculateParams: recalculateParamsMan
+                });
+                break;
+            case "boy":
+                this.setState({
+                    ...this.state,
+                    recalculateParams: recalculateParamsBoy
+                });
+                break;
+            case "girl":
+                this.setState({
+                    ...this.state,
+                    recalculateParams: recalculateParamsGirl
+                });
+                break;
+            case "dog":
+                this.setState({
+                    ...this.state,
+                    recalculateParams: recalculateParamsDog
+                });
+                break;
+            default:
+                this.setState({
+                    ...this.state,
+                    recalculateParams: recalculateParamsWoman
+                });
+                break;
+        }
     }
 
     nextParams(name, gender) {
@@ -172,11 +221,11 @@ class Data extends React.Component {
         return(
             <div className="content">
                 <DataHeader/>
-                <InputDataParams nextParams={this.nextParams}/>
+                <InputDataParams nextParams={this.nextParams} changeGender={this.genderSwitcher}/>
                 <div className="recalculate">
                     <div className="container">
                         <div className="row-wrap">
-                            <Recalculate dataParams={recalculateParams}
+                            <Recalculate dataParams={this.state.recalculateParams}
                                          startParams={this.state.startParams}
                                          firstBlock={this.firstBlock}
                                          params={this.addParams}

@@ -1,5 +1,5 @@
 import React from "react";
-import {paramsList, paramsListDog} from "../../access/temporaryConstants";
+import {paramsListWoman, paramsListDog} from "../../access/temporaryConstants";
 import ru from "../../access/lang/LangConstants";
 
 const sizeArr = [
@@ -47,9 +47,9 @@ class MainEnvelopeSize extends React.Component {
             this.props.paramsList(paramsListDog)
         } else {
             this.setState({
-                paramsList: paramsList,
+                paramsList: paramsListWoman,
             });
-            this.props.paramsList(paramsList)
+            this.props.paramsList(paramsListWoman)
         }
     }
 

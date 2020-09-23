@@ -16,6 +16,7 @@ class Recalculate extends React.Component {
         this.props.dataParams.map(() => {
             return this.refRecalculate.push(React.createRef());
         });
+        this.onChange = this.onChange.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -52,8 +53,10 @@ class Recalculate extends React.Component {
         }
     }
 
-    onChange = (e, inputName) => {
-        const data = e.target.value <= 0 ? 0 : e.target.value > 500 ? 500 : e.target.value;
+    onChange = (e) => {
+        const inputName = e.target.name;
+        let data = e.target.value <= 0 ? 0 : e.target.value > 500 ? 500 : e.target.value;
+        data = Number(data);
         this.setState({
             ...this.state,
             [inputName]: data,
@@ -61,9 +64,68 @@ class Recalculate extends React.Component {
         });
     };
 
+    leftArrowClick(inputName, data, sizeMin) {
+        data = Number(data);
+        data = data <= sizeMin ? sizeMin : --data;
+        this.setState({
+            ...this.state,
+            [inputName]: data,
+            inputName,
+        });
+    }
+
+    rightArrowClick(inputName, data, sizeMax) {
+        data = Number(data);
+        data = data >= sizeMax ? sizeMax : ++data;
+        this.setState({
+            ...this.state,
+            [inputName]: data,
+            inputName,
+        });
+    }
+
+    renderDigitalFace(item) {
+        return (
+            <div className="digital-face-wrapper">
+                <div className="digital-face left-arrow" onClick={() => {this.leftArrowClick(item.inputName, this.state[item.inputName] || item.sizeMin, item.sizeMin)}}>-</div>
+                <div className="digital-face face-block">
+                    <input className="slider-input-text" name={item.inputName}
+                           value={this.state && this.state[item.inputName] || item.sizeMin} min={item.sizeMin} max={item.sizeMax}
+                           onChange={this.onChange}/>
+                           <div className="face-block-text">{ru.sm}</div>
+                </div>
+                <div className="digital-face right-arrow" onClick={() => {this.rightArrowClick(item.inputName, this.state[item.inputName] || item.sizeMin, item.sizeMax)}}>+</div>
+            </div>
+        )
+    }
+
+    renderSlider(item) {
+        return (
+            <div className="digital-slider-wrapper">
+
+                <input className="slider" type="range" name={item.inputName}
+                       value={this.state && this.state[item.inputName] || 0} min={item.sizeMin} max={item.sizeMax}
+                       onChange={this.onChange}/>
+                <div className="digital-slider-limit-wrapper">
+                    <div className="digital-slider-limit">{item.sizeMin + " " + ru.sm}</div>
+                    <div className="digital-slider-limit">{item.sizeMax + " " + ru.sm}</div>
+                </div>
+            </div>
+        )
+    }
+
+    renderInput(item) {
+        return (
+            <div className="slider-input">
+                {this.renderDigitalFace(item)}
+                {this.renderSlider(item)}
+            </div>
+        )
+    }
+
     renderRecalculateBox = (item, index) => {
         const right = evenOdd(index);
-        const number = "0" + (index + 1);
+        const number = index <= 8 ? "0" + (index + 1) : index + 1;
         return (
             <div ref={this.refRecalculate[index]} className="recalculate-box" key={index}>
                 <div className={"recalculate-box__row " + (right ? "row-reverse" : "")}>
@@ -76,18 +138,17 @@ class Recalculate extends React.Component {
                     </div>
                     <div className="recalculate-box__column-right">
                         <div className="recalculate-box__flex-col">
-                            <p className="recalculate-box__title title-36 bold uppercase">{item.title}</p>
-                            <p className="recalculate-box__paragraph text-22 light">{item.text}</p>
-                            <div className="relative-block">
-                                <input className="recalculate-box__input-data text-18 light"
-                                       type="number"
-                                       name={item.inputName} placeholder={ru.recalculatePlaceholder}
-                                       value={this.state[item.inputName] || ""}
-                                       onChange={(e) => {this.onChange(e, item.inputName)}}
-                                />
-                                <p className="recalculate-input-text">{ru.sm}</p>
+                            <div className="breadcrumbs__row">
+                                <p className="recalculate-box__title title-36 bold uppercase">{item.title}</p>
+                                <picture className="picture">
+                                    <img className="picture__source" src={item.secondImgUrl} alt={item.inputName}/>
+                                </picture>
                             </div>
-                            <p className="recalculate-box__number text-115 bold">{number}</p>
+                            <p className="recalculate-box__paragraph text-22 light">{item.text}</p>
+                            <div className="digital-slider-limit-wrapper">
+                                {this.renderInput(item)}
+                                <p className="recalculate-box__number text-115 bold">{number}</p>
+                            </div>
                         </div>
                         <div className="recalculate-nav-btn">
                             <div className="recalculate-prev-btn" onClick={() => {this.prevItem(index)}}>{"< назад"}</div>

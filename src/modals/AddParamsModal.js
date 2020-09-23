@@ -3,7 +3,7 @@ import ButtonMain from "../components/shared/ButtonMain";
 import {actionHeaderUser, actionOpenModal, actionUsersParameters} from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
-import {paramsList} from "../access/temporaryConstants";
+import {paramsListWoman} from "../access/temporaryConstants";
 import {postUpdate} from "../utilite/axiosConnect";
 import {updateResult} from "../js/sharedFunctions";
 
@@ -18,7 +18,7 @@ class AddParamsModal extends React.Component {
     }
 
     componentDidMount() {
-        const list = paramsList.slice();
+        const list = paramsListWoman.slice();
         this.props.UsersParameters[this.props.HeaderUser].Parameters.map((param) => {
             return list.map((item, index) => {
                 if (item.title === param.title) {

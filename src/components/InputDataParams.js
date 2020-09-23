@@ -34,11 +34,13 @@ class InputDataParams extends React.Component {
     }
 
     btnActive = (index) => {
+        const gender = whomParams[index].data
         this.setState({
             ...this.state,
             activeBtn: index,
-            gender: whomParams[index].data,
+            gender,
         });
+        this.props.changeGender(gender);
     };
 
     onChange = (e) => {
