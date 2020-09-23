@@ -1413,6 +1413,14 @@ footer {
     -ms-flex-pack: justify;
     justify-content: space-between;
     position: relative;
+    transition-duration: 1s;
+}
+.arrow-slide-params {
+    font-weight: bold;
+    color: #50abbd;
+    font-size: 2vw;
+    cursor: pointer;
+    padding: 0 0.5vw;
 }
 .col-12.catalog-top__list-object {
     overflow: hidden;
@@ -1424,7 +1432,8 @@ footer {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    min-width: 10vw;
+    width: 14vw;
+    white-space: nowrap;
 }
 .catalog-top__list-object .list-object__text-value {
     padding: 0 0.25vw;

@@ -15,6 +15,7 @@ class CatalogTopEnvironment extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            moveLeft: "0",
             headerUser: "",
             params: [],
             open: "",
@@ -22,6 +23,8 @@ class CatalogTopEnvironment extends React.Component {
         };
         this.addUser = this.addUser.bind(this);
         this.changeUser = this.changeUser.bind(this);
+        this.arrowLeft = this.arrowLeft.bind(this);
+        this.arrowRight = this.arrowRight.bind(this);
     }
 
     componentDidMount() {
@@ -92,6 +95,18 @@ class CatalogTopEnvironment extends React.Component {
         });
     };
 
+    arrowLeft() {
+        this.setState({
+            moveLeft: this.state.moveLeft <= -130 ? this.state.moveLeft : this.state.moveLeft - 10,
+        })
+    }
+
+    arrowRight() {
+        this.setState({
+            moveLeft: this.state.moveLeft >= 0 ? this.state.moveLeft : this.state.moveLeft + 10,
+        })
+    }
+
     renderParams = (item, index) => {
         return (
             <li className="list-object__item text-16 bold" key={index}>
@@ -117,12 +132,16 @@ class CatalogTopEnvironment extends React.Component {
                         changeItem={this.changeUser}
                         hidden={this.props.Permission === "unknown"}
                     />
-                    <div className="col-12 catalog-top__list-object">
-                        <ul className="list-object">
-                            {this.state.params && this.state.params.map((item, index) => {
-                                return this.renderParams(item, index);
-                            })}
-                        </ul>
+                    <div style={{display: "contents"}}>
+                        <div className="arrow-slide-params" onClick={this.arrowLeft}> &lt; </div>
+                            <div className="col-12 catalog-top__list-object">
+                                <ul className="list-object" style={{left: this.state.moveLeft + "vw"}}>
+                                    {this.state.params && this.state.params.map((item, index) => {
+                                        return this.renderParams(item, index);
+                                    })}
+                                </ul>
+                            </div>
+                        <div className="arrow-slide-params" onClick={this.arrowRight}> &gt; </div>
                     </div>
                 </div>
             </div>
