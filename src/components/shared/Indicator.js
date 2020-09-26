@@ -33,7 +33,7 @@ class Indicator extends React.Component {
                         <p className="indicator-env__mobile-info text-14 light italic color-aqua">{ru.WithIndicator}</p>
                         <div className="indicator-env__mobile-picture">
                             <picture className="mobile-picture">
-                                <img className="mobile-picture__source" src="static/img/content/circle.png" alt="circle"/>
+                                <img className="mobile-picture__source" src="static/img/content/circle-full.png" alt="circle"/>
                             </picture>
                         </div>
                         <div ref={this.startupRef[0]} className="step-box-indicator">

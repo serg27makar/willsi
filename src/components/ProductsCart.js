@@ -4,6 +4,7 @@ import "../access/css/cart.css"
 import ButtonPostpone from "./shared/ButtonPostpone";
 import {actionDataRedirect, actionProductID} from "../action";
 import {connect} from "react-redux";
+import CircleLevel from "./shared/CircleLevel";
 
 class ProductsCart extends React.Component {
     constructor(props) {
@@ -34,7 +35,7 @@ class ProductsCart extends React.Component {
                         <picture className="picture">
                             <img className="picture__source" src={item.Photo1} alt={item.ProdName}/>
                         </picture>
-                        <div className="card-box__circle" style={{backgroundImage: "url('static/img/content/circle-40.png')"}}/>
+                        <CircleLevel catalog={this.props.catalog} level={90}/>
                         {this.renderPostpone(item)}
                     </div>
                     <div className="card-box__product-name text-18 bold uppercase">{item.Manufacturer}</div>

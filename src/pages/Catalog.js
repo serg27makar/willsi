@@ -213,7 +213,7 @@ class Catalog extends React.Component {
                             <CatalogSidebar Categories={sidebarCatalogArr}/>
                         </div>
                         <div className="col-12">
-                            <ProductsCart products={this.state.productArr}/>
+                            <ProductsCart catalog={true} products={this.state.productArr}/>
                         </div>
                     </div>
                 </div>

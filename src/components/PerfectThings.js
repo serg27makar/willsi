@@ -17,7 +17,7 @@ class PerfectThings extends React.Component {
     render() {
         return (
             <div className="container">
-                <ProductsCart products={this.props.ProductsArr} compilation={true}/>
+                <ProductsCart catalog={true} products={this.props.ProductsArr} compilation={true}/>
                 <div className="col-12">
                     <ButtonMain btnClass={"button-refresh text-14 medium button-white"} text={ru.UpdateProduct}/>
                 </div>
