@@ -1432,7 +1432,7 @@ footer {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    width: 14vw;
+    width: 15vw;
     white-space: nowrap;
 }
 .catalog-top__list-object .list-object__text-value {
@@ -1575,8 +1575,8 @@ input[type="checkbox"]:not(:checked) + label.category-list__label {
     width: 100%;
     justify-content: space-between;
 }
-.item-select {
-    background: aliceblue;
+.item-select div.dropdown-list__link {
+    color: #c6d846;
 }
 .dropdown-list__link {
     cursor: pointer;
@@ -1932,12 +1932,18 @@ input[type="checkbox"] + label:hover {
     height: 100%;
     opacity: 1;
 }
+.tags-list-envelope {
+    margin: 2vw 0;
+    height: 20vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 .envelope-list {
     text-align: center;
 }
 .envelope-mode {
     width: 100% !important;
-    text-align: left;
+    text-align: center;
     margin: 1rem !important;
 }
 .envelope-mode-cabinet {
@@ -2034,7 +2040,7 @@ input[type="checkbox"] + label:hover {
     border: 0.0625vw solid #e1e1e1;
     border-radius: 0.25vw;
     margin: 0 0.3125vw;
-    padding: 0 0 0 4.9375vw;
+    padding: 0 1vw 0 4.9375vw;
     width: 9.375vw;
     height: 2.5vw;
     -webkit-transition: all 0.3s ease-in-out;
@@ -2666,7 +2672,7 @@ input[type="checkbox"] + label:hover {
 .input-placeholder-sm {
     position: absolute;
     top: 0.5rem;
-    left: 10vw;
+    left: 17vw;
 }
 .auto-margin {
     margin: auto;

@@ -11,6 +11,12 @@ import {
 import {connect} from "react-redux";
 import ButtonMain from "../components/shared/ButtonMain";
 import {postUpdate} from "../utilite/axiosConnect";
+import {
+    recalculateParamsBoy,
+    recalculateParamsDog,
+    recalculateParamsGirl, recalculateParamsMan,
+    recalculateParamsWoman
+} from "../access/recalculateConstants";
 
 class EditorModal extends React.Component {
     constructor(props) {
@@ -21,6 +27,7 @@ class EditorModal extends React.Component {
             params: {},
             open: "",
             isChange: false,
+            Parameters: [],
         };
         this.saveUpdate = this.saveUpdate.bind(this);
         this.addUser = this.addUser.bind(this);
@@ -31,7 +38,7 @@ class EditorModal extends React.Component {
         setTimeout(() => {
             if (this.props.UsersParameters && this.props.UsersParameters.length > 0) {
                 let params = {};
-                this.props.UsersParameters[0].Parameters.map((item, index) => {
+                this.props.UsersParameters[this.props.HeaderUser].Parameters.map((item, index) => {
                     params = {
                         ...params,
                         [item.title]: item.size,
@@ -41,6 +48,7 @@ class EditorModal extends React.Component {
                 this.setState({
                     headerUser: this.props.UsersParameters[this.props.HeaderUser].UserName,
                     params,
+                    Parameters: this.genderSwitcher(this.props.UsersParameters[this.props.HeaderUser].Gender),
                 })
             }
         }, 300);
@@ -62,7 +70,24 @@ class EditorModal extends React.Component {
             this.setState({
                 params,
                 headerUser: this.props.UsersParameters[this.props.HeaderUser].UserName,
+                Parameters: this.genderSwitcher(this.props.UsersParameters[this.props.HeaderUser].Gender),
             })
+        }
+    }
+
+    genderSwitcher(gender) {
+        switch (gender) {
+            case "man":
+                return recalculateParamsMan;
+            case "woman":
+                return recalculateParamsWoman;
+            case "boy":
+                return recalculateParamsBoy;
+            case "girl":
+                return recalculateParamsGirl;
+            case "dog":
+                return recalculateParamsDog;
+            default: return recalculateParamsWoman;
         }
     }
 
@@ -106,7 +131,7 @@ class EditorModal extends React.Component {
             ...this.state,
             params: {
                 ...this.state.params,
-                [item.title]: e.target.value <= 0 ? 0 : e.target.value >= 500 ? 500 : e.target.value,
+                [item.inputName]: e.target.value <= item.sizeMin ? item.sizeMin : e.target.value >= item.sizeMax ? item.sizeMax : e.target.value,
             },
         });
     };
@@ -114,12 +139,14 @@ class EditorModal extends React.Component {
     saveUpdate() {
         const index = this.props.HeaderUser;
         const Parameters = [];
-        this.props.UsersParameters[index].Parameters.map((item) => {
-            const oneParameter = {
-                title: item.title,
-                size: this.state.params[item.title],
-            };
-            Parameters.push(oneParameter);
+        this.state.Parameters.map((item) => {
+            if (this.state.params[item.inputName]) {
+                const oneParameter = {
+                    title: item.inputName,
+                    size: this.state.params[item.inputName],
+                };
+                Parameters.push(oneParameter);
+            }
             return index;
         });
         const UsersParameters = this.props.UsersParameters;
@@ -162,10 +189,10 @@ class EditorModal extends React.Component {
     renderInput(item, index) {
         return (
             <div className="relative-block" key={index}>
-                <p className="input-placeholder">{ru[item.title]}</p>
+                <p className="input-placeholder">{ru[item.inputName]}</p>
                 <input className="tags-list__input text-18 light envelope-mode"
-                       type="number" name={item.title} placeholder={ru.placeholderExample}
-                       value={this.state.params[item.title] || ""}
+                       type="number" name={item.inputName} placeholder={ru.placeholderExample}
+                       value={this.state.params[item.inputName] || ""}
                        onChange={(e) => {this.onChange(e, item)}}
                 />
                 <p className="input-placeholder-sm">{ru.sm}</p>
@@ -204,10 +231,11 @@ class EditorModal extends React.Component {
                     <div className="parameters__tags-list">
                         <p className="parameters__info-text text-16 uppercase bold">{ru.Change + '  ' + ru.Parameters}</p>
                         <div className="tags-list-envelope">
-                            {this.props.UsersParameters[this.props.HeaderUser].Parameters &&
-                            this.props.UsersParameters[this.props.HeaderUser].Parameters.map((item, index) => {
-                                return this.renderInput(item, index);
-                            })}
+                            <div>
+                                {this.state.Parameters && this.state.Parameters.map((item, index) => {
+                                    return this.renderInput(item, index);
+                                })}
+                            </div>
                         </div>
                         <ButtonMain btnClass={"button-main auto-margin text-14 medium"} text={ru.Save} onClick={this.saveUpdate}/>
                     </div>

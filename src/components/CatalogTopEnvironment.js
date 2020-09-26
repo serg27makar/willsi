@@ -80,7 +80,9 @@ class CatalogTopEnvironment extends React.Component {
 
     changeUser = (index) => {
         this.props.headerUserFunction(index);
-
+        this.setState({
+            moveLeft: 0,
+        })
     };
 
     editorOpen = () => {
@@ -95,15 +97,40 @@ class CatalogTopEnvironment extends React.Component {
         });
     };
 
-    arrowLeft() {
+    arrowRight() {
+        let maxLength = 0;
+        const paramsLength = this.state.params.length;
+        switch (paramsLength) {
+            case 6: maxLength = 8;
+            break;
+            case 7: maxLength = 24;
+            break;
+            case 8: maxLength = 40;
+            break;
+            case 9: maxLength = 64;
+            break;
+            case 10: maxLength = 72;
+            break;
+            case 11: maxLength = 80;
+            break;
+            case 12: maxLength = 88;
+            break;
+            case 13: maxLength = 96;
+            break;
+            case 14: maxLength = 112;
+            break;
+            case 15: maxLength = 128;
+            break;
+            default: maxLength = paramsLength > 5 ? paramsLength * 8 - 40 : 0;
+        }
         this.setState({
-            moveLeft: this.state.moveLeft <= -130 ? this.state.moveLeft : this.state.moveLeft - 10,
+            moveLeft: this.state.moveLeft <= -maxLength ? this.state.moveLeft : this.state.moveLeft - 8,
         })
     }
 
-    arrowRight() {
+    arrowLeft() {
         this.setState({
-            moveLeft: this.state.moveLeft >= 0 ? this.state.moveLeft : this.state.moveLeft + 10,
+            moveLeft: this.state.moveLeft >= 0 ? this.state.moveLeft : this.state.moveLeft + 8,
         })
     }
 
