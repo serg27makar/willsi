@@ -8,7 +8,8 @@ class HeaderCabinet extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            UserName: ""
+            UserName: "",
+            pts: 0,
         }
     }
 
@@ -21,7 +22,7 @@ class HeaderCabinet extends React.Component {
         if (prevProps.SetActionPostpone !== this.props.SetActionPostpone || prevProps.Postpone !== this.props.Postpone) {
             this.setState({
                 ...this.state,
-                pts: this.props.Postpone.length,
+                pts: this.props.Postpone.length || 0,
             })
         }
     }
@@ -29,6 +30,15 @@ class HeaderCabinet extends React.Component {
     openModal = (modal) => {
         this.props.openModalFunction(modal);
     };
+
+    renderRedRing() {
+        if (this.state.pts) {
+            return (
+                <div className="red-ring-delayed">{this.state.pts}</div>
+            )
+        }
+        return null;
+    }
 
     render() {
         return (
@@ -56,7 +66,7 @@ class HeaderCabinet extends React.Component {
                                 <svg className="icon">
                                     <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
                                 </svg>
-                                <div className="red-ring-delayed">{this.state.pts}</div>
+                                {this.renderRedRing()}
                                 {ru.delayed}
                             </Link>
                         </li>

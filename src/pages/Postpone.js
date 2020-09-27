@@ -59,15 +59,29 @@ class Postpone extends React.Component {
             })
         }
         if (prevProps.Postpone !== this.props.Postpone || prevProps.SetActionPostpone !== this.props.SetActionPostpone) {
-            getPostpone(this.props.Postpone, this.dataResult);
+            if (this.props.Postpone.length > 0) {
+                getPostpone(this.props.Postpone, this.dataResult);
+            } else {
+                this.setState({
+                    ...this.state,
+                    products: [],
+                });
+            }
         }
     }
 
     dataResult(data) {
-        this.setState({
-            ...this.state,
-            products: data,
-        });
+        if (data && data.length > 0) {
+            this.setState({
+                ...this.state,
+                products: data,
+            });
+        } else {
+            this.setState({
+                ...this.state,
+                products: [],
+            });
+        }
     }
 
     render() {
@@ -83,7 +97,7 @@ class Postpone extends React.Component {
                 <div className="catalog-middle container">
                     <div className="footer-row-wrap">
                         <div className="catalog-sidebar">
-                            {/*<RutCatalogSidebar Categories={dropdownListArr}/>*/}
+                            <RutCatalogSidebar Categories={dropdownListArr}/>
                             <CatalogSidebar Categories={sidebarCatalogArr}/>
                         </div>
                         <div className="col-12">

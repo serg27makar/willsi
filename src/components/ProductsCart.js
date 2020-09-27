@@ -32,7 +32,7 @@ class ProductsCart extends React.Component {
     }
 
     addPostpone(item) {
-        const Postpone = this.props.Postpone;
+        const Postpone = this.props.Postpone || [];
         const thing = {
             product: item._id,
             parameter: item.Parameters[0]._id,

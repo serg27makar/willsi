@@ -1,14 +1,7 @@
 import React from "react";
-import {paramsListWoman, paramsListDog} from "../../access/temporaryConstants";
 import ru from "../../access/lang/LangConstants";
-
-const sizeArr = [
-    "L",
-    "S",
-    "M",
-    "XL",
-    "XXL",
-];
+import {recalculateParamsDog, recalculateParamsWoman} from "../../access/recalculateConstants";
+import {chooseSizeList} from "../../js/sharedFunctions";
 
 class MainEnvelopeSize extends React.Component {
     constructor(props) {
@@ -17,7 +10,6 @@ class MainEnvelopeSize extends React.Component {
             paramsList: [],
             size: {},
         };
-        this.changeSize = this.changeSize.bind(this);
     }
 
     componentDidMount() {}
@@ -42,34 +34,74 @@ class MainEnvelopeSize extends React.Component {
         const subCatalog = this.props.subCatalog;
         if (catalog === "catalogListDog") {
             this.setState({
-                paramsList: paramsListDog,
+                paramsList: recalculateParamsDog,
             });
-            this.props.paramsList(paramsListDog)
-        } else {
+            this.props.paramsList(recalculateParamsDog)
+        } else if (catalog.length > 1) {
+            const {paramsList, verificationList} = chooseSizeList(subCatalog);
             this.setState({
-                paramsList: paramsListWoman,
+                paramsList,
             });
-            this.props.paramsList(paramsListWoman)
+            this.props.paramsList(verificationList)
+        } else {
+            alert("choose catalog")
         }
     }
 
-    changeSize(e) {
-        const name = e.target.name;
-        const value = e.target.value;
-        this.props.sizeDataChange(name, value);
+    onChange = (e) => {
+        const inputName = e.target.name;
+        let data = e.target.value;
+        data = Number(data);
+        this.props.sizeDataChange(inputName, data);
+    };
+
+    leftArrowClick(inputName, data, sizeMin) {
+        data = Number(data);
+        data = data <= sizeMin ? sizeMin : --data;
+        this.props.sizeDataChange(inputName, data);
+    }
+
+    rightArrowClick(inputName, data, sizeMax) {
+        data = Number(data);
+        data = data >= sizeMax ? sizeMax : ++data;
+        this.props.sizeDataChange(inputName, data);
+    }
+
+    renderDigitalFace(item) {
+        return (
+            <div className="digital-face-wrapper">
+                <div className="digital-face left-arrow" onClick={() => {this.leftArrowClick(item.inputName, this.state.size[item.inputName] || item.sizeMin, item.sizeMin)}}>-</div>
+                <div className="digital-face face-block">
+                    <input className="slider-input-text" name={item.inputName}
+                           value={(this.state.size && this.state.size[item.inputName]) || 0} min={item.sizeMin} max={item.sizeMax}
+                           onChange={this.onChange}/>
+                    <div className="face-block-text">{ru.sm}</div>
+                </div>
+                <div className="digital-face right-arrow" onClick={() => {this.rightArrowClick(item.inputName, this.state.size[item.inputName] || item.sizeMin, item.sizeMax)}}>+</div>
+            </div>
+        )
+    }
+
+    renderSlider(item) {
+        return (
+            <div className="digital-slider-wrapper">
+                <input className="slider" type="range" name={item.inputName}
+                       value={(this.state.size && this.state.size[item.inputName]) || 0} min={item.sizeMin} max={item.sizeMax}
+                       onChange={this.onChange}/>
+                <div className="digital-slider-limit-wrapper">
+                    <div className="digital-slider-limit">{item.sizeMin + " " + ru.sm}</div>
+                    <div className="digital-slider-limit">{item.sizeMax + " " + ru.sm}</div>
+                </div>
+            </div>
+        )
     }
 
     renderSizeInput(item, index) {
         return (
-            <div key={index} className="slider-input">
-                <span className="slider-input-text">{item.data}</span>
-                <input className="slider" type="range" name={item.title}
-                       value={this.state.size[item.title] || 0} min="0" max="240"
-                       onChange={this.changeSize}/>
-                <input className="slider-input-text" type="number" name={item.title}
-                       value={this.state.size[item.title] || 0} min="0" max="240"
-                       onChange={this.changeSize}/>
-                <span className="slider-input-placeholder">{ru.sm}</span>
+            <div key={index} className="slider-input-admin">
+                <span className="slider-input-text">{item.title}</span>
+                {this.renderDigitalFace(item)}
+                {this.renderSlider(item)}
             </div>
         )
     }

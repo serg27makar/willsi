@@ -1,4 +1,19 @@
-import {whomParams} from "../access/temporaryConstants";
+import {
+    sizeListHome,
+    sizeListOuterwear,
+    sizeListPants,
+    sizeListShirts,
+    sizeListTshirts,
+    sizeListUnderwear,
+    subCatalogListHome,
+    subCatalogListOuterwear,
+    subCatalogListPants,
+    subCatalogListShirts,
+    subCatalogListTshirts,
+    subCatalogListUnderwear,
+    whomParams
+} from "../access/temporaryConstants";
+import {recalculateParamsWoman} from "../access/recalculateConstants";
 
 export function validateEmail(email) {
     const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -20,4 +35,58 @@ export function activeBtn(gen) {
         return index;
     });
     return activeBtn;
+}
+
+export function chooseSizeList(subCatalog) {
+    let verificationList = [];
+    let paramsList = [];
+    if (subCatalogListTshirts.indexOf(subCatalog) !== -1) {
+        recalculateParamsWoman.map((item) => {
+            if (sizeListTshirts.indexOf(item.inputName) !== -1) {
+                paramsList.push(item);
+            }
+        });
+        verificationList = sizeListTshirts;
+    }
+    if (subCatalogListShirts.indexOf(subCatalog) !== -1) {
+        recalculateParamsWoman.map((item) => {
+            if (sizeListShirts.indexOf(item.inputName) !== -1) {
+                paramsList.push(item);
+            }
+        });
+        verificationList = sizeListTshirts;
+    }
+    if (subCatalogListPants.indexOf(subCatalog) !== -1) {
+        recalculateParamsWoman.map((item) => {
+            if (sizeListPants.indexOf(item.inputName) !== -1) {
+                paramsList.push(item);
+            }
+        });
+        verificationList = sizeListTshirts;
+    }
+    if (subCatalogListUnderwear.indexOf(subCatalog) !== -1) {
+        recalculateParamsWoman.map((item) => {
+            if (sizeListUnderwear.indexOf(item.inputName) !== -1) {
+                paramsList.push(item);
+            }
+        });
+        verificationList = sizeListTshirts;
+    }
+    if (subCatalogListOuterwear.indexOf(subCatalog) !== -1) {
+        recalculateParamsWoman.map((item) => {
+            if (sizeListOuterwear.indexOf(item.inputName) !== -1) {
+                paramsList.push(item);
+            }
+        });
+        verificationList = sizeListTshirts;
+    }
+    if (subCatalogListHome.indexOf(subCatalog) !== -1) {
+        recalculateParamsWoman.map((item) => {
+            if (sizeListHome.indexOf(item.inputName) !== -1) {
+                paramsList.push(item);
+            }
+        });
+        verificationList = sizeListTshirts;
+    }
+    return {verificationList, paramsList}
 }

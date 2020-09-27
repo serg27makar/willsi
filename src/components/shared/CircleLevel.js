@@ -51,7 +51,8 @@ class CircleLevel extends React.Component {
     };
 
     render() {
-        return(
+        if (isNaN(this.props.level)) return null;
+        return (
             <div className={this.props.catalog ? "cart-slider__circle catalog-size" : "cart-slider__circle"} style={{backgroundImage: "url('static/img/content/circle-full.png')"}}>
                 <div className={this.props.catalog ? "circle-counter catalog-size" : "circle-counter"}>{this.state.currentCount}</div>
                 <div className={this.props.catalog ? "circle-arrow catalog-size" : "circle-arrow"} style={{transform: this.state.rotate}}>

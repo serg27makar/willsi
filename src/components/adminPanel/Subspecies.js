@@ -2,7 +2,10 @@ import React from "react";
 import MainEnvelopeSize from "./MainEnvelopeSize";
 import AdminColorCategory from "./AdminColorCategory";
 import DoubleButton from "./DoubleButton";
-import {ProductManufacturerInputList} from "../../access/temporaryConstants";
+import {
+    ProductManufacturerInputList,
+    subCatalogListGeneral,
+} from "../../access/temporaryConstants";
 import {updateResult} from "../../js/sharedFunctions";
 import ButtonMain from "../shared/ButtonMain";
 import ru from "../../access/lang/LangConstants";
@@ -39,12 +42,31 @@ class Subspecies extends React.Component {
         this.setParamsList = this.setParamsList.bind(this);
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+        if (subCatalogListGeneral.indexOf(this.props.subCatalog) !== -1) {
+            this.setState({
+                ...this.state,
+                size: {
+                    general: "general"
+                }
+            });
+        }
+    }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.SaveParams !== this.props.SaveParams) {
             if (this.props.SaveParams) {
                 this.saveSubspecies();
+            }
+        }
+        if (prevProps.subCatalog !== this.props.subCatalog) {
+            if (subCatalogListGeneral.indexOf(this.props.subCatalog) !== -1) {
+                this.setState({
+                    ...this.state,
+                    size: {
+                        general: "general"
+                    }
+                });
             }
         }
     }
@@ -101,7 +123,8 @@ class Subspecies extends React.Component {
             VendorCode: this.state.VendorCode,
             Price: this.state.Price,
         };
-        if (color.length > 0 && this.state.SizeStandard && this.state.VendorCode && this.state.Price && this.validParamList(size)) {
+        if (color.length > 0 && this.state.VendorCode &&
+            this.state.Price && ((this.state.SizeStandard && this.validParamList(size)) || (subCatalogListGeneral.indexOf(this.props.subCatalog) !== -1))) {
             this.props.subspeciesFunction(parameters);
             this.clearParameters();
             this.props.isSaveParams();
@@ -141,7 +164,7 @@ class Subspecies extends React.Component {
     validParamList(size) {
         let res = true;
         this.state.paramList.map((item) => {
-            if (size[item.title] && res) {
+            if (size[item] && res) {
                 //    Do nothing
             } else {res = false;}
             return res;
@@ -149,19 +172,12 @@ class Subspecies extends React.Component {
         return res;
     }
 
-    render() {
+    renderSizeBar() {
+        if (subCatalogListGeneral.indexOf(this.props.subCatalog) !== -1) {
+          return null;
+        }
         return (
-            <div className="subspecies-admin">
-                <DoubleButton placeholderData={ProductManufacturerInputList[3]}
-                              item={this.state.VendorCode} active={true}
-                              changeValue={(value) => {this.dataChange(value, "VendorCode")}}
-                              toggle={updateResult}/>
-                <DoubleButton placeholderData={ProductManufacturerInputList[4]}
-                              item={this.state.Price} active={true}
-                              changeValue={(value) => {this.dataChange(value, "Price")}}
-                              toggle={updateResult}/>
-                <AdminColorCategory colorsState={this.state.color}
-                                    colorChange={this.colorChange}/>
+            <div>
                 <MainEnvelopeSize sizeDataChange={this.sizeDataChange}
                                   sizeData={this.state.size}
                                   catalog={this.props.catalog}
@@ -179,6 +195,24 @@ class Subspecies extends React.Component {
                     </div>
                     <ButtonMain btnClass="button-main text-16" text={ru.addSubspecies} onClick={this.saveSubspecies}/>
                 </div>
+            </div>
+        )
+    }
+
+    render() {
+        return (
+            <div className="subspecies-admin">
+                <DoubleButton placeholderData={ProductManufacturerInputList[3]}
+                              item={this.state.VendorCode} active={true}
+                              changeValue={(value) => {this.dataChange(value, "VendorCode")}}
+                              toggle={updateResult}/>
+                <DoubleButton placeholderData={ProductManufacturerInputList[4]}
+                              item={this.state.Price} active={true}
+                              changeValue={(value) => {this.dataChange(value, "Price")}}
+                              toggle={updateResult}/>
+                <AdminColorCategory colorsState={this.state.color}
+                                    colorChange={this.colorChange}/>
+                {this.renderSizeBar()}
             </div>
         )
     }

@@ -195,89 +195,50 @@ export const sidebarCatalogArr = [
         ]
     },
 ];
-export const postponeArr = [
-    {
-        imgUrl: "static/img/content/product-item.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-        postpone: true,
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_1.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-        postpone: true,
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_2.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-        postpone: true,
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_3.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-        postpone: true,
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_4.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-        postpone: true,
-    },
-    {
-        imgUrl: "static/img/content/Screenshot_5.png",
-        imgAlt: "product",
-        brand: "bailmain",
-        productName: "Женская блузка",
-        price: "599 грн",
-        postpone: true,
-    },
+
+export const subCatalogListTshirts = [
+    "subCatalogListMenTshirts",
+    "subCatalogListWomenTshirts",
+    "subCatalogListBoyTshirts",
+    "subCatalogListGirlTshirts",
+];
+export const subCatalogListShirts = [
+    "subCatalogListMenShirts",
+    "subCatalogListWomenShirts",
+    "subCatalogListBoyShirts",
+    "subCatalogListGirlShirts",
+];
+export const subCatalogListPants = [
+    "subCatalogListMenPants",
+    "subCatalogListWomenPants",
+    "subCatalogListBoyPants",
+    "subCatalogListGirlPants",
+];
+export const subCatalogListUnderwear = [
+    "subCatalogListMenUnderwear",
+    "subCatalogListWomenUnderwear",
+    "subCatalogListBoyUnderwear",
+    "subCatalogListBoyUnderwear",
+];
+export const subCatalogListOuterwear = [
+    "subCatalogListMenOuterwear",
+    "subCatalogListWomenOuterwear",
+    "subCatalogListBoyOuterwear",
+    "subCatalogListGirlOuterwear",
+];
+export const subCatalogListHome = [
+    "subCatalogListMenHome",
+    "subCatalogListWomenHome",
+    "subCatalogListBoyHome",
+    "subCatalogListGirlHome",
+];
+export const subCatalogListGeneral = [
+    "subCatalogListMenGeneral",
+    "subCatalogListWomenGeneral",
+    "subCatalogListBoyGeneral",
+    "subCatalogListGirlGeneral",
 ];
 
-export const recalculateParams = [
-    {
-        imgUrl: "static/img/content/data-1.png",
-        title: "Начнем с роста",
-        text: "Измеряем свой рост и записываем число вот в этоокошко:",
-        inputName: "growth",
-    },
-    {
-        imgUrl: "static/img/content/data-2.png",
-        title: "Обхват плеч",
-        text: "Записываем результат и идем дальше!",
-        inputName: "shoulders",
-    },
-    {
-        imgUrl: "static/img/content/data-3.png",
-        title: "Обхват груди",
-        text: "Ходят слухи, что если измерять слишком долго, то может прийти мужчина",
-        inputName: "chest",
-    },
-    {
-        imgUrl: "static/img/content/data-4.png",
-        title: "Обхват талии",
-        text: "Лучше измерять талию в самом узком месте",
-        inputName: "waist",
-    },
-    {
-        imgUrl: "static/img/content/data-5.png",
-        title: "Обхват в бедрах",
-        text: "Ходят слухи, что если измерять слишком долго, то может прийти мужчина",
-        inputName: "hips",
-    },
-];
 export const dropdownListArr = [
     {
         dropdownTitle: "catalogListMen",
@@ -337,6 +298,49 @@ export const dropdownListArr = [
             "subCatalogListDogGeneral",
         ],
     },
+];
+
+export const sizeListTshirts = [
+    "growth",
+    "shoulder",
+    "chest",
+    "waist",
+    "hips",
+];
+export const sizeListShirts = [
+    "growth",
+    "shoulder",
+    "chest",
+    "waist",
+    "hips",
+];
+export const sizeListPants = [
+    "growth",
+    "shoulder",
+    "chest",
+    "waist",
+    "hips",
+];
+export const sizeListUnderwear = [
+    "growth",
+    "shoulder",
+    "chest",
+    "waist",
+    "hips",
+];
+export const sizeListOuterwear = [
+    "growth",
+    "shoulder",
+    "chest",
+    "waist",
+    "hips",
+];
+export const sizeListHome = [
+    "growth",
+    "shoulder",
+    "chest",
+    "waist",
+    "hips",
 ];
 
 export const dataInputRegistrationModal = [
@@ -480,8 +484,6 @@ export const paramsListWoman = [
         title: "chest",
         data: "Грудь",
     },
-
-
     {
         title: "growth",
         data: "Рост",
@@ -497,44 +499,6 @@ export const paramsListWoman = [
     {
         title: "hips",
         data: "Бедра",
-    },
-    // {
-    //     title: "leg",
-    //     data: "Нога",
-    // },
-    // {
-    //     title: "climb",
-    //     data: "Подъем",
-    // },
-    // {
-    //     title: "head",
-    //     data: "Голова",
-    // },
-];
-export const paramsListDog = [
-    {
-        title: "backLength",
-        data: "Длина",
-    },
-    {
-        title: "neck",
-        data: "Шея",
-    },
-    {
-        title: "chest",
-        data: "Грудь",
-    },
-    {
-        title: "waist",
-        data: "Талия",
-    },
-    {
-        title: "frontLeg",
-        data: "Передние ноги ",
-    },
-    {
-        title: "hindLeg",
-        data: "Задние ноги",
     },
 ];
 
