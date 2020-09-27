@@ -21,15 +21,17 @@ class CircleLevel extends React.Component {
     }
 
     counterRotate = (count, currentCount = 0) => {
-        setTimeout(() => {
-            currentCount = currentCount < count ? currentCount + 1 : count;
-            const deg = 200 / 100 * currentCount;
-            this.setState({
-                rotate: "rotate(" + deg + "deg)",
-                currentCount,
-            });
-            this.counterRotate(count, currentCount);
-        }, 20);
+        if (count > currentCount) {
+            setTimeout(() => {
+                currentCount = currentCount < count ? currentCount + 1 : count;
+                const deg = 200 / 100 * currentCount;
+                this.setState({
+                    rotate: "rotate(" + deg + "deg)",
+                    currentCount,
+                });
+                this.counterRotate(count, currentCount);
+            }, 20);
+        }
     };
 
     textCounter = (level) => {

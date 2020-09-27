@@ -4,7 +4,7 @@ import ru from "../access/lang/LangConstants";
 import ButtonPostpone from "./shared/ButtonPostpone";
 import "../access/css/cart.css"
 import {connect} from "react-redux";
-import {actionPostpone, actionSelectProduct} from "../action";
+import {actionPostpone, actionSelectProduct, actionSetActionPostpone} from "../action";
 import {updateResult} from "../js/sharedFunctions";
 import {postUpdate} from "../utilite/axiosConnect";
 
@@ -33,11 +33,17 @@ class CardDescription extends React.Component {
 
     addPostpone() {
         const Postpone = this.props.Postpone;
-        Postpone.push(this.state.cardDescription._id);
+        const thing = {
+            product: this.state.cardDescription._id,
+            parameter: this.state.cardDescription.Parameters[0]._id,
+            compatibility: this.state.cardDescription.Parameters[0].compatibility,
+        };
+        Postpone.push(thing);
         const user = {
             UserID: this.props.UserID,
             Postpone,
         };
+        this.props.setActionPostponeFunction(!this.props.SetActionPostpone);
         this.props.postponeFunction(Postpone);
         postUpdate(user, updateResult);
     }
@@ -95,12 +101,16 @@ function MapStateToProps(state) {
     return {
         UserID: state.userReducer.UserID,
         Postpone: state.userReducer.Postpone,
+        SetActionPostpone: state.userReducer.SetActionPostpone,
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         postponeFunction: (Postpone) => {
             dispatch(actionPostpone(Postpone))
+        },
+        setActionPostponeFunction: (SetActionPostpone) => {
+            dispatch(actionSetActionPostpone(SetActionPostpone))
         },
     }
 };

@@ -11,6 +11,7 @@ const initialState = {
     HeaderUser: 0,
     UserStore: [],
     Postpone: [],
+    SetActionPostpone: false,
 };
 
 export default function userReducer(state = initialState, action) {
@@ -74,6 +75,11 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 Postpone: action.Postpone
+            };
+        case "SET_ACTION_POSTPONE":
+            return {
+                ...state,
+                SetActionPostpone: action.SetActionPostpone
             };
         default:
             return state;

@@ -18,6 +18,12 @@ class HeaderCabinet extends React.Component {
                 UserName: this.props.UserName,
             })
         }
+        if (prevProps.SetActionPostpone !== this.props.SetActionPostpone || prevProps.Postpone !== this.props.Postpone) {
+            this.setState({
+                ...this.state,
+                pts: this.props.Postpone.length,
+            })
+        }
     }
 
     openModal = (modal) => {
@@ -50,7 +56,7 @@ class HeaderCabinet extends React.Component {
                                 <svg className="icon">
                                     <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
                                 </svg>
-                                <div className="red-ring-delayed">3</div>
+                                <div className="red-ring-delayed">{this.state.pts}</div>
                                 {ru.delayed}
                             </Link>
                         </li>
@@ -63,6 +69,8 @@ class HeaderCabinet extends React.Component {
 
 function MapStateToProps(state) {
     return {
+        Postpone: state.userReducer.Postpone,
+        SetActionPostpone: state.userReducer.SetActionPostpone,
         modal: state.modalReducer.modal,
         UserName: state.userReducer.UserName,
     }

@@ -146,3 +146,14 @@ export const postAddedProductParameters = (Parameters, callbackInfo) => {
         console.log(err);
     })
 };
+
+export const getPostpone = (dataSearch, callbackInfo) => {
+    axios.post(Url + `/product/getPostpone`, dataSearch, {
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        callbackInfo(err);
+    })
+};

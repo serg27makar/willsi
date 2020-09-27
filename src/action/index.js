@@ -207,3 +207,10 @@ export const actionPostpone = (Postpone) => {
         Postpone: Postpone
     }
 };
+
+export const actionSetActionPostpone = (SetActionPostpone) => {
+    return {
+        type: 'SET_ACTION_POSTPONE',
+        SetActionPostpone: SetActionPostpone
+    }
+};

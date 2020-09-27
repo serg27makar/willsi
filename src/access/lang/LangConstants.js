@@ -223,6 +223,8 @@ const ru = {
     Sizes: "Размеры",
     addSubspecies: "Добавить размер",
     SizeStandard: "Стандарт размера",
+
+    removeItem: "Удалить",
 };
 
 export default ru;

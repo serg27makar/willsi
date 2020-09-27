@@ -2,9 +2,12 @@ import React from "react";
 import ru from "../access/lang/LangConstants";
 import "../access/css/cart.css"
 import ButtonPostpone from "./shared/ButtonPostpone";
-import {actionDataRedirect, actionProductID} from "../action";
+import {actionDataRedirect, actionPostpone, actionProductID, actionSetActionPostpone} from "../action";
 import {connect} from "react-redux";
 import CircleLevel from "./shared/CircleLevel";
+import {postUpdate} from "../utilite/axiosConnect";
+import {updateResult} from "../js/sharedFunctions";
+import ButtonMain from "./shared/ButtonMain";
 
 class ProductsCart extends React.Component {
     constructor(props) {
@@ -13,6 +16,7 @@ class ProductsCart extends React.Component {
             products: []
         };
         this.openCard = this.openCard.bind(this);
+        this.addPostpone = this.addPostpone.bind(this);
     }
 
     openCard(productID) {
@@ -27,6 +31,37 @@ class ProductsCart extends React.Component {
         if (item && item.length) return item[0].Price;
     }
 
+    addPostpone(item) {
+        const Postpone = this.props.Postpone;
+        const thing = {
+            product: item._id,
+            parameter: item.Parameters[0]._id,
+            compatibility: item.Parameters[0].compatibility,
+        };
+        Postpone.push(thing);
+        this.updateData(Postpone);
+    }
+
+    updateData(Postpone) {
+        const user = {
+            UserID: this.props.UserID,
+            Postpone,
+        };
+        this.props.setActionPostponeFunction(!this.props.SetActionPostpone);
+        this.props.postponeFunction(Postpone);
+        postUpdate(user, updateResult);
+    }
+
+    removePostpone(item) {
+        const Postpone = this.props.Postpone;
+        Postpone.map((itemPostpone, index) => {
+            if (itemPostpone.product === item._id) {
+                Postpone.splice(index, 1);
+            }
+        });
+        this.updateData(Postpone);
+    }
+
     renderCart = (item, index) => {
         return (
             <div className={this.props.compilation ? "compilation-deferred-goods" : "deferred-goods"} key={index}>
@@ -35,7 +70,7 @@ class ProductsCart extends React.Component {
                         <picture className="picture">
                             <img className="picture__source" src={item.Photo1} alt={item.ProdName}/>
                         </picture>
-                        <CircleLevel catalog={this.props.catalog} level={90}/>
+                        <CircleLevel catalog={this.props.catalog} level={item.Parameters[0].compatibility || item.compatibility}/>
                         {this.renderPostpone(item)}
                     </div>
                     <div className="card-box__product-name text-18 bold uppercase">{item.Manufacturer}</div>
@@ -68,11 +103,16 @@ class ProductsCart extends React.Component {
         if (!item.postpone) {
             return (
                 <div className="card-box__button-postpone">
-                   <ButtonPostpone/>
+                   <ButtonPostpone  onClick={() => {this.addPostpone(item)}}/>
                 </div>
             )
         } else {
-            return null;
+            return (
+                <div className="card-box__button-postpone">
+                    <ButtonMain btnClass={"button-main remove-postpone text-18 uppercase medium"}
+                                text={ru.removeItem} onClick={() => {this.removePostpone(item)}}/>
+                </div>
+            )
         }
     };
 
@@ -91,7 +131,11 @@ class ProductsCart extends React.Component {
 }
 
 function MapStateToProps(state) {
-    return {}
+    return {
+        UserID: state.userReducer.UserID,
+        Postpone: state.userReducer.Postpone,
+        SetActionPostpone: state.userReducer.SetActionPostpone,
+    }
 }
 const mapDispatchToProps = dispatch => {
     return {
@@ -100,6 +144,12 @@ const mapDispatchToProps = dispatch => {
         },
         productIDFunction: (ProductID) => {
             dispatch(actionProductID(ProductID))
+        },
+        postponeFunction: (Postpone) => {
+            dispatch(actionPostpone(Postpone))
+        },
+        setActionPostponeFunction: (SetActionPostpone) => {
+            dispatch(actionSetActionPostpone(SetActionPostpone))
         },
     }
 };

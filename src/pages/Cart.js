@@ -104,7 +104,7 @@ class Cart extends React.Component {
                         <div className="footer-row-wrap">
                             <div className="col-12">
                                 {this.renderSlide()}
-                                <CircleLevel level={20}/>
+                                <CircleLevel level={this.state.SelectProduct.Parameters && this.state.SelectProduct.Parameters[0].compatibility}/>
                             </div>
                             <div className="col-12">
                                <CardDescription cardDescription={this.state.SelectProduct}/>

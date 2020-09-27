@@ -439,6 +439,7 @@ header {
     -webkit-box-flex: 1;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto;
+    min-height: 81vh;
 }
 .wrapper .content .justify-start {
     display: -webkit-box;
@@ -1727,6 +1728,9 @@ input[type="checkbox"]:not(:checked) + label.category-list__label {
 .card-box__button-postpone {
     padding: 0 1.25vw 1.25vw 1.25vw;
     width: 100%;
+}
+.button-main.remove-postpone {
+    width: auto;
 }
 .card-box__button-postpone .button-postpone {
     display: -webkit-box;
