@@ -214,3 +214,24 @@ export const actionSetActionPostpone = (SetActionPostpone) => {
         SetActionPostpone: SetActionPostpone
     }
 };
+
+export const actionShopEditParams = (ShopEditParams) => {
+    return {
+        type: 'SHOP_EDIT_PARAMS',
+        ShopEditParams: ShopEditParams
+    }
+};
+
+export const actionShopEditParamsAction = (ShopEditParamsAction) => {
+    return {
+        type: 'SHOP_EDIT_PARAMS_ACTION',
+        ShopEditParamsAction: ShopEditParamsAction
+    }
+};
+
+export const actionSelectedProductToEdit = (SelectedProductToEdit) => {
+    return {
+        type: 'SELECTED_PRODUCT_TO_EDIT',
+        SelectedProductToEdit: SelectedProductToEdit
+    }
+};

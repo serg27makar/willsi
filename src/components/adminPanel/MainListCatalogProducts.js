@@ -1,6 +1,11 @@
 import React from "react";
 import ru from "../../access/lang/LangConstants";
 import LangCat from "../../access/lang/CatalogLangConstants";
+import {
+    actionShopEditParams,
+    actionShopEditParamsAction,
+} from "../../action";
+import {connect} from "react-redux";
 
 class MainListCatalogProducts extends React.Component {
     constructor(props) {
@@ -24,12 +29,29 @@ class MainListCatalogProducts extends React.Component {
 
     renderListItem = (listItem, listIndex) => {
         return (
-            <li className="dropdown-list__item" key={listIndex}>
-                <div className="dropdown-list__link text-14 light" >{LangCat[listItem]}</div>
+            <li className="dropdown-list__item catalog-opened" key={listIndex} onClick={() => {this.chooseSubCatalog(listItem, listIndex)}}>
+                <div className={this.state.selectedSubCatalog === listIndex ? "dropdown-list__link catalog-opened text-14" : "dropdown-list__link text-14 light"}>{LangCat[listItem]}</div>
                 <div className="count-products-sub">{this.countProducts(listItem)}</div>
             </li>
         )
     };
+
+    chooseSubCatalog(listItem, listIndex) {
+        const shopEditParams = [];
+        if (this.state.selectedSubCatalog !== listIndex) {
+            this.props.productsThisStore.map((item, index) => {
+                if (item.subCatalog === listItem) {
+                    shopEditParams.push(item);
+                }
+                return index;
+            });
+        }
+        this.setState({
+            selectedSubCatalog: this.state.selectedSubCatalog === listIndex ? -1 : listIndex,
+        });
+        this.props.shopEditParamsFunction(shopEditParams);
+        this.props.shopEditParamsActionFunction(!this.props.ShopEditParamsAction);
+    }
 
     closeOpen = (index) => {
         this.setState({
@@ -95,4 +117,21 @@ class MainListCatalogProducts extends React.Component {
     }
 }
 
-export default MainListCatalogProducts;
+function MapStateToProps(state) {
+    return {
+        ShopEditParamsAction: state.productReducer.ShopEditParamsAction,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        shopEditParamsFunction: (ShopEditParams) => {
+            dispatch(actionShopEditParams(ShopEditParams))
+        },
+        shopEditParamsActionFunction: (ShopEditParamsAction) => {
+            dispatch(actionShopEditParamsAction(ShopEditParamsAction))
+        },
+    }
+};
+
+export default connect(MapStateToProps, mapDispatchToProps)(MainListCatalogProducts);

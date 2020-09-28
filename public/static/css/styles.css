@@ -3325,12 +3325,43 @@ input[type="checkbox"] + label:hover {
     padding-top: 0.2rem;
 }
 .count-products-sub {
-    background: pink;
+    background: #ba6c7a;
     display: block;
     width: 1.2rem;
     height: 1.2rem;
     border-radius: 50%;
     text-align: center;
+    color: white;
+    padding-top: 0.1vw;
+}
+.stroke-descriptor-wrapper {
+    display: flex;
+    padding: 1rem 3rem;
+    margin: 0 1rem;
+    border-bottom: 2px solid black;
+}
+.stroke-descriptor-wrapper:not(:first-child) {
+    cursor: pointer;
+}
+.stroke-descriptor-wrapper:first-child {
+    font-weight: 600;
+}
+.stroke-descriptor-wrapper:not(:first-child):hover div {
+    color: #5db83f;
+    font-weight: 600;
+}
+.stroke-descriptor-number {
+    width: 2rem;
+    text-align: left;
+}
+.stroke-descriptor-manufacturer {
+    width: 20%;
+}
+.stroke-descriptor-name {
+    width: 20%;
+}
+.stroke-descriptor-code {
+    width: 20%;
 }
 .add-cart-btn:hover {
     -webkit-transition: all 0.3s ease-in-out;

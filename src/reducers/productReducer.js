@@ -5,6 +5,8 @@ const initialState = {
     Subspecies: {},
     SaveParams: false,
     UpdateSearchParams: false,
+    ShopEditParams: [],
+    SelectedProductToEdit: {},
 };
 
 export default function productReducer(state = initialState, action) {
@@ -44,6 +46,21 @@ export default function productReducer(state = initialState, action) {
             return {
                 ...state,
                 UpdateSearchParams: action.UpdateSearchParams
+            };
+        case "SHOP_EDIT_PARAMS":
+            return {
+                ...state,
+                ShopEditParams: action.ShopEditParams
+            };
+        case "SHOP_EDIT_PARAMS_ACTION":
+            return {
+                ...state,
+                ShopEditParamsAction: action.ShopEditParamsAction
+            };
+        case "SELECTED_PRODUCT_TO_EDIT":
+            return {
+                ...state,
+                SelectedProductToEdit: action.SelectedProductToEdit
             };
         default:
             return state;

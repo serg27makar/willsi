@@ -4,7 +4,6 @@ import React from "react";
 import DropdownList from "../DropdownList";
 import {actionDataRedirect, actionOpenModal} from "../../action";
 import {connect} from "react-redux";
-import AdminMainSite from "./AdminMainSite";
 
 class AdminSidebar extends React.Component {
     constructor(props) {
