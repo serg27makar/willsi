@@ -50,6 +50,7 @@ class AdminMainSite extends React.Component {
         this.saveParameters = this.saveParameters.bind(this);
         this.saveHeaderCart = this.saveHeaderCart.bind(this);
         this.addedProductResult = this.addedProductResult.bind(this);
+        this.fillInState = this.fillInState.bind(this);
     }
 
     componentDidMount() {
@@ -64,7 +65,10 @@ class AdminMainSite extends React.Component {
             subCatalog: dropdownListArr[0].dropdownItems,
             headerItem: dropdownListArr[0].dropdownTitle,
             headerSubItem: dropdownListArr[0].dropdownItems[0],
-        })
+        });
+        if (this.props.item) {
+            this.fillInState();
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -74,6 +78,29 @@ class AdminMainSite extends React.Component {
                 headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[0]
             })
         }
+        if (prevProps.item !== this.props.item) {
+            this.fillInState();
+        }
+    }
+
+    fillInState() {
+        this.setState({
+            ProductStoreID: this.props.storeID,
+            headerItem: this.props.item.topCatalog,
+            headerSubItem: this.props.item.subCatalog,
+            Manufacturer: this.props.item.Manufacturer,
+            ProdName: this.props.item.ProdName,
+            ProductCode: this.props.item.ProductCode,
+            Photo1: this.props.item.Photo1,
+            Photo2: this.props.item.Photo2,
+            Photo3: this.props.item.Photo3,
+            LinkToProduct: this.props.item.LinkToProduct,
+            Description: this.props.item.Description,
+            Composition: this.props.item.Composition,
+            ModelParameters: this.props.item.ModelParameters,
+            CareInstructions: this.props.item.CareInstructions,
+            PaymentAndDelivery: this.props.item.PaymentAndDelivery,
+        })
     }
 
     changeCatalog(index) {
@@ -132,7 +159,11 @@ class AdminMainSite extends React.Component {
     }
 
     saveCart() {
-        this.props.saveParamsFunction(true);
+        if (this.props.item) {
+        //    todo update data product and params
+        } else {
+            this.props.saveParamsFunction(true);
+        }
     }
 
     saveHeaderCart() {
@@ -168,6 +199,16 @@ class AdminMainSite extends React.Component {
         this.props.closeMainSite(this.props.storeID);
     }
 
+    renderSubspecies() {
+        if (this.props.item) return null;
+        return (
+            <Subspecies catalog={this.state.headerItem}
+                        subCatalog={this.state.headerSubItem}
+                        isSaveParams={this.saveParameters}
+            />
+        )
+    }
+
     render() {
         return (
             <div className="main-envelope__bottom-env">
@@ -189,11 +230,8 @@ class AdminMainSite extends React.Component {
                 />
                 <ProductTypeDescription item={this.state} dataChange={this.productDescription}/>
                 <ProductLinkInput item={this.state} dataChange={this.productDescription}/>
-                <ProductDescription dataChange={this.productDescription}/>
-                <Subspecies catalog={this.state.headerItem}
-                            subCatalog={this.state.headerSubItem}
-                            isSaveParams={this.saveParameters}
-                />
+                <ProductDescription item={this.props.item} dataChange={this.productDescription}/>
+                {this.renderSubspecies()}
                 <div className="partners-env-btn">
                     <ButtonMain btnClass="button-main text-16" text={ru.Save} onClick={this.saveCart}/>
                     <ButtonMain btnClass="button-white text-16" text={ru.Cancel} onClick={this.cancelSave}/>

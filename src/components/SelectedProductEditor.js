@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {actionSelectedProductToEdit, setActionAdminPanel} from "../action";
+import AdminMainSite from "./adminPanel/AdminMainSite";
 
 class SelectedProductEditor extends React.Component {
     constructor(props) {
@@ -8,6 +9,7 @@ class SelectedProductEditor extends React.Component {
         this.state = {
             item: {}
         };
+        this.updateProduct = this.updateProduct.bind(this);
     }
 
     componentDidMount() {
@@ -26,10 +28,14 @@ class SelectedProductEditor extends React.Component {
         }
     }
 
+    updateProduct() {
+        this.props.selectedProductToEditFunction({});
+    }
+
     render() {
         return (
             <div>
-                0000000000000
+                <AdminMainSite storeID={this.state.item.ProductStoreID} item={this.state.item} closeMainSite={this.updateProduct}/>
             </div>
         )
     }

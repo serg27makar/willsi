@@ -37,6 +37,15 @@ export function activeBtn(gen) {
     return activeBtn;
 }
 
+export function isEmptyObject(obj) {
+    for (const i in obj) {
+        if (obj.hasOwnProperty(i)) {
+            return false;
+        }
+    }
+    return true;
+}
+
 export function chooseSizeList(subCatalog) {
     let verificationList = [];
     let paramsList = [];

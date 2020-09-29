@@ -7,6 +7,7 @@ import {getProductDataToId, getStoreData} from "../utilite/axiosConnect";
 import AdminMainSite from "../components/adminPanel/AdminMainSite";
 import ProductEditor from "../components/ProductEditor";
 import SelectedProductEditor from "../components/SelectedProductEditor";
+import {isEmptyObject} from "../js/sharedFunctions";
 
 class AdminPanel extends React.Component {
     constructor(props) {
@@ -89,7 +90,7 @@ class AdminPanel extends React.Component {
     }
 
     renderAddBtn() {
-        if (this.state.SelectedProductToEdit) {
+        if (!isEmptyObject(this.state.SelectedProductToEdit)) {
             return (
                 <SelectedProductEditor item={this.state.SelectedProductToEdit}/>
             )
