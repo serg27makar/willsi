@@ -78,6 +78,40 @@ export const getProductDataToId = (ProductStoreID, callbackInfo) => {
     })
 };
 
+export const getParametersToId = (ProductID, callbackInfo) => {
+    axios.post(Url + `/parameter/getParametersToId`, {ProductID}, {
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        callbackInfo(err);
+    })
+};
+
+
+export const parametersUpdate = (parameter, callbackInfo) => {
+    axios.post(Url + `/parameter/update`, parameter, {
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        console.log(err);
+    })
+};
+
+export const postUpdateProduct = (product, callbackInfo) => {
+    axios.post(Url + `/product/update`, product, {
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        console.log(err);
+    })
+};
+
 export const getProductData = (callbackInfo) => {
     axios.get(Url + `/product/getProductData`, {
         headers: {'token': localStorage.UserId}

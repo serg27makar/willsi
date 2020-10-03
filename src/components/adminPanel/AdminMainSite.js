@@ -7,10 +7,11 @@ import ProductLinkInput from "./ProductLinkInput";
 import ProductTypeDescription from "./ProductTypeDescription";
 import ButtonMain from "../shared/ButtonMain";
 import ru from "../../access/lang/LangConstants";
-import {postAddedProduct, postAddedProductParameters} from "../../utilite/axiosConnect";
+import {postAddedProduct, postAddedProductParameters, postUpdateProduct} from "../../utilite/axiosConnect";
 import {actionAlertText, actionOpenModal, actionSaveParams} from "../../action";
 import Subspecies from "./Subspecies";
-import {updateResult} from "../../js/sharedFunctions";
+import {isEmptyObject, updateResult} from "../../js/sharedFunctions";
+import EditSubspecies from "./EditSubspecies";
 
 class AdminMainSite extends React.Component {
     constructor(props) {
@@ -42,6 +43,7 @@ class AdminMainSite extends React.Component {
             addedProductId: "",
         };
         this.changeCatalog = this.changeCatalog.bind(this);
+        this.updateProduct = this.updateProduct.bind(this);
         this.changeSubCatalog = this.changeSubCatalog.bind(this);
         this.productDescription = this.productDescription.bind(this);
         this.toggleClose = this.toggleClose.bind(this);
@@ -159,15 +161,15 @@ class AdminMainSite extends React.Component {
     }
 
     saveCart() {
-        if (this.props.item) {
-        //    todo update data product and params
-        } else {
-            this.props.saveParamsFunction(true);
-        }
+        this.props.saveParamsFunction(true);
     }
 
-    saveHeaderCart() {
-        const cart = {
+    updateProduct() {
+        this.saveHeaderCart(true);
+    }
+
+    saveHeaderCart(update = false) {
+        let cart = {
             ProductStoreID: this.props.storeID,
             topCatalog: this.state.headerItem,
             subCatalog: this.state.headerSubItem,
@@ -188,7 +190,15 @@ class AdminMainSite extends React.Component {
             cart.ProductCode && cart.Photo1 &&
             cart.Photo2 && cart.Photo3 &&
             cart.LinkToProduct && cart.Description) {
-            postAddedProduct(cart, this.addedProductResult);
+            if (update && this.props.item) {
+                cart = {
+                    ...cart,
+                    ProductID: this.props.item._id,
+                };
+                postUpdateProduct(cart, updateResult)
+            } else {
+                postAddedProduct(cart, this.addedProductResult);
+            }
         } else {
             this.props.alertTextFunction(ru.enterTheseDetails);
             this.props.openModalFunction("alertModal");
@@ -200,12 +210,38 @@ class AdminMainSite extends React.Component {
     }
 
     renderSubspecies() {
-        if (this.props.item) return null;
+        if (isEmptyObject(this.props.item)) {
+            return (
+                <Subspecies catalog={this.state.headerItem}
+                            subCatalog={this.state.headerSubItem}
+                            isSaveParams={this.saveParameters}
+                />
+            )
+        }
+    }
+
+    renderEditSubspecies() {
+        if (!isEmptyObject(this.props.item)) {
+            return (
+                <EditSubspecies item={this.props.item} cancelSave={this.cancelSave}/>
+            )
+        }
+    }
+
+    renderBtnSave() {
+        if (!isEmptyObject(this.props.item)) {
+            return (
+                <div className="partners-env-btn">
+                    <ButtonMain btnClass="button-main text-16" text={ru.SaveChange} onClick={this.updateProduct}/>
+                    <ButtonMain btnClass="button-white text-16" text={ru.close} onClick={this.cancelSave}/>
+                </div>
+            )
+        }
         return (
-            <Subspecies catalog={this.state.headerItem}
-                        subCatalog={this.state.headerSubItem}
-                        isSaveParams={this.saveParameters}
-            />
+            <div className="partners-env-btn">
+                <ButtonMain btnClass="button-main text-16" text={ru.Save} onClick={this.saveCart}/>
+                <ButtonMain btnClass="button-white text-16" text={ru.Cancel} onClick={this.cancelSave}/>
+            </div>
         )
     }
 
@@ -230,12 +266,10 @@ class AdminMainSite extends React.Component {
                 />
                 <ProductTypeDescription item={this.state} dataChange={this.productDescription}/>
                 <ProductLinkInput item={this.state} dataChange={this.productDescription}/>
-                <ProductDescription item={this.props.item} dataChange={this.productDescription}/>
+                <ProductDescription item={this.state} dataChange={this.productDescription}/>
                 {this.renderSubspecies()}
-                <div className="partners-env-btn">
-                    <ButtonMain btnClass="button-main text-16" text={ru.Save} onClick={this.saveCart}/>
-                    <ButtonMain btnClass="button-white text-16" text={ru.Cancel} onClick={this.cancelSave}/>
-                </div>
+                {this. renderBtnSave()}
+                {this.renderEditSubspecies()}
             </div>
         )
     }

@@ -30,6 +30,7 @@ class SelectedProductEditor extends React.Component {
 
     updateProduct() {
         this.props.selectedProductToEditFunction({});
+        this.props.closeMainSite(this.state.item.ProductStoreID)
     }
 
     render() {

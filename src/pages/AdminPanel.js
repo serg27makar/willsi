@@ -92,7 +92,7 @@ class AdminPanel extends React.Component {
     renderAddBtn() {
         if (!isEmptyObject(this.state.SelectedProductToEdit)) {
             return (
-                <SelectedProductEditor item={this.state.SelectedProductToEdit}/>
+                <SelectedProductEditor item={this.state.SelectedProductToEdit} closeMainSite={this.addProduct}/>
             )
         } else if (this.state.ShopEditParams && this.state.ShopEditParams.length > 0) {
             return (

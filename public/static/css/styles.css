@@ -2350,6 +2350,11 @@ input[type="checkbox"] + label:hover {
 .cart-tabs {
     padding-top: 3.4375vw;
 }
+.size-tabs-wrapper-button {
+    display: flex;
+    border-bottom: 0.0625vw solid #e1e1e1;
+    padding-bottom: 0.9375vw;
+}
 .tabs-wrapper__top-button {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2362,6 +2367,14 @@ input[type="checkbox"] + label:hover {
     justify-content: space-between;
     border-bottom: 0.0625vw solid #e1e1e1;
     padding-bottom: 0.9375vw;
+}
+.size-tabs-wrapper-button {
+    display: flex;
+    align-items: center;
+    border: none;
+    padding: 0 1rem;
+    height: 2.5vw;
+    background: transparent;
 }
 .tabs-wrapper__button {
     display: -webkit-box;

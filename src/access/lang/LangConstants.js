@@ -167,6 +167,7 @@ const ru = {
     HaveAccount: "Есть аккаунт?",
     DontHaveAccount: "Еще нет аккаунта?",
     SaveChange: "Сохранить изменения?",
+    close: "Закрыть",
 
     understandably: "понятно",
     enterTheseDetails: "введите эти данные чтобы продолжить",
