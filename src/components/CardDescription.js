@@ -35,8 +35,8 @@ class CardDescription extends React.Component {
         const Postpone = this.props.Postpone;
         const thing = {
             product: this.state.cardDescription._id,
-            parameter: this.state.cardDescription.Parameters[0]._id,
-            compatibility: this.state.cardDescription.Parameters[0].compatibility,
+            parameter: this.state.cardDescription.Parameters._id,
+            compatibility: this.state.cardDescription.Parameters.compatibility,
         };
         Postpone.push(thing);
         const user = {
@@ -75,20 +75,20 @@ class CardDescription extends React.Component {
                     <p className="card-description__article-mobile text-14 light">{this.state.cardDescription.ProductCode}</p>
                     {/*<ButtonMain btnClass={"card-description__link-model text-14 uppercase"} text={ru.Model3d} />*/}
                 </div>
-                <p className="card-description__article text-14 light">{this.state.cardDescription.Parameters[0].VendorCode}</p>
+                <p className="card-description__article text-14 light">{this.state.cardDescription.Parameters.VendorCode}</p>
                 <p className="card-description__paragraph text-14 light">{this.state.cardDescription.Description}</p>
                 <div className="card-description__color-box">
                     <div className="color-box">
                         <p className="color-box__text text-16 uppercase bold">{ru.Colors}</p>
                         <ul className="color-box__list">
-                            {this.state.cardDescription.Parameters[0].color && this.state.cardDescription.Parameters[0].color.map((item, index) => {
+                            {this.state.cardDescription.Parameters.color && this.state.cardDescription.Parameters.color.map((item, index) => {
                                 return this.renderColorRound(item, index);
                             })}
                         </ul>
                     </div>
                 </div>
                 <div className="card-description__button-bottom">
-                    <p className="card-description__quantity text-22 color-aqua uppercase medium">{this.state.cardDescription.Parameters[0].Price + ru.grn}</p>
+                    <p className="card-description__quantity text-22 color-aqua uppercase medium">{this.state.cardDescription.Parameters.Price + ru.grn}</p>
                     <ButtonPostpone onClick={this.addPostpone}/>
                     <ButtonMain btnClass={"button-white text-14"} text={"перейти в магазин для покупки"} onClick={this.siteRedirect}/>
                 </div>

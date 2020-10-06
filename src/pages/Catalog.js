@@ -168,6 +168,9 @@ class Catalog extends React.Component {
     setProductData(data) {
         const lastData = data.length < 12 && data.length > 0;
         if (data.length > 0) {
+            data.sort((a, b) => {
+                return b.Parameters.compatibility - a.Parameters.compatibility
+            });
             const allProducts = this.state.productArr.concat(data);
             this.props.productsArrFunction(allProducts);
             this.setState({

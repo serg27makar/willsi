@@ -70,7 +70,7 @@ class ProductsCart extends React.Component {
                         <picture className="picture">
                             <img className="picture__source" src={item.Photo1} alt={item.ProdName}/>
                         </picture>
-                        <CircleLevel catalog={this.props.catalog} level={item.Parameters[0].compatibility || item.compatibility}/>
+                        <CircleLevel catalog={this.props.catalog} level={item.Parameters.compatibility || item.compatibility}/>
                         {this.renderPostpone(item)}
                     </div>
                     <div className="card-box__product-name text-18 bold uppercase">{item.Manufacturer}</div>
