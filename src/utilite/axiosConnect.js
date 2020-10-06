@@ -191,3 +191,12 @@ export const getPostpone = (dataSearch, callbackInfo) => {
         callbackInfo(err);
     })
 };
+
+export const postSendEmail = (data, callbackInfo) => {
+    axios.post(Url + `/users/postSendEmail`, data)
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        callbackInfo(err);
+    })
+};
