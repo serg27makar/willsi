@@ -226,6 +226,12 @@ const ru = {
     SizeStandard: "Стандарт размера",
 
     removeItem: "Удалить",
+
+    tariffHeader: "тарифные планы",
+    trialPlan: "пробный план",
+    standardPlan: "стандартный план",
+    premiumPlan: "премиум план",
+    buyNow: "купить сейчас",
 };
 
 export default ru;

@@ -29,7 +29,9 @@ class BtnUp extends React.Component {
     }
 
     render() {
-        if (window.location.pathname === "/admin-panel" || window.location.pathname === "/data") {
+        if (window.location.pathname === "/admin-panel" ||
+            window.location.pathname === "/data" ||
+            window.location.pathname === "/tariff-plans") {
             return null;
         }
         return (

@@ -14,6 +14,7 @@ import About from "./pages/About";
 import Catalog from "./pages/Catalog";
 import Data from "./pages/Data";
 import Cabinet from "./pages/Cabinet";
+import TariffPlans from "./pages/TariffPlans";
 import Postpone from "./pages/Postpone";
 import SellerService from "./pages/SellerService";
 import RegistrationModal from "./modals/RegistrationModal";
@@ -130,6 +131,7 @@ class Navigate extends React.Component {
                     <Route path='/cart' component={Cart}/>
                     <Route path='/catalog' component={Catalog}/>
                     <Route path='/data' component={Data}/>
+                    <Route path='/tariff-plans' component={TariffPlans}/>
                     <Route path='/cabinet' component={Cabinet}/>
                     <Route path='/postpone' component={Postpone}/>
                     <Route path='/seller-service' component={SellerService}/>

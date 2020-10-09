@@ -2,6 +2,7 @@ import React from 'react';
 import "../../access/css/headerFooter.css"
 import {connect} from "react-redux";
 import ru from "../../access/lang/LangConstants";
+import {Link} from "react-router-dom";
 
 
 class Footer extends React.Component {
@@ -37,18 +38,20 @@ class Footer extends React.Component {
                         </div>
                         <div className="col-12">
                             <div className="footer">
-                                <div className="header__plan">
-                                    <div className="header__plan-picture">
-                                        <picture className="plan-picture">
-                                            <source className="plan-picture__source" srcSet="static/img/content/trial.png" type="image/webp"/>
-                                            <img className="plan-picture__source" src="static/img/content/trial.png" alt="trial"/>
-                                        </picture>
+                                <Link className="navigation-list__link light text-16" to={"/tariff-plans"}>
+                                    <div className="header__plan">
+                                        <div className="header__plan-picture">
+                                            <picture className="plan-picture">
+                                                <source className="plan-picture__source" srcSet="static/img/content/trial.png" type="image/webp"/>
+                                                <img className="plan-picture__source" src="static/img/content/trial.png" alt="trial"/>
+                                            </picture>
+                                        </div>
+                                        <div className="header__plan-column">
+                                            <p className="text-14 bold">{ru.TrialPlan}</p>
+                                            <div className="header__plan-change text-14 light" >{ru.Edit}</div>
+                                        </div>
                                     </div>
-                                    <div className="header__plan-column">
-                                        <p className="text-14 bold">{ru.TrialPlan}</p>
-                                        <div className="header__plan-change text-14 light" >{ru.Edit}</div>
-                                    </div>
-                                </div>
+                                </Link>
                             </div>
                         </div>
                         <div className="col-12">

@@ -84,6 +84,12 @@
     padding-bottom: 3.75vw;
     text-align: center;
 }
+.tariff-block-title {
+    position: relative;
+    padding-top: 2.25vw;
+    padding-bottom: 3.75vw;
+    text-align: center;
+}
 .steps__title:before {
     content: '';
     position: absolute;
