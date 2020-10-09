@@ -99,7 +99,7 @@ class Catalog extends React.Component {
 
     onScrollList(event) {
         if((event.target.scrollingElement.scrollTop > document.scrollingElement.offsetHeight - window.outerHeight) && !this.state.lastData) {
-            this.updateProductsData();
+            // this.updateProductsData();
         }
     }
 

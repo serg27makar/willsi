@@ -1,6 +1,6 @@
 import React from "react";
 import ru from "../../access/lang/LangConstants";
-import {recalculateParamsDog, recalculateParamsWoman} from "../../access/recalculateConstants";
+import {recalculateParamsDog} from "../../access/recalculateConstants";
 import {chooseSizeList} from "../../js/sharedFunctions";
 
 class MainEnvelopeSize extends React.Component {
@@ -77,17 +77,17 @@ class MainEnvelopeSize extends React.Component {
     renderDigitalFace(item) {
         return (
             <div className="digital-face-wrapper">
-                <div className="digital-face left-arrow" onClick={() => {
+                <div className="digital-face left-arrow unselectable" onClick={() => {
                     this.leftArrowClick(item.inputName, this.state.size[item.inputName] ||
                         item.sizeMin, item.sizeMin)}}
                 >-</div>
-                <div className="digital-face face-block">
+                <div className="digital-face face-block unselectable">
                     <input className="slider-input-text" name={item.inputName}
                            value={(this.state.size && this.state.size[item.inputName]) || 0} min={item.sizeMin} max={item.sizeMax}
                            onChange={this.onChange}/>
                     <div className="face-block-text">{ru.sm}</div>
                 </div>
-                <div className="digital-face right-arrow" onClick={() => {
+                <div className="digital-face right-arrow unselectable" onClick={() => {
                     this.rightArrowClick(item.inputName, this.state.size[item.inputName] ||
                         item.sizeMin, item.sizeMax)}}
                 >+</div>

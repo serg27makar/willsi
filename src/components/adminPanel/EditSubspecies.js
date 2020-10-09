@@ -1,5 +1,5 @@
 import React from "react";
-import {isEmptyObject, updateResult} from "../../js/sharedFunctions";
+import {isEmptyObject} from "../../js/sharedFunctions";
 import {connect} from "react-redux";
 import {getParametersToId} from "../../utilite/axiosConnect";
 import EditSubspecieTabl from "./EditSubspecieTabl";

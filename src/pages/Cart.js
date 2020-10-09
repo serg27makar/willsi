@@ -5,8 +5,6 @@ import {connect} from "react-redux";
 import Carousel from "../components/Carousel";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";
-import ProductsCart from "../components/ProductsCart";
-import ButtonMain from "../components/shared/ButtonMain";
 import ru from "../access/lang/LangConstants";
 import CardDescription from "../components/CardDescription";
 import CartTabs from "../components/CartTabs";

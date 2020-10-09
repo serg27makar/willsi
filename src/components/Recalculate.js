@@ -87,14 +87,14 @@ class Recalculate extends React.Component {
     renderDigitalFace(item) {
         return (
             <div className="digital-face-wrapper">
-                <div className="digital-face left-arrow" onClick={() => {this.leftArrowClick(item.inputName, this.state[item.inputName] || item.sizeMin, item.sizeMin)}}>-</div>
-                <div className="digital-face face-block">
+                <div className="digital-face left-arrow unselectable" onClick={() => {this.leftArrowClick(item.inputName, this.state[item.inputName] || item.sizeMin, item.sizeMin)}}>-</div>
+                <div className="digital-face face-block unselectable">
                     <input className="slider-input-text" name={item.inputName}
-                           value={this.state && this.state[item.inputName] || item.sizeMin} min={item.sizeMin} max={item.sizeMax}
+                           value={(this.state && this.state[item.inputName]) || item.sizeMin} min={item.sizeMin} max={item.sizeMax}
                            onChange={this.onChange}/>
                            <div className="face-block-text">{ru.sm}</div>
                 </div>
-                <div className="digital-face right-arrow" onClick={() => {this.rightArrowClick(item.inputName, this.state[item.inputName] || item.sizeMin, item.sizeMax)}}>+</div>
+                <div className="digital-face right-arrow unselectable" onClick={() => {this.rightArrowClick(item.inputName, this.state[item.inputName] || item.sizeMin, item.sizeMax)}}>+</div>
             </div>
         )
     }
@@ -104,7 +104,7 @@ class Recalculate extends React.Component {
             <div className="digital-slider-wrapper">
 
                 <input className="slider" type="range" name={item.inputName}
-                       value={this.state && this.state[item.inputName] || 0} min={item.sizeMin} max={item.sizeMax}
+                       value={(this.state && this.state[item.inputName]) || 0} min={item.sizeMin} max={item.sizeMax}
                        onChange={this.onChange}/>
                 <div className="digital-slider-limit-wrapper">
                     <div className="digital-slider-limit">{item.sizeMin + " " + ru.sm}</div>

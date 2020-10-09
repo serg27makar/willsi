@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {actionSelectedProductToEdit, setActionAdminPanel} from "../action";
+import {actionSelectedProductToEdit} from "../action";
 import AdminMainSite from "./adminPanel/AdminMainSite";
 
 class SelectedProductEditor extends React.Component {

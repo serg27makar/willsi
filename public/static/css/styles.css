@@ -2044,7 +2044,7 @@ input[type="checkbox"] + label:hover {
     border: 0.0625vw solid #e1e1e1;
     border-radius: 0.25vw;
     margin: 0 0.3125vw;
-    padding: 0 1vw 0 4.9375vw;
+    padding: 0 1vw 0 5.9375vw;
     width: 9.375vw;
     height: 2.5vw;
     -webkit-transition: all 0.3s ease-in-out;
@@ -4732,4 +4732,11 @@ svg.buy-block-icon {
     font-weight: bold;
     color: #c6d846;
     margin-left: 1rem;
+}
+div, p, span, h1, h2, h3, h4,
+.unselectable {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }

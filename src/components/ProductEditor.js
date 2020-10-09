@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
-import {actionSelectedProductToEdit, setActionAdminPanel} from "../action";
+import {actionSelectedProductToEdit} from "../action";
 
 class ProductEditor extends React.Component {
     constructor(props) {

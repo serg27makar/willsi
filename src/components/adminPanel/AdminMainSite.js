@@ -268,7 +268,7 @@ class AdminMainSite extends React.Component {
                 <ProductLinkInput item={this.state} dataChange={this.productDescription}/>
                 <ProductDescription item={this.state} dataChange={this.productDescription}/>
                 {this.renderSubspecies()}
-                {this. renderBtnSave()}
+                {this.renderBtnSave()}
                 {this.renderEditSubspecies()}
             </div>
         )

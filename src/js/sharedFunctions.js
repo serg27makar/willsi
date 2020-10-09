@@ -54,6 +54,7 @@ export function chooseSizeList(subCatalog) {
             if (sizeListTshirts.indexOf(item.inputName) !== -1) {
                 paramsList.push(item);
             }
+            return paramsList;
         });
         verificationList = sizeListTshirts;
     }
@@ -62,6 +63,7 @@ export function chooseSizeList(subCatalog) {
             if (sizeListShirts.indexOf(item.inputName) !== -1) {
                 paramsList.push(item);
             }
+            return paramsList;
         });
         verificationList = sizeListTshirts;
     }
@@ -70,6 +72,7 @@ export function chooseSizeList(subCatalog) {
             if (sizeListPants.indexOf(item.inputName) !== -1) {
                 paramsList.push(item);
             }
+            return paramsList;
         });
         verificationList = sizeListTshirts;
     }
@@ -78,6 +81,7 @@ export function chooseSizeList(subCatalog) {
             if (sizeListUnderwear.indexOf(item.inputName) !== -1) {
                 paramsList.push(item);
             }
+            return paramsList;
         });
         verificationList = sizeListTshirts;
     }
@@ -86,6 +90,7 @@ export function chooseSizeList(subCatalog) {
             if (sizeListOuterwear.indexOf(item.inputName) !== -1) {
                 paramsList.push(item);
             }
+            return paramsList;
         });
         verificationList = sizeListTshirts;
     }
@@ -94,8 +99,20 @@ export function chooseSizeList(subCatalog) {
             if (sizeListHome.indexOf(item.inputName) !== -1) {
                 paramsList.push(item);
             }
+            return paramsList;
         });
         verificationList = sizeListTshirts;
     }
     return {verificationList, paramsList}
+}
+
+export function validPostpone(checking, verifiable) {
+    let result = false;
+    checking.map((item) => {
+        if(!result) {
+            result = item.product === verifiable;
+        }
+        return result;
+    });
+    return result;
 }

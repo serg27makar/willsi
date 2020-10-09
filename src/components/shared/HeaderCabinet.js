@@ -19,7 +19,8 @@ class HeaderCabinet extends React.Component {
                 UserName: this.props.UserName,
             })
         }
-        if (prevProps.SetActionPostpone !== this.props.SetActionPostpone || prevProps.Postpone !== this.props.Postpone) {
+        if ((prevProps.SetActionPostpone !== this.props.SetActionPostpone ||
+            prevProps.Postpone !== this.props.Postpone) && this.props.Postpone) {
             this.setState({
                 ...this.state,
                 pts: this.props.Postpone.length || 0,

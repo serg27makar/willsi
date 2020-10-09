@@ -4,7 +4,7 @@ import ru from "../access/lang/LangConstants";
 import ButtonPostpone from "./shared/ButtonPostpone";
 import "../access/css/cart.css"
 import {connect} from "react-redux";
-import {actionPostpone, actionSelectProduct, actionSetActionPostpone} from "../action";
+import {actionPostpone, actionSetActionPostpone} from "../action";
 import {updateResult} from "../js/sharedFunctions";
 import {postUpdate} from "../utilite/axiosConnect";
 

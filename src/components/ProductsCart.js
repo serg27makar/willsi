@@ -6,7 +6,7 @@ import {actionDataRedirect, actionPostpone, actionProductID, actionSetActionPost
 import {connect} from "react-redux";
 import CircleLevel from "./shared/CircleLevel";
 import {postUpdate} from "../utilite/axiosConnect";
-import {updateResult} from "../js/sharedFunctions";
+import {updateResult, validPostpone} from "../js/sharedFunctions";
 import ButtonMain from "./shared/ButtonMain";
 
 class ProductsCart extends React.Component {
@@ -17,6 +17,7 @@ class ProductsCart extends React.Component {
         };
         this.openCard = this.openCard.bind(this);
         this.addPostpone = this.addPostpone.bind(this);
+        this.updateData = this.updateData.bind(this);
     }
 
     openCard(productID) {
@@ -35,8 +36,8 @@ class ProductsCart extends React.Component {
         const Postpone = this.props.Postpone || [];
         const thing = {
             product: item._id,
-            parameter: item.Parameters[0]._id,
-            compatibility: item.Parameters[0].compatibility,
+            parameter: item.Parameters._id,
+            compatibility: item.Parameters.compatibility,
         };
         Postpone.push(thing);
         this.updateData(Postpone);
@@ -58,6 +59,7 @@ class ProductsCart extends React.Component {
             if (itemPostpone.product === item._id) {
                 Postpone.splice(index, 1);
             }
+            return Postpone;
         });
         this.updateData(Postpone);
     }
@@ -83,7 +85,7 @@ class ProductsCart extends React.Component {
     };
 
     renderPostpone = (item) => {
-        if (item.postpone) {
+        if (item.postpone || validPostpone(this.props.Postpone, item._id)) {
             return (
                 <div className="card-box__circle-overflow">
                     <div className="card-box__circle-blue">

@@ -160,7 +160,7 @@ class CatalogTopEnvironment extends React.Component {
                         hidden={this.props.Permission === "unknown"}
                     />
                     <div style={{display: "contents"}}>
-                        <div className="arrow-slide-params" onClick={this.arrowLeft}> &lt; </div>
+                        <div className="arrow-slide-params unselectable" onClick={this.arrowLeft}> &lt; </div>
                             <div className="col-12 catalog-top__list-object">
                                 <ul className="list-object" style={{left: this.state.moveLeft + "vw"}}>
                                     {this.state.params && this.state.params.map((item, index) => {
@@ -168,7 +168,7 @@ class CatalogTopEnvironment extends React.Component {
                                     })}
                                 </ul>
                             </div>
-                        <div className="arrow-slide-params" onClick={this.arrowRight}> &gt; </div>
+                        <div className="arrow-slide-params unselectable" onClick={this.arrowRight}> &gt; </div>
                     </div>
                 </div>
             </div>
