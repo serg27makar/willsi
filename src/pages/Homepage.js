@@ -35,7 +35,7 @@ class Homepage extends React.Component {
             ...this.state,
             isUnknown: this.props.UsersParameters.length === 0,
             minusScroll: this.props.UsersParameters.length === 0 ? 0 : 600,
-        })
+        });
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {

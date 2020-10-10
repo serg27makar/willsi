@@ -2,6 +2,7 @@ import React from "react";
 import ru from "../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
 import {Redirect} from "react-router-dom";
+import {getAllUsers} from "../utilite/axiosConnect";
 
 class WelcomeMain extends React.Component {
     constructor(props) {
@@ -9,8 +10,10 @@ class WelcomeMain extends React.Component {
         this.state = {
             redirect: false,
             redirectTo: "",
+            usersQuantity: 0,
         };
         this.wrapperRef = React.createRef();
+        this.usersQuantity = this.usersQuantity.bind(this);
     }
 
     componentDidMount() {
@@ -18,6 +21,16 @@ class WelcomeMain extends React.Component {
             const wrapper = this.wrapperRef.current;
             wrapper.classList.toggle("show-welcome-main");
         }, 300);
+        getAllUsers(this.usersQuantity);
+    }
+
+    usersQuantity(data) {
+        if (data) {
+            this.setState({
+                ...this.state,
+                usersQuantity: data.size,
+            })
+        }
     }
 
     redirect(item) {
@@ -54,7 +67,7 @@ class WelcomeMain extends React.Component {
                             <div className="welcome-main-env__our-services">
                                 <p className="welcome-main-env__our-services-text text-16 light">{ru.OurService}
                                     <br/>{ru.TookAdvantage}
-                                    <span className="welcome-main-env__our-services-box text-18 medium">524</span>
+                                    <span className="welcome-main-env__our-services-box text-18 medium">{this.state.usersQuantity}</span>
                                     <span className="welcome-main-env__our-services-client">{ru.client}</span>
                                 </p>
                             </div>
