@@ -108,11 +108,13 @@ export function chooseSizeList(subCatalog) {
 
 export function validPostpone(checking, verifiable) {
     let result = false;
-    checking.map((item) => {
-        if(!result) {
-            result = item.product === verifiable;
-        }
-        return result;
-    });
+    if (checking && checking.length && verifiable) {
+        checking.map((item) => {
+            if(!result) {
+                result = item.product === verifiable;
+            }
+            return result;
+        });
+    }
     return result;
 }
