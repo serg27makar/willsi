@@ -13,7 +13,7 @@ const inputArr = [
         placeholder: ru.placeholderGrowth,
     },
     {
-        name: "shoulders",
+        name: "shoulder",
         placeholder: ru.placeholderShoulders,
     },
     {
@@ -35,7 +35,7 @@ class SearchBox extends React.Component {
         this.state = {
             redirect: false,
             growth: 0,
-            shoulders: 0,
+            shoulder: 0,
             chest: 0,
             waist: 0,
             hips: 0,
@@ -52,6 +52,17 @@ class SearchBox extends React.Component {
         if (prevProps.UserID !== this.props.UserID && this.state.update) {
             this.updateData();
         }
+        if (prevProps.UsersParameters !== this.props.UsersParameters && this.props.UsersParameters) {
+            const params = this.props.UsersParameters[0].Parameters;
+            this.setState({
+                ...this.state,
+                growth: params.find(item => item.title === "growth").size,
+                shoulder: params.find(item => item.title === "shoulder").size,
+                chest: params.find(item => item.title === "chest").size,
+                waist: params.find(item => item.title === "waist").size,
+                hips: params.find(item => item.title === "hips").size,
+            })
+        }
     }
 
     onChange(e) {
@@ -66,8 +77,8 @@ class SearchBox extends React.Component {
     }
 
     searchClothes() {
-        const {growth, shoulders, chest, waist, hips} = this.state;
-        if (growth && shoulders && chest && waist && hips) {
+        const {growth, shoulder, chest, waist, hips} = this.state;
+        if (growth && shoulder && chest && waist && hips) {
             const Parameters = [];
             inputArr.map((item, index) => {
                 const obj = {
@@ -94,7 +105,9 @@ class SearchBox extends React.Component {
                 this.props.usersParametersFunction(user.UsersParameters);
                 postRegister(user, this.newID)
             } else {
-                console.log(this);
+                this.setState({
+                    redirect: true,
+                });
             }
         } else {
             this.props.alertTextFunction(ru.enterTheseDetails);
@@ -108,7 +121,7 @@ class SearchBox extends React.Component {
 
     updateData() {
         const userParameter = {
-            UserName: "User" + this.props.UserID.slice(20),
+            UserName: "User: " + this.props.UserID.slice(20),
             Gender: "unisexs",
             Parameters: this.props.UsersParameters[0].Parameters
         };

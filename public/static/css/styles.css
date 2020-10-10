@@ -1353,11 +1353,15 @@ footer {
     height: 1.5625vw;
     fill: #c6d846;
 }
+span.catalog-top__button-icon {
+    margin-left: 0.5rem;
+}
 .catalog-top__dropdown-admin {
     margin-bottom: 1rem;
 }
 .catalog-top__dropdown-info {
-    width: 7.2vw;
+    max-width: 9vw;
+    min-width: 7vw;
 }
 .catalog-top__dropdown-admin,
 .catalog-top__dropdown-info {
@@ -1369,6 +1373,9 @@ footer {
     flex-direction: column;
     border: 0.0625vw solid #e1e1e1;
     border-radius: 0.25vw;
+}
+.catalog-top__button-text {
+    white-space: nowrap;
 }
 .catalog-top__button-text:hover {
     color: #000;
