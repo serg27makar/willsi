@@ -30,6 +30,9 @@ class InputDataParams extends React.Component {
                 gender,
                 activeBtn,
             });
+            if (gender) {
+                this.props.changeGender(gender);
+            }
         }
     }
 
