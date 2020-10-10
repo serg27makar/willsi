@@ -11,6 +11,8 @@ import {
     actionDataUpdate,
     actionEmail,
     actionPermission,
+    actionPostpone,
+    actionSetActionPostpone,
     actionUserID,
     actionUserName,
     actionUsersParameters,
@@ -56,6 +58,8 @@ class Header extends React.Component {
         this.props.permissionFunction("unknown");
         this.props.userStoreFunction([]);
         this.props.dataUpdateFunction(!this.props.update);
+        this.props.setActionPostponeFunction(!this.props.SetActionPostpone);
+        this.props.postponeFunction([]);
     }
 
     menuButton = () => {
@@ -118,10 +122,17 @@ function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
         update: state.pageReducer.update,
+        SetActionPostpone: state.userReducer.SetActionPostpone,
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
+        postponeFunction: (Postpone) => {
+            dispatch(actionPostpone(Postpone))
+        },
+        setActionPostponeFunction: (SetActionPostpone) => {
+            dispatch(actionSetActionPostpone(SetActionPostpone))
+        },
         userIDFunction: (UserID) => {
             dispatch(actionUserID(UserID))
         },
