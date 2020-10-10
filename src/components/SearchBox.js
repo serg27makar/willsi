@@ -52,16 +52,23 @@ class SearchBox extends React.Component {
         if (prevProps.UserID !== this.props.UserID && this.state.update) {
             this.updateData();
         }
-        if (prevProps.UsersParameters !== this.props.UsersParameters && this.props.UsersParameters) {
+        if (prevProps.UsersParameters !== this.props.UsersParameters && this.props.UsersParameters && this.props.UsersParameters[0].Parameters.length) {
             const params = this.props.UsersParameters[0].Parameters;
-            this.setState({
-                ...this.state,
-                growth: params.find(item => item.title === "growth").size,
-                shoulder: params.find(item => item.title === "shoulder").size,
-                chest: params.find(item => item.title === "chest").size,
-                waist: params.find(item => item.title === "waist").size,
-                hips: params.find(item => item.title === "hips").size,
-            })
+            const growth = params.find(item => item.title === "growth").size;
+            const shoulder = params.find(item => item.title === "shoulder").size;
+            const chest = params.find(item => item.title === "chest").size;
+            const waist = params.find(item => item.title === "waist").size;
+            const hips = params.find(item => item.title === "hips").size;
+            if (growth && shoulder && chest && waist && hips) {
+                this.setState({
+                    ...this.state,
+                    growth: params.find(item => item.title === "growth").size,
+                    shoulder: params.find(item => item.title === "shoulder").size,
+                    chest: params.find(item => item.title === "chest").size,
+                    waist: params.find(item => item.title === "waist").size,
+                    hips: params.find(item => item.title === "hips").size,
+                })
+            }
         }
     }
 
