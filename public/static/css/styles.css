@@ -1659,6 +1659,7 @@ input[type="checkbox"]:not(:checked) + label.category-list__label {
     border-bottom: 0.0625vw solid #e1e1e1;
     width: 100%;
     text-align: center;
+    cursor: pointer;
 }
 .card-box__picture .picture {
     display: block;
@@ -1738,6 +1739,7 @@ input[type="checkbox"]:not(:checked) + label.category-list__label {
 }
 .button-main.remove-postpone {
     width: auto;
+    text-align: center;
 }
 .card-box__button-postpone .button-postpone {
     display: -webkit-box;
@@ -3383,6 +3385,39 @@ input[type="checkbox"] + label:hover {
 .stroke-descriptor-code {
     width: 20%;
 }
+.add-cart-text {
+    position: absolute;
+    transform: translate(-50%, -90%);
+    border: 2px solid #c6d846;
+    padding: 1rem;
+    z-index: 0;
+    border-radius: 1rem;
+    background: white;
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgba(198, 216, 70, 1);
+    overflow: hidden;
+}
+.add-cart-block {
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
+#blink {
+    -webkit-animation: blink 3s linear infinite;
+    animation: blink 3s linear infinite;
+}
+@-webkit-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 .add-cart-btn:hover {
     -webkit-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
@@ -3391,9 +3426,8 @@ input[type="checkbox"] + label:hover {
     background: #fff;
 }
 .add-cart-btn {
-    position: absolute;
-    top: 50%;
-    left: 65%;
+    position: relative;
+    z-index: 1;
     transform: translate(-50%, -50%);
     width: 5rem;
     height: 5rem;

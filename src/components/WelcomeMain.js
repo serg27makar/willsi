@@ -67,7 +67,7 @@ class WelcomeMain extends React.Component {
                             <div className="welcome-main-env__our-services">
                                 <p className="welcome-main-env__our-services-text text-16 light">{ru.OurService}
                                     <br/>{ru.TookAdvantage}
-                                    <span className="welcome-main-env__our-services-box text-18 medium">{this.state.usersQuantity}</span>
+                                    <span className="welcome-main-env__our-services-box text-18 medium">{this.state.usersQuantity + 1014}</span>
                                     <span className="welcome-main-env__our-services-client">{ru.client}</span>
                                 </p>
                             </div>

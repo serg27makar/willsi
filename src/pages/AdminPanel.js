@@ -8,6 +8,7 @@ import AdminMainSite from "../components/adminPanel/AdminMainSite";
 import ProductEditor from "../components/ProductEditor";
 import SelectedProductEditor from "../components/SelectedProductEditor";
 import {isEmptyObject} from "../js/sharedFunctions";
+import ru from "../access/lang/LangConstants";
 
 class AdminPanel extends React.Component {
     constructor(props) {
@@ -100,7 +101,10 @@ class AdminPanel extends React.Component {
             )
         } else if (this.state.isAddBtn) {
             return(
-                <div className="add-cart-btn" onClick={this.addProduct}>+</div>
+                <div className="add-cart-block">
+                    <div className="add-cart-btn" onClick={this.addProduct}>+</div>
+                    <div className="add-cart-text uppercase" id="blink">{ru.addProduct}</div>
+                </div>
             )
         } else {
             return (

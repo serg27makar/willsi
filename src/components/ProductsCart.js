@@ -102,17 +102,17 @@ class ProductsCart extends React.Component {
     };
 
     renderButton = (item) => {
-        if (!item.postpone) {
+        if (item.postpone || validPostpone(this.props.Postpone, item._id)) {
             return (
                 <div className="card-box__button-postpone">
-                   <ButtonPostpone  onClick={() => {this.addPostpone(item)}}/>
+                    <ButtonMain btnClass={"button-main remove-postpone text-18 uppercase medium"}
+                                text={ru.removeItem} onClick={() => {this.removePostpone(item)}}/>
                 </div>
             )
         } else {
             return (
                 <div className="card-box__button-postpone">
-                    <ButtonMain btnClass={"button-main remove-postpone text-18 uppercase medium"}
-                                text={ru.removeItem} onClick={() => {this.removePostpone(item)}}/>
+                    <ButtonPostpone  onClick={() => {this.addPostpone(item)}}/>
                 </div>
             )
         }

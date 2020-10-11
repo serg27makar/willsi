@@ -193,15 +193,15 @@ const ru = {
     AddedUser: "Добавить пользователя",
     AddedParams: "Добавить параметр",
 
-    Manufacturer: "Производитель",
-    ProdName: "Наименование",
+    Manufacturer: "Производитель / бренд",
+    ProdName: "Наименование изделия",
     ProductCode: "Код изделия",
     VendorCode: "Артикул",
     Price: "Цена",
-    Photo1: "Фото продукта 1",
-    Photo2: "Фото продукта 2",
-    Photo3: "Фото продукта 3",
-    LinkToProduct: "Ссылка на продукт",
+    Photo1: "Фото 1 изделия",
+    Photo2: "Фото 2 изделия",
+    Photo3: "Фото 3 изделия",
+    LinkToProduct: "Ссылка на страницу где пользователь может купить это изделие",
 
     Description: "Описание",
     Composition: "Состав",
@@ -225,13 +225,15 @@ const ru = {
     addSubspecies: "Добавить размер",
     SizeStandard: "Стандарт размера",
 
-    removeItem: "Удалить",
+    removeItem: 'снять статус "отложено"',
 
     tariffHeader: "тарифные планы",
     trialPlan: "пробный план",
     standardPlan: "стандартный план",
     premiumPlan: "премиум план",
     buyNow: "купить сейчас",
+
+    addProduct: "добавить изделие"
 };
 
 export default ru;

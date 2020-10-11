@@ -52,7 +52,8 @@ class SearchBox extends React.Component {
         if (prevProps.UserID !== this.props.UserID && this.state.update) {
             this.updateData();
         }
-        if (prevProps.UsersParameters !== this.props.UsersParameters && this.props.UsersParameters && this.props.UsersParameters[0].Parameters.length) {
+        if (prevProps.UsersParameters !== this.props.UsersParameters && this.props.UsersParameters &&
+            this.props.UsersParameters.length && this.props.UsersParameters[0].Parameters.length) {
             const params = this.props.UsersParameters[0].Parameters;
             const growth = params.find(item => item.title === "growth").size;
             const shoulder = params.find(item => item.title === "shoulder").size;
