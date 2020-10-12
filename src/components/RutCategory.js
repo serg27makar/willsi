@@ -131,7 +131,7 @@ class RutCategory extends React.Component {
     render() {
         return (
             <div className="catalog-product">
-                <button className="catalog-button" onClick={this.closeOpen} disabled={!this.state.genderPermission}>
+                <button className="catalog-button" onClick={this.closeOpen} disabled={!this.state.genderPermission && this.props.page !== "Cabinet"}>
                     <span className={"catalog-button__text text-16 light " + (this.state.isOpen ? "catalog-opened" : "")}>{LangCat[this.props.item.dropdownTitle]}</span>
                     <svg className="icon icon-arrow-small ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
@@ -150,6 +150,7 @@ class RutCategory extends React.Component {
 
 function MapStateToProps(state) {
     return {
+        page: state.pageReducer.page,
         catalog: state.catalogReducer.catalog,
         Gender: state.userReducer.Gender,
         UsersParameters: state.userReducer.UsersParameters,

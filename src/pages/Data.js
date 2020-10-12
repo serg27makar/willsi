@@ -16,13 +16,11 @@ import ru from "../access/lang/LangConstants";
 import {postUpdate} from "../utilite/axiosConnect";
 import {Redirect} from "react-router-dom";
 import {genderSwitcher, updateResult} from "../js/sharedFunctions";
-import {recalculateParamsWoman} from "../access/recalculateConstants";
 
 class Data extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            recalculateParams: recalculateParamsWoman,
             startParams: false,
             params: [],
             reDirect: false,
@@ -51,10 +49,10 @@ class Data extends React.Component {
             if (!this.props.AddUser && (this.props.UsersParameters && this.props.UsersParameters.length >= 1 &&
                 this.props.UsersParameters[0].Parameters &&
                 this.props.UsersParameters[0].Parameters.length > 0)) {
-                // this.props.dataRedirectFunction({
-                //     accessR: true,
-                //     to: "/catalog",
-                // });
+                this.props.dataRedirectFunction({
+                    accessR: true,
+                    to: "/catalog",
+                });
             }
             if (this.props.AddUser) {
                 const newUser = this.props.UsersParameters.length;

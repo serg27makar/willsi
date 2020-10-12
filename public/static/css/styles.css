@@ -1963,7 +1963,7 @@ input[type="checkbox"] + label:hover {
     width: 100% !important;
     text-align: left;
     margin: 1rem 0 !important;
-    padding: 0 1vw 0 6.5vw !important;
+    padding: 0 1vw 0 14vw !important;
 }
 .parameters {
     padding-top: 0.9375vw;
