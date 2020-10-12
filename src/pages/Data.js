@@ -2,14 +2,13 @@ import React from 'react';
 import {
     actionAddUser,
     actionAlertText,
-    actionDataRedirect,
+    actionDataRedirect, actionNewUser,
     actionOpenModal, actionRecalculateParams,
     actionUsersParameters,
     setActionAdminPanel
 } from "../action";
 import {connect} from "react-redux";
 import RecalculateFooter from "../components/RecalculateFooter";
-import Recalculate from "../components/Recalculate";
 import DataHeader from "../components/DataHeader";
 import InputDataParams from "../components/InputDataParams";
 import {handlePageUp} from "../js/visualEffects";
@@ -17,13 +16,7 @@ import ru from "../access/lang/LangConstants";
 import {postUpdate} from "../utilite/axiosConnect";
 import {Redirect} from "react-router-dom";
 import {genderSwitcher, updateResult} from "../js/sharedFunctions";
-import {
-    recalculateParamsBoy,
-    recalculateParamsDog,
-    recalculateParamsGirl,
-    recalculateParamsMan,
-    recalculateParamsWoman
-} from "../access/recalculateConstants";
+import {recalculateParamsWoman} from "../access/recalculateConstants";
 
 class Data extends React.Component {
     constructor(props) {
@@ -64,8 +57,10 @@ class Data extends React.Component {
                 // });
             }
             if (this.props.AddUser) {
+                const newUser = this.props.UsersParameters.length;
+                this.props.newUserFunction(newUser);
                 this.setState({
-                    newUser: this.props.UsersParameters.length,
+                    newUser,
                 })
             }
         }, 50);
@@ -87,7 +82,6 @@ class Data extends React.Component {
     }
 
     componentWillUnmount() {
-        document.body.style.overflow = "auto";
         this.props.addUserFunction(false);
     }
 
@@ -144,40 +138,6 @@ class Data extends React.Component {
         postUpdate(user, updateResult);
     };
 
-    addParams = (params) => {
-        let paramsUpdate = false;
-        let currentParams = [];
-        this.state.params.map((item, index) => {
-            if (item.title === params.title) {
-                paramsUpdate = true;
-                this.state.params.splice(index, 1 , params);
-                currentParams = this.state.params;
-                this.setState({
-                    ...this.state,
-                    params: currentParams,
-                });
-            }
-            return index;
-        });
-        if (!paramsUpdate) {
-            currentParams = this.state.params.concat([params]);
-            this.setState({
-                ...this.state,
-                params: currentParams,
-
-            });
-        }
-        const UsersParameters = this.props.UsersParameters;
-        const obj = {
-            UserName: this.props.UsersParameters[this.state.newUser].UserName,
-            Gender: this.props.UsersParameters[this.state.newUser].Gender,
-            Parameters: currentParams,
-        };
-        UsersParameters.splice(this.state.newUser, 1, obj);
-        this.props.usersParametersFunction(UsersParameters);
-        this.isChanged();
-    };
-
     render() {
         if (this.state.redirect.accessR) {
             return(
@@ -205,6 +165,7 @@ function MapStateToProps(state) {
         dataRedirect: state.pageReducer.dataRedirect,
     }
 }
+
 const mapDispatchToProps = dispatch => {
     return {
         setActionAdminPanelFunction: (page) => {
@@ -227,6 +188,9 @@ const mapDispatchToProps = dispatch => {
         },
         recalculateParamsFunction: (recalculateParams) => {
             dispatch(actionRecalculateParams(recalculateParams))
+        },
+        newUserFunction: (NewUser) => {
+            dispatch(actionNewUser(NewUser))
         },
     }
 };

@@ -242,3 +242,10 @@ export const actionRecalculateParams = (recalculateParams) => {
         recalculateParams: recalculateParams
     }
 };
+
+export const actionNewUser = (NewUser) => {
+    return {
+        type: 'SET_NEW_USER',
+        NewUser: NewUser
+    }
+};

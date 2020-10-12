@@ -12,6 +12,7 @@ const initialState = {
     UserStore: [],
     Postpone: [],
     SetActionPostpone: false,
+    NewUser: 0,
 };
 
 export default function userReducer(state = initialState, action) {
@@ -80,6 +81,11 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 SetActionPostpone: action.SetActionPostpone
+            };
+        case "SET_NEW_USER":
+            return {
+                ...state,
+                NewUser: action.NewUser
             };
         default:
             return state;
