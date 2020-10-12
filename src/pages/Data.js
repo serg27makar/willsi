@@ -3,7 +3,7 @@ import {
     actionAddUser,
     actionAlertText,
     actionDataRedirect,
-    actionOpenModal,
+    actionOpenModal, actionRecalculateParams,
     actionUsersParameters,
     setActionAdminPanel
 } from "../action";
@@ -16,7 +16,7 @@ import {handlePageUp} from "../js/visualEffects";
 import ru from "../access/lang/LangConstants";
 import {postUpdate} from "../utilite/axiosConnect";
 import {Redirect} from "react-router-dom";
-import {updateResult} from "../js/sharedFunctions";
+import {genderSwitcher, updateResult} from "../js/sharedFunctions";
 import {
     recalculateParamsBoy,
     recalculateParamsDog,
@@ -51,7 +51,6 @@ class Data extends React.Component {
             accessR: false,
             to: "/",
         });
-        document.body.style.overflow = "hidden";
         setTimeout(() => {
             handlePageUp();
         }, 50);
@@ -82,6 +81,9 @@ class Data extends React.Component {
                 redirect: this.props.dataRedirect,
             })
         }
+        if (prevState.startParams !== this.state.startParams) {
+            this.props.openModalFunction("recalculateModal");
+        }
     }
 
     componentWillUnmount() {
@@ -90,44 +92,8 @@ class Data extends React.Component {
     }
 
     genderSwitcher(gender) {
-        switch (gender) {
-            case "woman":
-                this.setState({
-                    ...this.state,
-                    recalculateParams: recalculateParamsWoman
-                });
-                break;
-            case "man":
-                this.setState({
-                    ...this.state,
-                    recalculateParams: recalculateParamsMan
-                });
-                break;
-            case "boy":
-                this.setState({
-                    ...this.state,
-                    recalculateParams: recalculateParamsBoy
-                });
-                break;
-            case "girl":
-                this.setState({
-                    ...this.state,
-                    recalculateParams: recalculateParamsGirl
-                });
-                break;
-            case "dog":
-                this.setState({
-                    ...this.state,
-                    recalculateParams: recalculateParamsDog
-                });
-                break;
-            default:
-                this.setState({
-                    ...this.state,
-                    recalculateParams: recalculateParamsWoman
-                });
-                break;
-        }
+        const recalculateParams = genderSwitcher(gender);
+        this.props.recalculateParamsFunction(recalculateParams);
     }
 
     nextParams(name, gender) {
@@ -222,18 +188,7 @@ class Data extends React.Component {
             <div className="content">
                 <DataHeader/>
                 <InputDataParams nextParams={this.nextParams} changeGender={this.genderSwitcher}/>
-                <div className="recalculate">
-                    <div className="container">
-                        <div className="row-wrap">
-                            <Recalculate dataParams={this.state.recalculateParams}
-                                         startParams={this.state.startParams}
-                                         firstBlock={this.firstBlock}
-                                         params={this.addParams}
-                            />
-                            <RecalculateFooter/>
-                        </div>
-                    </div>
-                </div>
+                <RecalculateFooter disabled={!this.state.startParams}/>
             </div>
         )
     }
@@ -269,6 +224,9 @@ const mapDispatchToProps = dispatch => {
         },
         dataRedirectFunction: (dataRedirect) => {
             dispatch(actionDataRedirect(dataRedirect))
+        },
+        recalculateParamsFunction: (recalculateParams) => {
+            dispatch(actionRecalculateParams(recalculateParams))
         },
     }
 };

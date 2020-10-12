@@ -1,9 +1,9 @@
 import React from "react";
-import {paramsAnimate} from "../js/visualEffects";
 import {evenOdd} from "../js/sharedFunctions";
 import ru from "../access/lang/LangConstants";
 import {actionAlertText, actionOpenModal, actionUsersParameters} from "../action";
 import {connect} from "react-redux";
+import ButtonMain from "./shared/ButtonMain";
 
 class Recalculate extends React.Component {
     constructor(props) {
@@ -11,28 +11,27 @@ class Recalculate extends React.Component {
         this.state = {
             dataParams: [],
             inputName: "",
+            active: 0,
+            openAlertPopUp: false,
         };
-        this.refRecalculate = [];
-        this.props.dataParams.map(() => {
-            return this.refRecalculate.push(React.createRef());
-        });
         this.onChange = this.onChange.bind(this);
+        this.closeLincModal = this.closeLincModal.bind(this);
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.startParams !== this.props.startParams && this.props.startParams) {
-            paramsAnimate(this.refRecalculate, 0)
-        }
-    }
+    componentDidUpdate(prevProps, prevState, snapshot) {}
 
     endInput() {
-        paramsAnimate(this.refRecalculate, -1, true);
+        this.props.openModalFunction("");
     }
 
     prevItem(index) {
-        paramsAnimate(this.refRecalculate, index - 1);
         if (index === 0) {
             this.props.firstBlock();
+        } else {
+            this.setState({
+                ...this.state,
+                active: index - 1,
+            });
         }
     }
 
@@ -43,13 +42,19 @@ class Recalculate extends React.Component {
                 size: this.state[item.inputName],
             };
             this.props.params(params);
-            paramsAnimate(this.refRecalculate, index + 1);
             if (index === (this.props.dataParams.length - 1)) {
                 this.endInput();
+            } else {
+                this.setState({
+                    ...this.state,
+                    active: index + 1,
+                })
             }
         } else {
-            this.props.alertTextFunction(ru.enterTheseDetails);
-            this.props.openModalFunction("alertModal");
+            this.setState({
+                ...this.state,
+                openAlertPopUp: true,
+            });
         }
     }
 
@@ -84,17 +89,26 @@ class Recalculate extends React.Component {
         });
     }
 
+    closeLincModal() {
+        this.setState({
+            ...this.state,
+            openAlertPopUp: false,
+        })
+    }
+
     renderDigitalFace(item) {
         return (
             <div className="digital-face-wrapper">
-                <div className="digital-face left-arrow unselectable" onClick={() => {this.leftArrowClick(item.inputName, this.state[item.inputName] || item.sizeMin, item.sizeMin)}}>-</div>
+                <div className="digital-face left-arrow unselectable"
+                     onClick={() => {this.leftArrowClick(item.inputName, this.state[item.inputName] || item.sizeMin, item.sizeMin)}}>-</div>
                 <div className="digital-face face-block unselectable">
                     <input className="slider-input-text" name={item.inputName}
                            value={(this.state && this.state[item.inputName]) || item.sizeMin} min={item.sizeMin} max={item.sizeMax}
                            onChange={this.onChange}/>
                            <div className="face-block-text">{ru.sm}</div>
                 </div>
-                <div className="digital-face right-arrow unselectable" onClick={() => {this.rightArrowClick(item.inputName, this.state[item.inputName] || item.sizeMin, item.sizeMax)}}>+</div>
+                <div className="digital-face right-arrow unselectable"
+                     onClick={() => {this.rightArrowClick(item.inputName, this.state[item.inputName] || item.sizeMin, item.sizeMax)}}>+</div>
             </div>
         )
     }
@@ -102,7 +116,6 @@ class Recalculate extends React.Component {
     renderSlider(item) {
         return (
             <div className="digital-slider-wrapper">
-
                 <input className="slider" type="range" name={item.inputName}
                        value={(this.state && this.state[item.inputName]) || 0} min={item.sizeMin} max={item.sizeMax}
                        onChange={this.onChange}/>
@@ -127,7 +140,7 @@ class Recalculate extends React.Component {
         const right = evenOdd(index);
         const number = index <= 8 ? "0" + (index + 1) : index + 1;
         return (
-            <div ref={this.refRecalculate[index]} className="recalculate-box" key={index}>
+            <div className="recalculate-box" key={index} style={index !== this.state.active ? {display: "none"} : {}}>
                 <div className={"recalculate-box__row " + (right ? "row-reverse" : "")}>
                     <div className="recalculate-box__column-left">
                         <div className="recalculate-box__picture">
@@ -162,6 +175,24 @@ class Recalculate extends React.Component {
     };
 
     render() {
+        if (this.state.openAlertPopUp) {
+            return (
+                <div className="modal-envelope" id="modal-wowFirst">
+                    <div className="modal-envelope__close" onClick={this.closeLincModal}>
+                        <svg className="icon icon-close ">
+                            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#close"/>
+                        </svg>
+                    </div>
+                    <div className="modal-envelope__body">
+                        <p className="modal-envelope__title title-36 bold">{ru.enterTheseDetails}</p>
+                        <div className="modal-form__button-enter">
+                            <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium"}
+                                        text={ru.understandably} onClick={this.closeLincModal}/>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
         return (
             <div className="col-12">
                 {this.props.dataParams && this.props.dataParams.map((item, index) => {

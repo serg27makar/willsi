@@ -1,5 +1,4 @@
 import React from "react";
-import ButtonMain from "./shared/ButtonMain";
 import ru from "../access/lang/LangConstants";
 import {Redirect} from "react-router-dom";
 import {handlePageUp} from "../js/visualEffects";
@@ -28,7 +27,8 @@ class RecalculateFooter extends React.Component {
         return (
             <div className="col-12 recalculate-footer">
                 <div className="col-12">
-                    <ButtonMain btnClass={"recalculate__button text-22 medium button-main"} text={ru.Count} onClick={this.redirect}/>
+                    <button className={"recalculate__button text-22 medium button-main" + (this.props.disabled ? " disabled-btn" : "")}
+                            disabled={this.props.disabled} onClick={this.redirect}>{ru.Count}</button>
                 </div>
                 <div className="col-12">
                     <p className="recalculate__bottom-title title-36 uppercase color-aqua bold">{ru.YouAreAmazing}</p>

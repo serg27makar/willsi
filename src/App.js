@@ -39,6 +39,7 @@ import AlertModal from "./modals/AlertModal";
 import AddServiceModal from "./modals/AddServiceModal";
 import RegistrationStoreAdministrator from "./modals/RegistrationStoreAdministrator";
 import AddParamsModal from "./modals/AddParamsModal";
+import RecalculateModal from "./modals/RecalculateModal";
 
 const history = createBrowserHistory();
 
@@ -93,6 +94,8 @@ class App extends React.Component {
                 return (<RegistrationStoreAdministrator/>);
             case "addParamsModal":
                 return (<AddParamsModal/>);
+            case "recalculateModal":
+                return (<RecalculateModal/>);
             default:
                 return null
         }

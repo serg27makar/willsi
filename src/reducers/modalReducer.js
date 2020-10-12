@@ -2,6 +2,7 @@ const initialState = {
     modal: "",
     AlertText: "",
     updateEditorModal: false,
+    recalculateParams: [],
 };
 
 export default function modalReducer(state = initialState, action) {
@@ -21,6 +22,11 @@ export default function modalReducer(state = initialState, action) {
             return {
                 ...state,
                 updateEditorModal: action.updateEditorModal
+            };
+        case "RECALCULATE_PARAMS":
+            return {
+                ...state,
+                recalculateParams: action.recalculateParams
             };
         default:
             return state;

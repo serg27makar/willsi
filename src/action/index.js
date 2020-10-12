@@ -235,3 +235,10 @@ export const actionSelectedProductToEdit = (SelectedProductToEdit) => {
         SelectedProductToEdit: SelectedProductToEdit
     }
 };
+
+export const actionRecalculateParams = (recalculateParams) => {
+    return {
+        type: 'RECALCULATE_PARAMS',
+        recalculateParams: recalculateParams
+    }
+};

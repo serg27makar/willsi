@@ -2486,7 +2486,7 @@ input[type="checkbox"] + label:hover {
 }
 .welcome-data {
     width: 100%;
-    min-height: 31.25vw;
+    min-height: 22vw;
     height: auto;
     background: url("../img/content/welcome-data-bg.jpg") no-repeat center center;
     background-size: cover;
@@ -2495,8 +2495,8 @@ input[type="checkbox"] + label:hover {
     text-align: center;
 }
 .welcome-data-env__title {
-    padding-top: 6.25vw;
-    margin-bottom: 3.125vw;
+    padding-top: 2vw;
+    margin-bottom: 2vw;
     position: relative;
 }
 .welcome-data-env__title:before {
@@ -2590,7 +2590,7 @@ input[type="checkbox"] + label:hover {
     z-index: 999;
 }
 .recalculate-footer {
-    padding-top: 4vw;
+    padding-top: 2vw;
 }
 .recalculate-box__row {
     display: -webkit-box;
@@ -2727,8 +2727,8 @@ input[type="checkbox"] + label:hover {
     background: #47a1ba;
 }
 .recalculate__bottom-title {
-    padding-top: 5vw;
-    padding-bottom: 3.125vw;
+    padding-top: 2vw;
+    padding-bottom: 3vw;
     text-align: center;
     position: relative;
 }
@@ -4780,4 +4780,10 @@ div, p, span, h1, h2, h3, h4,
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+}
+.disabled-btn {
+    opacity: 0.5;
+}
+#modal-recalculate {
+    padding: 3.5vw 3.75vw 0 3.5vw;
 }

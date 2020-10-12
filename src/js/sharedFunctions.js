@@ -13,7 +13,13 @@ import {
     subCatalogListUnderwear,
     whomParams
 } from "../access/temporaryConstants";
-import {recalculateParamsWoman} from "../access/recalculateConstants";
+import {
+    recalculateParamsBoy,
+    recalculateParamsDog,
+    recalculateParamsGirl,
+    recalculateParamsMan,
+    recalculateParamsWoman
+} from "../access/recalculateConstants";
 
 export function validateEmail(email) {
     const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -117,4 +123,20 @@ export function validPostpone(checking, verifiable) {
         });
     }
     return result;
+}
+export function genderSwitcher(gender) {
+    switch (gender) {
+        case "woman":
+            return recalculateParamsWoman;
+        case "man":
+            return recalculateParamsMan;
+        case "boy":
+            return recalculateParamsBoy;
+        case "girl":
+            return recalculateParamsGirl;
+        case "dog":
+            return recalculateParamsDog;
+        default:
+            return recalculateParamsWoman;
+    }
 }
