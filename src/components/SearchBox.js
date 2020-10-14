@@ -2,10 +2,17 @@ import React from 'react';
 import ru from "../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
 import {Redirect} from "react-router-dom";
-import {actionAlertText, actionDataUpdate, actionOpenModal, actionUserID, actionUsersParameters} from "../action";
+import {
+    actionAlertText,
+    actionDataUpdate,
+    actionOpenModal,
+    actionRecalculateParams,
+    actionUserID,
+    actionUsersParameters
+} from "../action";
 import {connect} from "react-redux";
-import {postRegister, postUpdate} from "../utilite/axiosConnect";
-import {updateResult} from "../js/sharedFunctions";
+import {postRegister} from "../utilite/axiosConnect";
+import InputDataParams from "./InputDataParams";
 
 const inputArr = [
     {
@@ -40,18 +47,18 @@ class SearchBox extends React.Component {
             waist: 0,
             hips: 0,
             update: false,
+            renderInputDataParams: false,
         };
         this.searchClothes = this.searchClothes.bind(this);
         this.onChange = this.onChange.bind(this);
         this.newID = this.newID.bind(this);
+        this.genderSwitcher = this.genderSwitcher.bind(this);
+        this.registerUser = this.registerUser.bind(this);
     }
 
     componentDidMount() {}
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.UserID !== this.props.UserID && this.state.update) {
-            this.updateData();
-        }
         if (prevProps.UsersParameters !== this.props.UsersParameters && this.props.UsersParameters &&
             this.props.UsersParameters.length && this.props.UsersParameters[0].Parameters.length) {
             const params = this.props.UsersParameters[0].Parameters;
@@ -85,41 +92,21 @@ class SearchBox extends React.Component {
     }
 
     searchClothes() {
-        const {growth, shoulder, chest, waist, hips} = this.state;
-        if (growth && shoulder && chest && waist && hips) {
-            const Parameters = [];
-            inputArr.map((item, index) => {
-                const obj = {
-                    title: item.name,
-                    size: this.state[item.name]
-                };
-                Parameters.push(obj);
-                return index;
+        if (this.props.UserID) {
+            this.setState({
+                redirect: true,
             });
-            if (!this.props.UserID || this.props.UserID === "undefined") {
-                this.setState({update: true});
-                const userParameter = {
-                    UserName: "",
-                    Gender: "unisexs",
-                    Parameters
-                };
-                const user = {
-                    UserName: "",
-                    Email: "",
-                    Password: "",
-                    UsersParameters: [userParameter],
-                    Permission: this.props.Permission
-                };
-                this.props.usersParametersFunction(user.UsersParameters);
-                postRegister(user, this.newID)
-            } else {
-                this.setState({
-                    redirect: true,
-                });
-            }
         } else {
-            this.props.alertTextFunction(ru.enterTheseDetails);
-            this.props.openModalFunction("alertModal");
+            const {growth, shoulder, chest, waist, hips} = this.state;
+            if (growth && shoulder && chest && waist && hips) {
+                this.setState({
+                    ...this.state,
+                    renderInputDataParams: true,
+                });
+            } else {
+                this.props.alertTextFunction(ru.enterTheseDetails);
+                this.props.openModalFunction("alertModal");
+            }
         }
     }
 
@@ -127,22 +114,42 @@ class SearchBox extends React.Component {
         this.props.userIDFunction(res);
     }
 
-    updateData() {
+    registerUser(name, gender) {
+        const Parameters = [];
+        inputArr.map((item, index) => {
+            const obj = {
+                title: item.name,
+                size: this.state[item.name]
+            };
+            Parameters.push(obj);
+            return index;
+        });
         const userParameter = {
-            UserName: "User: " + this.props.UserID.slice(20),
-            Gender: "unisexs",
-            Parameters: this.props.UsersParameters[0].Parameters
+            UserName: name,
+            Gender: gender,
+            Parameters
         };
         const user = {
+            UserName: "",
+            Email: "",
+            Password: "",
             UsersParameters: [userParameter],
-            UserID: this.props.UserID
+            Permission: this.props.Permission
         };
-        postUpdate(user, updateResult);
         this.props.usersParametersFunction(user.UsersParameters);
-        this.props.dataUpdateFunction(!this.props.update);
+        postRegister(user, this.newID);
         this.setState({
             redirect: true,
-        })
+        });
+    }
+
+    genderSwitcher(gender) {}
+
+    renderInputDataParams() {
+        if (!this.state.renderInputDataParams) return null;
+        return (
+            <InputDataParams nextParams={this.registerUser} changeGender={this.genderSwitcher} searchBlock={true}/>
+        )
     }
 
     renderInput(item, index) {
@@ -173,6 +180,7 @@ class SearchBox extends React.Component {
                         <ButtonMain btnClass="button-main text-16" text={ru.pickUpClothes} onClick={this.searchClothes}/>
                     </form>
                 </div>
+                {this.renderInputDataParams()}
             </div>
         )
     };

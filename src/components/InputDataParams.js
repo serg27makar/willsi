@@ -37,7 +37,7 @@ class InputDataParams extends React.Component {
     }
 
     btnActive = (index) => {
-        const gender = whomParams[index].data
+        const gender = whomParams[index].data;
         this.setState({
             ...this.state,
             activeBtn: index,
@@ -59,7 +59,7 @@ class InputDataParams extends React.Component {
     }
 
     updateData() {
-        if (!this.props.UserID || this.props.UserID === "undefined") {
+        if ((!this.props.UserID || this.props.UserID === "undefined") && !this.props.searchBlock) {
             const user = {
                 UserName: "",
                 Email: "",
