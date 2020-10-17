@@ -40,6 +40,13 @@ class WelcomeMain extends React.Component {
         })
     }
 
+    renderUsersQuantity() {
+        const uQ = Number(this.state.usersQuantity) || 0;
+        return (
+            <span className="welcome-main-env__our-services-box text-18 medium">{uQ + 1014}</span>
+        )
+    }
+
     render() {
         if (this.state.redirect) {
             return(
@@ -67,7 +74,7 @@ class WelcomeMain extends React.Component {
                             <div className="welcome-main-env__our-services">
                                 <p className="welcome-main-env__our-services-text text-16 light">{ru.OurService}
                                     <br/>{ru.TookAdvantage}
-                                    <span className="welcome-main-env__our-services-box text-18 medium">{this.state.usersQuantity + 1014}</span>
+                                    {this.renderUsersQuantity()}
                                     <span className="welcome-main-env__our-services-client">{ru.client}</span>
                                 </p>
                             </div>
