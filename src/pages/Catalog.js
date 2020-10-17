@@ -63,6 +63,7 @@ class Catalog extends React.Component {
             prevProps.catalogName !== this.props.catalogName)
             && this.props.SearchParams && this.props.catalogName && this.state.firstTime) {
             this.setState({
+                ...this.state,
                 firstTime: false,
             });
         }
@@ -72,6 +73,7 @@ class Catalog extends React.Component {
         }
         if (prevProps.catalogName !== this.props.catalogName) {
             this.setState({
+                ...this.state,
                 subCatalog: "",
             });
         }
@@ -90,6 +92,7 @@ class Catalog extends React.Component {
         }
         if (prevProps.dataRedirect !== this.props.dataRedirect) {
             this.setState({
+                ...this.state,
                 redirect: this.props.dataRedirect,
             })
         }
