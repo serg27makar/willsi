@@ -18,12 +18,6 @@ class Recalculate extends React.Component {
         this.closeLincModal = this.closeLincModal.bind(this);
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {}
-
-    endInput() {
-        this.props.openModalFunction("");
-    }
-
     prevItem(index) {
         if (index === 0) {
             this.props.firstBlock();
@@ -43,7 +37,7 @@ class Recalculate extends React.Component {
             };
             this.props.params(params);
             if (index === (this.props.dataParams.length - 1)) {
-                this.endInput();
+                this.props.lastBlock(params);
             } else {
                 this.setState({
                     ...this.state,
