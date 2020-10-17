@@ -629,3 +629,22 @@ export const recalculateParamsDog = [
         sizeMax: 140,
     },
 ];
+
+export const Tshirts = [
+    0,1,2,4,10
+];
+export const Shirts = [
+    1,2,3,4,6
+];
+export const Pants = [
+    4,5,11
+];
+export const Underwear = [
+    11,12,13,15
+];
+export const Outerwear = [
+    7,8,9,10
+];
+export const Home = [
+    4,6,7,8,11
+];
