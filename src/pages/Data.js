@@ -145,7 +145,7 @@ class Data extends React.Component {
         return(
             <div className="content">
                 <DataHeader/>
-                <InputDataParams nextParams={this.nextParams} changeGender={this.genderSwitcher}/>
+                <InputDataParams nextParams={this.nextParams} changeGender={this.genderSwitcher} disabled={this.props.searchDisabled}/>
                 <RecalculateFooter disabled={!this.state.startParams}/>
             </div>
         )
@@ -155,6 +155,7 @@ class Data extends React.Component {
 function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
+        searchDisabled: state.catalogReducer.searchDisabled,
         UserID: state.userReducer.UserID,
         UserName: state.userReducer.UserName,
         Email: state.userReducer.Email,

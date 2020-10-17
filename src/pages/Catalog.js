@@ -1,5 +1,10 @@
 import React from 'react';
-import {actionCatalogName, actionDataRedirect, actionProductsArr, setActionAdminPanel} from "../action";
+import {
+    actionCatalogName,
+    actionDataRedirect,
+    actionProductsArr,
+    setActionAdminPanel
+} from "../action";
 import {connect} from "react-redux";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
 import {dropdownListArr, sidebarCatalogArr} from "../access/temporaryConstants";
@@ -88,7 +93,7 @@ class Catalog extends React.Component {
                 redirect: this.props.dataRedirect,
             })
         }
-        if (prevState.active !== this.state.active) {
+        if (prevState.active !== this.state.active && this.props.SearchParams) {
             this.updateProductsData();
         }
     }
@@ -236,6 +241,7 @@ function MapStateToProps(state) {
         dataRedirect: state.pageReducer.dataRedirect,
         catalog: state.catalogReducer.catalog,
         catalogName: state.catalogReducer.catalogName,
+        selectedSubCatalogID: state.catalogReducer.selectedSubCatalogID,
         SearchParams: state.productReducer.SearchParams,
     }
 }
