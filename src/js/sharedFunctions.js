@@ -14,11 +14,13 @@ import {
     whomParams
 } from "../access/temporaryConstants";
 import {
+    Home, Outerwear, Pants,
     recalculateParamsBoy,
     recalculateParamsDog,
     recalculateParamsGirl,
     recalculateParamsMan,
-    recalculateParamsWoman
+    recalculateParamsWoman,
+    Shirts, Tshirts, Underwear
 } from "../access/recalculateConstants";
 
 export function validateEmail(email) {
@@ -124,19 +126,53 @@ export function validPostpone(checking, verifiable) {
     }
     return result;
 }
-export function genderSwitcher(gender) {
+export function genderSwitcher(gender = "woman", subCatalog = "subCatalogListWomenTshirts") {
+    let catalog = [];
+    let recalculateSubCatalog = [];
+    let recalculateParams = [];
     switch (gender) {
         case "woman":
-            return recalculateParamsWoman;
+            catalog = recalculateParamsWoman;
+            break;
         case "man":
-            return recalculateParamsMan;
+            catalog = recalculateParamsMan;
+            break;
         case "boy":
-            return recalculateParamsBoy;
+            catalog = recalculateParamsBoy;
+            break;
         case "girl":
-            return recalculateParamsGirl;
+            catalog = recalculateParamsGirl;
+            break;
         case "dog":
-            return recalculateParamsDog;
-        default:
-            return recalculateParamsWoman;
+            catalog = recalculateParamsDog;
+            subCatalog = "";
+            break;
     }
+    if (subCatalog === "subCatalogListMenTshirts" || subCatalog === "subCatalogListWomenTshirts" ||
+        subCatalog === "subCatalogListBoyTshirts" || subCatalog === "subCatalogListGirlTshirts") {
+        recalculateSubCatalog = Tshirts;
+    } else if (subCatalog === "subCatalogListMenShirts" || subCatalog === "subCatalogListWomenShirts" ||
+        subCatalog === "subCatalogListBoyShirts" || subCatalog === "subCatalogListGirlShirts") {
+        recalculateSubCatalog = Shirts;
+    } else if (subCatalog === "subCatalogListMenPants" || subCatalog === "subCatalogListWomenPants" ||
+        subCatalog === "subCatalogListBoyPants" || subCatalog === "subCatalogListGirlPants") {
+        recalculateSubCatalog = Pants;
+    } else if (subCatalog === "subCatalogListMenUnderwear" || subCatalog === "subCatalogListWomenUnderwear" ||
+        subCatalog === "subCatalogListBoyUnderwear" || subCatalog === "subCatalogListGirlUnderwear") {
+        recalculateSubCatalog = Underwear;
+    } else if (subCatalog === "subCatalogListMenOuterwear" || subCatalog === "subCatalogListWomenOuterwear" ||
+        subCatalog === "subCatalogListBoyOuterwear" || subCatalog === "subCatalogListGirlOuterwear") {
+        recalculateSubCatalog = Outerwear;
+    } else if (subCatalog === "subCatalogListMenHome" || subCatalog === "subCatalogListWomenHome" ||
+        subCatalog === "subCatalogListBoyHome" || subCatalog === "subCatalogListGirlHome") {
+        recalculateSubCatalog = Home;
+    } else {
+        recalculateParams = catalog;
+    }
+    catalog.map((item, index) => {
+        if (recalculateSubCatalog.indexOf(index) !== -1) {
+            recalculateParams.push(item);
+        }
+    });
+    return recalculateParams;
 }
