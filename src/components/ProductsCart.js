@@ -29,7 +29,9 @@ class ProductsCart extends React.Component {
     }
 
     detailsParameters(item) {
-        if (item && item.length) return item[0].Price;
+        if (typeof item === "object") {
+            return item.Price;
+        }
     }
 
     addPostpone(item) {
