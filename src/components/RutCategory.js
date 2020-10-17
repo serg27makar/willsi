@@ -1,5 +1,5 @@
 import React from "react";
-import {actionCatalogName, actionOpenCatalog} from "../action";
+import {actionCatalogName, actionOpenCatalog, actionSelectedSubCatalogID} from "../action";
 import {connect} from "react-redux";
 import LangCat from "../access/lang/CatalogLangConstants";
 
@@ -13,26 +13,46 @@ class RutCategory extends React.Component {
         };
         this.closeOpen = this.closeOpen.bind(this);
         this.genderPermission = this.genderPermission.bind(this);
+        this.chooseListItem = this.chooseListItem.bind(this);
     }
 
     componentDidMount() {
+        if (this.props.catalog || this.props.catalog === 0) {
+            this.chooseListItem(this.props.selectedSubCatalogID);
+        }
         if (this.props.UsersParameters) {
             this.genderPermission();
         }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.catalog !== this.props.catalog)
+        if (prevProps.catalog !== this.props.catalog) {
+            this.props.selectedSubCatalogIDFunction(-1);
             this.setState({
                 ...this.state,
                 isOpen: this.props.index === this.props.catalog,
                 selected: -1,
             });
+        }
+        if (prevProps.selectedSubCatalogID !== this.props.selectedSubCatalogID ||
+            prevState.selected !== this.props.selectedSubCatalogID) {
+            if (this.props.index === this.props.catalog) {
+                this.setState({
+                    ...this.state,
+                    isOpen: true,
+                    selected: this.props.selectedSubCatalogID,
+                });
+            }
+
+        }
         if (prevProps.UsersParameters !== this.props.UsersParameters ||
-            prevProps.HeaderUser !== this.props.HeaderUser) this.genderPermission();
+            prevProps.HeaderUser !== this.props.HeaderUser) {
+            this.genderPermission();
+            this.props.openCatalogFunction(-1);
+        }
     }
 
-    closeOpen = () => {
+    closeOpen() {
         this.props.openCatalogFunction(this.props.index);
         if (this.props.index === this.props.catalog) {
             this.setState({
@@ -43,14 +63,13 @@ class RutCategory extends React.Component {
     };
 
     chooseListItem(item, index) {
-        if (this.state.selected === index) {
-            index = -1
+        if (index !== undefined) {
+            if (this.state.selected === index) {
+                index = -1
+            }
+            this.props.selectedSubCatalogIDFunction(index);
+            this.props.selectItem(index);
         }
-        this.setState({
-            ...this.state,
-            selected: index
-        });
-        this.props.selectItem(index);
     }
 
     dropdownListItem = (item, index) => {
@@ -95,10 +114,12 @@ class RutCategory extends React.Component {
     setPermission(dropdownTitle, genderPermission) {
         if (this.props.disabledFalse) {
             this.setState({
+                ...this.state,
                 genderPermission: true
             });
         } else if (genderPermission && dropdownTitle) {
             this.setState({
+                ...this.state,
                 genderPermission
             });
             this.props.catalogNameFunction(dropdownTitle);
@@ -107,6 +128,7 @@ class RutCategory extends React.Component {
 
     genderPermission() {
         this.setState({
+            ...this.state,
             genderPermission: false,
         });
         if (this.props.UsersParameters && this.props.UsersParameters.length > 0) {
@@ -155,6 +177,7 @@ function MapStateToProps(state) {
         Gender: state.userReducer.Gender,
         UsersParameters: state.userReducer.UsersParameters,
         HeaderUser: state.userReducer.HeaderUser,
+        selectedSubCatalogID: state.catalogReducer.selectedSubCatalogID,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -164,6 +187,9 @@ const mapDispatchToProps = dispatch => {
         },
         catalogNameFunction: (catalogName) => {
             dispatch(actionCatalogName(catalogName))
+        },
+        selectedSubCatalogIDFunction: (selectedSubCatalogID) => {
+            dispatch(actionSelectedSubCatalogID(selectedSubCatalogID))
         },
     }
 };

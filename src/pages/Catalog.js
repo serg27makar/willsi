@@ -53,6 +53,9 @@ class Catalog extends React.Component {
         }, 50);
         this.functionRedirect();
         window.addEventListener('scroll', this.onScrollList);
+        if (this.props.selectedSubCatalogID !== -1) {
+            this.selectedSubCatalog(this.props.selectedSubCatalogID);
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {

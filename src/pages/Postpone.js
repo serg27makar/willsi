@@ -1,5 +1,5 @@
 import React from 'react';
-import {actionDataRedirect, setActionAdminPanel} from "../action";
+import {actionDataRedirect, actionOpenCatalog, actionSelectedSubCatalogID, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
 import CatalogSidebar from "../components/CatalogSidebar";
@@ -31,6 +31,7 @@ class Postpone extends React.Component {
             },
         };
         this.dataResult = this.dataResult.bind(this);
+        this.selectedSubCatalog = this.selectedSubCatalog.bind(this);
     }
 
     componentDidMount() {
@@ -39,6 +40,8 @@ class Postpone extends React.Component {
             to: "/",
         });
         this.props.setActionAdminPanelFunction("Postpone");
+        this.props.selectedSubCatalogIDFunction(-1);
+        this.props.openCatalogFunction(-1);
         setTimeout(() => {
             handlePageUp();
         }, 50);
@@ -70,6 +73,14 @@ class Postpone extends React.Component {
         }
     }
 
+    selectedSubCatalog(data) {
+        this.props.selectedSubCatalogIDFunction(data);
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/catalog",
+        });
+    }
+
     dataResult(data) {
         if (data && data.length > 0) {
             this.setState({
@@ -97,7 +108,10 @@ class Postpone extends React.Component {
                 <div className="catalog-middle container">
                     <div className="footer-row-wrap">
                         <div className="catalog-sidebar">
-                            <RutCatalogSidebar Categories={dropdownListArr}/>
+                            <RutCatalogSidebar
+                                selectedSubCatalog={this.selectedSubCatalog}
+                                Categories={dropdownListArr}
+                            />
                             <CatalogSidebar Categories={sidebarCatalogArr}/>
                         </div>
                         <div className="col-12">
@@ -126,6 +140,12 @@ const mapDispatchToProps = dispatch => {
         },
         dataRedirectFunction: (dataRedirect) => {
             dispatch(actionDataRedirect(dataRedirect))
+        },
+        selectedSubCatalogIDFunction: (selectedSubCatalogID) => {
+            dispatch(actionSelectedSubCatalogID(selectedSubCatalogID))
+        },
+        openCatalogFunction: (catalog) => {
+            dispatch(actionOpenCatalog(catalog))
         },
     }
 };
