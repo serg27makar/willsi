@@ -1,5 +1,6 @@
 import React from "react";
-import {actionOpenModal, actionUsersParameters} from "../action";
+import {actionHeaderUser, actionOpenModal,
+    actionSearchDisabled, actionUsersParameters} from "../action";
 import {connect} from "react-redux";
 import Recalculate from "../components/Recalculate";
 import {postUpdate} from "../utilite/axiosConnect";
@@ -15,7 +16,11 @@ class RecalculateModal extends React.Component {
             params: [],
             newUser: 0,
             isChange: false,
-        }
+            lastBlock: false,
+        };
+        this.closeLincModal = this.closeLincModal.bind(this);
+        this.addParams = this.addParams.bind(this);
+        this.lastBlock = this.lastBlock.bind(this);
     }
 
     componentDidMount() {
@@ -37,6 +42,10 @@ class RecalculateModal extends React.Component {
             this.isChanged();
             this.updateParams();
         }
+        if (prevState.lastBlock !== this.state.lastBlock && this.state.lastBlock) {
+            this.props.headerUserFunction(this.state.newUser);
+            this.closeLincModal();
+        }
     }
 
     closeLincModal() {
@@ -49,7 +58,12 @@ class RecalculateModal extends React.Component {
         })
     }
 
-    addParams = (params) => {
+    lastBlock(params) {
+        this.props.searchDisabledFunction(true);
+        this.addParams(params, true);
+    }
+
+    addParams(params, last = false) {
         let paramsUpdate = false;
         let currentParams = [];
         this.state.params.map((item, index) => {
@@ -59,6 +73,7 @@ class RecalculateModal extends React.Component {
                 currentParams = this.state.params;
                 this.setState({
                     ...this.state,
+                    lastBlock: last,
                     params: currentParams,
                 });
             }
@@ -69,7 +84,7 @@ class RecalculateModal extends React.Component {
             this.setState({
                 ...this.state,
                 params: currentParams,
-
+                lastBlock: last,
             });
         }
         const UsersParameters = this.props.UsersParameters;
@@ -111,6 +126,7 @@ class RecalculateModal extends React.Component {
                 <Recalculate dataParams={this.state.recalculateParams}
                              startParams={this.state.startParams}
                              firstBlock={this.closeLincModal}
+                             lastBlock={this.lastBlock}
                              params={this.addParams}
                 />
             </div>
@@ -123,6 +139,7 @@ function MapStateToProps(state) {
     return {
         modal: state.modalReducer.modal,
         recalculateParams: state.modalReducer.recalculateParams,
+        UserID: state.userReducer.UserID,
         UsersParameters: state.userReducer.UsersParameters,
         NewUser: state.userReducer.NewUser,
     }
@@ -134,6 +151,12 @@ const mapDispatchToProps = dispatch => {
         },
         usersParametersFunction: (UsersParameters) => {
             dispatch(actionUsersParameters(UsersParameters))
+        },
+        searchDisabledFunction: (searchDisabled) => {
+            dispatch(actionSearchDisabled(searchDisabled))
+        },
+        headerUserFunction: (HeaderUser) => {
+            dispatch(actionHeaderUser(HeaderUser))
         },
     }
 };

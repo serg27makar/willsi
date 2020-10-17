@@ -249,3 +249,17 @@ export const actionNewUser = (NewUser) => {
         NewUser: NewUser
     }
 };
+
+export const actionSearchDisabled = (searchDisabled) => {
+    return {
+        type: 'SEARCH_DISABLED',
+        searchDisabled: searchDisabled
+    }
+};
+
+export const actionSelectedSubCatalogID = (selectedSubCatalogID) => {
+    return {
+        type: 'SELECTED_SUB_CATALOG_ID',
+        selectedSubCatalogID: selectedSubCatalogID
+    }
+};

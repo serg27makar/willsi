@@ -109,8 +109,9 @@ class InputDataParams extends React.Component {
                                            value={this.state.name || ""}
                                            onChange={this.onChange}
                                     />
-                                    <ButtonMain btnClass={"recalculate-envelope__button-next text-16 medium"} text={ru.Next}
-                                                onClick={this.updateData}/>
+                                    <button className={"recalculate-envelope__button-next text-16 medium" + (this.props.disabled ? " disabled-btn" : "")}
+                                            disabled={this.props.disabled}
+                                            onClick={this.updateData}>{ru.Next}</button>
                                 </div>
                             </div>
                         </div>

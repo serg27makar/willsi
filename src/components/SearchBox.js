@@ -6,7 +6,6 @@ import {
     actionAlertText,
     actionDataUpdate,
     actionOpenModal,
-    actionRecalculateParams,
     actionUserID,
     actionUsersParameters
 } from "../action";
