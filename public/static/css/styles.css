@@ -2408,6 +2408,13 @@ input[type="checkbox"] + label:hover {
 .tabs-wrapper__show-tabs:not(:first-child) {
     display: none;
 }
+button.size-tabs-wrapper-button.tabs-active {
+    border: 2px solid black;
+    border-radius: 10px;
+    border-bottom: none;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
 .tabs-active .tabs-wrapper__text {
     position: relative;
     color: #50abbd;

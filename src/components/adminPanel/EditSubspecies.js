@@ -3,17 +3,22 @@ import {isEmptyObject} from "../../js/sharedFunctions";
 import {connect} from "react-redux";
 import {getParametersToId} from "../../utilite/axiosConnect";
 import EditSubspecieTabl from "./EditSubspecieTabl";
+import {subCatalogListGeneral} from "../../access/temporaryConstants";
+
+const allSize = [
+    "xs", "s", "m", "l", "xl", "xxl", "xxxl"
+];
 
 class EditSubspecies extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             PropertyArr: [],
-            numberTab: 0,
+            nameTab: 0,
             active: "tabs-active",
         };
         this.parametersResult = this.parametersResult.bind(this);
-        this.cancelSave = this.cancelSave.bind(this);
+        this.updateDataParameters = this.updateDataParameters.bind(this);
     }
 
     componentDidMount() {
@@ -30,49 +35,70 @@ class EditSubspecies extends React.Component {
 
     parametersResult(data) {
         this.setState({
+            ...this.state,
             PropertyArr: data,
         });
     }
 
-    activeTab = (index) => {
+    updateDataParameters() {
+        if (this.props.item && this.props.item._id) {
+            getParametersToId(this.props.item._id, this.parametersResult);
+        } else {
+            this.props.isSaveParams()
+        }
+    }
+
+    activeTab(index) {
         this.setState({
             ...this.state,
-            numberTab: index,
+            nameTab: index,
         })
     };
 
-    cancelSave() {
-        this.props.cancelSave();
-    }
-
     renderTabsButtons = () => {
-        return (
-            <div className="size-tabs-wrapper-button">
-                {this.state.PropertyArr && this.state.PropertyArr.map((item, index) => {
-                    return (
-                        <button key={index}
-                                className={"size-tabs-wrapper-button text-20 uppercase medium " + (this.state.numberTab === index ? this.state.active : "" )}
-                                onClick={() => {this.activeTab(index)}}
-                        >
-                            <span className="tabs-wrapper__text">{item.SizeStandard}</span>
-                        </button>
-                    )
-                })}
-            </div>
-        )
+        const subCatalog = (this.props.item && this.props.item.subCatalog) || this.props.subCatalog;
+        if (subCatalogListGeneral.indexOf(subCatalog) === -1) {
+            return (
+                <div className="size-tabs-wrapper-button">
+                    {allSize && allSize.map((item, index) => {
+                        return (
+                            <button key={index}
+                                    className={"size-tabs-wrapper-button text-20 uppercase medium " + (this.state.nameTab === index ? this.state.active : "" )}
+                                    onClick={() => {this.activeTab(index)}}
+                            >
+                                <span className="tabs-wrapper__text">{item}</span>
+                            </button>
+                        )
+                    })}
+                </div>
+            )
+        }
+        return null;
     };
 
     renderTabsContent = () => {
         return (
             <div className="tabs-wrapper__content-info">
                 <div className="tabs-wrapper__show-tabs" >
-                    {this.state.PropertyArr && this.state.PropertyArr.map((item, index) => {
-                        if (this.state.numberTab === index) {
+                    {allSize && allSize.map((item, index) => {
+                        let tabItem = {};
+                        this.state.PropertyArr.map((i) => {
+                            if (i.SizeStandard === item) {
+                                tabItem = i;
+                            }
+                            return tabItem;
+                        });
+                        if (this.state.nameTab === index) {
+                            const topCatalog = (this.props.item && this.props.item.topCatalog) || this.props.catalog;
+                            const subCatalog = (this.props.item && this.props.item.subCatalog) || this.props.subCatalog;
                             return (
-                                <EditSubspecieTabl key={index} item={item}
-                                                   topCatalog={this.props.item.topCatalog}
-                                                   subCatalog={this.props.item.subCatalog}
-                                                   cancelSave={this.cancelSave}
+                                <EditSubspecieTabl key={index} item={tabItem}
+                                                   topCatalog={topCatalog}
+                                                   subCatalog={subCatalog}
+                                                   sizeStandard={item}
+                                                   cancelSave={this.props.cancelSave}
+                                                   productID={this.props.item && this.props.item._id}
+                                                   updateData={this.updateDataParameters}
                                 />
                             )
                         }

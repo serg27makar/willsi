@@ -6,12 +6,18 @@ import {
     ProductManufacturerInputList,
     subCatalogListGeneral,
 } from "../../access/temporaryConstants";
-import {updateResult} from "../../js/sharedFunctions";
+import {isEmptyObject, updateResult, validParamList} from "../../js/sharedFunctions";
 import ButtonMain from "../shared/ButtonMain";
 import ru from "../../access/lang/LangConstants";
-import {actionAlertText, actionOpenModal, actionSaveParams, actionSubspecies} from "../../action";
+import {
+    actionAlertText,
+    actionOpenModal,
+    actionSaveParams,
+    actionSubspecies,
+    actionUpdateSubspecies
+} from "../../action";
 import {connect} from "react-redux";
-import {parametersUpdate} from "../../utilite/axiosConnect";
+import {parametersUpdate, postAddedProductParameters} from "../../utilite/axiosConnect";
 
 class EditSubspecieTabl extends React.Component {
     constructor(props) {
@@ -39,20 +45,21 @@ class EditSubspecieTabl extends React.Component {
         this.sizeDataChange = this.sizeDataChange.bind(this);
         this.dataChange = this.dataChange.bind(this);
         this.saveSubspecies = this.saveSubspecies.bind(this);
-        this.dataChangeSizeStandard = this.dataChangeSizeStandard.bind(this);
         this.setParamsList = this.setParamsList.bind(this);
-        this.cancelSave = this.cancelSave.bind(this);
     }
 
     componentDidMount() {
-        if (this.props.item) {
+        if (!isEmptyObject(this.props.item)) {
             this.fillingDataParameters();
         }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.item !== this.props.item && this.props.item) {
+        if (prevProps.item !== this.props.item && !isEmptyObject(this.props.item)) {
             this.fillingDataParameters();
+        }
+        if (prevProps.updateSubspecies !== this.props.updateSubspecies) {
+            this.props.updateData();
         }
         if (prevProps.SaveParams !== this.props.SaveParams) {
             if (this.props.SaveParams) {
@@ -90,7 +97,6 @@ class EditSubspecieTabl extends React.Component {
             size: this.props.item.size,
             VendorCode: this.props.item.VendorCode,
             Price: this.props.item.Price,
-            SizeStandard: this.props.item.SizeStandard,
         })
     }
 
@@ -121,18 +127,6 @@ class EditSubspecieTabl extends React.Component {
         })
     }
 
-    dataChangeSizeStandard(e) {
-        const value = e.target.value;
-        this.setState({
-            ...this.state,
-            SizeStandard: value,
-        })
-    }
-
-    cancelSave() {
-        this.props.cancelSave();
-    }
-
     saveSubspecies() {
         const size = this.state.size;
         const color =[];
@@ -143,18 +137,31 @@ class EditSubspecieTabl extends React.Component {
                 }
             }
         }
-        const parameters = {
-            ParameterID: this.props.item._id,
+        let parameters = {
             color,
             size,
-            SizeStandard: this.state.SizeStandard,
+            SizeStandard: this.props.sizeStandard,
             VendorCode: this.state.VendorCode,
             Price: this.state.Price,
         };
         if (color.length > 0 && this.state.VendorCode &&
-            this.state.Price && ((this.state.SizeStandard && this.validParamList(size)) ||
-                (subCatalogListGeneral.indexOf(this.props.subCatalog) !== -1))) {
-            parametersUpdate(parameters, updateResult)
+            this.state.Price && (validParamList(this.state.paramList, size)  || (subCatalogListGeneral.indexOf(this.props.subCatalog) !== -1))) {
+            if (this.props.item && this.props.item._id && this.props.item._id.length >= 12) {
+                parameters = {
+                    ...parameters,
+                    ParameterID: this.props.item._id,
+                };
+                parametersUpdate(parameters, updateResult);
+            } else if (this.props.productID) {
+                parameters = {
+                    ...parameters,
+                    ProductId: this.props.productID,
+                };
+                postAddedProductParameters(parameters, updateResult);
+            } else {
+                this.props.subspeciesFunction(parameters);
+            }
+            this.props.updateSubspeciesFunction(!this.props.updateSubspecies)
         } else {
             this.props.alertTextFunction(ru.enterTheseDetails);
             this.props.openModalFunction("alertModal");
@@ -168,40 +175,32 @@ class EditSubspecieTabl extends React.Component {
         });
     }
 
-    validParamList(size) {
-        let res = true;
-        this.state.paramList.map((item) => {
-            if (size[item] && res) {
-                //    Do nothing
-            } else {res = false;}
-            return res;
-        });
-        return res;
-    }
-
-    renderSizeBar() {
-        return (
-            <div>
+    renderMainSize() {
+        if (subCatalogListGeneral.indexOf(this.props.subCatalog) === -1) {
+            return (
                 <MainEnvelopeSize sizeDataChange={this.sizeDataChange}
                                   sizeData={this.state.size}
                                   catalog={this.props.topCatalog}
                                   paramsList={this.setParamsList}
                                   subCatalog={this.props.subCatalog}/>
-                <div className="size-standard-block-btn">
-                    <div className="size-standard-block">
-                        <span className="size-standard-text">{ru.SizeStandard}</span>
-                        <input className="size-standard-input" type="text"
-                               placeholder={"XXL"}
-                               name={"SizeStandard"}
-                               value={this.state.SizeStandard || ""}
-                               onChange={this.dataChangeSizeStandard}
-                        />
+            )
+        }
+        return null;
+    }
+
+    renderSizeBar() {
+        if (this.props.item && this.props.item._id && this.props.item._id.length >= 12) {
+            return (
+                <div>
+                    {this.renderMainSize()}
+                    <div className="size-standard-block-btn">
+                        <ButtonMain btnClass="button-main text-16" text={ru.SaveChange} onClick={this.saveSubspecies}/>
+                        <ButtonMain btnClass="button-white text-16" text={ru.close} onClick={this.props.cancelSave}/>
                     </div>
-                    <ButtonMain btnClass="button-main text-16" text={ru.SaveChange} onClick={this.saveSubspecies}/>
-                    <ButtonMain btnClass="button-white text-16" text={ru.close} onClick={this.cancelSave}/>
                 </div>
-            </div>
-        )
+            )
+        }
+        return null;
     }
 
     render() {
@@ -225,14 +224,17 @@ class EditSubspecieTabl extends React.Component {
 
 function MapStateToProps(state) {
     return {
-        Subspecies: state.productReducer.Subspecies,
         SaveParams: state.productReducer.SaveParams,
+        updateSubspecies: state.productReducer.updateSubspecies,
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         subspeciesFunction: (Subspecies) => {
             dispatch(actionSubspecies(Subspecies))
+        },
+        updateSubspeciesFunction: (updateSubspecies) => {
+            dispatch(actionUpdateSubspecies(updateSubspecies))
         },
         openModalFunction: (modal) => {
             dispatch(actionOpenModal(modal))

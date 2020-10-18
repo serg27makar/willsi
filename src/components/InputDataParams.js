@@ -1,5 +1,4 @@
 import React from "react";
-import ButtonMain from "./shared/ButtonMain";
 import ru from "../access/lang/LangConstants";
 import {actionPermission, actionUserID, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";

@@ -8,8 +8,12 @@ import ProductTypeDescription from "./ProductTypeDescription";
 import ButtonMain from "../shared/ButtonMain";
 import ru from "../../access/lang/LangConstants";
 import {postAddedProduct, postAddedProductParameters, postUpdateProduct} from "../../utilite/axiosConnect";
-import {actionAlertText, actionOpenModal, actionSaveParams} from "../../action";
-import Subspecies from "./Subspecies";
+import {
+    actionAlertText,
+    actionOpenModal,
+    actionSaveParams,
+    actionSubspecies
+} from "../../action";
 import {isEmptyObject, updateResult} from "../../js/sharedFunctions";
 import EditSubspecies from "./EditSubspecies";
 
@@ -209,23 +213,15 @@ class AdminMainSite extends React.Component {
         this.props.closeMainSite(this.props.storeID);
     }
 
-    renderSubspecies() {
-        if (isEmptyObject(this.props.item)) {
+    renderEditSubspecies() {
             return (
-                <Subspecies catalog={this.state.headerItem}
-                            subCatalog={this.state.headerSubItem}
-                            isSaveParams={this.saveParameters}
+                <EditSubspecies item={this.props.item}
+                                cancelSave={this.cancelSave}
+                                catalog={this.state.headerItem}
+                                subCatalog={this.state.headerSubItem}
+                                isSaveParams={this.saveParameters}
                 />
             )
-        }
-    }
-
-    renderEditSubspecies() {
-        if (!isEmptyObject(this.props.item)) {
-            return (
-                <EditSubspecies item={this.props.item} cancelSave={this.cancelSave}/>
-            )
-        }
     }
 
     renderBtnSave() {
@@ -267,9 +263,8 @@ class AdminMainSite extends React.Component {
                 <ProductTypeDescription item={this.state} dataChange={this.productDescription}/>
                 <ProductLinkInput item={this.state} dataChange={this.productDescription}/>
                 <ProductDescription item={this.state} dataChange={this.productDescription}/>
-                {this.renderSubspecies()}
-                {this.renderBtnSave()}
                 {this.renderEditSubspecies()}
+                {this.renderBtnSave()}
             </div>
         )
     }
@@ -291,6 +286,9 @@ const mapDispatchToProps = dispatch => {
         },
         saveParamsFunction: (SaveParams) => {
             dispatch(actionSaveParams(SaveParams))
+        },
+        subspeciesFunction: (Subspecies) => {
+            dispatch(actionSubspecies(Subspecies))
         },
     }
 };

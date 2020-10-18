@@ -7,6 +7,7 @@ const initialState = {
     UpdateSearchParams: false,
     ShopEditParams: [],
     SelectedProductToEdit: {},
+    updateSubspecies: false,
 };
 
 export default function productReducer(state = initialState, action) {
@@ -61,6 +62,16 @@ export default function productReducer(state = initialState, action) {
             return {
                 ...state,
                 SelectedProductToEdit: action.SelectedProductToEdit
+            };
+        case "SELECTED_PRODUCT_TO_EDIT_ID":
+            return {
+                ...state,
+                SelectedProductToEditID: action.SelectedProductToEditID
+            };
+        case "UPDATE_SUBSPECIES":
+            return {
+                ...state,
+                updateSubspecies: action.updateSubspecies
             };
         default:
             return state;

@@ -36,6 +36,17 @@ export function updateResult(res) {
     // console.log(res);
 }
 
+export function validParamList(paramList, size) {
+    let res = true;
+    paramList.map((item) => {
+        if (size[item] && res) {
+            //    Do nothing
+        } else {res = false;}
+        return res;
+    });
+    return res;
+}
+
 export function activeBtn(gen) {
     let activeBtn = -1;
     whomParams.map((item, index) => {
@@ -147,6 +158,8 @@ export function genderSwitcher(gender = "woman", subCatalog = "subCatalogListWom
             catalog = recalculateParamsDog;
             subCatalog = "";
             break;
+        default :
+            catalog = recalculateParamsWoman;
     }
     if (subCatalog === "subCatalogListMenTshirts" || subCatalog === "subCatalogListWomenTshirts" ||
         subCatalog === "subCatalogListBoyTshirts" || subCatalog === "subCatalogListGirlTshirts") {
@@ -173,6 +186,7 @@ export function genderSwitcher(gender = "woman", subCatalog = "subCatalogListWom
         if (recalculateSubCatalog.indexOf(index) !== -1) {
             recalculateParams.push(item);
         }
+        return recalculateParams;
     });
     return recalculateParams;
 }

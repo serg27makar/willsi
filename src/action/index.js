@@ -236,6 +236,13 @@ export const actionSelectedProductToEdit = (SelectedProductToEdit) => {
     }
 };
 
+export const actionSelectedProductToEditID = (SelectedProductToEditID) => {
+    return {
+        type: 'SELECTED_PRODUCT_TO_EDIT_ID',
+        SelectedProductToEditID: SelectedProductToEditID
+    }
+};
+
 export const actionRecalculateParams = (recalculateParams) => {
     return {
         type: 'RECALCULATE_PARAMS',
@@ -261,5 +268,12 @@ export const actionSelectedSubCatalogID = (selectedSubCatalogID) => {
     return {
         type: 'SELECTED_SUB_CATALOG_ID',
         selectedSubCatalogID: selectedSubCatalogID
+    }
+};
+
+export const actionUpdateSubspecies = (updateSubspecies) => {
+    return {
+        type: 'UPDATE_SUBSPECIES',
+        updateSubspecies: updateSubspecies
     }
 };
