@@ -1,9 +1,12 @@
 import React from "react";
-import {actionHeaderUser, actionOpenModal,
-    actionSearchDisabled, actionUsersParameters} from "../action";
+import {
+    actionEmail,
+    actionHeaderUser, actionOpenModal,
+    actionSearchDisabled, actionUserName, actionUsersParameters
+} from "../action";
 import {connect} from "react-redux";
 import Recalculate from "../components/Recalculate";
-import {postUpdate} from "../utilite/axiosConnect";
+import {getUserData, postUpdate} from "../utilite/axiosConnect";
 import {updateResult} from "../js/sharedFunctions";
 
 class RecalculateModal extends React.Component {
@@ -21,6 +24,7 @@ class RecalculateModal extends React.Component {
         this.closeLincModal = this.closeLincModal.bind(this);
         this.addParams = this.addParams.bind(this);
         this.lastBlock = this.lastBlock.bind(this);
+        this.result = this.result.bind(this);
     }
 
     componentDidMount() {
@@ -44,9 +48,18 @@ class RecalculateModal extends React.Component {
         }
         if (prevState.lastBlock !== this.state.lastBlock && this.state.lastBlock) {
             this.props.headerUserFunction(this.state.newUser);
-            this.closeLincModal();
+            getUserData(this.result);
         }
     }
+
+    result(res) {
+        if (res) {
+            this.props.userNameFunction(res.UserName);
+            this.props.emailFunction(res.Email);
+            this.props.usersParametersFunction(res.UsersParameters);
+        }
+        this.closeLincModal();
+    };
 
     closeLincModal() {
         this.props.openModalFunction("");
@@ -157,6 +170,12 @@ const mapDispatchToProps = dispatch => {
         },
         headerUserFunction: (HeaderUser) => {
             dispatch(actionHeaderUser(HeaderUser))
+        },
+        userNameFunction: (UserName) => {
+            dispatch(actionUserName(UserName))
+        },
+        emailFunction: (Email) => {
+            dispatch(actionEmail(Email))
         },
     }
 };

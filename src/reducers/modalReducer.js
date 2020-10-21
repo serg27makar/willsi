@@ -3,6 +3,7 @@ const initialState = {
     AlertText: "",
     updateEditorModal: false,
     recalculateParams: [],
+    alertModalCloseEvent: false,
 };
 
 export default function modalReducer(state = initialState, action) {
@@ -27,6 +28,11 @@ export default function modalReducer(state = initialState, action) {
             return {
                 ...state,
                 recalculateParams: action.recalculateParams
+            };
+        case "ALERT_MODAL_CLOSE_EVENT":
+            return {
+                ...state,
+                alertModalCloseEvent: action.alertModalCloseEvent
             };
         default:
             return state;

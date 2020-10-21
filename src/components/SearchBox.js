@@ -60,20 +60,28 @@ class SearchBox extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.UsersParameters !== this.props.UsersParameters && this.props.UsersParameters &&
             this.props.UsersParameters.length && this.props.UsersParameters[0].Parameters.length) {
-            const params = this.props.UsersParameters[0].Parameters;
-            const growth = params.find(item => item.title === "growth").size;
-            const shoulder = params.find(item => item.title === "shoulder").size;
-            const chest = params.find(item => item.title === "chest").size;
-            const waist = params.find(item => item.title === "waist").size;
-            const hips = params.find(item => item.title === "hips").size;
+            let params = this.props.UsersParameters[0].Parameters;
+            let growth = "";
+            let shoulder = "";
+            let chest = "";
+            let waist = "";
+            let hips = "";
+            params.map((item, index) => {
+                 growth = item.title === "growth" ? item.size : growth;
+                 shoulder = item.title === "shoulder" ? item.size : shoulder;
+                 chest = item.title === "chest" ? item.size : chest;
+                 waist = item.title === "waist" ? item.size : waist;
+                 hips = item.title === "hips" ? item.size : hips;
+            });
+
             if (growth && shoulder && chest && waist && hips) {
                 this.setState({
                     ...this.state,
-                    growth: params.find(item => item.title === "growth").size,
-                    shoulder: params.find(item => item.title === "shoulder").size,
-                    chest: params.find(item => item.title === "chest").size,
-                    waist: params.find(item => item.title === "waist").size,
-                    hips: params.find(item => item.title === "hips").size,
+                    growth,
+                    shoulder,
+                    chest,
+                    waist,
+                    hips,
                 })
             }
         }

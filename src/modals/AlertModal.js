@@ -1,6 +1,6 @@
 import React from "react";
 import ButtonMain from "../components/shared/ButtonMain";
-import {actionAlertText, actionOpenModal} from "../action";
+import {actionAlertModalCloseEvent, actionAlertText, actionOpenModal} from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
 
@@ -9,6 +9,7 @@ class AlertModal extends React.Component {
     closeLincModal = () => {
         this.props.alertTextFunction("");
         this.props.openModalFunction("");
+        this.props.alertModalCloseEventFunction(!this.props.alertModalCloseEvent);
     };
 
     render() {
@@ -36,6 +37,7 @@ function MapStateToProps(state) {
     return {
         modal: state.modalReducer.modal,
         AlertText: state.modalReducer.AlertText,
+        alertModalCloseEvent: state.modalReducer.alertModalCloseEvent,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -45,6 +47,9 @@ const mapDispatchToProps = dispatch => {
         },
         alertTextFunction: (text) => {
             dispatch(actionAlertText(text))
+        },
+        alertModalCloseEventFunction: (alertModalCloseEvent) => {
+            dispatch(actionAlertModalCloseEvent(alertModalCloseEvent))
         },
     }
 };

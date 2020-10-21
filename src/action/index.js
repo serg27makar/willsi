@@ -277,3 +277,10 @@ export const actionUpdateSubspecies = (updateSubspecies) => {
         updateSubspecies: updateSubspecies
     }
 };
+
+export const actionAlertModalCloseEvent = (alertModalCloseEvent) => {
+    return {
+        type: 'ALERT_MODAL_CLOSE_EVENT',
+        alertModalCloseEvent: alertModalCloseEvent
+    }
+};

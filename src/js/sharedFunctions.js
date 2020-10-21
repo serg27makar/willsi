@@ -137,11 +137,18 @@ export function validPostpone(checking, verifiable) {
     }
     return result;
 }
-export function genderSwitcher(gender = "woman", subCatalog = "subCatalogListWomenTshirts") {
+export function genderSwitcher(gender, subCatalog) {
+
     let catalog = [];
     let recalculateSubCatalog = [];
     let recalculateParams = [];
+
+    gender = gender.length < 2 ? "woman" : gender;
+    subCatalog = ((!subCatalog || subCatalog.length < 3) &&
+        (gender !== "dog" || gender !== "catalogListDog")) ? "subCatalogListWomenTshirts" : subCatalog;
+
     switch (gender) {
+
         case "woman":
             catalog = recalculateParamsWoman;
             break;
@@ -158,9 +165,29 @@ export function genderSwitcher(gender = "woman", subCatalog = "subCatalogListWom
             catalog = recalculateParamsDog;
             subCatalog = "";
             break;
+
+        case "catalogListWomen":
+            catalog = recalculateParamsWoman;
+            break;
+        case "catalogListMen":
+            catalog = recalculateParamsMan;
+            break;
+        case "catalogListBoy":
+            catalog = recalculateParamsBoy;
+            break;
+        case "catalogListGirl":
+            catalog = recalculateParamsGirl;
+            break;
+        case "catalogListDog":
+            catalog = recalculateParamsDog;
+            subCatalog = "";
+            break;
+
         default :
             catalog = recalculateParamsWoman;
+
     }
+
     if (subCatalog === "subCatalogListMenTshirts" || subCatalog === "subCatalogListWomenTshirts" ||
         subCatalog === "subCatalogListBoyTshirts" || subCatalog === "subCatalogListGirlTshirts") {
         recalculateSubCatalog = Tshirts;
@@ -182,6 +209,7 @@ export function genderSwitcher(gender = "woman", subCatalog = "subCatalogListWom
     } else {
         recalculateParams = catalog;
     }
+
     catalog.map((item, index) => {
         if (recalculateSubCatalog.indexOf(index) !== -1) {
             recalculateParams.push(item);
