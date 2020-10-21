@@ -1,8 +1,11 @@
 import React from 'react';
 import {
+    actionAlertText,
     actionCatalogName,
     actionDataRedirect,
+    actionOpenModal,
     actionProductsArr,
+    actionRecalculateParams,
     setActionAdminPanel
 } from "../action";
 import {connect} from "react-redux";
@@ -15,11 +18,14 @@ import ProductsCart from "../components/ProductsCart";
 import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
 import {getProductDataToParams} from "../utilite/axiosConnect";
+import {genderSwitcher} from "../js/sharedFunctions";
+import ru from "../access/lang/LangConstants";
 
 class Catalog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            requiredParameters: {},
             subUsers:[],
             productArr: [],
             skip: 0,
@@ -99,6 +105,10 @@ class Catalog extends React.Component {
                 redirect: this.props.dataRedirect,
             })
         }
+        if (prevProps.alertModalCloseEvent !== this.props.alertModalCloseEvent) {
+            this.props.recalculateParamsFunction(this.state.requiredParameters);
+            this.props.openModalFunction("recalculateModal");
+        }
         if (prevState.active !== this.state.active && this.props.SearchParams) {
             this.updateProductsData();
         }
@@ -143,21 +153,43 @@ class Catalog extends React.Component {
     updateProductsData() {
         const skip = this.state.skip;
         const SearchParams = this.props.SearchParams;
-        const dataSearch = {
-            skip,
-            SearchParams,
-            topCatalog: this.state.topCatalog,
-            subCatalog: this.state.subCatalog,
+        const topCatalog = this.state.topCatalog;
+        const subCatalog = this.state.subCatalog;
+        const requiredParameters = genderSwitcher(topCatalog, subCatalog);
 
-        };
-        getProductDataToParams(this.setProductData, dataSearch);
-        this.setState({skip: skip + 12})
+        this.setState({
+            ...this.state,
+            requiredParameters,
+        });
+
+        let accessRequired = true;
+        requiredParameters.map((item) => {
+            if (accessRequired) {
+                accessRequired = SearchParams[item.inputName]
+            }
+            return accessRequired;
+        });
+        if (accessRequired) {
+            const dataSearch = {
+                skip,
+                SearchParams,
+                topCatalog,
+                subCatalog,
+
+            };
+            getProductDataToParams(this.setProductData, dataSearch);
+            // this.setState({skip: skip + 12})
+        } else {
+            this.props.alertTextFunction(ru.enterTheseDetails);
+            this.props.openModalFunction("alertModal");
+        }
     }
 
     selectedSubCatalog(data) {
         this.setState({
             ...this.state,
             subCatalog: dropdownListArr[this.props.catalog].dropdownItems[data],
+            topCatalog: dropdownListArr[this.props.catalog].dropdownTitle,
             productArr: [],
             skip: 0,
             lastData: false,
@@ -249,6 +281,7 @@ function MapStateToProps(state) {
         catalogName: state.catalogReducer.catalogName,
         selectedSubCatalogID: state.catalogReducer.selectedSubCatalogID,
         SearchParams: state.productReducer.SearchParams,
+        alertModalCloseEvent: state.modalReducer.alertModalCloseEvent,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -264,6 +297,15 @@ const mapDispatchToProps = dispatch => {
         },
         catalogNameFunction: (catalogName) => {
             dispatch(actionCatalogName(catalogName))
+        },
+        openModalFunction: (modal) => {
+            dispatch(actionOpenModal(modal))
+        },
+        alertTextFunction: (text) => {
+            dispatch(actionAlertText(text))
+        },
+        recalculateParamsFunction: (recalculateParams) => {
+            dispatch(actionRecalculateParams(recalculateParams))
         },
     }
 };

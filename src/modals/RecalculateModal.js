@@ -28,19 +28,12 @@ class RecalculateModal extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({
-            ...this.state,
-            recalculateParams: this.props.recalculateParams,
-            newUser: this.props.NewUser,
-        })
+        this.fillRecalculateParams();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.recalculateParams !== this.props.recalculateParams) {
-            this.setState({
-                ...this.state,
-                recalculateParams: this.props.recalculateParams
-            })
+            this.fillRecalculateParams();
         }
         if (prevState.isChange !== this.state.isChange && this.state.isChange) {
             this.isChanged();
@@ -50,6 +43,27 @@ class RecalculateModal extends React.Component {
             this.props.headerUserFunction(this.state.newUser);
             getUserData(this.result);
         }
+    }
+
+    fillRecalculateParams() {
+        const HeaderUser = this.props.HeaderUser || this.props.NewUser;
+        const recalculateParams = this.props.recalculateParams.slice();
+
+        this.props.UsersParameters[HeaderUser].Parameters.map((fillItem) => {
+            return recalculateParams.map((item, index) => {
+                if (fillItem.title === item.inputName) {
+                    recalculateParams.splice(index, 1);
+                }
+                return recalculateParams;
+            })
+        });
+
+        this.setState({
+            ...this.state,
+            recalculateParams,
+            newUser: HeaderUser,
+            params: this.props.UsersParameters[HeaderUser].Parameters,
+        })
     }
 
     result(res) {
@@ -155,6 +169,7 @@ function MapStateToProps(state) {
         UserID: state.userReducer.UserID,
         UsersParameters: state.userReducer.UsersParameters,
         NewUser: state.userReducer.NewUser,
+        HeaderUser: state.userReducer.HeaderUser,
     }
 }
 const mapDispatchToProps = dispatch => {

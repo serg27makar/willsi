@@ -137,7 +137,7 @@ export function validPostpone(checking, verifiable) {
     }
     return result;
 }
-export function genderSwitcher(gender, subCatalog) {
+export function genderSwitcher(gender, subCatalog = "") {
 
     let catalog = [];
     let recalculateSubCatalog = [];
@@ -206,6 +206,9 @@ export function genderSwitcher(gender, subCatalog) {
     } else if (subCatalog === "subCatalogListMenHome" || subCatalog === "subCatalogListWomenHome" ||
         subCatalog === "subCatalogListBoyHome" || subCatalog === "subCatalogListGirlHome") {
         recalculateSubCatalog = Home;
+    } else if (subCatalog === "subCatalogListMenGeneral" || subCatalog === "subCatalogListWomenGeneral" ||
+        subCatalog === "subCatalogListBoyGeneral" || subCatalog === "subCatalogListGirlGeneral") {
+        recalculateSubCatalog = [];
     } else {
         recalculateParams = catalog;
     }
