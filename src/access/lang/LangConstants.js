@@ -233,7 +233,10 @@ const ru = {
     premiumPlan: "премиум план",
     buyNow: "купить сейчас",
 
-    addProduct: "добавить изделие"
+    addProduct: "добавить изделие",
+
+    primaryAdmin: "Спрятать товар администратором сайта",
+    storeAdmin: "Спрятать товар администратором магазина"
 };
 
 export default ru;

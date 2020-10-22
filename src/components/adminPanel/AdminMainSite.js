@@ -45,6 +45,9 @@ class AdminMainSite extends React.Component {
             PaymentAndDelivery: "",
 
             addedProductId: "",
+
+            primaryAdmin: false,
+            storeAdmin: false,
         };
         this.changeCatalog = this.changeCatalog.bind(this);
         this.updateProduct = this.updateProduct.bind(this);
@@ -57,6 +60,7 @@ class AdminMainSite extends React.Component {
         this.saveHeaderCart = this.saveHeaderCart.bind(this);
         this.addedProductResult = this.addedProductResult.bind(this);
         this.fillInState = this.fillInState.bind(this);
+        this.dataChange = this.dataChange.bind(this);
     }
 
     componentDidMount() {
@@ -134,6 +138,14 @@ class AdminMainSite extends React.Component {
         })
     }
 
+    dataChange(e) {
+        const name = e.target.name;
+        this.setState({
+            ...this.state,
+            [name]: !this.state[name],
+        })
+    }
+
     saveParameters() {
         if (this.state.addedProductId && this.state.addedProductId.length >= 12 ) {
             this.addedProductResult(this.state.addedProductId);
@@ -189,6 +201,8 @@ class AdminMainSite extends React.Component {
             ModelParameters: this.state.ModelParameters,
             CareInstructions: this.state.CareInstructions,
             PaymentAndDelivery: this.state.PaymentAndDelivery,
+            primaryAdmin: this.state.primaryAdmin,
+            storeAdmin: this.state.storeAdmin,
         };
         if (cart.Manufacturer && cart.ProdName &&
             cart.ProductCode && cart.Photo1 &&
@@ -241,9 +255,27 @@ class AdminMainSite extends React.Component {
         )
     }
 
+    renderVisibilitySwitches() {
+        return (
+            <div className="visibility-switches">
+                <div>
+                    <input className="category-list__input" type="checkbox" id={"primaryAdmin"}
+                           value={this.state.primaryAdmin} checked={this.state.primaryAdmin} name={"primaryAdmin"} onChange={this.dataChange}/>
+                    <label className="category-list__label text-14 light" htmlFor={"primaryAdmin"}>{ru.primaryAdmin}</label>
+                </div>
+                <div>
+                    <input className="category-list__input" type="checkbox" id={"storeAdmin"}
+                           value={this.state.storeAdmin} checked={this.state.storeAdmin} name={"storeAdmin"} onChange={this.dataChange}/>
+                    <label className="category-list__label text-14 light" htmlFor={"storeAdmin"}>{ru.storeAdmin}</label>
+                </div>
+            </div>
+        )
+    }
+
     render() {
         return (
             <div className="main-envelope__bottom-env">
+                {this.renderVisibilitySwitches()}
                 <AdminDropdownList
                     headerItem={this.state.headerItem}
                     subItem={this.state.topCatalog}

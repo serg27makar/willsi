@@ -3651,6 +3651,10 @@ button.size-tabs-wrapper-button.tabs-active {
     height: 1.25vw;
     fill: #50abbd;
 }
+.visibility-switches div,
+.visibility-switches {
+    margin: 1rem 0;
+}
 .main-envelope__top-env {
     display: -webkit-box;
     display: -ms-flexbox;
