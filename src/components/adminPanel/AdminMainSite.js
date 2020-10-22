@@ -255,19 +255,31 @@ class AdminMainSite extends React.Component {
         )
     }
 
+    renderStoreAdminInput() {
+        return (
+            <div>
+                <input className="category-list__input" type="checkbox" id={"storeAdmin"} disabled={this.props.Permission === "primaryAdmin"}
+                       value={this.state.storeAdmin} checked={this.state.storeAdmin} name={"storeAdmin"} onChange={this.dataChange}/>
+                <label className="category-list__label text-14 light" htmlFor={"storeAdmin"}>{ru.storeAdmin}</label>
+            </div>
+        );
+    }
+
+    renderPrimaryAdminInput() {
+        return (
+            <div>
+                <input className="category-list__input" type="checkbox" id={"primaryAdmin"} disabled={this.props.Permission === "storeAdmin"}
+                       value={this.state.primaryAdmin} checked={this.state.primaryAdmin} name={"primaryAdmin"} onChange={this.dataChange}/>
+                <label className="category-list__label text-14 light" htmlFor={"primaryAdmin"}>{ru.primaryAdmin}</label>
+            </div>
+        );
+    }
+
     renderVisibilitySwitches() {
         return (
             <div className="visibility-switches">
-                <div>
-                    <input className="category-list__input" type="checkbox" id={"primaryAdmin"}
-                           value={this.state.primaryAdmin} checked={this.state.primaryAdmin} name={"primaryAdmin"} onChange={this.dataChange}/>
-                    <label className="category-list__label text-14 light" htmlFor={"primaryAdmin"}>{ru.primaryAdmin}</label>
-                </div>
-                <div>
-                    <input className="category-list__input" type="checkbox" id={"storeAdmin"}
-                           value={this.state.storeAdmin} checked={this.state.storeAdmin} name={"storeAdmin"} onChange={this.dataChange}/>
-                    <label className="category-list__label text-14 light" htmlFor={"storeAdmin"}>{ru.storeAdmin}</label>
-                </div>
+                {this.renderPrimaryAdminInput()}
+                {this.renderStoreAdminInput()}
             </div>
         )
     }
@@ -306,6 +318,7 @@ function MapStateToProps(state) {
     return {
         Subspecies: state.productReducer.Subspecies,
         SaveParams: state.productReducer.SaveParams,
+        Permission: state.userReducer.Permission,
     }
 }
 const mapDispatchToProps = dispatch => {
