@@ -189,18 +189,15 @@ class EditSubspecieTabl extends React.Component {
     }
 
     renderSizeBar() {
-        if (this.props.item && this.props.item._id && this.props.item._id.length >= 12) {
-            return (
-                <div>
-                    {this.renderMainSize()}
-                    <div className="size-standard-block-btn">
-                        <ButtonMain btnClass="button-main text-16" text={ru.SaveChange} onClick={this.saveSubspecies}/>
-                        <ButtonMain btnClass="button-white text-16" text={ru.close} onClick={this.props.cancelSave}/>
-                    </div>
+        return (
+            <div>
+                {this.renderMainSize()}
+                <div className="size-standard-block-btn">
+                    <ButtonMain btnClass="button-main text-16" text={ru.SaveChange} onClick={this.saveSubspecies}/>
+                    <ButtonMain btnClass="button-white text-16" text={ru.close} onClick={this.props.cancelSave}/>
                 </div>
-            )
-        }
-        return null;
+            </div>
+        );
     }
 
     render() {

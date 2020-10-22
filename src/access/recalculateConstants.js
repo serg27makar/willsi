@@ -630,21 +630,57 @@ export const recalculateParamsDog = [
     },
 ];
 
-export const Tshirts = [
-    0,1,2,4,10
+// 0: chest
+// 1: waist
+// 2: hips
+// 3: armGirth
+// 4: growth
+// 5: thighGirth
+// 6: headCircumference
+// 7: palmGirth
+// 8: fingerLength
+// 9: waistAtNavelLevel
+// 10: shoulder
+// 11: insideLegLength
+// 12: footLength
+// 13: wideFootGirth
+// 14: footCircumference
+
+export const sizeListTshirts = [
+    "growth",
+    "shoulder",
+    "chest",
+    "waist",
+    "hips",
 ];
-export const Shirts = [
-    1,2,3,4,6
+export const sizeListShirts = [
+    "growth",
+    "headCircumference",
+    "armGirth",
+    "waist",
+    "hips",
 ];
-export const Pants = [
-    4,5,11
+export const sizeListPants = [
+    "growth",
+    "thighGirth",
+    "insideLegLength",
 ];
-export const Underwear = [
-    11,12,13,15
+export const sizeListUnderwear = [
+    "insideLegLength",
+    "footLength",
+    "wideFootGirth",
+    "footCircumference",
 ];
-export const Outerwear = [
-    7,8,9,10
+export const sizeListOuterwear = [
+    "palmGirth",
+    "fingerLength",
+    "waistAtNavelLevel",
+    "shoulder",
 ];
-export const Home = [
-    4,6,7,8,11
+export const sizeListHome = [
+    "growth",
+    "headCircumference",
+    "palmGirth",
+    "fingerLength",
+    "insideLegLength",
 ];

@@ -300,49 +300,6 @@ export const dropdownListArr = [
     },
 ];
 
-export const sizeListTshirts = [
-    "growth",
-    "shoulder",
-    "chest",
-    "waist",
-    "hips",
-];
-export const sizeListShirts = [
-    "growth",
-    "shoulder",
-    "chest",
-    "waist",
-    "hips",
-];
-export const sizeListPants = [
-    "growth",
-    "shoulder",
-    "chest",
-    "waist",
-    "hips",
-];
-export const sizeListUnderwear = [
-    "growth",
-    "shoulder",
-    "chest",
-    "waist",
-    "hips",
-];
-export const sizeListOuterwear = [
-    "growth",
-    "shoulder",
-    "chest",
-    "waist",
-    "hips",
-];
-export const sizeListHome = [
-    "growth",
-    "shoulder",
-    "chest",
-    "waist",
-    "hips",
-];
-
 export const dataInputRegistrationModal = [
     {
         type: "text",
