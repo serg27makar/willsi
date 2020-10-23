@@ -110,6 +110,8 @@ class AdminMainSite extends React.Component {
             ModelParameters: this.props.item.ModelParameters,
             CareInstructions: this.props.item.CareInstructions,
             PaymentAndDelivery: this.props.item.PaymentAndDelivery,
+            primaryAdmin: this.props.item.primaryAdmin,
+            storeAdmin: this.props.item.storeAdmin,
         })
     }
 
