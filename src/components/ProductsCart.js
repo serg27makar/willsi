@@ -2,11 +2,17 @@ import React from "react";
 import ru from "../access/lang/LangConstants";
 import "../access/css/cart.css"
 import ButtonPostpone from "./shared/ButtonPostpone";
-import {actionDataRedirect, actionPostpone, actionProductID, actionSetActionPostpone} from "../action";
+import {
+    actionDataRedirect,
+    actionPostpone,
+    actionProductID,
+    actionSearchItemParams,
+    actionSetActionPostpone
+} from "../action";
 import {connect} from "react-redux";
 import CircleLevel from "./shared/CircleLevel";
 import {postUpdate} from "../utilite/axiosConnect";
-import {updateResult, validPostpone} from "../js/sharedFunctions";
+import {isEmptyObject, updateResult, validPostpone} from "../js/sharedFunctions";
 import ButtonMain from "./shared/ButtonMain";
 
 class ProductsCart extends React.Component {
@@ -55,6 +61,23 @@ class ProductsCart extends React.Component {
         postUpdate(user, updateResult);
     }
 
+    filterManufacturer(itemValue) {
+        const searchItemParams = this.props.searchItemParams;
+        if (!isEmptyObject(searchItemParams)) {
+            const index = searchItemParams.itemValue.indexOf(itemValue);
+            if (index !== -1) {
+                searchItemParams.itemValue.splice(index, 1);
+            } else {
+                searchItemParams.itemValue.push(itemValue);
+            }
+            itemValue = searchItemParams.itemValue;
+        } else {
+            itemValue = [itemValue];
+        }
+        const item = {catalogName: "Manufacturer", itemValue: itemValue };
+        this.props.searchItemParamsFunction(item);
+    }
+
     removePostpone(item) {
         const Postpone = this.props.Postpone;
         Postpone.map((itemPostpone, index) => {
@@ -77,7 +100,7 @@ class ProductsCart extends React.Component {
                         <CircleLevel catalog={this.props.catalog} level={item.Parameters.compatibility || item.compatibility}/>
                         {this.renderPostpone(item)}
                     </div>
-                    <div className="card-box__product-name text-18 bold uppercase">{item.Manufacturer}</div>
+                    <div className="card-box__product-name text-18 bold uppercase" onClick={() => {this.filterManufacturer(item.Manufacturer)}}>{item.Manufacturer}</div>
                     <p className="card-box__product-info text-14 light">{item.ProdName}</p>
                     <p className="card-box__product-quantity text-18 bold color-aqua uppercase">{this.detailsParameters(item.Parameters)}</p>
                     {this.renderButton(item)}
@@ -139,6 +162,7 @@ function MapStateToProps(state) {
         UserID: state.userReducer.UserID,
         Postpone: state.userReducer.Postpone,
         SetActionPostpone: state.userReducer.SetActionPostpone,
+        searchItemParams: state.catalogReducer.searchItemParams,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -154,6 +178,9 @@ const mapDispatchToProps = dispatch => {
         },
         setActionPostponeFunction: (SetActionPostpone) => {
             dispatch(actionSetActionPostpone(SetActionPostpone))
+        },
+        searchItemParamsFunction: (searchItemParams) => {
+            dispatch(actionSearchItemParams(searchItemParams))
         },
     }
 };

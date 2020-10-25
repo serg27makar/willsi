@@ -2,6 +2,7 @@ import React from "react";
 import {actionSearchItemParams} from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
+import {isEmptyObject} from "../js/sharedFunctions";
 
 class Category extends React.Component {
     constructor(props) {
@@ -11,6 +12,36 @@ class Category extends React.Component {
         };
         this.closeOpen = this.closeOpen.bind(this);
         this.checkedItem = this.checkedItem.bind(this);
+        this.clearState = this.clearState.bind(this);
+        this.toggleItemValue = this.toggleItemValue.bind(this);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.searchItemParams !== this.props.searchItemParams) {
+            if (isEmptyObject(this.props.searchItemParams)) {
+                this.clearState();
+            }
+        }
+    }
+
+    clearState() {
+        this.setState({
+            ...this.state,
+            Puma: false,
+            Nike: false,
+            Adidas: false,
+            beige: false,
+            white: false,
+            aqua: false,
+            yellow: false,
+            green: false,
+            red: false,
+            prints: false,
+            pink: false,
+            gray: false,
+            blue: false,
+            black: false,
+        });
     }
 
     closeOpen() {
@@ -23,24 +54,26 @@ class Category extends React.Component {
 
     checkedItem(catalogName, itemValue, e) {
         const searchItemParams = this.props.searchItemParams || {};
-        const name = e.target.name;
-        const value = e.target.value;
+        const value = (e.target.value === "true");
         let item;
         if (catalogName === "Manufacturer") {
             if (searchItemParams.itemValue) {
                 const index = searchItemParams.itemValue.indexOf(itemValue);
                 if (index === -1) {
-                    searchItemParams.itemValue.push(itemValue)
-                } else {
-                    searchItemParams.itemValue.splice(index, 1)
+                    searchItemParams.itemValue.push(itemValue);
+                } else if (value) {
+                    searchItemParams.itemValue.splice(index, 1);
                 }
                 item = {catalogName, itemValue: searchItemParams.itemValue};
             } else {
-                item = {catalogName, itemValue: [itemValue] }
+                item = {catalogName, itemValue: [itemValue] };
             }
+            this.toggleItemValue(itemValue, value);
             this.props.searchItemParamsFunction(item);
         }
+    }
 
+    toggleItemValue(name, value) {
         this.setState({
             ...this.state,
             [name]: !value,
@@ -55,6 +88,7 @@ class Category extends React.Component {
                        type="checkbox" id={idCheckbox}
                        name={item}
                        value={this.state[item]}
+                       checked={this.state[item] || false}
                        onChange={(e) => {this.checkedItem(catalogName, item, e)}}
                 />
                 <label className="category-list__label text-14 light" htmlFor={idCheckbox}>{catalogName === "color" ? ru[item] : item}</label>

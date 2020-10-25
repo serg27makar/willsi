@@ -1723,6 +1723,7 @@ input[type="checkbox"]:not(:checked) + label.category-list__label {
 .card-box__product-name {
     padding-top: 1.5625vw;
     padding-bottom: 0.9375vw;
+    cursor: pointer;
 }
 .card-box__product-name:hover {
     color: #000;
