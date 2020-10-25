@@ -172,6 +172,7 @@ export const resourceSellingArr = [
 export const sidebarCatalogArr = [
     {
         catalogTitle: "Бренд",
+        catalogName: "Manufacturer",
         catalogItems: [
             "Puma",
             "Nike",
@@ -180,18 +181,19 @@ export const sidebarCatalogArr = [
     },
     {
         catalogTitle: "Цвет",
+        catalogName: "color",
         catalogItems: [
-            ru.beige,
-            ru.white,
-            ru.aqua,
-            ru.yellow,
-            ru.green,
-            ru.red,
-            ru.prints,
-            ru.pink,
-            ru.gray,
-            ru.blue,
-            ru.black,
+            "beige",
+            "white",
+            "aqua",
+            "yellow",
+            "green",
+            "red",
+            "prints",
+            "pink",
+            "gray",
+            "blue",
+            "black",
         ]
     },
 ];

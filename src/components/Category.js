@@ -1,4 +1,7 @@
 import React from "react";
+import {actionSearchItemParams} from "../action";
+import {connect} from "react-redux";
+import ru from "../access/lang/LangConstants";
 
 class Category extends React.Component {
     constructor(props) {
@@ -7,9 +10,10 @@ class Category extends React.Component {
             open: "",
         };
         this.closeOpen = this.closeOpen.bind(this);
+        this.checkedItem = this.checkedItem.bind(this);
     }
 
-    closeOpen = () => {
+    closeOpen() {
         this.setState({
             ...this.state,
             open: this.state.open === "" ?
@@ -17,12 +21,43 @@ class Category extends React.Component {
         })
     };
 
-    renderCategoryList = (item, index, parentIndex) => {
+    checkedItem(catalogName, itemValue, e) {
+        const searchItemParams = this.props.searchItemParams || {};
+        const name = e.target.name;
+        const value = e.target.value;
+        let item;
+        if (catalogName === "Manufacturer") {
+            if (searchItemParams.itemValue) {
+                const index = searchItemParams.itemValue.indexOf(itemValue);
+                if (index === -1) {
+                    searchItemParams.itemValue.push(itemValue)
+                } else {
+                    searchItemParams.itemValue.splice(index, 1)
+                }
+                item = {catalogName, itemValue: searchItemParams.itemValue};
+            } else {
+                item = {catalogName, itemValue: [itemValue] }
+            }
+            this.props.searchItemParamsFunction(item);
+        }
+
+        this.setState({
+            ...this.state,
+            [name]: !value,
+        });
+    }
+
+    renderCategoryList(item, index, parentIndex, catalogName) {
         const idCheckbox = "checkbox" + parentIndex + index;
         return (
             <div key={index}>
-                <input className="category-list__input" type="checkbox" id={idCheckbox}/>
-                <label className="category-list__label text-14 light" htmlFor={idCheckbox}>{item}</label>
+                <input className="category-list__input"
+                       type="checkbox" id={idCheckbox}
+                       name={item}
+                       value={this.state[item]}
+                       onChange={(e) => {this.checkedItem(catalogName, item, e)}}
+                />
+                <label className="category-list__label text-14 light" htmlFor={idCheckbox}>{catalogName === "color" ? ru[item] : item}</label>
             </div>
         )
     };
@@ -39,7 +74,7 @@ class Category extends React.Component {
                 <div className={"catalog__category-list " + this.state.open}>
                     <div className="category-list">
                         {this.props.item.catalogItems && this.props.item.catalogItems.map((listItem, listIndex) => {
-                            return this.renderCategoryList(listItem, listIndex, this.props.index)
+                            return this.renderCategoryList(listItem, listIndex, this.props.index, this.props.item.catalogName)
                         })}
                     </div>
                 </div>
@@ -47,5 +82,17 @@ class Category extends React.Component {
         )
     }
 }
+function MapStateToProps(state) {
+    return {
+        searchItemParams: state.catalogReducer.searchItemParams,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        searchItemParamsFunction: (searchItemParams) => {
+            dispatch(actionSearchItemParams(searchItemParams))
+        },
+    }
+};
 
-export default Category;
+export default connect(MapStateToProps, mapDispatchToProps)(Category);

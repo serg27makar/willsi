@@ -4,6 +4,7 @@ const initialState = {
     subCatalogName: "",
     searchDisabled: false,
     selectedSubCatalogID: -1,
+    searchItemParams: {},
 };
 
 export default function catalogReducer(state = initialState, action) {
@@ -33,6 +34,11 @@ export default function catalogReducer(state = initialState, action) {
             return {
                 ...state,
                 selectedSubCatalogID: action.selectedSubCatalogID
+            };
+        case "SEARCH_ITEM_PARAMS":
+            return {
+                ...state,
+                searchItemParams: action.searchItemParams
             };
         default:
             return state;

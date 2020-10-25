@@ -284,3 +284,10 @@ export const actionAlertModalCloseEvent = (alertModalCloseEvent) => {
         alertModalCloseEvent: alertModalCloseEvent
     }
 };
+
+export const actionSearchItemParams = (searchItemParams) => {
+    return {
+        type: 'SEARCH_ITEM_PARAMS',
+        searchItemParams: searchItemParams
+    }
+};

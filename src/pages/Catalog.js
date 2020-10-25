@@ -75,6 +75,7 @@ class Catalog extends React.Component {
                 ...this.state,
                 firstTime: false,
             });
+            this.changeSizeData();
         }
         if ((prevProps.SearchParams !== this.props.SearchParams ||
             prevProps.catalogName !== this.props.catalogName) && !this.state.firstTime) {
@@ -110,6 +111,9 @@ class Catalog extends React.Component {
             this.props.openModalFunction("recalculateModal");
         }
         if (prevState.active !== this.state.active && this.props.SearchParams) {
+            this.updateProductsData();
+        }
+        if (prevProps.searchItemParams !== this.props.searchItemParams) {
             this.updateProductsData();
         }
     }
@@ -153,6 +157,7 @@ class Catalog extends React.Component {
     updateProductsData() {
         const skip = this.state.skip;
         const SearchParams = this.props.SearchParams;
+        const searchItemParams = this.props.searchItemParams;
         const topCatalog = this.state.topCatalog;
         const subCatalog = this.state.subCatalog;
         const requiredParameters = genderSwitcher(topCatalog, subCatalog);
@@ -175,7 +180,7 @@ class Catalog extends React.Component {
                 SearchParams,
                 topCatalog,
                 subCatalog,
-
+                searchItemParams,
             };
             getProductDataToParams(this.setProductData, dataSearch);
             // this.setState({skip: skip + 12})
@@ -214,15 +219,18 @@ class Catalog extends React.Component {
             data.sort((a, b) => {
                 return b.Parameters.compatibility - a.Parameters.compatibility
             });
-            const allProducts = this.state.productArr.concat(data);
-            this.props.productsArrFunction(allProducts);
+            this.props.productsArrFunction(data);
             this.setState({
                 ...this.state,
-                productArr: allProducts,
+                productArr: data,
                 lastData
             })
         } else {
-            this.setState({lastData: true})
+            this.props.productsArrFunction([]);
+            this.setState({
+                ...this.state,
+                productArr: [],
+            });
         }
     }
 
@@ -280,6 +288,7 @@ function MapStateToProps(state) {
         catalog: state.catalogReducer.catalog,
         catalogName: state.catalogReducer.catalogName,
         selectedSubCatalogID: state.catalogReducer.selectedSubCatalogID,
+        searchItemParams: state.catalogReducer.searchItemParams,
         SearchParams: state.productReducer.SearchParams,
         alertModalCloseEvent: state.modalReducer.alertModalCloseEvent,
     }
