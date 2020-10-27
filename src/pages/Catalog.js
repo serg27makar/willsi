@@ -116,6 +116,9 @@ class Catalog extends React.Component {
         if (prevProps.searchItemParams !== this.props.searchItemParams) {
             this.updateProductsData();
         }
+        if (prevProps.searchItemColor !== this.props.searchItemColor) {
+            this.updateProductsData();
+        }
     }
 
     componentWillUnmount() {
@@ -158,6 +161,7 @@ class Catalog extends React.Component {
         const skip = this.state.skip;
         const SearchParams = this.props.SearchParams;
         const searchItemParams = this.props.searchItemParams;
+        const searchItemColor = this.props.searchItemColor;
         const topCatalog = this.state.topCatalog;
         const subCatalog = this.state.subCatalog;
         const requiredParameters = genderSwitcher(topCatalog, subCatalog);
@@ -181,6 +185,7 @@ class Catalog extends React.Component {
                 topCatalog,
                 subCatalog,
                 searchItemParams,
+                searchItemColor,
             };
             getProductDataToParams(this.setProductData, dataSearch);
             // this.setState({skip: skip + 12})
@@ -289,6 +294,7 @@ function MapStateToProps(state) {
         catalogName: state.catalogReducer.catalogName,
         selectedSubCatalogID: state.catalogReducer.selectedSubCatalogID,
         searchItemParams: state.catalogReducer.searchItemParams,
+        searchItemColor: state.catalogReducer.searchItemColor,
         SearchParams: state.productReducer.SearchParams,
         alertModalCloseEvent: state.modalReducer.alertModalCloseEvent,
     }

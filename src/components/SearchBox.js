@@ -10,8 +10,9 @@ import {
     actionUsersParameters
 } from "../action";
 import {connect} from "react-redux";
-import {postRegister} from "../utilite/axiosConnect";
+import {postRegister, postUpdate} from "../utilite/axiosConnect";
 import InputDataParams from "./InputDataParams";
+import {updateResult} from "../js/sharedFunctions";
 
 const inputArr = [
     {
@@ -99,21 +100,29 @@ class SearchBox extends React.Component {
     }
 
     searchClothes() {
-        if (this.props.UserID) {
+        const {growth, shoulder, chest, waist, hips} = this.state;
+        if (this.props.UserID && this.props.UsersParameters && this.props.UsersParameters.length > 0) {
             this.setState({
                 redirect: true,
             });
         } else {
-            const {growth, shoulder, chest, waist, hips} = this.state;
             if (growth && shoulder && chest && waist && hips) {
-                this.setState({
-                    ...this.state,
-                    renderInputDataParams: true,
-                });
+                this.proceedSearch(true);
             } else {
-                this.props.alertTextFunction(ru.enterTheseDetails);
-                this.props.openModalFunction("alertModal");
+                this.proceedSearch(false);
             }
+        }
+    }
+
+    proceedSearch(access) {
+        if (access) {
+            this.setState({
+                ...this.state,
+                renderInputDataParams: true,
+            });
+        } else {
+            this.props.alertTextFunction(ru.enterTheseDetails);
+            this.props.openModalFunction("alertModal");
         }
     }
 
@@ -136,15 +145,26 @@ class SearchBox extends React.Component {
             Gender: gender,
             Parameters
         };
-        const user = {
-            UserName: "",
-            Email: "",
-            Password: "",
-            UsersParameters: [userParameter],
-            Permission: this.props.Permission
-        };
+
+        let user;
+
+        if(this.props.UserID) {
+            user = {
+                UsersParameters: [userParameter],
+                UserID: this.props.UserID,
+            };
+            postUpdate(user, updateResult);
+        } else {
+            user = {
+                UserName: "",
+                Email: "",
+                Password: "",
+                UsersParameters: [userParameter],
+                Permission: this.props.Permission
+            };
+            postRegister(user, this.newID);
+        }
         this.props.usersParametersFunction(user.UsersParameters);
-        postRegister(user, this.newID);
         this.setState({
             redirect: true,
         });

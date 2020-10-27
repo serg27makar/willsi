@@ -33,13 +33,13 @@ class Homepage extends React.Component {
         }, 50);
         this.setState({
             ...this.state,
-            isUnknown: this.props.UsersParameters.length === 0,
-            minusScroll: this.props.UsersParameters.length === 0 ? 0 : 600,
+            isUnknown: this.props.UsersParameters && this.props.UsersParameters.length === 0,
+            minusScroll:  this.props.UsersParameters && this.props.UsersParameters.length === 0 ? 0 : 600,
         });
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.UsersParameters !== this.props.UsersParameters) {
+        if (prevProps.UsersParameters !== this.props.UsersParameters && this.props.UsersParameters) {
             this.setState({
                 ...this.state,
                 isUnknown: this.props.UsersParameters.length === 0,

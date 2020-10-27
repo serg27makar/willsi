@@ -1,5 +1,5 @@
 import React from "react";
-import {actionSearchItemParams} from "../action";
+import {actionSearchItemColor, actionSearchItemParams} from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
 import {isEmptyObject} from "../js/sharedFunctions";
@@ -54,6 +54,7 @@ class Category extends React.Component {
 
     checkedItem(catalogName, itemValue, e) {
         const searchItemParams = this.props.searchItemParams || {};
+        const searchItemColor = this.props.searchItemColor || {};
         const value = (e.target.value === "true");
         let item;
         if (catalogName === "Manufacturer") {
@@ -70,6 +71,21 @@ class Category extends React.Component {
             }
             this.toggleItemValue(itemValue, value);
             this.props.searchItemParamsFunction(item);
+        }
+        if (catalogName === "color") {
+            if (searchItemColor.itemValue) {
+                const index = searchItemColor.itemValue.indexOf(itemValue);
+                if (index === -1) {
+                    searchItemColor.itemValue.push(itemValue);
+                } else if (value) {
+                    searchItemColor.itemValue.splice(index, 1);
+                }
+                item = {catalogName, itemValue: searchItemColor.itemValue};
+            } else {
+                item = {catalogName, itemValue: [itemValue] };
+            }
+            this.toggleItemValue(itemValue, value);
+            this.props.searchItemColorFunction(item);
         }
     }
 
@@ -119,12 +135,16 @@ class Category extends React.Component {
 function MapStateToProps(state) {
     return {
         searchItemParams: state.catalogReducer.searchItemParams,
+        searchItemColor: state.catalogReducer.searchItemColor,
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         searchItemParamsFunction: (searchItemParams) => {
             dispatch(actionSearchItemParams(searchItemParams))
+        },
+        searchItemColorFunction: (searchItemColor) => {
+            dispatch(actionSearchItemColor(searchItemColor))
         },
     }
 };

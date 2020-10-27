@@ -14,7 +14,7 @@ class DropdownList extends React.Component {
     componentDidMount() {}
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.subItem !== this.props.subItem && this.props.subItem.length > 0) {
+        if (prevProps.subItem !== this.props.subItem && this.props.subItem && this.props.subItem.length > 0) {
             this.setState({
                 headerItem: this.props.subItem[0].UserName || this.props.subItem[0].nameStore
             })

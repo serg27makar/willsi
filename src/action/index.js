@@ -291,3 +291,10 @@ export const actionSearchItemParams = (searchItemParams) => {
         searchItemParams: searchItemParams
     }
 };
+
+export const actionSearchItemColor = (searchItemColor) => {
+    return {
+        type: 'SEARCH_ITEM_COLOR',
+        searchItemColor: searchItemColor
+    }
+};

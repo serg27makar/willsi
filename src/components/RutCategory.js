@@ -1,5 +1,11 @@
 import React from "react";
-import {actionCatalogName, actionOpenCatalog, actionSearchItemParams, actionSelectedSubCatalogID} from "../action";
+import {
+    actionCatalogName,
+    actionOpenCatalog,
+    actionSearchItemColor,
+    actionSearchItemParams,
+    actionSelectedSubCatalogID
+} from "../action";
 import {connect} from "react-redux";
 import LangCat from "../access/lang/CatalogLangConstants";
 
@@ -68,6 +74,7 @@ class RutCategory extends React.Component {
                 index = -1
             }
             this.props.searchItemParamsFunction({});
+            this.props.searchItemColorFunction({});
             this.props.selectedSubCatalogIDFunction(index);
             this.props.selectItem(index);
         }
@@ -194,6 +201,9 @@ const mapDispatchToProps = dispatch => {
         },
         searchItemParamsFunction: (searchItemParams) => {
             dispatch(actionSearchItemParams(searchItemParams))
+        },
+        searchItemColorFunction: (searchItemColor) => {
+            dispatch(actionSearchItemColor(searchItemColor))
         },
     }
 };
