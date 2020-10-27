@@ -241,7 +241,7 @@ class Catalog extends React.Component {
 
     functionRedirect() {
         setTimeout(() => {
-            if (this.props.UsersParameters.length < 1 ||
+            if ((this.props.UsersParameters && this.props.UsersParameters.length < 1) ||
                 ( this.props.UsersParameters[0].Parameters &&
                     this.props.UsersParameters[0].Parameters.length < 1)) {
                 this.props.dataRedirectFunction({
