@@ -76,7 +76,7 @@ class RegistrationStoreAdministrator extends React.Component {
     registration = () => {
         const {name, email, password, confirmPassword, phone} = this.state;
         let user = this.userData();
-        if (this.props.UserID && this.props.Email) {
+        if (this.props.UserID) {
             if ((this.props.Email !== this.state.email) || (this.props.UserName !== this.state.name)) {
                 this.setState({
                     ...this.state,
