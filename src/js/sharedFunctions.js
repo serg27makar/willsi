@@ -82,7 +82,7 @@ export function chooseSizeList(subCatalog) {
             }
             return paramsList;
         });
-        verificationList = sizeListTshirts;
+        verificationList = sizeListShirts;
     }
     if (subCatalogListPants.indexOf(subCatalog) !== -1) {
         recalculateParamsWoman.map((item) => {
@@ -91,7 +91,7 @@ export function chooseSizeList(subCatalog) {
             }
             return paramsList;
         });
-        verificationList = sizeListTshirts;
+        verificationList = sizeListPants;
     }
     if (subCatalogListUnderwear.indexOf(subCatalog) !== -1) {
         recalculateParamsWoman.map((item) => {
@@ -100,7 +100,7 @@ export function chooseSizeList(subCatalog) {
             }
             return paramsList;
         });
-        verificationList = sizeListTshirts;
+        verificationList = sizeListUnderwear;
     }
     if (subCatalogListOuterwear.indexOf(subCatalog) !== -1) {
         recalculateParamsWoman.map((item) => {
@@ -109,7 +109,7 @@ export function chooseSizeList(subCatalog) {
             }
             return paramsList;
         });
-        verificationList = sizeListTshirts;
+        verificationList = sizeListOuterwear;
     }
     if (subCatalogListHome.indexOf(subCatalog) !== -1) {
         recalculateParamsWoman.map((item) => {
@@ -118,7 +118,7 @@ export function chooseSizeList(subCatalog) {
             }
             return paramsList;
         });
-        verificationList = sizeListTshirts;
+        verificationList = sizeListHome;
     }
     return {verificationList, paramsList}
 }

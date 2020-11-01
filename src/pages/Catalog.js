@@ -17,7 +17,7 @@ import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ProductsCart from "../components/ProductsCart";
 import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
-import {getProductDataToParams} from "../utilite/axiosConnect";
+import {getAllProductDataToParams, getProductDataToParams} from "../utilite/axiosConnect";
 import {genderSwitcher} from "../js/sharedFunctions";
 import ru from "../access/lang/LangConstants";
 
@@ -187,7 +187,11 @@ class Catalog extends React.Component {
                 searchItemParams,
                 searchItemColor,
             };
-            getProductDataToParams(this.setProductData, dataSearch);
+            if (!subCatalog) {
+                getAllProductDataToParams(this.setProductData, dataSearch);
+            } else {
+                getProductDataToParams(this.setProductData, dataSearch);
+            }
             // this.setState({skip: skip + 12})
         } else {
             this.props.alertTextFunction(ru.enterTheseDetails);

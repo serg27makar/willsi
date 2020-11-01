@@ -40,6 +40,7 @@ class EditSubspecieTabl extends React.Component {
             VendorCode: "",
             Price: "",
             SizeStandard: "",
+            paramList: [],
         };
         this.colorChange = this.colorChange.bind(this);
         this.sizeDataChange = this.sizeDataChange.bind(this);
@@ -171,6 +172,7 @@ class EditSubspecieTabl extends React.Component {
 
     setParamsList(list = []) {
         this.setState({
+            ...this.state,
             paramList: list,
         });
     }

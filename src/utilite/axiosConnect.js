@@ -143,6 +143,17 @@ export const getProductDataToParams = (callbackInfo, dataSearch) => {
     })
 };
 
+export const getAllProductDataToParams = (callbackInfo, dataSearch) => {
+    axios.post(Url + `/product/getAllProductDataToParams`, dataSearch, {
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        callbackInfo(err);
+    })
+};
+
 export const postUpdateStore = (store, callbackInfo) => {
     const StoreID = store._id;
     store = {...store, StoreID};

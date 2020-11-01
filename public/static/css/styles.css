@@ -1729,7 +1729,8 @@ input[type="checkbox"]:not(:checked) + label.category-list__label {
     color: #000;
 }
 .card-box__product-info {
-    padding-bottom: 0.9375vw;
+    padding: 0.9375vw;
+    text-align: center;
 }
 .card-box__product-quantity {
     padding-bottom: 1.25vw;
