@@ -81,12 +81,6 @@ class Catalog extends React.Component {
             prevProps.catalogName !== this.props.catalogName) && !this.state.firstTime) {
             this.changeSizeData();
         }
-        if (prevProps.catalogName !== this.props.catalogName) {
-            this.setState({
-                ...this.state,
-                subCatalog: "",
-            });
-        }
         if (this.props.UsersParameters !== this.state.subUsers ||
             prevProps.update !== this.props.update) {
             this.setState({
@@ -118,6 +112,9 @@ class Catalog extends React.Component {
         }
         if (prevProps.searchItemColor !== this.props.searchItemColor) {
             this.updateProductsData();
+        }
+        if (prevProps.HeaderUser !== this.props.HeaderUser) {
+            this.setCatalogName();
         }
     }
 
@@ -215,6 +212,7 @@ class Catalog extends React.Component {
         this.setState({
             ...this.state,
             topCatalog: this.props.catalogName,
+            subCatalog: "",
             productArr: [],
             skip: 0,
             lastData: false,

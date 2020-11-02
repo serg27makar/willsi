@@ -56,35 +56,42 @@ class SearchBox extends React.Component {
         this.registerUser = this.registerUser.bind(this);
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+        if (this.props.UsersParameters && this.props.UsersParameters.length && this.props.UsersParameters[0].Parameters.length) {
+            this.updateStartData();
+        }
+    }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.UsersParameters !== this.props.UsersParameters && this.props.UsersParameters &&
             this.props.UsersParameters.length && this.props.UsersParameters[0].Parameters.length) {
-            let params = this.props.UsersParameters[0].Parameters;
-            let growth = "";
-            let shoulder = "";
-            let chest = "";
-            let waist = "";
-            let hips = "";
-            params.map((item, index) => {
-                 growth = item.title === "growth" ? item.size : growth;
-                 shoulder = item.title === "shoulder" ? item.size : shoulder;
-                 chest = item.title === "chest" ? item.size : chest;
-                 waist = item.title === "waist" ? item.size : waist;
-                 hips = item.title === "hips" ? item.size : hips;
-            });
+            this.updateStartData();
+        }
+    }
+    updateStartData() {
+        let params = this.props.UsersParameters[0].Parameters;
+        let growth = "";
+        let shoulder = "";
+        let chest = "";
+        let waist = "";
+        let hips = "";
+        params.map((item, index) => {
+            growth = item.title === "growth" ? item.size : growth;
+            shoulder = item.title === "shoulder" ? item.size : shoulder;
+            chest = item.title === "chest" ? item.size : chest;
+            waist = item.title === "waist" ? item.size : waist;
+            hips = item.title === "hips" ? item.size : hips;
+        });
 
-            if (growth && shoulder && chest && waist && hips) {
-                this.setState({
-                    ...this.state,
-                    growth,
-                    shoulder,
-                    chest,
-                    waist,
-                    hips,
-                })
-            }
+        if (growth && shoulder && chest && waist && hips) {
+            this.setState({
+                ...this.state,
+                growth,
+                shoulder,
+                chest,
+                waist,
+                hips,
+            })
         }
     }
 
