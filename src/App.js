@@ -4,7 +4,6 @@ import {createBrowserHistory} from 'history'
 import './App.css';
 import Header from "./components/shared/Header";
 import Footer from "./components/shared/Footer";
-import MenuGlobal from "./components/shared/MenuGlobal";
 import LinkBtn from "./components/shared/LinkBtn";
 import BtnUp from "./components/shared/BtnUp";
 import Homepage from "./pages/Homepage";
@@ -125,7 +124,6 @@ class Navigate extends React.Component {
     render() {
         return (
             <Router history={history}>
-                <MenuGlobal/>
                 <Header/>
                 <div className="routers">
                     <Route exact path='/' component={Homepage}/>
