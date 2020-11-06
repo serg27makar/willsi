@@ -101,7 +101,7 @@
         width: 70px;
         height: 70px;
         top: 65%;
-        left: 8%;
+        left: 2rem;
     }
 }
 .link-fixed_mobil {
@@ -161,7 +161,7 @@ svg.icon.icon-link {
 @media (max-width: 992px) {
     .btn-up {
         top: 61%;
-        right: 4vw;
+        right: 22%;
         width: 12vw;
         height: 12vw;
         -webkit-box-shadow: 0.8vw 2.4vw 4.266666666666667vw 0 rgba(198,216,70,0.35);
