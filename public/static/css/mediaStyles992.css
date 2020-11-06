@@ -4,7 +4,9 @@
         min-height: 20vw;
         background: #50b1be;
     }
-
+    .content {
+        padding-left: 1rem;
+    }
     .container {
         max-width: 100%;
         padding-left: 2.666666666666667vw;
