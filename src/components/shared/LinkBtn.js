@@ -18,8 +18,11 @@ class LinkBtn extends React.Component {
     }
 
     handleScroll(event) {
+        const screenWidth = window.screen.width;
         let scrollTop = event.target.scrollingElement.scrollTop;
-        if (scrollTop > 200) {
+        let btnShow = screenWidth < 992 ? (1000 - screenWidth)/3 + 300 : 200;
+
+        if (scrollTop > btnShow) {
             this.setState({
                 itemStyle: "link-fixed btn-show"
             })
@@ -34,6 +37,27 @@ class LinkBtn extends React.Component {
         this.props.openModalFunction("linkModal");
     };
 
+    renderView() {
+        const mobileView = window.screen.width < 992;
+        if (mobileView) {
+            return (
+                <div className="link-fixed_mobil">
+                    <svg className="icon icon-link ">
+                        <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#link"/>
+                    </svg>
+                </div>
+            )
+        }
+        return (
+            <div className="link-fixed__env text-13 medium">
+                    <span>{ru.HaveLink}
+                        <br/>{ru.OnTheProduct}
+                    </span>
+                <div className="link-fixed__item" >{ru.TryItOn}</div>
+            </div>
+        )
+    }
+
     render() {
         if (this.props.page === "AdminPanel" ||
             this.props.page === "Data" ||
@@ -43,12 +67,7 @@ class LinkBtn extends React.Component {
         }
         return (
             <div className={this.state.itemStyle} onClick={this.openLincModal}>
-                <div className="link-fixed__env text-13 medium">
-                    <span>{ru.HaveLink}
-                        <br/>{ru.OnTheProduct}
-                    </span>
-                    <div className="link-fixed__item" >{ru.TryItOn}</div>
-                </div>
+                {this.renderView()}
             </div>
         )
     }
