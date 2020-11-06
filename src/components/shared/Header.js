@@ -80,7 +80,6 @@ class Header extends React.Component {
                                 <div className="header">
                                     <Link to={"/"}>
                                         <picture>
-                                            <source className="logo__source" srcSet="static/img/general/logo.webp" type="image/webp"/>
                                             <img className="logo__source" src="static/img/general/logo.png" alt="logo"/>
                                         </picture>
                                     </Link>
@@ -101,8 +100,10 @@ class Header extends React.Component {
                             </div>
                         </div>
                         <HeaderNavigation/>
-                        <HeaderCabinet/>
-                        <div className="header-btn-logout" onClick={this.logout}>
+                        <div className=" hide-column">
+                            <HeaderCabinet/>
+                        </div>
+                        <div className="header-btn-logout hide-column" onClick={this.logout}>
                             <svg className="icon">
                                 <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#login"/>
                             </svg>

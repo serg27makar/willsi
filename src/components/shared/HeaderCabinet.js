@@ -43,7 +43,7 @@ class HeaderCabinet extends React.Component {
 
     render() {
         return (
-            <div className="col-12 col-md-12 col-lg-3 hide-column">
+            <div className="col-12 col-md-12 col-lg-3">
                 <div className="header">
                     <div className="header__user-list">
                         <div className="user-list">

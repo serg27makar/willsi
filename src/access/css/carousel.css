@@ -109,6 +109,7 @@
     font-size: 0.8vw;
     line-height: 0.7;
     text-align: center;
+    font-stretch: condensed;
 }
 .cart-slider__circle {
     position: absolute;

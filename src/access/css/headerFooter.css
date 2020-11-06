@@ -373,7 +373,6 @@
 }
 .header-btn-logout {
     margin-left: 2.5vw;
-    display: block;
     text-align: center;
     color: white;
     cursor: pointer;
@@ -385,6 +384,8 @@
 .header-btn-logout .icon {
     width: 1.25vw;
     height: 1.25vw;
+    min-width: 20px;
+    min-height: 20px;
     fill: #fff;
 }
 .open {

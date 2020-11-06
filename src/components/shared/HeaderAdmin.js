@@ -33,7 +33,6 @@ class HeaderAdmin extends React.Component {
                                 <div className="header">
                                     <div className="header__logo" >
                                         <picture>
-                                            <source className="logo__source" srcSet="static/img/general/logo.webp" type="image/webp"/>
                                             <img className="logo__source" src="static/img/general/logo.png" alt="logo"/>
                                         </picture>
                                     </div>
@@ -46,7 +45,6 @@ class HeaderAdmin extends React.Component {
                                 <div className="header__plan">
                                     <div className="header__plan-picture">
                                         <picture className="plan-picture">
-                                            <source className="plan-picture__source" srcSet="static/img/content/trial.png" type="image/webp"/>
                                             <img className="plan-picture__source" src="static/img/content/trial.png" alt="trial"/>
                                         </picture>
                                     </div>

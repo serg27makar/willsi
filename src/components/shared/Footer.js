@@ -42,7 +42,6 @@ class Footer extends React.Component {
                                     <div className="header__plan">
                                         <div className="header__plan-picture">
                                             <picture className="plan-picture">
-                                                <source className="plan-picture__source" srcSet="static/img/content/trial.png" type="image/webp"/>
                                                 <img className="plan-picture__source" src="static/img/content/trial.png" alt="trial"/>
                                             </picture>
                                         </div>
