@@ -224,7 +224,7 @@ class Catalog extends React.Component {
         const lastData = data.length < 12 && data.length > 0;
         if (data.length > 0) {
             data.sort((a, b) => {
-                return b.Parameters.compatibility - a.Parameters.compatibility
+                return b.Parameters.compatibility * 100 - a.Parameters.compatibility * 100
             });
             this.props.productsArrFunction(data);
             this.setState({
@@ -243,7 +243,7 @@ class Catalog extends React.Component {
 
     functionRedirect() {
         setTimeout(() => {
-            if ((this.props.UsersParameters && this.props.UsersParameters.length < 1) ||
+            if (!this.props.UsersParameters || (this.props.UsersParameters && this.props.UsersParameters.length < 1) ||
                 ( this.props.UsersParameters[0].Parameters &&
                     this.props.UsersParameters[0].Parameters.length < 1)) {
                 this.props.dataRedirectFunction({

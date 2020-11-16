@@ -89,7 +89,7 @@ class Data extends React.Component {
     }
 
     nextParams(name, gender) {
-        const UsersParameters = this.props.UsersParameters;
+        const UsersParameters = this.props.UsersParameters || [];
         const obj = {
             UserName: name,
             Gender: gender,
@@ -120,7 +120,7 @@ class Data extends React.Component {
     }
 
     updateParams() {
-        const UsersParameters = this.props.UsersParameters;
+        const UsersParameters = this.props.UsersParameters || [];
         const obj = {
             UserName: this.props.UsersParameters[this.state.newUser].UserName,
             Gender: this.props.UsersParameters[this.state.newUser].Gender,
