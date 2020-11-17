@@ -31,9 +31,11 @@ class Header extends React.Component {
             mobileOpen: "mobile-toggle",
             mobilButtonCloseOpen: mobilButtonOpen,
             page: "",
+            pts: 0,
         };
         this.menuButton = this.menuButton.bind(this);
         this.logout = this.logout.bind(this);
+        this.mobileMenuClose = this.mobileMenuClose.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -43,9 +45,17 @@ class Header extends React.Component {
                 page: this.props.page
             })
         }
+        if ((prevProps.SetActionPostpone !== this.props.SetActionPostpone ||
+            prevProps.Postpone !== this.props.Postpone) && this.props.Postpone) {
+            this.setState({
+                ...this.state,
+                pts: this.props.Postpone.length || 0,
+            })
+        }
     }
 
     logout() {
+        this.mobileMenuClose();
         this.props.dataRedirectFunction({
             accessR: true,
             to: "/",
@@ -62,13 +72,30 @@ class Header extends React.Component {
         this.props.postponeFunction([]);
     }
 
-    menuButton = () => {
+    menuButton() {
         this.setState({
             ...this.state,
             mobileOpen: this.state.mobileOpen === "mobile-toggle" ? "mobile-toggle open" : "mobile-toggle",
             mobilButtonCloseOpen: this.state.mobilButtonCloseOpen === mobilButtonClose ? mobilButtonOpen : mobilButtonClose,
         })
     };
+
+    mobileMenuClose() {
+        this.setState({
+            ...this.state,
+            mobileOpen: "mobile-toggle",
+            mobilButtonCloseOpen: mobilButtonOpen,
+        })
+    }
+
+    renderRedRing() {
+        if (this.state.pts) {
+            return (
+                <div className="red-ring-delayed-mobil">{this.state.pts}</div>
+            )
+        }
+        return null;
+    }
 
     render() {
         return (
@@ -78,7 +105,7 @@ class Header extends React.Component {
                         <div className="col-12">
                             <div className="header-envelope">
                                 <div className="header">
-                                    <Link to={"/"}>
+                                    <Link to={"/"} onClick={this.mobileMenuClose}>
                                         <picture>
                                             <img className="logo__source" src="static/img/general/logo.png" alt="logo"/>
                                         </picture>
@@ -86,11 +113,14 @@ class Header extends React.Component {
                                     <p className="header__text light text-16">{ru.online}<br/>{ru.dressingRoom}</p>
                                 </div>
                                 <div className="header-mobile">
-                                    <div className="header-mobile__basket-icon">
-                                        <svg className="icon">
-                                            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
-                                        </svg>
-                                    </div>
+                                    <Link to={"/postpone"} onClick={this.mobileMenuClose}>
+                                        <div className="header-mobile__basket-icon">
+                                            <svg className="icon">
+                                                <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
+                                            </svg>
+                                            {this.renderRedRing()}
+                                        </div>
+                                    </Link>
                                     <button className="header-mobile__bars-button" type="button" onClick={this.menuButton}>
                                         <svg className="icon">
                                             <use xlinkHref={this.state.mobilButtonCloseOpen}/>
@@ -112,7 +142,7 @@ class Header extends React.Component {
                     </div>
                 </div>
                 <div className={this.state.mobileOpen}>
-                    <MobileEnvelope/>
+                    <MobileEnvelope mobileMenuClose={this.mobileMenuClose}/>
                 </div>
             </header>
         )
@@ -123,6 +153,7 @@ function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
         update: state.pageReducer.update,
+        Postpone: state.userReducer.Postpone,
         SetActionPostpone: state.userReducer.SetActionPostpone,
     }
 }

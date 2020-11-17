@@ -34,6 +34,7 @@
     }
     .header-mobile__basket-icon {
         padding: 0 5.333333333333334vw;
+        position: relative;
     }
     .header__text br {
         display: none;
@@ -394,6 +395,24 @@
     right: 0;
     background: #50b1be;
     z-index: 999;
+}
+.red-ring-delayed-mobil {
+    border: 3px solid red;
+    border-radius: 50%;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    outline: none;
+    box-shadow: 0 0 5px 2px #bc6d6d;
+    background: red;
+    font-weight: bold;
+    right: 3vw;
+    top: -1rem;
+    color: white;
+    font-size: 1rem;
 }
 .red-ring-delayed {
     border: 3px solid red;
