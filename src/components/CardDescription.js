@@ -5,7 +5,7 @@ import ButtonPostpone from "./shared/ButtonPostpone";
 import "../access/css/cart.css"
 import {connect} from "react-redux";
 import {actionPostpone, actionSetActionPostpone} from "../action";
-import {updateResult} from "../js/sharedFunctions";
+import {updateResult, validPostpone} from "../js/sharedFunctions";
 import {postUpdate} from "../utilite/axiosConnect";
 
 class CardDescription extends React.Component {
@@ -16,6 +16,8 @@ class CardDescription extends React.Component {
         };
         this.siteRedirect = this.siteRedirect.bind(this);
         this.addPostpone = this.addPostpone.bind(this);
+        this.removePostpone = this.removePostpone.bind(this);
+        this.updateData = this.updateData.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -39,6 +41,21 @@ class CardDescription extends React.Component {
             compatibility: this.state.cardDescription.Parameters.compatibility,
         };
         Postpone.push(thing);
+        this.updateData(Postpone);
+    }
+
+    removePostpone(item) {
+        const Postpone = this.props.Postpone;
+        Postpone.map((itemPostpone, index) => {
+            if (itemPostpone.product === item) {
+                Postpone.splice(index, 1);
+            }
+            return Postpone;
+        });
+        this.updateData(Postpone);
+    }
+
+    updateData(Postpone) {
         const user = {
             UserID: this.props.UserID,
             Postpone,
@@ -65,6 +82,19 @@ class CardDescription extends React.Component {
         )
     };
 
+    renderButton = (item) => {
+        if (item && validPostpone(this.props.Postpone, item)) {
+            return (
+                <ButtonMain btnClass={"button-main envelope-list text-18 uppercase medium"}
+                                text={ru.removeItem} onClick={() => {this.removePostpone(item)}}/>
+            )
+        } else {
+            return (
+                <ButtonPostpone  onClick={this.addPostpone}/>
+            )
+        }
+    };
+
     render() {
         if (!this.state.cardDescription.Parameters) return null;
         return (
@@ -73,7 +103,6 @@ class CardDescription extends React.Component {
                     <p className="card-description__title text-22 bold uppercase">{this.state.cardDescription.Manufacturer}</p>
                     <p className="card-description__article text-14 light">{this.state.cardDescription.ProductCode}</p>
                     <p className="card-description__article-mobile text-14 light">{this.state.cardDescription.ProductCode}</p>
-                    {/*<ButtonMain btnClass={"card-description__link-model text-14 uppercase"} text={ru.Model3d} />*/}
                 </div>
                 <p className="card-description__article text-14 light">{this.state.cardDescription.Parameters.VendorCode}</p>
                 <p className="card-description__paragraph text-14 light">{this.state.cardDescription.Description}</p>
@@ -89,7 +118,7 @@ class CardDescription extends React.Component {
                 </div>
                 <div className="card-description__button-bottom">
                     <p className="card-description__quantity text-22 color-aqua uppercase medium">{this.state.cardDescription.Parameters.Price + ru.grn}</p>
-                    <ButtonPostpone onClick={this.addPostpone}/>
+                    {this.renderButton(this.state.cardDescription && this.state.cardDescription._id)}
                     <ButtonMain btnClass={"button-white text-14"} text={"перейти в магазин для покупки"} onClick={this.siteRedirect}/>
                 </div>
             </div>

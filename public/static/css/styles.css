@@ -1331,6 +1331,10 @@ span.catalog-top__button-icon {
 .index-postpone .catalog-middle__for-me {
     padding: 0 0 1.5625vw 0;
 }
+p.card-box__product-info {
+    min-height: 4vw;
+    max-height: 4vw;
+}
 .catalog-middle {
     padding-top: 3.125vw;
     padding-bottom: 6.25vw;
