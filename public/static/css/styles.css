@@ -1232,12 +1232,7 @@ span.catalog-top__button-icon {
 .catalog-top__dropdown-info {
     position: relative;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
-    border: 0.0625vw solid #e1e1e1;
-    border-radius: 0.25vw;
 }
 .catalog-top__button-text {
     white-space: nowrap;
@@ -1247,16 +1242,11 @@ span.catalog-top__button-icon {
 }
 .catalog-top__button-drop {
     position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
-    border: none;
+    border: 0.0625vw solid #e1e1e1;
+    border-radius: 0.25vw;
     padding: 0.9375vw 1.25vw;
     background: transparent;
     cursor: pointer;
@@ -2010,14 +2000,8 @@ input[type="checkbox"] + label:hover {
     position: relative;
 }
 .cart-slider__picture .picture {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
 }
 .cart-slider__picture .picture__source {
@@ -2031,39 +2015,23 @@ input[type="checkbox"] + label:hover {
 }
 
 .card-description__top-info {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
     padding: 0 0 0.9375vw 0;
 }
 .card-description__link-model {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
     border: 0.0625vw solid #e1e1e1;
     border-radius: 0.25vw;
     width: 11.875vw;
     height: 2.1875vw;
     color: #c6d846;
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
 .card-description__link-model:hover {
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     color: #fff;
     background: #c6d846;
@@ -2085,22 +2053,14 @@ input[type="checkbox"] + label:hover {
     white-space: nowrap;
 }
 .card-description__button-bottom {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
     padding-top: 1.875vw;
+    width: 38vw;
 }
 .card-description__button-bottom .button-postpone {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -ms-flex-pack: distribute;
     justify-content: space-around;
     border: 0.0625vw solid #c6d846;
     border-radius: 0.25vw;
@@ -2108,50 +2068,33 @@ input[type="checkbox"] + label:hover {
     height: 3.75vw;
     color: #fff;
     background: #c6d846;
-    -webkit-box-shadow: 0.1875vw 0.5625vw 1vw 0 rgba(198,216,70,0.35);
     box-shadow: 0.1875vw 0.5625vw 1vw 0 rgba(198,216,70,0.35);
     cursor: pointer;
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
 .card-description__button-bottom .button-postpone:hover {
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     color: #c6d846;
     background: #fff;
 }
 .card-description__button-bottom .button-postpone:hover .icon {
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     fill: #c6d846;
 }
 .card-description__button-bottom .button-postpone .icon {
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     width: 1.25vw;
     height: 1.25vw;
     fill: #fff;
 }
 .color-box {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
     border-top: 0.0625vw solid #e1e1e1;
     padding-top: 1.5625vw;
 }
 .color-box__list {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
     padding-left: 1.875vw;
 }

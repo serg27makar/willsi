@@ -55,14 +55,14 @@
     width: 100%;
 }
 .dropdown-info {
-    width: 7.2vw;
+    min-width: 7.2vw;
+    width: 100%;
 }
 .dropdown-info-admin,
 .dropdown-info {
     display: none;
     position: absolute;
     top: 95%;
-    left: -0.0625vw;
     border-left: 0.0625vw solid #e1e1e1;
     border-right: 0.0625vw solid #e1e1e1;
     border-bottom: 0.0625vw solid #e1e1e1;
