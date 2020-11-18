@@ -149,8 +149,8 @@
     .cart-slider__circle {
         top: -12px;
         right: 50%;
-        width: 120px;
-        height: 129px;
+        height: 24vw !important;
+        width: 24vw !important;
         transform: translate(154%);
     }
 }

@@ -60,8 +60,8 @@
         margin-left: 10.666666666666668vw;
     }
     .header-btn-logout .icon {
-        width: 5.333333333333334vw;
-        height: 5.333333333333334vw;
+        width: 5.3vw !important;
+        height: 5.3vw !important;
     }
     .footer-row-wrap {
         flex-wrap: wrap;
