@@ -20,3 +20,13 @@
     border: 2px solid #c6d846;
     border-radius: 0.5vw;
 }
+@media (max-width: 992px) {
+    .wrapper-modal .modal-envelope {
+        position: absolute;
+        top: 3%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 2px solid #c6d846;
+        border-radius: 0.5vw;
+    }
+}

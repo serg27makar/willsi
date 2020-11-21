@@ -135,13 +135,13 @@
 }
 @media (max-width: 992px) {
     .carousel-wrap {
-        width: 340px;
-        height: 375px;
+        width: 100%;
+        height: 100%;
         margin: auto;
     }
     .carousel-img-wrap {
-        width: 340px;
-        height: 375px;
+        width: 94vw;
+        height: 100vw;
     }
     .zoomLens {
         background-size: 280%;

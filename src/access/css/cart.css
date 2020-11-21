@@ -131,25 +131,25 @@
         width: 25%;
     }
     .dropdown-info-list {
-        padding-bottom: 5.333333333333334vw;
+        padding-bottom: 5.34vw;
         padding-top: 8vw;
     }
     .for-me__button-icon {
-        padding: 0 2.666666666666667vw;
+        padding: 0 2.67vw;
     }
     .for-me__button-icon .icon {
-        width: 2.666666666666667vw;
-        height: 2.666666666666667vw;
+        width: 2.67vw;
+        height: 2.67vw;
     }
     .dropdown-info {
-        border-left: 0.266666666666667vw solid #e1e1e1;
-        border-right: 0.266666666666667vw solid #e1e1e1;
-        border-bottom: 0.266666666666667vw solid #e1e1e1;
-        border-bottom-left-radius: 1.066666666666667vw;
-        border-bottom-right-radius: 1.066666666666667vw;
+        border-left: 0.27vw solid #e1e1e1;
+        border-right: 0.27vw solid #e1e1e1;
+        border-bottom: 0.27vw solid #e1e1e1;
+        border-bottom-left-radius: 1.07vw;
+        border-bottom-right-radius: 1.07vw;
         padding: 8vw 5.33333333vw;
         top: 95%;
-        left: -0.266666666666667vw;
+        left: -0.27vw;
         width: 100.6%;
     }
     .compilation-deferred-goods,

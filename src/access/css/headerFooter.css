@@ -26,14 +26,14 @@
         padding-left: 1rem;
     }
     .header__text {
-        padding-top: 2.666666666666667vw;
+        padding-top: 2.67vw;
         padding-left: 0 !important;
     }
     .header-mobile {
         display: flex !important;
     }
     .header-mobile__basket-icon {
-        padding: 0 5.333333333333334vw;
+        padding: 0 5.34vw;
         position: relative;
     }
     .header__text br {
@@ -49,15 +49,15 @@
         justify-content: flex-start;
     }
     .header__enter-cabinet {
-        border-radius: 1.066666666666667vw;
+        border-radius: 1.07vw;
         margin-top: 4vw;
         margin-left: 0;
         margin-right: 0;
         margin-bottom: 4vw;
-        padding: 4vw 5.866666666666666vw;
+        padding: 4vw 5.867vw;
     }
     .header-btn-logout {
-        margin-left: 10.666666666666668vw;
+        margin-left: 10.678vw;
     }
     .header-btn-logout .icon {
         width: 5.3vw !important;
@@ -81,8 +81,8 @@
     display: none;
 }
 .header-mobile__basket-icon .icon {
-    width: 9.333333333333334vw;
-    height: 9.333333333333334vw;
+    width: 9.34vw;
+    height: 9.34vw;
     fill: #fff;
 }
 .header-mobile__bars-button {
@@ -92,8 +92,8 @@
     padding: 0;
 }
 .header-mobile__bars-button .icon {
-    width: 9.333333333333334vw;
-    height: 9.333333333333334vw;
+    width: 9.34vw;
+    height: 9.34vw;
     fill: #fff;
 }
 .header-mobile__close-button {
@@ -104,8 +104,8 @@
     padding: 0;
 }
 .header-mobile__close-button .icon {
-    width: 9.333333333333334vw;
-    height: 9.333333333333334vw;
+    width: 9.34vw;
+    height: 9.34vw;
     fill: #fff;
 }
 .header__logo {
@@ -239,7 +239,7 @@
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     color: #fff;
-    border-bottom: 0.266666666666667vw solid #fff;
+    border-bottom: 0.27vw solid #fff;
 }
 .mobile-user {
     display: -webkit-box;
@@ -251,17 +251,17 @@
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    padding: 5.333333333333334vw;
+    padding: 5.34vw;
     background: #72bfcb;
-    min-height: 1.333333333333333vw;
+    min-height: 1.33vw;
     width: 100%;
 }
 .mobile-user__icon {
-    padding-right: 5.333333333333334vw;
+    padding-right: 5.34vw;
 }
 .mobile-user__icon .icon {
-    width: 5.333333333333334vw;
-    height: 5.333333333333334vw;
+    width: 5.34vw;
+    height: 5.34vw;
     fill: #fff;
 }
 .mobile-user__column {

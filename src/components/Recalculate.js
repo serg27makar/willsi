@@ -114,8 +114,8 @@ class Recalculate extends React.Component {
                        value={(this.state && this.state[item.inputName]) || 0} min={item.sizeMin} max={item.sizeMax}
                        onChange={this.onChange}/>
                 <div className="digital-slider-limit-wrapper">
-                    <div className="digital-slider-limit">{item.sizeMin + " " + ru.sm}</div>
-                    <div className="digital-slider-limit">{item.sizeMax + " " + ru.sm}</div>
+                    <div className="digital-slider-limit text-16">{item.sizeMin + " " + ru.sm}</div>
+                    <div className="digital-slider-limit text-16">{item.sizeMax + " " + ru.sm}</div>
                 </div>
             </div>
         )
@@ -158,8 +158,8 @@ class Recalculate extends React.Component {
                             </div>
                         </div>
                         <div className="recalculate-nav-btn">
-                            <div className="recalculate-prev-btn" onClick={() => {this.prevItem(index)}}>{"< назад"}</div>
-                            <div className="recalculate-next-btn" onClick={() => {this.nextItem(index, item)}}>{"далее >"}</div>
+                            <div className="recalculate-prev-btn text-22" onClick={() => {this.prevItem(index)}}>{"< назад"}</div>
+                            <div className="recalculate-next-btn text-22" onClick={() => {this.nextItem(index, item)}}>{"далее >"}</div>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,6 @@
 .step-box {
     transition-duration: 1s;
     position: relative;
-    -ms-flex: 0 0 33.333333%;
     flex: 0 0 33.333333%;
     padding-left: 0.9375vw;
     padding-right: 0.9375vw;
@@ -13,7 +12,6 @@
 .partner-box {
     transition-duration: 1s;
     position: relative;
-    -ms-flex: 0 0 33.333333%;
     flex: 0 0 33.333333%;
     padding-left: 0.9375vw;
     padding-right: 0.9375vw;
@@ -24,7 +22,6 @@
 .step-box-img {
     transition-duration: 1s;
     position: relative;
-    -ms-flex: 0 0 33.333333%;
     flex: 0 0 33.333333%;
     padding-left: 0.9375vw;
     padding-right: 0.9375vw;
@@ -35,7 +32,6 @@
 .step-box-indicator {
     transition-duration: 1s;
     position: relative;
-    -ms-flex: 0 0 33.333333%;
     flex: 0 0 33.333333%;
     padding-left: 0.9375vw;
     padding-right: 0.9375vw;
@@ -104,20 +100,19 @@
 }
 @media (max-width: 992px) {
     .step-box {
-        -ms-flex: 0 0 100%;
         flex: 0 0 100%;
     }
     .steps-box {
         margin: 0 0 16vw 0;
     }
     .steps-box__number {
-        top: -17.333333333333336vw;
-        width: 26.666666666666668vw;
+        top: -17.36vw;
+        width: 26.678vw;
         height: 32vw;
     }
     .steps {
-        margin-top: -9.333333333333334vw;
-        padding-bottom: 21.333333333333336vw;
+        margin-top: -9.34vw;
+        padding-bottom: 21.36vw;
         min-height: 180.8vw;
     }
     .steps__title {
@@ -126,7 +121,7 @@
     }
     .steps__title:before {
         bottom: 8vw;
-        width: 17.599999999999998vw;
+        width: 17.59vw;
         height: 0.8vw;
     }
 }

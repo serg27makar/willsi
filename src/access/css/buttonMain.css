@@ -82,17 +82,18 @@
 
 @media (max-width: 992px) {
     .welcome-main-env__button-item {
-        margin: 0 0 5.333333333333334vw 0;
+        margin: 0 0 5.34vw 0;
         padding-left: 0;
         padding-right: 0;
     }
     .button-white,
     .button-main {
-        border: 0.266666666666667vw solid #c6d846;
-        border-radius: 1.066666666666667vw;
+        border: 0.27vw solid #c6d846;
+        border-radius: 1.07vw;
         height: 16vw;
-        -webkit-box-shadow: 0.8vw 2.4vw 4.266666666666667vw 0 rgba(198,216,70,0.35);
-        box-shadow: 0.8vw 2.4vw 4.266666666666667vw 0 rgba(198,216,70,0.35);
+        width: 70%;
+        -webkit-box-shadow: 0.8vw 2.4vw 4.27vw 0 rgba(198,216,70,0.35);
+        box-shadow: 0.8vw 2.4vw 4.27vw 0 rgba(198,216,70,0.35);
     }
     .welcome-main-env__button-item .button-main,
     .welcome-main-env__button-item .button-white {
@@ -103,9 +104,9 @@
         width: 68vw;
     }
     .steps-box__bottom-info {
-        bottom: 10.666666666666668vw;
-        border-radius: 1.066666666666667vw;
+        bottom: 10.678vw;
+        border-radius: 1.07vw;
         width: 88vw;
-        height: 14.666666666666666vw;
+        height: 14.676vw;
     }
 }
