@@ -41,7 +41,7 @@ class MobileEnvelope extends React.Component {
     };
 
     logout() {
-        this.mobileMenuClose();
+        this.props.mobileMenuClose();
         this.props.dataRedirectFunction({
             accessR: true,
             to: "/",

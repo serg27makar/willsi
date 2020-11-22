@@ -124,4 +124,7 @@
         width: 17.59vw;
         height: 0.8vw;
     }
+    .step-box-img {
+        flex: auto;
+    }
 }
