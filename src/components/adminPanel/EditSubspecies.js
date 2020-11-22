@@ -63,7 +63,7 @@ class EditSubspecies extends React.Component {
                     {allSize && allSize.map((item, index) => {
                         return (
                             <button key={index}
-                                    className={"size-tabs-wrapper-button text-20 uppercase medium " + (this.state.nameTab === index ? this.state.active : "" )}
+                                    className={"size-tabs-wrapper-button text-18 uppercase medium " + (this.state.nameTab === index ? this.state.active : "" )}
                                     onClick={() => {this.activeTab(index)}}
                             >
                                 <span className="tabs-wrapper__text">{item}</span>

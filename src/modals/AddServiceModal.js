@@ -100,25 +100,25 @@ class AddServiceModal extends React.Component {
                         <h1 className="uppercase title-36 bold">{ru.AddStore}</h1>
                         <div className="welcome-service__form-shop">
                             <label className="form-shop__label">
-                                <span className="add-store-label">{ru.AddStoreInput1}</span>
+                                <span className="add-store-label text-16">{ru.AddStoreInput1}</span>
                                 <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder1} name="nameStore" onChange={this.dataOnChange}/>
                             </label>
                             <label className="form-shop__label">
-                                <span className="add-store-label">{ru.AddStoreInput2}</span>
+                                <span className="add-store-label text-16">{ru.AddStoreInput2}</span>
                                 <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder2} name="urlStore" onChange={this.dataOnChange}/>
                             </label>
-                            <span className="add-store-label">{ru.AddStoreTextarea}</span>
+                            <span className="add-store-label text-16">{ru.AddStoreTextarea}</span>
                             <textarea className="form-shop__textarea text-14" placeholder={ru.AddStoreTextareaPlace} name="textStore" onChange={this.dataOnChange}/>
                             <label className="form-shop__label">
-                                <span className="add-store-label">{ru.AddStoreInput3}</span>
+                                <span className="add-store-label text-16">{ru.AddStoreInput3}</span>
                                 <input className="form-shop__input text-14" type="tel" placeholder={ru.Phone} name="phoneStore" onChange={this.dataOnChange}/>
                             </label>
                             <label className="form-shop__label">
-                                <span className="add-store-label">{ru.AddStoreInput4}</span>
+                                <span className="add-store-label text-16">{ru.AddStoreInput4}</span>
                                 <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder2} name="secondUrlStore" onChange={this.dataOnChange}/>
                             </label>
                             <label className="form-shop__label">
-                                <span className="add-store-label last-add-store-label">{ru.AddStoreInput5}</span>
+                                <span className="add-store-label last-add-store-label text-16">{ru.AddStoreInput5}</span>
                                 <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder1} name="addressStore" onChange={this.dataOnChange}/>
                             </label>
                             <div className="block-align-center service-modal-btn">

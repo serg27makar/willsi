@@ -93,15 +93,15 @@ class Recalculate extends React.Component {
     renderDigitalFace(item) {
         return (
             <div className="digital-face-wrapper">
-                <div className="digital-face left-arrow unselectable"
+                <div className="digital-face left-arrow text-25 unselectable"
                      onClick={() => {this.leftArrowClick(item.inputName, this.state[item.inputName] || item.sizeMin, item.sizeMin)}}>-</div>
                 <div className="digital-face face-block unselectable">
-                    <input className="slider-input-text" name={item.inputName}
+                    <input className="slider-input-text text-16" name={item.inputName}
                            value={(this.state && this.state[item.inputName]) || item.sizeMin} min={item.sizeMin} max={item.sizeMax}
                            onChange={this.onChange}/>
                            <div className="face-block-text">{ru.sm}</div>
                 </div>
-                <div className="digital-face right-arrow unselectable"
+                <div className="digital-face right-arrow text-25 unselectable"
                      onClick={() => {this.rightArrowClick(item.inputName, this.state[item.inputName] || item.sizeMin, item.sizeMax)}}>+</div>
             </div>
         )

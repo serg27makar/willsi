@@ -31,7 +31,7 @@ class MainListCatalogProducts extends React.Component {
         return (
             <li className="dropdown-list__item catalog-opened" key={listIndex} onClick={() => {this.chooseSubCatalog(listItem, listIndex)}}>
                 <div className={this.state.selectedSubCatalog === listIndex ? "dropdown-list__link catalog-opened text-14" : "dropdown-list__link text-14 light"}>{LangCat[listItem]}</div>
-                <div className="count-products-sub">{this.countProducts(listItem)}</div>
+                <div className="count-products-sub text-12">{this.countProducts(listItem)}</div>
             </li>
         )
     };

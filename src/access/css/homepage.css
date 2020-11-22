@@ -15,6 +15,11 @@
         -ms-flex: 0 0 50%;
         flex: 0 0 50%;
     }
+    .partners-env-btn,
+    .size-standard-block-btn {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 .partners-env-btn {
     display: flex;

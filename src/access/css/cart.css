@@ -59,6 +59,7 @@
     width: 100%;
 }
 .dropdown-info-admin,
+.sidebar__button-list .dropdown-info,
 .dropdown-info {
     display: none;
     position: absolute;
@@ -141,7 +142,7 @@
         width: 2.67vw;
         height: 2.67vw;
     }
-    .dropdown-info {
+    .sidebar__button-list .dropdown-info {
         border-left: 0.27vw solid #e1e1e1;
         border-right: 0.27vw solid #e1e1e1;
         border-bottom: 0.27vw solid #e1e1e1;

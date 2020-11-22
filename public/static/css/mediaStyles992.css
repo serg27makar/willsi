@@ -189,13 +189,30 @@
         display: none !important;
     }
     .header__plan-picture {
-        width: 7.73vw;
-        height: 7.73vw;
+        width: 10vw !important;
+        height: 7vw !important;
     }
     .header__plan-column {
         padding: 0 0 0 4vw;
     }
-
+    .stroke-descriptor-wrapper {
+        padding: 0;
+        margin: 0.5rem;
+    }
+    .stroke-descriptor-number {
+        width: 7%;
+        text-align: left;
+    }
+    .stroke-descriptor-manufacturer {
+        width: 36%;
+    }
+    .stroke-descriptor-name {
+        width: 36%;
+    }
+    .stroke-descriptor-code {
+        width: 20%;
+        text-align: center;
+    }
     .welcome-main-env__title-value {
         padding: 0 2.13vw;
     }
@@ -649,8 +666,14 @@
         width: 6.67vw;
         height: 6.67vw;
     }
-
-    .catalog-top__dropdown-info {
+    .main-size-block {
+        columns: 1;
+    }
+    .slider-input-admin {
+        width: 47%;
+        min-width: 10rem;
+    }
+    .sidebar__button-list .catalog-top__dropdown-info {
         border: 0.27vw solid #e1e1e1;
         border-radius: 1.07vw;
         width: 100%;
@@ -1168,6 +1191,7 @@
     }
     .main-admin__main-envelope {
         width: 100%;
+        margin-bottom: 1rem;
     }
     input[type="checkbox"]:checked + label,
     input[type="checkbox"]:not(:checked) + label {
@@ -1385,7 +1409,7 @@
     }
     .tabs-wrapper__content-info {
         padding-top: 8vw;
-        padding-bottom: 21.36vw;
+        padding-bottom: 2rem;
     }
     .tabs-active .tabs-wrapper__text:before {
         height: 0.8vw;

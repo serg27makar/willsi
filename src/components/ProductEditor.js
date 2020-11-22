@@ -35,10 +35,10 @@ class ProductEditor extends React.Component {
     renderListEditor(item, index) {
         return (
             <div className="stroke-descriptor-wrapper" key={index} onClick={() => {this.selectedProductToEdit(item)}}>
-                <div className="stroke-descriptor-number">{index + 1}</div>
-                <div className="stroke-descriptor-manufacturer">{item.Manufacturer}</div>
-                <div className="stroke-descriptor-name">{item.ProdName}</div>
-                <div className="stroke-descriptor-code">{item.ProductCode}</div>
+                <div className="stroke-descriptor-number text-14">{index + 1}</div>
+                <div className="stroke-descriptor-manufacturer text-14">{item.Manufacturer}</div>
+                <div className="stroke-descriptor-name text-14">{item.ProdName}</div>
+                <div className="stroke-descriptor-code text-14">{item.ProductCode}</div>
             </div>
         )
     }
@@ -47,10 +47,10 @@ class ProductEditor extends React.Component {
         return (
             <div>
                 <div className="stroke-descriptor-wrapper">
-                    <div className="stroke-descriptor-number"> № </div>
-                    <div className="stroke-descriptor-manufacturer">{ru.Manufacturer}</div>
-                    <div className="stroke-descriptor-name">{ru.ProdName}</div>
-                    <div className="stroke-descriptor-code">{ru.ProductCode}</div>
+                    <div className="stroke-descriptor-number text-14"> № </div>
+                    <div className="stroke-descriptor-manufacturer text-14">{ru.Manufacturer}</div>
+                    <div className="stroke-descriptor-name text-14">{ru.ProdName}</div>
+                    <div className="stroke-descriptor-code text-14">{ru.ProductCode}</div>
                 </div>
                 {this.state.ShopEditParams && this.state.ShopEditParams.map((item, index) => {
                     return this.renderListEditor(item, index);

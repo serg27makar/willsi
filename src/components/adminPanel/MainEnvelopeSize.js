@@ -77,17 +77,17 @@ class MainEnvelopeSize extends React.Component {
     renderDigitalFace(item) {
         return (
             <div className="digital-face-wrapper">
-                <div className="digital-face left-arrow unselectable" onClick={() => {
+                <div className="digital-face left-arrow text-25 unselectable" onClick={() => {
                     this.leftArrowClick(item.inputName, this.state.size[item.inputName] ||
                         item.sizeMin, item.sizeMin)}}
                 >-</div>
                 <div className="digital-face face-block unselectable">
-                    <input className="slider-input-text" name={item.inputName}
+                    <input className="slider-input-text text-16" name={item.inputName}
                            value={(this.state.size && this.state.size[item.inputName]) || 0} min={item.sizeMin} max={item.sizeMax}
                            onChange={this.onChange}/>
-                    <div className="face-block-text">{ru.sm}</div>
+                    <div className="face-block-text text-16">{ru.sm}</div>
                 </div>
-                <div className="digital-face right-arrow unselectable" onClick={() => {
+                <div className="digital-face right-arrow text-25 unselectable" onClick={() => {
                     this.rightArrowClick(item.inputName, this.state.size[item.inputName] ||
                         item.sizeMin, item.sizeMax)}}
                 >+</div>
@@ -102,8 +102,8 @@ class MainEnvelopeSize extends React.Component {
                        value={(this.state.size && this.state.size[item.inputName]) || 0} min={item.sizeMin} max={item.sizeMax}
                        onChange={this.onChange}/>
                 <div className="digital-slider-limit-wrapper">
-                    <div className="digital-slider-limit">{item.sizeMin + " " + ru.sm}</div>
-                    <div className="digital-slider-limit">{item.sizeMax + " " + ru.sm}</div>
+                    <div className="digital-slider-limit text-16">{item.sizeMin + " " + ru.sm}</div>
+                    <div className="digital-slider-limit text-16">{item.sizeMax + " " + ru.sm}</div>
                 </div>
             </div>
         )
@@ -112,7 +112,7 @@ class MainEnvelopeSize extends React.Component {
     renderSizeInput(item, index) {
         return (
             <div key={index} className="slider-input-admin">
-                <span className="slider-input-text">{item.title}</span>
+                <span className="slider-input-text text-16">{item.title}</span>
                 {this.renderDigitalFace(item)}
                 {this.renderSlider(item)}
             </div>

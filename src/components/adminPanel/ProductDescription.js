@@ -46,27 +46,27 @@ class ProductDescription extends React.Component {
     render() {
         return (
             <div className="product-description">
-                <span className="add-store-label">{ru.Description}</span>
+                <span className="add-store-label text-16">{ru.Description}</span>
                 <textarea className="form-shop__textarea text-14"
                           value={this.state.Description || ""}
                           placeholder={ru.Description} name="Description"
                           onChange={this.dataChange}/>
-                <span className="add-store-label">{ru.Composition}</span>
+                <span className="add-store-label text-16">{ru.Composition}</span>
                 <textarea className="form-shop__textarea text-14"
                           value={this.state.Composition || ""}
                           placeholder={ru.Description} name="Composition"
                           onChange={this.dataChange}/>
-                <span className="add-store-label">{ru.ModelParameters}</span>
+                <span className="add-store-label text-16">{ru.ModelParameters}</span>
                 <textarea className="form-shop__textarea text-14"
                           value={this.state.ModelParameters || ""}
                           placeholder={ru.Description} name="ModelParameters"
                           onChange={this.dataChange}/>
-                <span className="add-store-label">{ru.CareInstructions}</span>
+                <span className="add-store-label text-16">{ru.CareInstructions}</span>
                 <textarea className="form-shop__textarea text-14"
                           value={this.state.CareInstructions || ""}
                           placeholder={ru.Description} name="CareInstructions"
                           onChange={this.dataChange}/>
-                <span className="add-store-label">{ru.PaymentAndDelivery}</span>
+                <span className="add-store-label text-16">{ru.PaymentAndDelivery}</span>
                 <textarea className="form-shop__textarea text-14"
                           value={this.state.PaymentAndDelivery || ""}
                           placeholder={ru.Description} name="PaymentAndDelivery"
