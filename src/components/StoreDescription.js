@@ -69,7 +69,7 @@ class StoreDescription extends React.Component {
                     return this.renderInputBtn(item, index);
                 })}
                 <div className="partners-env-btn">
-                    <ButtonMain btnClass="button-main text-16 little-btn" text={ru.Save} onClick={this.saveUpdate}/>
+                    <ButtonMain btnClass="button-main text-16" text={ru.Save} onClick={this.saveUpdate}/>
                 </div>
             </div>
         )

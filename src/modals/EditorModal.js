@@ -189,13 +189,13 @@ class EditorModal extends React.Component {
     renderInput(item, index) {
         return (
             <div className="relative-block" key={index}>
-                <p className="input-placeholder">{ru[item.inputName]}</p>
+                <p className="input-placeholder text-16">{ru[item.inputName]}</p>
                 <input className="tags-list__input text-18 light envelope-mode"
                        type="number" name={item.inputName} placeholder={ru.placeholderExample}
                        value={this.state.params[item.inputName] || ""}
                        onChange={(e) => {this.onChange(e, item)}}
                 />
-                <p className="input-placeholder-sm">{ru.sm}</p>
+                <p className="input-placeholder-sm text-16">{ru.sm}</p>
             </div>
         )
     }

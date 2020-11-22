@@ -45,7 +45,7 @@ class TariffBlock extends React.Component {
         return (
             <div className="tariff-line-wrapper" key={index}>
                 {this.renderMark(enable)}
-                <div className={enable ? "tariff-line" : "tariff-line-disabled"}>{item}</div>
+                <div className={enable ? "tariff-line text-14" : "tariff-line-disabled text-14"}>{item}</div>
             </div>
         )
     }
@@ -53,7 +53,7 @@ class TariffBlock extends React.Component {
     render() {
         return (
             <div className="tariff-block">
-                <h2 className="uppercase tariff-block-plan-title">{this.props.item.name}</h2>
+                <h2 className="uppercase tariff-block-plan-title text-22">{this.props.item.name}</h2>
                 <div className="tariff-block-number">{this.props.item.index}</div>
                 <div className="tariff-line-block">
                     {this.state.planListArr && this.state.planListArr.map((item, index) => {

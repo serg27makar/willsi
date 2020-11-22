@@ -156,13 +156,13 @@ class UserDescription extends React.Component {
     renderInput(item, index) {
         return (
             <div className="relative-block" key={index}>
-                <p className="input-placeholder">{ru[item.title]}</p>
+                <p className="input-placeholder text-16">{ru[item.title]}</p>
                 <input className="tags-list__input text-18 light envelope-mode-cabinet"
                        type="number" name={item.title} placeholder={ru.placeholderExample}
                        value={this.state.params[item.title] || ""}
                        onChange={(e) => {this.onChange(e, item)}}
                 />
-                <p className="input-placeholder-sm">{ru.sm}</p>
+                <p className="input-placeholder-sm text-16">{ru.sm}</p>
             </div>
         )
     }
@@ -187,8 +187,8 @@ class UserDescription extends React.Component {
                     })}
                 </div>
                 <div className="partners-env-btn">
-                    <ButtonMain btnClass="button-main text-16 little-btn" text={ru.Save} onClick={() => {this.isActive(true)}}/>
-                    <ButtonMain btnClass="button-main text-16 little-btn" text={ru.AddedParams} onClick={this.addedParams}/>
+                    <ButtonMain btnClass="button-main text-16" text={ru.Save} onClick={() => {this.isActive(true)}}/>
+                    <ButtonMain btnClass="button-main text-16" text={ru.AddedParams} onClick={this.addedParams}/>
                 </div>
             </div>
         )

@@ -1729,7 +1729,7 @@ input[type="checkbox"] + label:hover {
     width: 100% !important;
     text-align: left;
     margin: 1rem 0 !important;
-    padding: 0 1vw 0 14vw !important;
+    padding: 0 1vw 0 67% !important;
 }
 .parameters {
     padding-top: 0.9375vw;
@@ -2357,9 +2357,6 @@ button.size-tabs-wrapper-button.tabs-active {
     left: 3.5vw;
     font-size: 1.35vw;
 }
-.little-btn {
-    width: 13vw !important;
-}
 .input-placeholder {
     position: absolute;
     top: 0.5rem;
@@ -2368,7 +2365,7 @@ button.size-tabs-wrapper-button.tabs-active {
 .input-placeholder-sm {
     position: absolute;
     top: 0.5rem;
-    left: 17vw;
+    left: 78%;
 }
 .auto-margin {
     margin: auto;

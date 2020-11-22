@@ -213,6 +213,27 @@
         width: 20%;
         text-align: center;
     }
+    .cabinet-wrapper {
+        flex-direction: column;
+    }
+    .cabinet-sidebar-content,
+    .cabinet-sidebar-left {
+        width: 100%;
+    }
+    .tags-list-envelope {
+        height: 100%;
+    }
+    .input-placeholder,
+    .input-placeholder-sm {
+        top: 3vw;
+    }
+    .tariff-block-wrapper {
+        flex-direction: column;
+    }
+    .tariff-block {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
     .welcome-main-env__title-value {
         padding: 0 2.13vw;
     }
