@@ -3,40 +3,32 @@ import ru from "./../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
 import "./../access/css/homepage.css";
 import {partnersArr} from "../access/temporaryConstants"
-import {slideAnimate} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {actionOpenModal} from "../action";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import {aosMethod} from "../js/visualEffects";
 
 class Partners extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            startupArr: [],
-            animate: 0,
-            stepsArr: [],
-            bgNon: "",
             redirect: {
                 accessR: false,
                 to: "",
             },
             partnersBtn: true,
         };
-        this.startupRef = [];
-        this.startupRefWrap = [0,0,2,2,0,0,2,2];
-        this.startupRefWrap.map(() => {
-            return this.startupRef.push(React.createRef());
-        });
-        // this.redirect = this.redirect.bind(this);
         this.openModal = this.openModal.bind(this);
     }
 
     componentDidMount() {
-        window.addEventListener('scroll',
-            (e) => { slideAnimate(e, this.startupRef, this.props.scrollTopMin,
-                this.props.scrollTopMax, this.startupRefWrap)});
         this.setState({
             partnersBtn: this.props.page !== "Service",
+        })
+        AOS.init({
+            duration: 3000
         })
     }
 
@@ -62,8 +54,9 @@ class Partners extends React.Component {
     }
 
     partnerBox = (item, index) => {
+        const aosFade = aosMethod(index);
         return (
-            <div ref={this.startupRef[index]} className="partner-box" key={index}>
+            <div data-aos={aosFade} className="partner-box" key={index}>
                 <div className="partners-env">
                     <div className="partners-env__picture">
                         <picture className="picture">

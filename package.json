@@ -6,13 +6,14 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "aos": "^2.3.4",
     "history": "4.10.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
+    "react-router": "latest",
     "react-scripts": "3.4.1",
-    "redux": "^4.0.5",
-    "react-router": "latest"
+    "redux": "^4.0.5"
   },
   "scripts": {
     "start": "set PORT=3100 && react-scripts start",

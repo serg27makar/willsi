@@ -1,7 +1,8 @@
 import React from 'react';
 import "../access/css/stepsBlock.css";
 import ru from "../access/lang/LangConstants";
-import {slideAnimate} from "../js/visualEffects";
+import AOS from "aos";
+import {aosMethod} from "../js/visualEffects";
 
 class Startup extends React.Component {
     constructor(props) {
@@ -10,18 +11,8 @@ class Startup extends React.Component {
             startupArr: [],
         };
 
-        let size = 3;
         this.subarray = [];
         this.subarrayMethod = [];
-        this.startupRef = [];
-
-        this.props.startupArr.map(() => {
-            return this.startupRef.push(React.createRef());
-        });
-
-        for (let i = 0; i <Math.ceil(this.startupRef.length/size); i++) {
-            this.subarray[i] = this.startupRef.slice((i*size), (i*size) + size);
-        }
 
         this.subarray.map((item, index) => {
             this.subarrayMethod.push([]);
@@ -32,17 +23,15 @@ class Startup extends React.Component {
     }
 
     componentDidMount() {
-        this.subarray.map((item, index) => {
-            return window.addEventListener('scroll',
-                (e) => { slideAnimate(e, item, this.props.scrollTopMin + (index * 200),
-                    this.props.scrollTopMax + (index * 200), this.subarrayMethod[index])});
-
-        });
+        AOS.init({
+            duration: 1500
+        })
     }
 
     startupBlock = (item, index) => {
+        const aosFade = aosMethod(index, "startup");
         return (
-            <div ref={this.startupRef[index]} className="step-box" key={index}>
+            <div data-aos={aosFade} className="step-box" key={index}>
                 <div className="startup-box" >
                     <div className="startup-box__icon">
                         <svg className="icon icon-note ">

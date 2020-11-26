@@ -725,12 +725,10 @@ footer {
     opacity: 0 !important;
 }
 .start-animate-step-box2 {
-    transform: translateX(100px) !important;
+    transform: translateY(-100px) !important;
     opacity: 0 !important;
 }
 .indicator-bottom {
-    transition-duration: 1s;
-    transform: translateX(0);
     padding-top: 2.5vw;
     opacity: 1;
 }

@@ -3,29 +3,22 @@ import {usersFeatBack} from "../../access/temporaryConstants"
 import ButtonMain from "./ButtonMain";
 import ru from "../../access/lang/LangConstants";
 import "../../access/css/shared.css"
-import {slideAnimate} from "../../js/visualEffects";
+import AOS from "aos";
+import {aosMethod} from "../../js/visualEffects";
 
 class Reviews extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.startupRef = [];
-        this.startupRefWrap = [0,2,0];
-        this.startupRefWrap.map(() => {
-            return this.startupRef.push(React.createRef());
-        });
-    }
 
     componentDidMount() {
-        window.addEventListener('scroll',
-            (e) => { slideAnimate(e, this.startupRef, this.props.scrollTopMin,
-                null, this.startupRefWrap)})
+        AOS.init({
+            duration: 2000
+        })
     }
 
     reviewsBox = (item, index) => {
+        const aosFade = aosMethod(index);
         const mailto =  "mailto:" + item.email;
         return (
-            <div ref={this.startupRef[index]} className="reviews-box" key={index}>
+            <div data-aos={aosFade} className="reviews-box" key={index}>
                 <div className="reviews-box__picture">
                     <picture className="picture">
                         <img

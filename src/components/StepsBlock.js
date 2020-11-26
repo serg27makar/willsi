@@ -1,7 +1,8 @@
 import React from 'react';
 import ButtonMain from "./shared/ButtonMain";
 import "../access/css/stepsBlock.css";
-import {slideAnimate} from "../js/visualEffects";
+import AOS from "aos";
+import {aosMethod} from "../js/visualEffects";
 
 class StepsBlock extends React.Component {
     constructor(props) {
@@ -10,20 +11,18 @@ class StepsBlock extends React.Component {
             stepsArr: [],
             bgNon: "",
         };
-        this.startupRef = [];
-        this.props.stepsArr.map(() => {
-            return this.startupRef.push(React.createRef());
-        });
     }
 
     componentDidMount() {
-        window.addEventListener('scroll',
-            (e) => { slideAnimate(e, this.startupRef, this.props.scrollTopMin, this.props.scrollTopMax)})
+        AOS.init({
+            duration: 2000
+        })
     }
 
     stepBox = (item, index) => {
+        const aosFade = aosMethod(index, "step");
         return (
-            <div ref={this.startupRef[index]} className="step-box-img" key={index}>
+            <div data-aos={aosFade} className="step-box-img" key={index}>
                 <div className="steps-box">
                     <div className="steps-box__picture">
                         <picture>

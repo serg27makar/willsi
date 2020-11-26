@@ -1,6 +1,6 @@
 @media (max-width: 576px) {
     .container {
-        max-width: 100%;
+        max-width: 100vw;
     }
     .recalculate-box__number {
         font-size: 30.64vw;
