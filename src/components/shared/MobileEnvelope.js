@@ -2,6 +2,7 @@ import ru from "../../access/lang/LangConstants";
 import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import Authentication from "./Authentication";
 
 class MobileEnvelope extends React.Component {
     constructor(props) {
@@ -91,7 +92,7 @@ class MobileEnvelope extends React.Component {
                         {this.renderPartnerLink()}
                     </li>
                     <li className="mobile-nav__item">
-                        <Link className="mobile-nav__link light text-25" to={"/cabinet"} onClick={this.mobileMenuClose}>{this.state.UserName}</Link>
+                        <Authentication onClick={this.mobileMenuClose}/>
                     </li>
                 </ul>
                 <div className="header-btn-logout light text-25" onClick={this.logout}>

@@ -2,6 +2,7 @@ import React from 'react';
 import ru from "../../access/lang/LangConstants";
 import "../../access/css/stepsBlock.css"
 import AOS from "aos";
+import CircleLevel from "./CircleLevel";
 
 class Indicator extends React.Component {
 
@@ -17,10 +18,8 @@ class Indicator extends React.Component {
                 <div className="container">
                     <div className="row-wrap">
                         <p className="indicator-env__mobile-info text-14 light italic color-aqua">{ru.WithIndicator}</p>
-                        <div className="indicator-env__mobile-picture">
-                            <picture className="mobile-picture">
-                                <img className="mobile-picture__source" src="static/img/content/circle-full.png" alt="circle"/>
-                            </picture>
+                        <div data-aos={"fade-right"} className="step-box-indicator">
+                            <CircleLevel level={99}/>
                         </div>
                         <div data-aos={"fade-left"} className="step-box-indicator">
                             <p className="indicator-env__paragraph text-14 light italic">{ru.PayAttentionToThings}</p>

@@ -66,6 +66,10 @@
     .footer-row-wrap {
         flex-wrap: wrap;
     }
+    .header__user-list .user-list__icon .icon {
+        width: 5.25vw !important;
+        height: 5.25vw !important;
+    }
 }
 .logo__source {
     width: 100%;

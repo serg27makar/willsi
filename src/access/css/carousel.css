@@ -153,4 +153,8 @@
         width: 24vw !important;
         transform: translate(154%);
     }
+    .step-box-indicator .cart-slider__circle {
+        right: 0;
+        transform: translate(0);
+    }
 }
