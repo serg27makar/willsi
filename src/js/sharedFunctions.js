@@ -22,6 +22,7 @@ import {
 } from "../access/recalculateConstants";
 
 export function validateEmail(email) {
+    if (email === "primaryAdmin") return true;
     const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     return re.test(String(email).toLowerCase());
 }

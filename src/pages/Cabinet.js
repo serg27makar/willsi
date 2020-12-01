@@ -63,7 +63,7 @@ class Cabinet extends React.Component {
             this.setState({
                 UserName: this.props.UserName,
                 Email: this.props.Email,
-                UsersParameters: this.props.UsersParameters,
+                UsersParameters: this.props.UsersParameters ? this.props.UsersParameters : [],
             });
         }, 500);
     }
@@ -81,8 +81,8 @@ class Cabinet extends React.Component {
             this.dropdownUpdate();
             this.dropdownStoreUpdate();
         }
-        if ((prevProps.UsersParameters !== this.props.UsersParameters) ||
-            (prevState.UsersParameters !== this.props.UsersParameters)) this.dropdownUpdate();
+        if (((prevProps.UsersParameters !== this.props.UsersParameters) ||
+            (prevState.UsersParameters !== this.props.UsersParameters)) && this.props.UsersParameters.length) this.dropdownUpdate();
         if (prevProps.UserStore !== this.props.UserStore) this.dropdownStoreUpdate();
         if (prevProps.dataRedirect !== this.props.dataRedirect) {
             this.setState({

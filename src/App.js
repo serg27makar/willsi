@@ -26,7 +26,8 @@ import {connect} from "react-redux";
 import EditorModal from "./modals/EditorModal";
 import {
     actionEmail,
-    actionPermission, actionPostpone,
+    actionPermission,
+    actionPostpone,
     actionUserID,
     actionUserName,
     actionUsersParameters,

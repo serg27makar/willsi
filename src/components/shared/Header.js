@@ -18,6 +18,7 @@ import {
     actionUsersParameters,
     actionUserStore
 } from "../../action";
+import HeaderAdmin from "./HeaderAdmin";
 
 const mobilButtonClose = "static/img/svg-sprites/symbol/sprite.svg#close";
 const mobilButtonOpen = "static/img/svg-sprites/symbol/sprite.svg#menu";
@@ -98,6 +99,11 @@ class Header extends React.Component {
     }
 
     render() {
+        if (this.props.Permission === "primaryAdmin") {
+            return (
+                <HeaderAdmin/>
+            )
+        }
         return (
             <header>
                 <div className="container">
@@ -155,6 +161,7 @@ function MapStateToProps(state) {
         update: state.pageReducer.update,
         Postpone: state.userReducer.Postpone,
         SetActionPostpone: state.userReducer.SetActionPostpone,
+        Permission: state.userReducer.Permission,
     }
 }
 const mapDispatchToProps = dispatch => {

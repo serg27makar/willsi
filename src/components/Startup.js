@@ -56,7 +56,7 @@ class Startup extends React.Component {
                             <h2 className="startup__title title-36 uppercase">{ru.StartupIsGainingPopularity}</h2>
                         </div>
                     </div>
-                    <div className="row-wrap align-items-start justify-content-center">
+                    <div className="row-wrap align-items-start">
                         {this.props.startupArr && this.props.startupArr.map((item, index) => {
                             return this.startupBlock(item, index);
                         })}

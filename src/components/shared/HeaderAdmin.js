@@ -21,46 +21,20 @@ class HeaderAdmin extends React.Component {
     }
 
     render() {
-        if (this.props.page !== "AdminPanel") {
-            return null;
-        }
         return (
             <header>
                 <div className="container-fluid">
-                    <div className="row align-items-center">
-                        <div className="col-12 col-md-12">
-                            <div className="header-envelope">
-                                <div className="header">
-                                    <div className="header__logo" >
-                                        <picture>
-                                            <img className="logo__source" src="static/img/general/logo.png" alt="logo"/>
-                                        </picture>
-                                    </div>
-                                <p className="header__text light text-16">{ru.online}<br/>{ru.dressingRoom}</p>
-                                </div>
-                            </div>
+                    <div className="row">
+                        <div className="header__logo justify-content-center">
+                            <picture>
+                                <img className="logo__source" src="static/img/general/logo.png" alt="logo"/>
+                            </picture>
                         </div>
-                        <div className="col-12 col-md-12 col-lg-8">
-                            <div className="header__right-list">
-                                <div className="header__plan">
-                                    <div className="header__plan-picture">
-                                        <picture className="plan-picture">
-                                            <img className="plan-picture__source" src="static/img/content/trial.png" alt="trial"/>
-                                        </picture>
-                                    </div>
-                                    <div className="header__plan-column">
-                                        <p className="text-14 bold">{ru.TrialPlan}</p>
-                                        <div className="header__plan-change text-14 light" >{ru.Edit}</div>
-                                    </div>
-                                </div>
-                                <div className="header__enter-cabinet text-14 light" >{ru.CustomerLogin}</div>
-                                <div className="header__enter-name text-14 bold">Юлия Иванова
-                                    <div className="header-btn-logout" >
-                                        <svg className="icon icon-login ">
-                                            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#login"/>
-                                        </svg>
-                                    </div>
-                                </div>
+                        <div className="header__enter-name justify-content-center text-14 bold">Всея Админ
+                            <div className="header-btn-logout" >
+                                <svg className="icon icon-login ">
+                                    <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#login"/>
+                                </svg>
                             </div>
                         </div>
                     </div>
