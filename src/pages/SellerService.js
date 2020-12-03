@@ -48,7 +48,7 @@ class SellerService extends React.Component {
     redirect() {
         this.props.dataRedirectFunction({
             accessR: true,
-            to: "/data",
+            to: "/catalog",
         });
     }
 

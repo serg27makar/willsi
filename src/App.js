@@ -40,6 +40,7 @@ import AddServiceModal from "./modals/AddServiceModal";
 import RegistrationStoreAdministrator from "./modals/RegistrationStoreAdministrator";
 import AddParamsModal from "./modals/AddParamsModal";
 import RecalculateModal from "./modals/RecalculateModal";
+import PrimaryAdminPanel from "./pages/PrimaryAdminPanel";
 
 const history = createBrowserHistory();
 
@@ -130,6 +131,7 @@ class Navigate extends React.Component {
                     <Route exact path='/' component={Homepage}/>
                     <Route path='/about' component={About}/>
                     <Route path='/admin-panel' component={AdminPanel}/>
+                    <Route path='/primary-admin-panel' component={PrimaryAdminPanel}/>
                     <Route path='/cart' component={Cart}/>
                     <Route path='/catalog' component={Catalog}/>
                     <Route path='/data' component={Data}/>

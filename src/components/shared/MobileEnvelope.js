@@ -43,10 +43,6 @@ class MobileEnvelope extends React.Component {
 
     logout() {
         this.props.mobileMenuClose();
-        this.props.dataRedirectFunction({
-            accessR: true,
-            to: "/",
-        });
         localStorage.clear();
         this.props.userIDFunction("");
         this.props.userNameFunction("");
@@ -57,6 +53,10 @@ class MobileEnvelope extends React.Component {
         this.props.dataUpdateFunction(!this.props.update);
         this.props.setActionPostponeFunction(!this.props.SetActionPostpone);
         this.props.postponeFunction([]);
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/",
+        });
     }
 
     renderPartnerLink() {

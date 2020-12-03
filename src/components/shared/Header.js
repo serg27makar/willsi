@@ -57,10 +57,6 @@ class Header extends React.Component {
 
     logout() {
         this.mobileMenuClose();
-        this.props.dataRedirectFunction({
-            accessR: true,
-            to: "/",
-        });
         localStorage.clear();
         this.props.userIDFunction("");
         this.props.userNameFunction("");
@@ -71,6 +67,10 @@ class Header extends React.Component {
         this.props.dataUpdateFunction(!this.props.update);
         this.props.setActionPostponeFunction(!this.props.SetActionPostpone);
         this.props.postponeFunction([]);
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/",
+        });
     }
 
     menuButton() {

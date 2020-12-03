@@ -1,5 +1,5 @@
 import React from 'react';
-import {setActionAdminPanel} from "../action";
+import {actionDataRedirect, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import "../access/css/homepage.css";
 import SearchBox from "../components/SearchBox";
@@ -19,7 +19,6 @@ class Homepage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect: false,
             isUnknown: true,
             minusScroll: 0,
         };
@@ -46,13 +45,18 @@ class Homepage extends React.Component {
                 minusScroll: this.props.UsersParameters.length === 0 ? 0 : 600,
             })
         }
+        if (prevProps.Permission !== this.props.Permission) {
+            if (this.props.Permission === "primaryAdmin") {
+                this.redirect("primary-admin-panel")
+            }
+        }
     }
 
-    redirect() {
-        this.setState({
-            ...this.state,
-            redirect: true,
-        })
+    redirect(page = "catalog") {
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/" + page,
+        });
     }
 
     renderStepsBlock() {
@@ -94,6 +98,7 @@ function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
         UsersParameters: state.userReducer.UsersParameters,
+        Permission: state.userReducer.Permission,
         dataRedirect: state.pageReducer.dataRedirect,
     }
 }
@@ -101,6 +106,9 @@ const mapDispatchToProps = dispatch => {
     return {
         setActionAdminPanelFunction: (page) => {
             dispatch(setActionAdminPanel(page))
+        },
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
         },
     }
 };
