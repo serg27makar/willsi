@@ -101,7 +101,7 @@ class Header extends React.Component {
     render() {
         if (this.props.Permission === "primaryAdmin") {
             return (
-                <HeaderAdmin/>
+                <HeaderAdmin logout={this.logout}/>
             )
         }
         return (
