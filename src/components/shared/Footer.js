@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import ru from "../../access/lang/LangConstants";
 import {Link} from "react-router-dom";
 
-
 class Footer extends React.Component {
     constructor(props) {
         super(props);
@@ -23,6 +22,11 @@ class Footer extends React.Component {
     }
 
     render() {
+        if (this.props.Permission === "primaryAdmin") {
+            return (
+                <footer/>
+            )
+        }
         return (
             <footer>
                 <div className="container">
@@ -94,6 +98,7 @@ class Footer extends React.Component {
 function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
+        Permission: state.userReducer.Permission,
     }
 }
 
