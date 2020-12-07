@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import {actionDataRedirect, actionSetStoreArr, setActionAdminPanel} from "../action";
 import {Redirect} from "react-router-dom";
+import MainBarAdmin from "../components/primaryAdminPanel/MainBarAdmin";
 
 class PrimaryAdminPanel extends React.Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class PrimaryAdminPanel extends React.Component {
 
     renderSideBar() {
         return (
-            <div>sidebar</div>
+            <MainBarAdmin/>
         )
     }
 
@@ -41,7 +42,7 @@ class PrimaryAdminPanel extends React.Component {
         }
         return(
             <div className="content main-admin__row">
-                <div className="main-admin__sidebar sidebar">
+                <div className="main-admin__sidebar">
                     {this.renderSideBar()}
                 </div>
                 <div className="main-admin__main-envelope">

@@ -4051,3 +4051,15 @@ div, p, span, h1, h2, h3, h4,
     justify-content: center;
     text-align: center;
 }
+.main-bar-wrap {
+
+}
+.filters-tag {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #565656;
+    text-align: center;
+}
+.filter-check-box {
+    margin: 1rem 2rem;
+}

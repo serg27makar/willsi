@@ -262,7 +262,7 @@ class AdminMainSite extends React.Component {
             <div>
                 <input className="category-list__input" type="checkbox" id={"storeAdmin"} disabled={this.props.Permission === "primaryAdmin"}
                        value={this.state.storeAdmin} checked={this.state.storeAdmin} name={"storeAdmin"} onChange={this.dataChange}/>
-                <label className="category-list__label text-14 light" htmlFor={"storeAdmin"}>{ru.storeAdmin}</label>
+                <label className="category-list__label text-14 light" htmlFor={"storeAdmin"}>{ru.storeAdminHide}</label>
             </div>
         );
     }

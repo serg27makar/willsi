@@ -236,7 +236,15 @@ const ru = {
     addProduct: "добавить изделие",
 
     primaryAdmin: "Спрятать товар администратором сайта",
-    storeAdmin: "Спрятать товар администратором магазина"
+    storeAdminHide: "Спрятать товар администратором магазина",
+    allUsers: "Все пользователи",
+    allStores: "Все магазины",
+    allProducts: "Весь товар",
+    filters: "фильтры",
+
+    unknown: "не регистрированные",
+    storeAdmin: "администраторы магазинов",
+    buyer: "покупатели"
 };
 
 export default ru;
