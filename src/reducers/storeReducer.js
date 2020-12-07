@@ -1,6 +1,7 @@
 const initialState = {
     StoreArr: [],
     addStore: false,
+    AllStoresData: [],
 };
 
 export default function storeReducer(state = initialState, action) {
@@ -15,6 +16,11 @@ export default function storeReducer(state = initialState, action) {
             return {
                 ...state,
                 addStore: action.addStore
+            };
+        case "ALL_STORES_DATA":
+            return {
+                ...state,
+                AllStoresData: action.AllStoresData
             };
 
         default:

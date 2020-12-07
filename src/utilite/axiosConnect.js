@@ -220,3 +220,36 @@ export const postSendEmail = (data, callbackInfo) => {
         callbackInfo(err);
     })
 };
+
+export const postGetAllUsersData = (data, callbackInfo) => {
+    axios.post(Url + `/users/getAllUsersData`, data,{
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        callbackInfo(err);
+    })
+};
+
+export const postGetAllStoresData = (data, callbackInfo) => {
+    axios.post(Url + `/store/getAllStoresData`, data,{
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        callbackInfo(err);
+    })
+};
+
+export const getAllProductsData = (data, callbackInfo) => {
+    axios.post(Url + `/product/getAllProductsData`, data,{
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        callbackInfo(err);
+    })
+};

@@ -298,3 +298,31 @@ export const actionSearchItemColor = (searchItemColor) => {
         searchItemColor: searchItemColor
     }
 };
+
+export const actionAllUsersData = (AllUsersData) => {
+    return {
+        type: 'ALL_USERS_DATA',
+        AllUsersData: AllUsersData
+    }
+};
+
+export const actionAllStoresData = (AllStoresData) => {
+    return {
+        type: 'ALL_STORES_DATA',
+        AllStoresData: AllStoresData
+    }
+};
+
+export const actionAllProductsData = (AllProductsData) => {
+    return {
+        type: 'ALL_PRODUCTS_DATA',
+        AllProductsData: AllProductsData
+    }
+};
+
+export const actionSetFilters = (filters) => {
+    return {
+        type: 'SET_FILTERS',
+        filters: filters
+    }
+};

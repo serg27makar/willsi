@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import ru from "../../access/lang/LangConstants";
+import {actionSetFilters} from "../../action";
 
 const usersFiltersData = [
     "unknown", "storeAdmin", "buyer"
@@ -12,6 +13,7 @@ class Filters extends React.Component {
             buyer: false,
             unknown: false,
             storeAdmin: false,
+            type: "",
         }
         this.dataChange = this.dataChange.bind(this);
     }
@@ -19,16 +21,31 @@ class Filters extends React.Component {
 
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState !== this.state) {
+            if (this.state.type && this.state.type === "u") {
+                const filter = {
+                    type: "u",
+                    buyer: this.state.buyer,
+                    unknown: this.state.unknown,
+                    storeAdmin: this.state.storeAdmin,
+                }
+                this.props.setFiltersFunction(filter)
+            }
+        }
+    }
+
     dataChange(e) {
         const name = e.target.name;
-        const group = e.target.id.substr(0, 1);
+        const type = e.target.id.substr(0, 1);
         this.setState({
             [name]: !this.state[name],
+            type,
         })
     }
 
-    outputCheckbox(item, index, group) {
-        const idCheckbox = group + index;
+    outputCheckbox(item, index, type) {
+        const idCheckbox = type + index;
         return (
             <div className="filter-check-box" key={index}>
                 <input className="category-list__input"
@@ -43,9 +60,9 @@ class Filters extends React.Component {
     }
 
     usersFilter() {
-        const group = "u";
+        const type = "u";
         return usersFiltersData.map((item, index) => {
-            return this.outputCheckbox(item, index, group);
+            return this.outputCheckbox(item, index, type);
         })
 
     }
@@ -86,6 +103,9 @@ function MapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
+        setFiltersFunction: (filters) => {
+            dispatch(actionSetFilters(filters))
+        },
     }
 };
 

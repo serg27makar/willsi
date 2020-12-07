@@ -1,8 +1,5 @@
 import React from "react";
 import {connect} from "react-redux";
-import ButtonMain from "../shared/ButtonMain";
-import ru from "../../access/lang/LangConstants";
-import Filters from "./Filters";
 
 class MainBarAdmin extends React.Component {
     constructor(props) {
@@ -28,16 +25,9 @@ class MainBarAdmin extends React.Component {
     }
 
     render() {
+        console.log(this.props.AllUsersData, this.props.AllStoresData, this.props.AllProductsData)
         return (
             <div className="main-bar-wrap">
-                <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium button-margin"}
-                            text={ru.allUsers} onClick={this.allUsersData}/>
-                <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium button-margin"}
-                            text={ru.allStores} onClick={this.allStoresData}/>
-                <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium button-margin"}
-                            text={ru.allProducts} onClick={this.allProductsData}/>
-                <div className="border-line"/>
-                <Filters/>
             </div>
 
         )
@@ -45,6 +35,9 @@ class MainBarAdmin extends React.Component {
 }
 function MapStateToProps(state) {
     return {
+        AllUsersData: state.userReducer.AllUsersData,
+        AllStoresData: state.storeReducer.AllStoresData,
+        AllProductsData: state.productReducer.AllProductsData,
     }
 }
 
