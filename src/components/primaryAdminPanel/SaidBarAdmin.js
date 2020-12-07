@@ -4,7 +4,13 @@ import ButtonMain from "../shared/ButtonMain";
 import ru from "../../access/lang/LangConstants";
 import Filters from "./Filters";
 import {getAllProductsData, postGetAllStoresData, postGetAllUsersData} from "../../utilite/axiosConnect";
-import {actionAllProductsData, actionAllStoresData, actionAllUsersData} from "../../action";
+import {
+    actionAllProductsData,
+    actionAllStoresData,
+    actionAllUsersData,
+    actionSetDataToAdminPanel,
+    actionSetDataViewIndicator
+} from "../../action";
 
 class SaidBarAdmin extends React.Component {
     constructor(props) {
@@ -25,7 +31,6 @@ class SaidBarAdmin extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.filters !== this.props.filters) {
-            console.log(this.props.filters)
             if (this.props.filters.type) {
                 switch (this.props.filters.type) {
                     case "u": this.allUsersData();
@@ -66,7 +71,7 @@ class SaidBarAdmin extends React.Component {
                 "Permission":  {$in : filter}
             }
         }
-
+        this.props.setDataViewIndicatorFunction("u")
         postGetAllUsersData(search, this.getDataUser);
     }
 
@@ -112,6 +117,12 @@ const mapDispatchToProps = dispatch => {
         },
         allProductsDataFunction: (AllProductsData) => {
             dispatch(actionAllProductsData(AllProductsData))
+        },
+        setDataToAdminPanelFunction: (dataView) => {
+            dispatch(actionSetDataToAdminPanel(dataView))
+        },
+        setDataViewIndicatorFunction: (dataViewIndicator) => {
+            dispatch(actionSetDataViewIndicator(dataViewIndicator))
         },
     }
 };

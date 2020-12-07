@@ -326,3 +326,17 @@ export const actionSetFilters = (filters) => {
         filters: filters
     }
 };
+
+export const actionSetDataToAdminPanel = (dataView) => {
+    return {
+        type: 'DATA_VIEW',
+        dataView: dataView
+    }
+};
+
+export const actionSetDataViewIndicator = (dataViewIndicator) => {
+    return {
+        type: 'DATA_VIEW_INDICATOR',
+        dataViewIndicator: dataViewIndicator
+    }
+};

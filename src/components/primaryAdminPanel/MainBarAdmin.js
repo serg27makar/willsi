@@ -5,7 +5,6 @@ class MainBarAdmin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            btnList: []
         }
     }
     componentDidMount() {
@@ -13,7 +12,11 @@ class MainBarAdmin extends React.Component {
     }
 
     allUsersData() {
-
+        return this.props.AllUsersData.map((item, index) => {
+            return (
+                <div>{item.Permission}</div>
+            )
+        })
     }
 
     allStoresData() {
@@ -24,10 +27,18 @@ class MainBarAdmin extends React.Component {
 
     }
 
+    dataSwitcher() {
+        switch (this.props.dataViewIndicator) {
+            case "u":
+                return this.allUsersData();
+        }
+    }
+
     render() {
         console.log(this.props.AllUsersData, this.props.AllStoresData, this.props.AllProductsData)
         return (
             <div className="main-bar-wrap">
+                {this.dataSwitcher()}
             </div>
 
         )
@@ -38,6 +49,8 @@ function MapStateToProps(state) {
         AllUsersData: state.userReducer.AllUsersData,
         AllStoresData: state.storeReducer.AllStoresData,
         AllProductsData: state.productReducer.AllProductsData,
+        dataView: state.utiliteReducer.dataView,
+        dataViewIndicator: state.utiliteReducer.dataViewIndicator,
     }
 }
 
