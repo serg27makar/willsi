@@ -79,6 +79,18 @@ class Cart extends React.Component {
                 slidersArr: [Photo1, Photo2, Photo3],
             })
         }
+        if (prevProps.Permission !== this.props.Permission) {
+            if (this.props.Permission === "primaryAdmin") {
+                this.redirect("primary-admin-panel")
+            }
+        }
+    }
+
+    redirect(page = "catalog") {
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/" + page,
+        });
     }
 
     renderSlide = () => {
@@ -134,6 +146,7 @@ function MapStateToProps(state) {
         ProductID: state.productReducer.ProductID,
         ProductsArr: state.productReducer.ProductsArr,
         SelectProduct: state.productReducer.SelectProduct,
+        Permission: state.userReducer.Permission,
     }
 }
 const mapDispatchToProps = dispatch => {

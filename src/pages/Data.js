@@ -61,6 +61,9 @@ class Data extends React.Component {
                     newUser,
                 })
             }
+            if (this.props.Permission === "primaryAdmin") {
+                this.redirect("primary-admin-panel")
+            }
         }, 50);
     }
 
@@ -77,6 +80,18 @@ class Data extends React.Component {
         if (prevState.startParams !== this.state.startParams) {
             this.props.openModalFunction("recalculateModal");
         }
+        if (prevProps.Permission !== this.props.Permission) {
+            if (this.props.Permission === "primaryAdmin") {
+                this.redirect("primary-admin-panel")
+            }
+        }
+    }
+
+    redirect(page = "catalog") {
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/" + page,
+        });
     }
 
     componentWillUnmount() {
@@ -162,6 +177,7 @@ function MapStateToProps(state) {
         UsersParameters: state.userReducer.UsersParameters,
         AddUser: state.userReducer.AddUser,
         dataRedirect: state.pageReducer.dataRedirect,
+        Permission: state.userReducer.Permission,
     }
 }
 

@@ -34,12 +34,11 @@ class SaidBarAdmin extends React.Component {
             if (this.props.filters.type) {
                 switch (this.props.filters.type) {
                     case "u": this.allUsersData();
-                    break;
+                        break;
                     case "s": this.allStoresData();
-                    break;
+                        break;
                     case "p": this.allProductsData();
-                    break;
-
+                        break;
                 }
             }
         }
@@ -77,11 +76,13 @@ class SaidBarAdmin extends React.Component {
 
     allStoresData() {
         let search = {};
+        this.props.setDataViewIndicatorFunction("s")
         postGetAllStoresData(search, this.getDataStores);
     }
 
     allProductsData() {
         let search = {};
+        this.props.setDataViewIndicatorFunction("p")
         getAllProductsData(search, this.getDataProducts);
     }
 

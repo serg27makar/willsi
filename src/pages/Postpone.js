@@ -71,6 +71,18 @@ class Postpone extends React.Component {
                 });
             }
         }
+        if (prevProps.Permission !== this.props.Permission) {
+            if (this.props.Permission === "primaryAdmin") {
+                this.redirect("primary-admin-panel")
+            }
+        }
+    }
+
+    redirect(page = "catalog") {
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/" + page,
+        });
     }
 
     selectedSubCatalog(data) {
@@ -131,6 +143,7 @@ function MapStateToProps(state) {
         Postpone: state.userReducer.Postpone,
         dataRedirect: state.pageReducer.dataRedirect,
         SetActionPostpone: state.userReducer.SetActionPostpone,
+        Permission: state.userReducer.Permission,
     }
 }
 const mapDispatchToProps = dispatch => {

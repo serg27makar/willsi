@@ -43,12 +43,17 @@ class SellerService extends React.Component {
                 redirect: this.props.dataRedirect,
             })
         }
+        if (prevProps.Permission !== this.props.Permission) {
+            if (this.props.Permission === "primaryAdmin") {
+                this.redirect("primary-admin-panel")
+            }
+        }
     }
 
-    redirect() {
+    redirect(page = "catalog") {
         this.props.dataRedirectFunction({
             accessR: true,
-            to: "/catalog",
+            to: "/" + page,
         });
     }
 
@@ -68,7 +73,7 @@ class SellerService extends React.Component {
                 <Indicator scrollTopMin={1700} scrollTopMax={2800}/>
                 <StepsBlock title={ru.JustThreeSteps}
                             stepsArr={resourceThreeStepsArr} btnText={ru.toDressingRoom}
-                            scrollTopMin={2800} scrollTopMax={4100} onClick={this.redirect}/>
+                            scrollTopMin={2800} scrollTopMax={4100} onClick={() => {this.redirect("catalog")}}/>
                 <DescriptionBg/>
                 <Partners  scrollTopMin={4200} scrollTopMax={5400}/>
                 <Reviews scrollTopMin={5200}/>
@@ -81,6 +86,7 @@ function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
         dataRedirect: state.pageReducer.dataRedirect,
+        Permission: state.userReducer.Permission,
     }
 }
 const mapDispatchToProps = dispatch => {

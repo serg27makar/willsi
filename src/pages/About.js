@@ -34,6 +34,18 @@ class About extends React.Component {
                 redirect: this.props.dataRedirect,
             })
         }
+        if (prevProps.Permission !== this.props.Permission) {
+            if (this.props.Permission === "primaryAdmin") {
+                this.redirect("primary-admin-panel")
+            }
+        }
+    }
+
+    redirect(page = "catalog") {
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/" + page,
+        });
     }
 
     render() {
@@ -56,6 +68,7 @@ function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
         dataRedirect: state.pageReducer.dataRedirect,
+        Permission: state.userReducer.Permission,
     }
 }
 const mapDispatchToProps = dispatch => {

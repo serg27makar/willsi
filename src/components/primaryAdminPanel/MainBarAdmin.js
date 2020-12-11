@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import AdminProductsCard from "./AdminProductsCard";
 
 class MainBarAdmin extends React.Component {
     constructor(props) {
@@ -14,28 +15,39 @@ class MainBarAdmin extends React.Component {
     allUsersData() {
         return this.props.AllUsersData.map((item, index) => {
             return (
-                <div>{item.Permission}</div>
+                <div key={index}>{item.Permission}</div>
             )
         })
     }
 
     allStoresData() {
-
+        return this.props.AllStoresData.map((item, index) => {
+            return (
+                <div key={index}>{item.nameStore}</div>
+            )
+        })
     }
 
     allProductsData() {
-
+        return (
+            <div className="col-12">
+                <AdminProductsCard products={this.props.AllProductsData}/>
+            </div>
+        )
     }
 
     dataSwitcher() {
         switch (this.props.dataViewIndicator) {
             case "u":
                 return this.allUsersData();
+            case "s":
+                return this.allStoresData();
+            case "p":
+                return this.allProductsData();
         }
     }
 
     render() {
-        console.log(this.props.AllUsersData, this.props.AllStoresData, this.props.AllProductsData)
         return (
             <div className="main-bar-wrap">
                 {this.dataSwitcher()}

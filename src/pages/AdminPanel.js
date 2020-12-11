@@ -54,6 +54,18 @@ class AdminPanel extends React.Component {
                 SelectedProductToEdit: this.props.SelectedProductToEdit,
             })
         }
+        if (prevProps.Permission !== this.props.Permission) {
+            if (this.props.Permission === "primaryAdmin") {
+                this.redirect("primary-admin-panel")
+            }
+        }
+    }
+
+    redirect(page = "catalog") {
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/" + page,
+        });
     }
 
     storeData(res) {
@@ -137,6 +149,7 @@ function MapStateToProps(state) {
         ShopEditParams: state.productReducer.ShopEditParams,
         ShopEditParamsAction: state.productReducer.ShopEditParamsAction,
         SelectedProductToEdit: state.productReducer.SelectedProductToEdit,
+        Permission: state.userReducer.Permission,
     }
 }
 

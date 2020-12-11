@@ -4052,7 +4052,7 @@ div, p, span, h1, h2, h3, h4,
     text-align: center;
 }
 .main-bar-wrap {
-
+    padding-top: 1rem;
 }
 .said-bar-wrap {
 

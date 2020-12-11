@@ -62,6 +62,9 @@ class Catalog extends React.Component {
         if (this.props.selectedSubCatalogID !== -1) {
             this.selectedSubCatalog(this.props.selectedSubCatalogID);
         }
+        if (this.props.Permission === "primaryAdmin") {
+            this.redirect("primary-admin-panel")
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -116,6 +119,18 @@ class Catalog extends React.Component {
         if (prevProps.HeaderUser !== this.props.HeaderUser) {
             this.setCatalogName();
         }
+        if (prevProps.Permission !== this.props.Permission) {
+            if (this.props.Permission === "primaryAdmin") {
+                this.redirect("primary-admin-panel")
+            }
+        }
+    }
+
+    redirect(page = "catalog") {
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/" + page,
+        });
     }
 
     componentWillUnmount() {
@@ -299,6 +314,7 @@ function MapStateToProps(state) {
         searchItemColor: state.catalogReducer.searchItemColor,
         SearchParams: state.productReducer.SearchParams,
         alertModalCloseEvent: state.modalReducer.alertModalCloseEvent,
+        Permission: state.userReducer.Permission,
     }
 }
 const mapDispatchToProps = dispatch => {
