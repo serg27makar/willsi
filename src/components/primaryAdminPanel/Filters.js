@@ -68,20 +68,20 @@ class Filters extends React.Component {
     }
 
     storesFilter() {
-
+        return null;
     }
 
     productsFilter() {
-
+        return null;
     }
 
     renderFilters(data) {
         switch (data) {
-            case "users":
+            case "u":
                 return (this.usersFilter());
-            case "stores":
+            case "s":
                 return (this.storesFilter());
-            case "products":
+            case "p":
                 return (this.productsFilter());
         }
     }
@@ -90,7 +90,7 @@ class Filters extends React.Component {
         return (
             <div className="main-bar-wrap">
                 <div className="filters-tag uppercase">{ru.filters}</div>
-                {this.renderFilters("users")}
+                {this.renderFilters(this.props.dataViewIndicator)}
             </div>
 
         )
@@ -98,6 +98,7 @@ class Filters extends React.Component {
 }
 function MapStateToProps(state) {
     return {
+        dataViewIndicator: state.utiliteReducer.dataViewIndicator,
     }
 }
 

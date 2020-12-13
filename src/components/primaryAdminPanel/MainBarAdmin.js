@@ -1,6 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
 import AdminProductsCard from "./AdminProductsCard";
+import UserCard from "./UserCard";
+import ShopCard from "./ShopCard";
 
 class MainBarAdmin extends React.Component {
     constructor(props) {
@@ -15,7 +17,7 @@ class MainBarAdmin extends React.Component {
     allUsersData() {
         return this.props.AllUsersData.map((item, index) => {
             return (
-                <div key={index}>{item.Permission}</div>
+                <UserCard key={index} user={item}/>
             )
         })
     }
@@ -23,7 +25,7 @@ class MainBarAdmin extends React.Component {
     allStoresData() {
         return this.props.AllStoresData.map((item, index) => {
             return (
-                <div key={index}>{item.nameStore}</div>
+                <ShopCard key={index} user={item}/>
             )
         })
     }

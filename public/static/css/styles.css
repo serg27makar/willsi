@@ -4066,3 +4066,11 @@ div, p, span, h1, h2, h3, h4,
 .filter-check-box {
     margin: 1rem 2rem;
 }
+.user-card-wrap {
+    border: 2px solid white;
+    margin: 1rem;
+    padding: 1rem;
+}
+.user-card-text {
+
+}
