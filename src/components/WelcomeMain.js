@@ -17,13 +17,11 @@ class WelcomeMain extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.Permission && this.props.Permission !== "primaryAdmin") {
-            setTimeout(() => {
-                const wrapper = this.wrapperRef.current;
-                wrapper.classList.toggle("show-welcome-main");
-            }, 300);
-            getAllUsers(this.usersQuantity);
-        }
+        setTimeout(() => {
+            const wrapper = this.wrapperRef.current;
+            wrapper.classList.toggle("show-welcome-main");
+        }, 300);
+        getAllUsers(this.usersQuantity);
     }
 
     usersQuantity(data) {
