@@ -428,8 +428,6 @@ footer {
     position: absolute;
     bottom: 1.875vw;
     left: 50%;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
     transform: translateX(-50%);
     width: 4.125vw;
     height: 0.1875vw;
@@ -454,13 +452,9 @@ footer {
     width: 100%;
     height: 3.75vw;
     background: #fff;
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
 .modal-form__input:hover {
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     border: 0.0625vw solid #c6d846;
 }
@@ -477,8 +471,6 @@ footer {
     color: #515151;
 }
 .modal-form .input-link {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     margin: 0 auto;
     width: 25.3125vw;
@@ -487,16 +479,12 @@ footer {
     position: absolute;
     top: 50%;
     right: 1.25vw;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     width: 1.5625vw;
     height: 1.5625vw;
-    fill: #e1e1e1;
+    fill: #9c9c9c;
 }
 .modal-form .icon-key {
-    -webkit-transform: translateY(-50%) rotate(45deg);
-    -ms-transform: translateY(-50%) rotate(45deg);
     transform: translateY(-50%) rotate(45deg);
 }
 .modal-form__button-enter {
@@ -516,13 +504,9 @@ footer {
 .modal-form__bottom-link {
     padding: 0 0.3125vw;
     text-decoration: underline;
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
 .modal-form__bottom-link:hover {
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     color: #c6d846;
 }
