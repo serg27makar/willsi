@@ -1,8 +1,10 @@
 import React from "react";
 import {
     actionEmail,
-    actionHeaderUser, actionOpenModal,
-    actionSearchDisabled, actionUserName, actionUsersParameters
+    actionHeaderUser,
+    actionOpenModal,
+    actionUserName,
+    actionUsersParameters
 } from "../action";
 import {connect} from "react-redux";
 import Recalculate from "../components/Recalculate";
@@ -86,7 +88,6 @@ class RecalculateModal extends React.Component {
     }
 
     lastBlock(params) {
-        this.props.searchDisabledFunction(true);
         this.addParams(params, true);
     }
 
@@ -179,9 +180,6 @@ const mapDispatchToProps = dispatch => {
         },
         usersParametersFunction: (UsersParameters) => {
             dispatch(actionUsersParameters(UsersParameters))
-        },
-        searchDisabledFunction: (searchDisabled) => {
-            dispatch(actionSearchDisabled(searchDisabled))
         },
         headerUserFunction: (HeaderUser) => {
             dispatch(actionHeaderUser(HeaderUser))
