@@ -151,6 +151,14 @@ class Data extends React.Component {
         postUpdate(user, updateResult);
     };
 
+    renderInputDataParams() {
+        if (!this.state.startParams) {
+            return (
+                <InputDataParams nextParams={this.nextParams} changeGender={this.genderSwitcher}/>
+            )
+        }
+    }
+
     render() {
         if (this.state.redirect.accessR) {
             return(
@@ -160,7 +168,7 @@ class Data extends React.Component {
         return(
             <div className="content">
                 <DataHeader/>
-                <InputDataParams nextParams={this.nextParams} changeGender={this.genderSwitcher}/>
+                {this.renderInputDataParams()}
                 <RecalculateFooter disabled={!this.state.startParams}/>
             </div>
         )

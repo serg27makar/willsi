@@ -5,6 +5,7 @@ import {dataInputRegistrationModal} from "../access/temporaryConstants";
 import {validateEmail} from "../js/sharedFunctions";
 import {postRegister, postUpdate} from "../utilite/axiosConnect";
 import {
+    actionDataRedirect,
     actionEmail,
     actionOpenModal,
     actionPermission,
@@ -46,6 +47,7 @@ class RegistrationModal extends React.Component {
             this.props.userNameFunction(this.state.name);
             this.props.emailFunction(this.state.email);
         }
+        this.redirectToHomepage();
         this.changeModal("");
     };
 
@@ -54,8 +56,16 @@ class RegistrationModal extends React.Component {
         this.props.userIDFunction(id);
         this.props.userNameFunction(this.state.name);
         this.props.emailFunction(this.state.email);
+        this.redirectToHomepage();
         this.changeModal("");
     };
+
+    redirectToHomepage() {
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/",
+        });
+    }
 
     registration = () => {
         const {name, email, password, confirmPassword} = this.state;
@@ -74,7 +84,6 @@ class RegistrationModal extends React.Component {
             } else {
                 postRegister(user, this.result);
             }
-            console.log(this.props);
         }
     };
 
@@ -133,6 +142,9 @@ const mapDispatchToProps = dispatch => {
         },
         permissionFunction: (Permission) => {
             dispatch(actionPermission(Permission))
+        },
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
         },
     }
 };

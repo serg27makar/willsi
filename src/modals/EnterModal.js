@@ -5,6 +5,7 @@ import ButtonMain from "../components/shared/ButtonMain";
 import {validateEmail} from "../js/sharedFunctions";
 import {postLogin} from "../utilite/axiosConnect";
 import {
+    actionDataRedirect,
     actionEmail,
     actionOpenModal,
     actionPermission,
@@ -55,6 +56,10 @@ class EnterModal extends React.Component {
             this.props.usersParametersFunction(res.UsersParameters);
             this.props.permissionFunction(res.Permission);
             this.props.userStoreFunction(res.UserStore);
+            this.props.dataRedirectFunction({
+                accessR: true,
+                to: "/",
+            });
         }
         this.changeModal("");
     };
@@ -127,6 +132,9 @@ const mapDispatchToProps = dispatch => {
         },
         userStoreFunction: (UserStore) => {
             dispatch(actionUserStore(UserStore))
+        },
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
         },
     }
 };
