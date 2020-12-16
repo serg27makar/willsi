@@ -1162,6 +1162,7 @@ p.card-box__product-info {
 }
 .catalog-wrapper {
     min-height: 3.75vw;
+    cursor: pointer;
 }
 .catalog-wrapper-admin,
 .catalog-wrapper {
@@ -1173,7 +1174,6 @@ p.card-box__product-info {
     background: #4fb0be;
     background: linear-gradient(to bottom, #4fb0be 0%, #459eb9 100%);
     color: #fff;
-    cursor: pointer;
 }
 .catalog-wrapper-admin .icon,
 .catalog-wrapper .icon {

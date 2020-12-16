@@ -166,7 +166,7 @@ const ru = {
     goToStore: "перейти в магазин для покупки",
     HaveAccount: "Есть аккаунт?",
     DontHaveAccount: "Еще нет аккаунта?",
-    SaveChange: "Сохранить изменения?",
+    SaveChange: "Сохранить изменения для размера ",
     close: "Закрыть",
 
     understandably: "понятно",

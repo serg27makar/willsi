@@ -19,7 +19,6 @@ class AdminColorCategory extends React.Component {
             blue: false,
             black: false,
         };
-        this.closeOpen = this.closeOpen.bind(this);
         this.dataChange = this.dataChange.bind(this);
     }
 
@@ -38,14 +37,6 @@ class AdminColorCategory extends React.Component {
         if (prevProps.colorsState.blue !== this.props.colorsState.blue) this.setState({blue: this.props.colorsState.blue});
         if (prevProps.colorsState.black !== this.props.colorsState.black) this.setState({black: this.props.colorsState.black});
     }
-
-    closeOpen = () => {
-        this.setState({
-            ...this.state,
-            open: this.state.open === "" ?
-                "open" : "",
-        })
-    };
 
     dataChange(e) {
         const name = e.target.name;
@@ -67,11 +58,8 @@ class AdminColorCategory extends React.Component {
             <div className="catalog-sidebar__item-admin">
                 <div className="catalog-wrapper-admin text-18 medium" onClick={this.closeOpen}>
                     <span className="catalog-wrapper__name">{ru.Colors}</span>
-                    <svg className="icon icon-arrow-small ">
-                        <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
-                    </svg>
                 </div>
-                <div className={"catalog__category-list " + this.state.open}>
+                <div className="catalog__category-list open">
                     <div className="category-list-admin">
                         {catalogColorsItems && catalogColorsItems.map((item, index) => {
                             return this.renderCategoryList(item, index)
