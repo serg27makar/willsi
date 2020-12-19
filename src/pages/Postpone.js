@@ -124,7 +124,7 @@ class Postpone extends React.Component {
                                 selectedSubCatalog={this.selectedSubCatalog}
                                 Categories={dropdownListArr}
                             />
-                            <CatalogSidebar Categories={sidebarCatalogArr}/>
+                            <CatalogSidebar/>
                         </div>
                         <div className="col-12">
                             <ProductsCart products={this.state.products} catalog={true}/>

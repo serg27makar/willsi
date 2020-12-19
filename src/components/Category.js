@@ -25,23 +25,13 @@ class Category extends React.Component {
     }
 
     clearState() {
-        this.setState({
-            ...this.state,
-            Puma: false,
-            Nike: false,
-            Adidas: false,
-            beige: false,
-            white: false,
-            aqua: false,
-            yellow: false,
-            green: false,
-            red: false,
-            prints: false,
-            pink: false,
-            gray: false,
-            blue: false,
-            black: false,
-        });
+        let clearState = {}
+        for (const i in this.state) {
+            if (typeof this.state[i] === "boolean") {
+                clearState = {...clearState, [i]: false}
+            }
+        }
+        this.setState(clearState)
     }
 
     closeOpen() {
@@ -58,35 +48,30 @@ class Category extends React.Component {
         const value = (e.target.value === "true");
         let item;
         if (catalogName === "Manufacturer") {
-            if (searchItemParams.itemValue) {
-                const index = searchItemParams.itemValue.indexOf(itemValue);
-                if (index === -1) {
-                    searchItemParams.itemValue.push(itemValue);
-                } else if (value) {
-                    searchItemParams.itemValue.splice(index, 1);
-                }
-                item = {catalogName, itemValue: searchItemParams.itemValue};
-            } else {
-                item = {catalogName, itemValue: [itemValue] };
-            }
-            this.toggleItemValue(itemValue, value);
+            item = this.createSearchItem(searchItemParams, catalogName, itemValue, value);
             this.props.searchItemParamsFunction(item);
         }
         if (catalogName === "color") {
-            if (searchItemColor.itemValue) {
-                const index = searchItemColor.itemValue.indexOf(itemValue);
-                if (index === -1) {
-                    searchItemColor.itemValue.push(itemValue);
-                } else if (value) {
-                    searchItemColor.itemValue.splice(index, 1);
-                }
-                item = {catalogName, itemValue: searchItemColor.itemValue};
-            } else {
-                item = {catalogName, itemValue: [itemValue] };
-            }
-            this.toggleItemValue(itemValue, value);
+            item = this.createSearchItem(searchItemColor, catalogName, itemValue, value);
             this.props.searchItemColorFunction(item);
         }
+    }
+
+    createSearchItem(searchItem, catalogName, itemValue, value) {
+        let item;
+        if (searchItem.itemValue) {
+            const index = searchItem.itemValue.indexOf(itemValue);
+            if (index === -1) {
+                searchItem.itemValue.push(itemValue);
+            } else if (value) {
+                searchItem.itemValue.splice(index, 1);
+            }
+            item = {catalogName, itemValue: searchItem.itemValue};
+        } else {
+            item = {catalogName, itemValue: [itemValue] };
+        }
+        this.toggleItemValue(itemValue, value);
+        return item;
     }
 
     toggleItemValue(name, value) {

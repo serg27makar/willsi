@@ -173,11 +173,7 @@ export const sidebarCatalogArr = [
     {
         catalogTitle: "Бренд",
         catalogName: "Manufacturer",
-        catalogItems: [
-            "Puma",
-            "Nike",
-            "Adidas",
-        ]
+        catalogItems: []
     },
     {
         catalogTitle: "Цвет",

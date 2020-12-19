@@ -286,7 +286,7 @@ class Catalog extends React.Component {
                                 selectedSubCatalog={this.selectedSubCatalog}
                                 Categories={dropdownListArr}
                             />
-                            <CatalogSidebar Categories={sidebarCatalogArr}/>
+                            <CatalogSidebar/>
                         </div>
                         <div className="col-12">
                             <ProductsCart catalog={true} products={this.state.productArr}/>
