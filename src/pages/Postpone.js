@@ -95,6 +95,9 @@ class Postpone extends React.Component {
 
     dataResult(data) {
         if (data && data.length > 0) {
+            data.sort((a, b) => {
+                return b.compatibility * 100 - a.compatibility * 100
+            });
             this.setState({
                 ...this.state,
                 products: data,
