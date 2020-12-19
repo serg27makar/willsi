@@ -1555,5 +1555,9 @@
     #modal-recalculate {
         padding: 3.5rem 0.5vw 0 0.5vw;
     }
+    .help-button,
+    .header__user-list .user-list__column {
+        padding: 1rem;
+    }
 }
 

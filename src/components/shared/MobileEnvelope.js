@@ -3,6 +3,19 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import Authentication from "./Authentication";
+import {
+    actionDataRedirect,
+    actionDataUpdate,
+    actionEmail,
+    actionOpenModal,
+    actionPermission,
+    actionPostpone,
+    actionSetActionPostpone,
+    actionUserID,
+    actionUserName,
+    actionUsersParameters,
+    actionUserStore
+} from "../../action";
 
 class MobileEnvelope extends React.Component {
     constructor(props) {
@@ -13,6 +26,8 @@ class MobileEnvelope extends React.Component {
             pts: 0,
         }
         this.mobileMenuClose = this.mobileMenuClose.bind(this);
+        this.helpModal = this.helpModal.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     componentDidMount() {}
@@ -59,6 +74,10 @@ class MobileEnvelope extends React.Component {
         });
     }
 
+    helpModal() {
+        this.props.openModalFunction("helpModal");
+    }
+
     renderPartnerLink() {
         if (this.props.page === "AdminPanel") {
             return null;
@@ -96,6 +115,9 @@ class MobileEnvelope extends React.Component {
                     </li>
                 </ul>
                 <div className="header-btn-logout light text-25" onClick={this.logout}>
+                    <div className="help-button mobile-nav__link light text-25" onClick={this.helpModal}>{ru.help}</div>
+                </div>
+                <div className="header-btn-logout light text-25" onClick={this.logout}>
                     <svg className="icon">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#login"/>
                     </svg>
@@ -112,5 +134,42 @@ function MapStateToProps(state) {
         UserName: state.userReducer.UserName,
     }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+        postponeFunction: (Postpone) => {
+            dispatch(actionPostpone(Postpone))
+        },
+        setActionPostponeFunction: (SetActionPostpone) => {
+            dispatch(actionSetActionPostpone(SetActionPostpone))
+        },
+        userIDFunction: (UserID) => {
+            dispatch(actionUserID(UserID))
+        },
+        userNameFunction: (UserName) => {
+            dispatch(actionUserName(UserName))
+        },
+        emailFunction: (Email) => {
+            dispatch(actionEmail(Email))
+        },
+        usersParametersFunction: (UsersParameters) => {
+            dispatch(actionUsersParameters(UsersParameters))
+        },
+        permissionFunction: (Permission) => {
+            dispatch(actionPermission(Permission))
+        },
+        userStoreFunction: (UserStore) => {
+            dispatch(actionUserStore(UserStore))
+        },
+        dataUpdateFunction: (update) => {
+            dispatch(actionDataUpdate(update))
+        },
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
+        },
+        openModalFunction: (modal) => {
+            dispatch(actionOpenModal(modal))
+        },
+    }
+};
 
-export default connect(MapStateToProps)(MobileEnvelope);
+export default connect(MapStateToProps, mapDispatchToProps)(MobileEnvelope);

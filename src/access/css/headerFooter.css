@@ -137,6 +137,11 @@
     opacity: 0;
     transition: all 0.3s ease-in-out;
 }
+.help-button {
+    cursor: pointer;
+    background-color: #72bfcb;
+    margin: 0 1rem;
+}
 .header__user-list .user-list {
     display: flex;
     align-items: center;

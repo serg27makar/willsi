@@ -1,7 +1,6 @@
 import ru from "../../access/lang/LangConstants";
 import {Link} from "react-router-dom";
 import React from "react";
-import {actionOpenModal} from "../../action";
 import {connect} from "react-redux";
 import Authentication from "./Authentication";
 
@@ -64,16 +63,11 @@ function MapStateToProps(state) {
     return {
         Postpone: state.userReducer.Postpone,
         SetActionPostpone: state.userReducer.SetActionPostpone,
-        modal: state.modalReducer.modal,
         UserName: state.userReducer.UserName,
     }
 }
 const mapDispatchToProps = dispatch => {
-    return {
-        openModalFunction: (modal) => {
-            dispatch(actionOpenModal(modal))
-        },
-    }
+    return {}
 };
 
 export default connect(MapStateToProps, mapDispatchToProps)(HeaderCabinet);

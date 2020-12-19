@@ -27,7 +27,12 @@ class Details extends React.Component {
 
     submitUserData() {
         if (this.state.UserName && this.state.UserPhone) {
-            postSendEmail(this.state, updateResult);
+            const message = {
+                UserName: this.state.UserName,
+                UserPhone: this.state.UserPhone,
+                subject: "afc"
+            }
+            postSendEmail(message, updateResult);
             this.setState({
                 emailIsSent: true,
             })

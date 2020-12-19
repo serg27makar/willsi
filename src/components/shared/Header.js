@@ -10,6 +10,7 @@ import {
     actionDataRedirect,
     actionDataUpdate,
     actionEmail,
+    actionOpenModal,
     actionPermission,
     actionPostpone,
     actionSetActionPostpone,
@@ -37,6 +38,7 @@ class Header extends React.Component {
         this.menuButton = this.menuButton.bind(this);
         this.logout = this.logout.bind(this);
         this.mobileMenuClose = this.mobileMenuClose.bind(this);
+        this.helpModal = this.helpModal.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -98,6 +100,10 @@ class Header extends React.Component {
         return null;
     }
 
+    helpModal() {
+        this.props.openModalFunction("helpModal");
+    }
+
     render() {
         if (this.props.Permission === "primaryAdmin") {
             return (
@@ -138,6 +144,9 @@ class Header extends React.Component {
                         <HeaderNavigation/>
                         <div className=" hide-column">
                             <HeaderCabinet/>
+                        </div>
+                        <div className=" hide-column">
+                            <div className="help-button navigation-list__link light text-16" onClick={this.helpModal}>{ru.help}</div>
                         </div>
                         <div className="header-btn-logout hide-column" onClick={this.logout}>
                             <svg className="icon">
@@ -195,6 +204,9 @@ const mapDispatchToProps = dispatch => {
         },
         dataRedirectFunction: (dataRedirect) => {
             dispatch(actionDataRedirect(dataRedirect))
+        },
+        openModalFunction: (modal) => {
+            dispatch(actionOpenModal(modal))
         },
     }
 };

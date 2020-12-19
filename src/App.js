@@ -41,6 +41,7 @@ import RegistrationStoreAdministrator from "./modals/RegistrationStoreAdministra
 import AddParamsModal from "./modals/AddParamsModal";
 import RecalculateModal from "./modals/RecalculateModal";
 import PrimaryAdminPanel from "./pages/PrimaryAdminPanel";
+import HelpModal from "./modals/HelpModal";
 
 const history = createBrowserHistory();
 
@@ -97,6 +98,8 @@ class App extends React.Component {
                 return (<AddParamsModal/>);
             case "recalculateModal":
                 return (<RecalculateModal/>);
+            case "helpModal":
+                return (<HelpModal/>);
             default:
                 return null
         }

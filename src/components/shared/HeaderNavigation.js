@@ -50,7 +50,6 @@ class HeaderNavigation extends React.Component {
                                 <Link className="navigation-list__link light text-16" to={"/"}>{ru.Home}</Link>
                             </li>
                             <li className="navigation-list__item">
-                                {/*Todo data if not params*/}
                                 <Link className="navigation-list__link light text-16" to={"/catalog"}>{ru.DressingRoom}</Link>
                             </li>
                             <li className="navigation-list__item">

@@ -250,7 +250,17 @@ const ru = {
 
     weHaveAcceptedYourApplication: "Спасибо! Мы приняли Вашу заявку! В ближайшее время с Вами свяжется представитель нашей онлайн-примерочной. Хорошего дня!",
 
-    thisFieldCannotBeEmpty: "это поле не может быть пустым"
+    thisFieldCannotBeEmpty: "это поле не может быть пустым",
+    help: "помощь",
+
+    checkTheConformity: "проверить соответсвие товарa с другого сайта",
+    linkToTheProduct: "Ссылка на товар",
+    clear: "Очистить",
+    toAccept: "Принять",
+
+    writeYourMessage: "Напишите ваше сообщение",
+    writeToSupport: "Напишите сообщение в службу поддержки, мы обязательно вам поможем",
+    send: "отправить"
 };
 
 export default ru;
