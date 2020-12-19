@@ -8,8 +8,6 @@ import MainBarAdmin from "../components/primaryAdminPanel/MainBarAdmin";
 class PrimaryAdminPanel extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-        };
     }
 
     componentDidMount() {
@@ -18,21 +16,6 @@ class PrimaryAdminPanel extends React.Component {
             accessR: false,
             to: "/",
         });
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-    }
-
-    renderMainBar() {
-        return (
-            <MainBarAdmin/>
-        )
-    }
-
-    renderSideBar() {
-        return (
-            <SaidBarAdmin/>
-        )
     }
 
     render() {
@@ -44,10 +27,10 @@ class PrimaryAdminPanel extends React.Component {
         return(
             <div className="content main-admin__row">
                 <div className="main-admin__sidebar">
-                    {this.renderSideBar()}
+                    <SaidBarAdmin/>
                 </div>
                 <div className="main-admin__main-envelope">
-                    {this.renderMainBar()}
+                    <MainBarAdmin/>
                 </div>
             </div>
         )

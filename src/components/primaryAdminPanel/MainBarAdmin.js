@@ -30,6 +30,13 @@ class MainBarAdmin extends React.Component {
         })
     }
 
+    storesDataInfo() {
+        console.log(this.props.dataView)
+        return (
+            <div>Info card</div>
+        )
+    }
+
     allProductsData() {
         return (
             <div className="col-12">
@@ -46,6 +53,8 @@ class MainBarAdmin extends React.Component {
                 return this.allStoresData();
             case "p":
                 return this.allProductsData();
+            case "i":
+                return this.storesDataInfo();
         }
     }
 

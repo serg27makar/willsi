@@ -3,9 +3,8 @@ import {connect} from "react-redux";
 import ButtonMain from "../shared/ButtonMain";
 import ru from "../../access/lang/LangConstants";
 import Filters from "./Filters";
-import {getAllProductsData, postGetAllStoresData, postGetAllUsersData} from "../../utilite/axiosConnect";
+import {postGetAllStoresData, postGetAllUsersData} from "../../utilite/axiosConnect";
 import {
-    actionAllProductsData,
     actionAllStoresData,
     actionAllUsersData,
     actionSetDataToAdminPanel,
@@ -20,13 +19,8 @@ class SaidBarAdmin extends React.Component {
         }
         this.getDataUser = this.getDataUser.bind(this);
         this.getDataStores = this.getDataStores.bind(this);
-        this.getDataProducts = this.getDataProducts.bind(this);
         this.allUsersData = this.allUsersData.bind(this);
         this.allStoresData = this.allStoresData.bind(this);
-        this.allProductsData = this.allProductsData.bind(this);
-    }
-    componentDidMount() {
-
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -36,8 +30,6 @@ class SaidBarAdmin extends React.Component {
                     case "u": this.allUsersData();
                         break;
                     case "s": this.allStoresData();
-                        break;
-                    case "p": this.allProductsData();
                         break;
                 }
             }
@@ -50,10 +42,6 @@ class SaidBarAdmin extends React.Component {
 
     getDataStores(data) {
         this.props.allStoresDataFunction(data)
-    }
-
-    getDataProducts(data) {
-        this.props.allProductsDataFunction(data)
     }
 
     allUsersData() {
@@ -80,12 +68,6 @@ class SaidBarAdmin extends React.Component {
         postGetAllStoresData(search, this.getDataStores);
     }
 
-    allProductsData() {
-        let search = {};
-        this.props.setDataViewIndicatorFunction("p")
-        getAllProductsData(search, this.getDataProducts);
-    }
-
     render() {
         return (
             <div className="said-bar-wrap">
@@ -93,8 +75,6 @@ class SaidBarAdmin extends React.Component {
                             text={ru.allUsers} onClick={this.allUsersData}/>
                 <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium button-margin"}
                             text={ru.allStores} onClick={this.allStoresData}/>
-                <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium button-margin"}
-                            text={ru.allProducts} onClick={this.allProductsData}/>
                 <div className="border-line"/>
                 <Filters/>
             </div>
@@ -115,12 +95,6 @@ const mapDispatchToProps = dispatch => {
         },
         allStoresDataFunction: (AllStoresData) => {
             dispatch(actionAllStoresData(AllStoresData))
-        },
-        allProductsDataFunction: (AllProductsData) => {
-            dispatch(actionAllProductsData(AllProductsData))
-        },
-        setDataToAdminPanelFunction: (dataView) => {
-            dispatch(actionSetDataToAdminPanel(dataView))
         },
         setDataViewIndicatorFunction: (dataViewIndicator) => {
             dispatch(actionSetDataViewIndicator(dataViewIndicator))

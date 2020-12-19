@@ -2379,10 +2379,10 @@ button.size-tabs-wrapper-button.tabs-active {
     margin-right: -0.9375vw;
 }
 .last-add-store-label {
-    margin-bottom: 1.2vw;
+
 }
 .form-shop__label {
-    margin: 0 0 1.875vw 0;
+    margin: 0 0 2.875vw 0;
     width: 100%;
     display: block;
     height: 2.5vw;
@@ -2418,6 +2418,7 @@ button.size-tabs-wrapper-button.tabs-active {
     width: 100%;
     min-height: 6vw;
     transition: all 0.3s ease-in-out;
+    margin-bottom: 1vw;
 }
 .form-shop__textarea:focus {
     border: 0.0625vw solid #c6d846;
@@ -2573,7 +2574,7 @@ button.size-tabs-wrapper-button.tabs-active {
     align-items: center;
     margin-left: -0.9375vw;
     margin-right: -0.9375vw;
-    padding-bottom: 1.25vw;
+    padding-bottom: 3rem;
 }
 .form-request__label {
     position: relative;
@@ -4055,6 +4056,21 @@ div, p, span, h1, h2, h3, h4,
     margin: 1rem;
     padding: 1rem;
 }
-.user-card-text {
-
+.user-card-text-wrap {
+    width: 25%;
+}
+.sent-email-text {
+    width: 35rem;
+    text-align: center;
+    margin: auto;
+    color: white;
+}
+.warning-input {
+    box-shadow: 0 0 10px 3px red;
+}
+.warning-text-empty-field {
+    text-align: center;
+    margin: 0.5rem;
+    color: orangered;
+    outline: none;
 }

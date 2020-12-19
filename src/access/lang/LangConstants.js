@@ -244,7 +244,13 @@ const ru = {
 
     unknown: "не регистрированные",
     storeAdmin: "администраторы магазинов",
-    buyer: "покупатели"
+    buyer: "покупатели",
+
+    aboutStore: "О магазине",
+
+    weHaveAcceptedYourApplication: "Спасибо! Мы приняли Вашу заявку! В ближайшее время с Вами свяжется представитель нашей онлайн-примерочной. Хорошего дня!",
+
+    thisFieldCannotBeEmpty: "это поле не может быть пустым"
 };
 
 export default ru;
