@@ -1,5 +1,5 @@
 import React from 'react';
-import {actionHeaderUser, actionOpenModal, actionUsersParameters} from "../action";
+import {actionHeaderUser, actionOpenModal, actionSpinnerText, actionUsersParameters} from "../action";
 import {connect} from "react-redux";
 import DoubleButton from "./adminPanel/DoubleButton";
 import {placeholderData, whomParams} from "../access/temporaryConstants";
@@ -18,6 +18,7 @@ class UserDescription extends React.Component {
             params: {},
             isChange: false,
             activeBtn: 0,
+            isModify: false,
         };
         this.isActive = this.isActive.bind(this);
         this.btnActive = this.btnActive.bind(this);
@@ -63,6 +64,7 @@ class UserDescription extends React.Component {
 
     isChanged() {
         this.setState({
+            isModify: false,
             isChange: !this.state.isChange,
         });
         this.props.updateDate();
@@ -90,25 +92,29 @@ class UserDescription extends React.Component {
     }
 
     saveUpdate() {
-        const index = this.props.selected;
-        const Parameters = [];
-        this.props.UsersParameters[index].Parameters.map((item) => {
-            const oneParameter = {
-                title: item.title,
-                size: this.state.params[item.title],
+        if (this.state.isModify) {
+            const index = this.props.selected;
+            const Parameters = [];
+            this.props.UsersParameters[index].Parameters.map((item) => {
+                const oneParameter = {
+                    title: item.title,
+                    size: this.state.params[item.title],
+                };
+                Parameters.push(oneParameter);
+                return index;
+            });
+            const UsersParameters = this.props.UsersParameters;
+            const obj = {
+                UserName: this.state.UserName,
+                Gender: this.state.Gender,
+                Parameters,
             };
-            Parameters.push(oneParameter);
-            return index;
-        });
-        const UsersParameters = this.props.UsersParameters;
-        const obj = {
-            UserName: this.state.UserName,
-            Gender: this.state.Gender,
-            Parameters,
-        };
-        UsersParameters.splice(index, 1, obj);
-        this.props.usersParametersFunction(UsersParameters);
-        this.isChanged();
+            UsersParameters.splice(index, 1, obj);
+            this.props.usersParametersFunction(UsersParameters);
+            this.isChanged();
+            this.props.spinnerTextFunction(ru.saved);
+            this.props.openModalFunction("spinnerModal");
+        }
     }
 
     updateParams() {
@@ -130,6 +136,7 @@ class UserDescription extends React.Component {
     onChange = (e, item) => {
         this.setState({
             ...this.state,
+            isModify: true,
             params: {
                 ...this.state.params,
                 [item.title]: e.target.value <= 0 ? 0 : e.target.value >= 500 ? 500 : e.target.value,
@@ -213,6 +220,9 @@ const mapDispatchToProps = dispatch => {
         },
         headerUserFunction: (HeaderUser) => {
             dispatch(actionHeaderUser(HeaderUser))
+        },
+        spinnerTextFunction: (SpinnerText) => {
+            dispatch(actionSpinnerText(SpinnerText))
         },
     }
 };

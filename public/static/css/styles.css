@@ -397,6 +397,13 @@ footer {
     padding: 3.4375vw 3.75vw;
     background: #fff;
 }
+#spinner-modal {
+    cursor: pointer;
+    animation: longBlink 5s linear infinite;
+}
+.spinner-block {
+    height: 2.5rem;
+}
 .modal-envelope__close {
     position: absolute;
     top: 1vw;
@@ -2742,6 +2749,11 @@ button.size-tabs-wrapper-button.tabs-active {
 @keyframes blink {
     0% { opacity: 1; }
     50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes longBlink {
+    0% { opacity: 0.1; }
+    30% { opacity: 0.5; }
     100% { opacity: 1; }
 }
 

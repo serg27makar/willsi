@@ -207,11 +207,11 @@ class Catalog extends React.Component {
         }
     }
 
-    selectedSubCatalog(data) {
+    selectedSubCatalog(data = 0) {
         this.setState({
             ...this.state,
-            subCatalog: dropdownListArr[this.props.catalog].dropdownItems[data],
-            topCatalog: dropdownListArr[this.props.catalog].dropdownTitle,
+            subCatalog: dropdownListArr[this.props.catalog || 0].dropdownItems[data],
+            topCatalog: dropdownListArr[this.props.catalog || 0].dropdownTitle,
             productArr: [],
             skip: 0,
             lastData: false,

@@ -3,9 +3,8 @@ import ButtonMain from "../components/shared/ButtonMain";
 import {actionHeaderUser, actionOpenModal, actionUsersParameters} from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
-import {paramsListWoman} from "../access/temporaryConstants";
 import {postUpdate} from "../utilite/axiosConnect";
-import {updateResult} from "../js/sharedFunctions";
+import {genderSwitcher, updateResult} from "../js/sharedFunctions";
 
 class AddParamsModal extends React.Component {
     constructor(props) {
@@ -18,10 +17,10 @@ class AddParamsModal extends React.Component {
     }
 
     componentDidMount() {
-        const list = paramsListWoman.slice();
+        const list = genderSwitcher(this.props.UsersParameters[this.props.HeaderUser].Gender)
         this.props.UsersParameters[this.props.HeaderUser].Parameters.map((param) => {
             return list.map((item, index) => {
-                if (item.title === param.title) {
+                if (item.inputName === param.title) {
                     list.splice(index, 1);
                 }
                 return index;
@@ -61,7 +60,7 @@ class AddParamsModal extends React.Component {
             UserID: this.props.UserID,
         };
         postUpdate(user, updateResult);
-        this.props.headerUserFunction(-1);
+        this.props.headerUserFunction(0);
         this.closeLincModal();
     };
 
@@ -71,7 +70,7 @@ class AddParamsModal extends React.Component {
 
     addedParamsList() {
         const addedParam = {
-            title: this.state.paramsList[this.state.active].title,
+            title: this.state.paramsList[this.state.active].inputName,
             size: 0
         };
         const index = this.props.HeaderUser;
@@ -107,7 +106,7 @@ class AddParamsModal extends React.Component {
 
     renderParamList(item, index) {
         return(
-            <div className={"modal-param-list-item " + (this.state.active === index ? "active" : "")} key={index} onClick={() => {this.setActive(index)}}>{item.data}</div>
+            <div className={"modal-param-list-item " + (this.state.active === index ? "active" : "")} key={index} onClick={() => {this.setActive(index)}}>{item.title}</div>
         )
     }
 

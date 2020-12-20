@@ -143,8 +143,6 @@ export function genderSwitcher(gender, subCatalog = "") {
     let recalculateParams = [];
 
     gender = !gender || gender.length < 2 ? "woman" : gender;
-    subCatalog = ((!subCatalog || subCatalog.length < 3) &&
-        (gender !== "dog" || gender !== "catalogListDog")) ? "subCatalogListWomenTshirts" : subCatalog;
 
     switch (gender) {
 

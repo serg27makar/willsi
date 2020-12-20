@@ -33,7 +33,7 @@ class RutCategory extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.catalog !== this.props.catalog) {
-            this.props.selectedSubCatalogIDFunction(-1);
+            this.props.selectedSubCatalogIDFunction(0);
             this.setState({
                 ...this.state,
                 isOpen: this.props.index === this.props.catalog,
@@ -54,7 +54,7 @@ class RutCategory extends React.Component {
         if (prevProps.UsersParameters !== this.props.UsersParameters ||
             prevProps.HeaderUser !== this.props.HeaderUser) {
             this.genderPermission();
-            this.props.openCatalogFunction(-1);
+            this.props.openCatalogFunction(0);
         }
     }
 

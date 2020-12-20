@@ -260,7 +260,9 @@ const ru = {
 
     writeYourMessage: "Напишите ваше сообщение",
     writeToSupport: "Напишите сообщение в службу поддержки, мы обязательно вам поможем",
-    send: "отправить"
+    send: "отправить",
+
+    saved: "сохранено"
 };
 
 export default ru;
