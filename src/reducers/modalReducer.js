@@ -1,6 +1,7 @@
 const initialState = {
     modal: "",
     AlertText: "",
+    SpinnerText: "",
     updateEditorModal: false,
     recalculateParams: [],
     alertModalCloseEvent: false,
@@ -18,6 +19,11 @@ export default function modalReducer(state = initialState, action) {
             return {
                 ...state,
                 AlertText: action.AlertText
+            };
+        case "SPINNER_TEXT_MODAL":
+            return {
+                ...state,
+                SpinnerText: action.SpinnerText
             };
         case "UPDATE_EDITOR_MODAL":
             return {

@@ -75,6 +75,13 @@ export const actionAlertText = (AlertText) => {
     }
 };
 
+export const actionSpinnerText = (SpinnerText) => {
+    return {
+        type: 'SPINNER_TEXT_MODAL',
+        SpinnerText: SpinnerText
+    }
+};
+
 export const actionAddUser = (AddUser) => {
     return {
         type: 'ADD_USER',
