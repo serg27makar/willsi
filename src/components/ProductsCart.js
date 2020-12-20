@@ -19,7 +19,9 @@ class ProductsCart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: []
+            products: [],
+            _id: "",
+            postpone: false,
         };
         this.openCard = this.openCard.bind(this);
         this.addPostpone = this.addPostpone.bind(this);

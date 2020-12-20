@@ -70,9 +70,6 @@ class RutCategory extends React.Component {
 
     chooseListItem(item, index) {
         if (index !== undefined) {
-            if (this.state.selected === index) {
-                index = -1
-            }
             this.props.searchItemParamsFunction({});
             this.props.searchItemColorFunction({});
             this.props.selectedSubCatalogIDFunction(index);

@@ -28,6 +28,7 @@ class Catalog extends React.Component {
             requiredParameters: {},
             subUsers:[],
             productArr: [],
+            subCatalog: "",
             skip: 0,
             lastData: true,
             firstTime: true,
@@ -59,9 +60,7 @@ class Catalog extends React.Component {
         }, 50);
         this.functionRedirect();
         window.addEventListener('scroll', this.onScrollList);
-        if (this.props.selectedSubCatalogID !== -1) {
-            this.selectedSubCatalog(this.props.selectedSubCatalogID);
-        }
+        this.selectedSubCatalog(this.props.selectedSubCatalogID);
         if (this.props.Permission === "primaryAdmin") {
             this.redirect("primary-admin-panel")
         }
@@ -107,7 +106,7 @@ class Catalog extends React.Component {
             this.props.recalculateParamsFunction(this.state.requiredParameters);
             this.props.openModalFunction("recalculateModal");
         }
-        if (prevState.active !== this.state.active && this.props.SearchParams) {
+        if (prevState.active !== this.state.active && this.props.SearchParams && this.state.active) {
             this.updateProductsData();
         }
         if (prevProps.searchItemParams !== this.props.searchItemParams) {
@@ -190,21 +189,18 @@ class Catalog extends React.Component {
             }
             return accessRequired;
         });
-        if (accessRequired) {
-            const dataSearch = {
-                skip,
-                SearchParams,
-                topCatalog,
-                subCatalog,
-                searchItemParams,
-                searchItemColor,
-            };
-            if (!subCatalog) {
-                getAllProductDataToParams(this.setProductData, dataSearch);
-            } else {
-                getProductDataToParams(this.setProductData, dataSearch);
-            }
-            // this.setState({skip: skip + 12})
+        const dataSearch = {
+            skip,
+            SearchParams,
+            topCatalog,
+            subCatalog,
+            searchItemParams,
+            searchItemColor,
+        };
+        if (subCatalog.substr(subCatalog.length - 3, 3) === "All") {
+            getAllProductDataToParams(this.setProductData, dataSearch);
+        } else if (accessRequired) {
+            getProductDataToParams(this.setProductData, dataSearch);
         } else {
             this.props.alertTextFunction(ru.enterTheseDetails);
             this.props.openModalFunction("alertModal");
@@ -227,7 +223,7 @@ class Catalog extends React.Component {
         this.setState({
             ...this.state,
             topCatalog: this.props.catalogName,
-            subCatalog: "",
+            subCatalog: this.state.subCatalog,
             productArr: [],
             skip: 0,
             lastData: false,

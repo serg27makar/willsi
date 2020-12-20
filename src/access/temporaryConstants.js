@@ -241,6 +241,7 @@ export const dropdownListArr = [
     {
         dropdownTitle: "catalogListMen",
         dropdownItems: [
+            "subCatalogListMenAll",
             "subCatalogListMenTshirts",
             "subCatalogListMenShirts",
             "subCatalogListMenPants",
@@ -253,6 +254,7 @@ export const dropdownListArr = [
     {
         dropdownTitle: "catalogListWomen",
         dropdownItems: [
+            "subCatalogListWomenAll",
             "subCatalogListWomenTshirts",
             "subCatalogListWomenShirts",
             "subCatalogListWomenPants",
@@ -265,6 +267,7 @@ export const dropdownListArr = [
     {
         dropdownTitle: "catalogListBoy",
         dropdownItems: [
+            "subCatalogListBoyAll",
             "subCatalogListBoyTshirts",
             "subCatalogListBoyShirts",
             "subCatalogListBoyPants",
@@ -277,6 +280,7 @@ export const dropdownListArr = [
     {
         dropdownTitle: "catalogListGirl",
         dropdownItems: [
+            "subCatalogListGirlAll",
             "subCatalogListGirlTshirts",
             "subCatalogListGirlShirts",
             "subCatalogListGirlPants",
@@ -289,6 +293,7 @@ export const dropdownListArr = [
     {
         dropdownTitle: "catalogListDog",
         dropdownItems: [
+            "subCatalogListDogAll",
             "subCatalogListDogPants",
             "subCatalogListDogShirts",
             "subCatalogListDogOveralls",

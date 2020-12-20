@@ -2,7 +2,7 @@ const initialState = {
     catalog: "0",
     catalogName: "",
     subCatalogName: "",
-    selectedSubCatalogID: -1,
+    selectedSubCatalogID: 0,
     searchItemParams: {},
     searchItemColor: {},
 };
