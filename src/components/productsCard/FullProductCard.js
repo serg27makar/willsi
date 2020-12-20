@@ -33,8 +33,12 @@ class FullProductCard extends React.Component {
 
     detailsParameters(item) {
         if (typeof item === "object") {
-            return item.Price;
+            return this.currency(item.Price);
         }
+    }
+
+    currency(number) {
+        return number + " грн."
     }
 
     filterManufacturer(itemValue) {
