@@ -40,8 +40,8 @@ class Postpone extends React.Component {
             to: "/",
         });
         this.props.setActionAdminPanelFunction("Postpone");
-        this.props.selectedSubCatalogIDFunction(-1);
-        this.props.openCatalogFunction(-1);
+        this.props.selectedSubCatalogIDFunction(0);
+        this.props.openCatalogFunction(0);
         setTimeout(() => {
             handlePageUp();
         }, 50);
