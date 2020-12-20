@@ -42,6 +42,7 @@ import AddParamsModal from "./modals/AddParamsModal";
 import RecalculateModal from "./modals/RecalculateModal";
 import PrimaryAdminPanel from "./pages/PrimaryAdminPanel";
 import HelpModal from "./modals/HelpModal";
+import SpinnerModal from "./modals/SpinnerModal";
 
 const history = createBrowserHistory();
 
@@ -100,6 +101,8 @@ class App extends React.Component {
                 return (<RecalculateModal/>);
             case "helpModal":
                 return (<HelpModal/>);
+            case "spinnerModal":
+                return (<SpinnerModal/>);
             default:
                 return null
         }
