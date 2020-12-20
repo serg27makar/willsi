@@ -1,6 +1,6 @@
 import React from 'react';
 import "./../access/css/cart.css";
-import {actionDataRedirect, actionSelectProduct, setActionAdminPanel} from "../action";
+import {actionDataRedirect, actionSelectProduct, actionSubCatalogName, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import Carousel from "../components/Carousel";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
@@ -31,6 +31,7 @@ class Cart extends React.Component {
         this.props.ProductsArr.map((item, index) => {
             if (item._id === this.props.ProductID) {
                 this.props.selectProductFunction(this.props.ProductsArr[index]);
+                this.props.subCatalogNameFunction(this.props.ProductsArr[index].subCatalog);
             }
             return index;
         });
@@ -159,6 +160,9 @@ const mapDispatchToProps = dispatch => {
         },
         selectProductFunction: (SelectProduct) => {
             dispatch(actionSelectProduct(SelectProduct))
+        },
+        subCatalogNameFunction: (SubCatalogName) => {
+            dispatch(actionSubCatalogName(SubCatalogName))
         },
     }
 };
