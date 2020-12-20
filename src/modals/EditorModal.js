@@ -11,12 +11,7 @@ import {
 import {connect} from "react-redux";
 import ButtonMain from "../components/shared/ButtonMain";
 import {postUpdate} from "../utilite/axiosConnect";
-import {
-    recalculateParamsBoy,
-    recalculateParamsDog,
-    recalculateParamsGirl, recalculateParamsMan,
-    recalculateParamsWoman
-} from "../access/recalculateConstants";
+import {genderSwitcher} from "../js/sharedFunctions";
 
 class EditorModal extends React.Component {
     constructor(props) {
@@ -48,7 +43,7 @@ class EditorModal extends React.Component {
                 this.setState({
                     headerUser: this.props.UsersParameters[this.props.HeaderUser].UserName,
                     params,
-                    Parameters: this.genderSwitcher(this.props.UsersParameters[this.props.HeaderUser].Gender),
+                    Parameters: genderSwitcher(this.props.UsersParameters[this.props.HeaderUser].Gender),
                 })
             }
         }, 300);
@@ -70,24 +65,8 @@ class EditorModal extends React.Component {
             this.setState({
                 params,
                 headerUser: this.props.UsersParameters[this.props.HeaderUser].UserName,
-                Parameters: this.genderSwitcher(this.props.UsersParameters[this.props.HeaderUser].Gender),
+                Parameters: genderSwitcher(this.props.UsersParameters[this.props.HeaderUser].Gender),
             })
-        }
-    }
-
-    genderSwitcher(gender) {
-        switch (gender) {
-            case "man":
-                return recalculateParamsMan;
-            case "woman":
-                return recalculateParamsWoman;
-            case "boy":
-                return recalculateParamsBoy;
-            case "girl":
-                return recalculateParamsGirl;
-            case "dog":
-                return recalculateParamsDog;
-            default: return recalculateParamsWoman;
         }
     }
 
