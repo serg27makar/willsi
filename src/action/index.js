@@ -340,3 +340,10 @@ export const actionSetDataViewIndicator = (dataViewIndicator) => {
         dataViewIndicator: dataViewIndicator
     }
 };
+
+export const actionSearchItemPrice = (searchItemPrice) => {
+    return {
+        type: 'SEARCH_ITEM_PRICE',
+        searchItemPrice: searchItemPrice
+    }
+};
