@@ -17,7 +17,7 @@ class SliderInput extends React.Component {
                 title: "to",
                 name: "priceTo",
                 priceMin: 0,
-                current: 0,
+                current: 10000,
                 priceMax: 10000,
             },
         };
