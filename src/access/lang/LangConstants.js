@@ -143,6 +143,7 @@ const ru = {
 
     Model3d: "3d модель",
     Colors: "Цвета",
+    color: "Цвет",
     grn: " грн",
 
     Count: "Посчитать",
@@ -262,7 +263,10 @@ const ru = {
     writeToSupport: "Напишите сообщение в службу поддержки, мы обязательно вам поможем",
     send: "отправить",
 
-    saved: "сохранено"
+    saved: "сохранено",
+    from: "от",
+    to: "до",
+    replace: "пременить"
 };
 
 export default ru;

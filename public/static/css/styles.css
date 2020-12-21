@@ -3005,6 +3005,9 @@ button.size-tabs-wrapper-button.tabs-active {
 .main-size-block {
     columns: 5;
 }
+.main-price-block {
+    columns: 0;
+}
 .main-envelope__label {
     position: relative;
     display: block;

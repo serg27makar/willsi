@@ -171,12 +171,14 @@ export const resourceSellingArr = [
 ];
 export const sidebarCatalogArr = [
     {
-        catalogTitle: "Бренд",
         catalogName: "Manufacturer",
         catalogItems: []
     },
     {
-        catalogTitle: "Цвет",
+        catalogName: "Price",
+        catalogItems: []
+    },
+    {
         catalogName: "color",
         catalogItems: [
             "beige",
