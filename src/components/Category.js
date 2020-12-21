@@ -101,7 +101,7 @@ class Category extends React.Component {
         return (
             <div className="catalog-sidebar__item">
                 <div className="catalog-wrapper text-18 medium" onClick={this.closeOpen}>
-                    <span className="catalog-wrapper__name">{this.props.item.catalogTitle}</span>
+                    <span className="catalog-wrapper__name">{ru[this.props.item.catalogName]}</span>
                     <svg className="icon icon-arrow-small ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                     </svg>

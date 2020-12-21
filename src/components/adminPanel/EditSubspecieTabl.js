@@ -143,7 +143,7 @@ class EditSubspecieTabl extends React.Component {
             size,
             SizeStandard: this.props.sizeStandard,
             VendorCode: this.state.VendorCode,
-            Price: this.state.Price,
+            Price: Number(this.state.Price),
         };
         if (color.length > 0 && this.state.VendorCode &&
             this.state.Price && (validParamList(this.state.paramList, size)  || (subCatalogListGeneral.indexOf(this.props.subCatalog) !== -1))) {

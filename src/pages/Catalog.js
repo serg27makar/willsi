@@ -115,6 +115,9 @@ class Catalog extends React.Component {
         if (prevProps.searchItemColor !== this.props.searchItemColor) {
             this.updateProductsData();
         }
+        if (prevProps.searchItemPrice !== this.props.searchItemPrice) {
+            this.updateProductsData();
+        }
         if (prevProps.HeaderUser !== this.props.HeaderUser) {
             this.setCatalogName();
         }
@@ -173,6 +176,7 @@ class Catalog extends React.Component {
         const SearchParams = this.props.SearchParams;
         const searchItemParams = this.props.searchItemParams;
         const searchItemColor = this.props.searchItemColor;
+        const searchItemPrice = this.props.searchItemPrice;
         const topCatalog = this.state.topCatalog;
         const subCatalog = this.state.subCatalog;
         const requiredParameters = genderSwitcher(topCatalog, subCatalog);
@@ -196,6 +200,7 @@ class Catalog extends React.Component {
             subCatalog,
             searchItemParams,
             searchItemColor,
+            searchItemPrice
         };
         if (subCatalog.substr(subCatalog.length - 3, 3) === "All") {
             getAllProductDataToParams(this.setProductData, dataSearch);
@@ -308,6 +313,7 @@ function MapStateToProps(state) {
         selectedSubCatalogID: state.catalogReducer.selectedSubCatalogID,
         searchItemParams: state.catalogReducer.searchItemParams,
         searchItemColor: state.catalogReducer.searchItemColor,
+        searchItemPrice: state.catalogReducer.searchItemPrice,
         SearchParams: state.productReducer.SearchParams,
         alertModalCloseEvent: state.modalReducer.alertModalCloseEvent,
         Permission: state.userReducer.Permission,

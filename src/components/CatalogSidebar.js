@@ -2,6 +2,7 @@ import React from "react";
 import Category from "./Category";
 import {sidebarCatalogArr} from "../access/temporaryConstants";
 import {getAllProductsData} from "../utilite/axiosConnect";
+import PriceCategory from "./dropdowns/PriceCategory";
 
 class CatalogSidebar extends React.Component {
     constructor(props) {
@@ -10,6 +11,11 @@ class CatalogSidebar extends React.Component {
             Categories: sidebarCatalogArr,
         };
         this.getDataProducts = this.getDataProducts.bind(this);
+    }
+
+    componentDidMount() {
+        let search = {};
+        getAllProductsData(search, this.getDataProducts);
     }
 
     getDataProducts(data) {
@@ -30,15 +36,15 @@ class CatalogSidebar extends React.Component {
         })
     }
 
-    componentDidMount() {
-        let search = {};
-        getAllProductsData(search, this.getDataProducts);
-    }
-
     render() {
         return (
            <div>
                {this.state.Categories && this.state.Categories.map((item, index) => {
+                   if (item.catalogName === "Price") {
+                       return (
+                           <PriceCategory item={item} index={index} key={index}/>
+                       )
+                   }
                    return <Category item={item} index={index} key={index}/>
                })}
            </div>
