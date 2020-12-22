@@ -1054,6 +1054,18 @@ span.catalog-top__button-icon {
     background: transparent;
     cursor: pointer;
 }
+.catalog-top__button-drop-modal {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 0.0625vw solid #e1e1e1;
+    border-radius: 0.25vw;
+    padding: 0.9375vw 1.25vw;
+    background: white;
+    height: 2.5vw;
+    cursor: pointer;
+}
 .catalog-top__button-icon .icon {
     width: 0.625vw;
     height: 0.625vw;

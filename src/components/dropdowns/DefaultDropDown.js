@@ -1,5 +1,4 @@
 import React from "react";
-import ru from "../../access/lang/LangConstants";
 
 class DefaultDropDown extends React.Component {
     constructor(props) {

@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
 import ButtonMain from "../components/shared/ButtonMain";
 import {getStoreData, postStoreRegister, postUpdate} from "../utilite/axiosConnect";
+import CountryModal from "./modalComponents/CountryModal";
 
 class AddServiceModal extends React.Component {
     constructor(props) {
@@ -14,6 +15,9 @@ class AddServiceModal extends React.Component {
             textStore: "",
             phoneStore: "",
             secondUrlStore: "",
+            countryStore: "",
+            regionStore: "",
+            townStore: "",
             addressStore: "",
         };
         this.dataSubmit = this.dataSubmit.bind(this);
@@ -107,19 +111,14 @@ class AddServiceModal extends React.Component {
                                 <span className="add-store-label text-16">{ru.AddStoreInput2}</span>
                                 <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder2} name="urlStore" onChange={this.dataOnChange}/>
                             </label>
-                            <span className="add-store-label text-16">{ru.AddStoreTextarea}</span>
-                            <textarea className="form-shop__textarea text-14" placeholder={ru.AddStoreTextareaPlace} name="textStore" onChange={this.dataOnChange}/>
+
                             <label className="form-shop__label">
                                 <span className="add-store-label text-16">{ru.AddStoreInput3}</span>
                                 <input className="form-shop__input text-14" type="tel" placeholder={ru.Phone} name="phoneStore" onChange={this.dataOnChange}/>
                             </label>
                             <label className="form-shop__label">
-                                <span className="add-store-label text-16">{ru.AddStoreInput4}</span>
-                                <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder2} name="secondUrlStore" onChange={this.dataOnChange}/>
-                            </label>
-                            <label className="form-shop__label">
-                                <span className="add-store-label last-add-store-label text-16">{ru.AddStoreInput5}</span>
-                                <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder1} name="addressStore" onChange={this.dataOnChange}/>
+                                <span className="add-store-label text-16">{ru.registerCountry}</span>
+                                <CountryModal/>
                             </label>
                             <div className="block-align-center service-modal-btn">
                                 <ButtonMain btnClass={"form-shop__button-save text-16"} text={ru.Save} onClick={this.dataSubmit}/>

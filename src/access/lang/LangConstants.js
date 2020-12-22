@@ -268,7 +268,8 @@ const ru = {
     to: "до",
     replace: "пременить",
 
-    country: "Страна поиска"
+    country: "Страна поиска",
+    registerCountry: "Страна регистрации магазина"
 };
 
 export default ru;
