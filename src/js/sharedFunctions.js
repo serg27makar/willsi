@@ -217,3 +217,20 @@ export function genderSwitcher(gender, subCatalog = "") {
     });
     return recalculateParams;
 }
+
+export function miDateFormatNumber(inputDate) {
+    let outputDate;
+    inputDate = new Date(inputDate);
+    outputDate = String(inputDate.getFullYear());
+    outputDate = outputDate + String(inputDate.getMonth() + 1);
+    outputDate = outputDate + String(inputDate.getDate());
+    return Number(outputDate);
+}
+
+export function miDateFormatParser(inputDate) {
+    inputDate = String(inputDate);
+    const year = inputDate.substr(0, 4);
+    const month = inputDate.substr(4, 2);
+    const day = inputDate.substr(6, 2);
+    return year + " " + month + " " + day;
+}

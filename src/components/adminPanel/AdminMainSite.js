@@ -14,7 +14,7 @@ import {
     actionSaveParams,
     actionSubspecies
 } from "../../action";
-import {isEmptyObject, updateResult} from "../../js/sharedFunctions";
+import {isEmptyObject, miDateFormatNumber, updateResult} from "../../js/sharedFunctions";
 import EditSubspecies from "./EditSubspecies";
 
 class AdminMainSite extends React.Component {
@@ -187,6 +187,7 @@ class AdminMainSite extends React.Component {
     }
 
     saveHeaderCart(update = false) {
+        const currentDate = new Date();
         let cart = {
             ProductStoreID: this.props.storeID,
             topCatalog: this.state.headerItem,
@@ -205,6 +206,7 @@ class AdminMainSite extends React.Component {
             PaymentAndDelivery: this.state.PaymentAndDelivery,
             primaryAdmin: this.state.primaryAdmin,
             storeAdmin: this.state.storeAdmin,
+            registrationDate: miDateFormatNumber(currentDate),
         };
         if (cart.Manufacturer && cart.ProdName &&
             cart.ProductCode && cart.Photo1 &&

@@ -6,6 +6,7 @@ const initialState = {
     searchItemParams: {},
     searchItemColor: {},
     searchItemPrice: {},
+    searchItemNew: 0,
 };
 
 export default function catalogReducer(state = initialState, action) {
@@ -45,6 +46,11 @@ export default function catalogReducer(state = initialState, action) {
             return {
                 ...state,
                 searchItemPrice: action.searchItemPrice
+            };
+        case "SEARCH_ITEM_NEW":
+            return {
+                ...state,
+                searchItemNew: action.searchItemNew
             };
         default:
             return state;

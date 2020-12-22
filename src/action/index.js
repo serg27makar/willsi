@@ -347,3 +347,10 @@ export const actionSearchItemPrice = (searchItemPrice) => {
         searchItemPrice: searchItemPrice
     }
 };
+
+export const actionSearchItemNew = (searchItemNew) => {
+    return {
+        type: 'SEARCH_ITEM_NEW',
+        searchItemNew: searchItemNew
+    }
+};

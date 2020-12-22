@@ -4,11 +4,12 @@ import "../../access/css/cart.css"
 import {
     actionDataRedirect,
     actionProductID,
+    actionSearchItemNew,
     actionSearchItemParams,
 } from "../../action";
 import {connect} from "react-redux";
 import CircleLevel from "../shared/CircleLevel";
-import {isEmptyObject, validPostpone} from "../../js/sharedFunctions";
+import {isEmptyObject, miDateFormatNumber, miDateFormatParser, validPostpone} from "../../js/sharedFunctions";
 import PostponeButton from "./PostponeButton";
 
 class FullProductCard extends React.Component {
@@ -21,6 +22,8 @@ class FullProductCard extends React.Component {
         this.openCard = this.openCard.bind(this);
         this.detailsParameters = this.detailsParameters.bind(this);
         this.filterManufacturer = this.filterManufacturer.bind(this);
+        this.isNew = this.isNew.bind(this);
+        this.filterNew = this.filterNew.bind(this);
     }
 
     openCard(productID) {
@@ -37,8 +40,14 @@ class FullProductCard extends React.Component {
         }
     }
 
+    isNew(date) {
+        date = new Date(miDateFormatParser(date));
+        const currentDate = new Date();
+        return miDateFormatNumber(date) + 14 >= miDateFormatNumber(currentDate);
+    }
+
     currency(number) {
-        return number + " грн."
+        return number + " " + ru.grn;
     }
 
     filterManufacturer(itemValue) {
@@ -58,6 +67,27 @@ class FullProductCard extends React.Component {
         this.props.searchItemParamsFunction(item);
     }
 
+    filterNew(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (this.props.searchItemNew) {
+            this.props.searchItemNewFunction(0);
+        } else {
+            const currentDate = new Date();
+            const findDate = miDateFormatNumber(currentDate) - 14;
+            this.props.searchItemNewFunction(findDate);
+        }
+    }
+
+    renderNew(item) {
+        if (item.registrationDate && this.isNew(item.registrationDate)) {
+            return (
+                <div className="new-icon-marker" onClick={this.filterNew}/>
+            )
+        }
+
+    }
+
     renderPostpone = (item) => {
         if (item.postpone || validPostpone(this.props.Postpone, item._id)) {
             return (
@@ -70,9 +100,8 @@ class FullProductCard extends React.Component {
                     </div>
                 </div>
             )
-        } else {
-            return null;
         }
+        return null;
     };
 
     render() {
@@ -84,6 +113,7 @@ class FullProductCard extends React.Component {
                         <picture className="picture">
                             <img className="picture__source" src={item.Photo1} alt={item.ProdName}/>
                         </picture>
+                        {this.renderNew(item)}
                         <CircleLevel catalog={this.props.catalog} level={item.Parameters.compatibility || item.compatibility}/>
                         {this.renderPostpone(item)}
                     </div>
@@ -101,6 +131,7 @@ function MapStateToProps(state) {
     return {
         Postpone: state.userReducer.Postpone,
         searchItemParams: state.catalogReducer.searchItemParams,
+        searchItemNew: state.catalogReducer.searchItemNew,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -113,6 +144,9 @@ const mapDispatchToProps = dispatch => {
         },
         searchItemParamsFunction: (searchItemParams) => {
             dispatch(actionSearchItemParams(searchItemParams))
+        },
+        searchItemNewFunction: (searchItemNew) => {
+            dispatch(actionSearchItemNew(searchItemNew))
         },
     }
 };

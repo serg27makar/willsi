@@ -32,6 +32,7 @@ class PerfectThings extends React.Component {
             searchItemParams: {},
             searchItemColor: {},
             searchItemPrice: {},
+            searchItemNew: {},
             SearchParams: this.props.SearchParams,
             topCatalog: this.props.catalogName,
             subCatalog: this.props.subCatalogName,

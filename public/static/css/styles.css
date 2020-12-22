@@ -4089,3 +4089,14 @@ div, p, span, h1, h2, h3, h4,
     color: orangered;
     outline: none;
 }
+.new-icon-marker {
+    position: absolute;
+    background: url("../img/content/new-icon.png") no-repeat top center;
+    background-size: 100%;
+    width: 5rem;
+    height: 5rem;
+    top: -2rem;
+    left: -2rem;
+    z-index: 1;
+    cursor: pointer;
+}

@@ -112,6 +112,9 @@ class Catalog extends React.Component {
         if (prevProps.searchItemParams !== this.props.searchItemParams) {
             this.updateProductsData();
         }
+        if (prevProps.searchItemNew !== this.props.searchItemNew) {
+            this.updateProductsData();
+        }
         if (prevProps.searchItemColor !== this.props.searchItemColor) {
             this.updateProductsData();
         }
@@ -175,6 +178,7 @@ class Catalog extends React.Component {
         const skip = this.state.skip;
         const SearchParams = this.props.SearchParams;
         const searchItemParams = this.props.searchItemParams;
+        const searchItemNew = this.props.searchItemNew;
         const searchItemColor = this.props.searchItemColor;
         const searchItemPrice = this.props.searchItemPrice;
         const topCatalog = this.state.topCatalog;
@@ -199,6 +203,7 @@ class Catalog extends React.Component {
             topCatalog,
             subCatalog,
             searchItemParams,
+            searchItemNew,
             searchItemColor,
             searchItemPrice
         };
@@ -312,6 +317,7 @@ function MapStateToProps(state) {
         catalogName: state.catalogReducer.catalogName,
         selectedSubCatalogID: state.catalogReducer.selectedSubCatalogID,
         searchItemParams: state.catalogReducer.searchItemParams,
+        searchItemNew: state.catalogReducer.searchItemNew,
         searchItemColor: state.catalogReducer.searchItemColor,
         searchItemPrice: state.catalogReducer.searchItemPrice,
         SearchParams: state.productReducer.SearchParams,
