@@ -2,6 +2,8 @@ const initialState = {
     filters: {},
     dataViewIndicator: "",
     dataView: [],
+    setCountry: "",
+    allCountries: [],
 };
 
 export default function utiliteReducer(state = initialState, action) {
@@ -21,6 +23,16 @@ export default function utiliteReducer(state = initialState, action) {
             return {
                 ...state,
                 dataViewIndicator: action.dataViewIndicator
+            };
+        case "SET_COUNTRY":
+            return {
+                ...state,
+                setCountry: action.setCountry
+            };
+        case "ALL_COUNTRIES":
+            return {
+                ...state,
+                allCountries: action.allCountries
             };
 
         default:

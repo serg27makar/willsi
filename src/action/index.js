@@ -354,3 +354,17 @@ export const actionSearchItemNew = (searchItemNew) => {
         searchItemNew: searchItemNew
     }
 };
+
+export const actionSetCountry = (setCountry) => {
+    return {
+        type: 'SET_COUNTRY',
+        setCountry: setCountry
+    }
+};
+
+export const actionAllCountries = (allCountries) => {
+    return {
+        type: 'ALL_COUNTRIES',
+        allCountries: allCountries
+    }
+};

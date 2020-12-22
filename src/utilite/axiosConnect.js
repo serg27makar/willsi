@@ -253,3 +253,19 @@ export const getAllProductsData = (data, callbackInfo) => {
         callbackInfo(err);
     })
 };
+
+export const getGeoInfo = (callbackInfo) => {
+    axios.get('https://ipapi.co/json/').then((req) => {
+        callbackInfo(req.data);
+    }).catch((error) => {
+        console.log(error);
+    });
+};
+
+export const getAllCountry = (callbackInfo) => {
+    axios.get('http://www.geognos.com/api/en/countries/info/all.json').then((req) => {
+        callbackInfo(req.data);
+    }).catch((error) => {
+        console.log(error);
+    });
+};

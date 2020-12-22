@@ -25,15 +25,17 @@ import WowSecondModal from "./modals/WowSecondModal";
 import {connect} from "react-redux";
 import EditorModal from "./modals/EditorModal";
 import {
+    actionAllCountries,
     actionEmail,
     actionPermission,
     actionPostpone,
+    actionSetCountry,
     actionUserID,
     actionUserName,
     actionUsersParameters,
     actionUserStore
 } from "./action";
-import {getUserData} from "./utilite/axiosConnect";
+import {getAllCountry, getGeoInfo, getUserData} from "./utilite/axiosConnect";
 import SaveUpdateModal from "./modals/SaveUpdateModal";
 import AlertModal from "./modals/AlertModal";
 import AddServiceModal from "./modals/AddServiceModal";
@@ -47,12 +49,43 @@ import SpinnerModal from "./modals/SpinnerModal";
 const history = createBrowserHistory();
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            Results: {},
+            country_name: "",
+        }
+        this.allCountry = this.allCountry.bind(this);
+        this.countryData = this.countryData.bind(this);
+    }
 
     componentDidMount() {
         const UserID = localStorage.getItem("UserId");
         if (UserID) {
             this.props.userIDFunction(UserID);
             getUserData(this.result);
+        }
+        getGeoInfo(this.countryData);
+        getAllCountry(this.allCountry)
+    }
+
+    allCountry(data) {
+        const AllCountry = [];
+        if (data && data.Results) {
+            for (const item in data.Results) {
+                if (data.Results.hasOwnProperty(item)){
+                    const country = data.Results[item].Name;
+                    AllCountry.push(country)
+                }
+            }
+            AllCountry.sort();
+            this.props.allCountriesFunction(AllCountry);
+        }
+    }
+
+    countryData(data) {
+        if (data && data.country_name) {
+            this.props.setCountryFunction(data.country_name)
         }
     }
 
@@ -178,6 +211,12 @@ const mapDispatchToProps = dispatch => {
         },
         postponeFunction: (Postpone) => {
             dispatch(actionPostpone(Postpone))
+        },
+        setCountryFunction: (setCountry) => {
+            dispatch(actionSetCountry(setCountry))
+        },
+        allCountriesFunction: (allCountries) => {
+            dispatch(actionAllCountries(allCountries))
         },
     }
 };

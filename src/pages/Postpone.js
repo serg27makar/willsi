@@ -10,6 +10,7 @@ import ProductsCart from "../components/ProductsCart";
 import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
 import {getPostpone} from "../utilite/axiosConnect";
+import CountryDropDown from "../components/CountryDropDown";
 
 const breadcrumbs = {
     title: "Отложенные товары",
@@ -128,6 +129,7 @@ class Postpone extends React.Component {
                                 Categories={dropdownListArr}
                             />
                             <CatalogSidebar/>
+                            <CountryDropDown/>
                         </div>
                         <div className="col-12">
                             <ProductsCart products={this.state.products} catalog={true}/>

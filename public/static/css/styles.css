@@ -1152,6 +1152,15 @@ p.card-box__product-info {
     border-bottom-right-radius: 0.25vw;
     background: #f5f5f5;
 }
+.country-list {
+    height: 21rem;
+    overflow: hidden;
+    padding: 0.5vw;
+}
+.country-list ul {
+    height: 20rem;
+    overflow-y: auto;
+}
 .catalog-envelope {
     display: flex;
     align-items: center;
@@ -1223,6 +1232,12 @@ input[type="checkbox"]:not(:checked) + label.category-list__label {
 }
 .dropdown-list__item {
     padding: 1vw 0 1vw 1vw;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.dropdown-country {
+    padding: 0.2vw 1vw;
     display: flex;
     width: 100%;
     justify-content: space-between;

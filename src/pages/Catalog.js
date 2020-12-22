@@ -20,6 +20,7 @@ import {Redirect} from "react-router-dom";
 import {getAllProductDataToParams, getProductDataToParams} from "../utilite/axiosConnect";
 import {genderSwitcher} from "../js/sharedFunctions";
 import ru from "../access/lang/LangConstants";
+import CountryDropDown from "../components/CountryDropDown";
 
 class Catalog extends React.Component {
     constructor(props) {
@@ -293,6 +294,7 @@ class Catalog extends React.Component {
                                 Categories={dropdownListArr}
                             />
                             <CatalogSidebar/>
+                            <CountryDropDown/>
                         </div>
                         <div className="col-12">
                             <ProductsCart catalog={true} products={this.state.productArr}/>
@@ -320,6 +322,7 @@ function MapStateToProps(state) {
         searchItemNew: state.catalogReducer.searchItemNew,
         searchItemColor: state.catalogReducer.searchItemColor,
         searchItemPrice: state.catalogReducer.searchItemPrice,
+        setCountry: state.utiliteReducer.setCountry,
         SearchParams: state.productReducer.SearchParams,
         alertModalCloseEvent: state.modalReducer.alertModalCloseEvent,
         Permission: state.userReducer.Permission,

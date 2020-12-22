@@ -266,7 +266,9 @@ const ru = {
     saved: "сохранено",
     from: "от",
     to: "до",
-    replace: "пременить"
+    replace: "пременить",
+
+    country: "Страна поиска"
 };
 
 export default ru;
