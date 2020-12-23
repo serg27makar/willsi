@@ -243,6 +243,28 @@ export const postGetAllStoresData = (data, callbackInfo) => {
     })
 };
 
+export const postRemoveStoreData = (store, callbackInfo) => {
+    axios.post(Url + `/store/removeStoreData`, store,{
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        callbackInfo(err);
+    })
+};
+
+export const postSetStoreData = (store, callbackInfo) => {
+    axios.post(Url + `/store/setStoreData`, store,{
+        headers: {'token': localStorage.UserId}
+    })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        callbackInfo(err);
+    })
+};
+
 export const getAllProductsData = (data, callbackInfo) => {
     axios.post(Url + `/product/getAllProductsData`, data,{
         headers: {'token': localStorage.UserId}

@@ -12,12 +12,7 @@ class AddServiceModal extends React.Component {
         this.state = {
             nameStore: "",
             urlStore: "",
-            textStore: "",
             phoneStore: "",
-            secondUrlStore: "",
-            countryStore: "",
-            regionStore: "",
-            townStore: "",
             addressStore: "",
         };
         this.dataSubmit = this.dataSubmit.bind(this);
@@ -78,14 +73,13 @@ class AddServiceModal extends React.Component {
     }
 
     dataSubmit() {
-        const { nameStore, urlStore, textStore, phoneStore, secondUrlStore, addressStore} = this.state;
+        const { nameStore, urlStore, phoneStore, addressStore} = this.state;
         const store = {
             adminID: this.props.UserID,
+            countryStore: this.props.setCountry,
             nameStore,
             urlStore,
-            textStore,
             phoneStore,
-            secondUrlStore,
             addressStore
         };
         postStoreRegister(store, this.result);
@@ -138,6 +132,7 @@ function MapStateToProps(state) {
         UserID: state.userReducer.UserID,
         UserStore: state.userReducer.UserStore,
         addStore: state.storeReducer.addStore,
+        setCountry: state.utiliteReducer.setCountry,
     }
 }
 const mapDispatchToProps = dispatch => {

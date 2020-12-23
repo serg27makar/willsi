@@ -85,7 +85,7 @@ class App extends React.Component {
 
     countryData(data) {
         if (data && data.country_name) {
-            this.props.setCountryFunction(data.country_name)
+            this.props.setCountryFunction(data.country_name);
         }
     }
 
