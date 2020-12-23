@@ -207,6 +207,7 @@ class AdminMainSite extends React.Component {
             primaryAdmin: this.state.primaryAdmin,
             storeAdmin: this.state.storeAdmin,
             registrationDate: miDateFormatNumber(currentDate),
+            country: this.props.setCountry,
         };
         if (cart.Manufacturer && cart.ProdName &&
             cart.ProductCode && cart.Photo1 &&
@@ -323,6 +324,7 @@ function MapStateToProps(state) {
         Subspecies: state.productReducer.Subspecies,
         SaveParams: state.productReducer.SaveParams,
         Permission: state.userReducer.Permission,
+        setCountry: state.utiliteReducer.setCountry,
     }
 }
 const mapDispatchToProps = dispatch => {
