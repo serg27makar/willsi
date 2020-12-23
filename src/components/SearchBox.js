@@ -81,6 +81,7 @@ class SearchBox extends React.Component {
             chest = item.title === "chest" ? item.size : chest;
             waist = item.title === "waist" ? item.size : waist;
             hips = item.title === "hips" ? item.size : hips;
+            return index;
         });
 
         if (growth && shoulder && chest && waist && hips) {

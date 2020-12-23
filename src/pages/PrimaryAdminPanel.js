@@ -1,15 +1,11 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {actionDataRedirect, actionSetStoreArr, setActionAdminPanel} from "../action";
+import {actionDataRedirect, setActionAdminPanel} from "../action";
 import {Redirect} from "react-router-dom";
 import SaidBarAdmin from "../components/primaryAdminPanel/SaidBarAdmin";
 import MainBarAdmin from "../components/primaryAdminPanel/MainBarAdmin";
 
 class PrimaryAdminPanel extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         this.props.setActionAdminPanelFunction("AdminPanel");
         this.props.dataRedirectFunction({

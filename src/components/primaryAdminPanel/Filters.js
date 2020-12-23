@@ -83,6 +83,8 @@ class Filters extends React.Component {
                 return (this.storesFilter());
             case "p":
                 return (this.productsFilter());
+            default:
+                return null;
         }
     }
 

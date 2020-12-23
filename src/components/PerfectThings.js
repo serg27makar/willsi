@@ -45,7 +45,7 @@ class PerfectThings extends React.Component {
             if (validPostpone(this.props.Postpone, item._id)) {
                 data.splice(index, 1);
                 this.clearData(data);
-                return;
+                return data;
             }
             return data;
         })

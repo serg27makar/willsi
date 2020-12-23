@@ -55,6 +55,8 @@ class MainBarAdmin extends React.Component {
                 return this.allProductsData();
             case "i":
                 return this.storesDataInfo();
+            default:
+                return null;
         }
     }
 

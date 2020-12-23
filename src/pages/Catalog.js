@@ -10,7 +10,7 @@ import {
 } from "../action";
 import {connect} from "react-redux";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
-import {dropdownListArr, sidebarCatalogArr} from "../access/temporaryConstants";
+import {dropdownListArr} from "../access/temporaryConstants";
 import RutCatalogSidebar from "../components/RutCatalogSidebar";
 import CatalogSidebar from "../components/CatalogSidebar";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";

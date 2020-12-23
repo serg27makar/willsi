@@ -3,7 +3,7 @@ import {actionDataRedirect, actionOpenCatalog, actionSelectedSubCatalogID, setAc
 import {connect} from "react-redux";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
 import CatalogSidebar from "../components/CatalogSidebar";
-import {dropdownListArr, sidebarCatalogArr} from "../access/temporaryConstants";
+import {dropdownListArr} from "../access/temporaryConstants";
 import RutCatalogSidebar from "../components/RutCatalogSidebar";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ProductsCart from "../components/ProductsCart";

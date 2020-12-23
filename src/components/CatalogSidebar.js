@@ -23,6 +23,7 @@ class CatalogSidebar extends React.Component {
         if (data) {
             data.map(item => {
                 catalogItems.push(item.Manufacturer);
+                return catalogItems;
             })
         }
         const Categories = this.state.Categories;
@@ -30,6 +31,7 @@ class CatalogSidebar extends React.Component {
             if (item.catalogName === "Manufacturer") {
                 item.catalogItems = catalogItems;
             }
+            return index;
         })
         this.setState({
             Categories,

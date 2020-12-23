@@ -7,7 +7,6 @@ import {postGetAllStoresData, postGetAllUsersData} from "../../utilite/axiosConn
 import {
     actionAllStoresData,
     actionAllUsersData,
-    actionSetDataToAdminPanel,
     actionSetDataViewIndicator
 } from "../../action";
 
@@ -31,6 +30,8 @@ class SaidBarAdmin extends React.Component {
                         break;
                     case "s": this.allStoresData();
                         break;
+                    default:
+                        return null;
                 }
             }
         }

@@ -22,6 +22,8 @@ export function aosMethod(index, method = "default") {
             return step(index);
         case "default":
             return defaultAos(index);
+        default:
+            return null;
     }
 
 }
