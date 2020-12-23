@@ -36,6 +36,7 @@ class PerfectThings extends React.Component {
             SearchParams: this.props.SearchParams,
             topCatalog: this.props.catalogName,
             subCatalog: this.props.subCatalogName,
+            country: this.props.setCountry,
         };
         getProductDataToParams(this.setProductData, dataSearch);
     }
@@ -89,6 +90,7 @@ function MapStateToProps(state) {
         catalogName: state.catalogReducer.catalogName,
         SearchParams: state.productReducer.SearchParams,
         Postpone: state.userReducer.Postpone,
+        setCountry: state.utiliteReducer.setCountry,
     }
 }
 const mapDispatchToProps = dispatch => {

@@ -122,6 +122,9 @@ class Catalog extends React.Component {
         if (prevProps.searchItemPrice !== this.props.searchItemPrice) {
             this.updateProductsData();
         }
+        if (prevProps.setCountry !== this.props.setCountry) {
+            this.updateProductsData();
+        }
         if (prevProps.HeaderUser !== this.props.HeaderUser) {
             this.setCatalogName();
         }
@@ -184,6 +187,7 @@ class Catalog extends React.Component {
         const searchItemPrice = this.props.searchItemPrice;
         const topCatalog = this.state.topCatalog;
         const subCatalog = this.state.subCatalog;
+        const country = this.props.setCountry;
         const requiredParameters = genderSwitcher(topCatalog, subCatalog);
 
         this.setState({
@@ -206,7 +210,8 @@ class Catalog extends React.Component {
             searchItemParams,
             searchItemNew,
             searchItemColor,
-            searchItemPrice
+            searchItemPrice,
+            country
         };
         if (subCatalog.substr(subCatalog.length - 3, 3) === "All") {
             getAllProductDataToParams(this.setProductData, dataSearch);
