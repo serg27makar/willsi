@@ -72,9 +72,9 @@ class AdminMainSite extends React.Component {
         this.setState({
             ...this.state,
             topCatalog,
-            subCatalog: dropdownListArr[0].dropdownItems,
+            subCatalog: dropdownListArr[0].dropdownItems.slice(1),
             headerItem: dropdownListArr[0].dropdownTitle,
-            headerSubItem: dropdownListArr[0].dropdownItems[0],
+            headerSubItem: dropdownListArr[0].dropdownItems[1],
         });
         if (this.props.item) {
             this.fillInState();
@@ -84,8 +84,8 @@ class AdminMainSite extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.headerIndex !== this.state.headerIndex) {
             this.setState({
-                subCatalog: dropdownListArr[this.state.headerIndex].dropdownItems,
-                headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[0]
+                subCatalog: dropdownListArr[this.state.headerIndex].dropdownItems.slice(1),
+                headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[1]
             })
         }
         if (prevProps.item !== this.props.item) {
