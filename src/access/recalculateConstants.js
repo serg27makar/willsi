@@ -279,7 +279,7 @@ export const recalculateParamsGirl = [
         title: "Грудь",
         text: "Обхват груди в наиболее выступающих точках. Лента проходит по нижней части лопаток",
         inputName: "chest",
-        sizeMin: 70,
+        sizeMin: 10,
         sizeMax: 140,
     },
     {
@@ -288,7 +288,7 @@ export const recalculateParamsGirl = [
         title: "Талия",
         text: "Обхват талии в самом узком месте. Лента паралельно полу",
         inputName: "waist",
-        sizeMin: 50,
+        sizeMin: 10,
         sizeMax: 130,
     },
     {
@@ -297,7 +297,7 @@ export const recalculateParamsGirl = [
         title: "Бедра",
         text: "Обхват бедра в наиболее выступающих точках. Ноги вместе",
         inputName: "hips",
-        sizeMin: 70,
+        sizeMin: 10,
         sizeMax: 140,
     },
     {
@@ -306,7 +306,7 @@ export const recalculateParamsGirl = [
         title: "Обхват руки",
         text: "Обхват руки в самом широком месте предплечья",
         inputName: "armGirth",
-        sizeMin: 18,
+        sizeMin: 5,
         sizeMax: 50,
     },
     {
@@ -315,7 +315,7 @@ export const recalculateParamsGirl = [
         title: "Рост",
         text: "Укажите свой рост",
         inputName: "growth",
-        sizeMin: 150,
+        sizeMin: 40,
         sizeMax: 200,
     },
     {
@@ -324,7 +324,7 @@ export const recalculateParamsGirl = [
         title: "Обхват бедра",
         text: "Измеряйте в самом широком месте бедра, под ягодичной складкой",
         inputName: "thighGirth",
-        sizeMin: 40,
+        sizeMin: 10,
         sizeMax: 80,
     },
     {
@@ -333,7 +333,7 @@ export const recalculateParamsGirl = [
         title: "Обхват головы",
         text: "Оберните ленту вокруг головы. Лента должна проходить по самым выступающим частям лба и затылка над ушами",
         inputName: "headCircumference",
-        sizeMin: 40,
+        sizeMin: 15,
         sizeMax: 65,
     },
     {
@@ -342,7 +342,7 @@ export const recalculateParamsGirl = [
         title: "Обхват ладони",
         text: "Измеряйте в самом широком месте ладони (без большого пальца)",
         inputName: "palmGirth",
-        sizeMin: 12,
+        sizeMin: 5,
         sizeMax: 28,
     },
     {
@@ -351,7 +351,7 @@ export const recalculateParamsGirl = [
         title: "Длина пальцев",
         text: "Измеряйте от основания большого пальца до кончика среднего пальца",
         inputName: "fingerLength",
-        sizeMin: 10,
+        sizeMin: 3,
         sizeMax: 18,
     },
     {
@@ -360,7 +360,7 @@ export const recalculateParamsGirl = [
         title: "Обхват талии на уровне пупка",
         text: "Оберните ленту горизонтально на уровне пупка",
         inputName: "waistAtNavelLevel",
-        sizeMin: 55,
+        sizeMin: 10,
         sizeMax: 140,
     },
     {
@@ -369,7 +369,7 @@ export const recalculateParamsGirl = [
         title: "Ширина плеч",
         text: "Нащупайте крайнюю точку плечевой косточки. Набросьте ленту на плечи и измерьте расстояние между плечевыми точками",
         inputName: "shoulder",
-        sizeMin: 33,
+        sizeMin: 15,
         sizeMax: 48,
     },
     {
@@ -378,7 +378,7 @@ export const recalculateParamsGirl = [
         title: "Длина ноги по внутренней части",
         text: "Оберните ленту ***",
         inputName: "insideLegLength",
-        sizeMin: 50,
+        sizeMin: 15,
         sizeMax: 100,
     },
     {
@@ -387,7 +387,7 @@ export const recalculateParamsGirl = [
         title: "Длина стопы",
         text: "Оберните ленту ***",
         inputName: "footLength",
-        sizeMin: 50,
+        sizeMin: 7,
         sizeMax: 100,
     },
     {
@@ -396,7 +396,7 @@ export const recalculateParamsGirl = [
         title: "Обхват стопы в щироком месте",
         text: "Оберните ленту ***",
         inputName: "wideFootGirth",
-        sizeMin: 50,
+        sizeMin: 4,
         sizeMax: 100,
     },
     {
@@ -405,7 +405,7 @@ export const recalculateParamsGirl = [
         title: "Обхват объема (талии стопы)",
         text: "Оберните ленту ***",
         inputName: "footCircumference",
-        sizeMin: 50,
+        sizeMin: 5,
         sizeMax: 100,
     },
 ];
@@ -416,7 +416,7 @@ export const recalculateParamsBoy = [
         title: "Грудь",
         text: "Обхват груди в наиболее выступающих точках. Лента проходит по нижней части лопаток",
         inputName: "chest",
-        sizeMin: 70,
+        sizeMin: 10,
         sizeMax: 140,
     },
     {
@@ -425,7 +425,7 @@ export const recalculateParamsBoy = [
         title: "Талия",
         text: "Обхват талии в самом узком месте. Лента паралельно полу",
         inputName: "waist",
-        sizeMin: 50,
+        sizeMin: 10,
         sizeMax: 130,
     },
     {
@@ -434,7 +434,7 @@ export const recalculateParamsBoy = [
         title: "Бедра",
         text: "Обхват бедра в наиболее выступающих точках. Ноги вместе",
         inputName: "hips",
-        sizeMin: 70,
+        sizeMin: 10,
         sizeMax: 140,
     },
     {
@@ -443,7 +443,7 @@ export const recalculateParamsBoy = [
         title: "Обхват руки",
         text: "Обхват руки в самом широком месте предплечья",
         inputName: "armGirth",
-        sizeMin: 18,
+        sizeMin: 5,
         sizeMax: 50,
     },
     {
@@ -452,7 +452,7 @@ export const recalculateParamsBoy = [
         title: "Рост",
         text: "Укажите свой рост",
         inputName: "growth",
-        sizeMin: 150,
+        sizeMin: 40,
         sizeMax: 200,
     },
     {
@@ -461,7 +461,7 @@ export const recalculateParamsBoy = [
         title: "Обхват бедра",
         text: "Измеряйте в самом широком месте бедра, под ягодичной складкой",
         inputName: "thighGirth",
-        sizeMin: 40,
+        sizeMin: 10,
         sizeMax: 80,
     },
     {
@@ -470,7 +470,7 @@ export const recalculateParamsBoy = [
         title: "Обхват головы",
         text: "Оберните ленту вокруг головы. Лента должна проходить по самым выступающим частям лба и затылка над ушами",
         inputName: "headCircumference",
-        sizeMin: 40,
+        sizeMin: 15,
         sizeMax: 65,
     },
     {
@@ -479,7 +479,7 @@ export const recalculateParamsBoy = [
         title: "Обхват ладони",
         text: "Измеряйте в самом широком месте ладони (без большого пальца)",
         inputName: "palmGirth",
-        sizeMin: 12,
+        sizeMin: 5,
         sizeMax: 28,
     },
     {
@@ -488,7 +488,7 @@ export const recalculateParamsBoy = [
         title: "Длина пальцев",
         text: "Измеряйте от основания большого пальца до кончика среднего пальца",
         inputName: "fingerLength",
-        sizeMin: 10,
+        sizeMin: 3,
         sizeMax: 18,
     },
     {
@@ -497,7 +497,7 @@ export const recalculateParamsBoy = [
         title: "Обхват талии на уровне пупка",
         text: "Оберните ленту горизонтально на уровне пупка",
         inputName: "waistAtNavelLevel",
-        sizeMin: 55,
+        sizeMin: 10,
         sizeMax: 140,
     },
     {
@@ -506,7 +506,7 @@ export const recalculateParamsBoy = [
         title: "Ширина плеч",
         text: "Нащупайте крайнюю точку плечевой косточки. Набросьте ленту на плечи и измерьте расстояние между плечевыми точками",
         inputName: "shoulder",
-        sizeMin: 33,
+        sizeMin: 15,
         sizeMax: 48,
     },
     {
@@ -515,7 +515,7 @@ export const recalculateParamsBoy = [
         title: "Длина ноги по внутренней части",
         text: "Оберните ленту ***",
         inputName: "insideLegLength",
-        sizeMin: 50,
+        sizeMin: 15,
         sizeMax: 100,
     },
     {
@@ -524,7 +524,7 @@ export const recalculateParamsBoy = [
         title: "Длина стопы",
         text: "Оберните ленту ***",
         inputName: "footLength",
-        sizeMin: 50,
+        sizeMin: 7,
         sizeMax: 100,
     },
     {
@@ -533,7 +533,7 @@ export const recalculateParamsBoy = [
         title: "Обхват стопы в щироком месте",
         text: "Оберните ленту ***",
         inputName: "wideFootGirth",
-        sizeMin: 50,
+        sizeMin: 4,
         sizeMax: 100,
     },
     {
@@ -542,7 +542,7 @@ export const recalculateParamsBoy = [
         title: "Обхват объема (талии стопы)",
         text: "Оберните ленту ***",
         inputName: "footCircumference",
-        sizeMin: 50,
+        sizeMin: 5,
         sizeMax: 100,
     },
 ];

@@ -41,7 +41,7 @@ class CircleLevel extends React.Component {
         } else if (level <= 40) {
             text = "плохо"
         } else if (level <= 60) {
-            text = "так сибе"
+            text = "так себе"
         } else if (level <= 80) {
             text = "хорошо"
         } else if (level <= 100) {
