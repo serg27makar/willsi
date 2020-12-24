@@ -14,6 +14,14 @@ class CountryDropDown extends React.Component {
         this.chooseListItem = this.chooseListItem.bind(this);
     }
 
+    componentDidMount() {
+        this.setState({
+            ...this.state,
+            allCountries: this.props.allCountries,
+            setCountry: this.props.setCountry
+        })
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.setCountry !== this.props.setCountry || this.state.allCountries !== this.props.allCountries) {
             this.setState({

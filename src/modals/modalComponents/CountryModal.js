@@ -6,8 +6,28 @@ import DropdownModal from "./DropdownModal";
 class CountryModal extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            allCountries: [],
+            setCountry: "",
+        };
         this.chooseListItem = this.chooseListItem.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            allCountries: this.props.allCountries,
+            setCountry: this.props.setCountry,
+        })
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.state.setCountry !== this.props.setCountry || this.state.allCountries !== this.props.allCountries) {
+            this.setState({
+                ...this.state,
+                allCountries: this.props.allCountries,
+                setCountry: this.props.setCountry
+            })
+        }
     }
 
     chooseListItem(item, index) {
@@ -17,7 +37,7 @@ class CountryModal extends React.Component {
     render() {
         return (
             <div>
-                <DropdownModal items={this.props.allCountries} selected={this.props.setCountry} title={this.props.setCountry} changeItem={this.chooseListItem}/>
+                <DropdownModal items={this.state.allCountries} selected={this.state.setCountry} title={this.state.setCountry} changeItem={this.chooseListItem}/>
             </div>
         )
     }
