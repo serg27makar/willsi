@@ -22,7 +22,9 @@ class CatalogSidebar extends React.Component {
         const catalogItems = [];
         if (data) {
             data.map(item => {
-                catalogItems.push(item.Manufacturer);
+                if (catalogItems.indexOf(item.Manufacturer) === -1) {
+                    catalogItems.push(item.Manufacturer);
+                }
                 return catalogItems;
             })
         }
