@@ -280,6 +280,13 @@ const ru = {
     unidentifiedEmail: "неустановленный емейл",
     inconsistencyConfirmPassword: "несоответствие пароля и повтора",
     errorLogin: "такого пользователя не найдено, проверьте правильность написания логина и пароля",
+
+    veryBad: "очень плохо",
+    bad: "плохо",
+    soSo: "так себе",
+    well: "хорошо",
+    fine: "отлично",
+
 };
 
 export default ru;

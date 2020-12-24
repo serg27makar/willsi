@@ -1,5 +1,6 @@
 import React from 'react';
 import "../../access/css/carousel.css"
+import ru from "../../access/lang/LangConstants";
 
 class CircleLevel extends React.Component {
     constructor(props) {
@@ -37,15 +38,15 @@ class CircleLevel extends React.Component {
     textCounter = (level) => {
         let text;
         if (level <= 20) {
-            text = "очень плохо"
+            text = ru.veryBad
         } else if (level <= 40) {
-            text = "плохо"
+            text =  ru.bad
         } else if (level <= 60) {
-            text = "так себе"
+            text = ru.soSo
         } else if (level <= 80) {
-            text = "хорошо"
+            text = ru.well
         } else if (level <= 100) {
-            text = "отлично"
+            text = ru.fine
         }
         return text;
     };
