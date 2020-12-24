@@ -13,6 +13,7 @@ import {
     actionAlertText,
     actionOpenModal,
     actionSaveParams,
+    actionSpinnerText,
     actionSubspecies,
     actionUpdateSubspecies
 } from "../../action";
@@ -163,6 +164,8 @@ class EditSubspecieTabl extends React.Component {
                 this.props.subspeciesFunction(parameters);
             }
             this.props.updateSubspeciesFunction(!this.props.updateSubspecies)
+            this.props.spinnerTextFunction(ru.saved);
+            this.props.openModalFunction("spinnerModal");
         } else {
             this.props.alertTextFunction(ru.enterTheseDetails);
             this.props.openModalFunction("alertModal");
@@ -197,7 +200,7 @@ class EditSubspecieTabl extends React.Component {
                 <div className="size-standard-block-btn">
                     <div className="welcome-main-env__button-item" onClick={this.saveSubspecies}>
                         <div className="button-main text-16 welcome-about-env">
-                            <span>{ru.SaveChange}
+                            <span>{ru.SaveChangeSize}
                                 <span className="uppercase">{this.props.sizeStandard}</span>
                             </span>
                         </div>
@@ -249,6 +252,9 @@ const mapDispatchToProps = dispatch => {
         },
         saveParamsFunction: (SaveParams) => {
             dispatch(actionSaveParams(SaveParams))
+        },
+        spinnerTextFunction: (SpinnerText) => {
+            dispatch(actionSpinnerText(SpinnerText))
         },
     }
 };

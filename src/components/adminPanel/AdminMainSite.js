@@ -12,6 +12,7 @@ import {
     actionAlertText,
     actionOpenModal,
     actionSaveParams,
+    actionSpinnerText,
     actionSubspecies
 } from "../../action";
 import {isEmptyObject, miDateFormatNumber, updateResult} from "../../js/sharedFunctions";
@@ -124,8 +125,8 @@ class AdminMainSite extends React.Component {
 
     changeSubCatalog(index) {
         this.setState({
-            headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[index],
-            headerSubIndex: index,
+            headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[index + 1],
+            headerSubIndex: index + 1,
         })
     }
 
@@ -222,6 +223,8 @@ class AdminMainSite extends React.Component {
             } else {
                 postAddedProduct(cart, this.addedProductResult);
             }
+            this.props.spinnerTextFunction(ru.saved);
+            this.props.openModalFunction("spinnerModal");
         } else {
             this.props.alertTextFunction(ru.enterTheseDetails);
             this.props.openModalFunction("alertModal");
@@ -340,6 +343,9 @@ const mapDispatchToProps = dispatch => {
         },
         subspeciesFunction: (Subspecies) => {
             dispatch(actionSubspecies(Subspecies))
+        },
+        spinnerTextFunction: (SpinnerText) => {
+            dispatch(actionSpinnerText(SpinnerText))
         },
     }
 };
