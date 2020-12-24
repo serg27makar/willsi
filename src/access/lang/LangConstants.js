@@ -223,6 +223,7 @@ const ru = {
     black: "черный",
 
     Sizes: "Размеры",
+    enterIdealParameters: "Введите идеальные параметры покупателя для одежды этого размера",
     addSubspecies: "Добавить размер",
     SizeStandard: "Стандарт размера",
 
