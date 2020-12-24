@@ -10,7 +10,7 @@ import StepsBlock from "../components/StepsBlock";
 import Indicator from "../components/shared/Indicator";
 import Startup from "../components/Startup";
 import WelcomeMain from "../components/WelcomeMain";
-import {resourceThreeStepsArr, startupHomepageArr} from "../access/temporaryConstants";
+import {resourceThreeStepsArr} from "../access/temporaryConstants";
 import ru from "../access/lang/LangConstants";
 import {Redirect} from "react-router-dom";
 import {handlePageUp} from "../js/visualEffects";
@@ -20,7 +20,6 @@ class Homepage extends React.Component {
         super(props);
         this.state = {
             isUnknown: true,
-            minusScroll: 0,
         };
         this.redirect = this.redirect.bind(this);
     }
@@ -33,7 +32,6 @@ class Homepage extends React.Component {
         this.setState({
             ...this.state,
             isUnknown: this.props.UsersParameters && this.props.UsersParameters.length === 0,
-            minusScroll:  this.props.UsersParameters && this.props.UsersParameters.length === 0 ? 0 : 600,
         });
     }
 
@@ -42,7 +40,6 @@ class Homepage extends React.Component {
             this.setState({
                 ...this.state,
                 isUnknown: this.props.UsersParameters.length === 0,
-                minusScroll: this.props.UsersParameters.length === 0 ? 0 : 600,
             })
         }
         if (prevProps.Permission !== this.props.Permission) {
@@ -65,7 +62,6 @@ class Homepage extends React.Component {
                 <StepsBlock title={ru.JustThreeSteps}
                             stepsArr={resourceThreeStepsArr}
                             btnText={ru.toDressingRoom}
-                            scrollTopMin={1800} scrollTopMax={3100}
                             onClick={this.redirect}
                 />
             )
@@ -83,12 +79,12 @@ class Homepage extends React.Component {
             <div className="content">
                 <WelcomeMain/>
                 <SearchBox/>
-                <Startup startupArr={startupHomepageArr} scrollTopMin={300} scrollTopMax={1000}/>
-                <Indicator scrollTopMin={700} scrollTopMax={1600}/>
+                <Startup/>
+                <Indicator/>
                 {this.renderStepsBlock()}
                 <DescriptionBg/>
-                <Partners scrollTopMin={3200 - this.state.minusScroll} scrollTopMax={4500 - this.state.minusScroll}/>
-                <Reviews scrollTopMin={4100 - this.state.minusScroll}/>
+                <Partners/>
+                <Reviews/>
             </div>
         )
     }

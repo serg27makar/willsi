@@ -5,11 +5,35 @@ import AOS from "aos";
 import CircleLevel from "./CircleLevel";
 
 class Indicator extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            start: false,
+        }
+        this.handleScroll = this.handleScroll.bind(this);
+    }
 
     componentDidMount() {
         AOS.init({
             duration: 2000
-        })
+        });
+        window.addEventListener('scroll', this.handleScroll)
+    }
+
+    handleScroll(event) {
+        let scrollTop = event.target.scrollingElement.scrollTop;
+        if (scrollTop > 500) {
+            this.setState({
+                start: true
+            })
+        }
+    }
+
+    renderDynamicCircle() {
+        if (this.state.start)
+        return(
+            <CircleLevel level={99}/>
+        )
     }
 
     render() {
@@ -19,7 +43,7 @@ class Indicator extends React.Component {
                     <div className="row-wrap">
                         <p className="indicator-env__mobile-info text-14 light italic color-aqua">{ru.WithIndicator}</p>
                         <div data-aos={"fade-right"} className="step-box-indicator">
-                            <CircleLevel level={99}/>
+                            {this.renderDynamicCircle()}
                         </div>
                         <div data-aos={"fade-left"} className="step-box-indicator">
                             <p className="indicator-env__paragraph text-14 light italic">{ru.PayAttentionToThings}</p>
