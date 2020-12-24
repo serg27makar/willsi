@@ -26,6 +26,13 @@ class ModalInput extends React.Component {
         }
     }
 
+    renderErrorText(item) {
+        if (this.props.errorItem === item)
+        return (
+            <span className="modal-input-error-text text-12">{this.props.errorText}</span>
+        )
+    }
+
     render() {
         return (
             <label className="modal-form__label">
@@ -41,6 +48,7 @@ class ModalInput extends React.Component {
                         <use xlinkHref={this.props.dataInput.icon}/>
                     </svg>
                 </div>
+                {this.renderErrorText(this.props.dataInput.name)}
             </label>
         )
     }

@@ -396,12 +396,12 @@
     #modal-enter {
         max-width: 95vw !important;
         min-height: auto;
-        height: 95% !important;
+        height: 44rem !important;
     }
     #modal-registration {
         max-width: 95vw !important;
         min-height: auto;
-        height: 95% !important;
+        height: 55rem !important;
     }
     #modal-profile {
         max-width: 95vw !important;

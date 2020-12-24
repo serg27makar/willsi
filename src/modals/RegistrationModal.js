@@ -3,7 +3,7 @@ import ModalInput from "./modalComponents/ModalInput";
 import ButtonMain from "../components/shared/ButtonMain";
 import {dataInputRegistrationModal} from "../access/temporaryConstants";
 import {validateEmail} from "../js/sharedFunctions";
-import {postRegister, postUpdate} from "../utilite/axiosConnect";
+import {postCheckEmail, postRegister, postUpdate} from "../utilite/axiosConnect";
 import {
     actionDataRedirect,
     actionEmail,
@@ -23,6 +23,8 @@ class RegistrationModal extends React.Component {
             email: "",
             password: "",
             confirmPassword: "",
+            errorItem: "",
+            errorText: "",
         };
     }
 
@@ -69,7 +71,7 @@ class RegistrationModal extends React.Component {
 
     registration = () => {
         const {name, email, password, confirmPassword} = this.state;
-        if (name.length >= 3 && email && validateEmail(email) &&
+        if (name && email && validateEmail(email) &&
             password && confirmPassword && password === confirmPassword) {
             let user = {
                 UserName: name,
@@ -78,12 +80,50 @@ class RegistrationModal extends React.Component {
                 Permission: "buyer",
             };
             this.props.permissionFunction("buyer");
-            if (this.props.UserID && this.props.UserID !== "undefined") {
-                user = {...user, UserID: this.props.UserID};
-                postUpdate(user, this.updateResult);
-            } else {
-                postRegister(user, this.result);
+
+            postCheckEmail({Email: email}, (data) => {
+                if (data && data.result) {
+                    if (this.props.UserID && this.props.UserID !== "undefined") {
+                        user = {...user, UserID: this.props.UserID};
+                        postUpdate(user, this.updateResult);
+                    } else {
+                        postRegister(user, this.result);
+                    }
+                } else {
+                    this.setState({
+                        ...this.state,
+                        errorItem: "email",
+                        errorText: ru.thisEmailIsAlreadyRegistered,
+                    })
+                }
+            });
+        } else {
+            let errorItem = "";
+            let errorText = "";
+            if (!name) {
+                errorItem = "name";
+                errorText = ru.enterYourName;
+            } else if (!email) {
+                errorItem = "email";
+                errorText = ru.enterYourEmail;
+            } else if (!validateEmail(email)) {
+                errorItem = "email";
+                errorText = ru.unidentifiedEmail;
+            } else if (!password) {
+                errorItem = "password";
+                errorText = ru.enterYourPassword;
+            } else if (!confirmPassword) {
+                errorItem = "confirmPassword";
+                errorText = ru.enterYourConfirmPassword;
+            } else if (password !== confirmPassword) {
+                errorItem = "confirmPassword";
+                errorText = ru.inconsistencyConfirmPassword;
             }
+            this.setState({
+                ...this.state,
+                errorItem,
+                errorText,
+            })
         }
     };
 
@@ -100,8 +140,12 @@ class RegistrationModal extends React.Component {
                     <div className="modal-form">
                         {dataInputRegistrationModal && dataInputRegistrationModal.map((item, index) => {
                             return (
-                                <ModalInput dataInput={item} key={index} dataValue={this.state} dataOnChange={this.dataOnChange}/>
-                            )
+                                <ModalInput dataInput={item} key={index}
+                                            dataValue={this.state}
+                                            dataOnChange={this.dataOnChange}
+                                            errorItem={this.state.errorItem}
+                                            errorText={this.state.errorText}/>
+                                            )
                         })}
                         <div className="modal-form__button-enter">
                             <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.SignUp} onClick={this.registration}/>

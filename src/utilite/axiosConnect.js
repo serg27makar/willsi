@@ -22,6 +22,15 @@ export const postLogin = (user, callbackInfo) => {
     })
 };
 
+export const postCheckEmail = (email, callbackInfo) => {
+    axios.post(Url + `/users/checkEmail`, email)
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+            console.log(err);
+    })
+};
+
 export const postUpdate = (user, callbackInfo) => {
     axios.post(Url + `/users/update`, user, {
         headers: {'token': localStorage.UserId}

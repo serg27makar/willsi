@@ -270,7 +270,16 @@ const ru = {
     replace: "пременить",
 
     country: "Страна поиска",
-    registerCountry: "Страна регистрации магазина"
+    registerCountry: "Страна регистрации магазина",
+
+    thisEmailIsAlreadyRegistered: "этот емейл уже используется",
+    enterYourName: "введите свое имя",
+    enterYourEmail: "введите свой емейл",
+    enterYourPassword: "введите свой пароль",
+    enterYourConfirmPassword: "введите пароль повторно",
+    unidentifiedEmail: "неустановленный емейл",
+    inconsistencyConfirmPassword: "несоответствие пароля и повтора",
+    errorLogin: "такого пользователя не найдено, проверьте правильность написания логина и пароля",
 };
 
 export default ru;

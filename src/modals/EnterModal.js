@@ -22,6 +22,9 @@ class EnterModal extends React.Component {
         this.state = {
             email: "",
             password: "",
+            errorItem: "",
+            errorText: "",
+            errorLogin: false,
         }
     }
 
@@ -42,7 +45,10 @@ class EnterModal extends React.Component {
 
     result = (res) => {
         if (res === "find:0") {
-            console.log(res);
+            this.setState({
+                ...this.state,
+                errorLogin: true,
+            })
             return;
         }
         if (res.isAxiosError) {
@@ -72,8 +78,33 @@ class EnterModal extends React.Component {
                 Password: password,
             };
             postLogin(user, this.result)
+        } else {
+            let errorItem = "";
+            let errorText = "";
+            if (!email) {
+                errorItem = "email";
+                errorText = ru.enterYourEmail;
+            } else if (!validateEmail(email)) {
+                errorItem = "email";
+                errorText = ru.unidentifiedEmail;
+            } else if (!password) {
+                errorItem = "password";
+                errorText = ru.enterYourPassword;
+            }
+            this.setState({
+                ...this.state,
+                errorItem,
+                errorText,
+            })
         }
     };
+
+    renderErrorLogin() {
+        if (this.state.errorLogin)
+        return (
+            <span className="modal-input-error-text main-list__catalog-product text-16">{ru.errorLogin}</span>
+        )
+    }
 
     render() {
         return(
@@ -88,12 +119,17 @@ class EnterModal extends React.Component {
                     <div className="modal-form">
                         {dataInputEnterModal && dataInputEnterModal.map((item, index) => {
                             return (
-                                <ModalInput dataInput={item} key={index} dataValue={this.state} dataOnChange={this.dataOnChange}/>
-                            )
+                                <ModalInput dataInput={item} key={index}
+                                            dataValue={this.state}
+                                            dataOnChange={this.dataOnChange}
+                                            errorItem={this.state.errorItem}
+                                            errorText={this.state.errorText}/>
+                                            )
                         })}
                         <div className="modal-form__button-enter">
                             <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.SignIn} onClick={this.login}/>
                         </div>
+                        {this.renderErrorLogin()}
                         <div className="modal-form__bottom-text text-16 light color-aqua">{ru.DontHaveAccount}
                             <div className="modal-form__bottom-link color-aqua" onClick={() => {this.changeModal("signUp")}}>{ru.SignUp}</div>
                         </div>

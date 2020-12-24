@@ -452,6 +452,12 @@ footer {
     position: relative;
     width: 100%;
 }
+.modal-input-error-text {
+    color: red;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
 .modal-form__input {
     border: 0.0625vw solid #e1e1e1;
     border-radius: 0.25vw;
