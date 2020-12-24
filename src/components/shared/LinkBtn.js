@@ -49,11 +49,11 @@ class LinkBtn extends React.Component {
             )
         }
         return (
-            <div className="link-fixed__env text-13 medium">
-                    <span>{ru.HaveLink}
+            <div className="link-fixed__env">
+                    <span className="text-11 medium">{ru.HaveLink}
                         <br/>{ru.OnTheProduct}
                     </span>
-                <div className="link-fixed__item" >{ru.TryItOn}</div>
+                <div className="link-fixed__item text-11 medium" >{ru.TryItOn}</div>
             </div>
         )
     }

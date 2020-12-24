@@ -1518,6 +1518,9 @@
     .text-12 {
         font-size: 3.2vw;
     }
+    .text-11 {
+        font-size: 10px;
+    }
     .card-box__picture .picture__source {
         height: auto;
     }
