@@ -7,6 +7,7 @@ import {
     postUnsetProductData
 } from "../utilite/axiosConnect";
 import {updateResult} from "./sharedFunctions";
+import React from "react";
 
 export function removeItemDataToStore() {
     let search = {};
@@ -61,3 +62,11 @@ export function addItemDataToProduct(ProductStoreID, addedData) {
     }
     getProductDataToId(ProductStoreID, productsData);
 }
+{/*<label className="main-list__label">*/}
+{/*    <input className="main-list__input-search text-14 italic" type="text" placeholder="Поиск..."/>*/}
+{/*    <button className="main-list__button-search">*/}
+{/*        <svg className="icon icon-search ">*/}
+{/*            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#search"/>*/}
+{/*        </svg>*/}
+{/*    </button>*/}
+{/*</label>*/}

@@ -20,22 +20,17 @@ class StoreDropdown extends React.Component {
     componentDidMount() {}
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.state.StoreArr !== this.props.StoreArr && this.props.StoreArr.length > 0 && this.state.firstLoad) {
+        if (this.state.StoreArr !== this.props.StoreArr && this.props.StoreArr.length > 0) {
+            if (isEmptyObject(this.props.selectedStore)) {
+                this.props.selectedStoreFunction(this.props.StoreArr[0])
+            }
             this.setState({
                 ...this.state,
                 StoreArr: this.props.StoreArr,
-                nameStore: !isEmptyObject(this.props.selectedStore) ? this.props.selectedStore.nameStore : this.props.StoreArr[0].nameStore,
-                firstLoad: false,
             })
         }
         if (!isEmptyObject(this.props.selectedStore) && this.state.nameStore !== this.props.selectedStore.nameStore) {
             this.setState({...this.state, nameStore: this.props.selectedStore.nameStore,})
-        }
-        if (this.state.StoreArr !== this.props.StoreArr && this.props.StoreArr.length > 0 && !this.state.firstLoad) {
-            this.setState({
-                ...this.state,
-                StoreArr: this.props.StoreArr,
-            })
         }
     }
 
@@ -57,6 +52,7 @@ class StoreDropdown extends React.Component {
     }
 
     renderItem = (item, index) => {
+        if (this.props.selectedStore._id !== item._id)
         return (
             <div className="dropdown-info__item" key={index} onClick={() => {this.changeItem(item)}}>
                 <div className="border-line" />

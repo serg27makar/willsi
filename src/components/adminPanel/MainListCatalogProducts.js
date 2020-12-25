@@ -17,24 +17,9 @@ class MainListCatalogProducts extends React.Component {
             active: "catalog-button catalog-opened",
             passive: "catalog-button",
             openIndex: -1,
-            productsThisStore: [],
+            selectedSubCatalog: -1,
         }
     }
-
-    componentDidMount() {
-        this.setState({
-            productsThisStore: this.props.productsThisStore,
-        })
-    }
-
-    renderListItem = (listItem, listIndex) => {
-        return (
-            <li className="dropdown-list__item catalog-opened" key={listIndex} onClick={() => {this.chooseSubCatalog(listItem, listIndex)}}>
-                <div className={this.state.selectedSubCatalog === listIndex ? "dropdown-list__link catalog-opened text-14" : "dropdown-list__link text-14 light"}>{LangCat[listItem]}</div>
-                <div className="count-products-sub text-12">{this.countProducts(listItem)}</div>
-            </li>
-        )
-    };
 
     chooseSubCatalog(listItem, listIndex) {
         const shopEditParams = [];
@@ -63,16 +48,21 @@ class MainListCatalogProducts extends React.Component {
     countProducts(title) {
         let i = 0;
         this.props.productsThisStore.map((item, index) => {
-            if (item.topCatalog === title) {
-                i++
-            }
-            if (item.subCatalog === title) {
-                i++
-            }
+            if (item.topCatalog === title) i++
+            if (item.subCatalog === title) i++
             return index;
         });
         return i;
     }
+
+    renderListItem = (listItem, listIndex) => {
+        return (
+            <li className="dropdown-list__item catalog-opened" key={listIndex} onClick={() => {this.chooseSubCatalog(listItem, listIndex)}}>
+                <div className={this.state.selectedSubCatalog === listIndex ? "dropdown-list__link catalog-opened text-14" : "dropdown-list__link text-14 light"}>{LangCat[listItem]}</div>
+                <div className="count-products-sub text-12">{this.countProducts(listItem)}</div>
+            </li>
+        )
+    };
 
     renderCatalogProduct = (item, index) => {
         return (
@@ -98,16 +88,8 @@ class MainListCatalogProducts extends React.Component {
             <div className="sidebar__main-list scrollbar">
                 <div className="main-list">
                     <p className="main-list__title uppercase bold text-22">{ru.ProductCategories}</p>
-                    {/*<label className="main-list__label">*/}
-                    {/*    <input className="main-list__input-search text-14 italic" type="text" placeholder="Поиск..."/>*/}
-                    {/*    <button className="main-list__button-search">*/}
-                    {/*        <svg className="icon icon-search ">*/}
-                    {/*            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#search"/>*/}
-                    {/*        </svg>*/}
-                    {/*    </button>*/}
-                    {/*</label>*/}
                     <div className="main-list__catalog-product">
-                        {this.props.catalogProducts && this.props.catalogProducts.map((item, index) => {
+                        {this.props.dropdownList && this.props.dropdownList.map((item, index) => {
                             return this.renderCatalogProduct(item, index)
                         })}
                     </div>

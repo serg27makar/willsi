@@ -14,7 +14,6 @@ class AdminPanel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productsThisStore: [],
             ShopEditParams: [],
             storeID: "",
             isAddBtn: true,
@@ -24,7 +23,6 @@ class AdminPanel extends React.Component {
             },
         };
         this.storeData = this.storeData.bind(this);
-        this.productsData = this.productsData.bind(this);
         this.addProduct = this.addProduct.bind(this);
     }
 
@@ -73,19 +71,7 @@ class AdminPanel extends React.Component {
         }
     }
 
-    productsData(data) {
-        if (data && data.length > 0) {
-            this.setState({
-                productsThisStore: data,
-            });
-        }
-    }
-
-
-    addProduct(storeID = "") {
-        if (storeID.length >= 12) {
-            getProductDataToId(storeID, this.productsData);
-        }
+    addProduct() {
         this.setState({
             ...this.state,
             isAddBtn: !this.state.isAddBtn,
@@ -123,7 +109,7 @@ class AdminPanel extends React.Component {
         }
         return(
             <div className="content main-admin__row">
-                <AdminSidebar storeID={this.setStoreID} productsThisStore={this.state.productsThisStore}/>
+                <AdminSidebar/>
                 <div className="main-admin__main-envelope">
                     {this.renderAddBtn()}
                 </div>
