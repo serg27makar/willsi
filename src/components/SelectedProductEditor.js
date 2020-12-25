@@ -12,31 +12,15 @@ class SelectedProductEditor extends React.Component {
         this.updateProduct = this.updateProduct.bind(this);
     }
 
-    componentDidMount() {
-        if (this.props.item) {
-            this.setState({
-                item: this.props.item,
-            })
-        }
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.item !== this.props.item) {
-            this.setState({
-                item: this.props.item,
-            })
-        }
-    }
-
     updateProduct() {
         this.props.selectedProductToEditFunction({});
-        this.props.closeMainSite(this.state.item.ProductStoreID)
+        this.props.addProduct(true);
     }
 
     render() {
         return (
             <div>
-                <AdminMainSite storeID={this.state.item.ProductStoreID} item={this.state.item} closeMainSite={this.updateProduct}/>
+                <AdminMainSite storeID={this.props.item.ProductStoreID} item={this.props.item} addProduct={this.updateProduct}/>
             </div>
         )
     }

@@ -174,7 +174,7 @@ class AdminMainSite extends React.Component {
 
             if (this.props.SaveParams) {
                 this.props.saveParamsFunction(false);
-                this.props.closeMainSite(this.props.storeID);
+                this.props.addProduct(true);
             }
         }
     }
@@ -232,7 +232,7 @@ class AdminMainSite extends React.Component {
     }
 
     cancelSave() {
-        this.props.closeMainSite(this.props.storeID);
+        this.props.addProduct(true);
     }
 
     renderEditSubspecies() {

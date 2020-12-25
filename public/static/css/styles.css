@@ -2781,6 +2781,12 @@ button.size-tabs-wrapper-button.tabs-active {
     top: 50%;
     left: 50%;
 }
+.last-item {
+    left: 0;
+    display: block;
+    height: 20rem;
+    padding: 10% 50%;
+}
 #blink {
     -webkit-animation: blink 3s linear infinite;
     animation: blink 3s linear infinite;

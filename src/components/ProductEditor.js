@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
 import {actionSelectedProductToEdit} from "../action";
+import AddButton from "./adminPanel/AddButton";
 
 class ProductEditor extends React.Component {
     constructor(props) {
@@ -55,6 +56,7 @@ class ProductEditor extends React.Component {
                 {this.state.ShopEditParams && this.state.ShopEditParams.map((item, index) => {
                     return this.renderListEditor(item, index);
                 })}
+                <AddButton lastItem={true} addProduct={this.props.addProduct}/>
             </div>
         )
     }
