@@ -25,7 +25,6 @@ class AdminPanel extends React.Component {
         };
         this.storeData = this.storeData.bind(this);
         this.productsData = this.productsData.bind(this);
-        this.setStoreID = this.setStoreID.bind(this);
         this.addProduct = this.addProduct.bind(this);
     }
 
@@ -82,15 +81,6 @@ class AdminPanel extends React.Component {
         }
     }
 
-    setStoreID(ProductStoreID) {
-        this.setState({
-            storeID: ProductStoreID,
-            ShopEditParams: [],
-        });
-        if (ProductStoreID && ProductStoreID.length >= 12) {
-            getProductDataToId(ProductStoreID, this.productsData);
-        }
-    }
 
     addProduct(storeID = "") {
         if (storeID.length >= 12) {

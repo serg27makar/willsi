@@ -288,6 +288,10 @@ const ru = {
     well: "хорошо",
     fine: "отлично",
 
+    enterYourStoreName: "введите название магазина",
+    enterYourStoreUrl: "введите интернет адрес магазина",
+    enterYourStorePhone: "введите телефон контактного лица",
+
 };
 
 export default ru;

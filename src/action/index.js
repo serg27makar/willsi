@@ -368,3 +368,10 @@ export const actionAllCountries = (allCountries) => {
         allCountries: allCountries
     }
 };
+
+export const actionSelectedStore = (selectedStore) => {
+    return {
+        type: 'SELECTED_STORE',
+        selectedStore: selectedStore
+    }
+};

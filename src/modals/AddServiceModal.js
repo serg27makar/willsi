@@ -1,5 +1,12 @@
 import React from "react";
-import {actionAddStore, actionDataRedirect, actionOpenModal, actionSetStoreArr, actionUserStore} from "../action";
+import {
+    actionAddStore,
+    actionDataRedirect,
+    actionOpenModal,
+    actionSelectedStore,
+    actionSetStoreArr,
+    actionUserStore
+} from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
 import ButtonMain from "../components/shared/ButtonMain";
@@ -14,6 +21,8 @@ class AddServiceModal extends React.Component {
             urlStore: "",
             phoneStore: "",
             addressStore: "",
+            errorItem: "",
+            errorText: "",
         };
         this.dataSubmit = this.dataSubmit.bind(this);
         this.result = this.result.bind(this);
@@ -37,10 +46,10 @@ class AddServiceModal extends React.Component {
     };
 
     result(res) {
-        if (res && res.length > 12) {
+        if (res.insertedId && res.insertedId.length > 12) {
             const UserStore = this.props.UserStore || [];
             const store = {
-                storeID: res,
+                storeID: res.insertedId,
                 nameStore: this.state.nameStore
             };
             UserStore.push(store);
@@ -49,6 +58,7 @@ class AddServiceModal extends React.Component {
                 UserID: this.props.UserID,
                 UserStore,
             };
+            this.props.selectedStoreFunction(res.ops[0]);
             postUpdate(user, this.updateResult);
         }
     }
@@ -82,7 +92,29 @@ class AddServiceModal extends React.Component {
             phoneStore,
             addressStore
         };
-        postStoreRegister(store, this.result);
+        let errorItem = "";
+        let errorText = "";
+        if (!nameStore) {
+            errorItem = "nameStore";
+            errorText = ru.enterYourStoreName;
+        } else if (!urlStore) {
+            errorItem = "urlStore";
+            errorText = ru.enterYourStoreUrl;
+        } else if (!phoneStore) {
+            errorItem = "phoneStore";
+            errorText = ru.enterYourStorePhone;
+        } else {
+            postStoreRegister(store, this.result);
+        }
+        if (errorItem && errorText) {
+            this.setState({...this.state, errorItem, errorText})
+        }
+    }
+
+    renderErrorText(errorText) {
+        return (
+            <span className="modal-input-error-text text-12">{errorText}</span>
+        )
     }
 
     render() {
@@ -100,15 +132,18 @@ class AddServiceModal extends React.Component {
                             <label className="form-shop__label">
                                 <span className="add-store-label text-16">{ru.AddStoreInput1}</span>
                                 <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder1} name="nameStore" onChange={this.dataOnChange}/>
+                                {this.state.errorItem === "nameStore" ? this.renderErrorText(this.state.errorText) : null}
                             </label>
                             <label className="form-shop__label">
                                 <span className="add-store-label text-16">{ru.AddStoreInput2}</span>
                                 <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder2} name="urlStore" onChange={this.dataOnChange}/>
+                                {this.state.errorItem === "urlStore" ? this.renderErrorText(this.state.errorText) : null}
                             </label>
 
                             <label className="form-shop__label">
                                 <span className="add-store-label text-16">{ru.AddStoreInput3}</span>
                                 <input className="form-shop__input text-14" type="tel" placeholder={ru.Phone} name="phoneStore" onChange={this.dataOnChange}/>
+                                {this.state.errorItem === "phoneStore" ? this.renderErrorText(this.state.errorText) : null}
                             </label>
                             <label className="form-shop__label">
                                 <span className="add-store-label text-16">{ru.registerCountry}</span>
@@ -151,6 +186,9 @@ const mapDispatchToProps = dispatch => {
         },
         setStoreArrFunction: (StoreArr) => {
             dispatch(actionSetStoreArr(StoreArr))
+        },
+        selectedStoreFunction: (selectedStore) => {
+            dispatch(actionSelectedStore(selectedStore))
         },
     }
 };

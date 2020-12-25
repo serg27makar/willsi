@@ -47,7 +47,7 @@ export const postStoreRegister = (store, callbackInfo) => {
         headers: {'token': localStorage.UserId}
     })
         .then(req => {
-            callbackInfo(req.data.insertedId);
+            callbackInfo(req.data);
         }).catch(err => {
             console.log(err);
     })

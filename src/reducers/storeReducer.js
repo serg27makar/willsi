@@ -2,6 +2,7 @@ const initialState = {
     StoreArr: [],
     addStore: false,
     AllStoresData: [],
+    selectedStore: {},
 };
 
 export default function storeReducer(state = initialState, action) {
@@ -21,6 +22,11 @@ export default function storeReducer(state = initialState, action) {
             return {
                 ...state,
                 AllStoresData: action.AllStoresData
+            };
+        case "SELECTED_STORE":
+            return {
+                ...state,
+                selectedStore: action.selectedStore
             };
 
         default:
