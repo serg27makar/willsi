@@ -1892,9 +1892,15 @@ input[type="checkbox"] + label:hover {
     height: 2.5vw;
     background: transparent;
 }
-.tabs-wrapper__content-info {
+.tabs-wrapper__content-info-cart {
     padding-top: 1.875vw;
     padding-bottom: 5.625vw;
+}
+.tabs-wrapper__content-info {
+    border: 2px solid;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
 }
 .tabs-wrapper__paragraph {
     line-height: 2em;
@@ -1904,9 +1910,14 @@ input[type="checkbox"] + label:hover {
     display: none;
 }
 button.size-tabs-wrapper-button.tabs-active {
+    background: url("../img/content/steps-bg.jpg") no-repeat center center;
+    background-size: cover;
     border: 2px solid black;
     border-bottom: none;
     border-radius: 10px 10px 0 0;
+    position: relative;
+    top: 2px;
+    z-index: 1;
 }
 .tabs-active .tabs-wrapper__text {
     position: relative;
@@ -3988,14 +3999,6 @@ html.magnifying > body {
 }
 .breadcrumbs {
     display: flex;
-}
-.subspecies-admin {
-    border-top: 2px solid;
-    border-bottom: 2px solid;
-    margin-top: 2rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    margin-bottom: 2rem;
 }
 .tariff-block {
     border: 2px solid #c8bdbd;

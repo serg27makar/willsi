@@ -53,7 +53,7 @@ class CartTabs extends React.Component {
 
     renderTabsContent = () => {
         return (
-            <div className="tabs-wrapper__content-info">
+            <div className="tabs-wrapper__content-info-cart">
                 <div className="tabs-wrapper__show-tabs" >
                     {this.state.textTabs && this.state.textTabs.map((text, index) => {
                         if (this.state.numberTab === index) {

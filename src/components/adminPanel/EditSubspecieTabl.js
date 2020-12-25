@@ -213,7 +213,7 @@ class EditSubspecieTabl extends React.Component {
 
     render() {
         return (
-            <div className="subspecies-admin">
+            <div>
                 <DoubleButton placeholderData={ProductManufacturerInputList[3]}
                               item={this.state.VendorCode} active={true}
                               changeValue={(value) => {this.dataChange(value, "VendorCode")}}
