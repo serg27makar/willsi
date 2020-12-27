@@ -52,7 +52,6 @@ class AdminSidebar extends React.Component {
         }
         this.props.selectedProductToEditFunction({});
         this.props.addProduct(!this.props.addButton);
-        this.props.productsThisStoreFunction([])
     }
 
     productsData(data = []) {

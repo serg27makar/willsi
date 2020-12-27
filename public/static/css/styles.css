@@ -1303,6 +1303,9 @@ input[type="checkbox"]:not(:checked) + label.category-list__label {
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
 }
+.padding-left {
+    padding-left: 4rem;
+}
 .card-box {
     display: flex;
     flex-direction: column;
@@ -4186,4 +4189,8 @@ div, p, span, h1, h2, h3, h4,
 .active-toggle {
     left: 75%;
     background: #4ba9bc;
+}
+.catalog-top-toggle-btn {
+    width: 4rem;
+    position: absolute;
 }

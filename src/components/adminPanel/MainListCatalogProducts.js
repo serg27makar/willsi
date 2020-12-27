@@ -6,6 +6,8 @@ import {
     actionShopEditParamsAction,
 } from "../../action";
 import {connect} from "react-redux";
+import ToggleButton from "../shared/ToggleButton";
+import {showHiddenCatalogData} from "../../js/dataUpdateFunctions";
 
 class MainListCatalogProducts extends React.Component {
     constructor(props) {
@@ -18,9 +20,36 @@ class MainListCatalogProducts extends React.Component {
             passive: "catalog-button",
             openIndex: -1,
             selectedSubCatalog: -1,
+            activeToggle: {},
         }
         this.countProducts = this.countProducts.bind(this);
         this.chooseSubCatalog = this.chooseSubCatalog.bind(this);
+        this.addProduct = this.addProduct.bind(this);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.dropdownList !== this.props.dropdownList) {
+            let activeToggle = {};
+            this.props.dropdownList.map((item) => {
+                return activeToggle = {
+                    ...activeToggle,
+                    [item.dropdownTitle]: false,
+                }
+            })
+            this.setState({...this.state, activeToggle})
+        }
+        if (prevProps.productsThisStore !== this.props.productsThisStore) {
+            let activeToggle = this.state.activeToggle;
+            this.props.productsThisStore.map((item) => {
+                if (!item.storeAdmin) {
+                    activeToggle = {
+                        ...activeToggle,
+                        [item.topCatalog]: true,
+                    }
+                }
+            })
+            this.setState({...this.state, activeToggle})
+        }
     }
 
     chooseSubCatalog(listItem, listIndex) {
@@ -58,6 +87,21 @@ class MainListCatalogProducts extends React.Component {
         return i;
     }
 
+    addProduct() {
+        this.props.addProduct(true);
+    }
+
+    hiddenProductsToCatalog(topCatalog) {
+        this.setState({
+            ...this.state,
+            activeToggle: {
+                ...this.state.activeToggle,
+                [topCatalog]: !this.state.activeToggle[topCatalog],
+            }
+        })
+        showHiddenCatalogData(this.props.selectedStore._id, topCatalog , "storeAdmin", this.state.activeToggle[topCatalog], this.addProduct)
+    }
+
     renderListItem = (listItem, listIndex) => {
         return (
             <li className="dropdown-list__item catalog-opened" key={listIndex} onClick={() => {this.chooseSubCatalog(listItem, listIndex)}}>
@@ -70,7 +114,10 @@ class MainListCatalogProducts extends React.Component {
     renderCatalogProduct = (item, index) => {
         return (
             <div className="catalog-product" key={index}>
-                <button className={this.state.openIndex === index ? this.state.active : this.state.passive} type="button" onClick={() => {this.closeOpen(index)}}>
+                <div className="catalog-top-toggle-btn">
+                    <ToggleButton active={this.state.activeToggle[item.dropdownTitle]} onClick={() => {this.hiddenProductsToCatalog(item.dropdownTitle)}}/>
+                </div>
+                <button className={"padding-left " + (this.state.openIndex === index ? this.state.active : this.state.passive)} type="button" onClick={() => {this.closeOpen(index)}}>
                     <span className="catalog-button__text text-16 light">{LangCat[item.dropdownTitle]}</span>
                     <div className="count-products">{this.countProducts(item.dropdownTitle)}</div>
                     <svg className="icon ">
@@ -104,6 +151,7 @@ class MainListCatalogProducts extends React.Component {
 
 function MapStateToProps(state) {
     return {
+        selectedStore: state.storeReducer.selectedStore,
         ShopEditParamsAction: state.productReducer.ShopEditParamsAction,
         productsThisStore: state.productReducer.productsThisStore,
     }
