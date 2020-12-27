@@ -19,6 +19,8 @@ class MainListCatalogProducts extends React.Component {
             openIndex: -1,
             selectedSubCatalog: -1,
         }
+        this.countProducts = this.countProducts.bind(this);
+        this.chooseSubCatalog = this.chooseSubCatalog.bind(this);
     }
 
     chooseSubCatalog(listItem, listIndex) {
@@ -103,6 +105,7 @@ class MainListCatalogProducts extends React.Component {
 function MapStateToProps(state) {
     return {
         ShopEditParamsAction: state.productReducer.ShopEditParamsAction,
+        productsThisStore: state.productReducer.productsThisStore,
     }
 }
 

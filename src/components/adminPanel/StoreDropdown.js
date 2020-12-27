@@ -20,6 +20,7 @@ class StoreDropdown extends React.Component {
         this.addItem = this.addItem.bind(this);
         this.closeOpen = this.closeOpen.bind(this);
         this.hiddenAllProducts = this.hiddenAllProducts.bind(this);
+        this.clearData = this.clearData.bind(this);
     }
 
     componentDidMount() {}
@@ -70,8 +71,11 @@ class StoreDropdown extends React.Component {
             ...this.state,
             activeToggle: !this.state.activeToggle,
         })
-        showHiddenAllStoreData(this.props.selectedStore._id, "storeAdmin", this.state.activeToggle);
-        this.props.clearData();
+        showHiddenAllStoreData(this.props.selectedStore._id, "storeAdmin", this.state.activeToggle, this.clearData);
+    }
+
+    clearData() {
+        this.props.clearData(true);
     }
 
     storeData(res) {

@@ -375,3 +375,10 @@ export const actionSelectedStore = (selectedStore) => {
         selectedStore: selectedStore
     }
 };
+
+export const actionProductsThisStore = (productsThisStore) => {
+    return {
+        type: 'PRODUCTS_THIS_STORE',
+        productsThisStore: productsThisStore
+    }
+};

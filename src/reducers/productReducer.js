@@ -9,6 +9,7 @@ const initialState = {
     SelectedProductToEdit: {},
     updateSubspecies: false,
     AllProductsData: [],
+    productsThisStore: [],
 };
 
 export default function productReducer(state = initialState, action) {
@@ -78,6 +79,11 @@ export default function productReducer(state = initialState, action) {
             return {
                 ...state,
                 AllProductsData: action.AllProductsData
+            };
+        case "PRODUCTS_THIS_STORE":
+            return {
+                ...state,
+                productsThisStore: action.productsThisStore
             };
         default:
             return state;

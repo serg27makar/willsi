@@ -5,14 +5,14 @@ import {connect} from "react-redux";
 import {dropdownListArr} from "../../access/temporaryConstants";
 import {isEmptyObject} from "../../js/sharedFunctions";
 import {getProductDataToId} from "../../utilite/axiosConnect";
-import {actionSelectedProductToEdit, actionShopEditParams} from "../../action";
+import {actionProductsThisStore, actionSelectedProductToEdit, actionShopEditParams} from "../../action";
 
 class AdminSidebar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productsThisStore: [],
             dropdownList: [],
+            refresh: false
         };
         this.productsData = this.productsData.bind(this);
         this.clearData = this.clearData.bind(this);
@@ -38,18 +38,25 @@ class AdminSidebar extends React.Component {
             getProductDataToId(this.props.selectedStore._id, this.productsData);
             this.props.shopEditParamsFunction([]);
         }
+        if (prevState.refresh !== this.state.refresh) {
+            getProductDataToId(this.props.selectedStore._id, this.productsData);
+        }
     }
 
-    clearData() {
+    clearData(refresh = false) {
+        if (refresh) {
+            this.setState({
+                ...this.state,
+                refresh: !this.state.refresh
+            })
+        }
         this.props.selectedProductToEditFunction({});
         this.props.addProduct(!this.props.addButton);
+        this.props.productsThisStoreFunction([])
     }
 
     productsData(data = []) {
-        this.setState({
-            ...this.state,
-            productsThisStore: data,
-        });
+        this.props.productsThisStoreFunction(data)
     }
 
     render() {
@@ -58,7 +65,7 @@ class AdminSidebar extends React.Component {
                 <div className="sidebar__button-list">
                     <StoreDropdown clearData={this.clearData}/>
                 </div>
-                <MainListCatalogProducts dropdownList={this.state.dropdownList} productsThisStore={this.state.productsThisStore} addProduct={this.clearData}/>
+                <MainListCatalogProducts dropdownList={this.state.dropdownList} addProduct={this.clearData}/>
             </div>
         )
     }
@@ -66,6 +73,7 @@ class AdminSidebar extends React.Component {
 
 function MapStateToProps(state) {
     return {
+        StoreArr: state.storeReducer.StoreArr,
         selectedStore: state.storeReducer.selectedStore,
         SelectedProductToEdit: state.productReducer.SelectedProductToEdit,
     }
@@ -78,6 +86,9 @@ const mapDispatchToProps = dispatch => {
         },
         shopEditParamsFunction: (ShopEditParams) => {
             dispatch(actionShopEditParams(ShopEditParams))
+        },
+        productsThisStoreFunction: (productsThisStore) => {
+            dispatch(actionProductsThisStore(productsThisStore))
         },
     }
 };
