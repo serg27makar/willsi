@@ -56,7 +56,7 @@ class AdminSidebar extends React.Component {
         return (
             <div className="main-admin__sidebar sidebar">
                 <div className="sidebar__button-list">
-                    <StoreDropdown/>
+                    <StoreDropdown clearData={this.clearData}/>
                 </div>
                 <MainListCatalogProducts dropdownList={this.state.dropdownList} productsThisStore={this.state.productsThisStore} addProduct={this.clearData}/>
             </div>

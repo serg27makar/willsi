@@ -1,7 +1,10 @@
 import React from "react";
-import {actionOpenModal, actionSelectedStore} from "../../action";
+import {actionOpenModal, actionSelectedStore, actionSetStoreArr} from "../../action";
 import {connect} from "react-redux";
 import {isEmptyObject} from "../../js/sharedFunctions";
+import ToggleButton from "../shared/ToggleButton";
+import {showHiddenAllStoreData} from "../../js/dataUpdateFunctions";
+import {getStoreData} from "../../utilite/axiosConnect";
 
 class StoreDropdown extends React.Component {
     constructor(props) {
@@ -11,10 +14,12 @@ class StoreDropdown extends React.Component {
             open: "",
             StoreArr: [],
             firstLoad: true,
+            activeToggle: true,
         };
         this.changeItem = this.changeItem.bind(this);
         this.addItem = this.addItem.bind(this);
         this.closeOpen = this.closeOpen.bind(this);
+        this.hiddenAllProducts = this.hiddenAllProducts.bind(this);
     }
 
     componentDidMount() {}
@@ -30,7 +35,14 @@ class StoreDropdown extends React.Component {
             })
         }
         if (!isEmptyObject(this.props.selectedStore) && this.state.nameStore !== this.props.selectedStore.nameStore) {
-            this.setState({...this.state, nameStore: this.props.selectedStore.nameStore,})
+            this.setState({
+                ...this.state,
+                nameStore: this.props.selectedStore.nameStore,
+                activeToggle: this.props.selectedStore.storeAdmin
+            })
+        }
+        if (prevState.activeToggle !== this.state.activeToggle) {
+            getStoreData(this.storeData);
         }
     }
 
@@ -51,6 +63,23 @@ class StoreDropdown extends React.Component {
         this.props.openModalFunction("addServiceModal");
     }
 
+    hiddenAllProducts(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        this.setState({
+            ...this.state,
+            activeToggle: !this.state.activeToggle,
+        })
+        showHiddenAllStoreData(this.props.selectedStore._id, "storeAdmin", this.state.activeToggle);
+        this.props.clearData();
+    }
+
+    storeData(res) {
+        if (res && res.length > 0) {
+            this.props.setStoreArrFunction(res);
+        }
+    }
+
     renderItem = (item, index) => {
         if (this.props.selectedStore._id !== item._id)
         return (
@@ -65,8 +94,11 @@ class StoreDropdown extends React.Component {
         return (
             <div className="select-fitting-user">
                 <div className="catalog-top__dropdown-info">
+                    <div className="catalog-top__button-toggle-btn">
+                        <ToggleButton active={this.state.activeToggle} onClick={this.hiddenAllProducts}/>
+                    </div>
                     <div className="catalog-top__button-drop" onClick={this.closeOpen}>
-                        <div className="catalog-top__button-text text-16 bold uppercase">{this.state.nameStore}</div>
+                        <div className="catalog-top__button-text text-16 bold uppercase margin-left">{this.state.nameStore}</div>
                         <span className="catalog-top__button-icon">
                             <svg className="icon icon-arrow-small ">
                               <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
@@ -101,6 +133,9 @@ const mapDispatchToProps = dispatch => {
         },
         selectedStoreFunction: (selectedStore) => {
             dispatch(actionSelectedStore(selectedStore))
+        },
+        setStoreArrFunction: (StoreArr) => {
+            dispatch(actionSetStoreArr(StoreArr))
         },
     }
 };

@@ -7,26 +7,7 @@ import AddButton from "./adminPanel/AddButton";
 class ProductEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            ShopEditParams: []
-        };
-    }
-
-    componentDidMount() {
-        if (this.props.list && this.props.list.length > 0) {
-            this.setState({
-                ShopEditParams: this.props.list,
-            })
-        }
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if ((prevProps.list !== this.props.list) ||
-            (prevProps.ShopEditParamsAction !== this.props.ShopEditParamsAction)) {
-            this.setState({
-                ShopEditParams: this.props.list,
-            })
-        }
+        this.state = {};
     }
 
     selectedProductToEdit(item) {
@@ -53,7 +34,7 @@ class ProductEditor extends React.Component {
                     <div className="stroke-descriptor-name text-14">{ru.ProdName}</div>
                     <div className="stroke-descriptor-code text-14">{ru.ProductCode}</div>
                 </div>
-                {this.state.ShopEditParams && this.state.ShopEditParams.map((item, index) => {
+                {this.props.list && this.props.list.map((item, index) => {
                     return this.renderListEditor(item, index);
                 })}
                 <AddButton lastItem={true} addProduct={this.props.addProduct}/>

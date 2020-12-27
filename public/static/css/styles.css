@@ -4152,3 +4152,38 @@ div, p, span, h1, h2, h3, h4,
     z-index: 1;
     cursor: pointer;
 }
+.margin-left {
+    margin-left: 3rem;
+}
+.catalog-top__button-toggle-btn {
+    position: relative;
+    top: 2.2vw;
+    left: 0.5rem;
+    width: 2rem;
+    z-index: 9;
+}
+.toggle-button-wrap {
+    position: relative;
+    height: 1rem;
+    width: 2.5rem;
+    border-radius: 1rem;
+    outline: none;
+    background: #c9e3e8;
+    cursor: pointer;
+}
+.toggle-button {
+    position: absolute;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    background: #f4f4f4;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+.active-toggle {
+    left: 75%;
+    background: #4ba9bc;
+}
