@@ -9,8 +9,11 @@ import MainScreen from "../components/adminPanel/MainScreen";
 class AdminPanel extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            addButton: true,
+        };
         this.storeData = this.storeData.bind(this);
+        this.addProduct = this.addProduct.bind(this);
     }
 
     componentDidMount() {
@@ -43,6 +46,12 @@ class AdminPanel extends React.Component {
         }
     }
 
+    addProduct(addButton) {
+        this.setState({
+            addButton
+        })
+    }
+
     render() {
         if (this.props.dataRedirect.accessR) {
             return(
@@ -51,8 +60,8 @@ class AdminPanel extends React.Component {
         }
         return(
             <div className="content main-admin__row">
-                <AdminSidebar/>
-                <MainScreen/>
+                <AdminSidebar addProduct={this.addProduct} addButton={this.state.addButton}/>
+                <MainScreen addButton={this.state.addButton}/>
             </div>
         )
     }

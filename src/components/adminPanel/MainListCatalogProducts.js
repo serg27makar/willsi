@@ -36,6 +36,7 @@ class MainListCatalogProducts extends React.Component {
         });
         this.props.shopEditParamsFunction(shopEditParams);
         this.props.shopEditParamsActionFunction(!this.props.ShopEditParamsAction);
+        this.props.addProduct();
     }
 
     closeOpen = (index) => {

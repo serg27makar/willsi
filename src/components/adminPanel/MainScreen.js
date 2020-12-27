@@ -15,6 +15,12 @@ class MainScreen extends React.Component {
         this.addProduct = this.addProduct.bind(this);
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.addButton !== this.props.addButton) {
+            this.addProduct(true)
+        }
+    }
+
     addProduct(isAddBtn) {
         this.setState({
             ...this.state,

@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {dropdownListArr} from "../../access/temporaryConstants";
 import {isEmptyObject} from "../../js/sharedFunctions";
 import {getProductDataToId} from "../../utilite/axiosConnect";
+import {actionSelectedProductToEdit, actionShopEditParams} from "../../action";
 
 class AdminSidebar extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class AdminSidebar extends React.Component {
             dropdownList: [],
         };
         this.productsData = this.productsData.bind(this);
+        this.clearData = this.clearData.bind(this);
     }
 
     componentDidMount() {
@@ -28,16 +30,22 @@ class AdminSidebar extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.selectedStore !== this.props.selectedStore && !isEmptyObject(this.props.selectedStore)) {
             getProductDataToId(this.props.selectedStore._id, this.productsData);
+            this.props.shopEditParamsFunction([]);
+            this.clearData();
+
         }
     }
 
-    productsData(data) {
-        if (data && data.length > 0) {
-            this.setState({
-                ...this.state,
-                productsThisStore: data,
-            });
-        }
+    clearData() {
+        this.props.selectedProductToEditFunction({});
+        this.props.addProduct(!this.props.addButton);
+    }
+
+    productsData(data = []) {
+        this.setState({
+            ...this.state,
+            productsThisStore: data,
+        });
     }
 
     render() {
@@ -46,7 +54,7 @@ class AdminSidebar extends React.Component {
                 <div className="sidebar__button-list">
                     <StoreDropdown/>
                 </div>
-                <MainListCatalogProducts dropdownList={this.state.dropdownList} productsThisStore={this.state.productsThisStore}/>
+                <MainListCatalogProducts dropdownList={this.state.dropdownList} productsThisStore={this.state.productsThisStore} addProduct={this.clearData}/>
             </div>
         )
     }
@@ -59,7 +67,14 @@ function MapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => {
-    return {}
+    return {
+        selectedProductToEditFunction: (SelectedProductToEdit) => {
+            dispatch(actionSelectedProductToEdit(SelectedProductToEdit))
+        },
+        shopEditParamsFunction: (ShopEditParams) => {
+            dispatch(actionShopEditParams(ShopEditParams))
+        },
+    }
 };
 
 export default connect(MapStateToProps, mapDispatchToProps)(AdminSidebar);
