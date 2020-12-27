@@ -19,10 +19,12 @@ class CatalogSidebar extends React.Component {
     }
 
     getDataProducts(data) {
+        const catalogItemsSearch = [];
         const catalogItems = [];
         if (data) {
             data.map(item => {
-                if (catalogItems.indexOf(item.Manufacturer) === -1) {
+                if (catalogItemsSearch.indexOf(item.Manufacturer.toUpperCase()) === -1) {
+                    catalogItemsSearch.push(item.Manufacturer.toUpperCase());
                     catalogItems.push(item.Manufacturer);
                 }
                 return catalogItems;
@@ -35,9 +37,7 @@ class CatalogSidebar extends React.Component {
             }
             return index;
         })
-        this.setState({
-            Categories,
-        })
+        this.setState({Categories})
     }
 
     render() {

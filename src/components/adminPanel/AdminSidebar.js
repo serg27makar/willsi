@@ -34,6 +34,10 @@ class AdminSidebar extends React.Component {
             this.clearData();
 
         }
+        if (prevProps.SelectedProductToEdit !== this.props.SelectedProductToEdit && !isEmptyObject(this.props.SelectedProductToEdit)) {
+            getProductDataToId(this.props.selectedStore._id, this.productsData);
+            this.props.shopEditParamsFunction([]);
+        }
     }
 
     clearData() {
@@ -63,6 +67,7 @@ class AdminSidebar extends React.Component {
 function MapStateToProps(state) {
     return {
         selectedStore: state.storeReducer.selectedStore,
+        SelectedProductToEdit: state.productReducer.SelectedProductToEdit,
     }
 }
 

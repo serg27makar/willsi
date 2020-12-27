@@ -48,16 +48,16 @@ class Category extends React.Component {
         const value = (e.target.value === "true");
         let item;
         if (catalogName === "Manufacturer") {
-            item = this.createSearchItem(searchItemParams, catalogName, itemValue, value);
+            item = this.createSearchItem(searchItemParams, "ManufacturerSearch", String(itemValue).toUpperCase() , itemValue, value);
             this.props.searchItemParamsFunction(item);
         }
         if (catalogName === "color") {
-            item = this.createSearchItem(searchItemColor, catalogName, itemValue, value);
+            item = this.createSearchItem(searchItemColor, catalogName, itemValue, itemValue, value);
             this.props.searchItemColorFunction(item);
         }
     }
 
-    createSearchItem(searchItem, catalogName, itemValue, value) {
+    createSearchItem(searchItem, catalogName, itemValue, toggleValue, value) {
         let item;
         if (searchItem.itemValue) {
             const index = searchItem.itemValue.indexOf(itemValue);
@@ -70,7 +70,7 @@ class Category extends React.Component {
         } else {
             item = {catalogName, itemValue: [itemValue] };
         }
-        this.toggleItemValue(itemValue, value);
+        this.toggleItemValue(toggleValue, value);
         return item;
     }
 

@@ -1923,6 +1923,13 @@ button.size-tabs-wrapper-button.tabs-active {
     position: relative;
     color: #50abbd;
 }
+.tabs-wrapper__text {
+    font-weight: 900;
+}
+.empty-size {
+    font-weight: 100;
+    color: red;
+}
 .tabs-active .tabs-wrapper__text:before {
     content: '';
     position: absolute;

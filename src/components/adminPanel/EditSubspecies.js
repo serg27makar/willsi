@@ -48,6 +48,17 @@ class EditSubspecies extends React.Component {
         }
     }
 
+    isEmptySize(item) {
+        let result = true;
+        this.state.PropertyArr.map(prop => {
+            if (prop.SizeStandard === item && result) {
+                result = false;
+            }
+            return result;
+        })
+        return result
+    }
+
     activeTab(index) {
         this.setState({
             ...this.state,
@@ -66,7 +77,7 @@ class EditSubspecies extends React.Component {
                                     className={"size-tabs-wrapper-button text-18 uppercase medium " + (this.state.nameTab === index ? this.state.active : "" )}
                                     onClick={() => {this.activeTab(index)}}
                             >
-                                <span className="tabs-wrapper__text">{item}</span>
+                                <span className={"tabs-wrapper__text " + (this.isEmptySize(item) ? "empty-size" : "")}>{item}</span>
                             </button>
                         )
                     })}

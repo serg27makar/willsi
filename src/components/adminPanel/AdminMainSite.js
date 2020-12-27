@@ -12,6 +12,7 @@ import {
     actionAlertText,
     actionOpenModal,
     actionSaveParams,
+    actionSelectedProductToEdit,
     actionSpinnerText,
     actionSubspecies
 } from "../../action";
@@ -31,6 +32,7 @@ class AdminMainSite extends React.Component {
             headerSubIndex: 0,
 
             Manufacturer: "",
+            ManufacturerSearch: "",
             ProdName: "",
             ProductCode: "",
 
@@ -73,9 +75,9 @@ class AdminMainSite extends React.Component {
         this.setState({
             ...this.state,
             topCatalog,
-            subCatalog: dropdownListArr[0].dropdownItems.slice(1),
+            subCatalog: dropdownListArr[0].dropdownItems,
             headerItem: dropdownListArr[0].dropdownTitle,
-            headerSubItem: dropdownListArr[0].dropdownItems[1],
+            headerSubItem: dropdownListArr[0].dropdownItems[0],
         });
         if (this.props.item) {
             this.fillInState();
@@ -85,8 +87,8 @@ class AdminMainSite extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.headerIndex !== this.state.headerIndex) {
             this.setState({
-                subCatalog: dropdownListArr[this.state.headerIndex].dropdownItems.slice(1),
-                headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[1]
+                subCatalog: dropdownListArr[this.state.headerIndex].dropdownItems,
+                headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[0]
             })
         }
         if (prevProps.item !== this.props.item) {
@@ -100,6 +102,7 @@ class AdminMainSite extends React.Component {
             headerItem: this.props.item.topCatalog,
             headerSubItem: this.props.item.subCatalog,
             Manufacturer: this.props.item.Manufacturer,
+            ManufacturerSearch: this.props.item.Manufacturer.toUpperCase(),
             ProdName: this.props.item.ProdName,
             ProductCode: this.props.item.ProductCode,
             Photo1: this.props.item.Photo1,
@@ -125,8 +128,8 @@ class AdminMainSite extends React.Component {
 
     changeSubCatalog(index) {
         this.setState({
-            headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[index + 1],
-            headerSubIndex: index + 1,
+            headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[index],
+            headerSubIndex: index,
         })
     }
 
@@ -151,31 +154,42 @@ class AdminMainSite extends React.Component {
 
     saveParameters() {
         if (this.state.addedProductId && this.state.addedProductId.length >= 12 ) {
-            this.addedProductResult(this.state.addedProductId);
+            this.addedProductParams(this.state.addedProductId);
         } else {
             this.saveHeaderCart();
         }
     }
 
     addedProductResult(res) {
-        if (res && res.length >= 12 && this.props.Subspecies) {
-            this.setState({
-                addedProductId: res,
-            });
-            const Parameters = {
-                ProductId: res,
-                color: this.props.Subspecies.color,
-                size: this.props.Subspecies.size,
-                SizeStandard: this.props.Subspecies.SizeStandard,
-                VendorCode: this.props.Subspecies.VendorCode,
-                Price: this.props.Subspecies.Price,
-            };
-            postAddedProductParameters(Parameters, updateResult);
+        if (res && res.insertedId.length >= 12 && this.props.Subspecies) {
+            this.addedProduct(res.insertedId);
+            this.props.selectedProductToEditFunction(res.ops[0]);
+        }
+    }
 
-            if (this.props.SaveParams) {
-                this.props.saveParamsFunction(false);
-                this.props.addProduct(true);
-            }
+    addedProductParams(addedProductId) {
+        if (this.props.Subspecies) {
+            this.addedProduct(addedProductId);
+        }
+    }
+
+    addedProduct(addedProductId) {
+        this.setState({
+            addedProductId,
+        });
+        const Parameters = {
+            ProductId: addedProductId,
+            color: this.props.Subspecies.color,
+            size: this.props.Subspecies.size,
+            SizeStandard: this.props.Subspecies.SizeStandard,
+            VendorCode: this.props.Subspecies.VendorCode,
+            Price: this.props.Subspecies.Price,
+        };
+        postAddedProductParameters(Parameters, updateResult);
+
+        if (this.props.SaveParams) {
+            this.props.saveParamsFunction(false);
+            this.props.addProduct(true);
         }
     }
 
@@ -194,6 +208,7 @@ class AdminMainSite extends React.Component {
             topCatalog: this.state.headerItem,
             subCatalog: this.state.headerSubItem,
             Manufacturer: this.state.Manufacturer,
+            ManufacturerSearch: this.state.Manufacturer.toUpperCase(),
             ProdName: this.state.ProdName,
             ProductCode: this.state.ProductCode,
             Photo1: this.state.Photo1,
@@ -263,39 +278,14 @@ class AdminMainSite extends React.Component {
         )
     }
 
-    renderStoreAdminInput() {
-        return (
-            <div>
-                <input className="category-list__input" type="checkbox" id={"storeAdmin"} disabled={this.props.Permission === "primaryAdmin"}
-                       value={this.state.storeAdmin} checked={this.state.storeAdmin} name={"storeAdmin"} onChange={this.dataChange}/>
-                <label className="category-list__label text-14 light" htmlFor={"storeAdmin"}>{ru.storeAdminHide}</label>
-            </div>
-        );
-    }
-
-    renderPrimaryAdminInput() {
-        return (
-            <div>
-                <input className="category-list__input" type="checkbox" id={"primaryAdmin"} disabled={this.props.Permission === "storeAdmin"}
-                       value={this.state.primaryAdmin} checked={this.state.primaryAdmin} name={"primaryAdmin"} onChange={this.dataChange}/>
-                <label className="category-list__label text-14 light" htmlFor={"primaryAdmin"}>{ru.primaryAdmin}</label>
-            </div>
-        );
-    }
-
-    renderVisibilitySwitches() {
-        return (
-            <div className="visibility-switches">
-                {this.renderPrimaryAdminInput()}
-                {this.renderStoreAdminInput()}
-            </div>
-        )
-    }
-
     render() {
         return (
             <div className="main-envelope__bottom-env">
-                {this.renderVisibilitySwitches()}
+                <div className="visibility-switches">
+                    <input className="category-list__input" type="checkbox" id={"storeAdmin"} disabled={this.props.Permission === "primaryAdmin"}
+                           value={this.state.storeAdmin} checked={this.state.storeAdmin} name={"storeAdmin"} onChange={this.dataChange}/>
+                    <label className="category-list__label text-14 light" htmlFor={"storeAdmin"}>{ru.storeAdminHide}</label>
+                </div>
                 <AdminDropdownList
                     headerItem={this.state.headerItem}
                     subItem={this.state.topCatalog}
@@ -346,6 +336,9 @@ const mapDispatchToProps = dispatch => {
         },
         spinnerTextFunction: (SpinnerText) => {
             dispatch(actionSpinnerText(SpinnerText))
+        },
+        selectedProductToEditFunction: (SelectedProductToEdit) => {
+            dispatch(actionSelectedProductToEdit(SelectedProductToEdit))
         },
     }
 };
