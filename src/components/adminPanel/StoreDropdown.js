@@ -42,6 +42,12 @@ class StoreDropdown extends React.Component {
                 activeToggle: this.props.selectedStore.storeAdmin
             })
         }
+        if (prevProps.selectedStore.storeAdmin !== this.props.selectedStore.storeAdmin) {
+            this.setState({
+                ...this.state,
+                activeToggle: this.props.selectedStore.storeAdmin
+            })
+        }
         if (prevState.activeToggle !== this.state.activeToggle) {
             getStoreData(this.storeData);
         }
@@ -72,6 +78,8 @@ class StoreDropdown extends React.Component {
             activeToggle: !this.state.activeToggle,
         })
         showHiddenAllStoreData(this.props.selectedStore._id, "storeAdmin", this.state.activeToggle, this.clearData);
+        const selectedStore = {...this.props.selectedStore, storeAdmin: !this.state.activeToggle}
+        this.props.selectedStoreFunction(selectedStore);
     }
 
     clearData() {

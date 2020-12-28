@@ -2,6 +2,8 @@ import React from "react";
 import ru from "../../access/lang/LangConstants";
 import LangCat from "../../access/lang/CatalogLangConstants";
 import {
+    actionProductsThisStore,
+    actionSelectedStore,
     actionShopEditParams,
     actionShopEditParamsAction,
 } from "../../action";
@@ -21,6 +23,7 @@ class MainListCatalogProducts extends React.Component {
             openIndex: -1,
             selectedSubCatalog: -1,
             activeToggle: {},
+            activeToggleAction: false,
         }
         this.countProducts = this.countProducts.bind(this);
         this.chooseSubCatalog = this.chooseSubCatalog.bind(this);
@@ -29,27 +32,48 @@ class MainListCatalogProducts extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.dropdownList !== this.props.dropdownList) {
-            let activeToggle = {};
-            this.props.dropdownList.map((item) => {
-                return activeToggle = {
-                    ...activeToggle,
-                    [item.dropdownTitle]: false,
-                }
-            })
-            this.setState({...this.state, activeToggle})
+            this.clearToggles();
         }
         if (prevProps.productsThisStore !== this.props.productsThisStore) {
-            let activeToggle = this.state.activeToggle;
-            this.props.productsThisStore.map((item) => {
-                if (!item.storeAdmin) {
-                    activeToggle = {
-                        ...activeToggle,
-                        [item.topCatalog]: true,
-                    }
-                }
-            })
-            this.setState({...this.state, activeToggle})
+            this.clearToggles();
         }
+        if (prevProps.selectedStore.storeAdmin !== this.props.selectedStore.storeAdmin && !this.props.selectedStore.storeAdmin) {
+            this.clearToggles();
+        }
+        if (prevProps.selectedStore !== this.props.selectedStore) {
+            this.setState({...this.state, selectedSubCatalog: -1, openIndex: -1})
+        }
+        if (prevState.activeToggleAction !== this.state.activeToggleAction) {
+            this.fillInToggle();
+        }
+    }
+
+    clearToggles() {
+        let activeToggle = {};
+        this.props.dropdownList.map((item) => {
+            return activeToggle = {
+                ...activeToggle,
+                [item.dropdownTitle]: false,
+            }
+        })
+        this.setState({
+            ...this.state,
+            activeToggle,
+            activeToggleAction: !this.state.activeToggleAction,
+        });
+    }
+
+    fillInToggle() {
+        let activeToggle = this.state.activeToggle;
+        this.props.productsThisStore.map((item) => {
+            if (!item.storeAdmin) {
+                activeToggle = {
+                    ...activeToggle,
+                    [item.topCatalog]: true,
+                }
+            }
+        })
+        this.setState({...this.state, activeToggle})
     }
 
     chooseSubCatalog(listItem, listIndex) {
@@ -99,7 +123,12 @@ class MainListCatalogProducts extends React.Component {
                 [topCatalog]: !this.state.activeToggle[topCatalog],
             }
         })
-        showHiddenCatalogData(this.props.selectedStore._id, topCatalog , "storeAdmin", this.state.activeToggle[topCatalog], this.addProduct)
+        showHiddenCatalogData(this.props.selectedStore._id, topCatalog , "storeAdmin", this.state.activeToggle[topCatalog], this.addProduct);
+        if (!this.state.activeToggle[topCatalog]) {
+            const selectedStore = {...this.props.selectedStore, storeAdmin: !this.state.activeToggle[topCatalog]}
+            this.props.selectedStoreFunction(selectedStore);
+        }
+
     }
 
     renderListItem = (listItem, listIndex) => {
@@ -164,6 +193,12 @@ const mapDispatchToProps = dispatch => {
         },
         shopEditParamsActionFunction: (ShopEditParamsAction) => {
             dispatch(actionShopEditParamsAction(ShopEditParamsAction))
+        },
+        selectedStoreFunction: (selectedStore) => {
+            dispatch(actionSelectedStore(selectedStore))
+        },
+        productsThisStoreFunction: (productsThisStore) => {
+            dispatch(actionProductsThisStore(productsThisStore))
         },
     }
 };
