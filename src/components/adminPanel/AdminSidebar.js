@@ -21,7 +21,7 @@ class AdminSidebar extends React.Component {
     componentDidMount() {
         const dropdownList = [];
         dropdownListArr.map((item, index) => {
-            item.dropdownItems = item.dropdownItems.slice(1); // remove all category
+            item.dropdownItems = item.dropdownItems.length === 8 || item.dropdownItems.length === 6 ? item.dropdownItems.slice(1) : item.dropdownItems; // remove all category
             dropdownList.push(item);
         })
         this.setState({...this.state, dropdownList,})

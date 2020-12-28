@@ -3,6 +3,7 @@ import {
     actionAddStore,
     actionDataRedirect,
     actionOpenModal,
+    actionProductsThisStore,
     actionSelectedStore,
     actionSetStoreArr,
     actionUserStore
@@ -58,6 +59,7 @@ class AddServiceModal extends React.Component {
                 UserID: this.props.UserID,
                 UserStore,
             };
+            this.props.productsThisStoreFunction([]);
             this.props.selectedStoreFunction(res.ops[0]);
             postUpdate(user, this.updateResult);
         }
@@ -189,6 +191,9 @@ const mapDispatchToProps = dispatch => {
         },
         selectedStoreFunction: (selectedStore) => {
             dispatch(actionSelectedStore(selectedStore))
+        },
+        productsThisStoreFunction: (productsThisStore) => {
+            dispatch(actionProductsThisStore(productsThisStore))
         },
     }
 };
