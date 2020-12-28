@@ -112,7 +112,8 @@ class Catalog extends React.Component {
             (prevProps.setCountry !== this.props.setCountry) ||
             (prevProps.searchItemNew !== this.props.searchItemNew) ||
             (prevProps.searchItemParams !== this.props.searchItemParams) ||
-            (prevState.active !== this.state.active && this.props.SearchParams && this.state.active)) {
+            (prevState.active !== this.state.active && this.props.SearchParams && this.state.active) ||
+            (prevProps.SetActionPostpone !== this.props.SetActionPostpone)) {
             setTimeout(() => {
                 this.updateProductsData();
             }, 50)
@@ -339,6 +340,7 @@ function MapStateToProps(state) {
         SearchParams: state.productReducer.SearchParams,
         alertModalCloseEvent: state.modalReducer.alertModalCloseEvent,
         Permission: state.userReducer.Permission,
+        SetActionPostpone: state.userReducer.SetActionPostpone,
     }
 }
 const mapDispatchToProps = dispatch => {
