@@ -2765,10 +2765,10 @@ button.size-tabs-wrapper-button.tabs-active {
     text-align: left;
 }
 .stroke-descriptor-manufacturer {
-    width: 20%;
+    width: 23%;
 }
 .stroke-descriptor-name {
-    width: 20%;
+    width: 23%;
 }
 .stroke-descriptor-code {
     width: 20%;
@@ -4193,4 +4193,19 @@ div, p, span, h1, h2, h3, h4,
 .catalog-top-toggle-btn {
     width: 4rem;
     position: absolute;
+}
+.search-label {
+    position: relative;
+}
+.search-label.icon {
+    width: 1.5rem;
+    height: 2rem;
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+}
+.search-input {
+    height: 2rem;
+    padding: 0.3rem;
 }
