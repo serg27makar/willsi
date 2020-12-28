@@ -1,16 +1,8 @@
 import React from "react";
 import ru from "../access/lang/LangConstants";
-import RutCategory from "./RutCategory";
+import RutCategoryCatalog from "./dropdowns/RutCategoryCatalog";
 
 class RutCatalogSidebar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.selectedSubCatalog = this.selectedSubCatalog.bind(this);
-    }
-
-    selectedSubCatalog(data) {
-        this.props.selectedSubCatalog(data);
-    }
 
     render() {
         return (
@@ -21,7 +13,7 @@ class RutCatalogSidebar extends React.Component {
                 <div className="catalog-body">
                     {this.props.Categories && this.props.Categories.map((item, index) => {
                         return (
-                            <RutCategory item={item} key={index} index={index} selectItem={this.selectedSubCatalog}/>
+                            <RutCategoryCatalog item={item} key={index} index={index}/>
                         )
                     })}
                 </div>

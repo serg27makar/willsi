@@ -32,7 +32,6 @@ class Postpone extends React.Component {
             },
         };
         this.dataResult = this.dataResult.bind(this);
-        this.selectedSubCatalog = this.selectedSubCatalog.bind(this);
     }
 
     componentDidMount() {
@@ -41,8 +40,8 @@ class Postpone extends React.Component {
             to: "/",
         });
         this.props.setActionAdminPanelFunction("Postpone");
-        this.props.selectedSubCatalogIDFunction(0);
-        this.props.openCatalogFunction(0);
+        this.props.selectedSubCatalogIDFunction(-1);
+        this.props.openCatalogFunction(-1);
         setTimeout(() => {
             handlePageUp();
         }, 50);
@@ -77,20 +76,20 @@ class Postpone extends React.Component {
                 this.redirect("primary-admin-panel")
             }
         }
+        if ((prevProps.selectedSubCatalogID !== this.props.selectedSubCatalogID) ||
+        (prevProps.searchItemParams !== this.props.searchItemParams) ||
+        (prevProps.searchItemNew !== this.props.searchItemNew) ||
+        (prevProps.searchItemColor !== this.props.searchItemColor) ||
+        (prevProps.searchItemPrice !== this.props.searchItemPrice) ||
+        (prevProps.setCountry !== this.props.setCountry)) {
+            this.redirect();
+        }
     }
 
     redirect(page = "catalog") {
         this.props.dataRedirectFunction({
             accessR: true,
             to: "/" + page,
-        });
-    }
-
-    selectedSubCatalog(data) {
-        this.props.selectedSubCatalogIDFunction(data);
-        this.props.dataRedirectFunction({
-            accessR: true,
-            to: "/catalog",
         });
     }
 
@@ -124,10 +123,7 @@ class Postpone extends React.Component {
                 <div className="catalog-middle container">
                     <div className="footer-row-wrap">
                         <div className="catalog-sidebar">
-                            <RutCatalogSidebar
-                                selectedSubCatalog={this.selectedSubCatalog}
-                                Categories={dropdownListArr}
-                            />
+                            <RutCatalogSidebar Categories={dropdownListArr}/>
                             <CatalogSidebar/>
                             <CountryDropDown/>
                         </div>
@@ -149,6 +145,12 @@ function MapStateToProps(state) {
         dataRedirect: state.pageReducer.dataRedirect,
         SetActionPostpone: state.userReducer.SetActionPostpone,
         Permission: state.userReducer.Permission,
+        selectedSubCatalogID: state.catalogReducer.selectedSubCatalogID,
+        searchItemParams: state.catalogReducer.searchItemParams,
+        searchItemNew: state.catalogReducer.searchItemNew,
+        searchItemColor: state.catalogReducer.searchItemColor,
+        searchItemPrice: state.catalogReducer.searchItemPrice,
+        setCountry: state.utiliteReducer.setCountry,
     }
 }
 const mapDispatchToProps = dispatch => {

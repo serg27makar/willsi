@@ -107,26 +107,21 @@ class Catalog extends React.Component {
             this.props.recalculateParamsFunction(this.state.requiredParameters);
             this.props.openModalFunction("recalculateModal");
         }
-        if (prevState.active !== this.state.active && this.props.SearchParams && this.state.active) {
-            this.updateProductsData();
-        }
-        if (prevProps.searchItemParams !== this.props.searchItemParams) {
-            this.updateProductsData();
-        }
-        if (prevProps.searchItemNew !== this.props.searchItemNew) {
-            this.updateProductsData();
-        }
-        if (prevProps.searchItemColor !== this.props.searchItemColor) {
-            this.updateProductsData();
-        }
-        if (prevProps.searchItemPrice !== this.props.searchItemPrice) {
-            this.updateProductsData();
-        }
-        if (prevProps.setCountry !== this.props.setCountry) {
-            this.updateProductsData();
+        if ((prevProps.searchItemColor !== this.props.searchItemColor) ||
+            (prevProps.searchItemPrice !== this.props.searchItemPrice) ||
+            (prevProps.setCountry !== this.props.setCountry) ||
+            (prevProps.searchItemNew !== this.props.searchItemNew) ||
+            (prevProps.searchItemParams !== this.props.searchItemParams) ||
+            (prevState.active !== this.state.active && this.props.SearchParams && this.state.active)) {
+            setTimeout(() => {
+                this.updateProductsData();
+            }, 50)
         }
         if (prevProps.HeaderUser !== this.props.HeaderUser) {
             this.setCatalogName();
+        }
+        if (prevProps.selectedSubCatalogID !== this.props.selectedSubCatalogID) {
+            this.selectedSubCatalog(this.props.selectedSubCatalogID);
         }
         if (prevProps.Permission !== this.props.Permission) {
             if (this.props.Permission === "primaryAdmin") {
@@ -150,6 +145,31 @@ class Catalog extends React.Component {
         if((event.target.scrollingElement.scrollTop > document.scrollingElement.offsetHeight - window.outerHeight) && !this.state.lastData) {
             // this.updateProductsData();
         }
+    }
+
+    selectedSubCatalog(data = 0) {
+        if (this.props.catalog >= 0)
+        this.setState({
+            ...this.state,
+            subCatalog: dropdownListArr[this.props.catalog || 0].dropdownItems[data],
+            topCatalog: dropdownListArr[this.props.catalog || 0].dropdownTitle,
+            productArr: [],
+            skip: 0,
+            lastData: false,
+            active: !this.state.active,
+        });
+    }
+
+    changeSizeData() {
+        this.setState({
+            ...this.state,
+            topCatalog: this.props.catalogName,
+            subCatalog: this.state.subCatalog,
+            productArr: [],
+            skip: 0,
+            lastData: false,
+            active: !this.state.active,
+        });
     }
 
     setCatalogName() {
@@ -178,6 +198,17 @@ class Catalog extends React.Component {
         }
     }
 
+    setDefaultSubCatalog() {
+        let subCatalog = ""
+        dropdownListArr.map(item => {
+            if (item.dropdownTitle === this.state.topCatalog) {
+                subCatalog = item.dropdownItems[0];
+            }
+            return subCatalog;
+        })
+        return subCatalog;
+    }
+
     updateProductsData() {
         const skip = this.state.skip;
         const SearchParams = this.props.SearchParams;
@@ -186,7 +217,7 @@ class Catalog extends React.Component {
         const searchItemColor = this.props.searchItemColor;
         const searchItemPrice = this.props.searchItemPrice;
         const topCatalog = this.state.topCatalog;
-        const subCatalog = this.state.subCatalog;
+        let subCatalog = this.state.subCatalog;
         const country = this.props.setCountry;
         const requiredParameters = genderSwitcher(topCatalog, subCatalog);
 
@@ -202,6 +233,9 @@ class Catalog extends React.Component {
             }
             return accessRequired;
         });
+        if (!subCatalog ) {
+            subCatalog = this.setDefaultSubCatalog();
+        }
         const dataSearch = {
             skip,
             SearchParams,
@@ -223,29 +257,6 @@ class Catalog extends React.Component {
         }
     }
 
-    selectedSubCatalog(data = 0) {
-        this.setState({
-            ...this.state,
-            subCatalog: dropdownListArr[this.props.catalog || 0].dropdownItems[data],
-            topCatalog: dropdownListArr[this.props.catalog || 0].dropdownTitle,
-            productArr: [],
-            skip: 0,
-            lastData: false,
-            active: !this.state.active,
-        });
-    }
-
-    changeSizeData() {
-        this.setState({
-            ...this.state,
-            topCatalog: this.props.catalogName,
-            subCatalog: this.state.subCatalog,
-            productArr: [],
-            skip: 0,
-            lastData: false,
-            active: !this.state.active,
-        });
-    }
 
     setProductData(data) {
         const lastData = data.length < 12 && data.length > 0;
@@ -294,10 +305,7 @@ class Catalog extends React.Component {
                 <div className="catalog-middle container">
                     <div className="footer-row-wrap">
                         <div className="catalog-sidebar">
-                            <RutCatalogSidebar
-                                selectedSubCatalog={this.selectedSubCatalog}
-                                Categories={dropdownListArr}
-                            />
+                            <RutCatalogSidebar Categories={dropdownListArr}/>
                             <CatalogSidebar/>
                             <CountryDropDown/>
                         </div>
