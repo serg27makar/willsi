@@ -24,7 +24,6 @@ class Data extends React.Component {
         super(props);
         this.state = {
             startParams: false,
-            params: [],
             reDirect: false,
             isChange: false,
             newUser: 0,
@@ -51,9 +50,7 @@ class Data extends React.Component {
             if (this.props.Permission === "primaryAdmin") {
                 this.redirect("primary-admin-panel")
             }
-            if (!this.props.AddUser && (this.props.UsersParameters && this.props.UsersParameters.length >= 1 &&
-                this.props.UsersParameters[0].Parameters &&
-                this.props.UsersParameters[0].Parameters.length > 0)) {
+            if (!this.props.AddUser) {
                 this.props.dataRedirectFunction({
                     accessR: true,
                     to: "/catalog",
@@ -66,7 +63,7 @@ class Data extends React.Component {
                     newUser,
                 })
             }
-        }, 50);
+        }, 100);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -110,7 +107,7 @@ class Data extends React.Component {
         const obj = {
             UserName: name,
             Gender: gender,
-            Parameters: this.state.params,
+            Parameters: [],
         };
         UsersParameters.splice(this.state.newUser, 1, obj);
         this.props.usersParametersFunction(UsersParameters);

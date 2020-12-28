@@ -1,7 +1,7 @@
 import React from "react";
 import {
     actionEmail,
-    actionHeaderUser,
+    actionHeaderUser, actionNewUser,
     actionOpenModal,
     actionUserName,
     actionUsersParameters
@@ -48,7 +48,7 @@ class RecalculateModal extends React.Component {
     }
 
     fillRecalculateParams() {
-        const HeaderUser = this.props.HeaderUser || this.props.NewUser;
+        const HeaderUser = this.props.NewUser || this.props.HeaderUser;
         const recalculateParams = this.props.recalculateParams.slice();
 
         this.props.UsersParameters[HeaderUser].Parameters.map((fillItem) => {
@@ -66,6 +66,7 @@ class RecalculateModal extends React.Component {
             newUser: HeaderUser,
             params: this.props.UsersParameters[HeaderUser].Parameters,
         })
+        this.props.newUserFunction(0);
     }
 
     result(res) {
@@ -189,6 +190,9 @@ const mapDispatchToProps = dispatch => {
         },
         emailFunction: (Email) => {
             dispatch(actionEmail(Email))
+        },
+        newUserFunction: (NewUser) => {
+            dispatch(actionNewUser(NewUser))
         },
     }
 };
