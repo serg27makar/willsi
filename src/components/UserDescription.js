@@ -73,6 +73,7 @@ class UserDescription extends React.Component {
     nameChange(value) {
         this.setState({
             ...this.state,
+            isModify: true,
             UserName: value,
         })
     };
@@ -130,6 +131,7 @@ class UserDescription extends React.Component {
             ...this.state,
             activeBtn: index,
             Gender: whomParams[index].data,
+            isModify: true,
         });
     };
 
