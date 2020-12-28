@@ -2,8 +2,10 @@ import React from 'react';
 import {
     actionAddUser,
     actionAlertText,
-    actionDataRedirect, actionNewUser,
-    actionOpenModal, actionRecalculateParams,
+    actionDataRedirect,
+    actionNewUser,
+    actionOpenModal,
+    actionRecalculateParams,
     actionUsersParameters,
     setActionAdminPanel
 } from "../action";
@@ -46,6 +48,9 @@ class Data extends React.Component {
             handlePageUp();
         }, 50);
         setTimeout(() => {
+            if (this.props.Permission === "primaryAdmin") {
+                this.redirect("primary-admin-panel")
+            }
             if (!this.props.AddUser && (this.props.UsersParameters && this.props.UsersParameters.length >= 1 &&
                 this.props.UsersParameters[0].Parameters &&
                 this.props.UsersParameters[0].Parameters.length > 0)) {
@@ -60,9 +65,6 @@ class Data extends React.Component {
                 this.setState({
                     newUser,
                 })
-            }
-            if (this.props.Permission === "primaryAdmin") {
-                this.redirect("primary-admin-panel")
             }
         }, 50);
     }
@@ -99,7 +101,7 @@ class Data extends React.Component {
     }
 
     genderSwitcher(gender) {
-        const recalculateParams = genderSwitcher(gender);
+        const recalculateParams = genderSwitcher(gender, "subCatalogListWomenTshirts");
         this.props.recalculateParamsFunction(recalculateParams);
     }
 
