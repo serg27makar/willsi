@@ -4201,9 +4201,8 @@ div, p, span, h1, h2, h3, h4,
     width: 1.5rem;
     height: 2rem;
     position: absolute;
-    top: 50%;
-    right: 0.5rem;
-    transform: translateY(-50%);
+    right: 20%;
+    transform: translateX(20%);
 }
 .search-input {
     height: 2rem;
