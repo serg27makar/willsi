@@ -77,44 +77,11 @@ class RutCategory extends React.Component {
         }
     }
 
-    dropdownListItem = (item, index) => {
-        let name;
-        let deleteBtn = false;
-        if (typeof item === "object") {
-            name = item.name;
-            deleteBtn = item.deleteBtn;
-        } else {
-            name = LangCat[item];
-        }
-        return (
-            <li className={"dropdown-list__item " + (this.state.selected === index ? "item-select" : "")} key={index} onClick={() => {this.chooseListItem(name, index)}}>
-                <div className="dropdown-list__link text-14" >{name}</div>
-                {this.deleteBtn(deleteBtn, index)}
-            </li>
-        )
-    };
-
-    deleteBtn(deleteBtn, index) {
-        if(deleteBtn) {
-            return (
-                <div className="deleteBtn" onClick={(e) => {this.props.deleteBtnFun(index, e)}}>+</div>
-            )
-        } else {
-            return null;
-        }
+    deleteBtnFun(index, e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.props.deleteBtnFun(index, e);
     }
-
-    addListItem = () => {
-        if (this.props.isAddItem) {
-            return (
-                <li className="dropdown-list__item" onClick={this.props.addItem}>
-                    <div className="dropdown-list__link text-14" >{this.props.isAddItem}</div>
-                </li>
-            )
-        } else {
-            return null;
-        }
-    };
 
     setPermission(dropdownTitle, genderPermission) {
         if (this.props.disabledFalse) {
@@ -154,6 +121,45 @@ class RutCategory extends React.Component {
             }
         }
     }
+
+    deleteBtn(deleteBtn, index) {
+        if(deleteBtn) {
+            return (
+                <div className="deleteBtn" onClick={(e) => {this.deleteBtnFun(index, e)}}>+</div>
+            )
+        } else {
+            return null;
+        }
+    }
+
+    addListItem = () => {
+        if (this.props.isAddItem) {
+            return (
+                <li className="dropdown-list__item" onClick={this.props.addItem}>
+                    <div className="dropdown-list__link text-14" >{this.props.isAddItem}</div>
+                </li>
+            )
+        } else {
+            return null;
+        }
+    };
+
+    dropdownListItem = (item, index) => {
+        let name;
+        let deleteBtn = false;
+        if (typeof item === "object") {
+            name = item.name;
+            deleteBtn = item.deleteBtn;
+        } else {
+            name = LangCat[item];
+        }
+        return (
+            <li className={"dropdown-list__item " + (this.state.selected === index ? "item-select" : "")} key={index} onClick={() => {this.chooseListItem(name, index)}}>
+                <div className="dropdown-list__link text-14" >{name}</div>
+                {this.deleteBtn(deleteBtn, index)}
+            </li>
+        )
+    };
 
     render() {
         return (
