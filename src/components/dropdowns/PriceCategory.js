@@ -1,5 +1,5 @@
 import React from "react";
-import {actionSearchItemPrice} from "../../action";
+import {actionCloseAllCatalogs, actionSearchItemPrice} from "../../action";
 import {connect} from "react-redux";
 import ru from "../../access/lang/LangConstants";
 import SliderInput from "./SliderInput";
@@ -8,7 +8,7 @@ class PriceCategory extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: "",
+            open: false,
             price: {
                 priceFrom: 0,
                 priceTo: 10000,
@@ -19,11 +19,22 @@ class PriceCategory extends React.Component {
         this.replacePrice = this.replacePrice.bind(this);
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.closeAllCatalogs !== this.props.closeAllCatalogs) {
+            if (this.props.closeAllCatalogs !== "catalogPrice") {
+                this.setState({
+                    ...this.state,
+                    open: false,
+                })
+            }
+        }
+    }
+
     closeOpen() {
+        this.props.closeAllCatalogsFunction(this.state.open ? "" : "catalogPrice");
         this.setState({
             ...this.state,
-            open: this.state.open === "" ?
-                "open" : "",
+            open: !this.state.open,
         })
     };
 
@@ -51,7 +62,7 @@ class PriceCategory extends React.Component {
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                     </svg>
                 </div>
-                <div className={"catalog__category-list " + this.state.open}>
+                <div className={"catalog__category-list " + (this.state.open ? "open" : "")}>
                     <div className="category-list">
                         <SliderInput setPriceData={this.setPriceData} replacePrice={this.replacePrice}/>
                     </div>
@@ -62,12 +73,17 @@ class PriceCategory extends React.Component {
 }
 
 function MapStateToProps(state) {
-    return {}
+    return {
+        closeAllCatalogs: state.catalogReducer.closeAllCatalogs,
+    }
 }
 const mapDispatchToProps = dispatch => {
     return {
         searchItemPriceFunction: (searchItemPrice) => {
             dispatch(actionSearchItemPrice(searchItemPrice))
+        },
+        closeAllCatalogsFunction: (closeAllCatalogs) => {
+            dispatch(actionCloseAllCatalogs(closeAllCatalogs))
         },
     }
 };

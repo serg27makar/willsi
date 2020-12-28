@@ -382,3 +382,10 @@ export const actionProductsThisStore = (productsThisStore) => {
         productsThisStore: productsThisStore
     }
 };
+
+export const actionCloseAllCatalogs = (closeAllCatalogs) => {
+    return {
+        type: 'CLOSE_ALL_CATALOGS',
+        closeAllCatalogs: closeAllCatalogs
+    }
+};

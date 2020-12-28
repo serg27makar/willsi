@@ -1,5 +1,5 @@
 import React from "react";
-import {actionSearchItemColor, actionSearchItemParams} from "../action";
+import {actionCloseAllCatalogs, actionSearchItemColor, actionSearchItemParams} from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
 import {isEmptyObject} from "../js/sharedFunctions";
@@ -8,7 +8,7 @@ class Category extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: "",
+            open: false,
         };
         this.closeOpen = this.closeOpen.bind(this);
         this.checkedItem = this.checkedItem.bind(this);
@@ -20,6 +20,14 @@ class Category extends React.Component {
         if (prevProps.searchItemParams !== this.props.searchItemParams) {
             if (isEmptyObject(this.props.searchItemParams)) {
                 this.clearState();
+            }
+        }
+        if (prevProps.closeAllCatalogs !== this.props.closeAllCatalogs) {
+            if (this.props.closeAllCatalogs !== this.props.item.catalogName) {
+                this.setState({
+                    ...this.state,
+                    open: false,
+                })
             }
         }
     }
@@ -35,10 +43,10 @@ class Category extends React.Component {
     }
 
     closeOpen() {
+        this.props.closeAllCatalogsFunction(this.state.open ? "" : this.props.item.catalogName);
         this.setState({
             ...this.state,
-            open: this.state.open === "" ?
-                "open" : "",
+            open: !this.state.open,
         })
     };
 
@@ -106,7 +114,7 @@ class Category extends React.Component {
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                     </svg>
                 </div>
-                <div className={"catalog__category-list " + this.state.open}>
+                <div className={"catalog__category-list " + (this.state.open ? "open" : "")}>
                     <div className="category-list">
                         {this.props.item.catalogItems && this.props.item.catalogItems.map((listItem, listIndex) => {
                             return this.renderCategoryList(listItem, listIndex, this.props.index, this.props.item.catalogName)
@@ -121,6 +129,7 @@ function MapStateToProps(state) {
     return {
         searchItemParams: state.catalogReducer.searchItemParams,
         searchItemColor: state.catalogReducer.searchItemColor,
+        closeAllCatalogs: state.catalogReducer.closeAllCatalogs,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -130,6 +139,9 @@ const mapDispatchToProps = dispatch => {
         },
         searchItemColorFunction: (searchItemColor) => {
             dispatch(actionSearchItemColor(searchItemColor))
+        },
+        closeAllCatalogsFunction: (closeAllCatalogs) => {
+            dispatch(actionCloseAllCatalogs(closeAllCatalogs))
         },
     }
 };

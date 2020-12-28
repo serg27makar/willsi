@@ -52,6 +52,11 @@ export default function catalogReducer(state = initialState, action) {
                 ...state,
                 searchItemNew: action.searchItemNew
             };
+        case "CLOSE_ALL_CATALOGS":
+            return {
+                ...state,
+                closeAllCatalogs: action.closeAllCatalogs
+            };
         default:
             return state;
     }

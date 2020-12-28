@@ -1,19 +1,33 @@
 import React from "react";
+import {actionCloseAllCatalogs, actionSearchItemColor, actionSearchItemParams} from "../../action";
+import {connect} from "react-redux";
+import {isEmptyObject} from "../../js/sharedFunctions";
 
 class DefaultDropDown extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: "",
+            open: false,
         };
         this.closeOpen = this.closeOpen.bind(this);
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.closeAllCatalogs !== this.props.closeAllCatalogs) {
+            if (this.props.closeAllCatalogs !== this.props.title) {
+                this.setState({
+                    ...this.state,
+                    open: false,
+                })
+            }
+        }
+    }
+
     closeOpen() {
+        this.props.closeAllCatalogsFunction(this.state.open ? "" : this.props.title);
         this.setState({
             ...this.state,
-            open: this.state.open === "" ?
-                "open" : "",
+            open: !this.state.open,
         })
     };
 
@@ -34,7 +48,7 @@ class DefaultDropDown extends React.Component {
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                     </svg>
                 </div>
-                <div className={"catalog__category-list country-list " + this.state.open}>
+                <div className={"catalog__category-list country-list " + (this.state.open ? "open" : "")}>
                         <ul>
                             {this.props.items && this.props.items.map((itemList, indexList) => {
                                 return this.dropdownListItem(itemList, indexList);
@@ -45,5 +59,17 @@ class DefaultDropDown extends React.Component {
         )
     }
 }
+function MapStateToProps(state) {
+    return {
+        closeAllCatalogs: state.catalogReducer.closeAllCatalogs,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        closeAllCatalogsFunction: (closeAllCatalogs) => {
+            dispatch(actionCloseAllCatalogs(closeAllCatalogs))
+        },
+    }
+};
 
-export default DefaultDropDown;
+export default connect(MapStateToProps, mapDispatchToProps)(DefaultDropDown);

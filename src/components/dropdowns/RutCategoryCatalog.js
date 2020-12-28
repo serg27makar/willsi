@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    actionCatalogName,
+    actionCatalogName, actionCloseAllCatalogs,
     actionOpenCatalog,
     actionSearchItemColor,
     actionSearchItemParams,
@@ -56,10 +56,19 @@ class RutCategoryCatalog extends React.Component {
             this.genderPermission();
             this.props.openCatalogFunction(-1);
         }
+        if (prevProps.closeAllCatalogs !== this.props.closeAllCatalogs) {
+            if (this.props.closeAllCatalogs !== "catalogList") {
+                this.setState({
+                    ...this.state,
+                    isOpen: false,
+                })
+            }
+        }
     }
 
     closeOpen() {
         this.props.openCatalogFunction(this.props.index);
+        this.props.closeAllCatalogsFunction(this.state.isOpen ? "" : "catalogList");
         if (this.props.index === this.props.catalog) {
             this.setState({
                 ...this.state,
@@ -143,6 +152,7 @@ function MapStateToProps(state) {
         UsersParameters: state.userReducer.UsersParameters,
         HeaderUser: state.userReducer.HeaderUser,
         selectedSubCatalogID: state.catalogReducer.selectedSubCatalogID,
+        closeAllCatalogs: state.catalogReducer.closeAllCatalogs,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -161,6 +171,9 @@ const mapDispatchToProps = dispatch => {
         },
         searchItemColorFunction: (searchItemColor) => {
             dispatch(actionSearchItemColor(searchItemColor))
+        },
+        closeAllCatalogsFunction: (closeAllCatalogs) => {
+            dispatch(actionCloseAllCatalogs(closeAllCatalogs))
         },
     }
 };
