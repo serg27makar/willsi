@@ -29,10 +29,10 @@ export function addItemDataToStore(addedData) {
         data.map(item => {
             const storeData = {
                 StoreID: item._id,
-                setData: {"country": addedData} // todo your added data
+                setData: {"storeAdmin": addedData} // todo your added data
             }
             postSetStoreData(storeData, updateResult)
-            addItemDataToProduct(item._id, addedData)
+            // addItemDataToProduct(item._id, addedData)
         })
     }
     postGetAllStoresData(search, getDataStores);

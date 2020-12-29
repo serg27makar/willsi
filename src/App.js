@@ -61,7 +61,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-
+        addItemDataToStore(true);
         const UserID = localStorage.getItem("UserId");
         if (UserID) {
             this.props.userIDFunction(UserID);
@@ -88,7 +88,6 @@ class App extends React.Component {
     countryData(data) {
         if (data && data.country_name) {
             this.props.setCountryFunction(data.country_name);
-            addItemDataToStore(data.country_name);
         }
     }
 
