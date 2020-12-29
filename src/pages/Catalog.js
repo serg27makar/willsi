@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    actionAddUser,
     actionAlertText,
     actionCatalogName,
     actionDataRedirect,
@@ -35,10 +36,6 @@ class Catalog extends React.Component {
             firstTime: true,
             active: false,
             catalogName: "",
-            redirect: {
-                accessR: false,
-                to: "/",
-            },
         };
         this.setProductData = this.setProductData.bind(this);
         this.onScrollList = this.onScrollList.bind(this);
@@ -51,10 +48,7 @@ class Catalog extends React.Component {
         if (this.props.SearchParams && this.props.catalogName && this.state.firstTime) {
             this.changeSizeData();
         }
-        this.props.dataRedirectFunction({
-            accessR: false,
-            to: "/",
-        });
+        this.redirect("", false);
         this.props.setActionAdminPanelFunction("Catalog");
         setTimeout(() => {
             handlePageUp();
@@ -62,13 +56,11 @@ class Catalog extends React.Component {
         this.functionRedirect();
         window.addEventListener('scroll', this.onScrollList);
         this.selectedSubCatalog(this.props.selectedSubCatalogID);
-        if (this.props.Permission === "primaryAdmin") {
-            this.redirect("primary-admin-panel")
-        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.UsersParameters !== this.props.UsersParameters) {
+        if ((prevProps.UsersParameters !== this.props.UsersParameters) ||
+            (prevProps.Permission !== this.props.Permission)) {
             this.functionRedirect();
         }
         if ((prevProps.SearchParams !== this.props.SearchParams ||
@@ -97,12 +89,6 @@ class Catalog extends React.Component {
                 subUsers: [],
             });
         }
-        if (prevProps.dataRedirect !== this.props.dataRedirect) {
-            this.setState({
-                ...this.state,
-                redirect: this.props.dataRedirect,
-            })
-        }
         if (prevProps.alertModalCloseEvent !== this.props.alertModalCloseEvent) {
             this.props.recalculateParamsFunction(this.state.requiredParameters);
             this.props.openModalFunction("recalculateModal");
@@ -114,9 +100,11 @@ class Catalog extends React.Component {
             (prevProps.searchItemParams !== this.props.searchItemParams) ||
             (prevState.active !== this.state.active && this.props.SearchParams && this.state.active) ||
             (prevProps.SetActionPostpone !== this.props.SetActionPostpone)) {
-            setTimeout(() => {
-                this.updateProductsData();
-            }, 50)
+            if (this.props.UsersParameters.length) {
+                setTimeout(() => {
+                    this.updateProductsData();
+                }, 50)
+            }
         }
         if (prevProps.HeaderUser !== this.props.HeaderUser) {
             this.setCatalogName();
@@ -131,9 +119,9 @@ class Catalog extends React.Component {
         }
     }
 
-    redirect(page = "catalog") {
+    redirect(page, accessR = true) {
         this.props.dataRedirectFunction({
-            accessR: true,
+            accessR,
             to: "/" + page,
         });
     }
@@ -282,21 +270,22 @@ class Catalog extends React.Component {
 
     functionRedirect() {
         setTimeout(() => {
+            if (this.props.Permission === "primaryAdmin") {
+                this.redirect("primary-admin-panel")
+            }
             if (!this.props.UsersParameters || (this.props.UsersParameters && this.props.UsersParameters.length < 1) ||
                 ( this.props.UsersParameters[0].Parameters &&
                     this.props.UsersParameters[0].Parameters.length < 1)) {
-                this.props.dataRedirectFunction({
-                    accessR: true,
-                    to: "/data",
-                })
+                this.props.addUserFunction(true);
+                this.redirect("data")
             }
         }, 500)
     }
 
     render() {
-        if (this.state.redirect.accessR) {
+        if (this.props.dataRedirect.accessR) {
             return(
-                <Redirect to={this.state.redirect.to}/>
+                <Redirect to={this.props.dataRedirect.to}/>
             )
         }
         return(
@@ -365,6 +354,9 @@ const mapDispatchToProps = dispatch => {
         },
         recalculateParamsFunction: (recalculateParams) => {
             dispatch(actionRecalculateParams(recalculateParams))
+        },
+        addUserFunction: (AddUser) => {
+            dispatch(actionAddUser(AddUser))
         },
     }
 };
