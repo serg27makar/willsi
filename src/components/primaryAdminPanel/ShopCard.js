@@ -17,6 +17,7 @@ class ShopCard extends React.Component {
         this.state = {};
         this.productsStore = this.productsStore.bind(this);
         this.getDataProducts = this.getDataProducts.bind(this);
+        this.aboutStore = this.aboutStore.bind(this);
     }
 
     getDataProducts(data) {

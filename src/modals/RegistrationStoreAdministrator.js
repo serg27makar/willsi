@@ -24,6 +24,7 @@ class RegistrationStoreAdministrator extends React.Component {
             password: "",
             confirmPassword: "",
             changedData: false,
+            dataInputSet: [],
         };
         this.cancelChange = this.cancelChange.bind(this);
         this.closeAlert = this.closeAlert.bind(this);
@@ -37,7 +38,16 @@ class RegistrationStoreAdministrator extends React.Component {
             email: this.props.Email,
         });
         if (this.props.UserName && this.props.Email) {
-            dataInputRegistrationStoreAdminModal.splice(dataInputRegistrationStoreAdminModal.length - 2, 2);
+
+            const dataInputSet = [];
+            dataInputRegistrationStoreAdminModal.map((item) => {
+                if (item.name === "name" || item.name === "email") {
+                //    do nothing
+                } else {
+                    dataInputSet.push(item)
+                }
+            })
+            this.setState({...this.state, dataInputSet});
         }
     }
 
@@ -196,7 +206,7 @@ class RegistrationStoreAdministrator extends React.Component {
                 <div className="modal-envelope__body">
                     <p className="modal-envelope__title title-36 uppercase bold">{ru.AdminSignUp}</p>
                     <div className="modal-form">
-                        {dataInputRegistrationStoreAdminModal && dataInputRegistrationStoreAdminModal.map((item, index) => {
+                        {this.state.dataInputSet && this.state.dataInputSet.map((item, index) => {
                             return (
                                 <ModalInput dataInput={item} key={index} dataValue={this.state} dataOnChange={this.dataOnChange}/>
                             )

@@ -70,9 +70,9 @@ class Homepage extends React.Component {
     }
 
     render() {
-        if (this.props.dataRedirect && this.props.dataRedirect.accessR) {
+        if (this.props.redirect && this.props.redirect.accessR) {
             return(
-                <Redirect to={this.props.dataRedirect.to}/>
+                <Redirect to={this.props.redirect.to}/>
             )
         }
         return(
