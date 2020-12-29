@@ -23,16 +23,16 @@ export function removeItemDataToStore() {
     postGetAllStoresData(search, getDataStores);
 }
 
-export function addItemDataToStore() {
+export function addItemDataToStore(addedData) {
     let search = {};
     const getDataStores = (data) => {
         data.map(item => {
-            // const storeData = {
-            //     StoreID: item._id,
-            //     setData: {"storeAdmin": addedData} // todo your added data
-            // }
-            // postSetStoreData(storeData, updateResult)
-            addItemDataToProduct(item._id)
+            const storeData = {
+                StoreID: item._id,
+                setData: {"storeAdmin": addedData} // todo your added data
+            }
+            postSetStoreData(storeData, updateResult)
+            // addItemDataToProduct(item._id)
         })
     }
     postGetAllStoresData(search, getDataStores);
@@ -51,13 +51,12 @@ export function removeItemDataToProduct(ProductStoreID) {
     getProductDataToId(ProductStoreID, productsData);
 }
 
-export function addItemDataToProduct(ProductStoreID) {
-    const currentDate = new Date();
+export function addItemDataToProduct(ProductStoreID, addedData) {
     const productsData = (data) => {
         data.map(item => {
             const productData = {
                 ProductID: item._id,
-                setData: {"registrationDate": miDateFormatNumber(currentDate)} // todo your added data
+                setData: {"registrationDate": addedData} // todo your added data
             }
             postSetProductData(productData, updateResult)
         })

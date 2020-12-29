@@ -45,7 +45,6 @@ import RecalculateModal from "./modals/RecalculateModal";
 import PrimaryAdminPanel from "./pages/PrimaryAdminPanel";
 import HelpModal from "./modals/HelpModal";
 import SpinnerModal from "./modals/SpinnerModal";
-import {addItemDataToStore, removeItemDataToStore} from "./js/hidenFunctions";
 
 const history = createBrowserHistory();
 
@@ -61,7 +60,6 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        addItemDataToStore();
         const UserID = localStorage.getItem("UserId");
         if (UserID) {
             this.props.userIDFunction(UserID);
