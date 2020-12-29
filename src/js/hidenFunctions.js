@@ -6,7 +6,7 @@ import {
     postSetStoreData,
     postUnsetProductData
 } from "../utilite/axiosConnect";
-import {updateResult} from "./sharedFunctions";
+import {miDateFormatNumber, updateResult} from "./sharedFunctions";
 import React from "react";
 
 export function removeItemDataToStore() {
@@ -52,11 +52,12 @@ export function removeItemDataToProduct(ProductStoreID) {
 }
 
 export function addItemDataToProduct(ProductStoreID) {
+    const currentDate = new Date();
     const productsData = (data) => {
         data.map(item => {
             const productData = {
                 ProductID: item._id,
-                setData: {"ManufacturerSearch": item.Manufacturer.toUpperCase()} // todo your added data
+                setData: {"registrationDate": miDateFormatNumber(currentDate)} // todo your added data
             }
             postSetProductData(productData, updateResult)
         })
