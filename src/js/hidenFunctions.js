@@ -32,6 +32,7 @@ export function addItemDataToStore(addedData) {
                 setData: {"country": addedData} // todo your added data
             }
             postSetStoreData(storeData, updateResult)
+            addItemDataToProduct(item._id, addedData)
         })
     }
     postGetAllStoresData(search, getDataStores);
@@ -62,11 +63,3 @@ export function addItemDataToProduct(ProductStoreID, addedData) {
     }
     getProductDataToId(ProductStoreID, productsData);
 }
-{/*<label className="main-list__label">*/}
-{/*    <input className="main-list__input-search text-14 italic" type="text" placeholder="Поиск..."/>*/}
-{/*    <button className="main-list__button-search">*/}
-{/*        <svg className="icon icon-search ">*/}
-{/*            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#search"/>*/}
-{/*        </svg>*/}
-{/*    </button>*/}
-{/*</label>*/}

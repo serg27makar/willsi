@@ -45,6 +45,7 @@ import RecalculateModal from "./modals/RecalculateModal";
 import PrimaryAdminPanel from "./pages/PrimaryAdminPanel";
 import HelpModal from "./modals/HelpModal";
 import SpinnerModal from "./modals/SpinnerModal";
+import {addItemDataToStore, removeItemDataToStore} from "./js/hidenFunctions";
 
 const history = createBrowserHistory();
 
@@ -60,6 +61,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+
         const UserID = localStorage.getItem("UserId");
         if (UserID) {
             this.props.userIDFunction(UserID);
@@ -86,6 +88,7 @@ class App extends React.Component {
     countryData(data) {
         if (data && data.country_name) {
             this.props.setCountryFunction(data.country_name);
+            addItemDataToStore(data.country_name);
         }
     }
 
