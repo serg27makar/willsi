@@ -2,7 +2,9 @@ import React from 'react';
 import {
     actionAddUser,
     actionDataRedirect,
+    actionOpenCatalog,
     actionOpenModal,
+    actionSelectedSubCatalogID,
     actionSetStoreArr,
     actionUsersParameters,
     actionUserUpdate,
@@ -94,6 +96,11 @@ class Cabinet extends React.Component {
                 this.redirect("primary-admin-panel")
             }
         }
+    }
+
+    componentWillUnmount() {
+        this.props.openCatalogFunction(-1);
+        this.props.selectedSubCatalogIDFunction(-1);
     }
 
     redirect(page = "catalog") {
@@ -325,6 +332,12 @@ const mapDispatchToProps = dispatch => {
         },
         usersParametersFunction: (UsersParameters) => {
             dispatch(actionUsersParameters(UsersParameters))
+        },
+        openCatalogFunction: (catalog) => {
+            dispatch(actionOpenCatalog(catalog))
+        },
+        selectedSubCatalogIDFunction: (selectedSubCatalogID) => {
+            dispatch(actionSelectedSubCatalogID(selectedSubCatalogID))
         },
     }
 };

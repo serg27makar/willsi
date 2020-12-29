@@ -1,6 +1,7 @@
 import React from "react";
 import {
-    actionCatalogName, actionCloseAllCatalogs,
+    actionCatalogName,
+    actionCloseAllCatalogs,
     actionOpenCatalog,
     actionSearchItemColor,
     actionSearchItemParams,

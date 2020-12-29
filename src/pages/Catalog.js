@@ -52,10 +52,10 @@ class Catalog extends React.Component {
         this.props.setActionAdminPanelFunction("Catalog");
         setTimeout(() => {
             handlePageUp();
+            this.functionRedirect();
+            this.selectedSubCatalog(this.props.selectedSubCatalogID);
         }, 50);
-        this.functionRedirect();
         window.addEventListener('scroll', this.onScrollList);
-        this.selectedSubCatalog(this.props.selectedSubCatalogID);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
