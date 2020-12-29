@@ -66,17 +66,17 @@ class SellerService extends React.Component {
         return(
             <div className="content">
                 <StepsBlock title={ru.SellThings}
-                            stepsArr={resourceSellingArr} bgNon={true} scrollTopMax={500}/>
+                            stepsArr={resourceSellingArr} bgNon={true}/>
                 <WhomStartup/>
                 <Details/>
-                <Startup startupArr={startupServiceArr}  scrollTopMin={1000} scrollTopMax={2000}/>
-                <Indicator scrollTopMin={1700} scrollTopMax={2800}/>
+                <Startup startupArr={startupServiceArr}/>
+                <Indicator/>
                 <StepsBlock title={ru.JustThreeSteps}
                             stepsArr={resourceThreeStepsArr} btnText={ru.toDressingRoom}
-                            scrollTopMin={2800} scrollTopMax={4100} onClick={() => {this.redirect("catalog")}}/>
+                            onClick={() => {this.redirect("catalog")}}/>
                 <DescriptionBg/>
-                <Partners  scrollTopMin={4200} scrollTopMax={5400}/>
-                <Reviews scrollTopMin={5200}/>
+                <Partners/>
+                <Reviews/>
             </div>
         )
     }

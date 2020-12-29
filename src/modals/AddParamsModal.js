@@ -3,8 +3,8 @@ import ButtonMain from "../components/shared/ButtonMain";
 import {actionHeaderUser, actionOpenModal, actionUsersParameters} from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
-import {postUpdate} from "../utilite/axiosConnect";
-import {genderSwitcher, updateResult} from "../js/sharedFunctions";
+import {getUserData, postUpdate} from "../utilite/axiosConnect";
+import {genderSwitcher} from "../js/sharedFunctions";
 
 class AddParamsModal extends React.Component {
     constructor(props) {
@@ -14,6 +14,8 @@ class AddParamsModal extends React.Component {
             paramsList: [],
         };
         this.addedParamsList = this.addedParamsList.bind(this);
+        this.updateResult = this.updateResult.bind(this);
+        this.result = this.result.bind(this);
     }
 
     componentDidMount() {
@@ -59,9 +61,23 @@ class AddParamsModal extends React.Component {
             UsersParameters: this.props.UsersParameters,
             UserID: this.props.UserID,
         };
-        postUpdate(user, updateResult);
+        postUpdate(user, this.updateResult);
         this.props.headerUserFunction(0);
         this.closeLincModal();
+    };
+
+    updateResult() {
+        getUserData(this.result);
+    }
+
+    result(res) {
+        if (res.isAxiosError) {
+            console.log(res);
+            return;
+        }
+        if (res) {
+            this.props.usersParametersFunction(res.UsersParameters);
+        }
     };
 
     closeLincModal = () => {
