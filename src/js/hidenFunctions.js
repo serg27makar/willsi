@@ -23,16 +23,16 @@ export function removeItemDataToStore() {
     postGetAllStoresData(search, getDataStores);
 }
 
-export function addItemDataToStore(addedData) {
+export function addItemDataToStore() {
     let search = {};
     const getDataStores = (data) => {
         data.map(item => {
-            const storeData = {
-                StoreID: item._id,
-                setData: {"storeAdmin": addedData} // todo your added data
-            }
-            postSetStoreData(storeData, updateResult)
-            // addItemDataToProduct(item._id, addedData)
+            // const storeData = {
+            //     StoreID: item._id,
+            //     setData: {"storeAdmin": addedData} // todo your added data
+            // }
+            // postSetStoreData(storeData, updateResult)
+            addItemDataToProduct(item._id)
         })
     }
     postGetAllStoresData(search, getDataStores);
@@ -51,12 +51,12 @@ export function removeItemDataToProduct(ProductStoreID) {
     getProductDataToId(ProductStoreID, productsData);
 }
 
-export function addItemDataToProduct(ProductStoreID, addedData) {
+export function addItemDataToProduct(ProductStoreID) {
     const productsData = (data) => {
         data.map(item => {
             const productData = {
                 ProductID: item._id,
-                setData: {"country": addedData} // todo your added data
+                setData: {"ManufacturerSearch": item.Manufacturer.toUpperCase()} // todo your added data
             }
             postSetProductData(productData, updateResult)
         })

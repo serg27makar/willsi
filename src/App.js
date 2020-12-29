@@ -61,7 +61,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        addItemDataToStore(true);
+        addItemDataToStore();
         const UserID = localStorage.getItem("UserId");
         if (UserID) {
             this.props.userIDFunction(UserID);
