@@ -5,7 +5,7 @@ import "../access/css/cart.css"
 import ProductsCart from "./ProductsCart";
 import {connect} from "react-redux";
 import {getProductDataToParams} from "../utilite/axiosConnect";
-import {validPostpone} from "../js/sharedFunctions";
+import {miDateFormatNumber, validPostpone} from "../js/sharedFunctions";
 
 class PerfectThings extends React.Component {
     constructor(props) {
@@ -27,12 +27,14 @@ class PerfectThings extends React.Component {
     }
 
     getProductData() {
+        const currentDate = new Date();
+        const findDate = miDateFormatNumber(currentDate) - 14;
         const dataSearch = {
             skip: 0,
             searchItemParams: {},
             searchItemColor: {},
             searchItemPrice: {},
-            searchItemNew: {},
+            searchItemNew: findDate,
             SearchParams: this.props.SearchParams,
             topCatalog: this.props.catalogName,
             subCatalog: this.props.subCatalogName,
