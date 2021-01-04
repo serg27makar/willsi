@@ -4208,3 +4208,8 @@ div, p, span, h1, h2, h3, h4,
     height: 2rem;
     padding: 0.3rem;
 }
+.most-suitable-size {
+    color: red;
+    font-weight: bold;
+    text-transform: uppercase;
+}

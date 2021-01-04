@@ -114,7 +114,7 @@ class FullProductCard extends React.Component {
                             <img className="picture__source" src={item.Photo1} alt={item.ProdName}/>
                         </picture>
                         {this.renderNew(item)}
-                        <CircleLevel catalog={this.props.catalog} level={item.Parameters.compatibility || item.compatibility}/>
+                        <CircleLevel catalog={this.props.catalog} level={item.Parameters.compatibility || item.compatibility} SizeStandard={item.Parameters.SizeStandard}/>
                         {this.renderPostpone(item)}
                     </div>
                     <div className="card-box__product-name text-18 bold uppercase" onClick={() => {this.filterManufacturer(item.Manufacturer)}}>{item.Manufacturer}</div>

@@ -106,6 +106,8 @@ class Cart extends React.Component {
                 <Redirect to={this.state.redirect.to}/>
             )
         }
+        const compatibility = this.state.SelectProduct.Parameters && this.state.SelectProduct.Parameters.compatibility;
+        const SizeStandard = this.state.SelectProduct.Parameters && this.state.SelectProduct.Parameters.SizeStandard;
         return(
             <div className="content">
                 <BreadcrumbsBg />
@@ -115,9 +117,11 @@ class Cart extends React.Component {
                         <div className="footer-row-wrap">
                             <div className="col-12">
                                 {this.renderSlide()}
-                                <CircleLevel level={this.state.SelectProduct.Parameters && this.state.SelectProduct.Parameters.compatibility}/>
+                                <CircleLevel level={compatibility}
+                                             SizeStandard={SizeStandard}/>
                             </div>
                             <div className="col-12">
+                                <span className="most-suitable-size text-14">{ru.mostSuitableSize + SizeStandard}</span>
                                <CardDescription cardDescription={this.state.SelectProduct}/>
                             </div>
                         </div>

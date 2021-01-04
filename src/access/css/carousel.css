@@ -99,6 +99,9 @@
     top: 45%;
     left: 23%;
 }
+.circle-counter-text.bottom-stroke {
+    top: 65%
+}
 .circle-counter-text {
     position: absolute;
     top: 55%;

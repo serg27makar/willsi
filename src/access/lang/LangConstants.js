@@ -292,6 +292,7 @@ const ru = {
     enterYourStoreUrl: "введите интернет адрес магазина",
     enterYourStorePhone: "введите телефон контактного лица",
 
+    mostSuitableSize: "наиболее подходящий для вас размер: "
 };
 
 export default ru;

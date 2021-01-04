@@ -60,6 +60,10 @@ class CircleLevel extends React.Component {
                     <div className="circle-counter-point"/>
                 </div>
                 <div className="circle-counter-text">{this.textCounter(this.state.currentCount)}</div>
+                {this.props.SizeStandard && this.state.currentCount >= 60 ?
+                <div className="circle-counter-text bottom-stroke">{this.props.SizeStandard}</div>
+                    : null
+                }
             </div>
         )
     }
