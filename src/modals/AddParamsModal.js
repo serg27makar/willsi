@@ -1,6 +1,6 @@
 import React from "react";
 import ButtonMain from "../components/shared/ButtonMain";
-import {actionHeaderUser, actionOpenModal, actionUsersParameters} from "../action";
+import {actionAlertText, actionHeaderUser, actionOpenModal, actionUsersParameters} from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
 import {getUserData, postUpdate} from "../utilite/axiosConnect";
@@ -12,6 +12,7 @@ class AddParamsModal extends React.Component {
         this.state = {
             active: -1,
             paramsList: [],
+            load: false,
         };
         this.addedParamsList = this.addedParamsList.bind(this);
         this.updateResult = this.updateResult.bind(this);
@@ -40,6 +41,7 @@ class AddParamsModal extends React.Component {
             ...this.state,
             params,
             paramsList: list,
+            load: true
         })
     }
 
@@ -127,6 +129,10 @@ class AddParamsModal extends React.Component {
     }
 
     render() {
+        if (this.state.load && this.state.paramsList.length === 0) {
+            this.props.openModalFunction("alertModal");
+            this.props.alertTextFunction(ru.allParametersAdded);
+        }
         return(
             <div className="modal-envelope" id="modal-wowFirst">
                 <div className="modal-envelope__close" onClick={this.closeLincModal}>
@@ -165,6 +171,9 @@ const mapDispatchToProps = dispatch => {
         },
         usersParametersFunction: (UsersParameters) => {
             dispatch(actionUsersParameters(UsersParameters))
+        },
+        alertTextFunction: (text) => {
+            dispatch(actionAlertText(text))
         },
     }
 };
