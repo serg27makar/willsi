@@ -11,20 +11,10 @@ class AdminSidebar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dropdownList: [],
             refresh: false
         };
         this.productsData = this.productsData.bind(this);
         this.clearData = this.clearData.bind(this);
-    }
-
-    componentDidMount() {
-        const dropdownList = [];
-        dropdownListArr.map((item, index) => {
-            item.dropdownItems = item.dropdownItems.length === 8 || item.dropdownItems.length === 6 ? item.dropdownItems.slice(1) : item.dropdownItems; // remove all category
-            dropdownList.push(item);
-        })
-        this.setState({...this.state, dropdownList,})
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -64,7 +54,7 @@ class AdminSidebar extends React.Component {
                 <div className="sidebar__button-list">
                     <StoreDropdown clearData={this.clearData}/>
                 </div>
-                <MainListCatalogProducts dropdownList={this.state.dropdownList} addProduct={this.clearData}/>
+                <MainListCatalogProducts dropdownList={dropdownListArr} addProduct={this.clearData}/>
             </div>
         )
     }

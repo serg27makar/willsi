@@ -132,6 +132,7 @@ class MainListCatalogProducts extends React.Component {
     }
 
     renderListItem = (listItem, listIndex) => {
+        if (listIndex === 0) return null
         return (
             <li className="dropdown-list__item catalog-opened" key={listIndex} onClick={() => {this.chooseSubCatalog(listItem, listIndex)}}>
                 <div className={this.state.selectedSubCatalog === listIndex ? "dropdown-list__link catalog-opened text-14" : "dropdown-list__link text-14 light"}>{LangCat[listItem]}</div>
