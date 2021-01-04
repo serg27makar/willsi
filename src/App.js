@@ -27,6 +27,7 @@ import EditorModal from "./modals/EditorModal";
 import {
     actionAllCountries,
     actionEmail,
+    actionOpenModal,
     actionPermission,
     actionPostpone,
     actionSetCountry,
@@ -57,6 +58,7 @@ class App extends React.Component {
         }
         this.allCountry = this.allCountry.bind(this);
         this.countryData = this.countryData.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     componentDidMount() {
@@ -104,6 +106,14 @@ class App extends React.Component {
         }
     };
 
+    closeModal(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (this.props.modal) {
+            this.props.openModalFunction("");
+        }
+    }
+
     renderModal = () => {
         switch (this.props.modal) {
             case "signUp":
@@ -148,7 +158,7 @@ class App extends React.Component {
         }
         return (
             <div className="App">
-                <div className={wrapper}>
+                <div className={wrapper} onClick={this.closeModal}>
                     <Navigate/>
                     <LinkBtn/>
                     <BtnUp/>
@@ -217,6 +227,9 @@ const mapDispatchToProps = dispatch => {
         },
         allCountriesFunction: (allCountries) => {
             dispatch(actionAllCountries(allCountries))
+        },
+        openModalFunction: (modal) => {
+            dispatch(actionOpenModal(modal))
         },
     }
 };
