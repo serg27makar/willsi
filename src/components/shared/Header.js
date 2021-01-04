@@ -10,10 +10,15 @@ import {
     actionDataRedirect,
     actionDataUpdate,
     actionEmail,
+    actionOpenCatalog,
     actionOpenModal,
     actionPermission,
     actionPostpone,
+    actionProductsThisStore,
+    actionSelectedStore,
+    actionSelectedSubCatalogID,
     actionSetActionPostpone,
+    actionSetStoreArr,
     actionUserID,
     actionUserName,
     actionUsersParameters,
@@ -69,6 +74,11 @@ class Header extends React.Component {
         this.props.dataUpdateFunction(!this.props.update);
         this.props.setActionPostponeFunction(!this.props.SetActionPostpone);
         this.props.postponeFunction([]);
+        this.props.selectedStoreFunction({});
+        this.props.setStoreArrFunction([]);
+        this.props.productsThisStoreFunction([]);
+        this.props.selectedSubCatalogIDFunction("");
+        this.props.openCatalogFunction("");
         this.props.dataRedirectFunction({
             accessR: true,
             to: "/",
@@ -207,6 +217,21 @@ const mapDispatchToProps = dispatch => {
         },
         openModalFunction: (modal) => {
             dispatch(actionOpenModal(modal))
+        },
+        selectedSubCatalogIDFunction: (selectedSubCatalogID) => {
+            dispatch(actionSelectedSubCatalogID(selectedSubCatalogID))
+        },
+        openCatalogFunction: (catalog) => {
+            dispatch(actionOpenCatalog(catalog))
+        },
+        setStoreArrFunction: (StoreArr) => {
+            dispatch(actionSetStoreArr(StoreArr))
+        },
+        productsThisStoreFunction: (productsThisStore) => {
+            dispatch(actionProductsThisStore(productsThisStore))
+        },
+        selectedStoreFunction: (selectedStore) => {
+            dispatch(actionSelectedStore(selectedStore))
         },
     }
 };
