@@ -10,6 +10,7 @@ const initialState = {
     updateSubspecies: false,
     AllProductsData: [],
     productsThisStore: [],
+    SearchParams: [],
 };
 
 export default function productReducer(state = initialState, action) {

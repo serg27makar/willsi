@@ -62,6 +62,7 @@ class LinkBtn extends React.Component {
         if (this.props.page === "AdminPanel" ||
             this.props.page === "Data" ||
             this.props.page === "TariffPlans" ||
+            this.props.page === "Cart" ||
             this.props.page === "Cabinet") {
             return null;
         }

@@ -5,7 +5,9 @@ const Url = "http://localhost:3001";
 export const postRegister = (user, callbackInfo) => {
     axios.post(Url + `/users/register`, user)
         .then(req => {
-            localStorage.UserId = req.data.insertedId;
+            if (req.data.insertedId) {
+                localStorage.UserId = req.data.insertedId;
+            }
             callbackInfo(req.data.insertedId);
         }).catch(err => {
             console.log(err);
@@ -15,7 +17,9 @@ export const postRegister = (user, callbackInfo) => {
 export const postLogin = (user, callbackInfo) => {
     axios.post(Url + `/users/login`, user)
         .then(req => {
-            localStorage.UserId = req.data.UserID;
+            if (req.data.UserID) {
+                localStorage.UserId = req.data.UserID;
+            }
             callbackInfo(req.data);
         }).catch(err => {
             console.log(err);
@@ -300,6 +304,24 @@ export const getAllProductsData = (data, callbackInfo) => {
     axios.post(Url + `/product/getAllProductsData`, data,{
         headers: {'token': localStorage.UserId}
     })
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        callbackInfo(err);
+    })
+};
+
+export const getProductsByLink = (data, callbackInfo) => {
+    axios.post(Url + `/product/getProductsByLink`, data)
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+        callbackInfo(err);
+    })
+};
+
+export const getParametersToIdBySearchParams = (data, callbackInfo) => {
+    axios.post(Url + `/parameter/getParametersToIdBySearchParams`, data)
         .then(req => {
             callbackInfo(req.data);
         }).catch(err => {

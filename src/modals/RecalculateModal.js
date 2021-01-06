@@ -1,14 +1,20 @@
 import React from "react";
 import {
+    actionDataRedirect,
     actionEmail,
-    actionHeaderUser, actionNewUser,
+    actionHeaderUser,
+    actionNewUser,
     actionOpenModal,
+    actionPermission,
+    actionProductsArr,
+    actionSearchParams,
+    actionUserID,
     actionUserName,
     actionUsersParameters
 } from "../action";
 import {connect} from "react-redux";
 import Recalculate from "../components/Recalculate";
-import {getUserData, postUpdate} from "../utilite/axiosConnect";
+import {getParametersToIdBySearchParams, getUserData, postRegister, postUpdate} from "../utilite/axiosConnect";
 import {updateResult} from "../js/sharedFunctions";
 
 class RecalculateModal extends React.Component {
@@ -27,6 +33,7 @@ class RecalculateModal extends React.Component {
         this.addParams = this.addParams.bind(this);
         this.lastBlock = this.lastBlock.bind(this);
         this.result = this.result.bind(this);
+        this.paramsResult = this.paramsResult.bind(this);
     }
 
     componentDidMount() {
@@ -53,25 +60,50 @@ class RecalculateModal extends React.Component {
         const HeaderUser = this.props.NewUser || this.props.HeaderUser;
         const recalculateParams = this.props.recalculateParams.slice();
 
-        this.props.UsersParameters[HeaderUser].Parameters.map((fillItem) => {
-            return recalculateParams.map((item, index) => {
-                if (fillItem.title === item.inputName) {
-                    recalculateParams.splice(index, 1);
-                }
-                return recalculateParams;
-            })
-        });
+        if (this.props.UsersParameters.length) {
+            this.props.UsersParameters[HeaderUser].Parameters.map((fillItem) => {
+                return recalculateParams.map((item, index) => {
+                    if (fillItem.title === item.inputName) {
+                        recalculateParams.splice(index, 1);
+                    }
+                    return recalculateParams;
+                })
+            });
+        }
 
         this.setState({
             ...this.state,
             recalculateParams,
             newUser: HeaderUser,
-            params: this.props.UsersParameters[HeaderUser].Parameters,
+            params: this.props.UsersParameters.length ? this.props.UsersParameters[HeaderUser].Parameters : [],
         })
         this.props.newUserFunction(0);
     }
 
+    paramsResult(data) {
+        let Product = this.props.ProductsArr[0];
+        Product = {
+            ...Product,
+            Parameters: data,
+        }
+        this.props.productsArrFunction([Product]);
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/cart",
+        })
+        this.props.openModalFunction("");
+    }
+
     result(res) {
+        if (this.props.thingToLink) {
+            const searchParams = {
+                ProductID: this.props.ProductsArr[0]._id,
+                topCatalog: this.props.ProductsArr[0].topCatalog,
+                subCatalog: this.props.ProductsArr[0].subCatalog,
+                SearchParams: this.props.SearchParams,
+            }
+            getParametersToIdBySearchParams(searchParams, this.paramsResult)
+        }
         if (res) {
             this.props.userNameFunction(res.UserName);
             this.props.emailFunction(res.Email);
@@ -119,31 +151,78 @@ class RecalculateModal extends React.Component {
             });
         }
         const UsersParameters = this.props.UsersParameters;
-        const obj = {
-            UserName: this.props.UsersParameters[this.state.newUser].UserName,
-            Gender: this.props.UsersParameters[this.state.newUser].Gender,
-            Parameters: currentParams,
-        };
+        const obj = this.fillObj(currentParams);
         UsersParameters.splice(this.state.newUser, 1, obj);
         this.props.usersParametersFunction(UsersParameters);
         this.isChanged();
     };
 
+    fillObj(currentParams) {
+        const UsersParameters = this.props.UsersParameters;
+        let UserName;
+        let Gender;
+        let obj = {
+            Parameters: currentParams,
+        };
+        if (UsersParameters.length &&
+            this.props.UsersParameters[this.state.newUser] &&
+            this.props.UsersParameters[this.state.newUser].UserName &&
+            this.props.UsersParameters[this.state.newUser].Gender) {
+            UserName = this.props.UsersParameters[this.state.newUser].UserName;
+            Gender = this.props.UsersParameters[this.state.newUser].Gender;
+            obj = {
+                ...obj,
+                UserName,
+                Gender,
+            }
+        } else {
+            this.props.permissionFunction("unknown");
+        }
+        return obj;
+    }
+
+    registerID = (res) => {
+        if (res) {
+            this.props.userIDFunction(res);
+        }
+    };
+
+    adaptedSearchParams(Parameters) {
+        let searchParams = {};
+        Parameters.map(item => {
+            searchParams = {
+                ...searchParams,
+                [item.title]: item.size,
+            }
+            return searchParams;
+        })
+        return searchParams;
+    }
+
     updateParams() {
         const UsersParameters = this.props.UsersParameters;
-        const obj = {
-            UserName: this.props.UsersParameters[this.state.newUser].UserName,
-            Gender: this.props.UsersParameters[this.state.newUser].Gender,
-            Parameters: this.props.UsersParameters[this.state.newUser].Parameters,
-        };
+        const obj = this.fillObj(this.props.UsersParameters[this.state.newUser].Parameters);
+        const searchParams = this.adaptedSearchParams(obj.Parameters);
+        this.props.searchParamsFunction(searchParams);
         UsersParameters.splice(this.state.newUser, 1, obj);
-        const user = {
-            UserName: this.props.UserName,
-            Email: this.props.Email,
+        let user = {
             UsersParameters: UsersParameters,
-            UserID: this.props.UserID,
         };
-        postUpdate(user, updateResult);
+        if (this.props.UserID) {
+            user = {
+                ...user,
+                UserName: this.props.UserName,
+                Email: this.props.Email,
+                UserID: this.props.UserID,
+            }
+            postUpdate(user, updateResult);
+        } else {
+            user = {
+                ...user,
+                Permission: "unknown",
+            }
+            postRegister(user, this.registerID);
+        }
     };
 
     render() {
@@ -174,6 +253,9 @@ function MapStateToProps(state) {
         UsersParameters: state.userReducer.UsersParameters,
         NewUser: state.userReducer.NewUser,
         HeaderUser: state.userReducer.HeaderUser,
+        thingToLink: state.utiliteReducer.thingToLink,
+        ProductsArr: state.productReducer.ProductsArr,
+        SearchParams: state.productReducer.SearchParams,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -195,6 +277,21 @@ const mapDispatchToProps = dispatch => {
         },
         newUserFunction: (NewUser) => {
             dispatch(actionNewUser(NewUser))
+        },
+        userIDFunction: (UserID) => {
+            dispatch(actionUserID(UserID))
+        },
+        permissionFunction: (Permission) => {
+            dispatch(actionPermission(Permission))
+        },
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
+        },
+        searchParamsFunction: (SearchParams) => {
+            dispatch(actionSearchParams(SearchParams))
+        },
+        productsArrFunction: (ProductsArr) => {
+            dispatch(actionProductsArr(ProductsArr))
         },
     }
 };

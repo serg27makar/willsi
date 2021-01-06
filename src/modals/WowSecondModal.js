@@ -1,13 +1,27 @@
 import React from "react";
 import ButtonMain from "../components/shared/ButtonMain";
-import {actionOpenModal} from "../action";
+import {actionDataRedirect, actionOpenModal} from "../action";
 import {connect} from "react-redux";
+import ru from "../access/lang/LangConstants";
 
 class WowSecondModal extends React.Component {
+    constructor(props) {
+        super(props);
+        this.dressingRoom = this.dressingRoom.bind(this);
+        this.closeLincModal = this.closeLincModal.bind(this);
+    }
 
-    closeLincModal = () => {
+    closeLincModal() {
         this.props.openModalFunction("");
     };
+
+    dressingRoom() {
+        this.props.dataRedirectFunction({
+            accessR: true,
+            to: "/catalog",
+        });
+        this.closeLincModal();
+    }
 
     render() {
         return(
@@ -18,11 +32,11 @@ class WowSecondModal extends React.Component {
                     </svg>
                 </div>
                 <div className="modal-envelope__body">
-                    <p className="modal-envelope__title title-36 uppercase bold">Ух Ты!</p>
-                    <p className="modal-envelope__sub-light text-16 light">Вы первый человек, который дал нам ссылку<br/>на этот сайт, скоро мы сним подружимся</p>
-                    <p className="modal-envelope__sub-info text-16 bold">Кстате, посмотрите 63 вещи, которые<br/>соответсвуют Вам больше чем на 90%</p>
+                    <p className="modal-envelope__title title-36 uppercase bold">{ru.wow}</p>
+                    <p className="modal-envelope__sub-light text-16 light">{ru.youFirstHuman}</p>
+                    <p className="modal-envelope__sub-info text-16 bold">{ru.seeMoreThings}</p>
                     <div className="modal-form__button-enter">
-                        <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={"Посмотреть"}/>
+                        <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.DressingRoom} onClick={this.dressingRoom}/>
                     </div>
                 </div>
             </div>
@@ -40,6 +54,9 @@ const mapDispatchToProps = dispatch => {
     return {
         openModalFunction: (modal) => {
             dispatch(actionOpenModal(modal))
+        },
+        dataRedirectFunction: (dataRedirect) => {
+            dispatch(actionDataRedirect(dataRedirect))
         },
     }
 };

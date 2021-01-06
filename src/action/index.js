@@ -389,3 +389,10 @@ export const actionCloseAllCatalogs = (closeAllCatalogs) => {
         closeAllCatalogs: closeAllCatalogs
     }
 };
+
+export const actionThingToLink = (thingToLink) => {
+    return {
+        type: 'THING_TO_LINK',
+        thingToLink: thingToLink
+    }
+};

@@ -1,6 +1,12 @@
 import React from 'react';
 import "./../access/css/cart.css";
-import {actionDataRedirect, actionSelectProduct, actionSubCatalogName, setActionAdminPanel} from "../action";
+import {
+    actionDataRedirect,
+    actionSelectProduct,
+    actionSubCatalogName,
+    actionThingToLink,
+    setActionAdminPanel
+} from "../action";
 import {connect} from "react-redux";
 import Carousel from "../components/Carousel";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
@@ -39,6 +45,7 @@ class Cart extends React.Component {
             accessR: false,
             to: "/",
         });
+        this.props.thingToLinkFunction(false);
         if (this.props.ProductsArr.length < 1) {
             this.props.dataRedirectFunction({
                 accessR: true,
@@ -167,6 +174,9 @@ const mapDispatchToProps = dispatch => {
         },
         subCatalogNameFunction: (SubCatalogName) => {
             dispatch(actionSubCatalogName(SubCatalogName))
+        },
+        thingToLinkFunction: (thingToLink) => {
+            dispatch(actionThingToLink(thingToLink))
         },
     }
 };

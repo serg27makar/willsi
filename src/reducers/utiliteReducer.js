@@ -4,6 +4,7 @@ const initialState = {
     dataView: [],
     setCountry: "",
     allCountries: [],
+    thingToLink: false,
 };
 
 export default function utiliteReducer(state = initialState, action) {
@@ -33,6 +34,11 @@ export default function utiliteReducer(state = initialState, action) {
             return {
                 ...state,
                 allCountries: action.allCountries
+            };
+        case "THING_TO_LINK":
+            return {
+                ...state,
+                thingToLink: action.thingToLink
             };
 
         default:

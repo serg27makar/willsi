@@ -10,6 +10,7 @@ import {
     actionOpenModal,
     actionPermission,
     actionPostpone,
+    actionSearchParams,
     actionSetActionPostpone,
     actionUserID,
     actionUserName,
@@ -63,6 +64,7 @@ class MobileEnvelope extends React.Component {
         this.props.userNameFunction("");
         this.props.emailFunction("");
         this.props.usersParametersFunction([]);
+        this.props.searchParamsFunction([]);
         this.props.permissionFunction("unknown");
         this.props.userStoreFunction([]);
         this.props.dataUpdateFunction(!this.props.update);
@@ -168,6 +170,9 @@ const mapDispatchToProps = dispatch => {
         },
         openModalFunction: (modal) => {
             dispatch(actionOpenModal(modal))
+        },
+        searchParamsFunction: (SearchParams) => {
+            dispatch(actionSearchParams(SearchParams))
         },
     }
 };
