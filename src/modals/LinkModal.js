@@ -2,7 +2,7 @@ import React from "react";
 import ButtonMain from "../components/shared/ButtonMain";
 import {
     actionCatalogName,
-    actionDataRedirect,
+    actionDataRedirect, actionGender,
     actionOpenModal,
     actionProductID,
     actionProductsArr,
@@ -14,7 +14,7 @@ import {
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
 import {getParametersToIdBySearchParams, getProductsByLink} from "../utilite/axiosConnect";
-import {genderSwitcher} from "../js/sharedFunctions";
+import {genderSwitcher, setGenderByCatalogName} from "../js/sharedFunctions";
 
 class LinkModal extends React.Component {
     constructor(props) {
@@ -135,6 +135,10 @@ class LinkModal extends React.Component {
                 return unknownParams;
             });
             if (unknownParams.length) {
+                if (!this.props.UsersParameters.length) {
+                    const Gender = setGenderByCatalogName(data[0].topCatalog);
+                    this.props.genderFunction(Gender);
+                }
                 this.props.recalculateParamsFunction(unknownParams);
                 this.props.openModalFunction("recalculateModal");
             } else {
@@ -230,6 +234,9 @@ const mapDispatchToProps = dispatch => {
         },
         dataRedirectFunction: (dataRedirect) => {
             dispatch(actionDataRedirect(dataRedirect))
+        },
+        genderFunction: (Gender) => {
+            dispatch(actionGender(Gender))
         },
     }
 };

@@ -149,7 +149,6 @@ function MapStateToProps(state) {
     return {
         catalog: state.catalogReducer.catalog,
         catalogName: state.catalogReducer.catalogName,
-        Gender: state.userReducer.Gender,
         UsersParameters: state.userReducer.UsersParameters,
         HeaderUser: state.userReducer.HeaderUser,
         selectedSubCatalogID: state.catalogReducer.selectedSubCatalogID,

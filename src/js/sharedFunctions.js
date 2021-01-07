@@ -234,3 +234,26 @@ export function miDateFormatParser(inputDate) {
     const day = inputDate.substr(6, 2);
     return year + " " + month + " " + day;
 }
+
+export function setGenderByCatalogName(catalogName) {
+    let gender = "";
+    switch (catalogName) {
+        case "catalogListMen":
+            gender = "man";
+            break;
+        case "catalogListWomen":
+            gender = "woman";
+            break;
+        case "catalogListBoy":
+            gender = "boy";
+            break;
+        case "catalogListGirl":
+            gender = "girl";
+            break;
+        case "catalogListDog":
+            gender = "dog";
+            break;
+        default : gender = "";
+    }
+    return gender;
+}

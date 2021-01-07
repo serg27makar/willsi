@@ -163,6 +163,7 @@ class RecalculateModal extends React.Component {
         let Gender;
         let obj = {
             Parameters: currentParams,
+            Gender: this.props.Gender,
         };
         if (UsersParameters.length &&
             this.props.UsersParameters[this.state.newUser] &&
@@ -256,6 +257,7 @@ function MapStateToProps(state) {
         thingToLink: state.utiliteReducer.thingToLink,
         ProductsArr: state.productReducer.ProductsArr,
         SearchParams: state.productReducer.SearchParams,
+        Gender: state.userReducer.Gender,
     }
 }
 const mapDispatchToProps = dispatch => {

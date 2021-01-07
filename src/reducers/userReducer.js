@@ -14,6 +14,7 @@ const initialState = {
     SetActionPostpone: false,
     NewUser: 0,
     AllUsersData: [],
+    Gender: "",
 };
 
 export default function userReducer(state = initialState, action) {
@@ -92,6 +93,11 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 AllUsersData: action.AllUsersData
+            };
+        case "SET_GENDER":
+            return {
+                ...state,
+                Gender: action.Gender
             };
         default:
             return state;

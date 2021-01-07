@@ -396,3 +396,10 @@ export const actionThingToLink = (thingToLink) => {
         thingToLink: thingToLink
     }
 };
+
+export const actionGender = (Gender) => {
+    return {
+        type: 'SET_GENDER',
+        Gender: Gender
+    }
+};
