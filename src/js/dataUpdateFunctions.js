@@ -23,12 +23,40 @@ export function showHiddenAllStoreData(ProductStoreID, adminPermission, value, c
     getProductDataToId(ProductStoreID, productsData);
 }
 
-export function showHiddenCatalogData(ProductStoreID, topCatalog , adminPermission, value, callBack) {
+export function showHiddenCatalogData(ProductStoreID, topCatalog , adminPermission, value = false, callBack) {
     let i = 0
     const productsData = (data) => {
         data.map(item => {
             i++;
             if (item.topCatalog === topCatalog) {
+                const productData = {
+                    ProductID: item._id,
+                    setData: {[adminPermission]: value}
+                }
+                postSetProductData(productData, updateResult);
+            }
+        })
+        if (i === data.length) {
+            if (!value) {
+                const storeData = {
+                    StoreID: ProductStoreID,
+                    setData: {[adminPermission]: !value}
+                }
+                postSetStoreData(storeData, callBack);
+            } else {
+                callBack();
+            }
+        }
+    }
+    getProductDataToId(ProductStoreID, productsData);
+}
+
+export function showHiddenSubCatalogData(ProductStoreID, subCatalog , adminPermission, value = false, callBack) {
+    let i = 0
+    const productsData = (data) => {
+        data.map(item => {
+            i++;
+            if (item.subCatalog === subCatalog) {
                 const productData = {
                     ProductID: item._id,
                     setData: {[adminPermission]: value}

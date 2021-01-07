@@ -1,5 +1,5 @@
 import React from "react";
-import {actionOpenModal, actionSelectedStore, actionSetStoreArr} from "../../action";
+import {actionClearOpenCatalogs, actionOpenModal, actionSelectedStore, actionSetStoreArr} from "../../action";
 import {connect} from "react-redux";
 import {isEmptyObject} from "../../js/sharedFunctions";
 import ToggleButton from "../shared/ToggleButton";
@@ -63,6 +63,7 @@ class StoreDropdown extends React.Component {
     changeItem(item) {
         this.closeOpen();
         this.props.selectedStoreFunction(item);
+        this.props.clearOpenCatalogsFunction(!this.props.clearOpenCatalogs)
     }
 
     addItem() {
@@ -136,6 +137,7 @@ function MapStateToProps(state) {
         StoreArr: state.storeReducer.StoreArr,
         addStore: state.storeReducer.addStore,
         selectedStore: state.storeReducer.selectedStore,
+        clearOpenCatalogs: state.utiliteReducer.clearOpenCatalogs,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -148,6 +150,9 @@ const mapDispatchToProps = dispatch => {
         },
         setStoreArrFunction: (StoreArr) => {
             dispatch(actionSetStoreArr(StoreArr))
+        },
+        clearOpenCatalogsFunction: (clearOpenCatalogs) => {
+            dispatch(actionClearOpenCatalogs(clearOpenCatalogs))
         },
     }
 };

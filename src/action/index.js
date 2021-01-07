@@ -403,3 +403,10 @@ export const actionGender = (Gender) => {
         Gender: Gender
     }
 };
+
+export const actionClearOpenCatalogs = (clearOpenCatalogs) => {
+    return {
+        type: 'CLEAR_OPEN_CATALOGS',
+        clearOpenCatalogs: clearOpenCatalogs
+    }
+};

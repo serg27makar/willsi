@@ -11,7 +11,8 @@ class AdminSidebar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            refresh: false
+            refresh: false,
+            catalogsRefresh: false,
         };
         this.productsData = this.productsData.bind(this);
         this.clearData = this.clearData.bind(this);
@@ -45,7 +46,13 @@ class AdminSidebar extends React.Component {
     }
 
     productsData(data = []) {
-        this.props.productsThisStoreFunction(data)
+        this.props.productsThisStoreFunction(data);
+        setTimeout(() => {
+            this.setState({
+                ...this.state,
+                catalogsRefresh: !this.state.catalogsRefresh,
+            })
+        }, 100);
     }
 
     render() {
@@ -54,7 +61,7 @@ class AdminSidebar extends React.Component {
                 <div className="sidebar__button-list">
                     <StoreDropdown clearData={this.clearData}/>
                 </div>
-                <MainListCatalogProducts dropdownList={dropdownListArr} addProduct={this.clearData}/>
+                <MainListCatalogProducts dropdownList={dropdownListArr} addProduct={this.clearData} refresh={this.state.catalogsRefresh}/>
             </div>
         )
     }

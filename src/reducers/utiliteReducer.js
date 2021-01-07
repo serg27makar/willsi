@@ -5,6 +5,7 @@ const initialState = {
     setCountry: "",
     allCountries: [],
     thingToLink: false,
+    clearOpenCatalogs: false,
 };
 
 export default function utiliteReducer(state = initialState, action) {
@@ -39,6 +40,11 @@ export default function utiliteReducer(state = initialState, action) {
             return {
                 ...state,
                 thingToLink: action.thingToLink
+            };
+        case "CLEAR_OPEN_CATALOGS":
+            return {
+                ...state,
+                clearOpenCatalogs: action.clearOpenCatalogs
             };
 
         default:

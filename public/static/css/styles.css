@@ -4213,3 +4213,6 @@ div, p, span, h1, h2, h3, h4,
     font-weight: bold;
     text-transform: uppercase;
 }
+.padding-left {
+    padding-left: 4rem;
+}
