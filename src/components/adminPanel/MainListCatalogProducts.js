@@ -130,11 +130,7 @@ class MainListCatalogProducts extends React.Component {
     hiddenProductsToCatalog(e, topCatalog) {
         e.preventDefault();
         e.stopPropagation();
-        let activeToggle = this.state.activeSubToggle;
-        activeToggle = {
-            ...activeToggle,
-            [topCatalog]: !this.state.activeSubToggle[topCatalog],
-        }
+        const activeToggle = this.state.activeToggle;
         this.setState({
             ...this.state,
             activeToggle: {
@@ -143,7 +139,7 @@ class MainListCatalogProducts extends React.Component {
             }
         })
         this.props.productsThisStoreFunction([]);
-        showHiddenCatalogData(this.props.selectedStore._id, topCatalog , "storeAdmin", !activeToggle[topCatalog], this.addProduct);
+        showHiddenCatalogData(this.props.selectedStore._id, topCatalog , "storeAdmin", activeToggle[topCatalog], this.addProduct);
         if (!this.state.activeToggle[topCatalog]) {
             const selectedStore = {...this.props.selectedStore, storeAdmin: !this.state.activeToggle[topCatalog]}
             this.props.selectedStoreFunction(selectedStore);
@@ -154,11 +150,7 @@ class MainListCatalogProducts extends React.Component {
     hiddenProductsToSubCatalog(e, subCatalog) {
         e.preventDefault();
         e.stopPropagation();
-        let activeSubToggle = this.state.activeSubToggle;
-        activeSubToggle = {
-            ...activeSubToggle,
-            [subCatalog]: !this.state.activeSubToggle[subCatalog],
-        }
+        const activeSubToggle = this.state.activeSubToggle;
         this.setState({
             ...this.state,
             activeSubToggle: {
@@ -167,7 +159,7 @@ class MainListCatalogProducts extends React.Component {
             }
         })
         this.props.productsThisStoreFunction([]);
-        showHiddenSubCatalogData(this.props.selectedStore._id, subCatalog , "storeAdmin", !activeSubToggle[subCatalog], this.addProduct);
+        showHiddenSubCatalogData(this.props.selectedStore._id, subCatalog , "storeAdmin", activeSubToggle[subCatalog], this.addProduct);
         if (!this.state.activeSubToggle[subCatalog]) {
             const selectedStore = {...this.props.selectedStore, storeAdmin: !this.state.activeSubToggle[subCatalog]}
             this.props.selectedStoreFunction(selectedStore);
