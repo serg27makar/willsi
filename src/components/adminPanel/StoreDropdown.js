@@ -21,6 +21,7 @@ class StoreDropdown extends React.Component {
         this.closeOpen = this.closeOpen.bind(this);
         this.hiddenAllProducts = this.hiddenAllProducts.bind(this);
         this.clearData = this.clearData.bind(this);
+        this.storeData = this.storeData.bind(this);
     }
 
     componentDidMount() {}
@@ -48,7 +49,8 @@ class StoreDropdown extends React.Component {
                 activeToggle: this.props.selectedStore.storeAdmin
             })
         }
-        if (prevState.activeToggle !== this.state.activeToggle) {
+        if ((prevState.activeToggle !== this.state.activeToggle) ||
+            (prevProps.toggleHiddenUpdate !== this.props.toggleHiddenUpdate)) {
             getStoreData(this.storeData);
         }
     }
@@ -90,6 +92,18 @@ class StoreDropdown extends React.Component {
     storeData(res) {
         if (res && res.length > 0) {
             this.props.setStoreArrFunction(res);
+            if (!isEmptyObject(this.props.selectedStore)) {
+                res.map((item) => {
+                    if (item._id === this.props.selectedStore._id) {
+                        const selectedStore = {...this.props.selectedStore, storeAdmin: item.storeAdmin}
+                        this.props.selectedStoreFunction(selectedStore);
+                        this.setState({
+                            ...this.state,
+                            activeToggle: item.storeAdmin,
+                        })
+                    }
+                })
+            }
         }
     }
 
@@ -138,6 +152,7 @@ function MapStateToProps(state) {
         addStore: state.storeReducer.addStore,
         selectedStore: state.storeReducer.selectedStore,
         clearOpenCatalogs: state.utiliteReducer.clearOpenCatalogs,
+        toggleHiddenUpdate: state.utiliteReducer.toggleHiddenUpdate,
     }
 }
 const mapDispatchToProps = dispatch => {

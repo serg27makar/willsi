@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
-import {actionSelectedProductToEdit} from "../action";
+import {actionSelectedProductToEdit, actionToggleHiddenUpdate} from "../action";
 import AddButton from "./adminPanel/AddButton";
 import ToggleButton from "./shared/ToggleButton";
 import {showHiddenDataSet, showHiddenItemData} from "../js/dataUpdateFunctions";
@@ -23,6 +23,7 @@ class ProductEditor extends React.Component {
         this.dataOnChange = this.dataOnChange.bind(this);
         this.searchItem = this.searchItem.bind(this);
         this.storeAdminToggle = this.storeAdminToggle.bind(this);
+        this.updateAllDate = this.updateAllDate.bind(this);
     }
 
     componentDidMount() {
@@ -87,10 +88,16 @@ class ProductEditor extends React.Component {
         })
     }
 
+    updateAllDate() {
+        setTimeout(() => {
+            this.props.toggleHiddenUpdateFunction(!this.props.toggleHiddenUpdate);
+        }, 300)
+    }
+
     storeAdminToggle(e, item) {
         e.preventDefault();
         e.stopPropagation();
-        showHiddenItemData(item.ProductStoreID, item._id, "storeAdmin", !item.storeAdmin);
+        showHiddenItemData(item.ProductStoreID, item._id, "storeAdmin", !item.storeAdmin, this.updateAllDate);
         let list = this.state.list;
         this.state.list.map((product, index) => {
             if (item._id === product._id) {
@@ -114,13 +121,13 @@ class ProductEditor extends React.Component {
             allStoreAdminArr.push(item);
             return allStoreAdminArr;
         })
+        showHiddenDataSet(this.state.list[0].ProductStoreID, allStoreAdminArr, "storeAdmin", this.state.allStoreAdminToggle, this.updateAllDate);
         this.setState({
             ...this.state,
             list: allStoreAdminArr,
             allStoreAdminToggle: !this.state.allStoreAdminToggle,
             listActive: !this.state.listActive,
         })
-        showHiddenDataSet(this.state.list[0].ProductStoreID, allStoreAdminArr, "storeAdmin", !this.state.allStoreAdminToggle)
     }
 
     renderListEditor(item, index) {
@@ -188,12 +195,17 @@ class ProductEditor extends React.Component {
 }
 
 function MapStateToProps(state) {
-    return {}
+    return {
+        toggleHiddenUpdate: state.utiliteReducer.toggleHiddenUpdate,
+    }
 }
 const mapDispatchToProps = dispatch => {
     return {
         selectedProductToEditFunction: (SelectedProductToEdit) => {
             dispatch(actionSelectedProductToEdit(SelectedProductToEdit))
+        },
+        toggleHiddenUpdateFunction: (toggleHiddenUpdate) => {
+            dispatch(actionToggleHiddenUpdate(toggleHiddenUpdate))
         },
     }
 };

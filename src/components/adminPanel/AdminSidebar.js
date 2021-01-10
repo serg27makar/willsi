@@ -21,13 +21,14 @@ class AdminSidebar extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.selectedStore !== this.props.selectedStore && !isEmptyObject(this.props.selectedStore)) {
             getProductDataToId(this.props.selectedStore._id, this.productsData);
-            this.props.shopEditParamsFunction([]);
+            if (prevProps.selectedStore._id !== this.props.selectedStore._id) {
+                this.props.shopEditParamsFunction([]);
+            }
             this.clearData();
 
         }
         if (prevProps.SelectedProductToEdit !== this.props.SelectedProductToEdit && !isEmptyObject(this.props.SelectedProductToEdit)) {
             getProductDataToId(this.props.selectedStore._id, this.productsData);
-            this.props.shopEditParamsFunction([]);
         }
         if (prevState.refresh !== this.state.refresh) {
             getProductDataToId(this.props.selectedStore._id, this.productsData);

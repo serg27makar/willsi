@@ -79,7 +79,7 @@ export function showHiddenSubCatalogData(ProductStoreID, subCatalog , adminPermi
     getProductDataToId(ProductStoreID, productsData);
 }
 
-export function showHiddenDataSet(ProductStoreID, dataArr ,adminPermission, value = false) {
+export function showHiddenDataSet(ProductStoreID, dataArr ,adminPermission, value = false, callBack) {
     let i = 0
     dataArr.map(item => {
     i++;
@@ -95,12 +95,14 @@ export function showHiddenDataSet(ProductStoreID, dataArr ,adminPermission, valu
                 StoreID: ProductStoreID,
                 setData: {[adminPermission]: !value}
             }
-            postSetStoreData(storeData, updateResult);
+            postSetStoreData(storeData, callBack);
+        } else {
+            callBack();
         }
     }
 }
 
-export function showHiddenItemData(ProductStoreID, productID , adminPermission, value) {
+export function showHiddenItemData(ProductStoreID, productID , adminPermission, value, callBack) {
     const productData = {
         ProductID: productID,
         setData: {[adminPermission]: value}
@@ -111,6 +113,8 @@ export function showHiddenItemData(ProductStoreID, productID , adminPermission, 
             StoreID: ProductStoreID,
             setData: {[adminPermission]: !value}
         }
-        postSetStoreData(storeData, updateResult);
+        postSetStoreData(storeData, callBack);
+    } else {
+        callBack();
     }
 }
