@@ -106,9 +106,7 @@ class App extends React.Component {
         }
     };
 
-    closeModal(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    closeModal() {
         if (this.props.modal) {
             this.props.openModalFunction("");
         }
