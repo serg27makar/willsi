@@ -21,7 +21,6 @@ class UserDescription extends React.Component {
             isModify: false,
         };
         this.isActive = this.isActive.bind(this);
-        this.btnActive = this.btnActive.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
         this.nameChange = this.nameChange.bind(this);
         this.addedParams = this.addedParams.bind(this);
@@ -126,15 +125,6 @@ class UserDescription extends React.Component {
         postUpdate(user, updateResult);
     };
 
-    btnActive(index) {
-        this.setState({
-            ...this.state,
-            activeBtn: index,
-            Gender: whomParams[index].data,
-            isModify: true,
-        });
-    };
-
     onChange = (e, item) => {
         this.setState({
             ...this.state,
@@ -144,17 +134,6 @@ class UserDescription extends React.Component {
                 [item.title]: e.target.value <= 0 ? 0 : e.target.value >= 500 ? 500 : e.target.value,
             },
         });
-    };
-
-    renderBtn = (item, index) => {
-        return (
-            <button key={index}
-                    className={"box-tags__item " + (this.state.activeBtn === index ? "tags-active" : "")}
-                    onClick={() => {this.btnActive(index)}}
-            >
-                <span className="text-18 medium">{item.text}</span>
-            </button>
-        )
     };
 
     addedParams() {
@@ -184,11 +163,6 @@ class UserDescription extends React.Component {
             <div>
                 <DoubleButton placeholderData={placeholderData[1]} item={this.state.UserName}
                               changeValue={this.nameChange} toggle={this.isActive}/>
-                <div className="box-tags">
-                    {whomParams && whomParams.map((item, index) => {
-                        return this.renderBtn(item, index)
-                    })}
-                </div>
                 <div className="tags-list-envelope">
                     {this.props.UsersParameters[this.props.selected].Parameters &&
                     this.props.UsersParameters[this.props.selected].Parameters.map((item, index) => {
