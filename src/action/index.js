@@ -410,3 +410,10 @@ export const actionClearOpenCatalogs = (clearOpenCatalogs) => {
         clearOpenCatalogs: clearOpenCatalogs
     }
 };
+
+export const actionToggleHiddenUpdate = (toggleHiddenUpdate) => {
+    return {
+        type: 'toggle_Hidden_Update',
+        toggleHiddenUpdate: toggleHiddenUpdate
+    }
+};

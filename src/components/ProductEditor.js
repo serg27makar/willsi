@@ -4,7 +4,7 @@ import ru from "../access/lang/LangConstants";
 import {actionSelectedProductToEdit} from "../action";
 import AddButton from "./adminPanel/AddButton";
 import ToggleButton from "./shared/ToggleButton";
-import {showHiddenItemData} from "../js/dataUpdateFunctions";
+import {showHiddenDataSet, showHiddenItemData} from "../js/dataUpdateFunctions";
 
 const searchItemName = [
     "Manufacturer", "ProdName", "ProductCode"
@@ -17,6 +17,8 @@ class ProductEditor extends React.Component {
             ProdName: "",
             ProductCode: "",
             list: [],
+            allStoreAdminToggle: false,
+            listActive: false,
         };
         this.dataOnChange = this.dataOnChange.bind(this);
         this.searchItem = this.searchItem.bind(this);
@@ -29,12 +31,28 @@ class ProductEditor extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.list !== this.props.list) this.fillList();
+        if (prevState.listActive !== this.state.listActive) this.fillAllStoreAdmin();
     }
 
     fillList() {
         this.setState({
             ...this.state,
             list: this.props.list,
+            listActive: !this.state.listActive,
+        })
+    }
+
+    fillAllStoreAdmin() {
+        let allStoreAdminToggle = false;
+        this.state.list.map((item) => {
+            if (!item.storeAdmin) {
+                allStoreAdminToggle = true;
+            }
+            return allStoreAdminToggle;
+        })
+        this.setState({
+            ...this.state,
+            allStoreAdminToggle,
         })
     }
 
@@ -80,8 +98,29 @@ class ProductEditor extends React.Component {
             }
         })
         this.setState({
+            ...this.state,
             list,
+            listActive: !this.state.listActive,
         })
+    }
+
+    storeAdminAllToggle(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        let allStoreAdminArr = [];
+        this.state.list.map((item) => {
+            item = {...item, storeAdmin: this.state.allStoreAdminToggle}
+            allStoreAdminArr.push(item);
+            return allStoreAdminArr;
+        })
+        this.setState({
+            ...this.state,
+            list: allStoreAdminArr,
+            allStoreAdminToggle: !this.state.allStoreAdminToggle,
+            listActive: !this.state.listActive,
+        })
+        showHiddenDataSet(this.state.list[0].ProductStoreID, allStoreAdminArr, "storeAdmin", !this.state.allStoreAdminToggle)
     }
 
     renderListEditor(item, index) {
@@ -116,7 +155,9 @@ class ProductEditor extends React.Component {
     renderSearchBlock() {
         return (
             <div className="stroke-descriptor-wrapper">
-                <div className="stroke-descriptor-number text-14"/>
+                <div className="stroke-descriptor-toggle-btn">
+                    <ToggleButton active={this.state.allStoreAdminToggle} onClick={(e) => {this.storeAdminAllToggle(e)}}/>
+                </div>
                 {searchItemName.map((item, index) => {
                     return this.renderSearchInput(item, index);
                 })}

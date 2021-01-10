@@ -6,6 +6,7 @@ const initialState = {
     allCountries: [],
     thingToLink: false,
     clearOpenCatalogs: false,
+    toggleHiddenUpdate: false,
 };
 
 export default function utiliteReducer(state = initialState, action) {
@@ -45,6 +46,11 @@ export default function utiliteReducer(state = initialState, action) {
             return {
                 ...state,
                 clearOpenCatalogs: action.clearOpenCatalogs
+            };
+        case "toggle_Hidden_Update":
+            return {
+                ...state,
+                toggleHiddenUpdate: action.toggleHiddenUpdate
             };
 
         default:
