@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
 import {actionSelectedProductToEdit} from "../action";
 import AddButton from "./adminPanel/AddButton";
+import ToggleButton from "./shared/ToggleButton";
+import {showHiddenItemData} from "../js/dataUpdateFunctions";
 
 const searchItemName = [
     "Manufacturer", "ProdName", "ProductCode"
@@ -18,6 +20,7 @@ class ProductEditor extends React.Component {
         };
         this.dataOnChange = this.dataOnChange.bind(this);
         this.searchItem = this.searchItem.bind(this);
+        this.storeAdminToggle = this.storeAdminToggle.bind(this);
     }
 
     componentDidMount() {
@@ -66,9 +69,27 @@ class ProductEditor extends React.Component {
         })
     }
 
+    storeAdminToggle(e, item) {
+        e.preventDefault();
+        e.stopPropagation();
+        showHiddenItemData(item.ProductStoreID, item._id, "storeAdmin", !item.storeAdmin);
+        let list = this.state.list;
+        this.state.list.map((product, index) => {
+            if (item._id === product._id) {
+                list[index].storeAdmin = !item.storeAdmin
+            }
+        })
+        this.setState({
+            list,
+        })
+    }
+
     renderListEditor(item, index) {
         return (
             <div className="stroke-descriptor-wrapper" key={index} onClick={() => {this.selectedProductToEdit(item)}}>
+                <div className="stroke-descriptor-toggle-btn">
+                    <ToggleButton active={!item.storeAdmin} onClick={(e) => {this.storeAdminToggle(e, item)}}/>
+                </div>
                 <div className="stroke-descriptor-number text-14">{index + 1}</div>
                 <div className="stroke-descriptor-manufacturer text-14">{item.Manufacturer}</div>
                 <div className="stroke-descriptor-name text-14">{item.ProdName}</div>

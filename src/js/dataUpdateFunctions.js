@@ -78,3 +78,18 @@ export function showHiddenSubCatalogData(ProductStoreID, subCatalog , adminPermi
     }
     getProductDataToId(ProductStoreID, productsData);
 }
+
+export function showHiddenItemData(ProductStoreID, productID , adminPermission, value) {
+    const productData = {
+        ProductID: productID,
+        setData: {[adminPermission]: value}
+    }
+    postSetProductData(productData, updateResult);
+    if (!value) {
+        const storeData = {
+            StoreID: ProductStoreID,
+            setData: {[adminPermission]: !value}
+        }
+        postSetStoreData(storeData, updateResult);
+    }
+}
