@@ -38,9 +38,15 @@ class SearchBox extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.UsersParameters !== this.props.UsersParameters && this.props.UsersParameters &&
-            this.props.UsersParameters.length && this.props.UsersParameters[0].Parameters.length) {
-            this.updateStartData();
+        if (prevProps.UsersParameters !== this.props.UsersParameters) {
+            if (this.props.UsersParameters && this.props.UsersParameters.length && this.props.UsersParameters[0].Parameters.length) {
+                this.updateStartData();
+            } else {
+                this.setState({
+                    ...this.state,
+                    size: {}
+                })
+            }
         }
     }
     updateStartData() {
@@ -148,7 +154,7 @@ class SearchBox extends React.Component {
     renderInputDataParams() {
         if (!this.state.renderInputDataParams) return null;
         return (
-            <InputDataParams nextParams={this.registerUser} changeGender={this.genderSwitcher} searchBlock={true}/>
+            <InputDataParams nextParams={this.registerUser} changeGender={this.genderSwitcher} searchBlock={true} notDog={true}/>
         )
     }
 

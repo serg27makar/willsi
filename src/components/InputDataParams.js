@@ -75,6 +75,9 @@ class InputDataParams extends React.Component {
     }
 
     renderBtn = (item, index) => {
+        if (this.props.notDog && whomParams.length - 1 === index) {
+            return;
+        }
         return (
             <button key={index}
                     className={"box-tags__item " + (this.state.activeBtn === index ? "tags-active" : "")}
