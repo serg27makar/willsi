@@ -335,7 +335,7 @@ export const dataInputRegistrationModal = [
         type: "password",
         name: "password",
         placeholder: "Пароль",
-        icon: "static/img/svg-sprites/symbol/sprite.svg#user",
+        icon: "static/img/svg-sprites/symbol/sprite.svg#key",
     },
     {
         type: "password",
@@ -367,7 +367,7 @@ export const dataInputRegistrationStoreAdminModal = [
         type: "password",
         name: "password",
         placeholder: "Пароль",
-        icon: "static/img/svg-sprites/symbol/sprite.svg#user",
+        icon: "static/img/svg-sprites/symbol/sprite.svg#key",
     },
     {
         type: "password",
@@ -387,7 +387,7 @@ export const dataInputEnterModal = [
         type: "password",
         name: "password",
         placeholder: "Пароль",
-        icon: "static/img/svg-sprites/symbol/sprite.svg#user",
+        icon: "static/img/svg-sprites/symbol/sprite.svg#key",
     },
 ];
 export const placeholderData = [
@@ -452,28 +452,6 @@ export const whomParams = [
     {
         data: "dog",
         text: "Собака",
-    },
-];
-export const paramsListWoman = [
-    {
-        title: "chest",
-        data: "Грудь",
-    },
-    {
-        title: "growth",
-        data: "Рост",
-    },
-    {
-        title: "shoulders",
-        data: "Плечи",
-    },
-    {
-        title: "waist",
-        data: "Талия",
-    },
-    {
-        title: "hips",
-        data: "Бедра",
     },
 ];
 

@@ -28,6 +28,15 @@ class RegistrationModal extends React.Component {
         };
     }
 
+    componentDidMount() {
+        if (this.props.UsersParameters && this.props.UsersParameters.length && this.props.UsersParameters[0].UserName) {
+            this.setState({
+                ...this.state,
+                name: this.props.UsersParameters[0].UserName,
+            })
+        }
+    }
+
     changeModal = (modal) => {
         this.props.openModalFunction(modal);
     };
@@ -168,6 +177,7 @@ function MapStateToProps(state) {
     return {
         modal: state.modalReducer.modal,
         UserID: state.userReducer.UserID,
+        UsersParameters: state.userReducer.UsersParameters,
     }
 }
 const mapDispatchToProps = dispatch => {

@@ -39,11 +39,14 @@ class RegistrationStoreAdministrator extends React.Component {
         });
         const dataInputSet = [];
         dataInputRegistrationStoreAdminModal.map((item) => {
-            if ((this.props.UserName && this.props.Email) && (item.name === "name" || item.name === "email")) {
+            if ((this.props.UserName && this.props.Email) &&
+                (item.name === "name" || item.name === "email" ||
+                    item.name === "password" || item.name === "confirmPassword" )) {
             //    do nothing
             } else {
                 dataInputSet.push(item)
             }
+            return dataInputSet;
         })
         this.setState({...this.state, dataInputSet});
     }

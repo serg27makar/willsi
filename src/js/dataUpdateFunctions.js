@@ -10,7 +10,8 @@ export function showHiddenAllStoreData(ProductStoreID, adminPermission, value, c
                 ProductID: item._id,
                 setData: {[adminPermission]: value}
             }
-            postSetProductData(productData, updateResult)
+            postSetProductData(productData, updateResult);
+            return productData;
         })
         if (i === data.length) {
             const storeData = {
@@ -35,6 +36,7 @@ export function showHiddenCatalogData(ProductStoreID, topCatalog , adminPermissi
                 }
                 postSetProductData(productData, updateResult);
             }
+            return i;
         })
         if (i === data.length) {
             if (!value) {
@@ -63,6 +65,7 @@ export function showHiddenSubCatalogData(ProductStoreID, subCatalog , adminPermi
                 }
                 postSetProductData(productData, updateResult);
             }
+            return i;
         })
         if (i === data.length) {
             if (!value) {
@@ -88,6 +91,7 @@ export function showHiddenDataSet(ProductStoreID, dataArr ,adminPermission, valu
             setData: {[adminPermission]: value}
         }
         postSetProductData(productData, updateResult);
+        return productData;
     })
     if (i === dataArr.length) {
         if (!value) {

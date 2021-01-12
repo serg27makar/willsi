@@ -102,6 +102,7 @@ class StoreDropdown extends React.Component {
                             activeToggle: item.storeAdmin,
                         })
                     }
+                    return res;
                 })
             }
         }

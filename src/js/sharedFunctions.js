@@ -78,6 +78,7 @@ export function isValid(obj, arr) {
         if (!obj[item] && isValidOutput) {
             isValidOutput = false;
         }
+        return isValidOutput;
     })
     return isValidOutput;
 }

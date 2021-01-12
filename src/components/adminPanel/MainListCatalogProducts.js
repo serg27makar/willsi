@@ -84,6 +84,7 @@ class MainListCatalogProducts extends React.Component {
                     [item.subCatalog]: !item.storeAdmin,
                 }
             }
+            return activeToggle;
         })
         this.setState({...this.state, activeToggle, activeSubToggle})
     }

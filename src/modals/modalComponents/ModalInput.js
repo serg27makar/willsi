@@ -42,6 +42,7 @@ class ModalInput extends React.Component {
                        placeholder={this.props.dataInput.placeholder}
                        value={this.props.dataValue[this.props.dataInput.name] || ""}
                        onChange={this.props.dataOnChange}
+                       autoComplete={"off"}
                 />
                 <div onClick={this.changeInputType}>
                     <svg className="icon">

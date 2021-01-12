@@ -2,7 +2,7 @@ import React from 'react';
 import {actionHeaderUser, actionOpenModal, actionSpinnerText, actionUsersParameters} from "../action";
 import {connect} from "react-redux";
 import DoubleButton from "./adminPanel/DoubleButton";
-import {placeholderData, whomParams} from "../access/temporaryConstants";
+import {placeholderData} from "../access/temporaryConstants";
 import {postUpdate} from "../utilite/axiosConnect";
 import {activeBtn, updateResult} from "../js/sharedFunctions";
 import ru from "../access/lang/LangConstants";

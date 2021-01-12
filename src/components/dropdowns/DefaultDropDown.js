@@ -1,7 +1,6 @@
 import React from "react";
-import {actionCloseAllCatalogs, actionSearchItemColor, actionSearchItemParams} from "../../action";
+import {actionCloseAllCatalogs} from "../../action";
 import {connect} from "react-redux";
-import {isEmptyObject} from "../../js/sharedFunctions";
 
 class DefaultDropDown extends React.Component {
     constructor(props) {

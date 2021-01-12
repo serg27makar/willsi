@@ -73,6 +73,7 @@ class ProductEditor extends React.Component {
             if (item[name].toUpperCase().indexOf(value.toUpperCase()) !== -1) {
                 list.push(item);
             }
+            return list;
         })
         let clearData = this.state;
         clearData = {
@@ -103,6 +104,7 @@ class ProductEditor extends React.Component {
             if (item._id === product._id) {
                 list[index].storeAdmin = !item.storeAdmin
             }
+            return list;
         })
         this.setState({
             ...this.state,
