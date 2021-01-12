@@ -27,12 +27,6 @@ const ru = {
 
     whatClothesWillSuitYou: "Хочешь посмотреть, какая одежда из нашей примерочной подойдет идеально тебе?",
 
-    placeholderGrowth: "Рост (см)",
-    placeholderShoulders: "Плечи (см)",
-    placeholderChest: "Грудь (см)",
-    placeholderWaist: "Талия (см)",
-    placeholderHips: "Бедра (см)",
-
     placeholderExample: "90",
 
     pickUpClothes: "Подобрать одежду",
@@ -48,7 +42,7 @@ const ru = {
     headCircumference: "Обхват головы - ",
     palmGirth: "Обхват ладони - ",
     fingerLength: "Длина пальцев - ",
-    waistAtNavelLevel: "Обхват талии - ",
+    armLength: "Длинна руки - ",
     insideLegLength: "Длина ноги - ",
     footLength: "Длина стопы - ",
     wideFootGirth: "Обхват стопы - ",
@@ -59,9 +53,9 @@ const ru = {
     growthDog: "Длина спины - ",
     waistDog: "Объем талии - ",
     hindFeetLength: "Длина задних лап - ",
-    legLength: "Длина ноги - ",
-    legWidth: "Ширина ноги - ",
-    legCircumference: "Обхват ноги - ",
+    legLength: "Длина лапы - ",
+    legWidth: "Ширина лапы - ",
+    legCircumference: "Обхват лапы - ",
 
     sm: " см",
 
@@ -298,7 +292,10 @@ const ru = {
 
     wow: "Ух Ты!",
     youFirstHuman: "Вы первый человек, который дал нам ссылку на этот сайт, скоро мы сним подружимся",
-    seeMoreThings: "Посмотрите еще вещи которые вам идеально подходят"
+    seeMoreThings: "Посмотрите еще вещи которые вам идеально подходят",
+
+    oops: "упс",
+    weHaveNothingToShow: "У нас пока нечего вам показать"
 };
 
 export default ru;

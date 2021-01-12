@@ -265,6 +265,7 @@ class Catalog extends React.Component {
                 ...this.state,
                 productArr: [],
             });
+            this.props.openModalFunction("nothingToShowModal");
         }
     }
 
