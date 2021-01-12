@@ -23,7 +23,6 @@ class RegistrationStoreAdministrator extends React.Component {
             phone: "",
             password: "",
             confirmPassword: "",
-            changedData: false,
             dataInputSet: [],
         };
         this.cancelChange = this.cancelChange.bind(this);
@@ -87,16 +86,11 @@ class RegistrationStoreAdministrator extends React.Component {
         const {name, email, password, confirmPassword, phone} = this.state;
         let user = this.userData();
         if (this.props.UserID) {
-            if ((this.props.Email !== this.state.email) || (this.props.UserName !== this.state.name)) {
-                this.setState({
-                    ...this.state,
-                    changedData: true,
-                })
-            } else if (name.length >= 3 && email && validateEmail(email) && phone) {
+            if (name.length >= 3 && email && validateEmail(email) && phone) {
                 user = {...user, UserID: this.props.UserID};
                 postUpdate(user, this.updateResult);
             } else {
-                this.openAlert();
+                this.openAlert(true);
             }
         } else {
             if (name.length >= 3 && email && validateEmail(email) && phone &&
@@ -104,7 +98,7 @@ class RegistrationStoreAdministrator extends React.Component {
                 user = {...user, Password: password};
                 postRegister(user, this.result);
             } else {
-                this.openAlert();
+                this.openAlert(true);
             }
         }
     };
@@ -116,11 +110,7 @@ class RegistrationStoreAdministrator extends React.Component {
             postUpdate(user, this.updateResult);
             this.closeAlert();
         } else {
-            this.setState({
-                ...this.state,
-                changedData: false,
-                alertMod: true,
-            })
+            this.openAlert(true);
         }
     }
 
@@ -129,7 +119,6 @@ class RegistrationStoreAdministrator extends React.Component {
             ...this.state,
             name: this.props.UserName,
             email: this.props.Email,
-            changedData: false,
         });
     }
 
@@ -145,18 +134,10 @@ class RegistrationStoreAdministrator extends React.Component {
         return user;
     }
 
-    openAlert() {
+    openAlert(alertMod= false) {
         this.setState({
             ...this.state,
-            alertMod: true,
-        })
-    }
-
-    closeAlert() {
-        this.setState({
-            ...this.state,
-            alertMod: false,
-            changedData: false,
+            alertMod,
         })
     }
 
@@ -167,25 +148,7 @@ class RegistrationStoreAdministrator extends React.Component {
                     <div className="modal-envelope__body">
                         <p className="modal-envelope__title title-36 bold">{ru.enterAnyDetails}</p>
                         <div className="modal-form__button-enter">
-                            <ButtonMain btnClass={"button-enter button-white text-18 uppercase medium"} text={ru.understandably} onClick={this.closeAlert}/>
-                        </div>
-                    </div>
-                </div>
-            );
-        } else {
-            return null;
-        }
-    }
-
-    renderChangeAlert() {
-        if (this.state.changedData) {
-            return(
-                <div className="modal-envelope" id="modal-changed">
-                    <div className="modal-envelope__body">
-                        <p className="modal-envelope__title title-36 bold">{ru.ChangeEmailOrName}</p>
-                        <div className="modal-form__button-enter">
-                            <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium"} text={ru.Save} onClick={this.saveChange}/>
-                            <ButtonMain btnClass={"button-enter button-white text-18 uppercase medium"} text={ru.Cancel} onClick={this.cancelChange}/>
+                            <ButtonMain btnClass={"button-enter button-white text-18 uppercase medium"} text={ru.understandably} onClick={this.openAlert}/>
                         </div>
                     </div>
                 </div>
@@ -221,7 +184,6 @@ class RegistrationStoreAdministrator extends React.Component {
                     </div>
                 </div>
                 {this.renderAlert()}
-                {this.renderChangeAlert()}
             </div>
         );
     }
