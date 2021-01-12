@@ -26,7 +26,6 @@ class RegistrationStoreAdministrator extends React.Component {
             dataInputSet: [],
         };
         this.cancelChange = this.cancelChange.bind(this);
-        this.closeAlert = this.closeAlert.bind(this);
         this.saveChange = this.saveChange.bind(this);
     }
 
