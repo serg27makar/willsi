@@ -237,6 +237,19 @@ export const subCatalogListGeneral = [
     "subCatalogListWomenGeneral",
     "subCatalogListBoyGeneral",
     "subCatalogListGirlGeneral",
+    "subCatalogListDogGeneral",
+];
+export const subCatalogListDogPants = [
+    "subCatalogListDogPants",
+];
+export const subCatalogListDogShirts = [
+    "subCatalogListDogShirts",
+];
+export const subCatalogListDogOuterwear = [
+    "subCatalogListDogOveralls",
+];
+export const subCatalogListDogShoes = [
+    "subCatalogListDogCap",
 ];
 
 export const dropdownListArr = [

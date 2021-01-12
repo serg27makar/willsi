@@ -12,40 +12,15 @@ import {
 import {connect} from "react-redux";
 import {postRegister, postUpdate} from "../utilite/axiosConnect";
 import InputDataParams from "./InputDataParams";
-import {updateResult} from "../js/sharedFunctions";
+import {isEmptyObject, isValid, updateResult} from "../js/sharedFunctions";
+import {sizeListTshirts} from "../access/recalculateConstants";
 
-const inputArr = [
-    {
-        name: "growth",
-        placeholder: ru.placeholderGrowth,
-    },
-    {
-        name: "shoulder",
-        placeholder: ru.placeholderShoulders,
-    },
-    {
-        name: "chest",
-        placeholder: ru.placeholderChest,
-    },
-    {
-        name: "waist",
-        placeholder: ru.placeholderWaist,
-    },
-    {
-        name: "hips",
-        placeholder: ru.placeholderHips,
-    },
-];
 class SearchBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             redirect: false,
-            growth: 0,
-            shoulder: 0,
-            chest: 0,
-            waist: 0,
-            hips: 0,
+            size: {},
             update: false,
             renderInputDataParams: false,
         };
@@ -70,28 +45,16 @@ class SearchBox extends React.Component {
     }
     updateStartData() {
         let params = this.props.UsersParameters[0].Parameters;
-        let growth = "";
-        let shoulder = "";
-        let chest = "";
-        let waist = "";
-        let hips = "";
-        params.map((item, index) => {
-            growth = item.title === "growth" ? item.size : growth;
-            shoulder = item.title === "shoulder" ? item.size : shoulder;
-            chest = item.title === "chest" ? item.size : chest;
-            waist = item.title === "waist" ? item.size : waist;
-            hips = item.title === "hips" ? item.size : hips;
-            return index;
+        let size = {}
+        params.map((item) => {
+            size = {...size, [item.title]:item.size}
+            return size;
         });
 
-        if (growth && shoulder && chest && waist && hips) {
+        if (!isEmptyObject(size)) {
             this.setState({
                 ...this.state,
-                growth,
-                shoulder,
-                chest,
-                waist,
-                hips,
+                size,
             })
         }
     }
@@ -99,22 +62,24 @@ class SearchBox extends React.Component {
     onChange(e) {
         e.preventDefault();
         const name = e.target.name;
-        const value = e.target.value;
+        const value = Number(e.target.value);
         const data = value <= 0 ? 0 : value > 500 ? 500 : value;
         this.setState({
             ...this.state,
-            [name]: data,
+            size: {
+                ...this.state.size,
+                [name]: data,
+            }
         });
     }
 
     searchClothes() {
-        const {growth, shoulder, chest, waist, hips} = this.state;
         if (this.props.UserID && this.props.UsersParameters && this.props.UsersParameters.length > 0) {
             this.setState({
                 redirect: true,
             });
         } else {
-            if (growth && shoulder && chest && waist && hips) {
+            if (isValid(this.state.size, sizeListTshirts)) {
                 this.proceedSearch(true);
             } else {
                 this.proceedSearch(false);
@@ -140,10 +105,10 @@ class SearchBox extends React.Component {
 
     registerUser(name, gender) {
         const Parameters = [];
-        inputArr.map((item, index) => {
+        sizeListTshirts.map((item, index) => {
             const obj = {
-                title: item.name,
-                size: this.state[item.name]
+                title: item,
+                size: this.state.size[item]
             };
             Parameters.push(obj);
             return index;
@@ -190,8 +155,8 @@ class SearchBox extends React.Component {
     renderInput(item, index) {
         return (
             <input className="form-env__input text-18" type="number"
-                   name={item.name} placeholder={item.placeholder}
-                   value={this.state[item.name] || ""}
+                   name={item} placeholder={ru[item]}
+                   value={this.state.size[item] || ""}
                    onChange={this.onChange} key={index}/>
         )
     }
@@ -208,7 +173,7 @@ class SearchBox extends React.Component {
                 <div className="search-box__form-env">
                     <form className="form-env">
                         <div className="form-env__wrapper">
-                            {inputArr.map((item, index) => {
+                            {sizeListTshirts.map((item, index) => {
                                 return this.renderInput(item, index);
                             })}
                         </div>

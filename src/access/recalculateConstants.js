@@ -5,8 +5,8 @@ export const recalculateParamsWoman = [
         title: "Грудь",
         text: "Обхват груди в наиболее выступающих точках. Лента проходит по нижней части лопаток",
         inputName: "chest",
-        sizeMin: 70,
-        sizeMax: 140,
+        sizeMin: 60,
+        sizeMax: 160,
     },
     {
         imgUrl: "static/img/dataImg/women/bg-20.png",
@@ -14,8 +14,8 @@ export const recalculateParamsWoman = [
         title: "Талия",
         text: "Обхват талии в самом узком месте. Лента паралельно полу",
         inputName: "waist",
-        sizeMin: 50,
-        sizeMax: 130,
+        sizeMin: 40,
+        sizeMax: 150,
     },
     {
         imgUrl: "static/img/dataImg/women/bg-55.png",
@@ -24,7 +24,7 @@ export const recalculateParamsWoman = [
         text: "Обхват бедра в наиболее выступающих точках. Ноги вместе",
         inputName: "hips",
         sizeMin: 70,
-        sizeMax: 140,
+        sizeMax: 170,
     },
     {
         imgUrl: "static/img/dataImg/women/bg-5.png",
@@ -32,7 +32,7 @@ export const recalculateParamsWoman = [
         title: "Обхват руки",
         text: "Обхват руки в самом широком месте предплечья",
         inputName: "armGirth",
-        sizeMin: 18,
+        sizeMin: 15,
         sizeMax: 50,
     },
     {
@@ -41,8 +41,8 @@ export const recalculateParamsWoman = [
         title: "Рост",
         text: "Укажите свой рост",
         inputName: "growth",
-        sizeMin: 150,
-        sizeMax: 200,
+        sizeMin: 140,
+        sizeMax: 210,
     },
     {
         imgUrl: "static/img/dataImg/women/bg-32.png",
@@ -69,7 +69,7 @@ export const recalculateParamsWoman = [
         text: "Измеряйте в самом широком месте ладони (без большого пальца)",
         inputName: "palmGirth",
         sizeMin: 12,
-        sizeMax: 28,
+        sizeMax: 29,
     },
     {
         imgUrl: "static/img/dataImg/women/bg-1.png",
@@ -77,17 +77,17 @@ export const recalculateParamsWoman = [
         title: "Длина пальцев",
         text: "Измеряйте от основания большого пальца до кончика среднего пальца",
         inputName: "fingerLength",
-        sizeMin: 10,
-        sizeMax: 18,
+        sizeMin: 9,
+        sizeMax: 19,
     },
     {
         imgUrl: "static/img/dataImg/women/bg-52.png",
         secondImgUrl: "static/img/dataImg/women/002-body4.png",
-        title: "Обхват талии на уровне пупка",
-        text: "Оберните ленту горизонтально на уровне пупка",
-        inputName: "waistAtNavelLevel",
+        title: "Длинна руки",
+        text: "Измеряйте от косточки плеча до косточки кисти",
+        inputName: "armLength",
         sizeMin: 55,
-        sizeMax: 140,
+        sizeMax: 70,
     },
     {
         imgUrl: "static/img/dataImg/women/bg-48.png",
@@ -96,7 +96,7 @@ export const recalculateParamsWoman = [
         text: "Нащупайте крайнюю точку плечевой косточки. Набросьте ленту на плечи и измерьте расстояние между плечевыми точками",
         inputName: "shoulder",
         sizeMin: 33,
-        sizeMax: 48,
+        sizeMax: 50,
     },
     {
         imgUrl: "static/img/dataImg/women/bg-63.png",
@@ -113,8 +113,8 @@ export const recalculateParamsWoman = [
         title: "Длина стопы",
         text: "Оберните ленту ***",
         inputName: "footLength",
-        sizeMin: 50,
-        sizeMax: 100,
+        sizeMin: 13,
+        sizeMax: 35,
     },
     {
         imgUrl: "static/img/dataImg/women/bg-71.png",
@@ -122,8 +122,8 @@ export const recalculateParamsWoman = [
         title: "Обхват стопы в щироком месте",
         text: "Оберните ленту ***",
         inputName: "wideFootGirth",
-        sizeMin: 50,
-        sizeMax: 100,
+        sizeMin: 8,
+        sizeMax: 32,
     },
     {
         imgUrl: "static/img/dataImg/women/bg-67.png",
@@ -131,8 +131,8 @@ export const recalculateParamsWoman = [
         title: "Обхват объема (талии стопы)",
         text: "Оберните ленту ***",
         inputName: "footCircumference",
-        sizeMin: 50,
-        sizeMax: 100,
+        sizeMin: 8,
+        sizeMax: 32,
     },
 ];
 export const recalculateParamsMan = [
@@ -142,8 +142,8 @@ export const recalculateParamsMan = [
         title: "Грудь",
         text: "Обхват груди в наиболее выступающих точках. Лента проходит по нижней части лопаток",
         inputName: "chest",
-        sizeMin: 70,
-        sizeMax: 140,
+        sizeMin: 75,
+        sizeMax: 169,
     },
     {
         imgUrl: "static/img/dataImg/men/bg-20.png",
@@ -151,8 +151,8 @@ export const recalculateParamsMan = [
         title: "Талия",
         text: "Обхват талии в самом узком месте. Лента паралельно полу",
         inputName: "waist",
-        sizeMin: 50,
-        sizeMax: 130,
+        sizeMin: 60,
+        sizeMax: 160,
     },
     {
         imgUrl: "static/img/dataImg/men/bg-55.png",
@@ -160,8 +160,8 @@ export const recalculateParamsMan = [
         title: "Бедра",
         text: "Обхват бедра в наиболее выступающих точках. Ноги вместе",
         inputName: "hips",
-        sizeMin: 70,
-        sizeMax: 140,
+        sizeMin: 80,
+        sizeMax: 160,
     },
     {
         imgUrl: "static/img/dataImg/men/bg-5.png",
@@ -169,7 +169,7 @@ export const recalculateParamsMan = [
         title: "Обхват руки",
         text: "Обхват руки в самом широком месте предплечья",
         inputName: "armGirth",
-        sizeMin: 18,
+        sizeMin: 20,
         sizeMax: 50,
     },
     {
@@ -179,7 +179,7 @@ export const recalculateParamsMan = [
         text: "Укажите свой рост",
         inputName: "growth",
         sizeMin: 150,
-        sizeMax: 200,
+        sizeMax: 220,
     },
     {
         imgUrl: "static/img/dataImg/men/bg-32.png",
@@ -187,8 +187,8 @@ export const recalculateParamsMan = [
         title: "Обхват бедра",
         text: "Измеряйте в самом широком месте бедра, под ягодичной складкой",
         inputName: "thighGirth",
-        sizeMin: 40,
-        sizeMax: 80,
+        sizeMin: 45,
+        sizeMax: 90,
     },
     {
         imgUrl: "static/img/dataImg/men/bg-36.png",
@@ -196,8 +196,8 @@ export const recalculateParamsMan = [
         title: "Обхват головы",
         text: "Оберните ленту вокруг головы. Лента должна проходить по самым выступающим частям лба и затылка над ушами",
         inputName: "headCircumference",
-        sizeMin: 40,
-        sizeMax: 65,
+        sizeMin: 50,
+        sizeMax: 70,
     },
     {
         imgUrl: "static/img/dataImg/men/bg-40.png",
@@ -205,8 +205,8 @@ export const recalculateParamsMan = [
         title: "Обхват ладони",
         text: "Измеряйте в самом широком месте ладони (без большого пальца)",
         inputName: "palmGirth",
-        sizeMin: 12,
-        sizeMax: 28,
+        sizeMin: 17,
+        sizeMax: 30,
     },
     {
         imgUrl: "static/img/dataImg/men/bg-1.png",
@@ -214,17 +214,17 @@ export const recalculateParamsMan = [
         title: "Длина пальцев",
         text: "Измеряйте от основания большого пальца до кончика среднего пальца",
         inputName: "fingerLength",
-        sizeMin: 10,
-        sizeMax: 18,
+        sizeMin: 11,
+        sizeMax: 17,
     },
     {
         imgUrl: "static/img/dataImg/men/bg-52.png",
         secondImgUrl: "static/img/dataImg/men/002-man.png",
-        title: "Обхват талии на уровне пупка",
-        text: "Оберните ленту горизонтально на уровне пупка",
-        inputName: "waistAtNavelLevel",
-        sizeMin: 55,
-        sizeMax: 140,
+        title: "Длинна руки",
+        text: "Измеряйте от косточки плеча до косточки кисти",
+        inputName: "armLength",
+        sizeMin: 40,
+        sizeMax: 75,
     },
     {
         imgUrl: "static/img/dataImg/men/bg-48.png",
@@ -232,8 +232,8 @@ export const recalculateParamsMan = [
         title: "Ширина плеч",
         text: "Нащупайте крайнюю точку плечевой косточки. Набросьте ленту на плечи и измерьте расстояние между плечевыми точками",
         inputName: "shoulder",
-        sizeMin: 33,
-        sizeMax: 48,
+        sizeMin: 35,
+        sizeMax: 70,
     },
     {
         imgUrl: "static/img/dataImg/men/bg-63.png",
@@ -241,8 +241,8 @@ export const recalculateParamsMan = [
         title: "Длина ноги по внутренней части",
         text: "Оберните ленту ***",
         inputName: "insideLegLength",
-        sizeMin: 50,
-        sizeMax: 100,
+        sizeMin: 60,
+        sizeMax: 110,
     },
     {
         imgUrl: "static/img/dataImg/men/bg-59.png",
@@ -250,8 +250,8 @@ export const recalculateParamsMan = [
         title: "Длина стопы",
         text: "Оберните ленту ***",
         inputName: "footLength",
-        sizeMin: 50,
-        sizeMax: 100,
+        sizeMin: 15,
+        sizeMax: 40,
     },
     {
         imgUrl: "static/img/dataImg/men/bg-71.png",
@@ -259,8 +259,8 @@ export const recalculateParamsMan = [
         title: "Обхват стопы в щироком месте",
         text: "Оберните ленту ***",
         inputName: "wideFootGirth",
-        sizeMin: 50,
-        sizeMax: 100,
+        sizeMin: 10,
+        sizeMax: 35,
     },
     {
         imgUrl: "static/img/dataImg/men/bg-67.png",
@@ -268,8 +268,8 @@ export const recalculateParamsMan = [
         title: "Обхват объема (талии стопы)",
         text: "Оберните ленту ***",
         inputName: "footCircumference",
-        sizeMin: 50,
-        sizeMax: 100,
+        sizeMin: 10,
+        sizeMax: 35,
     },
 ];
 export const recalculateParamsGirl = [
@@ -279,8 +279,8 @@ export const recalculateParamsGirl = [
         title: "Грудь",
         text: "Обхват груди в наиболее выступающих точках. Лента проходит по нижней части лопаток",
         inputName: "chest",
-        sizeMin: 10,
-        sizeMax: 140,
+        sizeMin: 32,
+        sizeMax: 130,
     },
     {
         imgUrl: "static/img/dataImg/girl/bg-20.png",
@@ -288,7 +288,7 @@ export const recalculateParamsGirl = [
         title: "Талия",
         text: "Обхват талии в самом узком месте. Лента паралельно полу",
         inputName: "waist",
-        sizeMin: 10,
+        sizeMin: 30,
         sizeMax: 130,
     },
     {
@@ -297,8 +297,8 @@ export const recalculateParamsGirl = [
         title: "Бедра",
         text: "Обхват бедра в наиболее выступающих точках. Ноги вместе",
         inputName: "hips",
-        sizeMin: 10,
-        sizeMax: 140,
+        sizeMin: 40,
+        sizeMax: 160,
     },
     {
         imgUrl: "static/img/dataImg/girl/bg-5.png",
@@ -307,7 +307,7 @@ export const recalculateParamsGirl = [
         text: "Обхват руки в самом широком месте предплечья",
         inputName: "armGirth",
         sizeMin: 5,
-        sizeMax: 50,
+        sizeMax: 40,
     },
     {
         imgUrl: "static/img/dataImg/girl/bg-28.png",
@@ -316,7 +316,7 @@ export const recalculateParamsGirl = [
         text: "Укажите свой рост",
         inputName: "growth",
         sizeMin: 40,
-        sizeMax: 200,
+        sizeMax: 210,
     },
     {
         imgUrl: "static/img/dataImg/girl/bg-32.png",
@@ -333,7 +333,7 @@ export const recalculateParamsGirl = [
         title: "Обхват головы",
         text: "Оберните ленту вокруг головы. Лента должна проходить по самым выступающим частям лба и затылка над ушами",
         inputName: "headCircumference",
-        sizeMin: 15,
+        sizeMin: 30,
         sizeMax: 65,
     },
     {
@@ -342,7 +342,7 @@ export const recalculateParamsGirl = [
         title: "Обхват ладони",
         text: "Измеряйте в самом широком месте ладони (без большого пальца)",
         inputName: "palmGirth",
-        sizeMin: 5,
+        sizeMin: 11,
         sizeMax: 28,
     },
     {
@@ -352,16 +352,16 @@ export const recalculateParamsGirl = [
         text: "Измеряйте от основания большого пальца до кончика среднего пальца",
         inputName: "fingerLength",
         sizeMin: 3,
-        sizeMax: 18,
+        sizeMax: 16,
     },
     {
         imgUrl: "static/img/dataImg/girl/bg-52.png",
         secondImgUrl: "static/img/dataImg/girl/002-body4.png",
-        title: "Обхват талии на уровне пупка",
-        text: "Оберните ленту горизонтально на уровне пупка",
-        inputName: "waistAtNavelLevel",
-        sizeMin: 10,
-        sizeMax: 140,
+        title: "Длинна руки",
+        text: "Измеряйте от косточки плеча до косточки кисти",
+        inputName: "armLength",
+        sizeMin: 20,
+        sizeMax: 60,
     },
     {
         imgUrl: "static/img/dataImg/girl/bg-48.png",
@@ -370,7 +370,7 @@ export const recalculateParamsGirl = [
         text: "Нащупайте крайнюю точку плечевой косточки. Набросьте ленту на плечи и измерьте расстояние между плечевыми точками",
         inputName: "shoulder",
         sizeMin: 15,
-        sizeMax: 48,
+        sizeMax: 50,
     },
     {
         imgUrl: "static/img/dataImg/girl/bg-63.png",
@@ -378,8 +378,8 @@ export const recalculateParamsGirl = [
         title: "Длина ноги по внутренней части",
         text: "Оберните ленту ***",
         inputName: "insideLegLength",
-        sizeMin: 15,
-        sizeMax: 100,
+        sizeMin: 30,
+        sizeMax: 90,
     },
     {
         imgUrl: "static/img/dataImg/girl/bg-59.png",
@@ -387,8 +387,8 @@ export const recalculateParamsGirl = [
         title: "Длина стопы",
         text: "Оберните ленту ***",
         inputName: "footLength",
-        sizeMin: 7,
-        sizeMax: 100,
+        sizeMin: 5,
+        sizeMax: 30,
     },
     {
         imgUrl: "static/img/dataImg/girl/bg-71.png",
@@ -397,7 +397,7 @@ export const recalculateParamsGirl = [
         text: "Оберните ленту ***",
         inputName: "wideFootGirth",
         sizeMin: 4,
-        sizeMax: 100,
+        sizeMax: 25,
     },
     {
         imgUrl: "static/img/dataImg/girl/bg-67.png",
@@ -405,8 +405,8 @@ export const recalculateParamsGirl = [
         title: "Обхват объема (талии стопы)",
         text: "Оберните ленту ***",
         inputName: "footCircumference",
-        sizeMin: 5,
-        sizeMax: 100,
+        sizeMin: 4,
+        sizeMax: 25,
     },
 ];
 export const recalculateParamsBoy = [
@@ -416,8 +416,8 @@ export const recalculateParamsBoy = [
         title: "Грудь",
         text: "Обхват груди в наиболее выступающих точках. Лента проходит по нижней части лопаток",
         inputName: "chest",
-        sizeMin: 10,
-        sizeMax: 140,
+        sizeMin: 32,
+        sizeMax: 130,
     },
     {
         imgUrl: "static/img/dataImg/boy/bg-20.png",
@@ -425,7 +425,7 @@ export const recalculateParamsBoy = [
         title: "Талия",
         text: "Обхват талии в самом узком месте. Лента паралельно полу",
         inputName: "waist",
-        sizeMin: 10,
+        sizeMin: 30,
         sizeMax: 130,
     },
     {
@@ -434,8 +434,8 @@ export const recalculateParamsBoy = [
         title: "Бедра",
         text: "Обхват бедра в наиболее выступающих точках. Ноги вместе",
         inputName: "hips",
-        sizeMin: 10,
-        sizeMax: 140,
+        sizeMin: 40,
+        sizeMax: 160,
     },
     {
         imgUrl: "static/img/dataImg/boy/bg-32.png",
@@ -444,7 +444,7 @@ export const recalculateParamsBoy = [
         text: "Обхват руки в самом широком месте предплечья",
         inputName: "armGirth",
         sizeMin: 5,
-        sizeMax: 50,
+        sizeMax: 40,
     },
     {
         imgUrl: "static/img/dataImg/boy/bg-28.png",
@@ -453,7 +453,7 @@ export const recalculateParamsBoy = [
         text: "Укажите свой рост",
         inputName: "growth",
         sizeMin: 40,
-        sizeMax: 200,
+        sizeMax: 210,
     },
     {
         imgUrl: "static/img/dataImg/boy/bg-32.png",
@@ -470,7 +470,7 @@ export const recalculateParamsBoy = [
         title: "Обхват головы",
         text: "Оберните ленту вокруг головы. Лента должна проходить по самым выступающим частям лба и затылка над ушами",
         inputName: "headCircumference",
-        sizeMin: 15,
+        sizeMin: 30,
         sizeMax: 65,
     },
     {
@@ -479,7 +479,7 @@ export const recalculateParamsBoy = [
         title: "Обхват ладони",
         text: "Измеряйте в самом широком месте ладони (без большого пальца)",
         inputName: "palmGirth",
-        sizeMin: 5,
+        sizeMin: 11,
         sizeMax: 28,
     },
     {
@@ -489,16 +489,16 @@ export const recalculateParamsBoy = [
         text: "Измеряйте от основания большого пальца до кончика среднего пальца",
         inputName: "fingerLength",
         sizeMin: 3,
-        sizeMax: 18,
+        sizeMax: 16,
     },
     {
         imgUrl: "static/img/dataImg/boy/bg-20.png",
         secondImgUrl: "static/img/dataImg/boy/002-man.png",
-        title: "Обхват талии на уровне пупка",
-        text: "Оберните ленту горизонтально на уровне пупка",
-        inputName: "waistAtNavelLevel",
-        sizeMin: 10,
-        sizeMax: 140,
+        title: "Длинна руки",
+        text: "Измеряйте от косточки плеча до косточки кисти",
+        inputName: "armLength",
+        sizeMin: 20,
+        sizeMax: 60,
     },
     {
         imgUrl: "static/img/dataImg/boy/bg-48.png",
@@ -507,7 +507,7 @@ export const recalculateParamsBoy = [
         text: "Нащупайте крайнюю точку плечевой косточки. Набросьте ленту на плечи и измерьте расстояние между плечевыми точками",
         inputName: "shoulder",
         sizeMin: 15,
-        sizeMax: 48,
+        sizeMax: 50,
     },
     {
         imgUrl: "static/img/dataImg/boy/bg-63.png",
@@ -515,8 +515,8 @@ export const recalculateParamsBoy = [
         title: "Длина ноги по внутренней части",
         text: "Оберните ленту ***",
         inputName: "insideLegLength",
-        sizeMin: 15,
-        sizeMax: 100,
+        sizeMin: 30,
+        sizeMax: 90,
     },
     {
         imgUrl: "static/img/dataImg/boy/bg-59.png",
@@ -524,8 +524,8 @@ export const recalculateParamsBoy = [
         title: "Длина стопы",
         text: "Оберните ленту ***",
         inputName: "footLength",
-        sizeMin: 7,
-        sizeMax: 100,
+        sizeMin: 5,
+        sizeMax: 30,
     },
     {
         imgUrl: "static/img/dataImg/boy/bg-71.png",
@@ -534,7 +534,7 @@ export const recalculateParamsBoy = [
         text: "Оберните ленту ***",
         inputName: "wideFootGirth",
         sizeMin: 4,
-        sizeMax: 100,
+        sizeMax: 25,
     },
     {
         imgUrl: "static/img/dataImg/boy/bg-67.png",
@@ -542,8 +542,8 @@ export const recalculateParamsBoy = [
         title: "Обхват объема (талии стопы)",
         text: "Оберните ленту ***",
         inputName: "footCircumference",
-        sizeMin: 5,
-        sizeMax: 100,
+        sizeMin: 4,
+        sizeMax: 25,
     },
 ];
 export const recalculateParamsDog = [
@@ -553,8 +553,8 @@ export const recalculateParamsDog = [
         title: "Обхват шеи",
         text: "",
         inputName: "neckGirth",
-        sizeMin: 70,
-        sizeMax: 140,
+        sizeMin: 10,
+        sizeMax: 50,
     },
     {
         imgUrl: "static/img/dataImg/dog/bg-2.png",
@@ -562,8 +562,8 @@ export const recalculateParamsDog = [
         title: "Длина передних лап",
         text: "",
         inputName: "frontPawsLength",
-        sizeMin: 70,
-        sizeMax: 140,
+        sizeMin: 5,
+        sizeMax: 40,
     },
     {
         imgUrl: "static/img/dataImg/dog/bg-3.png",
@@ -571,8 +571,8 @@ export const recalculateParamsDog = [
         title: "Обхват груди",
         text: "",
         inputName: "chestGirth",
-        sizeMin: 18,
-        sizeMax: 50,
+        sizeMin: 20,
+        sizeMax: 70,
     },
     {
         imgUrl: "static/img/dataImg/dog/bg-4.png",
@@ -580,8 +580,8 @@ export const recalculateParamsDog = [
         title: "Длина спины",
         text: "",
         inputName: "growthDog",
-        sizeMin: 150,
-        sizeMax: 200,
+        sizeMin: 10,
+        sizeMax: 50,
     },
     {
         imgUrl: "static/img/dataImg/dog/bg-5.png",
@@ -589,8 +589,8 @@ export const recalculateParamsDog = [
         title: "Объем талии",
         text: "",
         inputName: "waistDog",
-        sizeMin: 40,
-        sizeMax: 80,
+        sizeMin: 10,
+        sizeMax: 60,
     },
     {
         imgUrl: "static/img/dataImg/dog/bg-6.png",
@@ -598,89 +598,141 @@ export const recalculateParamsDog = [
         title: "Длина задних лап",
         text: "",
         inputName: "hindFeetLength",
-        sizeMin: 40,
-        sizeMax: 65,
+        sizeMin: 5,
+        sizeMax: 45,
     },
     {
         imgUrl: "static/img/dataImg/dog/bg-7.png",
         secondImgUrl: "static/img/dataImg/dog/paw2.png",
-        title: "Длина ноги",
+        title: "Длина лапы",
         text: "",
         inputName: "legLength",
-        sizeMin: 12,
-        sizeMax: 28,
+        sizeMin: 4,
+        sizeMax: 45,
     },
     {
         imgUrl: "static/img/dataImg/dog/bg-8.png",
         secondImgUrl: "static/img/dataImg/dog/paw1.png",
-        title: "ширина ноги",
+        title: "ширина лапы",
         text: "",
         inputName: "legWidth",
-        sizeMin: 10,
-        sizeMax: 18,
+        sizeMin: 2,
+        sizeMax: 20,
     },
     {
         imgUrl: "static/img/dataImg/dog/bg-9.png",
         secondImgUrl: "static/img/dataImg/dog/paw3.png",
-        title: "Обхват ноги",
+        title: "Обхват лапы",
         text: "",
         inputName: "legCircumference",
-        sizeMin: 55,
-        sizeMax: 140,
+        sizeMin: 2,
+        sizeMax: 20,
     },
 ];
 
-// 0: chest
-// 1: waist
-// 2: hips
-// 3: armGirth
-// 4: growth
-// 5: thighGirth
-// 6: headCircumference
-// 7: palmGirth
-// 8: fingerLength
-// 9: waistAtNavelLevel
-// 10: shoulder
-// 11: insideLegLength
-// 12: footLength
-// 13: wideFootGirth
-// 14: footCircumference
+
+// 0: chest - Грудь
+// 1: waist - Талия
+// 2: hips - Бедра
+// 3: armGirth - Обхват руки
+// 4: growth - Рост
+// 5: thighGirth - Обхват бедра
+// 6: headCircumference - Обхват головы
+// 7: palmGirth - Обхват ладони
+// 8: fingerLength - Длина пальцев
+// 9: armLength - Длинна руки
+// 10: shoulder - Ширина плеч
+// 11: insideLegLength - Длина ноги по внутренней части
+// 12: footLength - Длина стопы
+// 13: wideFootGirth - Обхват стопы в щироком месте
+// 14: footCircumference - Обхват объема (талии стопы)
 
 export const sizeListTshirts = [
-    "growth",
-    "shoulder",
     "chest",
     "waist",
     "hips",
+    "armGirth",
+    "growth",
+    "shoulder",
 ];
 export const sizeListShirts = [
-    "growth",
-    "headCircumference",
-    "armGirth",
+    "chest",
     "waist",
     "hips",
+    "armGirth",
+    "growth",
+    "armLength",
+    "shoulder",
 ];
 export const sizeListPants = [
+    "waist",
+    "hips",
     "growth",
     "thighGirth",
     "insideLegLength",
 ];
 export const sizeListUnderwear = [
+    "chest",
+    "waist",
+    "hips",
+    "growth",
+    "thighGirth",
     "insideLegLength",
-    "footLength",
-    "wideFootGirth",
-    "footCircumference",
 ];
 export const sizeListOuterwear = [
-    "palmGirth",
-    "fingerLength",
-    "waistAtNavelLevel",
+    "chest",
+    "waist",
+    "hips",
+    "armGirth",
+    "growth",
+    "armLength",
     "shoulder",
 ];
 export const sizeListHome = [
+    "chest",
+    "waist",
+    "hips",
     "growth",
-    "headCircumference",
-    "palmGirth",
-    "fingerLength",
+    "armLength",
+    "shoulder",
     "insideLegLength",
+];
+
+// DOG
+// 0: neckGirth - Обхват шеи
+// 1: frontPawsLength - Длина передних лап
+// 2: chestGirth - Обхват груди
+// 3: growthDog - Длина спины
+// 4: waistDog - Объем талии
+// 5: hindFeetLength - Длина задних лап
+// 6: legLength - Длина лапы
+// 7: legWidth - ширина лапы
+// 8: legCircumference - Обхват лапы
+
+export const dogSizeListPants = [
+    "growthDog",
+    "waistDog",
+    "hindFeetLength",
+];
+export const dogSizeListShirts = [
+    "neckGirth",
+    "frontPawsLength",
+    "chestGirth",
+    "growthDog",
+];
+export const dogSizeListOuterwear = [
+    "neckGirth",
+    "frontPawsLength",
+    "chestGirth",
+    "growthDog",
+    "waistDog",
+    "hindFeetLength",
+    "legLength",
+    "legWidth",
+    "legCircumference",
+];
+export const dogSizeListShoes = [
+    "legLength",
+    "legWidth",
+    "legCircumference",
 ];

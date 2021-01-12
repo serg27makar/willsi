@@ -1,4 +1,8 @@
 import {
+    subCatalogListDogOuterwear,
+    subCatalogListDogPants,
+    subCatalogListDogShirts,
+    subCatalogListDogShoes,
     subCatalogListHome,
     subCatalogListOuterwear,
     subCatalogListPants,
@@ -19,6 +23,10 @@ import {
     recalculateParamsGirl,
     recalculateParamsMan,
     recalculateParamsWoman,
+    dogSizeListPants,
+    dogSizeListShirts,
+    dogSizeListOuterwear,
+    dogSizeListShoes,
 } from "../access/recalculateConstants";
 
 export function validateEmail(email) {
@@ -62,6 +70,16 @@ export function isEmptyObject(obj) {
         }
     }
     return true;
+}
+
+export function isValid(obj, arr) {
+    let isValidOutput = true
+    arr.map(item => {
+        if (!obj[item] && isValidOutput) {
+            isValidOutput = false;
+        }
+    })
+    return isValidOutput;
 }
 
 export function chooseSizeList(subCatalog) {
@@ -121,6 +139,43 @@ export function chooseSizeList(subCatalog) {
         });
         verificationList = sizeListHome;
     }
+
+    if (subCatalogListDogPants.indexOf(subCatalog) !== -1) {
+        recalculateParamsDog.map((item) => {
+            if (dogSizeListPants.indexOf(item.inputName) !== -1) {
+                paramsList.push(item);
+            }
+            return paramsList;
+        });
+        verificationList = dogSizeListPants;
+    }
+    if (subCatalogListDogShirts.indexOf(subCatalog) !== -1) {
+        recalculateParamsDog.map((item) => {
+            if (dogSizeListShirts.indexOf(item.inputName) !== -1) {
+                paramsList.push(item);
+            }
+            return paramsList;
+        });
+        verificationList = dogSizeListShirts;
+    }
+    if (subCatalogListDogOuterwear.indexOf(subCatalog) !== -1) {
+        recalculateParamsDog.map((item) => {
+            if (dogSizeListOuterwear.indexOf(item.inputName) !== -1) {
+                paramsList.push(item);
+            }
+            return paramsList;
+        });
+        verificationList = dogSizeListOuterwear;
+    }
+    if (subCatalogListDogShoes.indexOf(subCatalog) !== -1) {
+        recalculateParamsDog.map((item) => {
+            if (dogSizeListShoes.indexOf(item.inputName) !== -1) {
+                paramsList.push(item);
+            }
+            return paramsList;
+        });
+        verificationList = dogSizeListShoes;
+    }
     return {verificationList, paramsList}
 }
 
@@ -160,7 +215,6 @@ export function genderSwitcher(gender, subCatalog = "") {
             break;
         case "dog":
             catalog = recalculateParamsDog;
-            subCatalog = "";
             break;
 
         case "catalogListWomen":
@@ -177,7 +231,6 @@ export function genderSwitcher(gender, subCatalog = "") {
             break;
         case "catalogListDog":
             catalog = recalculateParamsDog;
-            subCatalog = "";
             break;
 
         default :
@@ -202,13 +255,23 @@ export function genderSwitcher(gender, subCatalog = "") {
     } else if (subCatalog === "subCatalogListMenHome" || subCatalog === "subCatalogListWomenHome" ||
         subCatalog === "subCatalogListBoyHome" || subCatalog === "subCatalogListGirlHome") {
         recalculateSubCatalog = sizeListHome;
-    } else if (subCatalog === "subCatalogListMenGeneral" || subCatalog === "subCatalogListWomenGeneral" ||
-        subCatalog === "subCatalogListBoyGeneral" || subCatalog === "subCatalogListGirlGeneral") {
+    } else if (subCatalog === "subCatalogListDogPants") {
+        recalculateSubCatalog = dogSizeListPants;
+    } else if (subCatalog === "subCatalogListDogShirts") {
+        recalculateSubCatalog = dogSizeListShirts;
+    } else if (subCatalog === "subCatalogListDogOveralls") {
+        recalculateSubCatalog = dogSizeListOuterwear;
+    } else if (subCatalog === "subCatalogListDogCap") {
+        recalculateSubCatalog = dogSizeListShoes;
+    } else if (subCatalog === "subCatalogListMenGeneral" ||
+        subCatalog === "subCatalogListWomenGeneral" ||
+        subCatalog === "subCatalogListBoyGeneral" ||
+        subCatalog === "subCatalogListGirlGeneral" ||
+        subCatalog === "subCatalogListDogGeneral") {
         recalculateSubCatalog = [];
     } else {
         recalculateParams = catalog;
     }
-
     catalog.map((item, index) => {
         if (recalculateSubCatalog.indexOf(item.inputName) !== -1) {
             recalculateParams.push(item);

@@ -200,11 +200,7 @@ header {
     letter-spacing: 0.04em;
 }
 .welcome-main-env__button-list {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
     padding: 2.1875vw 0;
     margin-left: -0.9375vw;
@@ -232,8 +228,7 @@ header {
     border-radius: 0.25vw;
     margin: 0 auto;
     padding: 1.875vw;
-    width: 61.25000000000001vw;
-    -webkit-box-shadow: 0.125vw 0.1875vw 1.5vw 0 rgba(7,7,7,0.2);
+    width: 72vw;
     box-shadow: 0.125vw 0.1875vw 1.5vw 0 rgba(7,7,7,0.2);
     overflow: hidden;
     background: #fff;
@@ -622,6 +617,7 @@ footer {
     border: 0.0625vw solid #e1e1e1;
     border-radius: 0.25vw;
     padding: 1.25vw;
+    margin: 0.5rem;
     width: 10vw;
     min-height: 3.75vw;
     transition: all 0.3s ease-in-out;

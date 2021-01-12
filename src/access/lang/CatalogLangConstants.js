@@ -28,7 +28,7 @@ const LangCat = {
     subCatalogListWomenGeneral: "Прочеее",
 
     subCatalogListBoyAll: "Вся одежда",
-    subCatalogListBoyTshirts: "Футболки, майки, гольфы",
+    subCatalogListBoyTshirts: "Футболки, майки, поло, гольфы",
     subCatalogListBoyShirts: "Рубашки, свитера",
     subCatalogListBoyPants: "Штаны, шорты",
     subCatalogListBoyUnderwear: "Нижнее белье",
@@ -49,7 +49,7 @@ const LangCat = {
     subCatalogListDogPants: "Штаны",
     subCatalogListDogShirts: "Майки, рубашки, кофты",
     subCatalogListDogOveralls: "Комбинизон",
-    subCatalogListDogCap: "Кепка",
+    subCatalogListDogCap: "обувь",
     subCatalogListDogGeneral: "Прочеее",
 
 };

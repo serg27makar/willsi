@@ -268,7 +268,6 @@
         border-radius: 1.07vw;
         padding: 8vw 6.67vw;
         width: 95%;
-        -webkit-box-shadow: 0.53vw 0.8vw 6.4vw 0 rgba(7,7,7,0.2);
         box-shadow: 0.53vw 0.8vw 6.4vw 0 rgba(7,7,7,0.2);
     }
     .search-box:after {
