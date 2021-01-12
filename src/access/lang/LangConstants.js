@@ -295,7 +295,9 @@ const ru = {
     seeMoreThings: "Посмотрите еще вещи которые вам идеально подходят",
 
     oops: "упс",
-    weHaveNothingToShow: "У нас пока нечего вам показать"
+    weHaveNothingToShow: "У нас пока нечего вам показать",
+
+    find: "найти",
 };
 
 export default ru;

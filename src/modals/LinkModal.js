@@ -185,7 +185,7 @@ class LinkModal extends React.Component {
                             {this.renderErrorText()}
                         </label>
                         <div className="modal-form__button-enter">
-                            <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.toAccept} onClick={this.findProduct}/>
+                            <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.find} onClick={this.findProduct}/>
                         </div>
                         <div className="modal-form__bottom-clear text-16 light" onClick={this.clearInput}>
                             <div className="modal-form__bottom-link color-aqua">{ru.clear}</div>
