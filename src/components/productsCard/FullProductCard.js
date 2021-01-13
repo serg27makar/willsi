@@ -51,6 +51,7 @@ class FullProductCard extends React.Component {
     }
 
     filterManufacturer(itemValue) {
+        itemValue = String(itemValue).toUpperCase()
         const searchItemParams = this.props.searchItemParams;
         if (!isEmptyObject(searchItemParams)) {
             const index = searchItemParams.itemValue.indexOf(itemValue);
@@ -63,7 +64,7 @@ class FullProductCard extends React.Component {
         } else {
             itemValue = [itemValue];
         }
-        const item = {catalogName: "Manufacturer", itemValue: itemValue };
+        const item = {catalogName: "ManufacturerSearch", itemValue: itemValue };
         this.props.searchItemParamsFunction(item);
     }
 
