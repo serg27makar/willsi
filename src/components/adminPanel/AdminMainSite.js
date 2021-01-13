@@ -64,6 +64,7 @@ class AdminMainSite extends React.Component {
         this.addedProductResult = this.addedProductResult.bind(this);
         this.fillInState = this.fillInState.bind(this);
         this.dataChange = this.dataChange.bind(this);
+        this.defineCatalogPosition = this.defineCatalogPosition.bind(this);
     }
 
     componentDidMount() {
@@ -77,10 +78,13 @@ class AdminMainSite extends React.Component {
             topCatalog,
             subCatalog: dropdownListArr[0].dropdownItems,
             headerItem: dropdownListArr[0].dropdownTitle,
-            headerSubItem: dropdownListArr[0].dropdownItems[0],
+            headerSubItem: dropdownListArr[0].dropdownItems[1],
         });
         if (this.props.item) {
             this.fillInState();
+        }
+        if (!isEmptyObject(this.props.catalogs)) {
+            this.defineCatalogPosition();
         }
     }
 
@@ -88,12 +92,31 @@ class AdminMainSite extends React.Component {
         if (prevState.headerIndex !== this.state.headerIndex) {
             this.setState({
                 subCatalog: dropdownListArr[this.state.headerIndex].dropdownItems,
-                headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[0]
+                headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[1]
             })
         }
         if (prevProps.item !== this.props.item) {
             this.fillInState();
         }
+        if (prevProps.catalogs !== this.props.catalogs && !isEmptyObject(this.props.catalogs)) {
+            this.defineCatalogPosition();
+        }
+    }
+
+    defineCatalogPosition() {
+        const headerItem = this.props.catalogs.topCatalog;
+        let subCatalog = [];
+        dropdownListArr.map((item) => {
+            if (item.dropdownTitle === headerItem) {
+                subCatalog = item.dropdownItems;
+            }
+            return subCatalog;
+        })
+        this.setState({
+            subCatalog,
+            headerItem,
+            headerSubItem: this.props.catalogs.subCatalog,
+        })
     }
 
     fillInState() {

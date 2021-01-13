@@ -1262,6 +1262,7 @@ input[type="checkbox"]:not(:checked) + label.category-list__label {
 .dropdown-list__link {
     cursor: pointer;
     color: #969696;
+    width: inherit;
 }
 .dropdown-list__link:hover {
     color: #969696;

@@ -2,6 +2,7 @@ import React from "react";
 import ru from "../../access/lang/LangConstants";
 import LangCat from "../../access/lang/CatalogLangConstants";
 import {
+    actionDefineCatalog,
     actionProductsThisStore,
     actionSelectedStore,
     actionShopEditParams,
@@ -10,6 +11,7 @@ import {
 import {connect} from "react-redux";
 import ToggleButton from "../shared/ToggleButton";
 import {showHiddenCatalogData, showHiddenSubCatalogData} from "../../js/dataUpdateFunctions";
+import {dropdownListArr} from "../../access/temporaryConstants";
 
 class MainListCatalogProducts extends React.Component {
     constructor(props) {
@@ -91,6 +93,7 @@ class MainListCatalogProducts extends React.Component {
 
     chooseSubCatalog(listItem, listIndex) {
         const shopEditParams = [];
+        let defineCatalog = {}
         if (this.state.selectedSubCatalog !== listIndex) {
             this.props.productsThisStore.map((item, index) => {
                 if (item.subCatalog === listItem) {
@@ -102,6 +105,14 @@ class MainListCatalogProducts extends React.Component {
         this.setState({
             selectedSubCatalog: this.state.selectedSubCatalog === listIndex ? -1 : listIndex,
         });
+
+        if (this.state.selectedSubCatalog !== listIndex && this.state.openIndex !== -1) {
+            defineCatalog = {
+                topCatalog: dropdownListArr[this.state.openIndex].dropdownTitle,
+                subCatalog: listItem
+            }
+        }
+        this.props.defineCatalogFunction(defineCatalog)
         this.props.shopEditParamsFunction(shopEditParams);
         this.props.shopEditParamsActionFunction(!this.props.ShopEditParamsAction);
         this.props.addProduct();
@@ -241,6 +252,9 @@ const mapDispatchToProps = dispatch => {
         },
         productsThisStoreFunction: (productsThisStore) => {
             dispatch(actionProductsThisStore(productsThisStore))
+        },
+        defineCatalogFunction: (defineCatalog) => {
+            dispatch(actionDefineCatalog(defineCatalog))
         },
     }
 };

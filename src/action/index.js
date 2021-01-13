@@ -417,3 +417,10 @@ export const actionToggleHiddenUpdate = (toggleHiddenUpdate) => {
         toggleHiddenUpdate: toggleHiddenUpdate
     }
 };
+
+export const actionDefineCatalog = (defineCatalog) => {
+    return {
+        type: 'DEFINE_CATALOG',
+        defineCatalog: defineCatalog
+    }
+};

@@ -43,7 +43,7 @@ class MainScreen extends React.Component {
             )
         } else {
             return (
-                <AdminMainSite storeID={this.props.selectedStore && this.props.selectedStore._id} addProduct={this.addProduct}/>
+                <AdminMainSite storeID={this.props.selectedStore && this.props.selectedStore._id} addProduct={this.addProduct} catalogs={this.props.defineCatalog}/>
             )
         }
     }
@@ -63,6 +63,7 @@ function MapStateToProps(state) {
         ShopEditParamsAction: state.productReducer.ShopEditParamsAction,
         SelectedProductToEdit: state.productReducer.SelectedProductToEdit,
         selectedStore: state.storeReducer.selectedStore,
+        defineCatalog: state.catalogReducer.defineCatalog,
     }
 }
 
