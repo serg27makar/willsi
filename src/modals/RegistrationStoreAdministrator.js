@@ -26,15 +26,10 @@ class RegistrationStoreAdministrator extends React.Component {
             dataInputSet: [],
         };
         this.cancelChange = this.cancelChange.bind(this);
-        this.saveChange = this.saveChange.bind(this);
+        this.openAlert = this.openAlert.bind(this);
     }
 
     componentDidMount() {
-        this.setState({
-            ...this.state,
-            name: this.props.UserName,
-            email: this.props.Email,
-        });
         const dataInputSet = [];
         dataInputRegistrationStoreAdminModal.map((item) => {
             if ((this.props.UserName && this.props.Email) &&
@@ -47,6 +42,16 @@ class RegistrationStoreAdministrator extends React.Component {
             return dataInputSet;
         })
         this.setState({...this.state, dataInputSet});
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.state.name !== this.props.UserName || this.state.email !== this.props.Email) {
+            this.setState({
+                ...this.state,
+                name: this.props.UserName,
+                email: this.props.Email,
+            })
+        }
     }
 
     changeModal = (modal) => {
@@ -102,17 +107,6 @@ class RegistrationStoreAdministrator extends React.Component {
         }
     };
 
-    saveChange() {
-        let user = this.userData();
-        if (user.UserName.length >= 3 && user.Email && validateEmail(user.Email) && user.Phone) {
-            user = {...user, UserID: this.props.UserID};
-            postUpdate(user, this.updateResult);
-            this.closeAlert();
-        } else {
-            this.openAlert(true);
-        }
-    }
-
     cancelChange() {
         this.setState({
             ...this.state,
@@ -133,7 +127,7 @@ class RegistrationStoreAdministrator extends React.Component {
         return user;
     }
 
-    openAlert(alertMod= false) {
+    openAlert(alertMod) {
         this.setState({
             ...this.state,
             alertMod,
@@ -147,7 +141,7 @@ class RegistrationStoreAdministrator extends React.Component {
                     <div className="modal-envelope__body">
                         <p className="modal-envelope__title title-36 bold">{ru.enterAnyDetails}</p>
                         <div className="modal-form__button-enter">
-                            <ButtonMain btnClass={"button-enter button-white text-18 uppercase medium"} text={ru.understandably} onClick={this.openAlert}/>
+                            <ButtonMain btnClass={"button-enter button-white text-18 uppercase medium"} text={ru.understandably} onClick={() => {this.openAlert(false)}}/>
                         </div>
                     </div>
                 </div>
