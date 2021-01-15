@@ -29,7 +29,6 @@ class AdminMainSite extends React.Component {
             subCatalog: [],
             headerIndex: 0,
             headerSubItem: "",
-            headerSubIndex: 0,
 
             Manufacturer: "",
             ManufacturerSearch: "",
@@ -51,6 +50,7 @@ class AdminMainSite extends React.Component {
 
             primaryAdmin: false,
             storeAdmin: false,
+            definePosition: false,
         };
         this.changeCatalog = this.changeCatalog.bind(this);
         this.updateProduct = this.updateProduct.bind(this);
@@ -90,10 +90,18 @@ class AdminMainSite extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.headerIndex !== this.state.headerIndex) {
-            this.setState({
-                subCatalog: dropdownListArr[this.state.headerIndex].dropdownItems,
-                headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[1]
-            })
+            if (this.state.definePosition) {
+                this.setState({
+                    ...this.state,
+                    definePosition: false,
+                })
+            } else {
+                this.setState({
+                    ...this.state,
+                    subCatalog: dropdownListArr[this.state.headerIndex].dropdownItems,
+                    headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[1]
+                })
+            }
         }
         if (prevProps.item !== this.props.item) {
             this.fillInState();
@@ -105,17 +113,23 @@ class AdminMainSite extends React.Component {
 
     defineCatalogPosition() {
         const headerItem = this.props.catalogs.topCatalog;
+        const headerSubItem = this.props.catalogs.subCatalog;
+        let headerIndex = 0;
         let subCatalog = [];
-        dropdownListArr.map((item) => {
+        dropdownListArr.map((item, index) => {
             if (item.dropdownTitle === headerItem) {
                 subCatalog = item.dropdownItems;
+                headerIndex = index;
             }
             return subCatalog;
         })
         this.setState({
+            ...this.state,
             subCatalog,
             headerItem,
-            headerSubItem: this.props.catalogs.subCatalog,
+            headerSubItem,
+            headerIndex,
+            definePosition: true,
         })
     }
 
@@ -144,6 +158,7 @@ class AdminMainSite extends React.Component {
 
     changeCatalog(index) {
         this.setState({
+            ...this.state,
             headerItem: dropdownListArr[index].dropdownTitle,
             headerIndex: index,
         })
@@ -151,8 +166,8 @@ class AdminMainSite extends React.Component {
 
     changeSubCatalog(index) {
         this.setState({
+            ...this.state,
             headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[index],
-            headerSubIndex: index,
         })
     }
 
@@ -222,6 +237,7 @@ class AdminMainSite extends React.Component {
 
     updateProduct() {
         this.saveHeaderCart(true);
+        this.props.saveParamsFunction(true);
     }
 
     saveHeaderCart(update = false) {

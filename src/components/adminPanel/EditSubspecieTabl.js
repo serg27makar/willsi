@@ -181,34 +181,33 @@ class EditSubspecieTabl extends React.Component {
     }
 
     renderMainSize() {
-        if (subCatalogListGeneral.indexOf(this.props.subCatalog) === -1) {
-            return (
-                <MainEnvelopeSize sizeDataChange={this.sizeDataChange}
-                                  sizeData={this.state.size}
-                                  catalog={this.props.topCatalog}
-                                  paramsList={this.setParamsList}
-                                  subCatalog={this.props.subCatalog}/>
-            )
-        }
-        return null;
+        return (
+            <MainEnvelopeSize sizeDataChange={this.sizeDataChange}
+                              sizeData={this.state.size}
+                              catalog={this.props.topCatalog}
+                              paramsList={this.setParamsList}
+                              subCatalog={this.props.subCatalog}/>
+        )
     }
 
     renderSizeBar() {
-        return (
-            <div>
-                {this.renderMainSize()}
-                <div className="size-standard-block-btn">
-                    <div className="welcome-main-env__button-item" onClick={this.saveSubspecies}>
-                        <div className="button-main text-16 welcome-about-env">
-                            <span>{ru.SaveChangeSize}
-                                <span className="uppercase">{this.props.sizeStandard}</span>
-                            </span>
+        if (subCatalogListGeneral.indexOf(this.props.subCatalog) === -1) {
+            return (
+                <div>
+                    {this.renderMainSize()}
+                    <div className="size-standard-block-btn">
+                        <div className="welcome-main-env__button-item" onClick={this.saveSubspecies}>
+                            <div className="button-main text-16 welcome-about-env">
+                                <span>{ru.SaveChangeSize}
+                                    <span className="uppercase">{this.props.sizeStandard}</span>
+                                </span>
+                            </div>
                         </div>
+                        <ButtonMain btnClass="button-white text-16" text={ru.close} onClick={this.props.cancelSave}/>
                     </div>
-                    <ButtonMain btnClass="button-white text-16" text={ru.close} onClick={this.props.cancelSave}/>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 
     render() {
