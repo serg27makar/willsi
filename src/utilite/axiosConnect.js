@@ -68,6 +68,15 @@ export const getUserData = (callbackInfo) => {
     })
 };
 
+export const clearAllDB = (callbackInfo) => {
+    axios.post(Url + `/users/clearAllDB`)
+        .then(req => {
+            callbackInfo(req.data);
+        }).catch(err => {
+            callbackInfo(err);
+    })
+};
+
 export const getAllUsers = (callbackInfo) => {
     axios.post(Url + `/users/getAllUsers`)
         .then(req => {
