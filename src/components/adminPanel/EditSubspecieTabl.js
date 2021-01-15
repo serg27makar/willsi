@@ -154,20 +154,27 @@ class EditSubspecieTabl extends React.Component {
                     ParameterID: this.props.item._id,
                 };
                 parametersUpdate(parameters, updateResult);
+                this.props.spinnerTextFunction(ru.saved);
+                this.props.openModalFunction("spinnerModal");
             } else if (this.props.productID) {
                 parameters = {
                     ...parameters,
                     ProductId: this.props.productID,
                 };
                 postAddedProductParameters(parameters, updateResult);
+                this.props.spinnerTextFunction(ru.saved);
+                this.props.openModalFunction("spinnerModal");
             } else {
                 this.props.subspeciesFunction(parameters);
             }
             this.props.updateSubspeciesFunction(!this.props.updateSubspecies)
-            this.props.spinnerTextFunction(ru.saved);
-            this.props.openModalFunction("spinnerModal");
         } else {
-            this.props.alertTextFunction(ru.enterTheseDetails);
+            const textMessage = ru.enterTheseDetails + ":" +
+                (!color.length ? " " + ru.color + "," : "") +
+                (!this.state.VendorCode ? " " + ru.VendorCode + "," : "") +
+                (!this.state.Price ? " " + ru.Price + "," : "") +
+                (!validParamList(this.state.paramList, size) && subCatalogListGeneral.indexOf(this.props.subCatalog) === -1 ? " " + ru.Sizes + "," : "");
+            this.props.alertTextFunction(textMessage);
             this.props.openModalFunction("alertModal");
             this.props.saveParamsFunction(false);
         }

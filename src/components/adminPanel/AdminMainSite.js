@@ -280,8 +280,18 @@ class AdminMainSite extends React.Component {
             this.props.spinnerTextFunction(ru.saved);
             this.props.openModalFunction("spinnerModal");
         } else {
-            this.props.alertTextFunction(ru.enterTheseDetails);
+            const textMessage = ru.enterTheseDetails + ":" +
+                (!cart.Manufacturer ? " " + ru.Manufacturer + "," : "") +
+                (!cart.ProdName ? " " + ru.ProdName + "," : "") +
+                (!cart.ProductCode ? " " + ru.ProductCode + "," : "") +
+                (!cart.Photo1 ? " " + ru.Photo1 + "," : "") +
+                (!cart.Photo2 ? " " + ru.Photo2 + "," : "") +
+                (!cart.Photo3 ? " " + ru.Photo3 + "," : "") +
+                (!cart.LinkToProduct ? " " + ru.LinkToProduct + "," : "") +
+                (!cart.Description ? " " + ru.Description + "," : "");
+            this.props.alertTextFunction(textMessage);
             this.props.openModalFunction("alertModal");
+            this.props.saveParamsFunction(false);
         }
     }
 
