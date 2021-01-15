@@ -47,6 +47,7 @@ import PrimaryAdminPanel from "./pages/PrimaryAdminPanel";
 import HelpModal from "./modals/HelpModal";
 import SpinnerModal from "./modals/SpinnerModal";
 import NothingToShowModal from "./modals/NothingToShowModal";
+import UserNameModal from "./modals/UserNameModal";
 
 const history = createBrowserHistory();
 
@@ -147,6 +148,8 @@ class App extends React.Component {
                 return (<SpinnerModal/>);
             case "nothingToShowModal":
                 return (<NothingToShowModal/>);
+            case "userNameModal":
+                return (<UserNameModal/>);
             default:
                 return null
         }

@@ -49,10 +49,14 @@ class RecalculateModal extends React.Component {
             this.updateParams();
         }
         if (prevState.lastBlock !== this.state.lastBlock && this.state.lastBlock) {
-            setTimeout(() => {
-                this.props.headerUserFunction(this.state.newUser);
-                getUserData(this.result);
-            }, 500);
+            if (this.props.thingToLink) {
+                this.props.openModalFunction("userNameModal");
+            } else {
+                setTimeout(() => {
+                    this.props.headerUserFunction(this.state.newUser);
+                    getUserData(this.result);
+                }, 500);
+            }
         }
     }
 

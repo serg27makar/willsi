@@ -483,6 +483,7 @@ footer {
     margin: 0 auto;
     width: 25.3125vw;
 }
+.modal-form__label .icon,
 .modal-form .icon {
     position: absolute;
     top: 50%;
@@ -4154,6 +4155,9 @@ div, p, span, h1, h2, h3, h4,
 }
 .margin-left {
     margin-left: 3rem;
+}
+.margin-1 {
+    margin: 1rem;
 }
 .catalog-top__button-toggle-btn {
     position: relative;
