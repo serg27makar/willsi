@@ -36,7 +36,7 @@ import {
     actionUsersParameters,
     actionUserStore
 } from "./action";
-import {getAllCountry, getGeoInfo, getUserData} from "./utilite/axiosConnect";
+import {getAllCountry, getGeoInfo, getUserData, postLogin} from "./utilite/axiosConnect";
 import SaveUpdateModal from "./modals/SaveUpdateModal";
 import AlertModal from "./modals/AlertModal";
 import AddServiceModal from "./modals/AddServiceModal";
@@ -48,6 +48,7 @@ import HelpModal from "./modals/HelpModal";
 import SpinnerModal from "./modals/SpinnerModal";
 import NothingToShowModal from "./modals/NothingToShowModal";
 import UserNameModal from "./modals/UserNameModal";
+import {updateResult} from "./js/sharedFunctions";
 
 const history = createBrowserHistory();
 
@@ -64,6 +65,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        postLogin({}, updateResult)
         const UserID = localStorage.getItem("UserId");
         if (UserID) {
             this.props.userIDFunction(UserID);
