@@ -40,7 +40,6 @@ class Postpone extends React.Component {
             to: "/",
         });
         this.props.setActionAdminPanelFunction("Postpone");
-        this.props.selectedSubCatalogIDFunction(-1);
         this.props.openCatalogFunction(-1);
         setTimeout(() => {
             handlePageUp();
@@ -76,8 +75,7 @@ class Postpone extends React.Component {
                 this.redirect("primary-admin-panel")
             }
         }
-        if ((prevProps.selectedSubCatalogID !== this.props.selectedSubCatalogID) ||
-        (prevProps.searchItemParams !== this.props.searchItemParams) ||
+        if ((prevProps.searchItemParams !== this.props.searchItemParams) ||
         (prevProps.searchItemNew !== this.props.searchItemNew) ||
         (prevProps.searchItemColor !== this.props.searchItemColor) ||
         (prevProps.searchItemPrice !== this.props.searchItemPrice) ||
@@ -160,9 +158,6 @@ const mapDispatchToProps = dispatch => {
         },
         dataRedirectFunction: (dataRedirect) => {
             dispatch(actionDataRedirect(dataRedirect))
-        },
-        selectedSubCatalogIDFunction: (selectedSubCatalogID) => {
-            dispatch(actionSelectedSubCatalogID(selectedSubCatalogID))
         },
         openCatalogFunction: (catalog) => {
             dispatch(actionOpenCatalog(catalog))
