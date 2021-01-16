@@ -18,6 +18,7 @@ import CircleLevel from "../components/shared/CircleLevel";
 import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
 import PerfectThings from "../components/PerfectThings";
+import {subCatalogListGeneral} from "../access/temporaryConstants";
 
 class Cart extends React.Component {
     constructor(props) {
@@ -101,6 +102,13 @@ class Cart extends React.Component {
         });
     }
 
+    renderSizeStandard(SizeStandard, subCatalog) {
+        if (subCatalogListGeneral.indexOf(subCatalog) === -1)
+        return (
+            <span className="most-suitable-size text-14">{ru.mostSuitableSize + SizeStandard}</span>
+        )
+    }
+
     renderSlide = () => {
         return (
             <Carousel slidersArr={this.state.slidersArr}/>
@@ -128,7 +136,7 @@ class Cart extends React.Component {
                                              SizeStandard={SizeStandard}/>
                             </div>
                             <div className="col-12">
-                                <span className="most-suitable-size text-14">{ru.mostSuitableSize + SizeStandard}</span>
+                                {this.renderSizeStandard(SizeStandard, this.state.SelectProduct.subCatalog)}
                                <CardDescription cardDescription={this.state.SelectProduct}/>
                             </div>
                         </div>
