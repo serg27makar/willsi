@@ -1,5 +1,5 @@
 import React from 'react';
-import {actionDataRedirect, actionOpenCatalog, actionSelectedSubCatalogID, setActionAdminPanel} from "../action";
+import {actionDataRedirect, actionOpenCatalog, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
 import CatalogSidebar from "../components/CatalogSidebar";

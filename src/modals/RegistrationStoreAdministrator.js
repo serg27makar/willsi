@@ -170,10 +170,10 @@ class RegistrationStoreAdministrator extends React.Component {
                         <div className="modal-form__button-enter">
                             <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.SignUp} onClick={this.registration}/>
                         </div>
-                        <div className="modal-form__social-list">
-                            <div className="modal-form__social-link icon-fb"  style={{backgroundImage: "url('static/img/content/icon-fb.png')"}}/>
-                            <div className="modal-form__social-link icon-instagram" style={{backgroundImage: "url('static/img/content/icon-instagram.png')"}}/>
-                        </div>
+                        {/*<div className="modal-form__social-list">*/}
+                        {/*    <div className="modal-form__social-link icon-fb"  style={{backgroundImage: "url('static/img/content/icon-fb.png')"}}/>*/}
+                        {/*    <div className="modal-form__social-link icon-instagram" style={{backgroundImage: "url('static/img/content/icon-instagram.png')"}}/>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
                 {this.renderAlert()}

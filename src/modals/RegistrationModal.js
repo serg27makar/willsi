@@ -162,10 +162,10 @@ class RegistrationModal extends React.Component {
                         <div className="modal-form__bottom-text text-16 light color-aqua">{ru.HaveAccount}
                             <div className="modal-form__bottom-link color-aqua" onClick={() => {this.changeModal("signIn")}}>{ru.SignIn}</div>
                         </div>
-                        <div className="modal-form__social-list">
-                            <div className="modal-form__social-link icon-fb"  style={{backgroundImage: "url('static/img/content/icon-fb.png')"}}/>
-                            <div className="modal-form__social-link icon-instagram" style={{backgroundImage: "url('static/img/content/icon-instagram.png')"}}/>
-                        </div>
+                        {/*<div className="modal-form__social-list">*/}
+                        {/*    <div className="modal-form__social-link icon-fb"  style={{backgroundImage: "url('static/img/content/icon-fb.png')"}}/>*/}
+                        {/*    <div className="modal-form__social-link icon-instagram" style={{backgroundImage: "url('static/img/content/icon-instagram.png')"}}/>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </div>
