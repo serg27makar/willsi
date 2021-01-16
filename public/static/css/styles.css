@@ -228,7 +228,7 @@ header {
     border-radius: 0.25vw;
     margin: 0 auto;
     padding: 1.875vw;
-    width: 72vw;
+    width: 86vw;
     box-shadow: 0.125vw 0.1875vw 1.5vw 0 rgba(7,7,7,0.2);
     overflow: hidden;
     background: #fff;
@@ -617,9 +617,9 @@ footer {
 .form-env__input {
     border: 0.0625vw solid #e1e1e1;
     border-radius: 0.25vw;
-    padding: 1.25vw;
+    padding: 1.25vw 0.25vw 1.25vw 8.25vw;
     margin: 0.5rem;
-    width: 10vw;
+    width: 12vw;
     min-height: 3.75vw;
     transition: all 0.3s ease-in-out;
 }
@@ -4221,4 +4221,9 @@ div, p, span, h1, h2, h3, h4,
 .stroke-descriptor-toggle-btn {
     position: relative;
     left: -1rem;
+}
+.text-to-input {
+    top: 1.7vw;
+    position: absolute;
+    left: 1vw;
 }
