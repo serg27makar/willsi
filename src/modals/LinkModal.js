@@ -1,8 +1,10 @@
 import React from "react";
 import ButtonMain from "../components/shared/ButtonMain";
 import {
+    actionAlertText,
     actionCatalogName,
-    actionDataRedirect, actionGender,
+    actionDataRedirect,
+    actionGender,
     actionOpenModal,
     actionProductID,
     actionProductsArr,
@@ -140,7 +142,8 @@ class LinkModal extends React.Component {
                     this.props.genderFunction(Gender);
                 }
                 this.props.recalculateParamsFunction(unknownParams);
-                this.props.openModalFunction("recalculateModal");
+                this.props.alertTextFunction(ru.inOrderToContinue);
+                this.props.openModalFunction("alertLinkModal");
             } else {
                 const searchParams = {
                     ProductID: data[0]._id,
@@ -237,6 +240,9 @@ const mapDispatchToProps = dispatch => {
         },
         genderFunction: (Gender) => {
             dispatch(actionGender(Gender))
+        },
+        alertTextFunction: (text) => {
+            dispatch(actionAlertText(text))
         },
     }
 };

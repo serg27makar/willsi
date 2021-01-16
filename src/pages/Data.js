@@ -114,7 +114,7 @@ class Data extends React.Component {
         if (name.length > 0) {
             this.firstBlock();
         } else {
-            this.props.alertTextFunction(ru.enterTheseDetails);
+            this.props.alertTextFunction(ru.inOrderToContinue);
             this.props.openModalFunction("alertModal");
         }
         this.isChanged();

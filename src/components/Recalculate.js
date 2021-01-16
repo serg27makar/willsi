@@ -198,7 +198,7 @@ class Recalculate extends React.Component {
                         </svg>
                     </div>
                     <div className="modal-envelope__body">
-                        <p className="modal-envelope__title title-36 bold">{ru.enterTheseDetails}</p>
+                        <p className="modal-envelope__title title-36 bold">{ru.inOrderToContinue}</p>
                         <div className="modal-form__button-enter">
                             <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium"}
                                         text={ru.understandably} onClick={this.closeLincModal}/>

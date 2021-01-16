@@ -167,6 +167,7 @@ const ru = {
 
     understandably: "понятно",
     enterTheseDetails: "введите эти данные чтобы продолжить",
+    inOrderToContinue: "для того чтобы продолжить укажите следующие параметры",
     enterAnyDetails: "введите все данные чтобы продолжить",
     recalculatePlaceholder: "150",
 

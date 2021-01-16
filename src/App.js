@@ -48,6 +48,7 @@ import HelpModal from "./modals/HelpModal";
 import SpinnerModal from "./modals/SpinnerModal";
 import NothingToShowModal from "./modals/NothingToShowModal";
 import UserNameModal from "./modals/UserNameModal";
+import AlertLinkModal from "./modals/AlertLinkModal";
 
 const history = createBrowserHistory();
 
@@ -150,6 +151,8 @@ class App extends React.Component {
                 return (<NothingToShowModal/>);
             case "userNameModal":
                 return (<UserNameModal/>);
+            case "alertLinkModal":
+                return (<AlertLinkModal/>);
             default:
                 return null
         }

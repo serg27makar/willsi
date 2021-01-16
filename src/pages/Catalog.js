@@ -241,7 +241,7 @@ class Catalog extends React.Component {
         } else if (accessRequired) {
             getProductDataToParams(this.setProductData, dataSearch);
         } else {
-            this.props.alertTextFunction(ru.enterTheseDetails);
+            this.props.alertTextFunction(ru.inOrderToContinue);
             this.props.openModalFunction("alertModal");
         }
     }
