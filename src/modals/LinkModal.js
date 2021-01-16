@@ -142,7 +142,7 @@ class LinkModal extends React.Component {
                     this.props.genderFunction(Gender);
                 }
                 this.props.recalculateParamsFunction(unknownParams);
-                this.props.alertTextFunction(ru.inOrderToContinue);
+                this.props.alertTextFunction(ru.weFoundThisProduct);
                 this.props.openModalFunction("alertLinkModal");
             } else {
                 const searchParams = {

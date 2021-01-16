@@ -168,6 +168,7 @@ const ru = {
     understandably: "понятно",
     enterTheseDetails: "введите эти данные чтобы продолжить",
     inOrderToContinue: "для того чтобы продолжить укажите следующие параметры",
+    weFoundThisProduct: "Мы нашли этот товар, теперь введите некоторые параметры для примерки",
     enterAnyDetails: "введите все данные чтобы продолжить",
     recalculatePlaceholder: "150",
 
