@@ -14,7 +14,7 @@ import {
     actionOpenModal,
     actionPermission,
     actionPostpone,
-    actionProductsThisStore,
+    actionProductsThisStore, actionSelectedProductToEdit,
     actionSelectedStore,
     actionSelectedSubCatalogID,
     actionSetActionPostpone,
@@ -79,6 +79,7 @@ class Header extends React.Component {
         this.props.productsThisStoreFunction([]);
         this.props.selectedSubCatalogIDFunction("");
         this.props.openCatalogFunction("");
+        this.props.selectedProductToEditFunction({});
         this.props.dataRedirectFunction({
             accessR: true,
             to: "/",
@@ -232,6 +233,9 @@ const mapDispatchToProps = dispatch => {
         },
         selectedStoreFunction: (selectedStore) => {
             dispatch(actionSelectedStore(selectedStore))
+        },
+        selectedProductToEditFunction: (SelectedProductToEdit) => {
+            dispatch(actionSelectedProductToEdit(SelectedProductToEdit))
         },
     }
 };

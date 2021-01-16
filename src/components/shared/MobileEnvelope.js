@@ -6,12 +6,12 @@ import Authentication from "./Authentication";
 import {
     actionDataRedirect,
     actionDataUpdate,
-    actionEmail,
+    actionEmail, actionOpenCatalog,
     actionOpenModal,
     actionPermission,
-    actionPostpone,
-    actionSearchParams,
-    actionSetActionPostpone,
+    actionPostpone, actionProductsThisStore,
+    actionSearchParams, actionSelectedProductToEdit, actionSelectedStore, actionSelectedSubCatalogID,
+    actionSetActionPostpone, actionSetStoreArr,
     actionUserID,
     actionUserName,
     actionUsersParameters,
@@ -64,12 +64,17 @@ class MobileEnvelope extends React.Component {
         this.props.userNameFunction("");
         this.props.emailFunction("");
         this.props.usersParametersFunction([]);
-        this.props.searchParamsFunction([]);
         this.props.permissionFunction("unknown");
         this.props.userStoreFunction([]);
         this.props.dataUpdateFunction(!this.props.update);
         this.props.setActionPostponeFunction(!this.props.SetActionPostpone);
         this.props.postponeFunction([]);
+        this.props.selectedStoreFunction({});
+        this.props.setStoreArrFunction([]);
+        this.props.productsThisStoreFunction([]);
+        this.props.selectedSubCatalogIDFunction("");
+        this.props.openCatalogFunction("");
+        this.props.selectedProductToEditFunction({});
         this.props.dataRedirectFunction({
             accessR: true,
             to: "/",
@@ -173,6 +178,24 @@ const mapDispatchToProps = dispatch => {
         },
         searchParamsFunction: (SearchParams) => {
             dispatch(actionSearchParams(SearchParams))
+        },
+        selectedSubCatalogIDFunction: (selectedSubCatalogID) => {
+            dispatch(actionSelectedSubCatalogID(selectedSubCatalogID))
+        },
+        openCatalogFunction: (catalog) => {
+            dispatch(actionOpenCatalog(catalog))
+        },
+        setStoreArrFunction: (StoreArr) => {
+            dispatch(actionSetStoreArr(StoreArr))
+        },
+        productsThisStoreFunction: (productsThisStore) => {
+            dispatch(actionProductsThisStore(productsThisStore))
+        },
+        selectedStoreFunction: (selectedStore) => {
+            dispatch(actionSelectedStore(selectedStore))
+        },
+        selectedProductToEditFunction: (SelectedProductToEdit) => {
+            dispatch(actionSelectedProductToEdit(SelectedProductToEdit))
         },
     }
 };

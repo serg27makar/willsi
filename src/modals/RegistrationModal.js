@@ -6,11 +6,20 @@ import {validateEmail} from "../js/sharedFunctions";
 import {postCheckEmail, postRegister, postUpdate} from "../utilite/axiosConnect";
 import {
     actionDataRedirect,
+    actionDataUpdate,
     actionEmail,
+    actionOpenCatalog,
     actionOpenModal,
     actionPermission,
+    actionPostpone, actionProductsThisStore,
+    actionSearchParams, actionSelectedProductToEdit, actionSelectedStore,
+    actionSelectedSubCatalogID,
+    actionSetActionPostpone,
+    actionSetStoreArr,
     actionUserID,
     actionUserName,
+    actionUsersParameters,
+    actionUserStore,
 } from "../action";
 import {connect} from "react-redux";
 import ru from "../access/lang/LangConstants";
@@ -35,6 +44,22 @@ class RegistrationModal extends React.Component {
                 name: this.props.UsersParameters[0].UserName,
             })
         }
+        localStorage.clear();
+        this.props.userIDFunction("");
+        this.props.userNameFunction("");
+        this.props.emailFunction("");
+        this.props.usersParametersFunction([]);
+        this.props.permissionFunction("unknown");
+        this.props.userStoreFunction([]);
+        this.props.dataUpdateFunction(!this.props.update);
+        this.props.setActionPostponeFunction(!this.props.SetActionPostpone);
+        this.props.postponeFunction([]);
+        this.props.selectedStoreFunction({});
+        this.props.setStoreArrFunction([]);
+        this.props.productsThisStoreFunction([]);
+        this.props.selectedSubCatalogIDFunction("");
+        this.props.openCatalogFunction("");
+        this.props.selectedProductToEditFunction({});
     }
 
     changeModal = (modal) => {
@@ -199,6 +224,42 @@ const mapDispatchToProps = dispatch => {
         },
         dataRedirectFunction: (dataRedirect) => {
             dispatch(actionDataRedirect(dataRedirect))
+        },
+        postponeFunction: (Postpone) => {
+            dispatch(actionPostpone(Postpone))
+        },
+        setActionPostponeFunction: (SetActionPostpone) => {
+            dispatch(actionSetActionPostpone(SetActionPostpone))
+        },
+        usersParametersFunction: (UsersParameters) => {
+            dispatch(actionUsersParameters(UsersParameters))
+        },
+        userStoreFunction: (UserStore) => {
+            dispatch(actionUserStore(UserStore))
+        },
+        dataUpdateFunction: (update) => {
+            dispatch(actionDataUpdate(update))
+        },
+        searchParamsFunction: (SearchParams) => {
+            dispatch(actionSearchParams(SearchParams))
+        },
+        selectedSubCatalogIDFunction: (selectedSubCatalogID) => {
+            dispatch(actionSelectedSubCatalogID(selectedSubCatalogID))
+        },
+        openCatalogFunction: (catalog) => {
+            dispatch(actionOpenCatalog(catalog))
+        },
+        setStoreArrFunction: (StoreArr) => {
+            dispatch(actionSetStoreArr(StoreArr))
+        },
+        productsThisStoreFunction: (productsThisStore) => {
+            dispatch(actionProductsThisStore(productsThisStore))
+        },
+        selectedStoreFunction: (selectedStore) => {
+            dispatch(actionSelectedStore(selectedStore))
+        },
+        selectedProductToEditFunction: (SelectedProductToEdit) => {
+            dispatch(actionSelectedProductToEdit(SelectedProductToEdit))
         },
     }
 };
