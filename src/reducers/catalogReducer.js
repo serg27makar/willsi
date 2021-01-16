@@ -7,6 +7,7 @@ const initialState = {
     searchItemColor: {},
     searchItemPrice: {},
     searchItemNew: 0,
+    Manufacturer: [],
 };
 
 export default function catalogReducer(state = initialState, action) {
@@ -61,6 +62,11 @@ export default function catalogReducer(state = initialState, action) {
             return {
                 ...state,
                 defineCatalog: action.defineCatalog
+            };
+        case "SET_MANUFACTURER":
+            return {
+                ...state,
+                Manufacturer: action.Manufacturer
             };
         default:
             return state;

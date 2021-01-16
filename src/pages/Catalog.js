@@ -4,9 +4,11 @@ import {
     actionAlertText,
     actionCatalogName,
     actionDataRedirect,
+    actionManufacturer,
     actionOpenModal,
     actionProductsArr,
     actionRecalculateParams,
+    actionSubCatalogName,
     setActionAdminPanel
 } from "../action";
 import {connect} from "react-redux";
@@ -36,11 +38,13 @@ class Catalog extends React.Component {
             firstTime: true,
             active: false,
             catalogName: "",
+            isSetManufacturer: true,
         };
         this.setProductData = this.setProductData.bind(this);
         this.onScrollList = this.onScrollList.bind(this);
         this.selectedSubCatalog = this.selectedSubCatalog.bind(this);
         this.updateProductsData = this.updateProductsData.bind(this);
+        this.setManufacturer = this.setManufacturer.bind(this);
     }
 
     componentDidMount() {
@@ -59,6 +63,13 @@ class Catalog extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.catalogName !== this.props.catalogName ||
+            prevProps.subCatalogName !== this.props.subCatalogName) {
+            this.setState({
+                ...this.state,
+                isSetManufacturer: true
+            })
+        }
         if ((prevProps.UsersParameters !== this.props.UsersParameters) ||
             (prevProps.Permission !== this.props.Permission)) {
             this.functionRedirect();
@@ -142,7 +153,7 @@ class Catalog extends React.Component {
             ...this.state,
             subCatalog: dropdownListArr[this.props.catalog || 0].dropdownItems[data],
             topCatalog: dropdownListArr[this.props.catalog || 0].dropdownTitle,
-            productArr: [],
+            // productArr: [],
             skip: 0,
             lastData: false,
             active: !this.state.active,
@@ -154,7 +165,7 @@ class Catalog extends React.Component {
             ...this.state,
             topCatalog: this.props.catalogName,
             subCatalog: this.state.subCatalog,
-            productArr: [],
+            // productArr: [],
             skip: 0,
             lastData: false,
             active: !this.state.active,
@@ -236,6 +247,7 @@ class Catalog extends React.Component {
             searchItemPrice,
             country
         };
+        this.props.subCatalogNameFunction(subCatalog);
         if (subCatalog.substr(subCatalog.length - 3, 3) === "All") {
             getAllProductDataToParams(this.setProductData, dataSearch);
         } else if (accessRequired) {
@@ -246,6 +258,26 @@ class Catalog extends React.Component {
         }
     }
 
+    setManufacturer(data) {
+        if (this.state.isSetManufacturer) {
+            const catalogItemsSearch = [];
+            const catalogItems = [];
+            if (data) {
+                data.map(item => {
+                    if (catalogItemsSearch.indexOf(item.Manufacturer.toUpperCase()) === -1) {
+                        catalogItemsSearch.push(item.Manufacturer.toUpperCase());
+                        catalogItems.push(item.Manufacturer);
+                    }
+                    return catalogItems;
+                })
+            }
+            this.props.manufacturerFunction(catalogItems);
+            this.setState({
+                ...this.state,
+                isSetManufacturer: false
+            })
+        }
+    }
 
     setProductData(data) {
         const lastData = data.length < 12 && data.length > 0;
@@ -253,12 +285,13 @@ class Catalog extends React.Component {
             data.sort((a, b) => {
                 return b.Parameters.compatibility * 100 - a.Parameters.compatibility * 100
             });
-            this.props.productsArrFunction(data);
+            this.setManufacturer(data);
             this.setState({
                 ...this.state,
                 productArr: data,
                 lastData
             })
+            this.props.productsArrFunction(data);
         } else {
             this.props.productsArrFunction([]);
             this.setState({
@@ -331,6 +364,8 @@ function MapStateToProps(state) {
         alertModalCloseEvent: state.modalReducer.alertModalCloseEvent,
         Permission: state.userReducer.Permission,
         SetActionPostpone: state.userReducer.SetActionPostpone,
+        subCatalogName: state.catalogReducer.subCatalogName,
+        Manufacturer: state.catalogReducer.Manufacturer,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -358,6 +393,12 @@ const mapDispatchToProps = dispatch => {
         },
         addUserFunction: (AddUser) => {
             dispatch(actionAddUser(AddUser))
+        },
+        manufacturerFunction: (Manufacturer) => {
+            dispatch(actionManufacturer(Manufacturer))
+        },
+        subCatalogNameFunction: (SubCatalogName) => {
+            dispatch(actionSubCatalogName(SubCatalogName))
         },
     }
 };

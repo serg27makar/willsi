@@ -424,3 +424,10 @@ export const actionDefineCatalog = (defineCatalog) => {
         defineCatalog: defineCatalog
     }
 };
+
+export const actionManufacturer = (Manufacturer) => {
+    return {
+        type: 'SET_MANUFACTURER',
+        Manufacturer: Manufacturer
+    }
+};

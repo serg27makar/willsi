@@ -130,6 +130,7 @@ function MapStateToProps(state) {
         searchItemParams: state.catalogReducer.searchItemParams,
         searchItemColor: state.catalogReducer.searchItemColor,
         closeAllCatalogs: state.catalogReducer.closeAllCatalogs,
+        Manufacturer: state.catalogReducer.Manufacturer,
     }
 }
 const mapDispatchToProps = dispatch => {
