@@ -46,6 +46,7 @@ class Catalog extends React.Component {
         this.selectedSubCatalog = this.selectedSubCatalog.bind(this);
         this.updateProductsData = this.updateProductsData.bind(this);
         this.setManufacturer = this.setManufacturer.bind(this);
+        this.setCatalogName = this.setCatalogName.bind(this);
     }
 
     componentDidMount() {
@@ -200,7 +201,10 @@ class Catalog extends React.Component {
             if (!this.isValid(this.props.UsersParameters, this.props.HeaderUser)) {
                 this.props.newUserFunction(this.props.HeaderUser);
                 this.props.addUserFunction(true);
-                this.redirect("data");
+                setTimeout(() => {
+                    this.redirect("data");
+                }, 60)
+
             }
         }
     }
@@ -323,7 +327,9 @@ class Catalog extends React.Component {
                 ...this.state,
                 productArr: [],
             });
-            this.props.openModalFunction("nothingToShowModal");
+            if (!this.props.modal) {
+                this.props.openModalFunction("nothingToShowModal");
+            }
         }
     }
 

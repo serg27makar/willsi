@@ -4,7 +4,7 @@ import ru from "../access/lang/LangConstants";
 import {
     actionAddUser,
     actionDataRedirect,
-    actionHeaderUser,
+    actionHeaderUser, actionNewUser,
     actionOpenModal,
     actionSearchParams,
 } from "../action";
@@ -90,6 +90,7 @@ class CatalogTopEnvironment extends React.Component {
     };
 
     addUser() {
+        this.props.newUserFunction(0);
         this.props.addUserFunction(true);
         this.props.dataRedirectFunction({
             accessR: true,
@@ -201,6 +202,9 @@ const mapDispatchToProps = dispatch => {
         },
         searchParamsFunction: (SearchParams) => {
             dispatch(actionSearchParams(SearchParams))
+        },
+        newUserFunction: (NewUser) => {
+            dispatch(actionNewUser(NewUser))
         },
     }
 };

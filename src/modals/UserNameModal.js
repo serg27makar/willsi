@@ -56,17 +56,21 @@ class UserNameModal extends React.Component {
     };
 
     paramsResult(data) {
-        let Product = this.props.ProductsArr[0];
-        Product = {
-            ...Product,
-            Parameters: data,
+        if (data.stop) {
+            this.props.openModalFunction("nothingToShowModal");
+        } else {
+            let Product = this.props.ProductsArr[0];
+            Product = {
+                ...Product,
+                Parameters: data,
+            }
+            this.props.productsArrFunction([Product]);
+            this.props.dataRedirectFunction({
+                accessR: true,
+                to: "/cart",
+            })
+            this.props.openModalFunction("");
         }
-        this.props.productsArrFunction([Product]);
-        this.props.dataRedirectFunction({
-            accessR: true,
-            to: "/cart",
-        })
-        this.props.openModalFunction("");
     }
 
     addedName() {

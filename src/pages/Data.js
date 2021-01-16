@@ -57,9 +57,11 @@ class Data extends React.Component {
                 });
             }
             if (this.props.AddUser) {
-                let newUser
-                if (this.props.NewUser) {
+                let newUser;
+                let startParams = false;
+                if (this.props.NewUser !== 0) {
                     newUser = this.props.NewUser;
+                    startParams = true;
                 } else {
                     newUser = this.props.UsersParameters.length;
                     this.props.newUserFunction(newUser);
@@ -67,7 +69,7 @@ class Data extends React.Component {
                 this.setState({
                     ...this.state,
                     newUser,
-                    startParams: true,
+                    startParams,
                 })
             }
         }, 100);

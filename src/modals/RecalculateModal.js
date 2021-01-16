@@ -64,7 +64,7 @@ class RecalculateModal extends React.Component {
         const HeaderUser = this.props.NewUser || this.props.HeaderUser;
         const recalculateParams = this.props.recalculateParams.slice();
 
-        if (this.props.UsersParameters.length) {
+        if (this.props.UsersParameters.length && this.props.UsersParameters.length > HeaderUser) {
             this.props.UsersParameters[HeaderUser].Parameters.map((fillItem) => {
                 return recalculateParams.map((item, index) => {
                     if (fillItem.title === item.inputName) {
@@ -74,28 +74,30 @@ class RecalculateModal extends React.Component {
                 })
             });
         }
-
         this.setState({
             ...this.state,
             recalculateParams,
             newUser: HeaderUser,
-            params: this.props.UsersParameters.length ? this.props.UsersParameters[HeaderUser].Parameters : [],
+            params: this.props.UsersParameters.length && this.props.UsersParameters.length > HeaderUser ? this.props.UsersParameters[HeaderUser].Parameters : [],
         })
-        this.props.newUserFunction(0);
     }
 
     paramsResult(data) {
-        let Product = this.props.ProductsArr[0];
-        Product = {
-            ...Product,
-            Parameters: data,
+        if (data.stop) {
+            this.props.openModalFunction("nothingToShowModal");
+        } else {
+            let Product = this.props.ProductsArr[0];
+            Product = {
+                ...Product,
+                Parameters: data,
+            }
+            this.props.productsArrFunction([Product]);
+            this.props.dataRedirectFunction({
+                accessR: true,
+                to: "/cart",
+            })
+            this.props.openModalFunction("");
         }
-        this.props.productsArrFunction([Product]);
-        this.props.dataRedirectFunction({
-            accessR: true,
-            to: "/cart",
-        })
-        this.props.openModalFunction("");
     }
 
     result(res) {
