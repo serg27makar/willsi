@@ -300,6 +300,8 @@ const ru = {
     weHaveNothingToShow: "У нас пока нечего вам показать",
 
     find: "найти",
+    continue: "Продолжить",
+    weAreMissingSomeData: "нам не хватает некоторых Ваших данных для примерки"
 };
 
 export default ru;

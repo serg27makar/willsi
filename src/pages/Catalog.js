@@ -4,7 +4,7 @@ import {
     actionAlertText,
     actionCatalogName,
     actionDataRedirect,
-    actionManufacturer,
+    actionManufacturer, actionNewUser,
     actionOpenModal,
     actionProductsArr,
     actionRecalculateParams,
@@ -24,6 +24,7 @@ import {getAllProductDataToParams, getProductDataToParams} from "../utilite/axio
 import {genderSwitcher} from "../js/sharedFunctions";
 import ru from "../access/lang/LangConstants";
 import CountryDropDown from "../components/CountryDropDown";
+import {sizeListTshirts} from "../access/recalculateConstants";
 
 class Catalog extends React.Component {
     constructor(props) {
@@ -173,7 +174,8 @@ class Catalog extends React.Component {
     }
 
     setCatalogName() {
-        if (this.props.UsersParameters && this.props.HeaderUser) {
+        if (this.props.UsersParameters && this.props.UsersParameters.length &&
+            this.props.UsersParameters.length > this.props.HeaderUser && this.props.HeaderUser) {
             let catalogName = "";
             const gender = this.props.UsersParameters[this.props.HeaderUser].Gender;
             switch (gender) {
@@ -195,7 +197,30 @@ class Catalog extends React.Component {
                 default : catalogName = "catalogListMen";
             }
             this.props.catalogNameFunction(catalogName);
+            if (!this.isValid(this.props.UsersParameters, this.props.HeaderUser)) {
+                this.props.newUserFunction(this.props.HeaderUser);
+                this.props.addUserFunction(true);
+                this.redirect("data");
+            }
         }
+    }
+
+    isValid(UsersParameters, index) {
+        let valid = true;
+        if (UsersParameters && UsersParameters.length &&
+            UsersParameters[index].Parameters &&
+            UsersParameters[index].Parameters.length &&
+            UsersParameters[index].Parameters.length >= sizeListTshirts.length) {
+            UsersParameters[index].Parameters.map((item) => {
+                if (valid && sizeListTshirts.indexOf(item.title) === -1) {
+                    valid = false;
+                }
+                return valid;
+            })
+        } else {
+            valid = false;
+        }
+        return valid;
     }
 
     setDefaultSubCatalog() {
@@ -307,9 +332,10 @@ class Catalog extends React.Component {
             if (this.props.Permission === "primaryAdmin") {
                 this.redirect("primary-admin-panel")
             }
-            if (!this.props.UsersParameters || (this.props.UsersParameters && this.props.UsersParameters.length < 1) ||
-                ( this.props.UsersParameters[0].Parameters &&
-                    this.props.UsersParameters[0].Parameters.length < 1)) {
+            if (!this.props.UsersParameters || (this.props.UsersParameters && !this.props.UsersParameters.length) ||
+                (this.props.UsersParameters[0].Parameters && !this.props.UsersParameters[0].Parameters.length) ||
+                (this.props.UsersParameters[0].Parameters.length < sizeListTshirts.length)
+            ) {
                 this.props.addUserFunction(true);
                 this.redirect("data")
             }
@@ -399,6 +425,9 @@ const mapDispatchToProps = dispatch => {
         },
         subCatalogNameFunction: (SubCatalogName) => {
             dispatch(actionSubCatalogName(SubCatalogName))
+        },
+        newUserFunction: (NewUser) => {
+            dispatch(actionNewUser(NewUser))
         },
     }
 };

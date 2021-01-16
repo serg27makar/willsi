@@ -103,7 +103,8 @@ class RutCategoryCatalog extends React.Component {
             ...this.state,
             genderPermission: false,
         });
-        if (this.props.UsersParameters && this.props.UsersParameters.length > 0) {
+        if (this.props.UsersParameters && this.props.UsersParameters.length &&
+            this.props.UsersParameters.length > this.props.HeaderUser) {
             const gender = this.props.UsersParameters[this.props.HeaderUser].Gender;
             const dropdownTitle = this.props.item.dropdownTitle;
             if ((dropdownTitle === "catalogListMen" && gender === "man") ||

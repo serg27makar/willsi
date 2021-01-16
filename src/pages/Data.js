@@ -57,10 +57,17 @@ class Data extends React.Component {
                 });
             }
             if (this.props.AddUser) {
-                const newUser = this.props.UsersParameters.length;
-                this.props.newUserFunction(newUser);
+                let newUser
+                if (this.props.NewUser) {
+                    newUser = this.props.NewUser;
+                } else {
+                    newUser = this.props.UsersParameters.length;
+                    this.props.newUserFunction(newUser);
+                }
                 this.setState({
+                    ...this.state,
                     newUser,
+                    startParams: true,
                 })
             }
         }, 100);
@@ -168,7 +175,7 @@ class Data extends React.Component {
             <div className="content">
                 <DataHeader/>
                 {this.renderInputDataParams()}
-                <RecalculateFooter disabled={!this.state.startParams}/>
+                <RecalculateFooter disabled={!this.state.startParams} UsersParameters={this.props.UsersParameters}/>
             </div>
         )
     }
@@ -184,6 +191,7 @@ function MapStateToProps(state) {
         AddUser: state.userReducer.AddUser,
         dataRedirect: state.pageReducer.dataRedirect,
         Permission: state.userReducer.Permission,
+        NewUser: state.userReducer.NewUser,
     }
 }
 
