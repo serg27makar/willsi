@@ -160,12 +160,12 @@ class SearchBox extends React.Component {
 
     renderInput(item, index) {
         return (
-            <div className="indicator-bottom__picture">
+            <div className="indicator-bottom__picture" key={index}>
                 <span className="text-to-input text-18">{ru[item]}</span>
                 <input className="form-env__input text-18" type="number"
                        name={item} placeholder={"?"}
                        value={this.state.size[item] || ""}
-                       onChange={this.onChange} key={index}/>
+                       onChange={this.onChange}/>
             </div>
         )
     }

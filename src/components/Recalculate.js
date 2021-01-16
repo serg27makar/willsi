@@ -13,9 +13,17 @@ class Recalculate extends React.Component {
             inputName: "",
             active: 0,
             openAlertPopUp: false,
+            default: false,
+            defaultItem: {}
         };
         this.onChange = this.onChange.bind(this);
         this.closeLincModal = this.closeLincModal.bind(this);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.default !== this.state.default && this.state.default) {
+            this.nextItem(this.state.defaultItem.index, this.state.defaultItem.item);
+        }
     }
 
     prevItem(index) {
@@ -42,14 +50,26 @@ class Recalculate extends React.Component {
                 this.setState({
                     ...this.state,
                     active: index + 1,
+                    default: false,
+                    defaultItem: {},
                 })
             }
         } else {
-            this.setState({
-                ...this.state,
-                openAlertPopUp: true,
-            });
+            this.defaultData(item, index);
         }
+    }
+
+    defaultData(item, index) {
+        this.setState({
+            ...this.state,
+            [item.inputName]: item.sizeMin,
+            inputName: item.inputName,
+            default: true,
+            defaultItem: {
+                ...this.state.defaultItem,
+                item, index,
+            }
+        });
     }
 
     onChange = (e) => {
