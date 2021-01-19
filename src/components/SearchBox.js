@@ -100,7 +100,7 @@ class SearchBox extends React.Component {
                 renderInputDataParams: true,
             });
         } else {
-            this.props.alertTextFunction(ru.enterTheseDetails);
+            this.props.alertTextFunction(ru.weAreMissingSomeData);
             this.props.openModalFunction("alertModal");
         }
     }

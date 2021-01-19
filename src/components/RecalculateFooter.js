@@ -71,11 +71,11 @@ class RecalculateFooter extends React.Component {
             return (
                 <div className="col-12 recalculate-footer">
                     <div className="col-12">
-                        <button className="recalculate__button text-22 medium button-main"
-                                onClick={this.continueFillIn}>{ru.continue}</button>
+                        <p className="recalculate__bottom-paragraph text-20 light">{ru.weAreMissingSomeData}</p>
                     </div>
                     <div className="col-12">
-                        <p className="recalculate__bottom-paragraph text-20 light">{ru.weAreMissingSomeData}</p>
+                        <button className="recalculate__button text-22 medium button-main"
+                                onClick={this.continueFillIn}>{ru.continue}</button>
                     </div>
                 </div>
             )

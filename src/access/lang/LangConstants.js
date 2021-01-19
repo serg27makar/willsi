@@ -301,7 +301,7 @@ const ru = {
 
     find: "найти",
     continue: "Продолжить",
-    weAreMissingSomeData: "нам не хватает некоторых Ваших данных для примерки"
+    weAreMissingSomeData: "Нам не хватает некоторых Ваших данных для примерки"
 };
 
 export default ru;
