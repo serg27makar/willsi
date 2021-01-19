@@ -1,8 +1,14 @@
+import React, {useReducer} from "react";
 import en from "./en";
 import ru from "./LangConstants";
 
-export function langCode(word) {
-    const lang = "en";
+export const allLanguages = [
+    "ru",
+    "en",
+]
+
+export function langCode(lang, word) {
+
     if (lang === "en") {
         return en[word];
     }

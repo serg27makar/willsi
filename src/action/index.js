@@ -413,7 +413,7 @@ export const actionClearOpenCatalogs = (clearOpenCatalogs) => {
 
 export const actionToggleHiddenUpdate = (toggleHiddenUpdate) => {
     return {
-        type: 'toggle_Hidden_Update',
+        type: 'TOGGLE_HIDDEN_UPDATE',
         toggleHiddenUpdate: toggleHiddenUpdate
     }
 };
@@ -429,5 +429,12 @@ export const actionManufacturer = (Manufacturer) => {
     return {
         type: 'SET_MANUFACTURER',
         Manufacturer: Manufacturer
+    }
+};
+
+export const actionlang = (lang) => {
+    return {
+        type: 'SET_LANG',
+        lang: lang
     }
 };

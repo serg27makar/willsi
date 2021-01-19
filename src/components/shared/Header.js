@@ -27,6 +27,7 @@ import {
 } from "../../action";
 import HeaderAdmin from "./HeaderAdmin";
 import {langCode} from "../../access/lang/translaterJS";
+import LangDropDown from "../dropdowns/LangDropDown";
 
 const mobilButtonClose = "static/img/svg-sprites/symbol/sprite.svg#close";
 const mobilButtonOpen = "static/img/svg-sprites/symbol/sprite.svg#menu";
@@ -127,6 +128,7 @@ class Header extends React.Component {
             <header>
                 <div className="container">
                     <div className="row align-items-center">
+                        <LangDropDown/>
                         <div className="col-12">
                             <div className="header-envelope">
                                 <div className="header">
@@ -135,7 +137,7 @@ class Header extends React.Component {
                                             <img className="logo__source" src="static/img/general/logo.png" alt="logo"/>
                                         </picture>
                                     </Link>
-                                    <p className="header__text light text-16">{langCode("online")}<br/>{langCode("dressingRoom")}</p>
+                                    <p className="header__text light text-16">{langCode(this.props.lang, "online")}<br/>{langCode(this.props.lang,"dressingRoom")}</p>
                                 </div>
                                 <div className="header-mobile">
                                     <Link to={"/postpone"} onClick={this.mobileMenuClose}>
@@ -184,6 +186,7 @@ function MapStateToProps(state) {
         Postpone: state.userReducer.Postpone,
         SetActionPostpone: state.userReducer.SetActionPostpone,
         Permission: state.userReducer.Permission,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

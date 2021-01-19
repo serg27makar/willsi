@@ -7,6 +7,7 @@ const initialState = {
     thingToLink: false,
     clearOpenCatalogs: false,
     toggleHiddenUpdate: false,
+    lang: "ru",
 };
 
 export default function utiliteReducer(state = initialState, action) {
@@ -47,10 +48,15 @@ export default function utiliteReducer(state = initialState, action) {
                 ...state,
                 clearOpenCatalogs: action.clearOpenCatalogs
             };
-        case "toggle_Hidden_Update":
+        case "TOGGLE_HIDDEN_UPDATE":
             return {
                 ...state,
                 toggleHiddenUpdate: action.toggleHiddenUpdate
+            };
+        case "SET_LANG":
+            return {
+                ...state,
+                lang: action.lang
             };
 
         default:

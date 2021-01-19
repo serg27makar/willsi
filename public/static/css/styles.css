@@ -31,6 +31,7 @@ ul, li {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    z-index: 1;
 }
 a {
     color: #000;
@@ -62,7 +63,7 @@ header {
     width: 100%;
 }
 .container {
-    max-width: 71.25vw;
+    max-width: 83.25vw;
     padding-right: 0.9375vw;
     padding-left: 0.9375vw;
     width:100%;
@@ -4226,4 +4227,30 @@ div, p, span, h1, h2, h3, h4,
     top: 1.7vw;
     position: absolute;
     left: 1vw;
+}
+span.catalog-wrapper__name {
+    margin-right: 1vw;
+}
+.lang-dropdown {
+    position: relative;
+    top: 1vw;
+}
+.lang-ul-wrap {
+    display: none;
+    position: absolute;
+    width: 100%;
+    padding: 0.5rem;
+    border-bottom-left-radius: 0.25vw;
+    border-bottom-right-radius: 0.25vw;
+    background: #f5f5f5;
+}
+.dropdown-lang {
+    position: relative;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.catalog-sidebar-lang {
+    position: relative;
+    width: 6rem;
+    z-index: 1;
 }
