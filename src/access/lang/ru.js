@@ -297,7 +297,7 @@ const ru = {
     seeMoreThings: "Посмотрите еще вещи которые вам идеально подходят",
 
     oops: "упс",
-    weHaveNothingToShow: "У нас пока нечего вам показать",
+    weHaveNothingToShow: "По Вашим параметрам пока нету подходящей одежды",
 
     find: "найти",
     continue: "Продолжить",

@@ -1,5 +1,5 @@
 import en from "./en";
-import ru from "./LangConstants";
+import ru from "./ru";
 import {LangCatEN, LangCatRU} from "./CatalogLangConstants";
 
 export const allLanguages = [

@@ -40,8 +40,8 @@ const en = {
     armGirth: "Arm girth - ",
     thighGirth: "Thigh girth - ",
     headCircumference: "Head circumference - ",
-    palmGirth: "Обхват ладони - ",
-    fingerLength: "Palm girth - ",
+    palmGirth: "Palm girth - ",
+    fingerLength: "Finger length - ",
     armLength: "Arm length - ",
     insideLegLength: "Leg length - ",
     footLength: "Foot length - ",
@@ -293,7 +293,7 @@ const en = {
     seeMoreThings: "See more things that suit you perfectly",
 
     oops: "oops",
-    weHaveNothingToShow: "We have nothing to show you yet",
+    weHaveNothingToShow: "There are no suitable clothes according to your parameters",
 
     find: "find",
     continue: "Continue",
