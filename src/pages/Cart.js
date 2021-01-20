@@ -37,7 +37,6 @@ class Cart extends React.Component {
     componentDidMount() {
         this.props.ProductsArr.map((item, index) => {
             if (item._id === this.props.ProductID) {
-                this.props.selectProductFunction(this.props.ProductsArr[index]);
                 this.props.subCatalogNameFunction(this.props.ProductsArr[index].subCatalog);
             }
             return index;
@@ -57,6 +56,9 @@ class Cart extends React.Component {
         setTimeout(() => {
             handlePageUp();
         }, 50);
+        if (this.props.SelectProduct) {
+            this.fillSelectProduct();
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -72,21 +74,12 @@ class Cart extends React.Component {
         }
         if (prevState.ProductID !== this.props.ProductID) {
             this.setState({
+                ...this.state,
                 ProductID: this.props.ProductID,
-            });
-            this.props.ProductsArr.map((item, index) => {
-                if (item._id === this.props.ProductID) {
-                    this.props.selectProductFunction(this.props.ProductsArr[index]);
-                }
-                return index;
             });
         }
         if (prevProps.SelectProduct !== this.props.SelectProduct) {
-            const {Photo1, Photo2, Photo3} = this.props.SelectProduct;
-            this.setState({
-                SelectProduct: this.props.SelectProduct,
-                slidersArr: [Photo1, Photo2, Photo3],
-            })
+            this.fillSelectProduct();
         }
         if (prevProps.Permission !== this.props.Permission) {
             if (this.props.Permission === "primaryAdmin") {
@@ -95,6 +88,13 @@ class Cart extends React.Component {
         }
     }
 
+    fillSelectProduct() {
+        const {Photo1, Photo2, Photo3} = this.props.SelectProduct;
+        this.setState({
+            SelectProduct: this.props.SelectProduct,
+            slidersArr: [Photo1, Photo2, Photo3],
+        })
+    }
     redirect(page = "catalog") {
         this.props.dataRedirectFunction({
             accessR: true,

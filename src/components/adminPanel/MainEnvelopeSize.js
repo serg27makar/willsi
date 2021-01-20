@@ -1,5 +1,4 @@
 import React from "react";
-import {recalculateParamsDog} from "../../access/recalculateConstants";
 import {chooseSizeList} from "../../js/sharedFunctions";
 import {connect} from "react-redux";
 import {langCode} from "../../access/lang/translaterJS";

@@ -5,6 +5,7 @@ import {
     actionProductID,
     actionSearchItemNew,
     actionSearchItemParams,
+    actionSelectProduct,
 } from "../../action";
 import {connect} from "react-redux";
 import CircleLevel from "../shared/CircleLevel";
@@ -26,8 +27,9 @@ class FullProductCard extends React.Component {
         this.filterNew = this.filterNew.bind(this);
     }
 
-    openCard(productID) {
-        this.props.productIDFunction(productID);
+    openCard(product) {
+        this.props.productIDFunction(product._id);
+        this.props.selectProductFunction(product);
         this.props.dataRedirectFunction({
             accessR: true,
             to: "/cart",
@@ -110,7 +112,7 @@ class FullProductCard extends React.Component {
         return (
             <div className={this.props.compilation ? "compilation-deferred-goods" : "deferred-goods"}>
                 <div className="card-box">
-                    <div className="card-box__picture" onClick={() => {this.openCard(item._id)}}>
+                    <div className="card-box__picture" onClick={() => {this.openCard(item)}}>
                         <picture className="picture">
                             <img className="picture__source" src={item.Photo1} alt={item.ProdName}/>
                         </picture>
@@ -149,6 +151,9 @@ const mapDispatchToProps = dispatch => {
         },
         searchItemNewFunction: (searchItemNew) => {
             dispatch(actionSearchItemNew(searchItemNew))
+        },
+        selectProductFunction: (SelectProduct) => {
+            dispatch(actionSelectProduct(SelectProduct))
         },
     }
 };
