@@ -78,6 +78,7 @@ class AdminMainSite extends React.Component {
             if (item.substr(item.length - 3, 3) !== "All") {
                 subCatalog.push(item)
             }
+            return subCatalog;
         })
         this.setState({
             ...this.state,
@@ -107,6 +108,7 @@ class AdminMainSite extends React.Component {
                     if (item.substr(item.length - 3, 3) !== "All") {
                         subCatalog.push(item)
                     }
+                    return subCatalog;
                 })
                 this.setState({
                     ...this.state,
@@ -134,6 +136,7 @@ class AdminMainSite extends React.Component {
                     if (item.substr(item.length - 3, 3) !== "All") {
                         subCatalog.push(item)
                     }
+                    return subCatalog;
                 })
                 headerIndex = index;
             }

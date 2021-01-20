@@ -11,7 +11,7 @@ import {
 import {connect} from "react-redux";
 import {postRegister, postUpdate} from "../utilite/axiosConnect";
 import InputDataParams from "./InputDataParams";
-import {isEmptyObject, isValid, updateResult} from "../js/sharedFunctions";
+import {getSizeMinMax, isEmptyObject, isValid, updateResult} from "../js/sharedFunctions";
 import {sizeListTshirts} from "../access/recalculateConstants";
 import {langCode} from "../access/lang/translaterJS";
 
@@ -69,7 +69,8 @@ class SearchBox extends React.Component {
         e.preventDefault();
         const name = e.target.name;
         const value = Number(e.target.value);
-        const data = value <= 0 ? 0 : value > 500 ? 500 : value;
+        const {sizeMin, sizeMax} = getSizeMinMax(name)
+        const data = value <= sizeMin ? sizeMin : value > sizeMax ? sizeMax : value;
         this.setState({
             ...this.state,
             size: {
@@ -159,12 +160,14 @@ class SearchBox extends React.Component {
     }
 
     renderInput(item, index) {
+        const {sizeMin, sizeMax} = getSizeMinMax(item);
         return (
             <div className="indicator-bottom__picture" key={index}>
                 <span className="text-to-input text-18">{langCode(this.props.lang, item)}</span>
                 <input className="form-env__input text-18" type="number"
                        name={item} placeholder={"?"}
                        value={this.state.size[item] || ""}
+                       min={sizeMin} max={sizeMax}
                        onChange={this.onChange}/>
             </div>
         )

@@ -8,7 +8,6 @@ import {
     actionSelectedSubCatalogID
 } from "../../action";
 import {connect} from "react-redux";
-import LangCat from "../../access/lang/CatalogLangConstants";
 import {langCodeCatalog} from "../../access/lang/translaterJS";
 
 class RutCategoryCatalog extends React.Component {

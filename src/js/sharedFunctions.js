@@ -321,3 +321,41 @@ export function setGenderByCatalogName(catalogName) {
     }
     return gender;
 }
+
+export function setRecalculateConstant(gender) {
+    let RecalculateConstant = [];
+    switch (gender) {
+        case "man":
+            RecalculateConstant = recalculateParamsMan;
+            break;
+        case "woman":
+            RecalculateConstant = recalculateParamsWoman;
+            break;
+        case "boy":
+            RecalculateConstant = recalculateParamsBoy;
+            break;
+        case "girl":
+            RecalculateConstant = recalculateParamsGirl;
+            break;
+        default : RecalculateConstant = recalculateParamsWoman;
+    }
+    return RecalculateConstant;
+}
+
+export function getSizeMinMax(itemName) {
+    let sizeMin = 0;
+    let sizeMax = 250;
+    recalculateParamsMan.map((item) => {
+        if (item.inputName === itemName) {
+            sizeMax = item.sizeMax;
+        }
+        return itemName;
+    })
+    recalculateParamsGirl.map((item) => {
+        if (item.inputName === itemName) {
+            sizeMin = item.sizeMin;
+        }
+        return itemName;
+    })
+    return {sizeMin, sizeMax};
+}

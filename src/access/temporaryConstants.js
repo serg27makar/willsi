@@ -1,5 +1,3 @@
-import ru from "./lang/LangConstants";
-
 export const usersFeatBack = [
     {
         imgUrl: "static/img/content/reviews-user.png",
