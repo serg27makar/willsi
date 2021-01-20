@@ -42,33 +42,9 @@ class Data extends React.Component {
             accessR: false,
             to: "/",
         });
-        setTimeout(() => {
-            if (this.props.Permission === "primaryAdmin") {
-                this.redirect("primary-admin-panel")
-            }
-            if (!this.props.AddUser) {
-                this.props.dataRedirectFunction({
-                    accessR: true,
-                    to: "/catalog",
-                });
-            }
-            if (this.props.AddUser) {
-                let newUser;
-                let startParams = false;
-                if (this.props.NewUser !== 0) {
-                    newUser = this.props.NewUser;
-                    startParams = true;
-                } else {
-                    newUser = this.props.UsersParameters.length;
-                    this.props.newUserFunction(newUser);
-                }
-                this.setState({
-                    ...this.state,
-                    newUser,
-                    startParams,
-                })
-            }
-        }, 100);
+        if (this.props.Permission === "primaryAdmin") {
+            this.redirect("primary-admin-panel")
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -80,6 +56,9 @@ class Data extends React.Component {
             this.setState({
                 redirect: this.props.dataRedirect,
             })
+        }
+        if (prevProps.AddUser !== this.props.AddUser) {
+            this.checkAddUser();
         }
         if (prevState.startParams !== this.state.startParams) {
             this.props.openModalFunction("recalculateModal");
@@ -102,6 +81,29 @@ class Data extends React.Component {
         this.props.addUserFunction(false);
     }
 
+    checkAddUser() {
+        if (!this.props.AddUser) {
+            this.props.dataRedirectFunction({
+                accessR: true,
+                to: "/catalog",
+            });
+        } else {
+            let newUser;
+            let startParams = false;
+            if (this.props.NewUser !== 0) {
+                newUser = this.props.NewUser;
+                startParams = true;
+            } else {
+                newUser = this.props.UsersParameters.length;
+                this.props.newUserFunction(newUser);
+            }
+            this.setState({
+                ...this.state,
+                newUser,
+                startParams,
+            })
+        }
+    }
     genderSwitcher(gender) {
         const recalculateParams = genderSwitcher(gender, "subCatalogListWomenTshirts");
         this.props.recalculateParamsFunction(recalculateParams);

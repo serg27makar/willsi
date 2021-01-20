@@ -56,10 +56,10 @@ class Catalog extends React.Component {
         }
         this.redirect("", false);
         this.props.setActionAdminPanelFunction("Catalog");
-        setTimeout(() => {
-            this.functionRedirect();
+        this.functionRedirect();
+        if (this.props.selectedSubCatalogID) {
             this.selectedSubCatalog(this.props.selectedSubCatalogID);
-        }, 50);
+        }
         window.addEventListener('scroll', this.onScrollList);
     }
 
@@ -333,18 +333,16 @@ class Catalog extends React.Component {
     }
 
     functionRedirect() {
-        setTimeout(() => {
-            if (this.props.Permission === "primaryAdmin") {
-                this.redirect("primary-admin-panel")
-            }
-            if (!this.props.UsersParameters || (this.props.UsersParameters && !this.props.UsersParameters.length) ||
-                (this.props.UsersParameters[0].Parameters && !this.props.UsersParameters[0].Parameters.length) ||
-                (this.props.UsersParameters[0].Parameters.length < sizeListTshirts.length)
-            ) {
-                this.props.addUserFunction(true);
-                this.redirect("data")
-            }
-        }, 500)
+        if (this.props.Permission === "primaryAdmin") {
+            this.redirect("primary-admin-panel")
+        }
+        if (!this.props.UsersParameters || (this.props.UsersParameters && !this.props.UsersParameters.length) ||
+            (this.props.UsersParameters[0].Parameters && !this.props.UsersParameters[0].Parameters.length) ||
+            (this.props.UsersParameters[0].Parameters.length < sizeListTshirts.length)
+        ) {
+            this.props.addUserFunction(true);
+            this.redirect("data")
+        }
     }
 
     render() {
