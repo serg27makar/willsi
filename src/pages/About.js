@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import Reviews from "../components/shared/Reviews";
 import SearchBox from "../components/SearchBox";
 import WelcomeAbout from "../components/WelcomeAbout";
-import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
 
 class About extends React.Component {
@@ -23,9 +22,6 @@ class About extends React.Component {
             to: "/",
         });
         this.props.setActionAdminPanelFunction("About");
-        setTimeout(() => {
-            handlePageUp();
-        }, 50);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {

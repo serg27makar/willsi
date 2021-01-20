@@ -10,7 +10,6 @@ import Startup from "../components/Startup";
 import {resourceSellingArr, resourceThreeStepsArr, startupServiceArr} from "../access/temporaryConstants";
 import Details from "../components/Details";
 import WhomStartup from "../components/WhomStartup";
-import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
 import {langCode} from "../access/lang/translaterJS";
 
@@ -32,9 +31,6 @@ class SellerService extends React.Component {
             to: "/",
         });
         this.props.setActionAdminPanelFunction("Service");
-        setTimeout(() => {
-            handlePageUp();
-        }, 50);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {

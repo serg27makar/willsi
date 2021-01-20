@@ -14,7 +14,6 @@ import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import CardDescription from "../components/CardDescription";
 import CartTabs from "../components/CartTabs";
 import CircleLevel from "../components/shared/CircleLevel";
-import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
 import PerfectThings from "../components/PerfectThings";
 import {subCatalogListGeneral} from "../access/temporaryConstants";
@@ -53,9 +52,6 @@ class Cart extends React.Component {
             });
         }
         this.props.setActionAdminPanelFunction("Cart");
-        setTimeout(() => {
-            handlePageUp();
-        }, 50);
         if (this.props.SelectProduct) {
             this.fillSelectProduct();
         }

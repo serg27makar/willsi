@@ -19,7 +19,6 @@ import RutCatalogSidebar from "../components/RutCatalogSidebar";
 import CatalogSidebar from "../components/CatalogSidebar";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ProductsCart from "../components/ProductsCart";
-import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
 import {getAllProductDataToParams, getProductDataToParams} from "../utilite/axiosConnect";
 import {genderSwitcher} from "../js/sharedFunctions";
@@ -58,7 +57,6 @@ class Catalog extends React.Component {
         this.redirect("", false);
         this.props.setActionAdminPanelFunction("Catalog");
         setTimeout(() => {
-            handlePageUp();
             this.functionRedirect();
             this.selectedSubCatalog(this.props.selectedSubCatalogID);
         }, 50);

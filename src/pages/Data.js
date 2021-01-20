@@ -13,7 +13,6 @@ import {connect} from "react-redux";
 import RecalculateFooter from "../components/RecalculateFooter";
 import DataHeader from "../components/DataHeader";
 import InputDataParams from "../components/InputDataParams";
-import {handlePageUp} from "../js/visualEffects";
 import {postUpdate} from "../utilite/axiosConnect";
 import {Redirect} from "react-router-dom";
 import {genderSwitcher, updateResult} from "../js/sharedFunctions";
@@ -43,9 +42,6 @@ class Data extends React.Component {
             accessR: false,
             to: "/",
         });
-        setTimeout(() => {
-            handlePageUp();
-        }, 50);
         setTimeout(() => {
             if (this.props.Permission === "primaryAdmin") {
                 this.redirect("primary-admin-panel")

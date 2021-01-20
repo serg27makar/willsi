@@ -12,7 +12,6 @@ import Startup from "../components/Startup";
 import WelcomeMain from "../components/WelcomeMain";
 import {resourceThreeStepsArr} from "../access/temporaryConstants";
 import {Redirect} from "react-router-dom";
-import {handlePageUp} from "../js/visualEffects";
 import {langCode} from "../access/lang/translaterJS";
 
 class Homepage extends React.Component {
@@ -26,9 +25,6 @@ class Homepage extends React.Component {
 
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Homepage");
-        setTimeout(() => {
-            handlePageUp();
-        }, 50);
         this.setState({
             ...this.state,
             isUnknown: this.props.UsersParameters && this.props.UsersParameters.length === 0,

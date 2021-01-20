@@ -7,7 +7,6 @@ import {dropdownListArr} from "../access/temporaryConstants";
 import RutCatalogSidebar from "../components/RutCatalogSidebar";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ProductsCart from "../components/ProductsCart";
-import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
 import {getPostpone} from "../utilite/axiosConnect";
 import CountryDropDown from "../components/CountryDropDown";
@@ -41,9 +40,6 @@ class Postpone extends React.Component {
         });
         this.props.setActionAdminPanelFunction("Postpone");
         this.props.openCatalogFunction(-1);
-        setTimeout(() => {
-            handlePageUp();
-        }, 50);
         if (this.props.Postpone && this.props.Postpone.length > 0) {
             getPostpone(this.props.Postpone, this.dataResult);
         }
