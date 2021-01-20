@@ -1,6 +1,7 @@
 import React from "react";
-import ru from "../access/lang/LangConstants";
 import RutCategoryCatalog from "./dropdowns/RutCategoryCatalog";
+import {connect} from "react-redux";
+import {langCode} from "../access/lang/translaterJS";
 
 class RutCatalogSidebar extends React.Component {
 
@@ -8,7 +9,7 @@ class RutCatalogSidebar extends React.Component {
         return (
             <div className="catalog-sidebar__item">
                 <div className="catalog-envelope text-18 medium">
-                    <span className="catalog-envelope__name">{ru.Catalog}</span>
+                    <span className="catalog-envelope__name">{langCode(this.props.lang, "Catalog")}</span>
                 </div>
                 <div className="catalog-body">
                     {this.props.Categories && this.props.Categories.map((item, index) => {
@@ -22,4 +23,11 @@ class RutCatalogSidebar extends React.Component {
     }
 }
 
-export default RutCatalogSidebar;
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
+
+export default connect(MapStateToProps)(RutCatalogSidebar);
+

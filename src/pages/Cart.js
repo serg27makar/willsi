@@ -11,7 +11,6 @@ import {connect} from "react-redux";
 import Carousel from "../components/Carousel";
 import CatalogTopEnvironment from "../components/CatalogTopEnvironment";
 import BreadcrumbsBg from "../components/BreadcrumbsBg";
-import ru from "../access/lang/LangConstants";
 import CardDescription from "../components/CardDescription";
 import CartTabs from "../components/CartTabs";
 import CircleLevel from "../components/shared/CircleLevel";
@@ -19,6 +18,7 @@ import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
 import PerfectThings from "../components/PerfectThings";
 import {subCatalogListGeneral} from "../access/temporaryConstants";
+import {langCode} from "../access/lang/translaterJS";
 
 class Cart extends React.Component {
     constructor(props) {
@@ -105,7 +105,7 @@ class Cart extends React.Component {
     renderSizeStandard(SizeStandard, subCatalog) {
         if (subCatalogListGeneral.indexOf(subCatalog) === -1)
         return (
-            <span className="most-suitable-size text-14">{ru.mostSuitableSize + SizeStandard}</span>
+            <span className="most-suitable-size text-14">{langCode(this.props.lang, "mostSuitableSize") + SizeStandard}</span>
         )
     }
 
@@ -147,7 +147,7 @@ class Cart extends React.Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-12">
-                                <h2 className="ideal-product__title title-36 uppercase">{ru.FewPerfectThings}</h2>
+                                <h2 className="ideal-product__title title-36 uppercase">{langCode(this.props.lang, "FewPerfectThings")}</h2>
                             </div>
                         </div>
                     </div>
@@ -167,6 +167,7 @@ function MapStateToProps(state) {
         ProductsArr: state.productReducer.ProductsArr,
         SelectProduct: state.productReducer.SelectProduct,
         Permission: state.userReducer.Permission,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

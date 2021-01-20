@@ -1,10 +1,10 @@
 import React from "react";
-import ru from "../access/lang/LangConstants";
 import {Redirect} from "react-router-dom";
 import {handlePageUp} from "../js/visualEffects";
 import {sizeListTshirts} from "../access/recalculateConstants";
 import {connect} from "react-redux";
 import {actionHeaderUser, actionOpenModal} from "../action";
+import {langCode} from "../access/lang/translaterJS";
 
 class RecalculateFooter extends React.Component {
     constructor(props) {
@@ -59,11 +59,11 @@ class RecalculateFooter extends React.Component {
                 <div className="col-12 recalculate-footer">
                     <div className="col-12">
                         <button className="recalculate__button text-22 medium button-main"
-                                onClick={this.redirect}>{ru.Count}</button>
+                                onClick={this.redirect}>{langCode(this.props.lang, "Count")}</button>
                     </div>
                     <div className="col-12">
-                        <p className="recalculate__bottom-title title-36 uppercase color-aqua bold">{ru.YouAreAmazing}</p>
-                        <p className="recalculate__bottom-paragraph text-16 light">{ru.SimpleIsNot1}<br/>{ru.SimpleIsNot2}</p>
+                        <p className="recalculate__bottom-title title-36 uppercase color-aqua bold">{langCode(this.props.lang, "YouAreAmazing")}</p>
+                        <p className="recalculate__bottom-paragraph text-16 light">{langCode(this.props.lang, "SimpleIsNot1")}<br/>{langCode(this.props.lang, "SimpleIsNot2")}</p>
                     </div>
                 </div>
             )
@@ -71,11 +71,11 @@ class RecalculateFooter extends React.Component {
             return (
                 <div className="col-12 recalculate-footer">
                     <div className="col-12">
-                        <p className="recalculate__bottom-paragraph text-20 light">{ru.weAreMissingSomeData}</p>
+                        <p className="recalculate__bottom-paragraph text-20 light">{langCode(this.props.lang, "weAreMissingSomeData")}</p>
                     </div>
                     <div className="col-12">
                         <button className="recalculate__button text-22 medium button-main"
-                                onClick={this.continueFillIn}>{ru.continue}</button>
+                                onClick={this.continueFillIn}>{langCode(this.props.lang, "continue")}</button>
                     </div>
                 </div>
             )
@@ -84,7 +84,9 @@ class RecalculateFooter extends React.Component {
     }
 }
 function MapStateToProps(state) {
-    return {}
+    return {
+        lang: state.utiliteReducer.lang,
+    }
 }
 const mapDispatchToProps = dispatch => {
     return {

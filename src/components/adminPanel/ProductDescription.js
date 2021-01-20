@@ -1,5 +1,6 @@
 import React from "react";
-import ru from "../../access/lang/LangConstants";
+import {langCode} from "../../access/lang/translaterJS";
+import {connect} from "react-redux";
 
 class ProductDescription extends React.Component {
     constructor(props) {
@@ -46,34 +47,40 @@ class ProductDescription extends React.Component {
     render() {
         return (
             <div className="product-description">
-                <span className="add-store-label text-16">{ru.Description}</span>
+                <span className="add-store-label text-16">{langCode(this.props.lang, "Description")}</span>
                 <textarea className="form-shop__textarea text-14"
                           value={this.state.Description || ""}
-                          placeholder={ru.Description} name="Description"
+                          placeholder={langCode(this.props.lang, "Description")} name="Description"
                           onChange={this.dataChange}/>
-                <span className="add-store-label text-16">{ru.Composition}</span>
+                <span className="add-store-label text-16">{langCode(this.props.lang, "Composition")}</span>
                 <textarea className="form-shop__textarea text-14"
                           value={this.state.Composition || ""}
-                          placeholder={ru.Description} name="Composition"
+                          placeholder={langCode(this.props.lang, "Description")} name="Composition"
                           onChange={this.dataChange}/>
-                <span className="add-store-label text-16">{ru.ModelParameters}</span>
+                <span className="add-store-label text-16">{langCode(this.props.lang, "ModelParameters")}</span>
                 <textarea className="form-shop__textarea text-14"
                           value={this.state.ModelParameters || ""}
-                          placeholder={ru.Description} name="ModelParameters"
+                          placeholder={langCode(this.props.lang, "Description")} name="ModelParameters"
                           onChange={this.dataChange}/>
-                <span className="add-store-label text-16">{ru.CareInstructions}</span>
+                <span className="add-store-label text-16">{langCode(this.props.lang, "CareInstructions")}</span>
                 <textarea className="form-shop__textarea text-14"
                           value={this.state.CareInstructions || ""}
-                          placeholder={ru.Description} name="CareInstructions"
+                          placeholder={langCode(this.props.lang, "Description")} name="CareInstructions"
                           onChange={this.dataChange}/>
-                <span className="add-store-label text-16">{ru.PaymentAndDelivery}</span>
+                <span className="add-store-label text-16">{langCode(this.props.lang, "PaymentAndDelivery")}</span>
                 <textarea className="form-shop__textarea text-14"
                           value={this.state.PaymentAndDelivery || ""}
-                          placeholder={ru.Description} name="PaymentAndDelivery"
+                          placeholder={langCode(this.props.lang, "Description")} name="PaymentAndDelivery"
                           onChange={this.dataChange}/>
             </div>
         )
     }
 }
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
 
-export default ProductDescription;
+export default connect(MapStateToProps)(ProductDescription);
+

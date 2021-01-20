@@ -2,9 +2,9 @@ import React from "react";
 import ButtonMain from "../components/shared/ButtonMain";
 import {actionAlertText, actionHeaderUser, actionOpenModal, actionUsersParameters} from "../action";
 import {connect} from "react-redux";
-import ru from "../access/lang/LangConstants";
 import {getUserData, postUpdate} from "../utilite/axiosConnect";
 import {genderSwitcher} from "../js/sharedFunctions";
+import {langCode} from "../access/lang/translaterJS";
 
 class AddParamsModal extends React.Component {
     constructor(props) {
@@ -131,7 +131,7 @@ class AddParamsModal extends React.Component {
     render() {
         if (this.state.load && this.state.paramsList.length === 0) {
             this.props.openModalFunction("alertModal");
-            this.props.alertTextFunction(ru.allParametersAdded);
+            this.props.alertTextFunction(langCode(this.props.lang, "allParametersAdded"));
         }
         return(
             <div className="modal-envelope" id="modal-wowFirst">
@@ -145,7 +145,7 @@ class AddParamsModal extends React.Component {
                         return this.renderParamList(item, index);
                     })}
                     <div className="modal-form__button-enter">
-                        <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium"} text={ru.AddedParams} onClick={this.addedParamsList}/>
+                        <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium"} text={langCode(this.props.lang, "AddedParams")} onClick={this.addedParamsList}/>
                     </div>
                 </div>
             </div>
@@ -159,6 +159,7 @@ function MapStateToProps(state) {
         UsersParameters: state.userReducer.UsersParameters,
         UserID: state.userReducer.UserID,
         HeaderUser: state.userReducer.HeaderUser,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

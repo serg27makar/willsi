@@ -1,8 +1,8 @@
 import React from 'react';
 import "../../access/css/headerFooter.css"
 import {connect} from "react-redux";
-import ru from "../../access/lang/LangConstants";
 import {Link} from "react-router-dom";
+import {langCode} from "../../access/lang/translaterJS";
 
 class Footer extends React.Component {
     constructor(props) {
@@ -50,8 +50,8 @@ class Footer extends React.Component {
                                             </picture>
                                         </div>
                                         <div className="header__plan-column">
-                                            <p className="text-14 bold">{ru.TrialPlan}</p>
-                                            <div className="header__plan-change text-14 light" >{ru.Edit}</div>
+                                            <p className="text-14 bold">{langCode(this.props.lang, "TrialPlan")}</p>
+                                            <div className="header__plan-change text-14 light" >{langCode(this.props.lang, "Edit")}</div>
                                         </div>
                                     </div>
                                 </Link>
@@ -62,15 +62,15 @@ class Footer extends React.Component {
                                 <div className="footer__list-info">
                                     <ul className="list-info">
                                         <li className="list-info__item">
-                                            <div className="list-info__link light text-16" >{ru.online}
-                                            <br/>{ru.dressingRoom}</div>
+                                            <div className="list-info__link light text-16" >{langCode(this.props.lang, "online")}
+                                            <br/>{langCode(this.props.lang, "dressingRoom")}</div>
                                         </li>
                                         <li className="list-info__item">
                                             <a className="list-info__link light text-16" href="mailto:help@willsi.org">
                                                 <svg className="icon icon-email">
                                                     <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#email"/>
                                                 </svg>
-                                                <span className="list-info__text">{ru.willsiEmail}</span>
+                                                <span className="list-info__text">{langCode(this.props.lang, "willsiEmail")}</span>
                                             </a>
                                         </li>
                                         <li className="list-info__item">
@@ -78,11 +78,11 @@ class Footer extends React.Component {
                                                 <svg className="icon icon-phone ">
                                                     <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#phone"/>
                                                 </svg>
-                                                <span className="list-info__text">{ru.willsiPhone}</span>
+                                                <span className="list-info__text">{langCode(this.props.lang, "willsiPhone")}</span>
                                             </a>
                                         </li>
                                         <li className="list-info__item">
-                                            <div className="list-info__link light text-16" >{ru.PrivacyPolicy}</div>
+                                            <div className="list-info__link light text-16" >{langCode(this.props.lang, "PrivacyPolicy")}</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -99,6 +99,7 @@ function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
         Permission: state.userReducer.Permission,
+        lang: state.utiliteReducer.lang,
     }
 }
 

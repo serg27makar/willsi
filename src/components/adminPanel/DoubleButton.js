@@ -1,4 +1,6 @@
 import React from "react";
+import {connect} from "react-redux";
+import {langCode} from "../../access/lang/translaterJS";
 
 class DoubleButton extends React.Component {
     constructor(props) {
@@ -37,7 +39,7 @@ class DoubleButton extends React.Component {
     render() {
         return (
             <div className="main-envelope__info-envelope">
-                <span className="main-envelope__info-title text-15 uppercase bold">{this.props.placeholderData.title}</span>
+                <span className="main-envelope__info-title text-15 uppercase bold">{langCode(this.props.lang, this.props.placeholderData.title)}</span>
                 <label className={"main-envelope__label " + (this.state.active ? "input-check" : "input-uncheck")}>
                     <input className="main-envelope__input text-14" type="text"
                            placeholder={this.props.placeholderData.placeholder}
@@ -63,4 +65,10 @@ class DoubleButton extends React.Component {
     }
 }
 
-export default DoubleButton;
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
+
+export default connect(MapStateToProps)(DoubleButton);

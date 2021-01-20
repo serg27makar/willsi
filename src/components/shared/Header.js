@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import ru from "../../access/lang/LangConstants";
 import "../../access/css/headerFooter.css"
 import {connect} from "react-redux";
 import MobileEnvelope from "./MobileEnvelope";
@@ -161,13 +160,13 @@ class Header extends React.Component {
                             <HeaderCabinet/>
                         </div>
                         <div className=" hide-column">
-                            <div className="help-button navigation-list__link light text-16" onClick={this.helpModal}>{ru.help}</div>
+                            <div className="help-button navigation-list__link light text-16" onClick={this.helpModal}>{langCode(this.props.lang,"help")}</div>
                         </div>
                         <div className="header-btn-logout hide-column" onClick={this.logout}>
                             <svg className="icon">
                                 <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#login"/>
                             </svg>
-                            {ru.Exit}
+                            {langCode(this.props.lang, "Exit")}
                         </div>
                     </div>
                 </div>

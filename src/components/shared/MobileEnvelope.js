@@ -1,4 +1,3 @@
-import ru from "../../access/lang/LangConstants";
 import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
@@ -23,6 +22,7 @@ import {
     actionUsersParameters,
     actionUserStore
 } from "../../action";
+import {langCode} from "../../access/lang/translaterJS";
 
 class MobileEnvelope extends React.Component {
     constructor(props) {
@@ -97,11 +97,11 @@ class MobileEnvelope extends React.Component {
         }
         if (this.state.isAdminPanel) {
             return (
-                <Link className="mobile-nav__link light text-25" to={"/admin-panel"} onClick={this.mobileMenuClose}>{ru.StoreAdminLogin}</Link>
+                <Link className="mobile-nav__link light text-25" to={"/admin-panel"} onClick={this.mobileMenuClose}>{langCode(this.props.lang, "StoreAdminLogin")}</Link>
             )
         } else {
             return (
-                <Link className="mobile-nav__link light text-25" to={"/seller-service"} onClick={this.mobileMenuClose}>{ru.Partners}</Link>
+                <Link className="mobile-nav__link light text-25" to={"/seller-service"} onClick={this.mobileMenuClose}>{langCode(this.props.lang, "Partners")}</Link>
             )
         }
     }
@@ -111,14 +111,14 @@ class MobileEnvelope extends React.Component {
             <div className="mobile-envelope">
                 <ul>
                     <li className="mobile-nav__item">
-                        <Link className="mobile-nav__link light text-25" to={"/"} onClick={this.mobileMenuClose}>{ru.Home}</Link>
+                        <Link className="mobile-nav__link light text-25" to={"/"} onClick={this.mobileMenuClose}>{langCode(this.props.lang, "Home")}</Link>
 
                     </li>
                     <li className="mobile-nav__item">
-                        <Link className="mobile-nav__link light text-25" to={"/catalog"} onClick={this.mobileMenuClose}>{ru.DressingRoom}</Link>
+                        <Link className="mobile-nav__link light text-25" to={"/catalog"} onClick={this.mobileMenuClose}>{langCode(this.props.lang, "DressingRoom")}</Link>
                     </li>
                     <li className="mobile-nav__item">
-                        <Link className="mobile-nav__link light text-25" to={"/about"} onClick={this.mobileMenuClose}>{ru.About}</Link>
+                        <Link className="mobile-nav__link light text-25" to={"/about"} onClick={this.mobileMenuClose}>{langCode(this.props.lang, "About")}</Link>
                     </li>
                     <li className="mobile-nav__item">
                         {this.renderPartnerLink()}
@@ -128,13 +128,13 @@ class MobileEnvelope extends React.Component {
                     </li>
                 </ul>
                 <div className="header-btn-logout light text-25" onClick={this.logout}>
-                    <div className="help-button mobile-nav__link light text-25" onClick={this.helpModal}>{ru.help}</div>
+                    <div className="help-button mobile-nav__link light text-25" onClick={this.helpModal}>{langCode(this.props.lang, "help")}</div>
                 </div>
                 <div className="header-btn-logout light text-25" onClick={this.logout}>
                     <svg className="icon">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#login"/>
                     </svg>
-                    {ru.Exit}
+                    {langCode(this.props.lang, "Exit")}
                 </div>
             </div>
         )
@@ -145,6 +145,7 @@ function MapStateToProps(state) {
         page: state.pageReducer.page,
         Permission: state.userReducer.Permission,
         UserName: state.userReducer.UserName,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

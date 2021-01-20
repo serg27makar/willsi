@@ -2,7 +2,7 @@ import React from "react";
 import {actionSetCountry} from "../action";
 import {connect} from "react-redux";
 import DefaultDropDown from "./dropdowns/DefaultDropDown";
-import ru from "../access/lang/LangConstants";
+import {langCode} from "../access/lang/translaterJS";
 
 class CountryDropDown extends React.Component {
     constructor(props) {
@@ -37,7 +37,7 @@ class CountryDropDown extends React.Component {
     }
 
     render() {
-        const title = ru.country + ": " + this.state.setCountry;
+        const title = langCode(this.props.lang, "country") + ": " + this.state.setCountry;
         return (
             <div>
                 <DefaultDropDown items={this.state.allCountries} selected={this.state.setCountry} title={title} chooseListItem={this.chooseListItem}/>
@@ -50,6 +50,7 @@ function MapStateToProps(state) {
     return {
         setCountry: state.utiliteReducer.setCountry,
         allCountries: state.utiliteReducer.allCountries,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

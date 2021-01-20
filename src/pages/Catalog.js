@@ -4,7 +4,8 @@ import {
     actionAlertText,
     actionCatalogName,
     actionDataRedirect,
-    actionManufacturer, actionNewUser,
+    actionManufacturer,
+    actionNewUser,
     actionOpenModal,
     actionProductsArr,
     actionRecalculateParams,
@@ -22,9 +23,9 @@ import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
 import {getAllProductDataToParams, getProductDataToParams} from "../utilite/axiosConnect";
 import {genderSwitcher} from "../js/sharedFunctions";
-import ru from "../access/lang/LangConstants";
 import CountryDropDown from "../components/CountryDropDown";
 import {sizeListTshirts} from "../access/recalculateConstants";
+import {langCode} from "../access/lang/translaterJS";
 
 class Catalog extends React.Component {
     constructor(props) {
@@ -282,7 +283,7 @@ class Catalog extends React.Component {
         } else if (accessRequired) {
             getProductDataToParams(this.setProductData, dataSearch);
         } else {
-            this.props.alertTextFunction(ru.inOrderToContinue);
+            this.props.alertTextFunction(langCode(this.props.lang, "inOrderToContinue"));
             this.props.openModalFunction("alertModal");
         }
     }
@@ -398,6 +399,7 @@ function MapStateToProps(state) {
         SetActionPostpone: state.userReducer.SetActionPostpone,
         subCatalogName: state.catalogReducer.subCatalogName,
         Manufacturer: state.catalogReducer.Manufacturer,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

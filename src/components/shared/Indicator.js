@@ -1,8 +1,9 @@
 import React from 'react';
-import ru from "../../access/lang/LangConstants";
 import "../../access/css/stepsBlock.css"
 import AOS from "aos";
 import CircleLevel from "./CircleLevel";
+import {connect} from "react-redux";
+import {langCode} from "../../access/lang/translaterJS";
 
 class Indicator extends React.Component {
     constructor(props) {
@@ -41,12 +42,12 @@ class Indicator extends React.Component {
             <div className="indicator">
                 <div className="container">
                     <div className="row-wrap">
-                        <p className="indicator-env__mobile-info text-14 light italic color-aqua">{ru.WithIndicator}</p>
+                        <p className="indicator-env__mobile-info text-14 light italic color-aqua">{langCode(this.props.lang, "WithIndicator")}</p>
                         <div data-aos={"fade-right"} className="step-box-indicator">
                             {this.renderDynamicCircle()}
                         </div>
                         <div data-aos={"fade-left"} className="step-box-indicator">
-                            <p className="indicator-env__paragraph text-14 light italic">{ru.PayAttentionToThings}</p>
+                            <p className="indicator-env__paragraph text-14 light italic">{langCode(this.props.lang, "PayAttentionToThings")}</p>
                         </div>
                         <div data-aos={"fade-right"} className="step-box-indicator">
                             <div className="indicator-env__picture">
@@ -58,7 +59,7 @@ class Indicator extends React.Component {
                             </div>
                         </div>
                         <div data-aos={"fade-left"} className="step-box-indicator">
-                            <p className="indicator-env__paragraph text-14 light italic color-aqua">{ru.RecommendToConsider}</p>
+                            <p className="indicator-env__paragraph text-14 light italic color-aqua">{langCode(this.props.lang, "RecommendToConsider")}</p>
                         </div>
                     </div>
                 </div>
@@ -70,7 +71,7 @@ class Indicator extends React.Component {
                                     <picture className="picture">
                                         <img className="picture__source" src="static/img/content/window-screen.png" alt="window-screen"/>
                                     </picture>
-                                    <p className="indicator-bottom__text text-14 light italic color-aqua">{ru.WithIndicator}</p>
+                                    <p className="indicator-bottom__text text-14 light italic color-aqua">{langCode(this.props.lang, "WithIndicator")}</p>
                                 </div>
                                 <div className="indicator-bottom__mobile-picture">
                                     <picture className="mobile-picture">
@@ -86,4 +87,10 @@ class Indicator extends React.Component {
     }
 }
 
-export default Indicator;
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
+
+export default connect(MapStateToProps)(Indicator);

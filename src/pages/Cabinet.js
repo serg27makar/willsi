@@ -16,10 +16,10 @@ import RutCategory from "../components/RutCategory";
 import {placeholderData} from "../access/temporaryConstants";
 import UserDescription from "../components/UserDescription";
 import {Redirect} from "react-router-dom";
-import ru from "../access/lang/LangConstants";
 import StoreDescription from "../components/StoreDescription";
 import {getStoreData, postRemoveStore, postUpdate} from "../utilite/axiosConnect";
 import {updateResult} from "../js/sharedFunctions";
+import {langCode} from "../access/lang/translaterJS";
 
 class Cabinet extends React.Component {
     constructor(props) {
@@ -256,7 +256,7 @@ class Cabinet extends React.Component {
             return (
                 <RutCategory item={this.state.Store}
                              selectItem={this.selectStore}
-                             isAddItem={ru.AddStore}
+                             isAddItem={langCode(this.props.lang, "AddStore")}
                              addItem={this.addStore}
                              deleteBtnFun={this.deleteStore} index={1}
                              disabledFalse={true}
@@ -282,7 +282,7 @@ class Cabinet extends React.Component {
                         <DoubleButton placeholderData={placeholderData[0]} item={this.state.Email}
                                       changeValue={this.emailChange} toggle={this.isActive}/>
                         <RutCategory item={this.state.Data} selectItem={this.selectUser}
-                                     isAddItem={ru.AddedUser} addItem={this.addUser}
+                                     isAddItem={langCode(this.props.lang, "AddedUser")} addItem={this.addUser}
                                      deleteBtnFun={this.deleteUser} index={0}/>
                         {this.storeDropdown()}
                     </div>
@@ -307,6 +307,7 @@ function MapStateToProps(state) {
         UserStore: state.userReducer.UserStore,
         Permission: state.userReducer.Permission,
         StoreArr: state.storeReducer.StoreArr,
+        lang: state.utiliteReducer.lang,
     }
 }
 

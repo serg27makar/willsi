@@ -11,7 +11,7 @@ import {
     actionUserUpdate
 } from "../action";
 import {connect} from "react-redux";
-import ru from "../access/lang/LangConstants";
+import {langCode} from "../access/lang/translaterJS";
 
 class SaveUpdateModal extends React.Component {
 
@@ -70,13 +70,13 @@ class SaveUpdateModal extends React.Component {
                     </svg>
                 </div>
                 <div className="modal-envelope__body">
-                    <p className="modal-envelope__title title-36 uppercase bold">{ru.SaveChange}</p>
+                    <p className="modal-envelope__title title-36 uppercase bold">{langCode(this.props.lang, "SaveChange")}</p>
                     <div className="modal-form">
                         <div className="modal-form__button-enter">
                             <ButtonMain btnClass={"button-enter button-main text-18 medium"}
-                                        text={ru.Save} onClick={this.Save}/>
+                                        text={langCode(this.props.lang, "Save")} onClick={this.Save}/>
                             <ButtonMain btnClass={"button-enter button-white text-18 medium"}
-                                        text={ru.Cancel} onClick={this.Cancel}/>
+                                        text={langCode(this.props.lang, "Cancel")} onClick={this.Cancel}/>
                         </div>
                     </div>
                 </div>
@@ -91,6 +91,7 @@ function MapStateToProps(state) {
         modal: state.modalReducer.modal,
         UserID: state.userReducer.UserID,
         UserUpdate: state.userReducer.UserUpdate,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

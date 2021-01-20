@@ -1,5 +1,4 @@
 import React from "react";
-import ru from "../../access/lang/LangConstants";
 import "../../access/css/cart.css"
 import ButtonPostpone from "../shared/ButtonPostpone";
 import {actionPostpone, actionSetActionPostpone} from "../../action";
@@ -7,6 +6,7 @@ import {connect} from "react-redux";
 import {postUpdate} from "../../utilite/axiosConnect";
 import {updateResult, validPostpone} from "../../js/sharedFunctions";
 import ButtonMain from "../shared/ButtonMain";
+import {langCode} from "../../access/lang/translaterJS";
 
 class PostponeButton extends React.Component {
     constructor(props) {
@@ -59,7 +59,7 @@ class PostponeButton extends React.Component {
             return (
                 <div className="card-box__button-postpone">
                     <ButtonMain btnClass={"button-main remove-postpone text-18 uppercase medium"}
-                                text={ru.removeItem} onClick={() => {
+                                text={langCode(this.props.lang, "removeItem")} onClick={() => {
                         this.removePostpone(item)
                     }}/>
                 </div>
@@ -81,6 +81,7 @@ function MapStateToProps(state) {
         UserID: state.userReducer.UserID,
         Postpone: state.userReducer.Postpone,
         SetActionPostpone: state.userReducer.SetActionPostpone,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

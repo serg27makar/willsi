@@ -1,8 +1,8 @@
-import ru from "../../access/lang/LangConstants";
 import {Link} from "react-router-dom";
 import React from "react";
 import {connect} from "react-redux";
 import Authentication from "./Authentication";
+import {langCode} from "../../access/lang/translaterJS";
 
 class HeaderCabinet extends React.Component {
     constructor(props) {
@@ -49,7 +49,7 @@ class HeaderCabinet extends React.Component {
                                     <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
                                 </svg>
                                 {this.renderRedRing()}
-                                {ru.delayed}
+                                {langCode(this.props.lang, "delayed")}
                             </Link>
                         </li>
                     </div>
@@ -64,6 +64,7 @@ function MapStateToProps(state) {
         Postpone: state.userReducer.Postpone,
         SetActionPostpone: state.userReducer.SetActionPostpone,
         UserName: state.userReducer.UserName,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

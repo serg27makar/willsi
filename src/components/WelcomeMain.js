@@ -1,8 +1,9 @@
 import React from "react";
-import ru from "../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
 import {Redirect} from "react-router-dom";
 import {getAllUsers} from "../utilite/axiosConnect";
+import {connect} from "react-redux";
+import {langCode} from "../access/lang/translaterJS";
 
 class WelcomeMain extends React.Component {
     constructor(props) {
@@ -59,23 +60,23 @@ class WelcomeMain extends React.Component {
                     <div className="row">
                         <div ref={this.wrapperRef} className="col-12 welcome-main-env">
                             <h1 className="welcome-main-env__title uppercase title-36 bold">
-                                <span className="welcome-main-env__title-name">{ru.Willsi}</span>
+                                <span className="welcome-main-env__title-name">{langCode(this.props.lang, "Willsi")}</span>
                                 <br className="welcome-main-env__br"/>
-                                <span className="welcome-main-env__title-value">{ru.SelectionOfThings}</span>
+                                <span className="welcome-main-env__title-value">{langCode(this.props.lang, "SelectionOfThings")}</span>
                             </h1>
-                            <p className="welcome-main-env__paragraph-text text-16 light">{ru.HomepageFirstTextBlock1}
-                                <br/>{ru.HomepageFirstTextBlock2}
-                                <br/>{ru.HomepageFirstTextBlock3}
+                            <p className="welcome-main-env__paragraph-text text-16 light">{langCode(this.props.lang, "HomepageFirstTextBlock1")}
+                                <br/>{langCode(this.props.lang, "HomepageFirstTextBlock2")}
+                                <br/>{langCode(this.props.lang, "HomepageFirstTextBlock3")}
                             </p>
                             <div className="welcome-main-env__button-list">
-                                <ButtonMain btnClass="button-main text-16" text={ru.toDressingRoom} onClick={() => {this.redirect("/catalog")}}/>
-                                <ButtonMain btnClass="button-white text-16" text={ru.becomePartner} onClick={() => {this.redirect("/seller-service")}}/>
+                                <ButtonMain btnClass="button-main text-16" text={langCode(this.props.lang, "toDressingRoom")} onClick={() => {this.redirect("/catalog")}}/>
+                                <ButtonMain btnClass="button-white text-16" text={langCode(this.props.lang, "becomePartner")} onClick={() => {this.redirect("/seller-service")}}/>
                             </div>
                             <div className="welcome-main-env__our-services">
-                                <p className="welcome-main-env__our-services-text text-16 light">{ru.OurService}
-                                    <br/>{ru.TookAdvantage}
+                                <p className="welcome-main-env__our-services-text text-16 light">{langCode(this.props.lang, "OurService")}
+                                    <br/>{langCode(this.props.lang, "TookAdvantage")}
                                     {this.renderUsersQuantity()}
-                                    <span className="welcome-main-env__our-services-client">{ru.client}</span>
+                                    <span className="welcome-main-env__our-services-client">{langCode(this.props.lang, "client")}</span>
                                 </p>
                             </div>
                         </div>
@@ -86,4 +87,11 @@ class WelcomeMain extends React.Component {
     }
 }
 
-export default WelcomeMain;
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
+
+export default connect(MapStateToProps)(WelcomeMain);
+

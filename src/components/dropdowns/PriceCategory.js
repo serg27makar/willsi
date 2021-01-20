@@ -1,8 +1,8 @@
 import React from "react";
 import {actionCloseAllCatalogs, actionSearchItemPrice} from "../../action";
 import {connect} from "react-redux";
-import ru from "../../access/lang/LangConstants";
 import SliderInput from "./SliderInput";
+import {langCode} from "../../access/lang/translaterJS";
 
 class PriceCategory extends React.Component {
     constructor(props) {
@@ -57,7 +57,7 @@ class PriceCategory extends React.Component {
         return (
             <div className="catalog-sidebar__item">
                 <div className="catalog-wrapper text-18 medium" onClick={this.closeOpen}>
-                    <span className="catalog-wrapper__name">{ru[this.props.item.catalogName]}</span>
+                    <span className="catalog-wrapper__name">{langCode(this.props.lang, this.props.item.catalogName)}</span>
                     <svg className="icon icon-arrow-small ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                     </svg>
@@ -75,6 +75,7 @@ class PriceCategory extends React.Component {
 function MapStateToProps(state) {
     return {
         closeAllCatalogs: state.catalogReducer.closeAllCatalogs,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

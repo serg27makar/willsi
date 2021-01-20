@@ -1,6 +1,5 @@
 import React from 'react';
 import "./../access/css/cart.css";
-import ru from "../access/lang/LangConstants";
 import {
     actionAddUser,
     actionDataRedirect,
@@ -10,6 +9,7 @@ import {
 } from "../action";
 import {connect} from "react-redux";
 import DropdownList from "./DropdownList";
+import {langCode} from "../access/lang/translaterJS";
 
 class CatalogTopEnvironment extends React.Component {
     constructor(props) {
@@ -138,8 +138,8 @@ class CatalogTopEnvironment extends React.Component {
     renderParams = (item, index) => {
         return (
             <li className="list-object__item text-16 bold" key={index}>
-                <p className="list-object__text">{ru[item.title] + " "}</p>
-                <span className="list-object__text-value color-aqua">{item.size + ru.sm}</span>
+                <p className="list-object__text">{langCode(this.props.lang, item.title) + " "}</p>
+                <span className="list-object__text-value color-aqua">{item.size + langCode(this.props.lang, "sm")}</span>
                 <span className="list-object_icon-pen" onClick={this.editorOpen}>
                     <svg className="icon">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#pen"/>
@@ -184,6 +184,7 @@ function MapStateToProps(state) {
         dataRedirect: state.pageReducer.dataRedirect,
         Permission: state.userReducer.Permission,
         HeaderUser: state.userReducer.HeaderUser,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

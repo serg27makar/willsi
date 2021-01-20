@@ -2,7 +2,7 @@ import React from "react";
 import ButtonMain from "../components/shared/ButtonMain";
 import {actionDataRedirect, actionOpenModal} from "../action";
 import {connect} from "react-redux";
-import ru from "../access/lang/LangConstants";
+import {langCode} from "../access/lang/translaterJS";
 
 class WowSecondModal extends React.Component {
     constructor(props) {
@@ -32,11 +32,11 @@ class WowSecondModal extends React.Component {
                     </svg>
                 </div>
                 <div className="modal-envelope__body">
-                    <p className="modal-envelope__title title-36 uppercase bold">{ru.wow}</p>
-                    <p className="modal-envelope__sub-light text-16 light">{ru.youFirstHuman}</p>
-                    <p className="modal-envelope__sub-info text-16 bold">{ru.seeMoreThings}</p>
+                    <p className="modal-envelope__title title-36 uppercase bold">{langCode(this.props.lang, "wow")}</p>
+                    <p className="modal-envelope__sub-light text-16 light">{langCode(this.props.lang, "youFirstHuman")}</p>
+                    <p className="modal-envelope__sub-info text-16 bold">{langCode(this.props.lang, "seeMoreThings")}</p>
                     <div className="modal-form__button-enter">
-                        <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.DressingRoom} onClick={this.dressingRoom}/>
+                        <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={langCode(this.props.lang, "DressingRoom")} onClick={this.dressingRoom}/>
                     </div>
                 </div>
             </div>
@@ -48,6 +48,7 @@ class WowSecondModal extends React.Component {
 function MapStateToProps(state) {
     return {
         modal: state.modalReducer.modal,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

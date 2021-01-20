@@ -4252,5 +4252,5 @@ span.catalog-wrapper__name {
 .catalog-sidebar-lang {
     position: relative;
     width: 6rem;
-    z-index: 1;
+    z-index: 801;
 }

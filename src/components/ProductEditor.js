@@ -1,10 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
-import ru from "../access/lang/LangConstants";
 import {actionSelectedProductToEdit, actionToggleHiddenUpdate} from "../action";
 import AddButton from "./adminPanel/AddButton";
 import ToggleButton from "./shared/ToggleButton";
 import {showHiddenDataSet, showHiddenItemData} from "../js/dataUpdateFunctions";
+import {langCode} from "../access/lang/translaterJS";
 
 const searchItemName = [
     "Manufacturer", "ProdName", "ProductCode"
@@ -182,9 +182,9 @@ class ProductEditor extends React.Component {
             <div>
                 <div className="stroke-descriptor-wrapper">
                     <div className="stroke-descriptor-number text-14"> № </div>
-                    <div className="stroke-descriptor-manufacturer text-14">{ru.Manufacturer}</div>
-                    <div className="stroke-descriptor-name text-14">{ru.ProdName}</div>
-                    <div className="stroke-descriptor-code text-14">{ru.ProductCode}</div>
+                    <div className="stroke-descriptor-manufacturer text-14">{langCode(this.props.lang, "Manufacturer")}</div>
+                    <div className="stroke-descriptor-name text-14">{langCode(this.props.lang, "ProdName")}</div>
+                    <div className="stroke-descriptor-code text-14">{langCode(this.props.lang, "ProductCode")}</div>
                 </div>
                 {this.renderSearchBlock()}
                 {this.state.list && this.state.list.map((item, index) => {
@@ -199,6 +199,7 @@ class ProductEditor extends React.Component {
 function MapStateToProps(state) {
     return {
         toggleHiddenUpdate: state.utiliteReducer.toggleHiddenUpdate,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

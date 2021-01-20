@@ -2,9 +2,9 @@ import React from 'react';
 import {actionDataRedirect, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
-import ru from "../access/lang/LangConstants";
 import TariffBlock from "../components/TariffBlock";
 import {plansVariables} from "../access/temporaryConstants";
+import {langCode} from "../access/lang/translaterJS";
 
 class TariffPlans extends React.Component {
     constructor(props) {
@@ -56,7 +56,7 @@ class TariffPlans extends React.Component {
             <div className="content">
                 <div className="row">
                     <div className="col-12">
-                        <h2 className="tariff-block-title steps__title title-36 uppercase">{ru.tariffHeader}</h2>
+                        <h2 className="tariff-block-title steps__title title-36 uppercase">{langCode(this.props.lang, "tariffHeader")}</h2>
                         <div className="tariff-block-wrapper">
                             {plansVariables && plansVariables.map((item, index) => {
                                 return (<TariffBlock item={item} key={index}/>)
@@ -74,6 +74,7 @@ function MapStateToProps(state) {
         page: state.pageReducer.page,
         dataRedirect: state.pageReducer.dataRedirect,
         Permission: state.userReducer.Permission,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

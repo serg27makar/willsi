@@ -9,10 +9,10 @@ import {
     actionUserStore
 } from "../action";
 import {connect} from "react-redux";
-import ru from "../access/lang/LangConstants";
 import ButtonMain from "../components/shared/ButtonMain";
 import {getStoreData, postStoreRegister, postUpdate} from "../utilite/axiosConnect";
 import CountryModal from "./modalComponents/CountryModal";
+import {langCode} from "../access/lang/translaterJS";
 
 class AddServiceModal extends React.Component {
     constructor(props) {
@@ -98,13 +98,13 @@ class AddServiceModal extends React.Component {
         let errorText = "";
         if (!nameStore) {
             errorItem = "nameStore";
-            errorText = ru.enterYourStoreName;
+            errorText = langCode(this.props.lang, "enterYourStoreName");
         } else if (!urlStore) {
             errorItem = "urlStore";
-            errorText = ru.enterYourStoreUrl;
+            errorText = langCode(this.props.lang, "enterYourStoreUrl");
         } else if (!phoneStore) {
             errorItem = "phoneStore";
-            errorText = ru.enterYourStorePhone;
+            errorText = langCode(this.props.lang, "enterYourStorePhone");
         } else {
             postStoreRegister(store, this.result);
         }
@@ -129,30 +129,30 @@ class AddServiceModal extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <h1 className="uppercase title-36 bold">{ru.AddStore}</h1>
+                        <h1 className="uppercase title-36 bold">{langCode(this.props.lang, "AddStore")}</h1>
                         <div className="welcome-service__form-shop">
                             <label className="form-shop__label">
-                                <span className="add-store-label text-16">{ru.AddStoreInput1}</span>
-                                <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder1} name="nameStore" onChange={this.dataOnChange}/>
+                                <span className="add-store-label text-16">{langCode(this.props.lang, "AddStoreInput1")}</span>
+                                <input className="form-shop__input text-14" type="text" placeholder={langCode(this.props.lang, "AddStorePlaceholder1")} name="nameStore" onChange={this.dataOnChange}/>
                                 {this.state.errorItem === "nameStore" ? this.renderErrorText(this.state.errorText) : null}
                             </label>
                             <label className="form-shop__label">
-                                <span className="add-store-label text-16">{ru.AddStoreInput2}</span>
-                                <input className="form-shop__input text-14" type="text" placeholder={ru.AddStorePlaceholder2} name="urlStore" onChange={this.dataOnChange}/>
+                                <span className="add-store-label text-16">{langCode(this.props.lang, "AddStoreInput2")}</span>
+                                <input className="form-shop__input text-14" type="text" placeholder={langCode(this.props.lang, "AddStorePlaceholder2")} name="urlStore" onChange={this.dataOnChange}/>
                                 {this.state.errorItem === "urlStore" ? this.renderErrorText(this.state.errorText) : null}
                             </label>
 
                             <label className="form-shop__label">
-                                <span className="add-store-label text-16">{ru.AddStoreInput3}</span>
-                                <input className="form-shop__input text-14" type="tel" placeholder={ru.Phone} name="phoneStore" onChange={this.dataOnChange}/>
+                                <span className="add-store-label text-16">{langCode(this.props.lang, "AddStoreInput3")}</span>
+                                <input className="form-shop__input text-14" type="tel" placeholder={langCode(this.props.lang, "Phone")} name="phoneStore" onChange={this.dataOnChange}/>
                                 {this.state.errorItem === "phoneStore" ? this.renderErrorText(this.state.errorText) : null}
                             </label>
                             <label className="form-shop__label">
-                                <span className="add-store-label text-16">{ru.registerCountry}</span>
+                                <span className="add-store-label text-16">{langCode(this.props.lang, "registerCountry")}</span>
                                 <CountryModal/>
                             </label>
                             <div className="block-align-center service-modal-btn">
-                                <ButtonMain btnClass={"form-shop__button-save text-16"} text={ru.Save} onClick={this.dataSubmit}/>
+                                <ButtonMain btnClass={"form-shop__button-save text-16"} text={langCode(this.props.lang, "Save")} onClick={this.dataSubmit}/>
                             </div>
                         </div>
                     </div>
@@ -170,6 +170,7 @@ function MapStateToProps(state) {
         UserStore: state.userReducer.UserStore,
         addStore: state.storeReducer.addStore,
         setCountry: state.utiliteReducer.setCountry,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

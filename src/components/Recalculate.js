@@ -1,9 +1,9 @@
 import React from "react";
 import {evenOdd} from "../js/sharedFunctions";
-import ru from "../access/lang/LangConstants";
 import {actionAlertText, actionOpenModal, actionUsersParameters} from "../action";
 import {connect} from "react-redux";
 import ButtonMain from "./shared/ButtonMain";
+import {langCode} from "../access/lang/translaterJS";
 
 class Recalculate extends React.Component {
     constructor(props) {
@@ -119,7 +119,7 @@ class Recalculate extends React.Component {
                     <input className="slider-input-text text-16" name={item.inputName}
                            value={(this.state && this.state[item.inputName]) || item.sizeMin} min={item.sizeMin} max={item.sizeMax}
                            onChange={this.onChange}/>
-                           <div className="face-block-text">{ru.sm}</div>
+                           <div className="face-block-text">{langCode(this.props.lang, "sm")}</div>
                 </div>
                 <div className="digital-face right-arrow text-25 unselectable"
                      onClick={() => {this.rightArrowClick(item.inputName, this.state[item.inputName] || item.sizeMin, item.sizeMax)}}>+</div>
@@ -134,8 +134,8 @@ class Recalculate extends React.Component {
                        value={(this.state && this.state[item.inputName]) || 0} min={item.sizeMin} max={item.sizeMax}
                        onChange={this.onChange}/>
                 <div className="digital-slider-limit-wrapper">
-                    <div className="digital-slider-limit text-16">{item.sizeMin + " " + ru.sm}</div>
-                    <div className="digital-slider-limit text-16">{item.sizeMax + " " + ru.sm}</div>
+                    <div className="digital-slider-limit text-16">{item.sizeMin + " " + langCode(this.props.lang, "sm")}</div>
+                    <div className="digital-slider-limit text-16">{item.sizeMax + " " + langCode(this.props.lang, "sm")}</div>
                 </div>
             </div>
         )
@@ -198,10 +198,10 @@ class Recalculate extends React.Component {
                         </svg>
                     </div>
                     <div className="modal-envelope__body">
-                        <p className="modal-envelope__title title-36 bold">{ru.inOrderToContinue}</p>
+                        <p className="modal-envelope__title title-36 bold">{langCode(this.props.lang, "inOrderToContinue")}</p>
                         <div className="modal-form__button-enter">
                             <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium"}
-                                        text={ru.understandably} onClick={this.closeLincModal}/>
+                                        text={langCode(this.props.lang, "understandably")} onClick={this.closeLincModal}/>
                         </div>
                     </div>
                 </div>
@@ -220,7 +220,9 @@ class Recalculate extends React.Component {
 }
 
 function MapStateToProps(state) {
-    return {}
+    return {
+        lang: state.utiliteReducer.lang,
+    }
 }
 const mapDispatchToProps = dispatch => {
     return {

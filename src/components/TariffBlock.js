@@ -1,7 +1,8 @@
-import ru from "../access/lang/LangConstants";
 import React from "react";
 import {planList, tariffPlans} from "../access/temporaryConstants";
 import ButtonMain from "./shared/ButtonMain";
+import {connect} from "react-redux";
+import {langCode} from "../access/lang/translaterJS";
 
 class TariffBlock extends React.Component {
     constructor(props) {
@@ -53,7 +54,7 @@ class TariffBlock extends React.Component {
     render() {
         return (
             <div className="tariff-block">
-                <h2 className="uppercase tariff-block-plan-title text-22">{this.props.item.name}</h2>
+                <h2 className="uppercase tariff-block-plan-title text-22">{langCode(this.props.lang, this.props.item.name)}</h2>
                 <div className="tariff-block-number">{this.props.item.index}</div>
                 <div className="tariff-line-block">
                     {this.state.planListArr && this.state.planListArr.map((item, index) => {
@@ -66,10 +67,16 @@ class TariffBlock extends React.Component {
                     </svg>
                     <div className="buy-block-text">{this.props.item.price}</div>
                 </div>
-                <ButtonMain btnClass="button-main text-16 uppercase" text={ru.buyNow} onClick={this.buyNow}/>
+                <ButtonMain btnClass="button-main text-16 uppercase" text={langCode(this.props.lang, "buyNow")} onClick={this.buyNow}/>
             </div>
         )
     }
 }
 
-export default TariffBlock;
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
+
+export default connect(MapStateToProps)(TariffBlock);

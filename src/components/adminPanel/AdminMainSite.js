@@ -6,7 +6,6 @@ import ProductDescription from "./ProductDescription";
 import ProductLinkInput from "./ProductLinkInput";
 import ProductTypeDescription from "./ProductTypeDescription";
 import ButtonMain from "../shared/ButtonMain";
-import ru from "../../access/lang/LangConstants";
 import {postAddedProduct, postAddedProductParameters, postUpdateProduct} from "../../utilite/axiosConnect";
 import {
     actionAlertText,
@@ -18,6 +17,7 @@ import {
 } from "../../action";
 import {isEmptyObject, miDateFormatNumber, updateResult} from "../../js/sharedFunctions";
 import EditSubspecies from "./EditSubspecies";
+import {langCode} from "../../access/lang/translaterJS";
 
 class AdminMainSite extends React.Component {
     constructor(props) {
@@ -277,18 +277,18 @@ class AdminMainSite extends React.Component {
             } else {
                 postAddedProduct(cart, this.addedProductResult);
             }
-            this.props.spinnerTextFunction(ru.saved);
+            this.props.spinnerTextFunction(langCode(this.props.lang, "saved"));
             this.props.openModalFunction("spinnerModal");
         } else {
-            const textMessage = ru.enterTheseDetails + ":" +
-                (!cart.Manufacturer ? " " + ru.Manufacturer + "," : "") +
-                (!cart.ProdName ? " " + ru.ProdName + "," : "") +
-                (!cart.ProductCode ? " " + ru.ProductCode + "," : "") +
-                (!cart.Photo1 ? " " + ru.Photo1 + "," : "") +
-                (!cart.Photo2 ? " " + ru.Photo2 + "," : "") +
-                (!cart.Photo3 ? " " + ru.Photo3 + "," : "") +
-                (!cart.LinkToProduct ? " " + ru.LinkToProduct + "," : "") +
-                (!cart.Description ? " " + ru.Description + "," : "");
+            const textMessage = langCode(this.props.lang, "enterTheseDetails") + ":" +
+                (!cart.Manufacturer ? " " + langCode(this.props.lang, "Manufacturer") + "," : "") +
+                (!cart.ProdName ? " " + langCode(this.props.lang, "ProdName") + "," : "") +
+                (!cart.ProductCode ? " " + langCode(this.props.lang, "ProductCode") + "," : "") +
+                (!cart.Photo1 ? " " + langCode(this.props.lang, "Photo1") + "," : "") +
+                (!cart.Photo2 ? " " + langCode(this.props.lang, "Photo2") + "," : "") +
+                (!cart.Photo3 ? " " + langCode(this.props.lang, "Photo3") + "," : "") +
+                (!cart.LinkToProduct ? " " + langCode(this.props.lang, "LinkToProduct") + "," : "") +
+                (!cart.Description ? " " + langCode(this.props.lang, "Description") + "," : "");
             this.props.alertTextFunction(textMessage);
             this.props.openModalFunction("alertModal");
             this.props.saveParamsFunction(false);
@@ -314,15 +314,15 @@ class AdminMainSite extends React.Component {
         if (!isEmptyObject(this.props.item)) {
             return (
                 <div className="partners-env-btn">
-                    <ButtonMain btnClass="button-main text-16" text={ru.SaveChange} onClick={this.updateProduct}/>
-                    <ButtonMain btnClass="button-white text-16" text={ru.close} onClick={this.cancelSave}/>
+                    <ButtonMain btnClass="button-main text-16" text={langCode(this.props.lang, "SaveChange")} onClick={this.updateProduct}/>
+                    <ButtonMain btnClass="button-white text-16" text={langCode(this.props.lang, "close")} onClick={this.cancelSave}/>
                 </div>
             )
         }
         return (
             <div className="partners-env-btn">
-                <ButtonMain btnClass="button-main text-16" text={ru.Save} onClick={this.saveCart}/>
-                <ButtonMain btnClass="button-white text-16" text={ru.Cancel} onClick={this.cancelSave}/>
+                <ButtonMain btnClass="button-main text-16" text={langCode(this.props.lang, "Save")} onClick={this.saveCart}/>
+                <ButtonMain btnClass="button-white text-16" text={langCode(this.props.lang, "Cancel")} onClick={this.cancelSave}/>
             </div>
         )
     }
@@ -333,7 +333,7 @@ class AdminMainSite extends React.Component {
                 <div className="visibility-switches">
                     <input className="category-list__input" type="checkbox" id={"storeAdmin"} disabled={this.props.Permission === "primaryAdmin"}
                            value={this.state.storeAdmin} checked={this.state.storeAdmin} name={"storeAdmin"} onChange={this.dataChange}/>
-                    <label className="category-list__label text-14 light" htmlFor={"storeAdmin"}>{ru.storeAdminHide}</label>
+                    <label className="category-list__label text-14 light" htmlFor={"storeAdmin"}>{langCode(this.props.lang, "storeAdminHide")}</label>
                 </div>
                 <AdminDropdownList
                     headerItem={this.state.headerItem}
@@ -367,6 +367,7 @@ function MapStateToProps(state) {
         SaveParams: state.productReducer.SaveParams,
         Permission: state.userReducer.Permission,
         setCountry: state.utiliteReducer.setCountry,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

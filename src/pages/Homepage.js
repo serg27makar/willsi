@@ -11,9 +11,9 @@ import Indicator from "../components/shared/Indicator";
 import Startup from "../components/Startup";
 import WelcomeMain from "../components/WelcomeMain";
 import {resourceThreeStepsArr} from "../access/temporaryConstants";
-import ru from "../access/lang/LangConstants";
 import {Redirect} from "react-router-dom";
 import {handlePageUp} from "../js/visualEffects";
+import {langCode} from "../access/lang/translaterJS";
 
 class Homepage extends React.Component {
     constructor(props) {
@@ -59,9 +59,9 @@ class Homepage extends React.Component {
     renderStepsBlock() {
         if (this.state.isUnknown) {
             return (
-                <StepsBlock title={ru.JustThreeSteps}
+                <StepsBlock title={langCode(this.props.lang, "JustThreeSteps")}
                             stepsArr={resourceThreeStepsArr}
-                            btnText={ru.toDressingRoom}
+                            btnText={langCode(this.props.lang, "toDressingRoom")}
                             onClick={this.redirect}
                 />
             )
@@ -96,6 +96,7 @@ function MapStateToProps(state) {
         UsersParameters: state.userReducer.UsersParameters,
         Permission: state.userReducer.Permission,
         dataRedirect: state.pageReducer.dataRedirect,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

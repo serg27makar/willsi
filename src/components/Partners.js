@@ -1,5 +1,4 @@
 import React from 'react';
-import ru from "./../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
 import "./../access/css/homepage.css";
 import {partnersArr} from "../access/temporaryConstants"
@@ -9,6 +8,7 @@ import {actionOpenModal} from "../action";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import {aosMethod} from "../js/visualEffects";
+import {langCode} from "../access/lang/translaterJS";
 
 class Partners extends React.Component {
     constructor(props) {
@@ -73,7 +73,7 @@ class Partners extends React.Component {
         return (
             <div className="col-12">
                 <div className="partners-env-btn">
-                    <ButtonMain btnClass="button-main text-16" text={ru.becomePartner} onClick={this.openModal}/>
+                    <ButtonMain btnClass="button-main text-16" text={langCode(this.props.lang, "becomePartner")} onClick={this.openModal}/>
                 </div>
             </div>
         );
@@ -90,7 +90,7 @@ class Partners extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
-                            <h2 className="partners__title title-36 uppercase">{ru.OurPartners}</h2>
+                            <h2 className="partners__title title-36 uppercase">{langCode(this.props.lang, "OurPartners")}</h2>
                         </div>
                     </div>
                     <div className="row-wrap">
@@ -110,6 +110,7 @@ function MapStateToProps(state) {
         dataRedirect: state.pageReducer.dataRedirect,
         modal: state.modalReducer.modal,
         Permission: state.userReducer.Permission,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

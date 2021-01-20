@@ -1,7 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
 import ButtonMain from "../shared/ButtonMain";
-import ru from "../../access/lang/LangConstants";
 import Filters from "./Filters";
 import {postGetAllStoresData, postGetAllUsersData} from "../../utilite/axiosConnect";
 import {
@@ -9,6 +8,7 @@ import {
     actionAllUsersData,
     actionSetDataViewIndicator
 } from "../../action";
+import {langCode} from "../../access/lang/translaterJS";
 
 class SaidBarAdmin extends React.Component {
     constructor(props) {
@@ -73,9 +73,9 @@ class SaidBarAdmin extends React.Component {
         return (
             <div className="said-bar-wrap">
                 <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium button-margin"}
-                            text={ru.allUsers} onClick={this.allUsersData}/>
+                            text={langCode(this.props.lang, "allUsers")} onClick={this.allUsersData}/>
                 <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium button-margin"}
-                            text={ru.allStores} onClick={this.allStoresData}/>
+                            text={langCode(this.props.lang, "allStores")} onClick={this.allStoresData}/>
                 <div className="border-line"/>
                 <Filters/>
             </div>
@@ -86,6 +86,7 @@ class SaidBarAdmin extends React.Component {
 function MapStateToProps(state) {
     return {
         filters: state.utiliteReducer.filters,
+        lang: state.utiliteReducer.lang,
     }
 }
 

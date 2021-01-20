@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
-import ru from "../../access/lang/LangConstants";
 import React from "react";
 import {connect} from "react-redux";
+import {langCode} from "../../access/lang/translaterJS";
 
 class HeaderNavigation extends React.Component {
     constructor(props) {
@@ -28,13 +28,13 @@ class HeaderNavigation extends React.Component {
         if (this.state.isAdminPanel) {
             return (
                 <Link className="navigation-list__link light text-16" to={"/admin-panel"}>
-                    <div className="header__enter-cabinet text-14 light" >{ru.StoreAdminLogin}</div>
+                    <div className="header__enter-cabinet text-14 light" >{langCode(this.props.lang, "StoreAdminLogin")}</div>
                 </Link>
             )
         } else {
             return (
                 <Link className="navigation-list__link light text-16" to={"/seller-service"}>
-                    <div>{ru.Partners}</div>
+                    <div>{langCode(this.props.lang, "Partners")}</div>
                 </Link>
             )
         }
@@ -47,13 +47,13 @@ class HeaderNavigation extends React.Component {
                     <div className="header__navigation-list">
                         <ul className="navigation-list">
                             <li className="navigation-list__item">
-                                <Link className="navigation-list__link light text-16" to={"/"}>{ru.Home}</Link>
+                                <Link className="navigation-list__link light text-16" to={"/"}>{langCode(this.props.lang, "Home")}</Link>
                             </li>
                             <li className="navigation-list__item">
-                                <Link className="navigation-list__link light text-16" to={"/catalog"}>{ru.DressingRoom}</Link>
+                                <Link className="navigation-list__link light text-16" to={"/catalog"}>{langCode(this.props.lang, "DressingRoom")}</Link>
                             </li>
                             <li className="navigation-list__item">
-                                <Link className="navigation-list__link light text-16" to={"/about"}>{ru.About}</Link>
+                                <Link className="navigation-list__link light text-16" to={"/about"}>{langCode(this.props.lang, "About")}</Link>
                             </li>
                             <li className="navigation-list__item">
                                 {this.renderPartnerLink()}
@@ -70,6 +70,7 @@ function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
         Permission: state.userReducer.Permission,
+        lang: state.utiliteReducer.lang,
     }
 }
 

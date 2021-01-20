@@ -1,5 +1,4 @@
 import React from 'react';
-import ru from "../access/lang/LangConstants";
 import {
     actionAddUser,
     actionDataRedirect,
@@ -12,6 +11,7 @@ import {connect} from "react-redux";
 import ButtonMain from "../components/shared/ButtonMain";
 import {postUpdate} from "../utilite/axiosConnect";
 import {genderSwitcher} from "../js/sharedFunctions";
+import {langCode} from "../access/lang/translaterJS";
 
 class EditorModal extends React.Component {
     constructor(props) {
@@ -168,13 +168,13 @@ class EditorModal extends React.Component {
     renderInput(item, index) {
         return (
             <div className="relative-block" key={index}>
-                <p className="input-placeholder text-16">{ru[item.inputName]}</p>
+                <p className="input-placeholder text-16">{langCode(this.props.lang, item.inputName)}</p>
                 <input className="tags-list__input text-18 light envelope-mode"
-                       type="number" name={item.inputName} placeholder={ru.placeholderExample}
+                       type="number" name={item.inputName} placeholder={langCode(this.props.lang, "placeholderExample")}
                        value={this.state.params[item.inputName] || ""}
                        onChange={(e) => {this.onChange(e, item)}}
                 />
-                <p className="input-placeholder-sm text-16">{ru.sm}</p>
+                <p className="input-placeholder-sm text-16">{langCode(this.props.lang, "sm")}</p>
             </div>
         )
     }
@@ -188,7 +188,7 @@ class EditorModal extends React.Component {
                     </svg>
                 </div>
                 <div className="col-12 envelope-list">
-                    <p className="parameters__info-text text-16 uppercase bold">{ru.Available + '  ' + ru.Parameters}</p>
+                    <p className="parameters__info-text text-16 uppercase bold">{langCode(this.props.lang, "Available") + '  ' + langCode(this.props.lang, "Parameters")}</p>
                     <div className="catalog-top__dropdown-info envelope-mode">
                         <div className="catalog-top__button-drop" onClick={this.closeOpen}>
                             <div className="catalog-top__button-text text-16 bold uppercase">{this.state.headerUser}</div>
@@ -208,7 +208,7 @@ class EditorModal extends React.Component {
                         </div>
                     </div>
                     <div className="parameters__tags-list">
-                        <p className="parameters__info-text text-16 uppercase bold">{ru.Change + '  ' + ru.Parameters}</p>
+                        <p className="parameters__info-text text-16 uppercase bold">{langCode(this.props.lang, "Change") + '  ' + langCode(this.props.lang, "Parameters")}</p>
                         <div className="tags-list-envelope">
                             <div>
                                 {this.state.Parameters && this.state.Parameters.map((item, index) => {
@@ -216,7 +216,7 @@ class EditorModal extends React.Component {
                                 })}
                             </div>
                         </div>
-                        <ButtonMain btnClass={"button-main auto-margin text-14 medium"} text={ru.Save} onClick={this.saveUpdate}/>
+                        <ButtonMain btnClass={"button-main auto-margin text-14 medium"} text={langCode(this.props.lang, "Save")} onClick={this.saveUpdate}/>
                     </div>
                 </div>
             </div>
@@ -235,6 +235,7 @@ function MapStateToProps(state) {
         AddUser: state.userReducer.AddUser,
         Permission: state.userReducer.Permission,
         HeaderUser: state.userReducer.HeaderUser,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

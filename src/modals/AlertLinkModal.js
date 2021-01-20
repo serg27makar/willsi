@@ -2,7 +2,7 @@ import React from "react";
 import ButtonMain from "../components/shared/ButtonMain";
 import {actionAlertModalCloseEvent, actionAlertText, actionOpenModal} from "../action";
 import {connect} from "react-redux";
-import ru from "../access/lang/LangConstants";
+import {langCode} from "../access/lang/translaterJS";
 
 class AlertLinkModal extends React.Component {
 
@@ -24,7 +24,7 @@ class AlertLinkModal extends React.Component {
                     <p className="modal-envelope__title title-36 bold">{this.props.AlertText}</p>
                     <div className="modal-form__button-enter">
                         <ButtonMain btnClass={"button-enter button-main text-18 uppercase medium"}
-                                    text={ru.understandably} onClick={this.closeLincModal}/>
+                                    text={langCode(this.props.lang, "understandably")} onClick={this.closeLincModal}/>
                     </div>
                 </div>
             </div>
@@ -38,6 +38,7 @@ function MapStateToProps(state) {
         modal: state.modalReducer.modal,
         AlertText: state.modalReducer.AlertText,
         alertModalCloseEvent: state.modalReducer.alertModalCloseEvent,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

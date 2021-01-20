@@ -8,7 +8,6 @@ import {
 } from "../../access/temporaryConstants";
 import {isEmptyObject, updateResult, validParamList} from "../../js/sharedFunctions";
 import ButtonMain from "../shared/ButtonMain";
-import ru from "../../access/lang/LangConstants";
 import {
     actionAlertText,
     actionOpenModal,
@@ -19,6 +18,7 @@ import {
 } from "../../action";
 import {connect} from "react-redux";
 import {parametersUpdate, postAddedProductParameters} from "../../utilite/axiosConnect";
+import {langCode} from "../../access/lang/translaterJS";
 
 class EditSubspecieTabl extends React.Component {
     constructor(props) {
@@ -154,7 +154,7 @@ class EditSubspecieTabl extends React.Component {
                     ParameterID: this.props.item._id,
                 };
                 parametersUpdate(parameters, updateResult);
-                this.props.spinnerTextFunction(ru.saved);
+                this.props.spinnerTextFunction(langCode(this.props.lang, "saved"));
                 this.props.openModalFunction("spinnerModal");
             } else if (this.props.productID) {
                 parameters = {
@@ -162,18 +162,18 @@ class EditSubspecieTabl extends React.Component {
                     ProductId: this.props.productID,
                 };
                 postAddedProductParameters(parameters, updateResult);
-                this.props.spinnerTextFunction(ru.saved);
+                this.props.spinnerTextFunction(langCode(this.props.lang, "saved"));
                 this.props.openModalFunction("spinnerModal");
             } else {
                 this.props.subspeciesFunction(parameters);
             }
             this.props.updateSubspeciesFunction(!this.props.updateSubspecies)
         } else {
-            const textMessage = ru.enterTheseDetails + ":" +
-                (!color.length ? " " + ru.color + "," : "") +
-                (!this.state.VendorCode ? " " + ru.VendorCode + "," : "") +
-                (!this.state.Price ? " " + ru.Price + "," : "") +
-                (!validParamList(this.state.paramList, size) && subCatalogListGeneral.indexOf(this.props.subCatalog) === -1 ? " " + ru.Sizes + "," : "");
+            const textMessage = langCode(this.props.lang, "enterTheseDetails") + ":" +
+                (!color.length ? " " + langCode(this.props.lang, "color") + "," : "") +
+                (!this.state.VendorCode ? " " + langCode(this.props.lang, "VendorCode") + "," : "") +
+                (!this.state.Price ? " " + langCode(this.props.lang, "Price") + "," : "") +
+                (!validParamList(this.state.paramList, size) && subCatalogListGeneral.indexOf(this.props.subCatalog) === -1 ? " " + langCode(this.props.lang, "Sizes") + "," : "");
             this.props.alertTextFunction(textMessage);
             this.props.openModalFunction("alertModal");
             this.props.saveParamsFunction(false);
@@ -205,12 +205,12 @@ class EditSubspecieTabl extends React.Component {
                     <div className="size-standard-block-btn">
                         <div className="welcome-main-env__button-item" onClick={this.saveSubspecies}>
                             <div className="button-main text-16 welcome-about-env">
-                                <span>{ru.SaveChangeSize}
+                                <span>{langCode(this.props.lang, "SaveChangeSize")}
                                     <span className="uppercase">{this.props.sizeStandard}</span>
                                 </span>
                             </div>
                         </div>
-                        <ButtonMain btnClass="button-white text-16" text={ru.close} onClick={this.props.cancelSave}/>
+                        <ButtonMain btnClass="button-white text-16" text={langCode(this.props.lang, "close")} onClick={this.props.cancelSave}/>
                     </div>
                 </div>
             );
@@ -240,6 +240,7 @@ function MapStateToProps(state) {
     return {
         SaveParams: state.productReducer.SaveParams,
         updateSubspecies: state.productReducer.updateSubspecies,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

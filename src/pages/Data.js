@@ -14,10 +14,10 @@ import RecalculateFooter from "../components/RecalculateFooter";
 import DataHeader from "../components/DataHeader";
 import InputDataParams from "../components/InputDataParams";
 import {handlePageUp} from "../js/visualEffects";
-import ru from "../access/lang/LangConstants";
 import {postUpdate} from "../utilite/axiosConnect";
 import {Redirect} from "react-router-dom";
 import {genderSwitcher, updateResult} from "../js/sharedFunctions";
+import {langCode} from "../access/lang/translaterJS";
 
 class Data extends React.Component {
     constructor(props) {
@@ -123,7 +123,7 @@ class Data extends React.Component {
         if (name.length > 0) {
             this.firstBlock();
         } else {
-            this.props.alertTextFunction(ru.inOrderToContinue);
+            this.props.alertTextFunction(langCode(this.props.lang, "inOrderToContinue"));
             this.props.openModalFunction("alertModal");
         }
         this.isChanged();
@@ -194,6 +194,7 @@ function MapStateToProps(state) {
         dataRedirect: state.pageReducer.dataRedirect,
         Permission: state.userReducer.Permission,
         NewUser: state.userReducer.NewUser,
+        lang: state.utiliteReducer.lang,
     }
 }
 

@@ -10,9 +10,9 @@ import Startup from "../components/Startup";
 import {resourceSellingArr, resourceThreeStepsArr, startupServiceArr} from "../access/temporaryConstants";
 import Details from "../components/Details";
 import WhomStartup from "../components/WhomStartup";
-import ru from "../access/lang/LangConstants";
 import {handlePageUp} from "../js/visualEffects";
 import {Redirect} from "react-router-dom";
+import {langCode} from "../access/lang/translaterJS";
 
 class SellerService extends React.Component {
     constructor(props) {
@@ -65,14 +65,14 @@ class SellerService extends React.Component {
         }
         return(
             <div className="content">
-                <StepsBlock title={ru.SellThings}
+                <StepsBlock title={langCode(this.props.lang, "SellThings")}
                             stepsArr={resourceSellingArr} bgNon={true}/>
                 <WhomStartup/>
                 <Details/>
                 <Startup startupArr={startupServiceArr}/>
                 <Indicator/>
-                <StepsBlock title={ru.JustThreeSteps}
-                            stepsArr={resourceThreeStepsArr} btnText={ru.toDressingRoom}
+                <StepsBlock title={langCode(this.props.lang, "JustThreeSteps")}
+                            stepsArr={resourceThreeStepsArr} btnText={langCode(this.props.lang, "toDressingRoom")}
                             onClick={() => {this.redirect("catalog")}}/>
                 <DescriptionBg/>
                 <Partners/>
@@ -87,6 +87,7 @@ function MapStateToProps(state) {
         page: state.pageReducer.page,
         dataRedirect: state.pageReducer.dataRedirect,
         Permission: state.userReducer.Permission,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

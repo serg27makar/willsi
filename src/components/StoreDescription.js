@@ -3,10 +3,10 @@ import {actionOpenModal, actionSetStoreArr} from "../action";
 import {connect} from "react-redux";
 import DoubleButton from "./adminPanel/DoubleButton";
 import {placeholderStoreData} from "../access/temporaryConstants";
-import ru from "../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
 import {postUpdateStore} from "../utilite/axiosConnect";
 import {updateResult} from "../js/sharedFunctions";
+import {langCode} from "../access/lang/translaterJS";
 
 class StoreDescription extends React.Component {
     constructor(props) {
@@ -69,7 +69,7 @@ class StoreDescription extends React.Component {
                     return this.renderInputBtn(item, index);
                 })}
                 <div className="partners-env-btn">
-                    <ButtonMain btnClass="button-main text-16" text={ru.Save} onClick={this.saveUpdate}/>
+                    <ButtonMain btnClass="button-main text-16" text={langCode(this.props.lang, "Save")} onClick={this.saveUpdate}/>
                 </div>
             </div>
         )
@@ -80,6 +80,7 @@ function MapStateToProps(state) {
     return {
         UserID: state.userReducer.UserID,
         UserStore: state.userReducer.UserStore,
+        lang: state.utiliteReducer.lang,
     }
 }
 

@@ -1,10 +1,11 @@
 import React from 'react';
 import {usersFeatBack} from "../../access/temporaryConstants"
 import ButtonMain from "./ButtonMain";
-import ru from "../../access/lang/LangConstants";
 import "../../access/css/shared.css"
 import AOS from "aos";
 import {aosMethod} from "../../js/visualEffects";
+import {connect} from "react-redux";
+import {langCode} from "../../access/lang/translaterJS";
 
 class Reviews extends React.Component {
 
@@ -45,7 +46,7 @@ class Reviews extends React.Component {
                 <div className="container">
                     <div className="row-wrap">
                         <div className="col-12">
-                            <h2 className="reviews__title title-36 uppercase">{ru.reviews}<span>{ru.clients}</span>
+                            <h2 className="reviews__title title-36 uppercase">{langCode(this.props.lang, "reviews")}<span>{langCode(this.props.lang, "clients")}</span>
                             </h2>
                         </div>
                         <div className="col-12">
@@ -64,4 +65,10 @@ class Reviews extends React.Component {
         )
     };
 }
-export default Reviews;
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
+
+export default connect(MapStateToProps)(Reviews);

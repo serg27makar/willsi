@@ -1,5 +1,4 @@
 import React from "react";
-import ru from "../../access/lang/LangConstants";
 import "../../access/css/cart.css"
 import {
     actionDataRedirect,
@@ -11,6 +10,7 @@ import {connect} from "react-redux";
 import CircleLevel from "../shared/CircleLevel";
 import {isEmptyObject, miDateFormatNumber, miDateFormatParser, validPostpone} from "../../js/sharedFunctions";
 import PostponeButton from "./PostponeButton";
+import {langCode} from "../../access/lang/translaterJS";
 
 class FullProductCard extends React.Component {
     constructor(props) {
@@ -47,7 +47,7 @@ class FullProductCard extends React.Component {
     }
 
     currency(number) {
-        return number + " " + ru.grn;
+        return number + " " + langCode(this.props.lang, "grn");
     }
 
     filterManufacturer(itemValue) {
@@ -97,7 +97,7 @@ class FullProductCard extends React.Component {
                         <svg className="icon icon-shopping-bag ">
                             <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#shopping-bag"/>
                         </svg>
-                        <span className="card-box__circle-text text-12 uppercase bold">{ru.Delayed}</span>
+                        <span className="card-box__circle-text text-12 uppercase bold">{langCode(this.props.lang, "Delayed")}</span>
                     </div>
                 </div>
             )
@@ -133,6 +133,7 @@ function MapStateToProps(state) {
         Postpone: state.userReducer.Postpone,
         searchItemParams: state.catalogReducer.searchItemParams,
         searchItemNew: state.catalogReducer.searchItemNew,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

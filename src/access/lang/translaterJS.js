@@ -1,4 +1,3 @@
-import React, {useReducer} from "react";
 import en from "./en";
 import ru from "./LangConstants";
 

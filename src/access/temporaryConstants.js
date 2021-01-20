@@ -402,32 +402,32 @@ export const placeholderData = [
 ];
 export const placeholderStoreData = [
     {
-        title: ru.AddStorePlaceholder1,
+        title: "AddStorePlaceholder1",
         placeholder: "Adidas",
         name: "nameStore",
     },
     {
-        title: ru.AddStorePlaceholder2,
+        title: "AddStorePlaceholder2",
         placeholder: "www.myStore.com",
         name: "urlStore",
     },
     {
-        title: ru.AddStoreTextareaPlace,
+        title: "AddStoreTextareaPlace",
         placeholder: "My good store",
         name: "textStore",
     },
     {
-        title: ru.Phone,
+        title: "Phone",
         placeholder: "+380-55-555-55-55",
         name: "phoneStore",
     },
     {
-        title: ru.AddStorePlaceholder2,
+        title: "AddStorePlaceholder2",
         placeholder: "www.mySecondStore.com",
         name: "secondUrlStore",
     },
     {
-        title: ru.Address,
+        title: "Address",
         placeholder: "Vinnica Piragova st.",
         name: "addressStore",
     },
@@ -457,42 +457,42 @@ export const whomParams = [
 
 export const ProductLinkInputList = [
     {
-        title: ru.Photo1,
+        title: "Photo1",
         placeholder: "image.png",
     },
     {
-        title: ru.Photo2,
+        title: "Photo2",
         placeholder: "image.png",
     },
     {
-        title: ru.Photo3,
+        title: "Photo3",
         placeholder: "image.png",
     },
     {
-        title: ru.LinkToProduct,
+        title: "LinkToProduct",
         placeholder: "www.my.store.ua/product/myProduct",
     },
 ];
 
 export const ProductManufacturerInputList = [
     {
-        title: ru.Manufacturer,
+        title: "Manufacturer",
         placeholder: "Adidas",
     },
     {
-        title: ru.ProdName,
+        title: "ProdName",
         placeholder: "Футболка с гербом",
     },
     {
-        title: ru.ProductCode,
+        title: "ProductCode",
         placeholder: "12345",
     },
     {
-        title: ru.VendorCode,
+        title: "VendorCode",
         placeholder: "12345",
     },
     {
-        title: ru.Price,
+        title: "Price",
         placeholder: "99.90",
     },
 ];
@@ -529,19 +529,19 @@ export const planList = [
 export const plansVariables = [
     {
         index: 1,
-        name: ru.trialPlan,
+        name: "trialPlan",
         limit: 2,
         price: "0 грн"
     },
     {
         index: 2,
-        name: ru.standardPlan,
+        name: "standardPlan",
         limit: 5,
         price: "250 грн"
     },
     {
         index: 3,
-        name: ru.premiumPlan,
+        name: "premiumPlan",
         limit: 10,
         price: "350 грн"
     }

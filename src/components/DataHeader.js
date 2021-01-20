@@ -1,5 +1,6 @@
 import React from "react";
-import ru from "../access/lang/LangConstants";
+import {connect} from "react-redux";
+import {langCode} from "../access/lang/translaterJS";
 
 class DataHeader extends React.Component {
 
@@ -10,8 +11,8 @@ class DataHeader extends React.Component {
                     <div className="row">
                         <div className="col-12">
                             <div className="welcome-data-env">
-                                <h1 className="welcome-data-env__title uppercase title-36 bold">{ru.AreYouReady}</h1>
-                                <p className="welcome-data-env__text text-16 light">{ru.ToMakeTheDressLookPerfect + ru.EnterParameters}</p>
+                                <h1 className="welcome-data-env__title uppercase title-36 bold">{langCode(this.props.lang, "AreYouReady")}</h1>
+                                <p className="welcome-data-env__text text-16 light">{langCode(this.props.lang, "ToMakeTheDressLookPerfect") + langCode(this.props.lang, "EnterParameters")}</p>
                             </div>
                         </div>
                     </div>
@@ -20,5 +21,10 @@ class DataHeader extends React.Component {
         )
     }
 }
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
 
-export default DataHeader;
+export default connect(MapStateToProps)(DataHeader);

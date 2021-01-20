@@ -8,10 +8,10 @@ import {
     actionUsersParameters
 } from "../action";
 import {connect} from "react-redux";
-import ru from "../access/lang/LangConstants";
 import {getParametersToIdBySearchParams, getUserData, postUpdate} from "../utilite/axiosConnect";
 import ModalInput from "./modalComponents/ModalInput";
 import {dataInputRegistrationModal} from "../access/temporaryConstants";
+import {langCode} from "../access/lang/translaterJS";
 
 class UserNameModal extends React.Component {
     constructor(props) {
@@ -80,7 +80,7 @@ class UserNameModal extends React.Component {
             this.setState({
                 ...this.state,
                 errorItem: "name",
-                errorText: ru.enterYourName,
+                errorText: langCode(this.props.lang, "enterYourName"),
             })
         } else {
             obj = {
@@ -107,7 +107,7 @@ class UserNameModal extends React.Component {
                     </svg>
                 </div>
                 <div className="modal-envelope__body">
-                    <span className="add-store-label text-20 welcome-about-env margin-1">{ru.WhatCallParameters}</span>
+                    <span className="add-store-label text-20 welcome-about-env margin-1">{langCode(this.props.lang, "WhatCallParameters")}</span>
                     <ModalInput dataInput={dataInputRegistrationModal[0]}
                                 dataValue={this.state}
                                 dataOnChange={this.dataChange}
@@ -115,7 +115,7 @@ class UserNameModal extends React.Component {
                                 errorText={this.state.errorText}/>
                     <div className="modal-form">
                         <div className="modal-form__button-enter">
-                            <ButtonMain btnClass={"button-enter button-main text-20 uppercase medium margin-1"} text={ru.Save} onClick={this.addedName}/>
+                            <ButtonMain btnClass={"button-enter button-main text-20 uppercase medium margin-1"} text={langCode(this.props.lang, "Save")} onClick={this.addedName}/>
                         </div>
                     </div>
                 </div>
@@ -132,6 +132,7 @@ function MapStateToProps(state) {
         UsersParameters: state.userReducer.UsersParameters,
         ProductsArr: state.productReducer.ProductsArr,
         SearchParams: state.productReducer.SearchParams,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

@@ -14,9 +14,9 @@ import {
     actionThingToLink
 } from "../action";
 import {connect} from "react-redux";
-import ru from "../access/lang/LangConstants";
 import {getParametersToIdBySearchParams, getProductsByLink} from "../utilite/axiosConnect";
 import {genderSwitcher, setGenderByCatalogName} from "../js/sharedFunctions";
+import {langCode} from "../access/lang/translaterJS";
 
 class LinkModal extends React.Component {
     constructor(props) {
@@ -101,7 +101,7 @@ class LinkModal extends React.Component {
         } else {
             this.setState({
                 ...this.state,
-                errorText: ru.thisFieldCannotBeEmpty,
+                errorText: langCode(this.props.lang, "thisFieldCannotBeEmpty"),
             })
         }
     }
@@ -146,7 +146,7 @@ class LinkModal extends React.Component {
                     this.props.genderFunction(Gender);
                 }
                 this.props.recalculateParamsFunction(unknownParams);
-                this.props.alertTextFunction(ru.weFoundThisProduct);
+                this.props.alertTextFunction(langCode(this.props.lang, "weFoundThisProduct"));
                 this.props.openModalFunction("alertLinkModal");
             } else {
                 const searchParams = {
@@ -178,24 +178,24 @@ class LinkModal extends React.Component {
                     </svg>
                 </div>
                 <div className="modal-envelope__body">
-                    <p className="modal-envelope__title title-36 uppercase bold">{ru.checkTheConformity}</p>
-                    <p className="modal-envelope__sub-info text-16 bold">{ru.linkToTheProduct}</p>
+                    <p className="modal-envelope__title title-36 uppercase bold">{langCode(this.props.lang, "checkTheConformity")}</p>
+                    <p className="modal-envelope__sub-info text-16 bold">{langCode(this.props.lang, "linkToTheProduct")}</p>
                     <div className="modal-form">
                         <label className="modal-form__label">
                             <input className="modal-form__input input-link text-18 light"
                                    type="text"
                                    name="linkProduct"
-                                   placeholder={ru.linkToTheProduct}
+                                   placeholder={langCode(this.props.lang, "linkToTheProduct")}
                                    value={this.state.linkProduct}
                                    onChange={this.dataOnChange}
                             />
                             {this.renderErrorText()}
                         </label>
                         <div className="modal-form__button-enter">
-                            <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.find} onClick={this.findProduct}/>
+                            <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={langCode(this.props.lang, "find")} onClick={this.findProduct}/>
                         </div>
                         <div className="modal-form__bottom-clear text-16 light" onClick={this.clearInput}>
-                            <div className="modal-form__bottom-link color-aqua">{ru.clear}</div>
+                            <div className="modal-form__bottom-link color-aqua">{langCode(this.props.lang, "clear")}</div>
                         </div>
                     </div>
                 </div>
@@ -211,6 +211,7 @@ function MapStateToProps(state) {
         SearchParams: state.productReducer.SearchParams,
         ProductsArr: state.productReducer.ProductsArr,
         HeaderUser: state.userReducer.HeaderUser,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

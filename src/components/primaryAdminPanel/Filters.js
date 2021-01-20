@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import ru from "../../access/lang/LangConstants";
 import {actionSetFilters} from "../../action";
+import {langCode} from "../../access/lang/translaterJS";
 
 const usersFiltersData = [
     "unknown", "storeAdmin", "buyer"
@@ -54,7 +54,7 @@ class Filters extends React.Component {
                        checked={this.state[item]}
                        name={item}
                        onChange={this.dataChange}/>
-                <label className="category-list__label text-14 light" htmlFor={idCheckbox}>{ru[item]}</label>
+                <label className="category-list__label text-14 light" htmlFor={idCheckbox}>{langCode(this.props.lang, item)}</label>
             </div>
         )
     }
@@ -91,7 +91,7 @@ class Filters extends React.Component {
     render() {
         return (
             <div className="main-bar-wrap">
-                <div className="filters-tag uppercase">{ru.filters}</div>
+                <div className="filters-tag uppercase">{langCode(this.props.lang, "filters")}</div>
                 {this.renderFilters(this.props.dataViewIndicator)}
             </div>
 
@@ -101,6 +101,7 @@ class Filters extends React.Component {
 function MapStateToProps(state) {
     return {
         dataViewIndicator: state.utiliteReducer.dataViewIndicator,
+        lang: state.utiliteReducer.lang,
     }
 }
 

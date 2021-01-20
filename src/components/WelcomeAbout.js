@@ -1,5 +1,6 @@
 import React from "react";
-import ru from "../access/lang/LangConstants";
+import {connect} from "react-redux";
+import {langCode} from "../access/lang/translaterJS";
 
 class WelcomeAbout extends React.Component {
 
@@ -10,10 +11,10 @@ class WelcomeAbout extends React.Component {
                     <div className="row">
                         <div className="col-12 col-md-12 col-lg-12">
                             <div className="welcome-about-env">
-                                <h1 className="welcome-about-env__title uppercase title-36 bold">{ru.WhoAreWe}</h1>
+                                <h1 className="welcome-about-env__title uppercase title-36 bold">{langCode(this.props.lang, "WhoAreWe")}</h1>
                                 <div className="welcome-about-env__text-blur text-18 light">
-                                    <p className="welcome-about-env__text-info">{ru.ToMakeTheDressLookPerfect}
-                                        <br/>{ru.EnterParameters}
+                                    <p className="welcome-about-env__text-info">{langCode(this.props.lang, "ToMakeTheDressLookPerfect")}
+                                        <br/>{langCode(this.props.lang, "EnterParameters")}
                                     </p>
                                 </div>
                                 <div className="welcome-about-env__scroll-down">
@@ -30,4 +31,11 @@ class WelcomeAbout extends React.Component {
     }
 }
 
-export default WelcomeAbout;
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
+
+export default connect(MapStateToProps)(WelcomeAbout);
+

@@ -2,7 +2,7 @@ import React from "react";
 import ButtonMain from "../components/shared/ButtonMain";
 import {actionOpenModal} from "../action";
 import {connect} from "react-redux";
-import ru from "../access/lang/LangConstants";
+import {langCode} from "../access/lang/translaterJS";
 
 class NothingToShowModal extends React.Component {
 
@@ -19,10 +19,10 @@ class NothingToShowModal extends React.Component {
                     </svg>
                 </div>
                 <div className="modal-envelope__body">
-                    <p className="modal-envelope__title title-36 uppercase bold">{ru.oops}</p>
-                    <p className="modal-envelope__sub-info text-20 bold">{ru.weHaveNothingToShow}</p>
+                    <p className="modal-envelope__title title-36 uppercase bold">{langCode(this.props.lang, "oops")}</p>
+                    <p className="modal-envelope__sub-info text-20 bold">{langCode(this.props.lang, "weHaveNothingToShow")}</p>
                     <div className="modal-form__button-enter">
-                        <ButtonMain btnClass={"button-enter button-main text-20 medium"} text={ru.understandably} onClick={this.closeLincModal}/>
+                        <ButtonMain btnClass={"button-enter button-main text-20 medium"} text={langCode(this.props.lang, "understandably")} onClick={this.closeLincModal}/>
                     </div>
                 </div>
             </div>
@@ -34,6 +34,7 @@ class NothingToShowModal extends React.Component {
 function MapStateToProps(state) {
     return {
         modal: state.modalReducer.modal,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

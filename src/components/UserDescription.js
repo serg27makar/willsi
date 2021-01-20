@@ -5,8 +5,8 @@ import DoubleButton from "./adminPanel/DoubleButton";
 import {placeholderData} from "../access/temporaryConstants";
 import {postUpdate} from "../utilite/axiosConnect";
 import {activeBtn, updateResult} from "../js/sharedFunctions";
-import ru from "../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
+import {langCode} from "../access/lang/translaterJS";
 
 class UserDescription extends React.Component {
     constructor(props) {
@@ -112,7 +112,7 @@ class UserDescription extends React.Component {
             UsersParameters.splice(index, 1, obj);
             this.props.usersParametersFunction(UsersParameters);
             this.isChanged();
-            this.props.spinnerTextFunction(ru.saved);
+            this.props.spinnerTextFunction(langCode(this.props.lang, "saved"));
             this.props.openModalFunction("spinnerModal");
         }
     }
@@ -144,13 +144,13 @@ class UserDescription extends React.Component {
     renderInput(item, index) {
         return (
             <div className="relative-block" key={index}>
-                <p className="input-placeholder text-16">{ru[item.title]}</p>
+                <p className="input-placeholder text-16">{langCode(this.props.lang, item.title)}</p>
                 <input className="tags-list__input text-18 light envelope-mode-cabinet"
-                       type="number" name={item.title} placeholder={ru.placeholderExample}
+                       type="number" name={item.title} placeholder={langCode(this.props.lang, "placeholderExample")}
                        value={this.state.params[item.title] || ""}
                        onChange={(e) => {this.onChange(e, item)}}
                 />
-                <p className="input-placeholder-sm text-16">{ru.sm}</p>
+                <p className="input-placeholder-sm text-16">{langCode(this.props.lang, "sm")}</p>
             </div>
         )
     }
@@ -170,8 +170,8 @@ class UserDescription extends React.Component {
                     })}
                 </div>
                 <div className="partners-env-btn">
-                    <ButtonMain btnClass="button-main text-16" text={ru.Save} onClick={() => {this.isActive(true)}}/>
-                    <ButtonMain btnClass="button-main text-16" text={ru.AddedParams} onClick={this.addedParams}/>
+                    <ButtonMain btnClass="button-main text-16" text={langCode(this.props.lang, "Save")} onClick={() => {this.isActive(true)}}/>
+                    <ButtonMain btnClass="button-main text-16" text={langCode(this.props.lang, "AddedParams")} onClick={this.addedParams}/>
                 </div>
             </div>
         )
@@ -183,6 +183,7 @@ function MapStateToProps(state) {
         UserID: state.userReducer.UserID,
         UsersParameters: state.userReducer.UsersParameters,
         HeaderUser: state.userReducer.HeaderUser,
+        lang: state.utiliteReducer.lang,
     }
 }
 

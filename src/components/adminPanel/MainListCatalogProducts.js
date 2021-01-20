@@ -1,5 +1,4 @@
 import React from "react";
-import ru from "../../access/lang/LangConstants";
 import LangCat from "../../access/lang/CatalogLangConstants";
 import {
     actionDefineCatalog,
@@ -12,6 +11,7 @@ import {connect} from "react-redux";
 import ToggleButton from "../shared/ToggleButton";
 import {showHiddenCatalogData, showHiddenSubCatalogData} from "../../js/dataUpdateFunctions";
 import {dropdownListArr} from "../../access/temporaryConstants";
+import {langCode} from "../../access/lang/translaterJS";
 
 class MainListCatalogProducts extends React.Component {
     constructor(props) {
@@ -218,7 +218,7 @@ class MainListCatalogProducts extends React.Component {
         return (
             <div className="sidebar__main-list scrollbar">
                 <div className="main-list">
-                    <p className="main-list__title uppercase bold text-22">{ru.ProductCategories}</p>
+                    <p className="main-list__title uppercase bold text-22">{langCode(this.props.lang, "ProductCategories")}</p>
                     <div className="main-list__catalog-product">
                         {this.props.dropdownList && this.props.dropdownList.map((item, index) => {
                             return this.renderCatalogProduct(item, index)
@@ -236,6 +236,7 @@ function MapStateToProps(state) {
         ShopEditParamsAction: state.productReducer.ShopEditParamsAction,
         productsThisStore: state.productReducer.productsThisStore,
         clearOpenCatalogs: state.utiliteReducer.clearOpenCatalogs,
+        lang: state.utiliteReducer.lang,
     }
 }
 

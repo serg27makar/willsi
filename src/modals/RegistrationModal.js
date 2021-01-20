@@ -25,7 +25,7 @@ import {
     actionUserStore,
 } from "../action";
 import {connect} from "react-redux";
-import ru from "../access/lang/LangConstants";
+import {langCode} from "../access/lang/translaterJS";
 
 class RegistrationModal extends React.Component {
     constructor(props) {
@@ -130,7 +130,7 @@ class RegistrationModal extends React.Component {
                     this.setState({
                         ...this.state,
                         errorItem: "email",
-                        errorText: ru.thisEmailIsAlreadyRegistered,
+                        errorText: langCode(this.props.lang, "thisEmailIsAlreadyRegistered"),
                     })
                 }
             });
@@ -139,22 +139,22 @@ class RegistrationModal extends React.Component {
             let errorText = "";
             if (!name) {
                 errorItem = "name";
-                errorText = ru.enterYourName;
+                errorText = langCode(this.props.lang, "enterYourName");
             } else if (!email) {
                 errorItem = "email";
-                errorText = ru.enterYourEmail;
+                errorText = langCode(this.props.lang, "enterYourEmail");
             } else if (!validateEmail(email)) {
                 errorItem = "email";
-                errorText = ru.unidentifiedEmail;
+                errorText = langCode(this.props.lang, "unidentifiedEmail");
             } else if (!password) {
                 errorItem = "password";
-                errorText = ru.enterYourPassword;
+                errorText = langCode(this.props.lang, "enterYourPassword");
             } else if (!confirmPassword) {
                 errorItem = "confirmPassword";
-                errorText = ru.enterYourConfirmPassword;
+                errorText = langCode(this.props.lang, "enterYourConfirmPassword");
             } else if (password !== confirmPassword) {
                 errorItem = "confirmPassword";
-                errorText = ru.inconsistencyConfirmPassword;
+                errorText = langCode(this.props.lang, "inconsistencyConfirmPassword");
             }
             this.setState({
                 ...this.state,
@@ -173,7 +173,7 @@ class RegistrationModal extends React.Component {
                     </svg>
                 </div>
                 <div className="modal-envelope__body">
-                    <p className="modal-envelope__title title-36 uppercase bold">{ru.SignUp}</p>
+                    <p className="modal-envelope__title title-36 uppercase bold">{langCode(this.props.lang, "SignUp")}</p>
                     <div className="modal-form">
                         {dataInputRegistrationModal && dataInputRegistrationModal.map((item, index) => {
                             return (
@@ -185,10 +185,10 @@ class RegistrationModal extends React.Component {
                                             )
                         })}
                         <div className="modal-form__button-enter">
-                            <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.SignUp} onClick={this.registration}/>
+                            <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={langCode(this.props.lang, "SignUp")} onClick={this.registration}/>
                         </div>
-                        <div className="modal-form__bottom-text text-16 light color-aqua">{ru.HaveAccount}
-                            <div className="modal-form__bottom-link color-aqua" onClick={() => {this.changeModal("signIn")}}>{ru.SignIn}</div>
+                        <div className="modal-form__bottom-text text-16 light color-aqua">{langCode(this.props.lang, "HaveAccount")}
+                            <div className="modal-form__bottom-link color-aqua" onClick={() => {this.changeModal("signIn")}}>{langCode(this.props.lang, "SignIn")}</div>
                         </div>
                         {/*<div className="modal-form__social-list">*/}
                         {/*    <div className="modal-form__social-link icon-fb"  style={{backgroundImage: "url('static/img/content/icon-fb.png')"}}/>*/}
@@ -206,6 +206,7 @@ function MapStateToProps(state) {
         modal: state.modalReducer.modal,
         UserID: state.userReducer.UserID,
         UsersParameters: state.userReducer.UsersParameters,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

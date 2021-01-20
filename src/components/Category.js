@@ -1,8 +1,8 @@
 import React from "react";
 import {actionCloseAllCatalogs, actionSearchItemColor, actionSearchItemParams} from "../action";
 import {connect} from "react-redux";
-import ru from "../access/lang/LangConstants";
 import {isEmptyObject} from "../js/sharedFunctions";
+import {langCode} from "../access/lang/translaterJS";
 
 class Category extends React.Component {
     constructor(props) {
@@ -100,7 +100,7 @@ class Category extends React.Component {
                        checked={this.state[item] || false}
                        onChange={(e) => {this.checkedItem(catalogName, item, e)}}
                 />
-                <label className="category-list__label text-14 light" htmlFor={idCheckbox}>{catalogName === "color" ? ru[item] : item}</label>
+                <label className="category-list__label text-14 light" htmlFor={idCheckbox}>{catalogName === "color" ? langCode(this.props.lang, item) : item}</label>
             </div>
         )
     };
@@ -109,7 +109,7 @@ class Category extends React.Component {
         return (
             <div className="catalog-sidebar__item">
                 <div className="catalog-wrapper text-18 medium" onClick={this.closeOpen}>
-                    <span className="catalog-wrapper__name">{ru[this.props.item.catalogName]}</span>
+                    <span className="catalog-wrapper__name">{langCode(this.props.lang, this.props.item.catalogName)}</span>
                     <svg className="icon icon-arrow-small ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                     </svg>
@@ -131,6 +131,7 @@ function MapStateToProps(state) {
         searchItemColor: state.catalogReducer.searchItemColor,
         closeAllCatalogs: state.catalogReducer.closeAllCatalogs,
         Manufacturer: state.catalogReducer.Manufacturer,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

@@ -1,7 +1,8 @@
 import React from "react";
-import ru from "../access/lang/LangConstants";
 import {postSendEmail} from "../utilite/axiosConnect";
 import {updateResult} from "../js/sharedFunctions";
+import {connect} from "react-redux";
+import {langCode} from "../access/lang/translaterJS";
 
 class Details extends React.Component {
     constructor(props) {
@@ -48,7 +49,7 @@ class Details extends React.Component {
     renderDataForm() {
         if (this.state.emailIsSent) {
             return (
-                <div className="sent-email-text text-16">{ru.weHaveAcceptedYourApplication}</div>
+                <div className="sent-email-text text-16">{langCode(this.props.lang, "weHaveAcceptedYourApplication")}</div>
             )
         }
         return (
@@ -66,7 +67,7 @@ class Details extends React.Component {
                                                 <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#user"/>
                                             </svg>
                                         </span>
-                        {this.state.warningUserName ? <div className="warning-text-empty-field text-16">{ru.thisFieldCannotBeEmpty}</div> : null}
+                        {this.state.warningUserName ? <div className="warning-text-empty-field text-16">{langCode(this.props.lang, "thisFieldCannotBeEmpty")}</div> : null}
                     </label>
                     <label className="form-request__label">
                         <input className={"form-request__input text-14 " + (this.state.warningUserPhone ? "warning-input" : "")} type="tel"
@@ -80,10 +81,10 @@ class Details extends React.Component {
                                                 <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#phone"/>
                                             </svg>
                                         </span>
-                        {this.state.warningUserPhone ? <div className="warning-text-empty-field text-16">{ru.thisFieldCannotBeEmpty}</div> : null}
+                        {this.state.warningUserPhone ? <div className="warning-text-empty-field text-16">{langCode(this.props.lang, "thisFieldCannotBeEmpty")}</div> : null}
                     </label>
                 </div>
-                <button className="form-request__button-send text-18" type="button" onClick={this.submitUserData}>{ru.SubmitApplication}</button>
+                <button className="form-request__button-send text-18" type="button" onClick={this.submitUserData}>{langCode(this.props.lang, "SubmitApplication")}</button>
             </div>
         )
     }
@@ -94,7 +95,7 @@ class Details extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12 col-12">
-                            <h2 className="details__title text-25 uppercase">{ru.LearnMore}</h2>
+                            <h2 className="details__title text-25 uppercase">{langCode(this.props.lang, "LearnMore")}</h2>
                             {this.renderDataForm()}
                         </div>
                     </div>
@@ -104,4 +105,10 @@ class Details extends React.Component {
     }
 }
 
-export default Details;
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
+
+export default connect(MapStateToProps)(Details);

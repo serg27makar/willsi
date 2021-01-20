@@ -1,5 +1,4 @@
 import React from 'react';
-import ru from "../access/lang/LangConstants";
 import ButtonMain from "./shared/ButtonMain";
 import {Redirect} from "react-router-dom";
 import {
@@ -14,6 +13,7 @@ import {postRegister, postUpdate} from "../utilite/axiosConnect";
 import InputDataParams from "./InputDataParams";
 import {isEmptyObject, isValid, updateResult} from "../js/sharedFunctions";
 import {sizeListTshirts} from "../access/recalculateConstants";
+import {langCode} from "../access/lang/translaterJS";
 
 class SearchBox extends React.Component {
     constructor(props) {
@@ -100,7 +100,7 @@ class SearchBox extends React.Component {
                 renderInputDataParams: true,
             });
         } else {
-            this.props.alertTextFunction(ru.weAreMissingSomeData);
+            this.props.alertTextFunction(langCode(this.props.lang, "weAreMissingSomeData"));
             this.props.openModalFunction("alertModal");
         }
     }
@@ -161,7 +161,7 @@ class SearchBox extends React.Component {
     renderInput(item, index) {
         return (
             <div className="indicator-bottom__picture" key={index}>
-                <span className="text-to-input text-18">{ru[item]}</span>
+                <span className="text-to-input text-18">{langCode(this.props.lang, item)}</span>
                 <input className="form-env__input text-18" type="number"
                        name={item} placeholder={"?"}
                        value={this.state.size[item] || ""}
@@ -178,7 +178,7 @@ class SearchBox extends React.Component {
         }
         return (
             <div className="search-box">
-                <p className="search-box__title text-18 uppercase">{ru.whatClothesWillSuitYou}</p>
+                <p className="search-box__title text-18 uppercase">{langCode(this.props.lang, "whatClothesWillSuitYou")}</p>
                 <div className="search-box__form-env">
                     <form className="form-env">
                         <div className="form-env__wrapper">
@@ -186,7 +186,7 @@ class SearchBox extends React.Component {
                                 return this.renderInput(item, index);
                             })}
                         </div>
-                        <ButtonMain btnClass="button-main text-16" text={ru.pickUpClothes} onClick={this.searchClothes}/>
+                        <ButtonMain btnClass="button-main text-16" text={langCode(this.props.lang, "pickUpClothes")} onClick={this.searchClothes}/>
                     </form>
                 </div>
                 {this.renderInputDataParams()}
@@ -200,6 +200,7 @@ function MapStateToProps(state) {
         Permission: state.userReducer.Permission,
         UserID: state.userReducer.UserID,
         update: state.pageReducer.update,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

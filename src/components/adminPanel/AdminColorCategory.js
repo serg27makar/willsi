@@ -1,6 +1,7 @@
 import React from "react";
-import ru from "../../access/lang/LangConstants";
 import {catalogColorsItems} from "../../access/temporaryConstants";
+import {connect} from "react-redux";
+import {langCode} from "../../access/lang/translaterJS";
 
 class AdminColorCategory extends React.Component {
     constructor(props) {
@@ -48,7 +49,7 @@ class AdminColorCategory extends React.Component {
         return (
             <div key={index}>
                 <input className="category-list__input" type="checkbox" id={idCheckbox} value={this.state[item]} checked={this.state[item]} name={item} onChange={this.dataChange}/>
-                <label className="category-list__label text-14 light" htmlFor={idCheckbox}>{ru[item]}</label>
+                <label className="category-list__label text-14 light" htmlFor={idCheckbox}>{langCode(this.props.lang, item)}</label>
             </div>
         )
     };
@@ -57,7 +58,7 @@ class AdminColorCategory extends React.Component {
         return (
             <div className="catalog-sidebar__item-admin">
                 <div className="catalog-wrapper-admin text-18 medium" onClick={this.closeOpen}>
-                    <span className="catalog-wrapper__name">{ru.Colors}</span>
+                    <span className="catalog-wrapper__name">{langCode(this.props.lang, "Colors")}</span>
                 </div>
                 <div className="catalog__category-list open">
                     <div className="category-list-admin">
@@ -71,4 +72,10 @@ class AdminColorCategory extends React.Component {
     }
 }
 
-export default AdminColorCategory;
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
+
+export default connect(MapStateToProps)(AdminColorCategory);

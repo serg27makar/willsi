@@ -1,8 +1,8 @@
 import React from "react";
-import ru from "../access/lang/LangConstants";
 import "../access/css/cart.css"
 import {actionHeaderUser} from "../action";
 import {connect} from "react-redux";
+import {langCode} from "../access/lang/translaterJS";
 
 class ShowProductsBar extends React.Component {
     constructor(props) {
@@ -54,7 +54,7 @@ class ShowProductsBar extends React.Component {
         return (
             <div className="row-wrap">
                 <div className="deferred-goods show-products">
-                    <div className="catalog-middle__product-all text-16 bold uppercase" >{ru.ShowProducts}</div>
+                    <div className="catalog-middle__product-all text-16 bold uppercase" >{langCode(this.props.lang, "ShowProducts")}</div>
                 </div>
                 <div className="deferred-goods show-products">
                     <div className="catalog-middle__for-me">
@@ -84,6 +84,7 @@ class ShowProductsBar extends React.Component {
 function MapStateToProps(state) {
     return {
         HeaderUser: state.userReducer.HeaderUser,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

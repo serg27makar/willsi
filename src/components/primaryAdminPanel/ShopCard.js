@@ -8,8 +8,8 @@ import {
 } from "../../action";
 import {connect} from "react-redux";
 import ButtonMain from "../shared/ButtonMain";
-import ru from "../../access/lang/LangConstants";
 import {getAllProductsData} from "../../utilite/axiosConnect";
+import {langCode} from "../../access/lang/translaterJS";
 
 class ShopCard extends React.Component {
     constructor(props) {
@@ -47,8 +47,8 @@ class ShopCard extends React.Component {
                     <div className="user-card-text text-14">{this.props.user.addressStore}</div>
                 </div>
                 <div className="user-card-text-wrap row">
-                    <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.allProducts} onClick={this.productsStore}/>
-                    <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.aboutStore} onClick={this.aboutStore}/>
+                    <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={langCode(this.props.lang, "allProducts")} onClick={this.productsStore}/>
+                    <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={langCode(this.props.lang, "aboutStore")} onClick={this.aboutStore}/>
                 </div>
             </div>
         )
@@ -57,6 +57,7 @@ class ShopCard extends React.Component {
 
 function MapStateToProps(state) {
     return {
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

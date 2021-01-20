@@ -1,7 +1,7 @@
 import React from "react";
-import ru from "../../access/lang/LangConstants";
 import {connect} from "react-redux";
 import {actionSelectedProductToEdit, actionShopEditParams} from "../../action";
+import {langCode} from "../../access/lang/translaterJS";
 
 class AddButton extends React.Component {
     constructor(props) {
@@ -20,13 +20,15 @@ class AddButton extends React.Component {
         return (
             <div className={"add-cart-block " + (this.props.lastItem ? "last-item" : "")}>
                 <div className="add-cart-btn" onClick={this.addProduct}>+</div>
-                <div className="add-cart-text uppercase" id="blink">{ru.addProduct}</div>
+                <div className="add-cart-text uppercase" id="blink">{langCode(this.props.lang, "addProduct")}</div>
             </div>
         )
     }
 }
 function MapStateToProps(state) {
-    return {}
+    return {
+        lang: state.utiliteReducer.lang,
+    }
 }
 
 const mapDispatchToProps = dispatch => {

@@ -1,7 +1,8 @@
 import React from "react";
-import ru from "../../access/lang/LangConstants";
 import {recalculateParamsDog} from "../../access/recalculateConstants";
 import {chooseSizeList} from "../../js/sharedFunctions";
+import {connect} from "react-redux";
+import {langCode} from "../../access/lang/translaterJS";
 
 class MainEnvelopeSize extends React.Component {
     constructor(props) {
@@ -85,7 +86,7 @@ class MainEnvelopeSize extends React.Component {
                     <input className="slider-input-text text-16" name={item.inputName}
                            value={(this.state.size && this.state.size[item.inputName]) || 0} min={item.sizeMin} max={item.sizeMax}
                            onChange={this.onChange}/>
-                    <div className="face-block-text text-16">{ru.sm}</div>
+                    <div className="face-block-text text-16">{langCode(this.props.lang, "sm")}</div>
                 </div>
                 <div className="digital-face right-arrow text-25 unselectable" onClick={() => {
                     this.rightArrowClick(item.inputName, this.state.size[item.inputName] ||
@@ -102,8 +103,8 @@ class MainEnvelopeSize extends React.Component {
                        value={(this.state.size && this.state.size[item.inputName]) || 0} min={item.sizeMin} max={item.sizeMax}
                        onChange={this.onChange}/>
                 <div className="digital-slider-limit-wrapper">
-                    <div className="digital-slider-limit text-16">{item.sizeMin + " " + ru.sm}</div>
-                    <div className="digital-slider-limit text-16">{item.sizeMax + " " + ru.sm}</div>
+                    <div className="digital-slider-limit text-16">{item.sizeMin + " " + langCode(this.props.lang, "sm")}</div>
+                    <div className="digital-slider-limit text-16">{item.sizeMax + " " + langCode(this.props.lang, "sm")}</div>
                 </div>
             </div>
         )
@@ -122,7 +123,7 @@ class MainEnvelopeSize extends React.Component {
     render() {
         return (
             <div className="main-envelope__info-envelope align-items-start">
-                <span className="main-envelope__info-title text-15 uppercase bold">{ru.enterIdealParameters}</span>
+                <span className="main-envelope__info-title text-15 uppercase bold">{langCode(this.props.lang, "enterIdealParameters")}</span>
                 <div className="main-size-block">
                     {this.state.paramsList && this.state.paramsList.map((subItem, subIndex) => {
                         return this.renderSizeInput(subItem, subIndex);
@@ -132,5 +133,11 @@ class MainEnvelopeSize extends React.Component {
         )
     }
 }
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
 
-export default MainEnvelopeSize;
+export default connect(MapStateToProps)(MainEnvelopeSize);
+

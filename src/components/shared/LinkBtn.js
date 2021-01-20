@@ -1,8 +1,8 @@
 import React from 'react';
 import "../../access/css/shared.css"
-import ru from "../../access/lang/LangConstants";
 import {actionOpenModal} from "../../action";
 import {connect} from "react-redux";
+import {langCode} from "../../access/lang/translaterJS";
 
 class LinkBtn extends React.Component {
     constructor(props) {
@@ -50,10 +50,10 @@ class LinkBtn extends React.Component {
         }
         return (
             <div className="link-fixed__env">
-                    <span className="text-11 medium">{ru.HaveLink}
-                        <br/>{ru.OnTheProduct}
+                    <span className="text-11 medium">{langCode(this.props.lang, "HaveLink")}
+                        <br/>{langCode(this.props.lang, "OnTheProduct")}
                     </span>
-                <div className="link-fixed__item text-11 medium" >{ru.TryItOn}</div>
+                <div className="link-fixed__item text-11 medium" >{langCode(this.props.lang, "TryItOn")}</div>
             </div>
         )
     }
@@ -78,6 +78,7 @@ function MapStateToProps(state) {
     return {
         page: state.pageReducer.page,
         modal: state.modalReducer.modal,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

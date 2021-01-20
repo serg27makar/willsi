@@ -1,8 +1,9 @@
 import React from 'react';
 import "../access/css/stepsBlock.css";
-import ru from "../access/lang/LangConstants";
 import AOS from "aos";
 import {aosMethod} from "../js/visualEffects";
+import {connect} from "react-redux";
+import {langCode} from "../access/lang/translaterJS";
 
 class Startup extends React.Component {
     constructor(props) {
@@ -53,7 +54,7 @@ class Startup extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
-                            <h2 className="startup__title title-36 uppercase">{ru.StartupIsGainingPopularity}</h2>
+                            <h2 className="startup__title title-36 uppercase">{langCode(this.props.lang, "StartupIsGainingPopularity")}</h2>
                         </div>
                     </div>
                     <div className="row-wrap align-items-start">
@@ -67,4 +68,11 @@ class Startup extends React.Component {
     }
 }
 
-export default Startup;
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
+
+export default connect(MapStateToProps)(Startup);
+

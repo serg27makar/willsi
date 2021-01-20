@@ -1,6 +1,7 @@
 import React from 'react';
 import "../../access/css/carousel.css"
-import ru from "../../access/lang/LangConstants";
+import {connect} from "react-redux";
+import {langCode} from "../../access/lang/translaterJS";
 
 class CircleLevel extends React.Component {
     constructor(props) {
@@ -38,15 +39,15 @@ class CircleLevel extends React.Component {
     textCounter = (level) => {
         let text;
         if (level <= 20) {
-            text = ru.veryBad
+            text = langCode(this.props.lang, "veryBad")
         } else if (level <= 40) {
-            text =  ru.bad
+            text =  langCode(this.props.lang, "bad")
         } else if (level <= 60) {
-            text = ru.soSo
+            text = langCode(this.props.lang, "soSo")
         } else if (level <= 80) {
-            text = ru.well
+            text = langCode(this.props.lang, "well")
         } else if (level <= 100) {
-            text = ru.fine
+            text = langCode(this.props.lang, "fine")
         }
         return text;
     };
@@ -69,4 +70,10 @@ class CircleLevel extends React.Component {
     }
 }
 
-export default CircleLevel;
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
+
+export default connect(MapStateToProps)(CircleLevel);

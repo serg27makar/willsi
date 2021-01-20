@@ -1,8 +1,8 @@
 import React from "react";
-import ru from "../../access/lang/LangConstants";
 import {Link} from "react-router-dom";
 import {actionOpenModal} from "../../action";
 import {connect} from "react-redux";
+import {langCode} from "../../access/lang/translaterJS";
 
 class Authentication extends React.Component {
     constructor(props) {
@@ -24,8 +24,8 @@ class Authentication extends React.Component {
                         </svg>
                     </div>
                     <div className={"user-list__column " + (this.props.UserName && this.props.UserName.length >= 1 ? "hidden-block" : "")}>
-                        <div className="user-list__link light text-16" onClick={() => {this.openModal("signIn")}}>{ru.SignIn}</div>
-                        <div className="user-list__link light text-16" onClick={() => {this.openModal("signUp")}}>{ru.SignUp}</div>
+                        <div className="user-list__link light text-16" onClick={() => {this.openModal("signIn")}}>{langCode(this.props.lang, "SignIn")}</div>
+                        <div className="user-list__link light text-16" onClick={() => {this.openModal("signUp")}}>{langCode(this.props.lang, "SignUp")}</div>
                     </div>
                     <div className={"user-list__column " + (this.props.UserName && this.props.UserName.length === 0 ? "hidden-block" : "")}>
                         <Link className="user-list__link light text-16" to={"/cabinet"}>{this.props.UserName}</Link>
@@ -40,6 +40,7 @@ function MapStateToProps(state) {
     return {
         modal: state.modalReducer.modal,
         UserName: state.userReducer.UserName,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

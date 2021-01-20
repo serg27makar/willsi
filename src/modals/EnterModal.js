@@ -25,7 +25,7 @@ import {
     actionUserStore
 } from "../action";
 import {connect} from "react-redux";
-import ru from "../access/lang/LangConstants";
+import {langCode} from "../access/lang/translaterJS";
 
 class EnterModal extends React.Component {
     constructor(props) {
@@ -113,13 +113,13 @@ class EnterModal extends React.Component {
             let errorText = "";
             if (!email) {
                 errorItem = "email";
-                errorText = ru.enterYourEmail;
+                errorText = langCode(this.props.lang, "enterYourEmail");
             } else if (!validateEmail(email)) {
                 errorItem = "email";
-                errorText = ru.unidentifiedEmail;
+                errorText = langCode(this.props.lang, "unidentifiedEmail");
             } else if (!password) {
                 errorItem = "password";
-                errorText = ru.enterYourPassword;
+                errorText = langCode(this.props.lang, "enterYourPassword");
             }
             this.setState({
                 ...this.state,
@@ -132,7 +132,7 @@ class EnterModal extends React.Component {
     renderErrorLogin() {
         if (this.state.errorLogin)
         return (
-            <span className="modal-input-error-text main-list__catalog-product text-16">{ru.errorLogin}</span>
+            <span className="modal-input-error-text main-list__catalog-product text-16">{langCode(this.props.lang, "errorLogin")}</span>
         )
     }
 
@@ -145,7 +145,7 @@ class EnterModal extends React.Component {
                     </svg>
                 </div>
                 <div className="modal-envelope__body">
-                    <p className="modal-envelope__title title-36 uppercase bold">{ru.SignIn}</p>
+                    <p className="modal-envelope__title title-36 uppercase bold">{langCode(this.props.lang, "SignIn")}</p>
                     <div className="modal-form">
                         {dataInputEnterModal && dataInputEnterModal.map((item, index) => {
                             return (
@@ -157,11 +157,11 @@ class EnterModal extends React.Component {
                                             )
                         })}
                         <div className="modal-form__button-enter">
-                            <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.SignIn} onClick={this.login}/>
+                            <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={langCode(this.props.lang, "SignIn")} onClick={this.login}/>
                         </div>
                         {this.renderErrorLogin()}
-                        <div className="modal-form__bottom-text text-16 light color-aqua">{ru.DontHaveAccount}
-                            <div className="modal-form__bottom-link color-aqua" onClick={() => {this.changeModal("signUp")}}>{ru.SignUp}</div>
+                        <div className="modal-form__bottom-text text-16 light color-aqua">{langCode(this.props.lang, "DontHaveAccount")}
+                            <div className="modal-form__bottom-link color-aqua" onClick={() => {this.changeModal("signUp")}}>{langCode(this.props.lang, "SignUp")}</div>
                         </div>
                     </div>
                 </div>
@@ -174,6 +174,7 @@ class EnterModal extends React.Component {
 function MapStateToProps(state) {
     return {
         modal: state.modalReducer.modal,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

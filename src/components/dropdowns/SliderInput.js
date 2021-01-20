@@ -1,6 +1,7 @@
 import React from "react";
-import ru from "../../access/lang/LangConstants";
 import ButtonMain from "../shared/ButtonMain";
+import {langCode} from "../../access/lang/translaterJS";
+import {connect} from "react-redux";
 
 class SliderInput extends React.Component {
     constructor(props) {
@@ -87,7 +88,7 @@ class SliderInput extends React.Component {
                     <input className="slider-input-text text-16" name={item.name}
                            value={item.current} min={item.priceMin} max={item.priceMax}
                            onChange={this.onChange}/>
-                    <div className="face-block-text text-16">{ru.grn}</div>
+                    <div className="face-block-text text-16">{langCode(this.props.lang, "grn")}</div>
                 </div>
                 <div className="digital-face right-arrow text-25 unselectable" onClick={() => {
                     this.rightArrowClick(item.name, item.current, item.priceMax)}}
@@ -103,8 +104,8 @@ class SliderInput extends React.Component {
                        value={item.current} min={item.priceMin} max={item.priceMax}
                        onChange={this.onChange}/>
                 <div className="digital-slider-limit-wrapper">
-                    <div className="digital-slider-limit text-16">{item.priceMin + " " + ru.grn}</div>
-                    <div className="digital-slider-limit text-16">{item.priceMax + " " + ru.grn}</div>
+                    <div className="digital-slider-limit text-16">{item.priceMin + " " + langCode(this.props.lang, "grn")}</div>
+                    <div className="digital-slider-limit text-16">{item.priceMax + " " + langCode(this.props.lang, "grn")}</div>
                 </div>
             </div>
         )
@@ -114,7 +115,7 @@ class SliderInput extends React.Component {
         const item = this.state[subItem]
         return (
             <div key={index} className="slider-input-admin">
-                <span className="slider-input-text text-16">{ru[item.title]}</span>
+                <span className="slider-input-text text-16">{langCode(this.props.lang, item.title)}</span>
                 {this.renderDigitalFace(item)}
                 {this.renderSlider(item)}
             </div>
@@ -129,10 +130,17 @@ class SliderInput extends React.Component {
                         return this.renderSizeInput(subItem, subIndex);
                     })}
                 </div>
-                <ButtonMain btnClass={"button-replace text-16 uppercase"} text={ru.replace} onClick={this.props.replacePrice}/>
+                <ButtonMain btnClass={"button-replace text-16 uppercase"} text={langCode(this.props.lang, "replace")} onClick={this.props.replacePrice}/>
             </div>
         )
     }
 }
 
-export default SliderInput;
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
+
+export default connect(MapStateToProps)(SliderInput);
+

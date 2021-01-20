@@ -1,11 +1,11 @@
 import React from "react";
 import ButtonMain from "./shared/ButtonMain";
-import ru from "../access/lang/LangConstants";
 import "../access/css/cart.css"
 import ProductsCart from "./ProductsCart";
 import {connect} from "react-redux";
 import {getProductDataToParams} from "../utilite/axiosConnect";
 import {miDateFormatNumber, validPostpone} from "../js/sharedFunctions";
+import {langCode} from "../access/lang/translaterJS";
 
 class PerfectThings extends React.Component {
     constructor(props) {
@@ -78,7 +78,7 @@ class PerfectThings extends React.Component {
             <div className="container">
                 <ProductsCart catalog={true} products={this.state.productArr} compilation={true}/>
                 <div className="col-12">
-                    <ButtonMain btnClass={"button-refresh text-14 medium button-white"} text={ru.UpdateProduct}/>
+                    <ButtonMain btnClass={"button-refresh text-14 medium button-white"} text={langCode(this.props.lang, "UpdateProduct")}/>
                 </div>
             </div>
         )
@@ -93,6 +93,7 @@ function MapStateToProps(state) {
         SearchParams: state.productReducer.SearchParams,
         Postpone: state.userReducer.Postpone,
         setCountry: state.utiliteReducer.setCountry,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

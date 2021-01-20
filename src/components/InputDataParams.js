@@ -1,9 +1,9 @@
 import React from "react";
-import ru from "../access/lang/LangConstants";
 import {actionPermission, actionUserID, setActionAdminPanel} from "../action";
 import {connect} from "react-redux";
 import {postRegister} from "../utilite/axiosConnect";
 import {whomParams} from "../access/temporaryConstants"
+import {langCode} from "../access/lang/translaterJS";
 
 class InputDataParams extends React.Component {
     constructor(props) {
@@ -98,7 +98,7 @@ class InputDataParams extends React.Component {
                     <div className="row">
                         <div className="col-12 ">
                             <div className="recalculate-envelope">
-                                <p className="recalculate-envelope__title text-18 uppercase bold color-aqua">{ru.WhomMeasure}</p>
+                                <p className="recalculate-envelope__title text-18 uppercase bold color-aqua">{langCode(this.props.lang, "WhomMeasure")}</p>
                                 <div className="recalculate-envelope__box-tags">
                                     <div className="box-tags">
                                         {whomParams && whomParams.map((item, index) => {
@@ -106,16 +106,16 @@ class InputDataParams extends React.Component {
                                         })}
                                     </div>
                                 </div>
-                                <p className="recalculate-envelope__sub-info text-22 light">{ru.WhatCallParameters}</p>
+                                <p className="recalculate-envelope__sub-info text-22 light">{langCode(this.props.lang, "WhatCallParameters")}</p>
                                 <div className="recalculate-envelope__bottom-info">
                                     <input className="recalculate-envelope__input-data text-18 light"
-                                           placeholder={ru.DataPlaceholder}
+                                           placeholder={langCode(this.props.lang, "DataPlaceholder")}
                                            value={this.state.name || ""}
                                            onChange={this.onChange}
                                     />
                                     <button className={"recalculate-envelope__button-next text-16 medium " + (this.state.name ? "" : "disabled-btn")}
                                             disabled={!this.state.name}
-                                            onClick={this.updateData}>{ru.Next}</button>
+                                            onClick={this.updateData}>{langCode(this.props.lang, "Next")}</button>
                                 </div>
                             </div>
                         </div>
@@ -133,6 +133,7 @@ function MapStateToProps(state) {
         UsersParameters: state.userReducer.UsersParameters,
         AddUser: state.userReducer.AddUser,
         Permission: state.userReducer.Permission,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

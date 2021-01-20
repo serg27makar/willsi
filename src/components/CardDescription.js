@@ -1,12 +1,12 @@
 import React from "react";
 import ButtonMain from "./shared/ButtonMain";
-import ru from "../access/lang/LangConstants";
 import ButtonPostpone from "./shared/ButtonPostpone";
 import "../access/css/cart.css"
 import {connect} from "react-redux";
 import {actionPostpone, actionSetActionPostpone} from "../action";
 import {updateResult, validPostpone} from "../js/sharedFunctions";
 import {postUpdate} from "../utilite/axiosConnect";
+import {langCode} from "../access/lang/translaterJS";
 
 class CardDescription extends React.Component {
     constructor(props) {
@@ -86,7 +86,7 @@ class CardDescription extends React.Component {
         if (item && validPostpone(this.props.Postpone, item)) {
             return (
                 <ButtonMain btnClass={"button-main envelope-list text-18 uppercase medium"}
-                                text={ru.removeItem} onClick={() => {this.removePostpone(item)}}/>
+                                text={langCode(this.props.lang, "removeItem")} onClick={() => {this.removePostpone(item)}}/>
             )
         } else {
             return (
@@ -108,7 +108,7 @@ class CardDescription extends React.Component {
                 <p className="card-description__paragraph text-14 light">{this.state.cardDescription.Description}</p>
                 <div className="card-description__color-box">
                     <div className="color-box">
-                        <p className="color-box__text text-16 uppercase bold">{ru.Colors}</p>
+                        <p className="color-box__text text-16 uppercase bold">{langCode(this.props.lang, "Colors")}</p>
                         <ul className="color-box__list">
                             {this.state.cardDescription.Parameters.color && this.state.cardDescription.Parameters.color.map((item, index) => {
                                 return this.renderColorRound(item, index);
@@ -117,7 +117,7 @@ class CardDescription extends React.Component {
                     </div>
                 </div>
                 <div className="card-description__button-bottom">
-                    <p className="card-description__quantity text-22 color-aqua uppercase medium">{this.state.cardDescription.Parameters.Price + ru.grn}</p>
+                    <p className="card-description__quantity text-22 color-aqua uppercase medium">{this.state.cardDescription.Parameters.Price + langCode(this.props.lang, "grn")}</p>
                     {this.renderButton(this.state.cardDescription && this.state.cardDescription._id)}
                     <ButtonMain btnClass={"button-white text-14"} text={"перейти в магазин для покупки"} onClick={this.siteRedirect}/>
                 </div>
@@ -131,6 +131,7 @@ function MapStateToProps(state) {
         UserID: state.userReducer.UserID,
         Postpone: state.userReducer.Postpone,
         SetActionPostpone: state.userReducer.SetActionPostpone,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

@@ -12,7 +12,7 @@ import {
     actionUserName,
 } from "../action";
 import {connect} from "react-redux";
-import ru from "../access/lang/LangConstants";
+import {langCode} from "../access/lang/translaterJS";
 
 class RegistrationStoreAdministrator extends React.Component {
     constructor(props) {
@@ -139,9 +139,9 @@ class RegistrationStoreAdministrator extends React.Component {
             return(
                 <div className="modal-envelope" id="modal-changed">
                     <div className="modal-envelope__body">
-                        <p className="modal-envelope__title title-36 bold">{ru.enterAnyDetails}</p>
+                        <p className="modal-envelope__title title-36 bold">{langCode(this.props.lang, "enterAnyDetails")}</p>
                         <div className="modal-form__button-enter">
-                            <ButtonMain btnClass={"button-enter button-white text-18 uppercase medium"} text={ru.understandably} onClick={() => {this.openAlert(false)}}/>
+                            <ButtonMain btnClass={"button-enter button-white text-18 uppercase medium"} text={langCode(this.props.lang, "understandably")} onClick={() => {this.openAlert(false)}}/>
                         </div>
                     </div>
                 </div>
@@ -160,7 +160,7 @@ class RegistrationStoreAdministrator extends React.Component {
                     </svg>
                 </div>
                 <div className="modal-envelope__body">
-                    <p className="modal-envelope__title title-36 uppercase bold">{ru.AdminSignUp}</p>
+                    <p className="modal-envelope__title title-36 uppercase bold">{langCode(this.props.lang, "AdminSignUp")}</p>
                     <div className="modal-form">
                         {this.state.dataInputSet && this.state.dataInputSet.map((item, index) => {
                             return (
@@ -168,7 +168,7 @@ class RegistrationStoreAdministrator extends React.Component {
                             )
                         })}
                         <div className="modal-form__button-enter">
-                            <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={ru.SignUp} onClick={this.registration}/>
+                            <ButtonMain btnClass={"button-enter button-main text-18 medium"} text={langCode(this.props.lang, "SignUp")} onClick={this.registration}/>
                         </div>
                         {/*<div className="modal-form__social-list">*/}
                         {/*    <div className="modal-form__social-link icon-fb"  style={{backgroundImage: "url('static/img/content/icon-fb.png')"}}/>*/}
@@ -188,6 +188,7 @@ function MapStateToProps(state) {
         UserID: state.userReducer.UserID,
         UserName: state.userReducer.UserName,
         Email: state.userReducer.Email,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {
