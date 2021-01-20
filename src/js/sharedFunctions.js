@@ -3,6 +3,7 @@ import {
     subCatalogListDogPants,
     subCatalogListDogShirts,
     subCatalogListDogShoes,
+    subCatalogListGeneral,
     subCatalogListHome,
     subCatalogListOuterwear,
     subCatalogListPants,
@@ -83,101 +84,82 @@ export function isValid(obj, arr) {
     return isValidOutput;
 }
 
-export function chooseSizeList(subCatalog) {
+export function chooseSizeList(subCatalog, catalog) {
     let verificationList = [];
     let paramsList = [];
+    const RecalculateParams = setRecalculateParams(catalog);
+    const sizeListT = getSizeList(subCatalog)
+    RecalculateParams.map((item) => {
+        if (sizeListT.indexOf(item.inputName) !== -1) {
+            paramsList.push(item);
+        }
+        return paramsList;
+    });
+    verificationList = sizeListT;
+    return {verificationList, paramsList}
+}
+
+function getSizeList(subCatalog) {
+    let sizeListT = []
     if (subCatalogListTshirts.indexOf(subCatalog) !== -1) {
-        recalculateParamsWoman.map((item) => {
-            if (sizeListTshirts.indexOf(item.inputName) !== -1) {
-                paramsList.push(item);
-            }
-            return paramsList;
-        });
-        verificationList = sizeListTshirts;
+        sizeListT = sizeListTshirts;
     }
     if (subCatalogListShirts.indexOf(subCatalog) !== -1) {
-        recalculateParamsWoman.map((item) => {
-            if (sizeListShirts.indexOf(item.inputName) !== -1) {
-                paramsList.push(item);
-            }
-            return paramsList;
-        });
-        verificationList = sizeListShirts;
+        sizeListT = sizeListShirts
     }
     if (subCatalogListPants.indexOf(subCatalog) !== -1) {
-        recalculateParamsWoman.map((item) => {
-            if (sizeListPants.indexOf(item.inputName) !== -1) {
-                paramsList.push(item);
-            }
-            return paramsList;
-        });
-        verificationList = sizeListPants;
+        sizeListT = sizeListPants
     }
     if (subCatalogListUnderwear.indexOf(subCatalog) !== -1) {
-        recalculateParamsWoman.map((item) => {
-            if (sizeListUnderwear.indexOf(item.inputName) !== -1) {
-                paramsList.push(item);
-            }
-            return paramsList;
-        });
-        verificationList = sizeListUnderwear;
+        sizeListT = sizeListUnderwear
     }
     if (subCatalogListOuterwear.indexOf(subCatalog) !== -1) {
-        recalculateParamsWoman.map((item) => {
-            if (sizeListOuterwear.indexOf(item.inputName) !== -1) {
-                paramsList.push(item);
-            }
-            return paramsList;
-        });
-        verificationList = sizeListOuterwear;
+        sizeListT = sizeListOuterwear
     }
     if (subCatalogListHome.indexOf(subCatalog) !== -1) {
-        recalculateParamsWoman.map((item) => {
-            if (sizeListHome.indexOf(item.inputName) !== -1) {
-                paramsList.push(item);
-            }
-            return paramsList;
-        });
-        verificationList = sizeListHome;
+        sizeListT = sizeListHome
+    }
+    if (subCatalogListGeneral.indexOf(subCatalog) !== -1) {
+        sizeListT = []
     }
 
     if (subCatalogListDogPants.indexOf(subCatalog) !== -1) {
-        recalculateParamsDog.map((item) => {
-            if (dogSizeListPants.indexOf(item.inputName) !== -1) {
-                paramsList.push(item);
-            }
-            return paramsList;
-        });
-        verificationList = dogSizeListPants;
+        sizeListT = dogSizeListPants
     }
     if (subCatalogListDogShirts.indexOf(subCatalog) !== -1) {
-        recalculateParamsDog.map((item) => {
-            if (dogSizeListShirts.indexOf(item.inputName) !== -1) {
-                paramsList.push(item);
-            }
-            return paramsList;
-        });
-        verificationList = dogSizeListShirts;
+        sizeListT = dogSizeListShirts
     }
     if (subCatalogListDogOuterwear.indexOf(subCatalog) !== -1) {
-        recalculateParamsDog.map((item) => {
-            if (dogSizeListOuterwear.indexOf(item.inputName) !== -1) {
-                paramsList.push(item);
-            }
-            return paramsList;
-        });
-        verificationList = dogSizeListOuterwear;
+        sizeListT = dogSizeListOuterwear
     }
     if (subCatalogListDogShoes.indexOf(subCatalog) !== -1) {
-        recalculateParamsDog.map((item) => {
-            if (dogSizeListShoes.indexOf(item.inputName) !== -1) {
-                paramsList.push(item);
-            }
-            return paramsList;
-        });
-        verificationList = dogSizeListShoes;
+        sizeListT = dogSizeListShoes
     }
-    return {verificationList, paramsList}
+    return sizeListT;
+}
+
+function setRecalculateParams(catalog) {
+    let RecalculateParams = [];
+    switch (catalog) {
+        case "catalogListWomen":
+            RecalculateParams = recalculateParamsWoman;
+            break;
+        case "catalogListMen":
+            RecalculateParams = recalculateParamsMan;
+            break;
+        case "catalogListBoy":
+            RecalculateParams = recalculateParamsBoy;
+            break;
+        case "catalogListGirl":
+            RecalculateParams = recalculateParamsGirl;
+            break;
+        case "catalogListDog":
+            RecalculateParams = recalculateParamsDog;
+            break;
+        default :
+            RecalculateParams = [];
+    }
+    return RecalculateParams;
 }
 
 export function validPostpone(checking, verifiable) {
@@ -192,6 +174,7 @@ export function validPostpone(checking, verifiable) {
     }
     return result;
 }
+
 export function genderSwitcher(gender, subCatalog = "") {
 
     let catalog = [];
@@ -200,79 +183,18 @@ export function genderSwitcher(gender, subCatalog = "") {
 
     gender = !gender || gender.length < 2 ? "woman" : gender;
 
-    switch (gender) {
+    catalog = setRecalculateParams(gender);
 
-        case "woman":
-            catalog = recalculateParamsWoman;
-            break;
-        case "man":
-            catalog = recalculateParamsMan;
-            break;
-        case "boy":
-            catalog = recalculateParamsBoy;
-            break;
-        case "girl":
-            catalog = recalculateParamsGirl;
-            break;
-        case "dog":
-            catalog = recalculateParamsDog;
-            break;
-
-        case "catalogListWomen":
-            catalog = recalculateParamsWoman;
-            break;
-        case "catalogListMen":
-            catalog = recalculateParamsMan;
-            break;
-        case "catalogListBoy":
-            catalog = recalculateParamsBoy;
-            break;
-        case "catalogListGirl":
-            catalog = recalculateParamsGirl;
-            break;
-        case "catalogListDog":
-            catalog = recalculateParamsDog;
-            break;
-
-        default :
-            catalog = recalculateParamsWoman;
+    if (!catalog.length) {
+        catalog = setRecalculateConstant(gender);
     }
 
-    if (subCatalog === "subCatalogListMenTshirts" || subCatalog === "subCatalogListWomenTshirts" ||
-        subCatalog === "subCatalogListBoyTshirts" || subCatalog === "subCatalogListGirlTshirts") {
-        recalculateSubCatalog = sizeListTshirts;
-    } else if (subCatalog === "subCatalogListMenShirts" || subCatalog === "subCatalogListWomenShirts" ||
-        subCatalog === "subCatalogListBoyShirts" || subCatalog === "subCatalogListGirlShirts") {
-        recalculateSubCatalog = sizeListShirts;
-    } else if (subCatalog === "subCatalogListMenPants" || subCatalog === "subCatalogListWomenPants" ||
-        subCatalog === "subCatalogListBoyPants" || subCatalog === "subCatalogListGirlPants") {
-        recalculateSubCatalog = sizeListPants;
-    } else if (subCatalog === "subCatalogListMenUnderwear" || subCatalog === "subCatalogListWomenUnderwear" ||
-        subCatalog === "subCatalogListBoyUnderwear" || subCatalog === "subCatalogListGirlUnderwear") {
-        recalculateSubCatalog = sizeListUnderwear;
-    } else if (subCatalog === "subCatalogListMenOuterwear" || subCatalog === "subCatalogListWomenOuterwear" ||
-        subCatalog === "subCatalogListBoyOuterwear" || subCatalog === "subCatalogListGirlOuterwear") {
-        recalculateSubCatalog = sizeListOuterwear;
-    } else if (subCatalog === "subCatalogListMenHome" || subCatalog === "subCatalogListWomenHome" ||
-        subCatalog === "subCatalogListBoyHome" || subCatalog === "subCatalogListGirlHome") {
-        recalculateSubCatalog = sizeListHome;
-    } else if (subCatalog === "subCatalogListDogPants") {
-        recalculateSubCatalog = dogSizeListPants;
-    } else if (subCatalog === "subCatalogListDogShirts") {
-        recalculateSubCatalog = dogSizeListShirts;
-    } else if (subCatalog === "subCatalogListDogOveralls") {
-        recalculateSubCatalog = dogSizeListOuterwear;
-    } else if (subCatalog === "subCatalogListDogCap") {
-        recalculateSubCatalog = dogSizeListShoes;
-    } else if (subCatalog === "subCatalogListMenGeneral" ||
-        subCatalog === "subCatalogListWomenGeneral" ||
-        subCatalog === "subCatalogListBoyGeneral" ||
-        subCatalog === "subCatalogListGirlGeneral" ||
-        subCatalog === "subCatalogListDogGeneral") {
-        recalculateSubCatalog = [];
+    if (subCatalog) {
+        recalculateSubCatalog = getSizeList(subCatalog)
     } else {
         recalculateParams = catalog;
     }
+
     catalog.map((item, index) => {
         if (recalculateSubCatalog.indexOf(item.inputName) !== -1) {
             recalculateParams.push(item);
@@ -337,7 +259,10 @@ export function setRecalculateConstant(gender) {
         case "girl":
             RecalculateConstant = recalculateParamsGirl;
             break;
-        default : RecalculateConstant = recalculateParamsWoman;
+        case "dog":
+            RecalculateConstant = recalculateParamsDog;
+            break;
+        default : RecalculateConstant = [];
     }
     return RecalculateConstant;
 }

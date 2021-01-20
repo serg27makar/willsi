@@ -40,13 +40,8 @@ class MainEnvelopeSize extends React.Component {
     chooseParamList() {
         const catalog = this.props.catalog;
         const subCatalog = this.props.subCatalog;
-        if (catalog === "catalogListDog") {
-            this.setState({
-                paramsList: recalculateParamsDog,
-            });
-            this.props.paramsList(recalculateParamsDog)
-        } else if (catalog.length > 1) {
-            const {paramsList, verificationList} = chooseSizeList(subCatalog);
+        if (catalog.length > 1) {
+            const {paramsList, verificationList} = chooseSizeList(subCatalog, catalog);
             this.setState({
                 paramsList,
             });
