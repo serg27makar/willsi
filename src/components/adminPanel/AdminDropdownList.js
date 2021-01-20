@@ -1,5 +1,6 @@
 import React from "react";
-import LangCat from "../../access/lang/CatalogLangConstants";
+import {connect} from "react-redux";
+import {langCodeCatalog} from "../../access/lang/translaterJS";
 
 class AdminDropdownList extends React.Component {
     constructor(props) {
@@ -13,18 +14,7 @@ class AdminDropdownList extends React.Component {
         this.closeOpen = this.closeOpen.bind(this);
     }
 
-    componentDidMount() {
-        let langCat = {};
-        for (const key in LangCat) {
-            if (key.substr(key.length - 3, 3) !== "All") {
-                langCat = {...langCat, [key]: LangCat[key]}
-            }
-        }
-        this.setState({
-            ...this.state,
-            langCat,
-        })
-    }
+    componentDidMount() {}
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.headerItem !== this.props.headerItem) {
@@ -60,7 +50,7 @@ class AdminDropdownList extends React.Component {
             return (
                 <div className="dropdown-info__item" key={index} onClick={() => {this.changeItem(index)}}>
                     <div className="border-line"/>
-                    <div className="dropdown-info__link text-16 bold uppercase">{this.state.langCat[item]}</div>
+                    <div className="dropdown-info__link text-16 bold uppercase">{langCodeCatalog(this.props.lang, item)}</div>
                 </div>
             )
         }
@@ -70,7 +60,7 @@ class AdminDropdownList extends React.Component {
         return (
             <div className="catalog-top__dropdown-admin">
                 <div className="catalog-top__button-drop" onClick={this.closeOpen}>
-                    <div className="catalog-top__button-text text-16 bold uppercase">{this.state.langCat[this.state.headerItem]}</div>
+                    <div className="catalog-top__button-text text-16 bold uppercase">{langCodeCatalog(this.props.lang, this.state.headerItem)}</div>
                     <span className="catalog-top__button-icon">
                         <svg className="icon icon-arrow-small ">
                           <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
@@ -87,4 +77,11 @@ class AdminDropdownList extends React.Component {
     }
 }
 
-export default AdminDropdownList;
+function MapStateToProps(state) {
+    return {
+        lang: state.utiliteReducer.lang,
+    }
+}
+
+export default connect(MapStateToProps)(AdminDropdownList);
+

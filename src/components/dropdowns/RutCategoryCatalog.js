@@ -9,6 +9,7 @@ import {
 } from "../../action";
 import {connect} from "react-redux";
 import LangCat from "../../access/lang/CatalogLangConstants";
+import {langCodeCatalog} from "../../access/lang/translaterJS";
 
 class RutCategoryCatalog extends React.Component {
     constructor(props) {
@@ -122,7 +123,7 @@ class RutCategoryCatalog extends React.Component {
     dropdownListItem = (item, index) => {
         return (
             <li className={"dropdown-list__item " + (this.state.selected === index ? "item-select" : "")} key={index} onClick={() => {this.chooseListItem(item, index)}}>
-                <div className="dropdown-list__link text-14" >{LangCat[item]}</div>
+                <div className="dropdown-list__link text-14" >{langCodeCatalog(this.props.lang, item)}</div>
             </li>
         )
     };
@@ -131,7 +132,7 @@ class RutCategoryCatalog extends React.Component {
         return (
             <div className="catalog-product">
                 <button className="catalog-button" onClick={this.closeOpen} disabled={this.props.catalogName !== this.props.item.dropdownTitle}>
-                    <span className={"catalog-button__text text-16 light " + (this.state.isOpen ? "catalog-opened" : "")}>{LangCat[this.props.item.dropdownTitle]}</span>
+                    <span className={"catalog-button__text text-16 light " + (this.state.isOpen ? "catalog-opened" : "")}>{langCodeCatalog(this.props.lang, this.props.item.dropdownTitle)}</span>
                     <svg className="icon icon-arrow-small ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
                     </svg>
@@ -154,6 +155,7 @@ function MapStateToProps(state) {
         HeaderUser: state.userReducer.HeaderUser,
         selectedSubCatalogID: state.catalogReducer.selectedSubCatalogID,
         closeAllCatalogs: state.catalogReducer.closeAllCatalogs,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

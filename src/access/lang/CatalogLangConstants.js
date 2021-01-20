@@ -1,5 +1,4 @@
-const LangCat = {
-
+export const LangCatRU = {
     YourParams: "Ваши параметры",
     YourStore: "Ваши магазины",
 
@@ -7,7 +6,7 @@ const LangCat = {
     catalogListWomen: "Женская одежда",
     catalogListBoy: "Одежда для мальчиков",
     catalogListGirl: "Одежда для девочек",
-    catalogListDog: "Собаки",
+    catalogListDog: "Одежда для собак",
 
     subCatalogListMenAll: "Вся одежда",
     subCatalogListMenTshirts: "Футболки, майки, поло, гольфы",
@@ -53,5 +52,57 @@ const LangCat = {
     subCatalogListDogGeneral: "Прочеее",
 
 };
+export const LangCatEN = {
+    YourParams: "Your parameters",
+    YourStore: "Your shops",
 
-export default LangCat;
+    catalogListMen: "Clothes for men",
+    catalogListWomen: "Womens clothing",
+    catalogListBoy: "Clothes for boys",
+    catalogListGirl: "Girls clothes",
+    catalogListDog: "Clothes for dogs",
+
+    subCatalogListMenAll: "All clothes",
+    subCatalogListMenTshirts: "T-shirts, polo, knee-highs",
+    subCatalogListMenShirts: "Shirts, sweaters",
+    subCatalogListMenPants: "Pants, shorts",
+    subCatalogListMenUnderwear: "Underwear, clothing for body shaping",
+    subCatalogListMenOuterwear: "Outerwear",
+    subCatalogListMenHome: "Home clothes",
+    subCatalogListMenGeneral: "Other",
+
+    subCatalogListWomenAll: "All clothes",
+    subCatalogListWomenTshirts: "T-shirts, longsleeves",
+    subCatalogListWomenShirts: "Blouses, Shirts, Tunics",
+    subCatalogListWomenPants: "Pants, shorts, skirts",
+    subCatalogListWomenUnderwear: "Underwear, clothing for body shaping",
+    subCatalogListWomenOuterwear: "Outerwear",
+    subCatalogListWomenHome: "Home clothes",
+    subCatalogListWomenGeneral: "Other",
+
+    subCatalogListBoyAll: "All clothes",
+    subCatalogListBoyTshirts: "T-shirts, polo, knee-highs",
+    subCatalogListBoyShirts: "Shirts, sweaters",
+    subCatalogListBoyPants: "Pants, shorts",
+    subCatalogListBoyUnderwear: "Underwear",
+    subCatalogListBoyOuterwear: "Outerwear",
+    subCatalogListBoyHome: "Home clothes",
+    subCatalogListBoyGeneral: "Other",
+
+    subCatalogListGirlAll: "All clothes",
+    subCatalogListGirlTshirts: "T-shirts, longsleeves",
+    subCatalogListGirlShirts: "Blouses, Shirts, Tunics",
+    subCatalogListGirlPants: "Pants, shorts, skirts",
+    subCatalogListGirlUnderwear: "Underwear, swimwear, body shaping clothing",
+    subCatalogListGirlOuterwear: "Outerwear",
+    subCatalogListGirlHome: "Home clothes",
+    subCatalogListGirlGeneral: "Other",
+
+    subCatalogListDogAll: "All clothes",
+    subCatalogListDogPants: "Pants",
+    subCatalogListDogShirts: "T-shirts, shirts, sweaters",
+    subCatalogListDogOveralls: "Overalls",
+    subCatalogListDogCap: "Footwear",
+    subCatalogListDogGeneral: "Other",
+
+};

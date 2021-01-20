@@ -73,10 +73,16 @@ class AdminMainSite extends React.Component {
             topCatalog.push(item.dropdownTitle);
             return index;
         });
+        const subCatalog = [];
+        dropdownListArr[0].dropdownItems.map((item) => {
+            if (item.substr(item.length - 3, 3) !== "All") {
+                subCatalog.push(item)
+            }
+        })
         this.setState({
             ...this.state,
             topCatalog,
-            subCatalog: dropdownListArr[0].dropdownItems,
+            subCatalog,
             headerItem: dropdownListArr[0].dropdownTitle,
             headerSubItem: dropdownListArr[0].dropdownItems[1],
         });
@@ -96,9 +102,15 @@ class AdminMainSite extends React.Component {
                     definePosition: false,
                 })
             } else {
+                const subCatalog = [];
+                dropdownListArr[this.state.headerIndex].dropdownItems.map((item) => {
+                    if (item.substr(item.length - 3, 3) !== "All") {
+                        subCatalog.push(item)
+                    }
+                })
                 this.setState({
                     ...this.state,
-                    subCatalog: dropdownListArr[this.state.headerIndex].dropdownItems,
+                    subCatalog,
                     headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[1]
                 })
             }
@@ -118,7 +130,11 @@ class AdminMainSite extends React.Component {
         let subCatalog = [];
         dropdownListArr.map((item, index) => {
             if (item.dropdownTitle === headerItem) {
-                subCatalog = item.dropdownItems;
+                item.dropdownItems.map((item) => {
+                    if (item.substr(item.length - 3, 3) !== "All") {
+                        subCatalog.push(item)
+                    }
+                })
                 headerIndex = index;
             }
             return subCatalog;

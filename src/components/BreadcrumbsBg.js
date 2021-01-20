@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import LangCat from "../access/lang/CatalogLangConstants";
+import {langCodeCatalog} from "../access/lang/translaterJS";
 
 class BreadcrumbsBg extends React.Component {
     constructor(props) {
@@ -34,7 +34,7 @@ class BreadcrumbsBg extends React.Component {
                             <div className="breadcrumbs__row">
                                 <div className="breadcrumb__column">
                                     <div className="breadcrumbs">
-                                        <h1 className="breadcrumbs__title title-30 bold uppercase">{LangCat[this.props.catalogName]}</h1>
+                                        <h1 className="breadcrumbs__title title-30 bold uppercase">{langCodeCatalog(this.props.lang, this.props.catalogName)}</h1>
                                     </div>
                                     {/*<nav className="breadcrumbs">*/}
                                     {/*    {this.props.breadcrumbs.links && this.props.breadcrumbs.links.map((item, index) => {*/}
@@ -55,6 +55,7 @@ function MapStateToProps(state) {
     return {
         catalogName: state.catalogReducer.catalogName,
         subCatalogName: state.catalogReducer.subCatalogName,
+        lang: state.utiliteReducer.lang,
     }
 }
 const mapDispatchToProps = dispatch => {

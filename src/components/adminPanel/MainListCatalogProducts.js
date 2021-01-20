@@ -1,5 +1,4 @@
 import React from "react";
-import LangCat from "../../access/lang/CatalogLangConstants";
 import {
     actionDefineCatalog,
     actionProductsThisStore,
@@ -11,7 +10,7 @@ import {connect} from "react-redux";
 import ToggleButton from "../shared/ToggleButton";
 import {showHiddenCatalogData, showHiddenSubCatalogData} from "../../js/dataUpdateFunctions";
 import {dropdownListArr} from "../../access/temporaryConstants";
-import {langCode} from "../../access/lang/translaterJS";
+import {langCode, langCodeCatalog} from "../../access/lang/translaterJS";
 
 class MainListCatalogProducts extends React.Component {
     constructor(props) {
@@ -186,7 +185,7 @@ class MainListCatalogProducts extends React.Component {
                 <div className="catalog-top-toggle-btn">
                     <ToggleButton active={this.state.activeSubToggle[listItem]} onClick={(e) => {this.hiddenProductsToSubCatalog(e, listItem)}}/>
                 </div>
-                <div className={"dropdown-list__link padding-left text-14 " + (this.state.selectedSubCatalog === listIndex ? "catalog-opened" : "light")}>{LangCat[listItem]}</div>
+                <div className={"dropdown-list__link padding-left text-14 " + (this.state.selectedSubCatalog === listIndex ? "catalog-opened" : "light")}>{langCodeCatalog(this.props.lang, listItem)}</div>
                 <div className="count-products-sub text-12">{this.countProducts(listItem)}</div>
             </li>
         )
@@ -199,7 +198,7 @@ class MainListCatalogProducts extends React.Component {
                     <ToggleButton active={this.state.activeToggle[item.dropdownTitle]} onClick={(e) => {this.hiddenProductsToCatalog(e, item.dropdownTitle)}}/>
                 </div>
                 <button className={"padding-left " + (this.state.openIndex === index ? this.state.active : this.state.passive)} type="button" onClick={() => {this.closeOpen(index)}}>
-                    <span className="catalog-button__text text-16 light">{LangCat[item.dropdownTitle]}</span>
+                    <span className="catalog-button__text text-16 light">{langCodeCatalog(this.props.lang, item.dropdownTitle)}</span>
                     <div className="count-products">{this.countProducts(item.dropdownTitle)}</div>
                     <svg className="icon ">
                         <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>
