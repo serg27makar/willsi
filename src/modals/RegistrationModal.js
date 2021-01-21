@@ -47,16 +47,9 @@ class RegistrationModal extends React.Component {
                 name: this.props.UsersParameters[0].UserName,
             })
         }
-        localStorage.clear();
-        this.props.userIDFunction("");
-        this.props.userNameFunction("");
-        this.props.emailFunction("");
-        this.props.usersParametersFunction([]);
-        this.props.permissionFunction("unknown");
         this.props.userStoreFunction([]);
         this.props.dataUpdateFunction(!this.props.update);
         this.props.setActionPostponeFunction(!this.props.SetActionPostpone);
-        this.props.postponeFunction([]);
         this.props.selectedStoreFunction({});
         this.props.setStoreArrFunction([]);
         this.props.productsThisStoreFunction([]);

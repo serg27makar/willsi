@@ -58,6 +58,7 @@ class App extends React.Component {
         this.state = {
             Results: {},
             country_name: "",
+            upLoad: false,
         }
         this.allCountry = this.allCountry.bind(this);
         this.countryData = this.countryData.bind(this);
@@ -69,6 +70,11 @@ class App extends React.Component {
         if (UserID) {
             this.props.userIDFunction(UserID);
             getUserData(this.result);
+        } else {
+            this.setState({
+                ...this.state,
+                upLoad: true
+            })
         }
         getGeoInfo(this.countryData);
         getAllCountry(this.allCountry)
@@ -106,6 +112,10 @@ class App extends React.Component {
             this.props.permissionFunction(res.Permission);
             this.props.userStoreFunction(res.UserStore);
             this.props.postponeFunction(res.Postpone);
+            this.setState({
+                ...this.state,
+                upLoad: true
+            })
         }
     };
 
@@ -163,6 +173,7 @@ class App extends React.Component {
         if (this.props.modal) {
             wrapper = "wrapper-main blur"
         }
+        if (!this.state.upLoad) return null;
         return (
             <div className="App">
                 <div className={wrapper} onClick={this.closeModal}>

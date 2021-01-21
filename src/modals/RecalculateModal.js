@@ -8,6 +8,7 @@ import {
     actionPermission,
     actionProductsArr,
     actionSearchParams,
+    actionSelectProduct,
     actionUserID,
     actionUserName,
     actionUsersParameters
@@ -91,6 +92,7 @@ class RecalculateModal extends React.Component {
                 ...Product,
                 Parameters: data,
             }
+            this.props.selectProductFunction(Product);
             this.props.productsArrFunction([Product]);
             this.props.dataRedirectFunction({
                 accessR: true,
@@ -300,6 +302,9 @@ const mapDispatchToProps = dispatch => {
         },
         productsArrFunction: (ProductsArr) => {
             dispatch(actionProductsArr(ProductsArr))
+        },
+        selectProductFunction: (SelectProduct) => {
+            dispatch(actionSelectProduct(SelectProduct))
         },
     }
 };

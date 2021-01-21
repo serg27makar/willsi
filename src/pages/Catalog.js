@@ -54,7 +54,6 @@ class Catalog extends React.Component {
         if (this.props.SearchParams && this.props.catalogName && this.state.firstTime) {
             this.changeSizeData();
         }
-        this.redirect("", false);
         this.props.setActionAdminPanelFunction("Catalog");
         this.functionRedirect();
         if (this.props.selectedSubCatalogID) {
@@ -154,7 +153,6 @@ class Catalog extends React.Component {
             ...this.state,
             subCatalog: dropdownListArr[this.props.catalog || 0].dropdownItems[data],
             topCatalog: dropdownListArr[this.props.catalog || 0].dropdownTitle,
-            // productArr: [],
             skip: 0,
             lastData: false,
             active: !this.state.active,
@@ -166,7 +164,6 @@ class Catalog extends React.Component {
             ...this.state,
             topCatalog: this.props.catalogName,
             subCatalog: this.state.subCatalog,
-            // productArr: [],
             skip: 0,
             lastData: false,
             active: !this.state.active,
