@@ -18,6 +18,7 @@ import {Redirect} from "react-router-dom";
 import PerfectThings from "../components/PerfectThings";
 import {subCatalogListGeneral} from "../access/temporaryConstants";
 import {langCode} from "../access/lang/translaterJS";
+import {isEmptyObject} from "../js/sharedFunctions";
 
 class Cart extends React.Component {
     constructor(props) {
@@ -26,10 +27,6 @@ class Cart extends React.Component {
             subUsers:[],
             slidersArr: [],
             SelectProduct: {},
-            redirect: {
-                accessR: false,
-                to: "",
-            },
         };
     }
 
@@ -40,16 +37,10 @@ class Cart extends React.Component {
             }
             return index;
         });
-        this.props.dataRedirectFunction({
-            accessR: false,
-            to: "/",
-        });
+        this.redirect("", false);
         this.props.thingToLinkFunction(false);
-        if (this.props.ProductsArr.length < 1) {
-            this.props.dataRedirectFunction({
-                accessR: true,
-                to: "/catalog",
-            });
+        if (!this.props.ProductsArr.length || isEmptyObject(this.props.SelectProduct)) {
+            this.redirect("");
         }
         this.props.setActionAdminPanelFunction("Cart");
         if (this.props.SelectProduct) {
@@ -61,11 +52,6 @@ class Cart extends React.Component {
         if (this.props.UsersParameters !== this.state.subUsers) {
             this.setState({
                 subUsers: this.props.UsersParameters,
-            })
-        }
-        if (prevProps.dataRedirect !== this.props.dataRedirect) {
-            this.setState({
-                redirect: this.props.dataRedirect,
             })
         }
         if (prevState.ProductID !== this.props.ProductID) {
@@ -91,9 +77,10 @@ class Cart extends React.Component {
             slidersArr: [Photo1, Photo2, Photo3],
         })
     }
-    redirect(page = "catalog") {
+
+    redirect(page, accessR = true) {
         this.props.dataRedirectFunction({
-            accessR: true,
+            accessR,
             to: "/" + page,
         });
     }
@@ -112,9 +99,9 @@ class Cart extends React.Component {
     };
 
     render() {
-        if (this.state.redirect.accessR) {
+        if (this.props.dataRedirect.accessR) {
             return(
-                <Redirect to={this.state.redirect.to}/>
+                <Redirect to={this.props.dataRedirect.to}/>
             )
         }
         const compatibility = this.state.SelectProduct.Parameters && this.state.SelectProduct.Parameters.compatibility;

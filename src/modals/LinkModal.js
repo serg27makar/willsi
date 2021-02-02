@@ -10,6 +10,7 @@ import {
     actionProductsArr,
     actionRecalculateParams,
     actionSearchParams,
+    actionSelectProduct,
     actionSubCatalogName,
     actionThingToLink
 } from "../action";
@@ -115,6 +116,7 @@ class LinkModal extends React.Component {
                 ...Product,
                 Parameters: data,
             }
+            this.props.selectProductFunction(Product);
             this.props.productsArrFunction([Product]);
             this.props.dataRedirectFunction({
                 accessR: true,
@@ -248,6 +250,9 @@ const mapDispatchToProps = dispatch => {
         },
         alertTextFunction: (text) => {
             dispatch(actionAlertText(text))
+        },
+        selectProductFunction: (SelectProduct) => {
+            dispatch(actionSelectProduct(SelectProduct))
         },
     }
 };

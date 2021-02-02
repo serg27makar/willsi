@@ -20,13 +20,21 @@ class CardDescription extends React.Component {
         this.updateData = this.updateData.bind(this);
     }
 
+    componentDidMount() {
+        this.fillInCardDescription();
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(prevProps.cardDescription !== this.props.cardDescription) {
-            this.setState({
-                ...this.state,
-                cardDescription: this.props.cardDescription,
-            })
+            this.fillInCardDescription();
         }
+    }
+
+    fillInCardDescription() {
+        this.setState({
+            ...this.state,
+            cardDescription: this.props.cardDescription,
+        })
     }
 
     siteRedirect() {

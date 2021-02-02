@@ -51,6 +51,7 @@ class Catalog extends React.Component {
 
     componentDidMount() {
         this.setCatalogName();
+        this.redirect("", false);
         if (this.props.SearchParams && this.props.catalogName && this.state.firstTime) {
             this.changeSizeData();
         }
