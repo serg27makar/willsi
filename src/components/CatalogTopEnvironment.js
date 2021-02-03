@@ -28,16 +28,14 @@ class CatalogTopEnvironment extends React.Component {
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            if (this.props.subUsers && this.props.subUsers.length > 0 ) {
-                const params = this.props.subUsers[this.props.HeaderUser].Parameters;
-                this.setState({
-                    headerUser: this.props.subUsers[this.props.HeaderUser].UserName,
-                    params,
-                });
-                this.searchParameters(params);
-            }
-        }, 500)
+        if (this.props.subUsers && this.props.subUsers.length > 0 ) {
+            const params = this.props.subUsers[this.props.HeaderUser].Parameters;
+            this.setState({
+                headerUser: this.props.subUsers[this.props.HeaderUser].UserName,
+                params,
+            });
+            this.searchParameters(params);
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -90,7 +88,7 @@ class CatalogTopEnvironment extends React.Component {
     };
 
     addUser() {
-        this.props.newUserFunction(0);
+        this.props.newUserFunction(this.props.UsersParameters.length);
         this.props.addUserFunction(true);
         this.props.dataRedirectFunction({
             accessR: true,
@@ -181,6 +179,7 @@ function MapStateToProps(state) {
     return {
         modal: state.modalReducer.modal,
         updateEditorModal: state.modalReducer.updateEditorModal,
+        UsersParameters: state.userReducer.UsersParameters,
         dataRedirect: state.pageReducer.dataRedirect,
         Permission: state.userReducer.Permission,
         HeaderUser: state.userReducer.HeaderUser,

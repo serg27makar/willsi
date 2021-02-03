@@ -2,6 +2,7 @@ import React from 'react';
 import {
     actionAddUser,
     actionDataRedirect,
+    actionNewUser,
     actionOpenCatalog,
     actionOpenModal,
     actionSelectedSubCatalogID,
@@ -217,6 +218,7 @@ class Cabinet extends React.Component {
     };
 
     addUser() {
+        this.props.newUserFunction(this.props.UsersParameters.length);
         this.props.addUserFunction(true);
         this.props.dataRedirectFunction({
             accessR: true,
@@ -339,6 +341,9 @@ const mapDispatchToProps = dispatch => {
         },
         selectedSubCatalogIDFunction: (selectedSubCatalogID) => {
             dispatch(actionSelectedSubCatalogID(selectedSubCatalogID))
+        },
+        newUserFunction: (NewUser) => {
+            dispatch(actionNewUser(NewUser))
         },
     }
 };

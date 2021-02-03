@@ -2,6 +2,7 @@ import React from 'react';
 import ButtonMain from "./shared/ButtonMain";
 import {Redirect} from "react-router-dom";
 import {
+    actionAddUser,
     actionAlertText,
     actionDataUpdate,
     actionOpenModal,
@@ -96,6 +97,7 @@ class SearchBox extends React.Component {
 
     proceedSearch(access) {
         if (access) {
+            this.props.addUserFunction(true);
             this.setState({
                 ...this.state,
                 renderInputDataParams: true,
@@ -222,6 +224,9 @@ const mapDispatchToProps = dispatch => {
         },
         dataUpdateFunction: (update) => {
             dispatch(actionDataUpdate(update))
+        },
+        addUserFunction: (AddUser) => {
+            dispatch(actionAddUser(AddUser))
         },
     }
 };

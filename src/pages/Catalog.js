@@ -21,7 +21,7 @@ import BreadcrumbsBg from "../components/BreadcrumbsBg";
 import ProductsCart from "../components/ProductsCart";
 import {Redirect} from "react-router-dom";
 import {getAllProductDataToParams, getProductDataToParams} from "../utilite/axiosConnect";
-import {genderSwitcher} from "../js/sharedFunctions";
+import {genderSwitcher, isValidStartParams} from "../js/sharedFunctions";
 import CountryDropDown from "../components/CountryDropDown";
 import {sizeListTshirts} from "../access/recalculateConstants";
 import {langCode} from "../access/lang/translaterJS";
@@ -50,17 +50,19 @@ class Catalog extends React.Component {
     }
 
     componentDidMount() {
-        this.setCatalogName();
-        this.redirect("", false);
-        if (this.props.SearchParams && this.props.catalogName && this.state.firstTime) {
-            this.changeSizeData();
-        }
-        this.props.setActionAdminPanelFunction("Catalog");
-        this.functionRedirect();
-        if (this.props.selectedSubCatalogID) {
-            this.selectedSubCatalog(this.props.selectedSubCatalogID);
-        }
-        window.addEventListener('scroll', this.onScrollList);
+        setTimeout(() => {
+            this.setCatalogName();
+            this.redirect("", false);
+            if (this.props.SearchParams && this.props.catalogName && this.state.firstTime) {
+                this.changeSizeData();
+            }
+            this.props.setActionAdminPanelFunction("Catalog");
+            this.functionRedirect();
+            if (this.props.selectedSubCatalogID) {
+                this.selectedSubCatalog(this.props.selectedSubCatalogID);
+            }
+            window.addEventListener('scroll', this.onScrollList);
+        }, 50);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -195,33 +197,15 @@ class Catalog extends React.Component {
                 default : catalogName = "catalogListMen";
             }
             this.props.catalogNameFunction(catalogName);
-            if (!this.isValid(this.props.UsersParameters, this.props.HeaderUser)) {
+            if (!isValidStartParams(this.props.UsersParameters, this.props.HeaderUser)) {
                 this.props.newUserFunction(this.props.HeaderUser);
-                this.props.addUserFunction(true);
+                // this.props.addUserFunction(true);
                 setTimeout(() => {
                     this.redirect("data");
                 }, 60)
 
             }
         }
-    }
-
-    isValid(UsersParameters, index) {
-        let valid = true;
-        if (UsersParameters && UsersParameters.length &&
-            UsersParameters[index].Parameters &&
-            UsersParameters[index].Parameters.length &&
-            UsersParameters[index].Parameters.length >= sizeListTshirts.length) {
-            UsersParameters[index].Parameters.map((item) => {
-                if (valid && sizeListTshirts.indexOf(item.title) === -1) {
-                    valid = false;
-                }
-                return valid;
-            })
-        } else {
-            valid = false;
-        }
-        return valid;
     }
 
     setDefaultSubCatalog() {
@@ -324,7 +308,7 @@ class Catalog extends React.Component {
                 ...this.state,
                 productArr: [],
             });
-            if (!this.props.modal) {
+            if (isValidStartParams(this.props.UsersParameters, this.props.HeaderUser)) {
                 this.props.openModalFunction("nothingToShowModal");
             }
         }

@@ -18,11 +18,11 @@ class InputDataParams extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.UsersParameters && !this.props.AddUser) {
-            const name = (this.props.UsersParameters.length > 0 && this.props.UsersParameters[0].UserName) || this.props.UserName || "";
-            const gender = (this.props.UsersParameters.length > 0 && this.props.UsersParameters[0].Gender) || whomParams[0].data;
+        if (this.props.UsersParameters && !this.props.AddUser && this.props.HeaderUser <= this.props.UsersParameters.length) {
+            const name = this.props.UsersParameters[this.props.HeaderUser].UserName || this.props.UserName || "";
+            const gender = this.props.UsersParameters[this.props.HeaderUser].Gender || "";
             const activeBtn = (this.props.UsersParameters.length > 0 &&
-                whomParams.map((e) => { return e.data; }).indexOf(this.props.UsersParameters[0].Gender)) || 0;
+                whomParams.map((e) => { return e.data; }).indexOf(this.props.UsersParameters[this.props.HeaderUser].Gender)) || 0;
             this.setState({
                 ...this.state,
                 name,
@@ -31,6 +31,9 @@ class InputDataParams extends React.Component {
             });
             if (gender) {
                 this.props.changeGender(gender);
+            }
+            if (name && gender) {
+                this.props.nextParams(name, gender, true);
             }
         } else {
             this.props.changeGender(this.state.gender);
@@ -134,6 +137,8 @@ function MapStateToProps(state) {
         AddUser: state.userReducer.AddUser,
         Permission: state.userReducer.Permission,
         lang: state.utiliteReducer.lang,
+        HeaderUser: state.userReducer.HeaderUser,
+        NewUser: state.userReducer.NewUser,
     }
 }
 const mapDispatchToProps = dispatch => {

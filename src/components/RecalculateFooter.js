@@ -1,10 +1,10 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
 import {handlePageUp} from "../js/visualEffects";
-import {sizeListTshirts} from "../access/recalculateConstants";
 import {connect} from "react-redux";
-import {actionHeaderUser, actionOpenModal} from "../action";
+import {actionAddUser, actionHeaderUser, actionOpenModal} from "../action";
 import {langCode} from "../access/lang/translaterJS";
+import {isValidStartParams} from "../js/sharedFunctions";
 
 class RecalculateFooter extends React.Component {
     constructor(props) {
@@ -14,9 +14,9 @@ class RecalculateFooter extends React.Component {
         };
         this.redirect = this.redirect.bind(this);
         this.continueFillIn = this.continueFillIn.bind(this);
-        this.isValid = this.isValid.bind(this);
     }
     redirect() {
+        this.props.addUserFunction(false);
         handlePageUp();
         this.setState({
             redirect: true,
@@ -24,27 +24,10 @@ class RecalculateFooter extends React.Component {
     };
 
     continueFillIn() {
-        this.props.headerUserFunction(this.props.UsersParameters.length - 1);
-        this.props.openModalFunction("recalculateModal");
-    }
-
-    isValid(UsersParameters) {
-        let valid = true;
-        const index = UsersParameters.length - 1;
-        if (UsersParameters && UsersParameters.length &&
-            UsersParameters[index].Parameters &&
-            UsersParameters[index].Parameters.length &&
-            UsersParameters[index].Parameters.length >= sizeListTshirts.length) {
-            UsersParameters[index].Parameters.map((item) => {
-                if (valid && sizeListTshirts.indexOf(item.title) === -1) {
-                    valid = false;
-                }
-                return valid;
-            })
-        } else {
-            valid = false;
+        if (!this.props.HeaderUser) {
+            this.props.headerUserFunction(this.props.UsersParameters.length - 1);
         }
-        return valid;
+        this.props.openModalFunction("recalculateModal");
     }
 
     render() {
@@ -54,7 +37,7 @@ class RecalculateFooter extends React.Component {
             )
         }
         if (this.props.disabled) return null;
-        if (this.props.UsersParameters && this.props.UsersParameters.length && this.isValid(this.props.UsersParameters)) {
+        if (this.props.UsersParameters && this.props.UsersParameters.length && isValidStartParams(this.props.UsersParameters, this.props.UsersParameters.length - 1)) {
             return (
                 <div className="col-12 recalculate-footer">
                     <div className="col-12">
@@ -86,6 +69,7 @@ class RecalculateFooter extends React.Component {
 function MapStateToProps(state) {
     return {
         lang: state.utiliteReducer.lang,
+        HeaderUser: state.userReducer.HeaderUser,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -95,6 +79,9 @@ const mapDispatchToProps = dispatch => {
         },
         headerUserFunction: (HeaderUser) => {
             dispatch(actionHeaderUser(HeaderUser))
+        },
+        addUserFunction: (AddUser) => {
+            dispatch(actionAddUser(AddUser))
         },
     }
 }

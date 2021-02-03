@@ -284,3 +284,32 @@ export function getSizeMinMax(itemName) {
     })
     return {sizeMin, sizeMax};
 }
+
+export function isValidStartParams(UsersParameters, index) {
+    let valid = true;
+    if (UsersParameters && UsersParameters.length &&
+        UsersParameters.length >= index &&
+        !isEmptyObject(UsersParameters[index]) &&
+        UsersParameters[index].Parameters &&
+        UsersParameters[index].Parameters.length &&
+        UsersParameters[index].Gender) {
+        const sizeList = UsersParameters[index].Gender === "dog" ? dogSizeListShirts : sizeListTshirts;
+        if (UsersParameters[index].Parameters.length >= sizeList.length) {
+            let i = 0;
+            UsersParameters[index].Parameters.map((item) => {
+                if (sizeList.indexOf(item.title) !== -1) {
+                    i++
+                }
+                return i;
+            })
+            if (sizeList.length !== i) {
+                valid = false;
+            }
+        } else {
+            valid = false;
+        }
+    } else {
+        valid = false;
+    }
+    return valid;
+}

@@ -3,6 +3,7 @@ import {
     actionAddUser,
     actionAlertText,
     actionDataRedirect,
+    actionHeaderUser,
     actionNewUser,
     actionOpenModal,
     actionRecalculateParams,
@@ -15,7 +16,7 @@ import DataHeader from "../components/DataHeader";
 import InputDataParams from "../components/InputDataParams";
 import {postUpdate} from "../utilite/axiosConnect";
 import {Redirect} from "react-router-dom";
-import {genderSwitcher, updateResult} from "../js/sharedFunctions";
+import {genderSwitcher, isEmptyObject, isValidStartParams, updateResult} from "../js/sharedFunctions";
 import {langCode} from "../access/lang/translaterJS";
 
 class Data extends React.Component {
@@ -23,28 +24,21 @@ class Data extends React.Component {
         super(props);
         this.state = {
             startParams: false,
-            reDirect: false,
             isChange: false,
-            newUser: 0,
-            redirect: {
-                accessR: false,
-                to: "",
-            },
         };
         this.nextParams =this.nextParams.bind(this);
-        this.firstBlock =this.firstBlock.bind(this);
         this.genderSwitcher =this.genderSwitcher.bind(this);
     }
 
     componentDidMount() {
         this.props.setActionAdminPanelFunction("Data");
-        this.props.dataRedirectFunction({
-            accessR: false,
-            to: "/",
-        });
+        this.redirect("", false);
         if (this.props.Permission === "primaryAdmin") {
             this.redirect("primary-admin-panel")
         }
+        setTimeout(() => {
+            this.checkIfNewUser();
+        }, 100)
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -52,16 +46,17 @@ class Data extends React.Component {
             this.isChanged();
             this.updateParams();
         }
-        if (prevProps.dataRedirect !== this.props.dataRedirect) {
-            this.setState({
-                redirect: this.props.dataRedirect,
-            })
-        }
         if (prevProps.AddUser !== this.props.AddUser) {
             this.checkAddUser();
         }
+        if (prevProps.NewUser !== this.props.NewUser &&
+            prevProps.UsersParameters !== this.props.UsersParameters) {
+            this.checkIfNewUser();
+        }
         if (prevState.startParams !== this.state.startParams) {
-            this.props.openModalFunction("recalculateModal");
+            if (!isValidStartParams(this.props.UsersParameters, this.props.NewUser)) {
+                this.props.openModalFunction("recalculateModal");
+            }
         }
         if (prevProps.Permission !== this.props.Permission) {
             if (this.props.Permission === "primaryAdmin") {
@@ -70,28 +65,50 @@ class Data extends React.Component {
         }
     }
 
-    redirect(page = "catalog") {
+    checkIfNewUser() {
+        if (!this.props.NewUser && isValidStartParams(this.props.UsersParameters, 0)) {
+            this.redirect("catalog");
+        }
+        if (this.props.NewUser && this.props.UsersParameters.length) {
+            if (!isValidStartParams(this.props.UsersParameters, this.props.NewUser)) {
+                if (!isEmptyObject(this.props.UsersParameters[this.props.NewUser]) &&
+                    this.props.UsersParameters[this.props.NewUser].UserName &&
+                    this.props.UsersParameters[this.props.NewUser].Gender) {
+                    this.setState({
+                        ...this.state,
+                        startParams: true,
+                    })
+                }
+            } else {
+                this.redirect("catalog");
+            }
+        }
+    }
+
+    redirect(page, accessR = true) {
         this.props.dataRedirectFunction({
-            accessR: true,
+            accessR,
             to: "/" + page,
         });
     }
 
     componentWillUnmount() {
         this.props.addUserFunction(false);
+        if (!isValidStartParams(this.props.UsersParameters, this.props.NewUser)
+        ) {
+            this.props.headerUserFunction(0);
+            this.props.newUserFunction(0);
+            this.props.addUserFunction(false);
+        }
     }
 
     checkAddUser() {
         if (!this.props.AddUser) {
-            this.props.dataRedirectFunction({
-                accessR: true,
-                to: "/catalog",
-            });
+            this.redirect("catalog")
         } else {
             let newUser;
             let startParams = false;
             if (this.props.NewUser !== 0) {
-                newUser = this.props.NewUser;
                 startParams = true;
             } else {
                 newUser = this.props.UsersParameters.length;
@@ -99,27 +116,33 @@ class Data extends React.Component {
             }
             this.setState({
                 ...this.state,
-                newUser,
                 startParams,
             })
         }
     }
     genderSwitcher(gender) {
-        const recalculateParams = genderSwitcher(gender, "subCatalogListWomenTshirts");
+        let subCatalog = "subCatalogListWomenTshirts"
+        if (gender === "dog") {
+            subCatalog = "subCatalogListDogShirts"
+        }
+        const recalculateParams = genderSwitcher(gender, subCatalog);
         this.props.recalculateParamsFunction(recalculateParams);
     }
 
-    nextParams(name, gender) {
+    nextParams(name, gender, next = false) {
         const UsersParameters = this.props.UsersParameters || [];
         const obj = {
             UserName: name,
             Gender: gender,
-            Parameters: [],
+            Parameters: next ? this.props.UsersParameters[this.props.NewUser].Parameters ? this.props.UsersParameters[this.props.NewUser].Parameters : [] : [],
         };
-        UsersParameters.splice(this.state.newUser, 1, obj);
+        UsersParameters.splice(this.props.NewUser, 1, obj);
         this.props.usersParametersFunction(UsersParameters);
         if (name.length > 0) {
-            this.firstBlock();
+            this.setState({
+                ...this.state,
+                startParams: true,
+            });
         } else {
             this.props.alertTextFunction(langCode(this.props.lang, "inOrderToContinue"));
             this.props.openModalFunction("alertModal");
@@ -133,21 +156,14 @@ class Data extends React.Component {
         })
     }
 
-    firstBlock() {
-        this.setState({
-            ...this.state,
-            startParams: !this.state.startParams,
-        });
-    }
-
     updateParams() {
         const UsersParameters = this.props.UsersParameters || [];
         const obj = {
-            UserName: this.props.UsersParameters[this.state.newUser].UserName,
-            Gender: this.props.UsersParameters[this.state.newUser].Gender,
-            Parameters: this.props.UsersParameters[this.state.newUser].Parameters,
+            UserName: this.props.UsersParameters[this.props.NewUser].UserName,
+            Gender: this.props.UsersParameters[this.props.NewUser].Gender,
+            Parameters: this.props.UsersParameters[this.props.NewUser].Parameters,
         };
-        UsersParameters.splice(this.state.newUser, 1, obj);
+        UsersParameters.splice(this.props.NewUser, 1, obj);
         const user = {
             UserName: this.props.UserName,
             Email: this.props.Email,
@@ -166,9 +182,9 @@ class Data extends React.Component {
     }
 
     render() {
-        if (this.state.redirect.accessR) {
+        if (this.props.dataRedirect.accessR) {
             return(
-                <Redirect to={this.state.redirect.to}/>
+                <Redirect to={this.props.dataRedirect.to}/>
             )
         }
         return(
@@ -192,7 +208,9 @@ function MapStateToProps(state) {
         dataRedirect: state.pageReducer.dataRedirect,
         Permission: state.userReducer.Permission,
         NewUser: state.userReducer.NewUser,
+        HeaderUser: state.userReducer.HeaderUser,
         lang: state.utiliteReducer.lang,
+        recalculateParams: state.modalReducer.recalculateParams,
     }
 }
 
@@ -221,6 +239,9 @@ const mapDispatchToProps = dispatch => {
         },
         newUserFunction: (NewUser) => {
             dispatch(actionNewUser(NewUser))
+        },
+        headerUserFunction: (HeaderUser) => {
+            dispatch(actionHeaderUser(HeaderUser))
         },
     }
 };
