@@ -46,6 +46,13 @@ class Header extends React.Component {
         this.logout = this.logout.bind(this);
         this.mobileMenuClose = this.mobileMenuClose.bind(this);
         this.helpModal = this.helpModal.bind(this);
+        this.calcPostpone = this.calcPostpone.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.props.Postpone) {
+            this.calcPostpone();
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -57,11 +64,15 @@ class Header extends React.Component {
         }
         if ((prevProps.SetActionPostpone !== this.props.SetActionPostpone ||
             prevProps.Postpone !== this.props.Postpone) && this.props.Postpone) {
-            this.setState({
-                ...this.state,
-                pts: this.props.Postpone.length || 0,
-            })
+            this.calcPostpone();
         }
+    }
+
+    calcPostpone() {
+        this.setState({
+            ...this.state,
+            pts: this.props.Postpone.length || 0,
+        })
     }
 
     logout() {

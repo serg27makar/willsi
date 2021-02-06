@@ -76,16 +76,17 @@ class StoreDropdown extends React.Component {
     hiddenAllProducts(e) {
         e.stopPropagation();
         e.preventDefault();
-        this.setState({
-            ...this.state,
-            activeToggle: !this.state.activeToggle,
-        })
-        showHiddenAllStoreData(this.props.selectedStore._id, "storeAdmin", this.state.activeToggle, this.clearData);
-        const selectedStore = {...this.props.selectedStore, storeAdmin: !this.state.activeToggle}
+        const activeToggle = this.state.activeToggle;
+        showHiddenAllStoreData(this.props.selectedStore._id, "storeAdmin", activeToggle, this.clearData);
+        const selectedStore = {...this.props.selectedStore, storeAdmin: !activeToggle}
         this.props.selectedStoreFunction(selectedStore);
     }
 
     clearData() {
+        this.setState({
+            ...this.state,
+            activeToggle: !this.state.activeToggle,
+        })
         this.props.clearData(true);
     }
 

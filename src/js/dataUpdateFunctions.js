@@ -26,6 +26,9 @@ export function showHiddenAllStoreData(ProductStoreID, adminPermission, value, c
 
 export function showHiddenCatalogData(ProductStoreID, topCatalog , adminPermission, value = false, callBack) {
     let i = 0
+    function foo() {
+        return callBack(topCatalog);
+    }
     const productsData = (data) => {
         data.map(item => {
             i++;
@@ -44,9 +47,9 @@ export function showHiddenCatalogData(ProductStoreID, topCatalog , adminPermissi
                     StoreID: ProductStoreID,
                     setData: {[adminPermission]: !value}
                 }
-                postSetStoreData(storeData, callBack);
+                postSetStoreData(storeData, foo);
             } else {
-                callBack();
+                callBack(topCatalog);
             }
         }
     }

@@ -11,21 +11,11 @@ class HeaderNavigation extends React.Component {
         }
     }
 
-    componentDidMount() {}
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.Permission !== this.props.Permission) {
-            this.setState({
-                isAdminPanel: this.props.Permission === "storeAdmin"
-            })
-        }
-    }
-
     renderPartnerLink() {
         if (this.props.page === "AdminPanel") {
             return null;
         }
-        if (this.state.isAdminPanel) {
+        if (this.props.Permission === "storeAdmin") {
             return (
                 <Link className="navigation-list__link light text-16" to={"/admin-panel"}>
                     <div className="header__enter-cabinet text-14 light" >{langCode(this.props.lang, "StoreAdminLogin")}</div>

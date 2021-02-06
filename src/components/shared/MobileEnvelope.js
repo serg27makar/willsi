@@ -28,7 +28,6 @@ class MobileEnvelope extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isAdminPanel: false,
             UserName: "",
             pts: 0,
         }
@@ -40,16 +39,6 @@ class MobileEnvelope extends React.Component {
     componentDidMount() {}
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.Permission !== this.props.Permission) {
-            this.setState({
-                isAdminPanel: this.props.Permission === "storeAdmin"
-            })
-        }
-        if (prevState.UserName !== this.props.UserName) {
-            this.setState({
-                UserName: this.props.UserName,
-            })
-        }
         if ((prevProps.SetActionPostpone !== this.props.SetActionPostpone ||
             prevProps.Postpone !== this.props.Postpone) && this.props.Postpone) {
             this.setState({
@@ -95,7 +84,7 @@ class MobileEnvelope extends React.Component {
         if (this.props.page === "AdminPanel") {
             return null;
         }
-        if (this.state.isAdminPanel) {
+        if (this.props.Permission === "storeAdmin") {
             return (
                 <Link className="mobile-nav__link light text-25" to={"/admin-panel"} onClick={this.mobileMenuClose}>{langCode(this.props.lang, "StoreAdminLogin")}</Link>
             )
@@ -145,6 +134,7 @@ function MapStateToProps(state) {
         page: state.pageReducer.page,
         Permission: state.userReducer.Permission,
         UserName: state.userReducer.UserName,
+        Postpone: state.userReducer.Postpone,
         lang: state.utiliteReducer.lang,
     }
 }

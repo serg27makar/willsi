@@ -13,6 +13,12 @@ class HeaderCabinet extends React.Component {
         }
     }
 
+    componentDidMount() {
+        if (this.props.Postpone) {
+            this.calcPostpone();
+        }
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.UserName !== this.props.UserName) {
             this.setState({
@@ -21,11 +27,15 @@ class HeaderCabinet extends React.Component {
         }
         if ((prevProps.SetActionPostpone !== this.props.SetActionPostpone ||
             prevProps.Postpone !== this.props.Postpone) && this.props.Postpone) {
-            this.setState({
-                ...this.state,
-                pts: this.props.Postpone.length || 0,
-            })
+            this.calcPostpone();
         }
+    }
+
+    calcPostpone() {
+        this.setState({
+            ...this.state,
+            pts: this.props.Postpone.length || 0,
+        })
     }
 
     renderRedRing() {

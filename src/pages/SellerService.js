@@ -17,10 +17,6 @@ class SellerService extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect: {
-                accessR: false,
-                to: "",
-            },
         };
         this.redirect = this.redirect.bind(this);
     }
@@ -34,11 +30,6 @@ class SellerService extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.dataRedirect !== this.props.dataRedirect) {
-            this.setState({
-                redirect: this.props.dataRedirect,
-            })
-        }
         if (prevProps.Permission !== this.props.Permission) {
             if (this.props.Permission === "primaryAdmin") {
                 this.redirect("primary-admin-panel")
@@ -54,9 +45,9 @@ class SellerService extends React.Component {
     }
 
     render() {
-        if (this.state.redirect.accessR) {
+        if (this.props.dataRedirect.accessR) {
             return(
-                <Redirect to={this.state.redirect.to}/>
+                <Redirect to={this.props.dataRedirect.to}/>
             )
         }
         return(
