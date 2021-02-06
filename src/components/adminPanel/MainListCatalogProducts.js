@@ -38,6 +38,7 @@ class MainListCatalogProducts extends React.Component {
             (prevProps.refresh !== this.props.refresh) ||
             (prevProps.selectedStore.storeAdmin !== this.props.selectedStore.storeAdmin)) {
             this.clearToggles();
+            this.refreshSubCatalog();
         }
         if (prevProps.clearOpenCatalogs !== this.props.clearOpenCatalogs) {
             this.setState({...this.state, selectedSubCatalog: -1, openIndex: -1})
@@ -87,6 +88,20 @@ class MainListCatalogProducts extends React.Component {
             return activeToggle;
         })
         this.setState({...this.state, activeToggle, activeSubToggle})
+    }
+
+    refreshSubCatalog() {
+        if (this.props.productsThisStore && this.props.productsThisStore.length &&
+            this.props.defineCatalog && this.props.defineCatalog.subCatalog) {
+            const shopEditParams = [];
+            this.props.productsThisStore.map((item, index) => {
+                if (item.subCatalog === this.props.defineCatalog.subCatalog) {
+                    shopEditParams.push(item);
+                }
+                return index;
+            });
+            this.props.shopEditParamsFunction(shopEditParams);
+        }
     }
 
     chooseSubCatalog(listItem, listIndex) {
@@ -217,6 +232,7 @@ function MapStateToProps(state) {
         productsThisStore: state.productReducer.productsThisStore,
         clearOpenCatalogs: state.utiliteReducer.clearOpenCatalogs,
         lang: state.utiliteReducer.lang,
+        defineCatalog: state.catalogReducer.defineCatalog,
     }
 }
 
