@@ -347,7 +347,7 @@ export const getGeoInfo = (callbackInfo) => {
 };
 
 export const getAllCountry = (callbackInfo) => {
-    axios.get('http://www.geognos.com/api/en/countries/info/all.json').then((req) => {
+    axios.post(Url + '/users/allCountries').then((req) => {
         callbackInfo(req.data);
     }).catch((error) => {
         console.log(error);

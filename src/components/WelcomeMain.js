@@ -20,7 +20,9 @@ class WelcomeMain extends React.Component {
     componentDidMount() {
         setTimeout(() => {
             const wrapper = this.wrapperRef.current;
-            wrapper.classList.toggle("show-welcome-main");
+            if (wrapper && wrapper.classList) {
+                wrapper.classList.toggle("show-welcome-main");
+            }
         }, 300);
         getAllUsers(this.usersQuantity);
     }
