@@ -92,6 +92,7 @@ class EnterModal extends React.Component {
             this.props.usersParametersFunction(res.UsersParameters);
             this.props.permissionFunction(res.Permission);
             this.props.userStoreFunction(res.UserStore);
+            this.props.postponeFunction(res.Postpone);
             this.props.dataRedirectFunction({
                 accessR: true,
                 to: "/",
