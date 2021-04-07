@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const Url = "http://localhost:3001";
+const Url = process.env.NODE_ENV === "development" ? 'http://localhost:3001' : '';
 
 export const postRegister = (user, callbackInfo) => {
     axios.post(Url + `/users/register`, user)
