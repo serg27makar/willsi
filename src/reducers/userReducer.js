@@ -47,7 +47,7 @@ export default function userReducer(state = initialState, action) {
         case "SET_USERS_PARAMETERS":
             return {
                 ...state,
-                UsersParameters: action.UsersParameters
+                UsersParameters: action.UsersParameters || []
             };
         case "SET_USER_UPDATE":
             return {
@@ -72,12 +72,12 @@ export default function userReducer(state = initialState, action) {
         case "USER_STORE":
             return {
                 ...state,
-                UserStore: action.UserStore
+                UserStore: action.UserStore || []
             };
         case "SET_POSTPONE":
             return {
                 ...state,
-                Postpone: action.Postpone
+                Postpone: action.Postpone || []
             };
         case "SET_ACTION_POSTPONE":
             return {
@@ -92,7 +92,7 @@ export default function userReducer(state = initialState, action) {
         case "ALL_USERS_DATA":
             return {
                 ...state,
-                AllUsersData: action.AllUsersData
+                AllUsersData: action.AllUsersData || []
             };
         case "SET_GENDER":
             return {
