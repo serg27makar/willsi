@@ -206,10 +206,14 @@ export function genderSwitcher(gender, subCatalog = "") {
 
 export function miDateFormatNumber(inputDate) {
     let outputDate;
+    let month = String(inputDate.getMonth() + 1);
+    month = month.length < 2 ? "0" + month : month;
+    let day = String(inputDate.getDate());
+    day = day.length < 2 ? "0" + day : day;
     inputDate = new Date(inputDate);
     outputDate = String(inputDate.getFullYear());
-    outputDate = outputDate + String(inputDate.getMonth() + 1);
-    outputDate = outputDate + String(inputDate.getDate());
+    outputDate = outputDate + month;
+    outputDate = outputDate + day;
     return Number(outputDate);
 }
 
