@@ -186,7 +186,7 @@ class AdminMainSite extends React.Component {
     changeSubCatalog(index) {
         this.setState({
             ...this.state,
-            headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[index],
+            headerSubItem: dropdownListArr[this.state.headerIndex].dropdownItems[index + 1],
         })
     }
 
