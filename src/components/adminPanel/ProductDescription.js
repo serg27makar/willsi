@@ -1,6 +1,9 @@
 import React from "react";
 import {langCode} from "../../access/lang/translaterJS";
 import {connect} from "react-redux";
+import DoubleTextarea from "./DoubleTextarea";
+import DoubleButton from "./DoubleButton";
+import {updateResult} from "../../js/sharedFunctions";
 
 class ProductDescription extends React.Component {
     constructor(props) {
@@ -43,16 +46,20 @@ class ProductDescription extends React.Component {
         const value = e.target.value;
         this.props.dataChange(name, value);
     }
+    dataChangeDesc(value, name) {
+        this.props.dataChange(name, value);
+    }
 
     render() {
         return (
             <div className="product-description">
                 <span className="add-store-label text-16">{langCode(this.props.lang, "Description")}</span>
-                <textarea className="form-shop__textarea text-14"
-                          value={this.state.Description || ""}
-                          placeholder={langCode(this.props.lang, "Description")} name="Description"
-                          onChange={this.dataChange}/>
-                <span className="add-store-label text-16">{langCode(this.props.lang, "Composition")}</span>
+                <DoubleTextarea
+                    placeholder={langCode(this.props.lang, "Description")}
+                    item={this.state.Description || ""} active={true}
+                    changeValue={(value) => {this.dataChangeDesc(value, "Description")}}
+                    toggle={updateResult}/>
+                <span className="add-store-label first-after-description text-16">{langCode(this.props.lang, "Composition")}</span>
                 <textarea className="form-shop__textarea text-14"
                           value={this.state.Composition || ""}
                           placeholder={langCode(this.props.lang, "Description")} name="Composition"
