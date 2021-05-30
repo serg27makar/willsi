@@ -307,7 +307,7 @@
 }
 .mobile-toggle {
     display: none;
-    position: absolute;
+    position: initial;
     top: 100%;
     left: 0;
     right: 0;

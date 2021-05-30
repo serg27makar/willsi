@@ -19,10 +19,11 @@ class InputDataParams extends React.Component {
 
     componentDidMount() {
         if (this.props.UsersParameters && !this.props.AddUser && this.props.HeaderUser <= this.props.UsersParameters.length) {
-            const name = this.props.UsersParameters[this.props.HeaderUser].UserName || this.props.UserName || "";
-            const gender = this.props.UsersParameters[this.props.HeaderUser].Gender || "";
+            const thisUserParams = this.props.UsersParameters[this.props.HeaderUser];
+            const name = (thisUserParams && thisUserParams.UserName) || this.props.UserName || "";
+            const gender = (thisUserParams && thisUserParams.Gender) || "";
             const activeBtn = (this.props.UsersParameters.length > 0 &&
-                whomParams.map((e) => { return e.data; }).indexOf(this.props.UsersParameters[this.props.HeaderUser].Gender)) || 0;
+                whomParams.map((e) => { return e.data; }).indexOf(thisUserParams.Gender)) || 0;
             this.setState({
                 ...this.state,
                 name,

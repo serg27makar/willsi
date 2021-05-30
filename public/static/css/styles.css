@@ -1043,6 +1043,9 @@ span.catalog-top__button-icon {
 }
 .catalog-top__button-text {
     white-space: nowrap;
+    width: 100%;
+    cursor: pointer;
+    border: none;
 }
 .catalog-top__button-text:hover {
     color: #000;
@@ -1067,7 +1070,7 @@ span.catalog-top__button-icon {
     border-radius: 0.25vw;
     padding: 0.9375vw 1.25vw;
     background: white;
-    height: 2.5vw;
+    height: 1.5rem;
     cursor: pointer;
 }
 .catalog-top__button-icon .icon {
@@ -1257,6 +1260,7 @@ input[type="checkbox"]:not(:checked) + label.category-list__label {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    text-align: left;
 }
 .item-select div.dropdown-list__link {
     color: #c6d846;

@@ -326,6 +326,7 @@
     .modal-envelope__close {
         top: 2vw;
         right: 2vw;
+        z-index: 1;
     }
     .modal-envelope__close .icon {
         width: 6.67vw;
@@ -395,12 +396,12 @@
     #modal-enter {
         max-width: 95vw !important;
         min-height: auto;
-        height: 44rem !important;
+        height: 95% !important;
     }
     #modal-registration {
         max-width: 95vw !important;
         min-height: auto;
-        height: 55rem !important;
+        height: 95% !important;
     }
     #modal-profile {
         max-width: 95vw !important;
@@ -670,6 +671,7 @@
     }
     .breadcrumbs__title {
         padding: 0 0 4vw 0;
+        font-size: 1.5rem !important;
     }
     .breadcrumbs__link {
         padding-right: 5.34vw;
@@ -701,6 +703,11 @@
     .catalog-top__button-drop {
         padding: 4vw 5.34vw;
     }
+    .catalog-top__button-drop svg.icon {
+        height: 2rem;
+        width: 3rem;
+        padding: 0.5rem;
+    }
     .catalog-top__button-icon .icon {
         width: 2.67vw;
         height: 2.67vw;
@@ -711,9 +718,14 @@
     .catalog-top__list-object {
         padding-top: 5.34vw;
     }
+    .catalog-top__list-object.close {
+        display: none;
+    }
+    .dropdown-info__item {
+    padding: 0 1rem;
+    }
     .catalog-top__list-object .list-object {
         flex-direction: column;
-        max-height: 10rem;
         overflow-y: auto;
     }
     .catalog-top__list-object .list-object__text-value {
@@ -762,6 +774,7 @@
         border-radius: 1.07vw;
         padding: 0 8vw;
         min-height: 16vw;
+        background: #4fb0be;
     }
     .catalog-wrapper .icon {
         width: 2.67vw;
@@ -775,7 +788,7 @@
         border-bottom-right-radius: 1.07vw;
         padding: 6.67vw;
     }
-    .dropdown-list {
+    .dropdown-list {.breadcrumbs__title
         padding-left: 5.34vw;
     }
     .dropdown-list__item {
@@ -1073,8 +1086,11 @@
     .form-shop__label {
         padding-left: 0;
         padding-right: 0;
-        margin: 0 0 8vw 0;
-        height: 16vw;
+        margin: 0 0 3.5rem 0;
+        height: 1.5rem;
+    }
+    span.add-store-label {
+        margin-bottom: 1rem;
     }
     .form-shop__input:focus {
         border: 0.27vw solid #c6d846;
@@ -1556,6 +1572,7 @@
     }
     #modal-recalculate {
         padding: 3.5rem 0.5vw 0 0.5vw;
+        position: absolute;
     }
     .help-button,
     .header__user-list .user-list__column {

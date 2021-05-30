@@ -7,6 +7,10 @@
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
+    overflow-x: hidden;
+}
+.routers {
+    padding-right: 1rem;
 }
 .blur {
     filter: blur(8px);
@@ -22,7 +26,7 @@
 }
 @media (max-width: 992px) {
     .wrapper-modal .modal-envelope {
-        position: absolute;
+        width: 98%;
         top: 3%;
         left: 50%;
         transform: translateX(-50%);

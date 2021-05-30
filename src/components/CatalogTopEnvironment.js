@@ -20,11 +20,13 @@ class CatalogTopEnvironment extends React.Component {
             params: [],
             open: "",
             updateEditorModal: false,
+            isClosed: true,
         };
         this.addUser = this.addUser.bind(this);
         this.changeUser = this.changeUser.bind(this);
         this.arrowLeft = this.arrowLeft.bind(this);
         this.arrowRight = this.arrowRight.bind(this);
+        this.mobileEditToggle = this.mobileEditToggle.bind(this);
     }
 
     componentDidMount() {
@@ -133,6 +135,12 @@ class CatalogTopEnvironment extends React.Component {
         })
     }
 
+    mobileEditToggle() {
+        this.setState({
+            isClosed: !this.state.isClosed,
+        })
+    }
+
     renderParams = (item, index) => {
         return (
             <li className="list-object__item text-16 bold" key={index}>
@@ -157,10 +165,11 @@ class CatalogTopEnvironment extends React.Component {
                         addItem={this.addUser}
                         changeItem={this.changeUser}
                         hidden={this.props.Permission === "unknown"}
+                        mobileEditToggle={this.mobileEditToggle}
                     />
                     <div style={{display: "contents"}}>
                         <div className="arrow-slide-params unselectable" onClick={this.arrowLeft}> &lt; </div>
-                            <div className="col-12 catalog-top__list-object">
+                            <div className={"col-12 catalog-top__list-object" + (this.state.isClosed ? " close" : "")}>
                                 <ul className="list-object" style={{left: this.state.moveLeft + "vw"}}>
                                     {this.state.params && this.state.params.map((item, index) => {
                                         return this.renderParams(item, index);

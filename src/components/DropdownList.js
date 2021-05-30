@@ -9,6 +9,7 @@ class DropdownList extends React.Component {
         };
         this.changeItem = this.changeItem.bind(this);
         this.addItem = this.addItem.bind(this);
+        this.mobileEditToggle = this.mobileEditToggle.bind(this);
     }
 
     componentDidMount() {}
@@ -42,6 +43,11 @@ class DropdownList extends React.Component {
         this.closeOpen();
         this.props.addItem();
     }
+    mobileEditToggle(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.props.mobileEditToggle();
+    }
 
     renderItem = (item, index) => {
         const name = item.UserName ? item.UserName : item.nameStore;
@@ -61,6 +67,9 @@ class DropdownList extends React.Component {
                 <div className="catalog-top__dropdown-info">
                     <div className="catalog-top__button-drop" onClick={this.closeOpen}>
                         <div className="catalog-top__button-text text-16 bold uppercase">{this.state.headerItem}</div>
+                        <svg className="icon" onClick={this.mobileEditToggle}>
+                            <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#pen"/>
+                        </svg>
                         <span className="catalog-top__button-icon">
                             <svg className="icon icon-arrow-small ">
                               <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#arrow-small"/>

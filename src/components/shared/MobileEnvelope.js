@@ -77,6 +77,7 @@ class MobileEnvelope extends React.Component {
     }
 
     helpModal() {
+        this.props.mobileMenuClose();
         this.props.openModalFunction("helpModal");
     }
 
@@ -109,10 +110,10 @@ class MobileEnvelope extends React.Component {
                     <li className="mobile-nav__item">
                         <Link className="mobile-nav__link light text-25" to={"/about"} onClick={this.mobileMenuClose}>{langCode(this.props.lang, "About")}</Link>
                     </li>
-                    <li className="mobile-nav__item">
+                    <li className="mobile-nav__item" onClick={this.mobileMenuClose}>
                         {this.renderPartnerLink()}
                     </li>
-                    <li className="mobile-nav__item">
+                    <li className="mobile-nav__item" onClick={this.mobileMenuClose}>
                         <Authentication onClick={this.mobileMenuClose}/>
                     </li>
                 </ul>
