@@ -1056,7 +1056,7 @@ span.catalog-top__button-icon {
     align-items: center;
     justify-content: space-between;
     border: 0.0625vw solid #e1e1e1;
-    border-radius: 0.25vw;
+    border-radius: 0.25rem;
     padding: 0.9375vw 1.25vw;
     background: transparent;
     cursor: pointer;
@@ -2795,6 +2795,7 @@ button.size-tabs-wrapper-button.tabs-active {
     font-weight: bold;
     color: rgba(198, 216, 70, 1);
     overflow: hidden;
+    white-space: nowrap;
 }
 .add-cart-block {
     position: relative;
@@ -4173,7 +4174,7 @@ div, p, span, h1, h2, h3, h4,
 }
 .catalog-top__button-toggle-btn {
     position: relative;
-    top: 2.2vw;
+    top: 2.2rem;
     left: 0.5rem;
     width: 2rem;
     z-index: 9;

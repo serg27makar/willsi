@@ -138,10 +138,10 @@ class ProductEditor extends React.Component {
                 <div className="stroke-descriptor-toggle-btn">
                     <ToggleButton active={!item.storeAdmin} onClick={(e) => {this.storeAdminToggle(e, item)}}/>
                 </div>
-                <div className="stroke-descriptor-number text-14">{index + 1}</div>
-                <div className="stroke-descriptor-manufacturer text-14">{item.Manufacturer}</div>
-                <div className="stroke-descriptor-name text-14">{item.ProdName}</div>
-                <div className="stroke-descriptor-code text-14">{item.ProductCode}</div>
+                <div className="stroke-descriptor-number text-12">{index + 1}</div>
+                <div className="stroke-descriptor-manufacturer text-12">{item.Manufacturer}</div>
+                <div className="stroke-descriptor-name text-12">{item.ProdName}</div>
+                <div className="stroke-descriptor-code text-12">{item.ProductCode}</div>
             </div>
         )
     }
@@ -150,7 +150,7 @@ class ProductEditor extends React.Component {
         return (
             <div className="stroke-descriptor-manufacturer" key={index}>
                 <label className="search-label">
-                    <input className="search-input text-14 light"
+                    <input className="search-input text-12 light"
                            type={"text"}
                            name={item}
                            value={this.state[item]}
@@ -181,10 +181,10 @@ class ProductEditor extends React.Component {
         return (
             <div>
                 <div className="stroke-descriptor-wrapper">
-                    <div className="stroke-descriptor-number text-14"> № </div>
-                    <div className="stroke-descriptor-manufacturer text-14">{langCode(this.props.lang, "Manufacturer")}</div>
-                    <div className="stroke-descriptor-name text-14">{langCode(this.props.lang, "ProdName")}</div>
-                    <div className="stroke-descriptor-code text-14">{langCode(this.props.lang, "ProductCode")}</div>
+                    <div className="stroke-descriptor-number text-12"> № </div>
+                    <div className="stroke-descriptor-manufacturer text-12">{langCode(this.props.lang, "Manufacturer")}</div>
+                    <div className="stroke-descriptor-name text-12">{langCode(this.props.lang, "ProdName")}</div>
+                    <div className="stroke-descriptor-code text-12">{langCode(this.props.lang, "ProductCode")}</div>
                 </div>
                 {this.renderSearchBlock()}
                 {this.state.list && this.state.list.map((item, index) => {

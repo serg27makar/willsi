@@ -204,14 +204,18 @@
         text-align: left;
     }
     .stroke-descriptor-manufacturer {
-        width: 36%;
+        width: 30%;
     }
     .stroke-descriptor-name {
-        width: 36%;
+        width: 30%;
     }
     .stroke-descriptor-code {
         width: 20%;
         text-align: center;
+    }
+    .stroke-descriptor-toggle-btn {
+        left: 0;
+        margin-right: 0.5rem;
     }
     .cabinet-wrapper {
         flex-direction: column;
@@ -696,8 +700,6 @@
         min-width: 10rem;
     }
     .sidebar__button-list .catalog-top__dropdown-info {
-        border: 0.27vw solid #e1e1e1;
-        border-radius: 1.07vw;
         width: 100%;
     }
     .catalog-top__button-drop {
@@ -731,8 +733,20 @@
     .catalog-top__list-object .list-object__text-value {
         padding: 0 1.07vw;
     }
-
-
+    .count-products {
+        right: 2.5rem;
+    }
+    .toggle-button-wrap {
+        height: 0.8rem;
+        width: 1.5rem;
+    }
+    .toggle-button {
+        height: 1rem;
+        width: 1rem;
+    }
+    .search-input {
+        width: 80%;
+    }
     .icon-plus {
         margin-left: -2.67vw;
         margin-bottom: -4vw;
