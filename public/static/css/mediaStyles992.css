@@ -188,6 +188,9 @@
     .mobile-toggle {
         display: none !important;
     }
+    .only-mobile {
+        display: block;
+    }
     .header__plan-picture {
         width: 10vw !important;
         height: 7vw !important;

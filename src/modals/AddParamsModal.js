@@ -124,7 +124,7 @@ class AddParamsModal extends React.Component {
 
     renderParamList(item, index) {
         return(
-            <div className={"modal-param-list-item " + (this.state.active === index ? "active" : "")} key={index} onClick={() => {this.setActive(index)}}>{item.title}</div>
+            <div className={"modal-param-list-item text-16 " + (this.state.active === index ? "active" : "")} key={index} onClick={() => {this.setActive(index)}}>{item.title}</div>
         )
     }
 

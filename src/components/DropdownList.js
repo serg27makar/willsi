@@ -67,7 +67,7 @@ class DropdownList extends React.Component {
                 <div className="catalog-top__dropdown-info">
                     <div className="catalog-top__button-drop" onClick={this.closeOpen}>
                         <div className="catalog-top__button-text text-16 bold uppercase">{this.state.headerItem}</div>
-                        <svg className="icon" onClick={this.mobileEditToggle}>
+                        <svg className="icon only-mobile" onClick={this.mobileEditToggle}>
                             <use xlinkHref="static/img/svg-sprites/symbol/sprite.svg#pen"/>
                         </svg>
                         <span className="catalog-top__button-icon">
