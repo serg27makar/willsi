@@ -1,6 +1,5 @@
 import React from 'react';
-import {Router, Route} from 'react-router-dom'
-import {createBrowserHistory} from 'history'
+import {HashRouter, Route} from 'react-router-dom'
 import './App.css';
 import Header from "./components/shared/Header";
 import Footer from "./components/shared/Footer";
@@ -49,8 +48,6 @@ import SpinnerModal from "./modals/SpinnerModal";
 import NothingToShowModal from "./modals/NothingToShowModal";
 import UserNameModal from "./modals/UserNameModal";
 import AlertLinkModal from "./modals/AlertLinkModal";
-
-const history = createBrowserHistory();
 
 class App extends React.Component {
     constructor(props) {
@@ -192,7 +189,7 @@ class App extends React.Component {
 class Navigate extends React.Component {
     render() {
         return (
-            <Router history={history}>
+            <HashRouter>
                 <Header/>
                 <div className="routers">
                     <Route exact path='/' component={Homepage}/>
@@ -208,7 +205,7 @@ class Navigate extends React.Component {
                     <Route path='/seller-service' component={SellerService}/>
                 </div>
                 <Footer/>
-            </Router>
+            </HashRouter>
         );
     }
 }
