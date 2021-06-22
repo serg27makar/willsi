@@ -169,7 +169,7 @@ class EditorModal extends React.Component {
         return (
             <div className="relative-block" key={index}>
                 <p className="input-placeholder text-16">{langCode(this.props.lang, item.inputName)}</p>
-                <input className="tags-list__input text-18 light envelope-mode"
+                <input className="tags-list__input text-14 light envelope-mode"
                        type="number" name={item.inputName} placeholder={langCode(this.props.lang, "placeholderExample")}
                        value={this.state.params[item.inputName] || ""}
                        onChange={(e) => {this.onChange(e, item)}}

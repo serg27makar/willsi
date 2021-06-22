@@ -26,6 +26,7 @@
 }
 @media (max-width: 992px) {
     .wrapper-modal .modal-envelope {
+        position: absolute;
         width: 98%;
         top: 3%;
         left: 50%;
