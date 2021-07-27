@@ -1044,6 +1044,16 @@ span.catalog-top__button-icon {
     display: flex;
     flex-direction: column;
 }
+.catalog-top__input-text {
+    white-space: nowrap;
+    background: none;
+    width: 100%;
+    border: none;
+}
+.search-dropdown-info-admin.open {
+    max-height: 15rem;
+    overflow: auto;
+}
 .catalog-top__button-text {
     white-space: nowrap;
     width: 100%;
@@ -1251,6 +1261,9 @@ input[type="checkbox"]:not(:checked) + label.category-list__label {
 .dropdown-list {
     display: none;
     padding-left: 1.25vw;
+    padding-right: 0.5rem;
+    overflow: auto;
+    max-height: 15rem;
 }
 .dropdown-list__item {
     padding: 1vw 0 1vw 1vw;
@@ -1274,7 +1287,7 @@ input[type="checkbox"]:not(:checked) + label.category-list__label {
     width: inherit;
 }
 .dropdown-list__link:hover {
-    color: #969696;
+    color: #c6d846;
 }
 .deleteBtn {
     display: flex;
@@ -4207,6 +4220,10 @@ div, p, span, h1, h2, h3, h4,
 .active-toggle {
     left: 75%;
     background: #4ba9bc;
+}
+.toggle-btn-sub {
+    position: relative;
+    width: 0;
 }
 .catalog-top-toggle-btn {
     width: 4rem;

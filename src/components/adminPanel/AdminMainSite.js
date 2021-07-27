@@ -18,6 +18,7 @@ import {
 import {isEmptyObject, miDateFormatNumber, updateResult} from "../../js/sharedFunctions";
 import EditSubspecies from "./EditSubspecies";
 import {langCode} from "../../access/lang/translaterJS";
+import SearchDropdown from "./SearchDropdown";
 
 class AdminMainSite extends React.Component {
     constructor(props) {
@@ -75,10 +76,7 @@ class AdminMainSite extends React.Component {
         });
         const subCatalog = [];
         dropdownListArr[0].dropdownItems.map((item) => {
-            if (item.substr(item.length - 3, 3) !== "All") {
-                subCatalog.push(item)
-            }
-            return subCatalog;
+            return  subCatalog.push(item);
         })
         this.setState({
             ...this.state,
@@ -105,10 +103,7 @@ class AdminMainSite extends React.Component {
             } else {
                 const subCatalog = [];
                 dropdownListArr[this.state.headerIndex].dropdownItems.map((item) => {
-                    if (item.substr(item.length - 3, 3) !== "All") {
-                        subCatalog.push(item)
-                    }
-                    return subCatalog;
+                    return subCatalog.push(item);
                 })
                 this.setState({
                     ...this.state,
@@ -133,10 +128,7 @@ class AdminMainSite extends React.Component {
         dropdownListArr.map((item, index) => {
             if (item.dropdownTitle === headerItem) {
                 item.dropdownItems.map((item) => {
-                    if (item.substr(item.length - 3, 3) !== "All") {
-                        subCatalog.push(item)
-                    }
-                    return subCatalog;
+                    return subCatalog.push(item);
                 })
                 headerIndex = index;
             }
@@ -362,7 +354,7 @@ class AdminMainSite extends React.Component {
                     closeOpen={this.state.dropDownClose}
                     index={0}
                 />
-                <AdminDropdownList
+                <SearchDropdown
                     headerItem={this.state.headerSubItem}
                     subItem={this.state.subCatalog}
                     changeItem={this.changeSubCatalog}

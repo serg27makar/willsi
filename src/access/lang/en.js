@@ -297,7 +297,8 @@ const en = {
 
     find: "find",
     continue: "Continue",
-    weAreMissingSomeData: "We are missing some of your data for fitting"
+    weAreMissingSomeData: "We are missing some of your data for fitting",
+    selectProductName: "select product name"
 };
 
 export default en;

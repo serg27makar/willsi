@@ -301,7 +301,8 @@ const ru = {
 
     find: "найти",
     continue: "Продолжить",
-    weAreMissingSomeData: "Нам не хватает некоторых Ваших данных для примерки"
+    weAreMissingSomeData: "Нам не хватает некоторых Ваших данных для примерки",
+    selectProductName: "выберите название продукта"
 };
 
 export default ru;

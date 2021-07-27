@@ -647,6 +647,606 @@ export const recalculateParamsDog = [
 // 13: wideFootGirth - Обхват стопы в щироком месте
 // 14: footCircumference - Обхват объема (талии стопы)
 
+export const allSizeLists = [
+    {
+        name: "Windbreakers",
+        size: [
+            "waist",
+            "chest",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Sheepskin coats",
+        size: [
+            "chest",
+            "waist",
+            "hips",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Long Sleeve Jackets",
+        size: [
+            "waist",
+            "chest",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Jackets with short sleeves",
+        size: [
+            "waist",
+            "chest",
+            "armGirth",
+            "growth",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Vests",
+        size: [
+            "waist",
+            "chest",
+            "growth",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Overalls",
+        size: [
+            "chest",
+            "waist",
+            "hips",
+            "armGirth",
+            "growth",
+            "thighGirth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Costumes",
+        size: [
+            "chest",
+            "waist",
+            "hips",
+            "armGirth",
+            "growth",
+            "thighGirth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Jackets",
+        size: [
+            "chest",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Coat",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Blazers",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Cloaks",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Half-length coat",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Poncho",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Down jackets",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Fur coats",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Pajamas",
+        size: [
+            "chest",
+            "waist",
+            "hips",
+            "armGirth",
+            "growth",
+            "thighGirth",
+            "armLength",
+            "shoulder",
+            "insideLegLength",
+        ]
+    },
+    {
+        name: "Tracksuits",
+        size: [
+            "chest",
+            "waist",
+            "hips",
+            "armGirth",
+            "growth",
+            "thighGirth",
+            "armLength",
+            "shoulder",
+            "insideLegLength",
+        ]
+    },
+    {
+        name: "Bathrobes",
+        size: [
+            "chest",
+            "hips",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Leggings (fitted)",
+        size: [
+            "hips",
+            "growth",
+            "thighGirth",
+            "insideLegLength",
+        ]
+    },
+    {
+        name: "Leggings (with high waist)",
+        size: [
+            "waist",
+            "hips",
+            "growth",
+            "thighGirth",
+            "insideLegLength",
+        ]
+    },
+    {
+        name: "Undershirt",
+        size: [
+            "chest",
+            "waist",
+            "growth",
+        ]
+    },
+    {
+        name: "Socks",
+        size: [
+            "footLength",
+        ]
+    },
+    {
+        name: "Underpants",
+        size: [
+            "hips",
+            "thighGirth",
+        ]
+    },
+    {
+        name: "Boxer briefs",
+        size: [
+            "hips",
+            "thighGirth",
+        ]
+    },
+    {
+        name: "Family cowards",
+        size: [
+            "hips",
+            "thighGirth",
+        ]
+    },
+    {
+        name: "Long Sleeve Blouses",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Blouses with short sleeves",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Bolero with long sleeves",
+        size: [
+            "chest",
+            "armGirth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Bolero with short sleeves",
+        size: [
+            "chest",
+            "armGirth",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Jumpers",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Cardigans",
+        size: [
+            "chest",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Sweatshirts",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Pullovers",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Raglans",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Long Sleeve Shirts",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Shirts with short sleeves",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Sweaters",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Sports sweatshirts",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Hoodies",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Tops",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Tunics",
+        size: [
+            "chest",
+            "armGirth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Hoodie",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Knee socks",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Longsleeves",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Polo with short sleeves",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Long Sleeve Polo",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Tennis shoes",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "shoulder",
+        ]
+    },
+    {
+        name: "T-shirts",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "shoulder",
+        ]
+    },
+    {
+        name: "T-shirts with long sleeves",
+        size: [
+            "chest",
+            "waist",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Breeches",
+        size: [
+            "waist",
+            "hips",
+            "growth",
+            "thighGirth",
+            "insideLegLength",
+        ]
+    },
+    {
+        name: "Pants",
+        size: [
+            "waist",
+            "hips",
+            "growth",
+            "thighGirth",
+            "insideLegLength",
+        ]
+    },
+    {
+        name: "Jeans (fitted)",
+        size: [
+            "hips",
+            "growth",
+            "thighGirth",
+            "insideLegLength",
+        ]
+    },
+    {
+        name: "Jeans (high waist)",
+        size: [
+            "waist",
+            "hips",
+            "growth",
+            "thighGirth",
+            "insideLegLength",
+        ]
+    },
+    {
+        name: "Dresses",
+        size: [
+            "chest",
+            "waist",
+            "hips",
+            "armGirth",
+            "growth",
+            "armLength",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Sundresses",
+        size: [
+            "chest",
+            "waist",
+            "hips",
+            "armGirth",
+            "growth",
+            "shoulder",
+        ]
+    },
+    {
+        name: "Sweatpants",
+        size: [
+            "waist",
+            "hips",
+            "growth",
+            "thighGirth",
+            "insideLegLength",
+        ]
+    },
+    {
+        name: "Trousers",
+        size: [
+            "waist",
+            "hips",
+            "growth",
+            "thighGirth",
+            "insideLegLength",
+        ]
+    },
+    {
+        name: "Shorts",
+        size: [
+            "waist",
+            "hips",
+            "growth",
+            "thighGirth",
+        ]
+    },
+    {
+        name: "Skirts",
+        size: [
+            "waist",
+            "hips",
+            "growth",
+        ]
+    },
+    {
+        name: "Other",
+        size: []
+    },
+]
 export const sizeListTshirts = [
     "chest",
     "waist",
@@ -654,48 +1254,6 @@ export const sizeListTshirts = [
     "armGirth",
     "growth",
     "shoulder",
-];
-export const sizeListShirts = [
-    "chest",
-    "waist",
-    "hips",
-    "armGirth",
-    "growth",
-    "armLength",
-    "shoulder",
-];
-export const sizeListPants = [
-    "waist",
-    "hips",
-    "growth",
-    "thighGirth",
-    "insideLegLength",
-];
-export const sizeListUnderwear = [
-    "chest",
-    "waist",
-    "hips",
-    "growth",
-    "thighGirth",
-    "insideLegLength",
-];
-export const sizeListOuterwear = [
-    "chest",
-    "waist",
-    "hips",
-    "armGirth",
-    "growth",
-    "armLength",
-    "shoulder",
-];
-export const sizeListHome = [
-    "chest",
-    "waist",
-    "hips",
-    "growth",
-    "armLength",
-    "shoulder",
-    "insideLegLength",
 ];
 
 // DOG

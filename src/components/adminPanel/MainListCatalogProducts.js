@@ -178,7 +178,7 @@ class MainListCatalogProducts extends React.Component {
         if (listIndex === 0) return null
         return (
             <li className="dropdown-list__item catalog-opened" key={listIndex} onClick={() => {this.chooseSubCatalog(listItem, listIndex)}}>
-                <div className="catalog-top-toggle-btn">
+                <div className="toggle-btn-sub">
                     <ToggleButton active={this.state.activeSubToggle[listItem]} onClick={(e) => {this.hiddenProductsToSubCatalog(e, listItem)}}/>
                 </div>
                 <div className={"dropdown-list__link padding-left text-14 " + (this.state.selectedSubCatalog === listIndex ? "catalog-opened" : "light")}>{langCodeCatalog(this.props.lang, listItem)}</div>

@@ -3,22 +3,11 @@ import {
     subCatalogListDogPants,
     subCatalogListDogShirts,
     subCatalogListDogShoes,
-    subCatalogListGeneral,
-    subCatalogListHome,
-    subCatalogListOuterwear,
-    subCatalogListPants,
-    subCatalogListShirts,
     subCatalogListTshirts,
-    subCatalogListUnderwear,
     whomParams
 } from "../access/temporaryConstants";
 import {
-    sizeListHome,
-    sizeListOuterwear,
-    sizeListPants,
-    sizeListShirts,
     sizeListTshirts,
-    sizeListUnderwear,
     recalculateParamsBoy,
     recalculateParamsDog,
     recalculateParamsGirl,
@@ -28,6 +17,7 @@ import {
     dogSizeListShirts,
     dogSizeListOuterwear,
     dogSizeListShoes,
+    allSizeLists,
 } from "../access/recalculateConstants";
 
 export function validateEmail(email) {
@@ -101,26 +91,15 @@ export function chooseSizeList(subCatalog, catalog) {
 
 function getSizeList(subCatalog) {
     let sizeListT = []
+    allSizeLists.map(item => {
+        if (item.name === subCatalog) {
+            console.log(subCatalog, item.size)
+            return sizeListT = item.size;
+        }
+        return sizeListT
+    })
     if (subCatalogListTshirts.indexOf(subCatalog) !== -1) {
         sizeListT = sizeListTshirts;
-    }
-    if (subCatalogListShirts.indexOf(subCatalog) !== -1) {
-        sizeListT = sizeListShirts
-    }
-    if (subCatalogListPants.indexOf(subCatalog) !== -1) {
-        sizeListT = sizeListPants
-    }
-    if (subCatalogListUnderwear.indexOf(subCatalog) !== -1) {
-        sizeListT = sizeListUnderwear
-    }
-    if (subCatalogListOuterwear.indexOf(subCatalog) !== -1) {
-        sizeListT = sizeListOuterwear
-    }
-    if (subCatalogListHome.indexOf(subCatalog) !== -1) {
-        sizeListT = sizeListHome
-    }
-    if (subCatalogListGeneral.indexOf(subCatalog) !== -1) {
-        sizeListT = []
     }
 
     if (subCatalogListDogPants.indexOf(subCatalog) !== -1) {
